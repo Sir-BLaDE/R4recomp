@@ -64,16 +64,33 @@ def ask(port, obj, timeout=10.0):
     return {}
 
 
+RUNTIME = "r4-runtime.exe" if os.name == "nt" else "r4-runtime"
+
+
+def link(src, dst):
+    """Symlink; Windows without the symlink privilege gets a copy."""
+    try:
+        dst.symlink_to(src, target_is_directory=src.is_dir())
+    except OSError:
+        if src.is_dir():
+            shutil.copytree(src, dst)
+        else:
+            shutil.copy(src, dst)
+
+
 def stage(build, root):
     """A runtime directory of symlinks to the build's, with its own mods/ and
     no settings: the runtime anchors mods/, settings.toml and its caches next
     to the path it was started from."""
-    for name in ("r4-runtime", "bios", "assets"):
+    for name in (RUNTIME, "bios", "assets"):
         src = build / name
         if src.exists():
-            (root / name).symlink_to(src)
+            link(src, root / name)
+    if os.name == "nt":                 # MinGW runtime DLLs beside the exe
+        for dll in build.glob("*.dll"):
+            shutil.copy(dll, root / dll.name)
     (root / "mods").mkdir()
-    (root / "mods" / "bundled").symlink_to(build / "mods" / "bundled")
+    link(build / "mods" / "bundled", root / "mods" / "bundled")
     shutil.copy(build / "game.toml", root / "game.toml")
 
 
@@ -99,7 +116,7 @@ def boot(root, disc, frames, label):
     saves.mkdir()
     log = open(root / ("run-" + label + ".log"), "w")
     proc = subprocess.Popen(
-        [str(root / "r4-runtime"), "--game", str(root / "game.toml"),
+        [str(root / RUNTIME), "--game", str(root / "game.toml"),
          "--disc", str(disc), "--no-launcher", "--headless",
          "--memcard-dir", str(saves), "--debug-port", str(port)],
         cwd=root, stdout=log, stderr=subprocess.STDOUT, env=env)
@@ -157,7 +174,7 @@ def main():
     ap.add_argument("--frames", type=int, default=120)
     a = ap.parse_args()
     build_root = a.build_dir.resolve()
-    if not (build_root / "r4-runtime").exists():
+    if not (build_root / RUNTIME).exists():
         print("FAIL no r4-runtime in %s" % build_root)
         return 1
     with tempfile.TemporaryDirectory(prefix="r4-pgxp-boot-") as tmp:
