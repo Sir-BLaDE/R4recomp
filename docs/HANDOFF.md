@@ -1,23 +1,35 @@
 # Handoff
 
-## Current work (2026-10-09)
+## Current work (2026-10-11)
 
 Released: v0.1.0 only. Next release waits on the open PRs below landing and
 the owner's go and version number. Never tag or publish without that ask.
 
-Merged since 2026-10-08: R4 #29 (analog sweep test), #30 (forgiving analog
-response curves), #33 (remote-seat test tooling).
+The psxrecomp stack was rebased and force-pushed (#584-#622). Every open R4
+PR now pins a pushed head; each PR body lists what it waits on. recomp-ui #86
+and recomp-net #36 are merged.
 
-Open, waiting on psxrecomp review/merge (all review points answered):
-- Visual: psxrecomp #584 dither (stacked on #587), #586 xBR, #587 accurate
-  blending, #589 bloom.
-- Performance: #590 v_wait idle skip, #595, #596, #597 -> R4 #22, #25.
-- Presets: #591 + recomp-ui #86 -> R4 #23 (Low on low-end, Ultra otherwise).
-- Linux/Deck: #592, #593 -> R4 #24.
-- In-game menu: #598-#603 -> R4 #26 -> #27 -> #28 (tetrisgm/recomp-launcher).
-- Controls: #608, #610 -> R4 #31 (rumble); #609 -> R4 #32 (wheel FFB).
-- Netplay: #611 (false desync warnings); #607 spectators (inert until the
-  lobby server relays spectators; #612 and recomp-net #34 are drafts).
+Open R4 PRs and what each waits on:
+- #22 v_wait idle skip: psxrecomp #590.
+- #23 graphics presets: psxrecomp #591 (recomp-ui already pinned to master).
+- #24 Linux zip: psxrecomp #592, #593.
+- #25 batched cycle charge: psxrecomp #597.
+- #26 recomp-launcher + in-game menu: psxrecomp #598-#603.
+- #27 live mod options: #26 first. #28 launcher surface: #27 first.
+- #31 Modern rumble: psxrecomp #608, #610.
+- #32 wheel force feedback: psxrecomp #609.
+Not tied to an R4 PR: psxrecomp #584, #586, #587, #589 (visual), #595, #596,
+#605, #611, #618, #621, #622; #620 belongs to the 4P netplay work.
+
+Merge order: land psxrecomp first, then re-pin each R4 PR to psxrecomp master
+and merge in this order: #22, #25, #23, #24, #31, #32 (whichever of #31/#32
+lands second re-pins to a master holding #608, #609 and #610), then #26, #27,
+#28. Every R4 PR edits `docs/framework_pin_history.md` and most edit
+`tests/test_r4_defaults.py`; keep both sides when rebasing.
+
+Note: psxrecomp master after `67a21b73` (#614, #617) moves R4 guest timing
+from boot frame 8. That is expected with the next re-pin, not a regression of
+an open PR.
 
 ## Owner decisions
 
