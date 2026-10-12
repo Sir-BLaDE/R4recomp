@@ -140,7 +140,10 @@ elif [[ $PLATFORM == linux ]]; then
   HOST_ARGS+=("${LNX[@]}"
               -DCMAKE_DISABLE_FIND_PACKAGE_SDL3=ON
               -DCMAKE_DISABLE_FIND_PACKAGE_Freetype=ON
-              -DCMAKE_DISABLE_FIND_PACKAGE_ZLIB=ON -DPSX_ZLIB_FETCH=ON)
+              -DCMAKE_DISABLE_FIND_PACKAGE_ZLIB=ON -DPSX_ZLIB_FETCH=ON
+              # The image's libcrypto.so.1.1 is not on every distribution;
+              # the framework falls back to its portable SHA-256 (as on macOS).
+              -DCMAKE_DISABLE_FIND_PACKAGE_OpenSSL=ON)
   EXE=r4-runtime; SFX=""
 else
   # Static emitters (they ship in overlay_toolchain/), so a player's PATH can
