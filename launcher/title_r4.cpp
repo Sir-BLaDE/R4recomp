@@ -70,6 +70,10 @@ const SurfaceRule kSurface[] = {
     {"controls.force_feedback", Vis::Shown, nullptr},
     // Disc: found automatically; OpenBIOS is bundled, so no BIOS prompt.
     {"disc.autoscan", Vis::Auto, "auto"},
+    // The game boots straight in; disc setup, netplay and options live in the
+    // in-game menu (Esc / Guide / Start+Select). --launcher brings back the
+    // pre-game window.
+    {"launcher.in_game", Vis::Auto, "auto"},
     {"disc.toolchain", Vis::Hidden, nullptr},
     {"bios.select", Vis::Hidden, nullptr},
     // Settings page: volume only; memory cards use the default cards.
