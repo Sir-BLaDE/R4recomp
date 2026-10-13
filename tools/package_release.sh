@@ -80,7 +80,7 @@ echo "== r4 $V ($PLATFORM) from $SHA, BIOS backends: $BIOS_STEMS"
 # Every game.toml [video] key is read by the pinned psxrecomp: a key set
 # ahead of the pin would be inert in the zip, and R4's on-by-default display
 # settings would not match its docs.
-python3 tools/check_pin_keys.py
+"$PYTHON" tools/check_pin_keys.py   # tomllib: the selected Python 3.11+
 bash psxrecomp/tools/ci/record_pins.sh
 # The committed game C is present and tracked, and the framework's committed
 # BIOS backends match its emitter (the same gates psxrecomp's CI template runs).
@@ -90,11 +90,6 @@ bash psxrecomp/tools/ci/check_generated.sh --root .
 # package must not depend on the unused retail backend's emitter stamp.
 IFS=';' read -r -a BIOS_STEM_ARRAY <<< "$BIOS_STEMS"
 bash psxrecomp/tools/ci/check_bios_stamps.sh --framework psxrecomp "${BIOS_STEM_ARRAY[@]}"
-# Later feature branches add this gate; use the same selected Python because
-# check_pin_keys.py reads TOML with tomllib.
-if [[ -f tools/check_pin_keys.py ]]; then
-  "$PYTHON" tools/check_pin_keys.py
-fi
 
 EMIT=build-recompiler
 HOST=build-release
