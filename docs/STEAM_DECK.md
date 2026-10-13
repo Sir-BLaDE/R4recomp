@@ -18,10 +18,12 @@ newer. It needs nothing installed:
    image, then start the game. It saves the choice in `settings.toml` beside the
    executable.
 3. In Steam, choose **Add a Non-Steam Game** and select `r4-runtime`.
-4. Switch to Game Mode and start it from your library. In Game Mode
-   (gamescope), R4 skips the launcher and opens fullscreen (psxrecomp
-   `docs/GAME_MODE.md`). To reach the launcher's settings from Game Mode, add
-   `--launcher` to the shortcut's launch options for one start.
+4. Switch to Game Mode and start it from your library. With psxrecomp
+   Game Mode support (RetroPortingToolKit/psxrecomp#593, not yet in this
+   build's pin), R4 skips the launcher in Game Mode (gamescope) and opens
+   fullscreen; add `--launcher` to the shortcut's launch options for one
+   start to reach its settings. Until then the launcher opens first: press
+   Play.
 
 ## Controls
 
