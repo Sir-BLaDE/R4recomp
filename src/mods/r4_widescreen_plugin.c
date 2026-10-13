@@ -128,9 +128,35 @@ static int r4_buffer_index(uint32_t buf)
 }
 static uint32_t r4_buffer_base(int b) { return R4_BUF0 + (uint32_t)b * R4_BUF_STRIDE; }
 
-static int r4_race_scene(void)
+/* The world-scene predicate runs on every primitive and GTE projection
+ * (gpu.c ws_mod_world_scene) and reads several guest words through the bus:
+ * 2-4 % of the emulation thread in races. The plugin's VBlank callback
+ * publishes the answer once per frame instead; savestate load and activation
+ * invalidate it, and an invalid cache reads live. R4_WS_SCENE_CACHE=0 reads
+ * live every time (developer A/B). */
+static int s_scene_cache_on = 1, s_scene_valid = 0, s_scene_value = 0;
+
+static int r4_race_scene_live(void)
 {
     return s_enabled && r4_in_race(rd32, rd16);
+}
+
+static void r4_ws_vblank(void)
+{
+    if (!s_scene_cache_on) return;
+    s_scene_value = r4_race_scene_live();
+    s_scene_valid = 1;
+}
+
+static void r4_ws_savestate_loaded(void)
+{
+    s_scene_valid = 0;
+}
+
+static int r4_race_scene(void)
+{
+    if (s_scene_cache_on && s_scene_valid) return s_scene_value;
+    return r4_race_scene_live();
 }
 
 /* Callbacks do work only in a widened race. */
@@ -344,6 +370,9 @@ static void r4_widescreen_activate(void)
          * about 65:9 the right reveal outruns the GTE's screen-X range and
          * renders black (docs/WIDESCREEN.md, Limitations). */
         (void)psx_mod_set_adaptive_display_aspect(0u, 0u);
+    env = getenv("R4_WS_SCENE_CACHE");  /* developer A/B: 0 reads live */
+    s_scene_cache_on = env ? env[0] != '0' : 1;
+    s_scene_valid = 0;
     psx_mod_set_world_scene_predicate(r4_race_scene);
     if (s_hooks_registered != R4_WS_HOOK_COUNT)
         fprintf(stderr, "[r4-ws] only %d of %d entry hooks registered\n",
@@ -364,4 +393,6 @@ PSX_MOD_CONSTRUCTOR(r4_register_widescreen)
     R4_WS_REGISTER_ENTRY(R4_PVS_OCTANT_FN, r4_ws_pvs_octant);
     R4_WS_REGISTER_ENTRY(R4_PVS_MERGE_FN, r4_ws_pvs_merge);
     (void)psx_mod_register_activation_plugin(PLUGIN_ID, r4_widescreen_activate);
+    (void)psx_mod_register_vblank_plugin(PLUGIN_ID, r4_ws_vblank);
+    (void)psx_mod_register_savestate_plugin(PLUGIN_ID, r4_ws_savestate_loaded);
 }
