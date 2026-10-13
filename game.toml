@@ -213,6 +213,11 @@ pgxp_preserve_projection = true  # exact projection: no residual wobble on near 
 pgxp_depth_buffer = true
 pgxp_color_correction = true
 pgxp_seam = "fine"
+# R4's own presentation choices (owner): true colour, so no PS1 dither pattern
+# (psxrecomp's default is now authentic dithering on), and bloom from 3D and
+# additive primitives, never the HUD, at strength 1. Both are visual only.
+dithering = "off"
+bloom = 1.0
 
 # Native-wide rendering for r4.enhancement.widescreen (docs/WIDESCREEN.md).
 # Inert at 4:3: every cull site below is the identity while the margin is 0.
