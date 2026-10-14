@@ -71,6 +71,8 @@ for sm in psxrecomp recomp-ui; do
 done
 git -C "$REL" "${GITC[@]}" -c protocol.file.allow=always submodule update -q --init
 git -C "$REL/psxrecomp" "${GITC[@]}" submodule update -q --init --recursive
+# recomp-launcher vendors Dear ImGui (and its own deps) as submodules.
+git -C "$REL/recomp-ui" "${GITC[@]}" submodule update -q --init --recursive
 cd "$REL"
 
 V="$(tr -d '[:space:]' < VERSION)"; V="${V#v}"
@@ -110,8 +112,12 @@ if [[ $PLATFORM == macos ]]; then
   # Universal, macOS 11+, no Homebrew dylibs (CMakeLists.txt sets the SDL3 and
   # FreeType defaults; repeated here so a stale cache cannot undo them), and no
   # build-machine paths embedded in the binaries.
+  # OpenSSL: psxrecomp's startup file hashing links it when found, and a
+  # Homebrew libcrypto is arm64-only and not a system dylib; without it the
+  # framework uses its portable SHA-256.
   MAC=(-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64" -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0
-       "-DCMAKE_IGNORE_PREFIX_PATH=/opt/homebrew;/usr/local")
+       "-DCMAKE_IGNORE_PREFIX_PATH=/opt/homebrew;/usr/local"
+       -DCMAKE_DISABLE_FIND_PACKAGE_OpenSSL=ON)
   EMIT_ARGS+=("${MAC[@]}")
   HOST_ARGS+=("${MAC[@]}"
               -DCMAKE_DISABLE_FIND_PACKAGE_SDL3=ON
