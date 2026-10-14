@@ -68,6 +68,7 @@ uint8_t psx_mod_read_byte(uint32_t address) {
 uint32_t psx_mod_alloc_guest_memory(uint32_t size, uint32_t alignment) {
     assert(alignment == 4);
     if (size == 4) return 0x9F000000u;
+    if (size == 4u * R4_LINK_FRAME_STATE_WORDS) return 0x9F000044u;  /* per-frame edit state */
     assert(size == 64);
     return 0x9F000004u;
 }
@@ -121,6 +122,26 @@ int psx_game_register_netplay_function_filter(
 int main(void)
 {
     assert(registrations == 28);
+    /* Per-frame edit state lives in snapshotted mod memory (#39): it
+     * survives a store/clobber/load round trip. */
+    assert(r4_link_frame_state == 0x9F000044u);
+    r4_link_views_frame = 3; r4_link_draw_view = 2; r4_link_hud_open = 1;
+    r4_link_hud_start[1] = 0x80100000u; r4_link_hud_end[1] = 0x80100040u;
+    r4_link_saved_viewport.center_x = 160;
+    r4_link_frame_state_io(1);
+    r4_link_views_frame = 0; r4_link_draw_view = 0; r4_link_hud_open = 4;
+    r4_link_hud_start[1] = r4_link_hud_end[1] = 0; r4_link_saved_viewport.center_x = 0;
+    r4_link_frame_state_io(0);
+    assert(r4_link_views_frame == 3 && r4_link_draw_view == 2 && r4_link_hud_open == 1);
+    assert(r4_link_hud_start[1] == 0x80100000u && r4_link_hud_end[1] == 0x80100040u);
+    assert(r4_link_saved_viewport.center_x == 160);
+    /* Zeroed memory reads as idle (HUD not open). */
+    for (unsigned i = 0; i < R4_LINK_FRAME_STATE_WORDS; ++i)
+        psx_mod_write_word(r4_link_frame_state + 4u * i, 0);
+    r4_link_frame_state_io(0);
+    assert(r4_link_hud_open == 4 && r4_link_views_frame == 0);
+    /* The checks below drive the bridge through its statics directly. */
+    r4_link_frame_state = 0;
     r4_link_brake_ramps = psx_mod_alloc_guest_memory(4, 4);
     r4_link_extra_view_cameras = psx_mod_alloc_guest_memory(64, 4);
     r4_link_extra_ot = psx_mod_alloc_gpu_dma_memory(R4_LINK_OT_ALLOC_BYTES, 4);
