@@ -1105,7 +1105,72 @@ static void r4_link_local_view(struct CPUState *cpu)
     r4_link_present_local_view((unsigned)seats);
 }
 
+/* The bridge's per-frame edit state (which views this main-loop iteration
+ * built, the HUD packet ranges, the viewport record patched during a native
+ * call) spans several hooked calls of one frame, and R4's frame build can
+ * span a VBlank, so a savestate or rollback snapshot can land inside it.
+ * Host statics would then carry the pre-load timeline's values into the
+ * restored frame and a replay would edit the OT differently from the live
+ * run (psxrecomp #636: the replayed DrawOTag took 36 cycles less). The
+ * state lives in Expansion-1 mod memory, which every snapshot carries, and
+ * is loaded into the statics at each hooked call and stored back after it. */
+static uint32_t r4_link_frame_state;
+#define R4_LINK_FRAME_STATE_WORDS 20u
+
+static void r4_link_frame_state_io(int store)
+{
+    uint32_t w[R4_LINK_FRAME_STATE_WORDS];
+    unsigned i;
+    if (!r4_link_frame_state) return;
+    if (!store)
+        for (i = 0; i < R4_LINK_FRAME_STATE_WORDS; ++i)
+            w[i] = psx_mod_read_word(r4_link_frame_state + 4u * i);
+#define R4_FS(k, field) do { if (store) w[k] = (uint32_t)(field); \
+        else (field) = w[k]; } while (0)
+    R4_FS(0, r4_link_views_frame);
+    R4_FS(1, r4_link_draw_view);
+    /* Stored XOR 4 so zeroed memory reads as the idle value 4. */
+    if (store) w[2] = r4_link_hud_open ^ 4u; else r4_link_hud_open = w[2] ^ 4u;
+    R4_FS(3, r4_link_hud_copy_head);
+    R4_FS(4, r4_link_hud_copy_tail);
+    for (i = 0; i < 4u; ++i) {
+        R4_FS(5 + i, r4_link_hud_start[i]);
+        R4_FS(9 + i, r4_link_hud_end[i]);
+    }
+    R4_FS(13, r4_link_patched_viewport);
+    R4_FS(14, r4_link_saved_projection);
+    {
+        uint16_t *v = &r4_link_saved_viewport.center_x;
+        for (i = 0; i < 5u; ++i) {
+            if (store)
+                w[15 + i] = (uint32_t)v[2 * i] | ((uint32_t)v[2 * i + 1] << 16);
+            else {
+                v[2 * i] = (uint16_t)w[15 + i];
+                v[2 * i + 1] = (uint16_t)(w[15 + i] >> 16);
+            }
+        }
+    }
+#undef R4_FS
+    if (store)
+        for (i = 0; i < R4_LINK_FRAME_STATE_WORDS; ++i)
+            psx_mod_write_word(r4_link_frame_state + 4u * i, w[i]);
+}
+
+static int r4_link_serial_filter_body(struct CPUState *cpu, uint32_t address);
+
 static int r4_link_serial_filter(struct CPUState *cpu, uint32_t address)
+{
+    int r;
+    /* Calls from the own-view sandbox see the outer call's state. */
+    if (r4_link_in_local_view)
+        return r4_link_serial_filter_body(cpu, address);
+    r4_link_frame_state_io(0);
+    r = r4_link_serial_filter_body(cpu, address);
+    r4_link_frame_state_io(1);
+    return r;
+}
+
+static int r4_link_serial_filter_body(struct CPUState *cpu, uint32_t address)
 {
     /* Guest calls made by the own-view draw run in a sandbox; none of the
      * bridge's frame edits apply to them. */
@@ -1379,6 +1444,8 @@ PSX_MOD_CONSTRUCTOR(r4_link_netplay_register)
     r4_link_brake_ramps = psx_mod_alloc_guest_memory(4, 4);
     r4_link_extra_view_cameras = psx_mod_alloc_guest_memory(64, 4);
     r4_link_extra_ot = psx_mod_alloc_gpu_dma_memory(R4_LINK_OT_ALLOC_BYTES, 4);
+    r4_link_frame_state =
+        psx_mod_alloc_guest_memory(4u * R4_LINK_FRAME_STATE_WORDS, 4);
     (void)psx_game_register_netplay_function_filter(
         0x8003535Cu, r4_link_serial_filter);
     (void)psx_game_register_netplay_function_filter(
