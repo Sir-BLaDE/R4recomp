@@ -60,7 +60,8 @@ class Run:
                    R4L_HIDDEN="1", R4L_SURFACE="all")
         env.update(extra_env or {})
         self.fh = self.log.open("w")
-        argv = ["./r4-runtime", "--game", "game.toml", "--disc", a.disc, "--debug-port", str(self.port)]
+        exe = str(Path(a.dir) / "r4-runtime.exe") if os.name == "nt" else "./r4-runtime"
+        argv = [exe, "--game", "game.toml", "--disc", a.disc, "--debug-port", str(self.port)]
         if not launcher:
             argv.append("--no-launcher")
         self.p = subprocess.Popen(argv,
