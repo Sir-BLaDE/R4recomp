@@ -526,7 +526,7 @@ def check_presets_rl(a):
         "screen Controls", "wait 10", "tap Wheel force feedback (experimental)", "wait 10", "sleep 4",
         "screen Graphics", "wait 10"] + ["pad dpdown"] * 30 + ["wait 10", 
         "visible Skin"] + ["pad dpup"] * 30 + ["wait 10", "visible High",
-        "key Escape", "wait 20", ""]))
+        ""]))  # ends with the menu open: a closed menu stops stepping the script
     # Hidden-window runs never detect a preset; a saved one still applies.
     sp = Path(a.dir) / "settings.toml"
     t = sp.read_text() if sp.exists() else "[video]\n"
