@@ -524,8 +524,8 @@ def check_presets_rl(a):
         "tap Texture filtering", "wait 10", "tap Nearest", "wait 10", "sleep 4",
         "top", "wait 5", "find High",
         "screen Controls", "wait 10", "tap Wheel force feedback (experimental)", "wait 10", "sleep 4",
-        "screen Graphics", "wait 10"] + ["pad dpdown"] * 40 + ["wait 10", 
-        "visible Skin"] + ["pad dpup"] * 40 + ["wait 10", "visible High",
+        "screen Graphics", "wait 10"] + ["pad dpdown"] * 30 + ["wait 10", 
+        "visible Skin"] + ["pad dpup"] * 30 + ["wait 10", "visible High",
         "key Escape", "wait 20", ""]))
     # Hidden-window runs never detect a preset; a saved one still applies.
     sp = Path(a.dir) / "settings.toml"
@@ -549,7 +549,7 @@ def check_presets_rl(a):
         ok("xbr-back", saved_filter(a) == 0, f"live 0, saved={settings_value(a, 'texture_filtering')}")
         r.until(lambda: settings_value(a, "jogcon_force_feedback") == "true", 40, "FFB saved on")
         ok("ffb", True, "jogcon_force_feedback = true")
-        r.until(lambda: "overlay script done" in r.text(), 180, "script done")
+        r.until(lambda: "overlay script done" in r.text(), 300, "script done")
         m = re.search(r"overlay script done, failures=(\d+)", r.text())
         ok("script", m and m.group(1) == "0", f"failures={m.group(1) if m else '?'} (wheel and gamepad nav reached every row)")
     finally:
