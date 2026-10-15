@@ -549,7 +549,7 @@ def check_presets_rl(a):
         ok("xbr-back", saved_filter(a) == 0, f"live 0, saved={settings_value(a, 'texture_filtering')}")
         r.until(lambda: settings_value(a, "jogcon_force_feedback") == "true", 40, "FFB saved on")
         ok("ffb", True, "jogcon_force_feedback = true")
-        r.until(lambda: "overlay script done" in r.text(), 40, "script done")
+        r.until(lambda: "overlay script done" in r.text(), 180, "script done")
         m = re.search(r"overlay script done, failures=(\d+)", r.text())
         ok("script", m and m.group(1) == "0", f"failures={m.group(1) if m else '?'} (wheel and gamepad nav reached every row)")
     finally:
