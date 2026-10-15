@@ -136,10 +136,22 @@ def test_game_toml():
           timing.get('guest_cycle_scale_gated') is True and
           'guest_cycle_scale_gate' in timing,
           'game.toml: guest_cycle_scale 2, gated to races with Max Detail')
+    check(timing.get('guest_cycle_scale_batch') is True,
+          'game.toml: the scaled CPU charge is batched (guest_cycle_scale_batch)')
     check(video.get('aspect_ratio') == '4:3',
           'game.toml: the base aspect stays 4:3 (widescreen is the mod)')
     check(video.get('renderer') == 'opengl',
           'game.toml: OpenGL renderer (render thread and native-wide need it)')
+
+
+def test_idle_skip():
+    with open(os.path.join(ROOT, 'game.toml'), 'rb') as fh:
+        runtime = tomllib.load(fh).get('runtime', {})
+    check(runtime.get('idle_skip') is True and
+          runtime.get('idle_skip_store_counters') is True,
+          'game.toml: idle_skip with store-counter loops (PsyQ v_wait)')
+    check(runtime.get('idle_skip_store_counter_sites') == ['0x8008B4D0', '0x8008B518'],
+          'game.toml: store-counter skips only at the audited v_wait site')
 
 
 def test_mod_state():
@@ -198,6 +210,7 @@ def test_mod_state():
 def main():
     test_manifests()
     test_game_toml()
+    test_idle_skip()
     test_mod_state()
     if FAILS:
         print(f'{len(FAILS)} failure(s)')
