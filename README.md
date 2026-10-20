@@ -64,6 +64,14 @@ netplay and online Link Battle for 2-4 players. Not yet verified end to end (see
 | HD HUD | Mods > Visual > HD HUD (on, OpenGL): high-resolution race HUD, HD HUD by Kuid0us |
 | JogCon input | R4 JogCon Input compatibility is enabled by default; wheels retain guest JogCon ID and analog steering from the start grid |
 
+Known issues:
+
+- Wheel force feedback is experimental and off by default (not yet verified
+  on a physical wheel).
+- 4-player online Link Battle: very rarely the session halts on the Results
+  screen after a race (RetroPortingToolKit/psxrecomp#636, under
+  investigation).
+
 ## What's new / on by default
 
 These are on when you first start the game. Each one is a switch on the
@@ -107,12 +115,13 @@ You need:
   **bin/cue** (SLUS-00797, one track; hashes in `DISC.md`). Do not convert it
   to `.iso`: that drops the streamed music and movies.
 - macOS 11 or later (`macos-arm64` for Apple Silicon, `macos-x64` for Intel),
-  or Windows 10/11 x64.
+  Windows 10/11 x64, or Linux x64 (`linux-x64`, glibc 2.31 or later; also the
+  Steam Deck, `docs/STEAM_DECK.md`).
 - Optional on macOS: Apple's Command Line Tools (`xcode-select --install`).
   With them, the menus R4 loads as code overlays (garage, car select, course
   info, records) are compiled to native code in the background on your first
   visit; without them those menus run in the interpreter, which is slower
-  but works. Windows needs nothing: the zip carries its own compiler.
+  but works. Windows and Linux need nothing: the zip carries its own compiler.
 
 1. Extract the zip to a folder you can write to, e.g. `~/Games/R4` or
    `C:\Games\R4`. Saves (`saves/`) and settings are kept beside the game.
@@ -121,16 +130,24 @@ You need:
    click **Open Anyway** in System Settings → Privacy & Security after a
    blocked launch. Windows: if SmartScreen warns, choose **More info → Run
    anyway**.
-3. Run `r4-runtime` (`r4-runtime.exe`). On first run, **Browse Disc** and pick
-   your `.cue`; it is checked against the Redump hashes and never copied. Then
-   **Continue to launcher** and **Play**.
+3. Run `r4-runtime` (`r4-runtime.exe`). The game starts straight away and
+   finds your `.cue` on its own (the game folder, Games, Downloads,
+   Documents, Desktop, ROM and Emulation folders, removable drives); it is
+   checked against the Redump hashes and never copied. If it is somewhere
+   else, open the menu (Esc) → **Disc setup** and pick it.
+
+The first start also picks a graphics preset for your machine: **Low** on
+the Steam Deck, integrated GPUs and base Apple M1/M2 (PGXP stays on; bloom,
+Smooth motion, supersampling and the PGXP extras are off), **Ultra**
+elsewhere. Menu → Graphics lists Low, Medium, High and Ultra; changing a
+setting a preset governs makes it Custom.
 
 The game runs on the bundled OpenBIOS. To use your own SCPH-1001 dump
 instead, pick it under Settings → System → BIOS: the game compiles a backend
 for it from your dump once (about a minute; on macOS this needs the Command
 Line Tools) and uses it from then on. Widescreen and the HD HUD are under
 **Mods**; internal resolution, dynamic resolution and Smooth motion under
-**Settings → Display**. The features on by default are listed under "What's
+**Graphics** in the in-game menu. The features on by default are listed under "What's
 new" above.
 
 To update, extract the new zip over the old folder. Memory cards and settings
@@ -360,7 +377,8 @@ runs exactly as before. Netplay sessions run without mods. Details:
 ## In-game menu
 
 Press Esc (keyboard), Guide, or Start+Select (gamepad) during play to open
-the launcher's menus over the game: Graphics, Controls, Mods and Credits. The
+the launcher's menus over the game: Graphics (with the Low / Medium / High /
+Ultra presets), Controls, Mods, Netplay and Disc setup. The
 game pauses while it is open, except in netplay, where the race keeps running
 and only your own inputs are held. Settings marked "Applies after restart"
 take effect on the next start; everything else applies at once and is saved.
@@ -375,7 +393,10 @@ recognized names use JogCon steering on the mapped left-X axis; per-player
 deadzone calibration applies. The default R4 JogCon Input compatibility package
 routes R4's mode-2 JogCon state through its existing analog race-input path,
 while preserving the emulated JogCon ID and wheel fields. Wheel force feedback
-is not mapped. In R4's
+is **experimental and off by default**: Controls → **Wheel force feedback
+(experimental)** drives a force-feedback wheel presented as JogCon from the
+game's motor command (gamepads never); it is not yet verified on a physical
+wheel. In R4's
 menus **Circle is OK** and **Cross is cancel**; in races Cross accelerates by default.
 
 Mods -> Controllers -> **Controls** (on by default) picks the race scheme:
