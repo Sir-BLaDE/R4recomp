@@ -5,13 +5,36 @@
 
 ## The download is now the compiled game
 
-No more setup kit and no first-run build: unzip, run `r4-runtime`, pick your
-own Redump bin/cue. Nothing is downloaded or compiled before you can play. The
-zip holds no disc data and no BIOS dump; the game runs on the bundled
-OpenBIOS (or on your own SCPH-1001 dump, if you pick one in Settings).
+No more setup kit and no first-run build: unzip and run `r4-runtime`. The game
+starts straight away. On first run it looks for your own Redump bin/cue in the
+usual places (the game folder, Games, Downloads, Documents, Desktop, ROM and
+Emulation folders, and removable drives) and
+checks it against the Redump hashes. If it finds nothing, the in-game menu's
+**Disc setup** page lets you pick it. Nothing is downloaded or compiled before
+you can play. The zip holds no disc data and no BIOS dump; the game runs on the
+bundled OpenBIOS (or on your own SCPH-1001 dump, if you pick one).
+
+Downloads: macOS Apple Silicon (`macos-arm64`), macOS Intel (`macos-x64`),
+Windows x64 and, new, **Linux x64** (`linux-x64`, also for the Steam Deck;
+any distribution with glibc 2.31 or later).
 
 Updating from v0.1.0: extract into a new folder, or over the old one. Memory
 cards and settings carry over; savestates from v0.1.0 are refused.
+
+## The menu lives in the game
+
+Esc, Guide or Start+Select opens the menu over the game: Graphics, Controls,
+Mods, Netplay, Disc setup and more. The game pauses while it is open (in
+netplay only your own inputs are held). Most settings apply at once; the ones
+marked "Applies after restart" relaunch the game when you close the menu.
+
+## Graphics presets
+
+The first start picks a preset for your machine: **Low** on the Steam Deck,
+integrated GPUs and base Apple M1/M2, **Ultra** elsewhere. Graphics lists
+Low, Medium, High and Ultra; changing any setting a preset governs makes it
+**Custom**. Low keeps PGXP and turns the extras off (bloom, Smooth motion and
+supersampling) so it holds 60 Hz on an iGPU.
 
 ## New, and on by default
 
@@ -50,14 +73,43 @@ cards and settings carry over; savestates from v0.1.0 are refused.
 - **Rewind is off in split screen and online,** so it can't put one player out
   of step. It still works in single-player races.
 
-Every feature above has a switch on the Mods page or under Settings →
-Display; switching it off restores
-the stock game for that part.
+- **Wheel force feedback (experimental, off by default).** A force-feedback
+  wheel presented as R4's JogCon can drive its motor from the game: Controls →
+  **Wheel force feedback (experimental)**. Gamepads are never driven. It has
+  not been verified on a physical wheel yet; feedback is welcome.
+
+Every feature above has a switch on the Mods page or under Graphics; switching
+it off restores the stock game for that part.
+
+## Known issues
+
+- **Wheel force feedback is experimental** and off by default. Its direction
+  and strength are not verified on a physical wheel.
+- **4-player online: rare halt on the Results screen.** Very rarely a 4-player
+  Link Battle halts on the Results screen after the race
+  (RetroPortingToolKit/psxrecomp#636, under investigation).
+- macOS builds are not notarized: run
+  `xattr -dr com.apple.quarantine <folder>` once, or use **Open Anyway** in
+  System Settings → Privacy & Security.
+- Intel Macs: use `macos-x64`. On Apple Silicon take `macos-arm64`; the x64
+  build under Rosetta runs the code-overlay menus in the interpreter.
 
 ## Credits
 
-R4 recompilation by Shokunin, built on psxrecomp and recomp-ui
-(RetroPortingToolKit). HD HUD artwork by Kuid0us. Third-party notices are in `THIRD-PARTY-LICENSES/`.
+R4 recompilation by Shokunin, built on psxrecomp, recomp-ui and recomp-launcher
+(RetroPortingToolKit), with the MIT-licensed OpenBIOS from PCSX-Redux.
+
+- HD HUD artwork: **HD HUD by Kuid0us** (github.com/Kuid0us/T4HDHUD),
+  re-keyed for the US disc.
+- Menu font: Lato (SIL Open Font License 1.1).
+- Menus: Dear ImGui (MIT).
+- Windows and Linux overlay compiler: TinyCC (LGPL-2.1); its source,
+  `tcc-0.9.27.tar.bz2`, is attached to this release. The Linux zip also
+  carries musl's libc headers (MIT).
+
+R4: Ridge Racer Type 4 is © Bandai Namco Entertainment; the zips contain none
+of its disc data. Every third-party notice is in `THIRD-PARTY-LICENSES/` and
+`licenses/`.
 
 ---
 
