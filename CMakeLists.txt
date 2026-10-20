@@ -41,11 +41,29 @@ if(EXISTS "${PSXRECOMP_ROOT}/lib/recomp-net/CMakeLists.txt")
     set(PSX_NETPLAY ON CACHE BOOL
         "Link recomp-net rollback/delay-sync netplay (needs recomp-net)" FORCE)
 endif()
-set(PSX_SETUP_WIZARD ON CACHE BOOL
-    "First-run setup wizard in recomp-ui (the disc picker of a full build)" FORCE)
+# Disc region: USA (SLUS-00797, the default) or PAL (SCES-01706, see
+# pal/README.md). PAL builds from game_pal.toml and generated_pal/ (generated
+# locally from your own disc by pal/tools/regen_pal.sh), with the src/mods
+# plugins copied into the build tree and their addresses translated USA -> PAL.
+set(R4_REGION "USA" CACHE STRING "Target disc: USA or PAL")
+set_property(CACHE R4_REGION PROPERTY STRINGS USA PAL)
+if(R4_REGION STREQUAL "PAL")
+    set(R4_GAME_TOML "game_pal.toml")
+    set(R4_GEN_STEM "generated_pal/SCES_017.06")
+    # The setup wizard prepares the USA disc (codegen_setup.c); PAL is set up by hand.
+    set(PSX_SETUP_WIZARD OFF CACHE BOOL
+        "First-run setup wizard in recomp-ui (the disc picker of a full build)" FORCE)
+elseif(R4_REGION STREQUAL "USA")
+    set(R4_GAME_TOML "game.toml")
+    set(R4_GEN_STEM "generated/SLUS_007.97")
+    set(PSX_SETUP_WIZARD ON CACHE BOOL
+        "First-run setup wizard in recomp-ui (the disc picker of a full build)" FORCE)
+else()
+    message(FATAL_ERROR "R4_REGION must be USA or PAL, not '${R4_REGION}'")
+endif()
 # R4 owns its launcher title layer: what the menus show, hide or automate,
 # the credits, and the disc-sourced menu art (launcher/title_r4.cpp,
-# recomp-launcher docs/SUPPORTED.md).
+# recomp-launcher docs/SUPPORTED.md). It serves both regions (R4_REGION_PAL).
 set(R4L_TITLE_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/launcher/title_r4.cpp" CACHE FILEPATH
     "recomp-launcher title layer for R4")
 include("${PSXRECOMP_ROOT}/runtime/runtime.cmake")
@@ -72,13 +90,69 @@ endif()
 file(GLOB R4_MOD_PLUGIN_SOURCES CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/mods/*.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/mods/*.cpp")
+if(R4_REGION STREQUAL "PAL")
+    # src/mods is copied to the build tree with every USA address literal
+    # translated to PAL (pal/tools/translate_mods.py); the PAL-only plugins of
+    # pal/mods are added as they are.
+    find_package(Python3 REQUIRED COMPONENTS Interpreter)
+    set(R4_PAL_MODS_DIR "${CMAKE_BINARY_DIR}/mods_pal")
+    file(GLOB R4_MOD_ALL_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/mods/*")
+    execute_process(
+        COMMAND "${Python3_EXECUTABLE}" -I "${CMAKE_CURRENT_SOURCE_DIR}/pal/tools/translate_mods.py"
+                "${CMAKE_CURRENT_SOURCE_DIR}/src/mods" "${R4_PAL_MODS_DIR}"
+                "${CMAKE_CURRENT_SOURCE_DIR}/generated" "${CMAKE_CURRENT_SOURCE_DIR}/disc/SCES_017.06"
+                "${CMAKE_CURRENT_SOURCE_DIR}/pal/manual_addresses.txt"
+        RESULT_VARIABLE _r4_pal_mods_rc)
+    if(NOT _r4_pal_mods_rc EQUAL 0)
+        message(FATAL_ERROR "Could not translate the R4 plugins to PAL (pal/tools/translate_mods.py)")
+    endif()
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
+        ${R4_MOD_ALL_SOURCES} "${CMAKE_CURRENT_SOURCE_DIR}/pal/manual_addresses.txt")
+    file(GLOB R4_MOD_PLUGIN_SOURCES "${R4_PAL_MODS_DIR}/*.c" "${R4_PAL_MODS_DIR}/*.cpp"
+         "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods/*.c" "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods/*.cpp")
+    # Packages: the upstream ones retargeted to SCES-01706, plus the PAL-only ones.
+    set(R4_PRELOADED_PAL "${CMAKE_BINARY_DIR}/preloaded_pal")
+    file(REMOVE_RECURSE "${R4_PRELOADED_PAL}")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/" DESTINATION "${R4_PRELOADED_PAL}")
+    file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods/packages/" DESTINATION "${R4_PRELOADED_PAL}/packages")
+    file(GLOB_RECURSE _r4_pal_manifests "${R4_PRELOADED_PAL}/packages/*/manifest.toml")
+    foreach(_m ${_r4_pal_manifests})
+        file(READ "${_m}" _txt)
+        string(REPLACE "game_id = \"SLUS-00797\"" "game_id = \"SCES-01706\"" _txt "${_txt}")
+        # HD HUD: PAL-only measured choice. Its texture lookups saturated the
+        # render thread in races on the PAL build (27 fps measured), so it is
+        # offered but off by default there. USA keeps the upstream default.
+        if(_m MATCHES "r4\.enhancement\.ui-fonts")
+            string(REPLACE "default_enabled = true" "default_enabled = false" _txt "${_txt}")
+        endif()
+        # Max Detail: the car model distance table, USA 0x8009F228..0x8009F245 =
+        # PAL 0x8009F04C (same bytes). Left untranslated, its byte guard
+        # rejected the WHOLE mod plan at boot ("booting unmodified").
+        if(_m MATCHES "r4\.enhancement\.max-detail")
+            foreach(_p F228:F04C F22E:F052 F234:F058 F23A:F05E F240:F064)
+                string(SUBSTRING "${_p}" 0 4 _usa)
+                string(SUBSTRING "${_p}" 5 4 _pal)
+                string(REPLACE "address = 0x8009${_usa}" "address = 0x8009${_pal}" _txt "${_txt}")
+            endforeach()
+        endif()
+        file(WRITE "${_m}" "${_txt}")
+    endforeach()
+    file(GLOB_RECURSE _r4_pal_pkg_files CONFIGURE_DEPENDS
+        "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/*.toml" "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods/packages/*.toml")
+    set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${_r4_pal_pkg_files})
+    set(R4_PRELOADED_MODS "${R4_PRELOADED_PAL}")
+endif()
 
+set(R4_WIZARD_ARGS)
+if(PSX_SETUP_WIZARD)
+    set(R4_WIZARD_ARGS ENABLE_SETUP_WIZARD
+        CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c")
+endif()
 psxrecomp_add_game_runtime(psx-runtime
     ${R4_RUNTIME_FLAVOR}
     PRELOADED_MODS_DIR "${R4_PRELOADED_MODS}"
     ENABLE_NETPLAY_IF_PRESENT
     NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
-    ENABLE_SETUP_WIZARD
     WINDOW_TITLE "Ridge Racer Type 4 Recompiled"
     EXE_NAME "r4-runtime"
     DEBUG_PORT 4797
@@ -86,20 +160,48 @@ psxrecomp_add_game_runtime(psx-runtime
     MAX_PLAYERS 4
     LAUNCHER_BOXART "${CMAKE_CURRENT_SOURCE_DIR}/recomp/launcher/boxart.tga"
     APP_ICON "${CMAKE_CURRENT_SOURCE_DIR}/assets/psxrecomp.ico"
-    GEN_MARKER "generated/SLUS_007.97_dispatch.c"
-    GEN_FULL_GLOB "generated/SLUS_007.97_full_*.c"
-    CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
+    GEN_MARKER "${R4_GEN_STEM}_dispatch.c"
+    GEN_FULL_GLOB "${R4_GEN_STEM}_full_*.c"
+    ${R4_WIZARD_ARGS}
     EXTRAS_SOURCES ${R4_MOD_PLUGIN_SOURCES}
 )
 
+if(R4_REGION STREQUAL "PAL")
+    # Mods and the title layer test R4_REGION_PAL; pal/mods/r4_pal_ntsc.h
+    # declares the PAL-only helpers (r4_pal_message_language()).
+    target_compile_definitions(psx-runtime PRIVATE R4_REGION_PAL=1)
+    target_include_directories(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods")
+endif()
+
+# Launcher translations of this project (launcher/i18n/<code>.json), staged
+# next to recomp-ui's own. Select one with -DR4L_UI_LANGUAGE=fr or the
+# R4L_LANGUAGE environment variable.
+add_custom_command(TARGET psx-runtime POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/launcher/i18n"
+        "$<TARGET_FILE_DIR:psx-runtime>/assets/i18n"
+    COMMENT "Staging launcher translations" VERBATIM)
+
+# Optional post-processing preset (postfx/r4_2026/), staged next to the exe
+# when the directory exists.
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/postfx/r4_2026")
+    add_custom_command(TARGET psx-runtime POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/postfx/r4_2026"
+            "$<TARGET_FILE_DIR:psx-runtime>/postfx/r4_2026"
+        COMMENT "Staging postfx/r4_2026" VERBATIM)
+endif()
+
 # Stage runtime configs next to the exe for direct build/ launches. Only copy
 # files that exist -- never fail POST_BUILD when game_options.toml is absent.
-foreach(_R4_RUNTIME_CONFIG game.toml game_options.toml)
+foreach(_R4_RUNTIME_CONFIG ${R4_GAME_TOML} game_options.toml)
+    set(_R4_STAGED_NAME "${_R4_RUNTIME_CONFIG}")
+    if(_R4_RUNTIME_CONFIG STREQUAL R4_GAME_TOML)
+        set(_R4_STAGED_NAME "game.toml")   # the runtime reads game.toml next to the exe
+    endif()
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${_R4_RUNTIME_CONFIG}")
         add_custom_command(TARGET psx-runtime POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different
                 "${CMAKE_CURRENT_SOURCE_DIR}/${_R4_RUNTIME_CONFIG}"
-                "$<TARGET_FILE_DIR:psx-runtime>/${_R4_RUNTIME_CONFIG}"
+                "$<TARGET_FILE_DIR:psx-runtime>/${_R4_STAGED_NAME}"
             COMMENT "Staging ${_R4_RUNTIME_CONFIG}"
             VERBATIM)
     endif()

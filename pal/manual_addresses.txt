@@ -1,0 +1,17 @@
+# USA -> PAL addresses placed by hand (functions PAL rewrote, R4.BIN overlays).
+# Format: USA PAL  # justification. Wins over the automatic translation (pal/tools/r4map.py).
+#
+# HUD producers rewritten for the 256-line PAL screen: the only PAL function between the two
+# matched neighbours (unique bracket, compatible sizes).
+0x80021614 0x80021684  # HUD producer (USA 352 bytes)
+0x80021C38 0x80021C94  # HUD producer (USA 260 bytes)
+0x8002258C 0x800225DC  # HUD producer (USA 196 bytes)
+0x800207D4 0x800207D4  # HUD range closer (same address)
+0x80034444 0x80033F3C  # HUD producer (USA 1804 bytes, PAL 1780 bytes)
+0x80033974 0x80033474  # Link Battle HUD
+#
+# R4.BIN overlays: USA base 0x801149A8, PAL base 0x80114878 (internal JALs -> prologues).
+# Race handlers: same first two words as in USA.
+0x80114A38 0x80114908  # race, overlay 659 (27BDFFC8 3C03800F)
+0x8011729C 0x8011718C  # race, overlay 660 (3C04800F 3C038010)
+0x80114C30 0x80114B00  # 2P VS race, overlay 661 (3C04800F 3C038010)
