@@ -265,7 +265,7 @@ for A in "${ARTS[@]}"; do
         THIRD-PARTY-LICENSES/README.md licenses/psxrecomp-LICENSE
         licenses/recomp-ui-LICENSE assets/fonts/NOTICE.md assets/img/NOTICE.md
         licenses/dear-imgui-LICENSE.txt licenses/recomp-net-LICENSE
-        licenses/retcomm-rbengine-LICENSE
+        licenses/retcomm-rbengine-LICENSE licenses/recomp-ui-upstream-MIT.txt
         "overlay_toolchain/psxrecomp-game$SFX" "overlay_toolchain/psxrecomp-bios$SFX")
   if [[ $PLATFORM == windows ]]; then
     NEED+=(licenses/winpthreads-COPYING licenses/mingw-w64-runtime-COPYING.txt)
