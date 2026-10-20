@@ -34,6 +34,8 @@
 #
 # Env: R4_RELEASE_DIR (clone location, default <repo>/build-release-clone),
 #      R4_RELEASE_BIOS_STEMS (default OpenBIOS), JOBS (default: all cores),
+#      R4_RELEASE_CHANNEL (public, the default, or playtest; psxrecomp's
+#      PSX_RELEASE_CHANNEL, which the framework packager requires),
 #      R4_PYTHON (optional Python 3.11+ override for release checks).
 set -euo pipefail
 
@@ -45,6 +47,8 @@ export PSX_RELEASE_STAGE_PYTHON="$PYTHON"
 REF="${1:-HEAD}"
 SHA="$(git -C "$SRC" rev-parse --verify "$REF^{commit}")"
 REL="${R4_RELEASE_DIR:-$SRC/build-release-clone}"
+CHANNEL="${R4_RELEASE_CHANNEL:-public}"
+case "$CHANNEL" in public|playtest) ;; *) echo "error: R4_RELEASE_CHANNEL must be public or playtest" >&2; exit 2 ;; esac
 BIOS_STEMS="${R4_RELEASE_BIOS_STEMS:-OpenBIOS}"
 JOBS="${JOBS:-$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)}"
 
@@ -107,6 +111,7 @@ HOST_ARGS=(
   -DPSX_GAME_VERSION="$V"
   -DPSX_ENABLE_VULKAN=OFF
   -DPSX_DEBUG_TOOLS=OFF
+  "-DPSX_RELEASE_CHANNEL=$CHANNEL"
 )
 if [[ $PLATFORM == macos ]]; then
   # Universal, macOS 11+, no Homebrew dylibs (CMakeLists.txt sets the SDL3 and
