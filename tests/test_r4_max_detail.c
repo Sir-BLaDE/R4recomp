@@ -98,6 +98,15 @@ uint32_t psx_mod_guest_cycle_scale(void) { return s_gcs; }
 static int s_gcs_open = -1;
 void psx_mod_set_guest_cycle_scale_gate(int open) { s_gcs_open = open; }
 uint32_t psx_idle_cycles_to_next_observable_event(void) { return 100000u; }
+/* Guest VBlank phase (interrupts.h): edges every half tick from s_vb_origin. */
+#define VB_PERIOD (R4_MD_TICK_CYCLES / 2u)
+static uint64_t s_vb_origin = 0;
+uint32_t interrupts_get_cycles_since_vblank(void) {
+    return (uint32_t)((psx_cycle_count - s_vb_origin) % VB_PERIOD);
+}
+uint32_t interrupts_cycles_to_vblank(void) {
+    return VB_PERIOD - interrupts_get_cycles_since_vblank();
+}
 static int s_ram8 = 0;
 int psx_ram_8mb_active(void) { return s_ram8; }
 static PSXModVBlankCallback s_vblank;
@@ -1131,6 +1140,7 @@ static void test_pacing_and_heap(void) {
     wr32(R4_MD_PACING_ADDR, R4_MD_PACING_RACE);
     s_gcs = 1u;
     psx_cycle_count = 5000000u;
+    s_vb_origin = 5000000u;
     s_cpu.gpr[31] = R4_MD_FRAME_START_RA;
     hook(R4_MD_FRAME_START_FN)(&s_cpu, R4_MD_FRAME_START_FN);
     s_cpu.gpr[31] = R4_MD_VSYNC_WAIT_RA; s_cpu.gpr[16] = 0x180u;
@@ -1167,6 +1177,46 @@ static void test_pacing_and_heap(void) {
     hook(0x80093418u)(&s_cpu, 0x80093418u);
     CHECK(rd32(0x1F800000u) == 0x800ADCA0u + 0x1670u, "other ClearOTagR calls: untouched");
     s_ram8 = 0;
+}
+
+/* Regression (0.8 on the owner's Mac and PC): the hold targeted a cycle
+ * count from the frame start, so the spin released at whatever VBlank phase
+ * that frame started on; VSync(0) then returned at once or waited a third
+ * VBlank, and races showed 1/2/3-VBlank ticks (37.5 presents a second, 16 ms
+ * spread, measured). The spin must release just short of the second VBlank
+ * edge after the frame started, whatever the start phase and the work, so
+ * VSync(0) returns on that edge and every tick is two VBlanks. */
+static void test_pacing_vblank_aligned(void) {
+    set_options(NULL, NULL, NULL, NULL);
+    s_activate();
+    wr32(R4_MD_PACING_ADDR, R4_MD_PACING_RACE);
+    s_gcs = 2u;
+    s_vb_origin = 0;
+    uint32_t seed = 12345u;
+    int bad = 0;
+    for (int f = 0; f < 600; f++) {
+        seed = seed * 1103515245u + 12345u;
+        /* Frame start at any phase: the first frame after a load or race
+         * entry, or a tail after VSync(0). */
+        psx_cycle_count = (uint64_t)(100u + f * 3u) * VB_PERIOD + (seed >> 8) % VB_PERIOD;
+        const uint64_t edge2 = (psx_cycle_count / VB_PERIOD + 2u) * VB_PERIOD;
+        s_cpu.gpr[31] = R4_MD_FRAME_START_RA;
+        hook(R4_MD_FRAME_START_FN)(&s_cpu, R4_MD_FRAME_START_FN);
+        seed = seed * 1103515245u + 12345u;
+        psx_cycle_count += (seed >> 8) % 400000u;   /* scaled work, short of the edge */
+        int spins = 0;
+        do {   /* the VSync(1) floor loop: s0 reloaded from the pacing word */
+            s_cpu.gpr[31] = R4_MD_VSYNC_WAIT_RA; s_cpu.gpr[16] = 0x180u;
+            hook(R4_MD_VSYNC_FN)(&s_cpu, R4_MD_VSYNC_FN);
+            if (s_cpu.gpr[16]) psx_cycle_count += 300u;   /* one poll */
+        } while (s_cpu.gpr[16] && ++spins < 100000);
+        if (psx_cycle_count >= edge2 || edge2 - psx_cycle_count > 4096u) bad++;
+    }
+    if (getenv("R4_MD_TEST_VERBOSE")) printf("pacing bad=%d/600\n", bad);
+    CHECK(bad == 0, "guest cycle scale: the spin releases just short of the "
+                    "second VBlank edge after the frame start");
+    s_gcs = 1u;
+    wr32(R4_MD_PACING_ADDR, 0x80u);
 }
 
 /* Far cars keep the BIOS random sequence the stock game sees. */
@@ -1227,6 +1277,7 @@ int main(void) {
     test_governor_pure();
     test_plugin_far();
     test_pacing_and_heap();
+    test_pacing_vblank_aligned();
     test_rand_guard();
     if (failures) {
         fprintf(stderr, "test_r4_max_detail: %d failure(s)\n", failures);

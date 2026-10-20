@@ -32,6 +32,7 @@
 #include "psx_cycles.h"
 #include "psx_memory.h"
 #include "r4_max_detail.h"
+#include "interrupts.h"
 #include "r4_pvs.h"
 #include "r4_widescreen_scene.h"
 
@@ -187,7 +188,8 @@ static int r4_md_keep_block(void *ctx, uint32_t block)
 }
 
 static int s_frame_has_course;   /* a main course draw ran this frame */
-static int64_t s_pace_trim;      /* guest-cycle-scale pacing: cycles cut from the spin */
+#define R4_MD_PACE_LEAD_CYCLES 2048u  /* ~60 us: VSync(0) covers the rest */
+static uint64_t s_pace_anchor;  /* guest-cycle-scale pacing: the VBlank edge the frame started after */
 static int s_pace_active;        /* the spin was held this frame */
 static void r4_md_pvs_merge_body(void);
 static void r4_md_pop_census(uint32_t yaw);
@@ -458,15 +460,6 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
     (void)address;
     if (!s_enabled || cpu->gpr[31] != R4_MD_FRAME_START_RA) return;
     r4_md_rand_end();
-    if (s_frame.started && s_pace_active) {
-        /* Scaled pacing: the frame's tail after the spin (VSync(0), the
-         * swap) takes its own time; trim the spin by what the last tick
-         * overshot two VBlanks so ticks average exactly two VBlanks. */
-        int64_t err = (int64_t)(psx_cycle_count - s_frame.start) - (int64_t)R4_MD_TICK_CYCLES;
-        s_pace_trim += err;
-        if (s_pace_trim < 0) s_pace_trim = 0;
-        if (s_pace_trim > (int64_t)R4_MD_TICK_CYCLES / 2) s_pace_trim = (int64_t)R4_MD_TICK_CYCLES / 2;
-    }
     s_pace_active = 0;
     if (s_trace && s_frame.started) {
         uint64_t per = psx_cycle_count - s_frame.start;
@@ -475,6 +468,8 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
     }
     s_frame.start = psx_cycle_count;
     s_frame.started = 1;
+    psx_cyc_batch_flush();
+    s_pace_anchor = psx_cycle_count - interrupts_get_cycles_since_vblank();
     s_frame.measured = 0;
 }
 
@@ -489,27 +484,39 @@ static void r4_md_vsync(CPUState *cpu, uint32_t address)
      * On the PS1 the frame's work fills the two VBlanks, so a race tick is
      * two VBlanks; with a scaled guest clock the work ends early and a tick
      * would come every 384 lines (37.5 a second): the race, its timer and
-     * the AI would run 25 % fast. So while the frame is younger than two
-     * VBlanks the spin's threshold (s0, reloaded from the pacing word every
-     * frame) is held out of reach; an overrun exits at once, as stock. */
+     * the AI would run 25 % fast. So until the frame has seen two VBlanks the
+     * spin's threshold (s0, reloaded from the pacing word every frame) is
+     * held out of reach; an overrun exits at once, as stock. The hold counts
+     * real VBlanks, not cycles: a cycle target lands at an arbitrary phase,
+     * VSync(0) then returns at once (a VBlank went by during the hold) and
+     * the swap drifts across VBlank edges, so ticks alternate 1/2/3 VBlanks
+     * on screen. Released at the second VBlank edge after the one the frame
+     * started on (guest VBlank phase), the swap is VBlank-aligned. */
     if (cpu->gpr[31] == R4_MD_VSYNC_WAIT_RA && s_frame.started &&
         psx_mod_guest_cycle_scale() != 1u && cpu->gpr[16] != 0u &&
         rd32(R4_MD_PACING_ADDR) == R4_MD_PACING_RACE)
     {
-        const uint64_t target = (uint64_t)((int64_t)R4_MD_TICK_CYCLES - s_pace_trim);
-        const uint64_t age = psx_cycle_count - s_frame.start;
         s_pace_active = 1;
-        cpu->gpr[16] = age < target ? 0x10000u : 0u;
-        if (age < target) {
+        psx_cyc_batch_flush();
+        /* Release just short of the second edge: VSync(0) then waits out
+         * the remainder and returns on the VBlank itself. Released past it,
+         * VSync(0) would wait a whole third VBlank. */
+        const uint64_t edge = s_pace_anchor + (uint64_t)R4_MD_TICK_CYCLES - R4_MD_PACE_LEAD_CYCLES;
+        const int hold = psx_cycle_count < edge;
+        cpu->gpr[16] = hold ? 0x10000u : 0u;
+        if (hold) {
             /* The spin only polls the hblank counter: let the time it would
-             * burn pass in one step, never past the next event the guest
-             * could observe (a scaled guest clock would otherwise run the
-             * poll loop many times over on the host). */
-            uint64_t step = target - age;
+             * burn pass in one step, up to the VBlank and never past the next
+             * event the guest could observe (a scaled guest clock would
+             * otherwise run the poll loop many times over on the host). */
+            uint64_t want = edge - psx_cycle_count;
+            uint32_t step = interrupts_cycles_to_vblank();
+            if (step > want) step = (uint32_t)want;
             uint32_t bound = psx_idle_cycles_to_next_observable_event();
             if (step > bound) step = bound;
-            psx_cyc_batch_flush();
-            psx_advance_cycles((uint32_t)step);
+            if (step) {
+                psx_advance_cycles(step);
+            }
         }
     }
     if (!s_enabled || !s_frame.started || s_frame.measured ||
@@ -542,7 +549,7 @@ static void r4_md_savestate_loaded(void)
     s_xf.valid = 0;
     memset(&s_rand, 0, sizeof s_rand);
     s_car_past_stock = 0;
-    s_pace_trim = 0;
+    s_pace_anchor = 0;
     s_pace_active = 0;
 }
 
@@ -810,7 +817,7 @@ static void r4_max_detail_activate(void)
     memset(&s_frame, 0, sizeof s_frame);
     s_frame.last_oct = -1;
     s_frame_has_course = 0;
-    s_pace_trim = 0;
+    s_pace_anchor = 0;
     s_pace_active = 0;
     env = getenv("R4_MD_BIG_HEAP");
     s_big_heap_allowed = !(env && env[0] == '0');
