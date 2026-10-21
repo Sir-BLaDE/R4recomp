@@ -137,10 +137,11 @@ You need:
    else, open the menu (Esc) → **Disc setup** and pick it.
 
 The first start also picks a graphics preset for your machine: **Low** on
-the Steam Deck, integrated GPUs and base Apple M1/M2 (PGXP stays on; bloom,
-Smooth motion, supersampling and the PGXP extras are off), **Ultra**
+the Steam Deck, integrated GPUs and base Apple M1/M2 (PGXP and its depth buffer stay on; bloom,
+supersampling, colour correction and seam expansion are off), **Ultra**
 elsewhere. Menu → Graphics lists Low, Medium, High and Ultra; changing a
-setting a preset governs makes it Custom.
+setting a preset governs makes it Custom. Presets set detail, not the frame
+rate: Smooth motion stays on in every preset and only uses spare time.
 
 The game runs on the bundled OpenBIOS. To use your own SCPH-1001 dump
 instead, pick it under Settings → System → BIOS: the game compiles a backend

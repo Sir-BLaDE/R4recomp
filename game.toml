@@ -252,7 +252,9 @@ dithering = "off"
 # machine whose GPU class cannot hold 60 Hz even at the dynamic floor (Steam
 # Deck, small iGPUs, software GL); Settings -> Display -> Graphics preset shows it, offers
 # Re-detect, and becomes Custom once the player changes a setting a preset
-# sets (Custom is never overridden). Each table is [video] keys laid over the
+# sets (Custom is never overridden). Presets set detail, never the frame rate
+# (owner, 2026-10-20): Smooth motion stays on in every preset, Low included;
+# it only uses spare render time. Each table is [video] keys laid over the
 # [video] block above, which is Ultra. Dynamic resolution stays on in every
 # preset as the safety net. Measured on R4 races (analysis/lowend-perf):
 # Smooth motion is the largest render-thread cost (~60-70 % of it), the
@@ -274,14 +276,14 @@ anisotropic_filtering = 1
 
 [quality.low]
 # Detected low-end machines: Steam Deck, integrated GPUs, Apple M1/M2 base. PGXP
-# itself stays on (it closes the seams); its renderer extras go: depth
-# buffer, colour correction, seam expansion. In R4 they only move polygon
+# itself stays on (it closes the seams), and so does its depth buffer: Max
+# Detail's far sections and Smooth motion's reprojection need real depth, or
+# distant scenery draws over walls and swims when turning (owner, 2026-10-20).
+# Its other renderer extras go: colour correction, seam expansion. In R4 they only move polygon
 # silhouette edges by one output pixel (0.02 % of a road frame, 0 pixels in
 # the tunnel at 10x; analysis/lowend-perf/seams), no cracks.
 supersample = 1.0
 dynamic_resolution_min = "native"
-frame_generation = false
-pgxp_depth_buffer = false
 pgxp_color_correction = false
 pgxp_seam = "off"
 texture_lod = "off"
