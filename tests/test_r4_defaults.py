@@ -163,9 +163,10 @@ def test_quality_presets():
           'game.toml: Low, Medium, High and Ultra graphics presets')
     check(q.get('ultra') == {}, 'game.toml: Ultra is the shipped [video] block')
     low = q.get('low', {})
-    check(low.get('frame_generation') is False and low.get('supersample') == 1.0 and
-          low.get('dynamic_resolution_min') == 'native',
-          'game.toml: Low drops Smooth motion and supersampling, floor Native')
+    check(low.get('supersample') == 1.0 and low.get('dynamic_resolution_min') == 'native',
+          'game.toml: Low drops supersampling, floor Native')
+    check(all('frame_generation' not in q[n] for n in q),
+          'game.toml: no preset turns Smooth motion off (presets set detail, not frame rate)')
     check(low.get('pgxp_depth_buffer') is False and low.get('pgxp_color_correction') is False
           and low.get('pgxp_seam') == 'off',
           'game.toml: Low turns the PGXP extras off (PGXP itself stays on)')
