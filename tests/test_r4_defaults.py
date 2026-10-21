@@ -167,9 +167,10 @@ def test_quality_presets():
           'game.toml: Low drops supersampling, floor Native')
     check(all('frame_generation' not in q[n] for n in q),
           'game.toml: no preset turns Smooth motion off (presets set detail, not frame rate)')
-    check(low.get('pgxp_depth_buffer') is False and low.get('pgxp_color_correction') is False
-          and low.get('pgxp_seam') == 'off',
-          'game.toml: Low turns the PGXP extras off (PGXP itself stays on)')
+    check(low.get('pgxp_color_correction') is False and low.get('pgxp_seam') == 'off',
+          'game.toml: Low turns colour correction and seam expansion off (PGXP itself stays on)')
+    check(all('pgxp_depth_buffer' not in q[n] for n in q) and video.get('pgxp_depth_buffer') is True,
+          'game.toml: the PGXP depth buffer stays on in every preset (Max Detail + reprojection need depth)')
     check(all('pgxp' not in k for n in ('ultra', 'high', 'medium') for k in q[n]),
           'game.toml: Medium and up keep the PGXP extras')
     check(all(p.get('dynamic_resolution', True) is True for p in q.values()),

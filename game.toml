@@ -276,13 +276,14 @@ anisotropic_filtering = 1
 
 [quality.low]
 # Detected low-end machines: Steam Deck, integrated GPUs, Apple M1/M2 base. PGXP
-# itself stays on (it closes the seams); its renderer extras go: depth
-# buffer, colour correction, seam expansion. In R4 they only move polygon
+# itself stays on (it closes the seams), and so does its depth buffer: Max
+# Detail's far sections and Smooth motion's reprojection need real depth, or
+# distant scenery draws over walls and swims when turning (owner, 2026-10-20).
+# Its other renderer extras go: colour correction, seam expansion. In R4 they only move polygon
 # silhouette edges by one output pixel (0.02 % of a road frame, 0 pixels in
 # the tunnel at 10x; analysis/lowend-perf/seams), no cracks.
 supersample = 1.0
 dynamic_resolution_min = "native"
-pgxp_depth_buffer = false
 pgxp_color_correction = false
 pgxp_seam = "off"
 texture_lod = "off"
