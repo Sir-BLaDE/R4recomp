@@ -53,7 +53,6 @@ REQUIRED_VIDEO_KEYS = (
     'antialiasing_mode',        # "off" (psxrecomp #583)
     'render_thread',            # psxrecomp #536
     'frame_generation',         # psxrecomp #539
-    'frame_generation_method',  # "reprojection" (psxrecomp #583)
     'present_thread',           # psxrecomp #540
     'pgxp_depth_buffer',        # PGXP extras (psxrecomp #583)
     'pgxp_color_correction',
