@@ -26,8 +26,8 @@ both sides of `docs/framework_pin_history.md` when rebasing.
 ## Owner decisions
 
 - Display: widescreen Fit, Match display, supersample 1.5, FXAA off, dynres
-  floor = display, render + present threads, Smooth motion with reprojection,
-  PGXP depth buffer / colour correction / fine seams. All in `game.toml`.
+  floor = display, render + present threads, Smooth motion off (removed,
+  owner 2026-10-20), PGXP depth buffer / colour correction / fine seams. All in `game.toml`.
 - `guest_cycle_scale = 2` (races, Max Detail gate).
 - HD HUD bundled, on by default, credited to Kuid0us.
 - Online: 2-4 players, each on their own full-screen view.
@@ -48,8 +48,8 @@ both sides of `docs/framework_pin_history.md` when rebasing.
 - Disc identity: `DISC.md` (Redump 11608).
 - Framework/UI pins: `docs/framework_pin_history.md`.
 - Widescreen: `docs/WIDESCREEN.md`; cull lists `tools/r4_ws_scan.py`.
-- Display defaults and Smooth motion: `README.md` (On by default, Smooth
-  motion); `tests/test_r4_defaults.py`, `tools/check_pin_keys.py`.
+- Display defaults: `README.md` (On by default); `tests/test_r4_defaults.py`,
+  `tools/check_pin_keys.py`.
 - HD HUD: `docs/HD_HUD.md`, `tools/r4_hd_hud_pack.py`.
 - Internal resolution presets: `README.md` (Internal resolution), `tools/res_matrix.py`.
 - Release: `tools/package_release.sh` (gates: OpenBIOS only, HD HUD pack exact, pin keys).

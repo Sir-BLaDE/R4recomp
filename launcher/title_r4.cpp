@@ -51,10 +51,11 @@ const TitleNotice kNotices[] = {
 // R4's surfacing decisions (docs/SUPPORTED.md): as few rows as possible,
 // everything else automatic. Undeclared keys follow the default rule.
 const SurfaceRule kSurface[] = {
-    // Graphics: the preset (Auto = detected Low..Ultra), Smooth motion, screen mode.
+    // Graphics: the preset (Auto = detected Low..Ultra) and screen mode.
     {"graphics.preset", Vis::Shown, "auto"},
     {"graphics.redetect", Vis::Hidden, nullptr},          // Auto re-detects
-    {"graphics.frame_generation", Vis::Shown, nullptr},   // "Smooth motion"
+    // Smooth motion is removed from R4 (owner, 2026-10-20): not drawn, pinned off.
+    {"graphics.frame_generation", Vis::Auto, "0"},
     {"graphics.fullscreen", Vis::Shown, nullptr},
     {"graphics.dynamic_resolution", Vis::Auto, nullptr}, // the preset decides
     {"graphics.internal_resolution", Vis::Auto, nullptr},// the preset sets it

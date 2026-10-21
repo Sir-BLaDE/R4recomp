@@ -57,7 +57,6 @@ netplay and online Link Battle for 2-4 players. Not yet verified end to end (see
 | Internal resolution | Match display by default, 1.5× supersampled; Native to 8K presets (Settings → Display), OpenGL |
 | Dynamic resolution | On by default; never below the display's own lines |
 | Render pipeline | OpenGL render thread and present thread, on by default |
-| Smooth motion | In-between frames up to the display's refresh (reprojection), on by default |
 | Camera look-around | Right stick turns the view in single-player races (Mods > Camera Look-Around), on by default |
 | PGXP (steady geometry, straight textures) | Mods > Visual > PGXP Precision, on by default |
 | Widescreen | Mods > Display > R4 Custom Renderer, on by default with Fit to Window: native-wide races, also 16:9 / 21:9 / 32:9 |
@@ -90,7 +89,6 @@ Switching a feature off gives you the stock game for that part.
 | **Widescreen**: races fill the window at whatever shape you give it (Fit to Window), with real extra scenery at the sides and the HUD at the edges | Yes, Fit to Window | Mods → Display → **R4 Custom Renderer** off (stock 4:3), or pick 16:9 / 21:9 / 32:9 |
 | **Match display + supersampling**: the game renders at your monitor's full pixel height times 1.5 and is resolved down, for clean edges (no blur filter on top) | Yes | Settings → Display → **Internal resolution** (Native for the stock picture) and **Supersampling** (1×) |
 | **Dynamic resolution**: when a frame runs late, the supersampling gives way first; it never drops below your display's own lines, and climbs back when there is room | Yes | Settings → Display → **Dynamic resolution** off |
-| **Smooth motion**: in-between frames up to your display's refresh rate (VRR too); the game still runs at 30 Hz | Yes (reprojection) | Settings → Display → **Smooth motion** off |
 | **Render thread + present thread**: OpenGL work and the window swap run off the game's thread | Yes | `PSX_RENDER_THREAD=0` / `PSX_PRESENT_THREAD=0` for one run |
 | **PGXP extras**: a depth buffer (no sorting errors where polygons cross), smooth shading across corrected vertices, and closed seams between polygons | Yes, with PGXP | They follow **PGXP Precision**; `PSX_PGXP_DEPTH=0` for one run |
 | **HD HUD**: the race HUD (rank, lap/time and speed digits, RPM gauge, course map) drawn from high-resolution artwork, **HD HUD by [Kuid0us](https://github.com/Kuid0us/T4HDHUD)** | Yes (OpenGL) | Mods → Visual → **HD HUD** off |
@@ -141,13 +139,13 @@ the Steam Deck, integrated GPUs and base Apple M1/M2 (PGXP and its depth buffer 
 supersampling, colour correction and seam expansion are off), **Ultra**
 elsewhere. Menu → Graphics lists Low, Medium, High and Ultra; changing a
 setting a preset governs makes it Custom. Presets set detail, not the frame
-rate: Smooth motion stays on in every preset and only uses spare time.
+rate.
 
 The game runs on the bundled OpenBIOS. To use your own SCPH-1001 dump
 instead, pick it under Settings → System → BIOS: the game compiles a backend
 for it from your dump once (about a minute; on macOS this needs the Command
 Line Tools) and uses it from then on. Widescreen and the HD HUD are under
-**Mods**; internal resolution, dynamic resolution and Smooth motion under
+**Mods**; internal resolution and dynamic resolution under
 **Graphics** in the in-game menu. The features on by default are listed under "What's
 new" above.
 
@@ -238,18 +236,9 @@ executable. Defaults live in `game.toml`:
 
 ## Smooth motion
 
-**Settings → Display → Smooth motion** (psxrecomp frame generation,
-`[video] frame_generation`) is on by default. It adds in-between frames up to
-the display's refresh rate (any rate; variable-refresh displays too), and only
-when there is measured time to spare: a real frame is never delayed for one.
-R4 uses reprojection (`frame_generation_method = "reprojection"`): each
-in-between frame warps the newest real frame to an in-between camera and
-redraws the cars at their own in-between position; the HUD and the mirror
-stay as drawn. The game itself still runs at its original 30 Hz: lap times,
-AI, input and music are unchanged. It needs the OpenGL render thread. It
-replaces the old R4 Frame Rate mod. `PSX_FRAME_GEN=0` turns it off for one run,
-`PSX_FRAME_GEN_METHOD=redraw` picks the framework's other method. Details:
-`psxrecomp/docs/FRAME_GENERATION.md`.
+Not offered in R4 (owner, 2026-10-20): psxrecomp's frame generation is off in
+every graphics preset and its launcher row is hidden. The game runs at its
+original 30 Hz in races.
 
 ## HD HUD
 
