@@ -30,4 +30,13 @@ Rules (same as MegaManX6Recomp):
   feature of `r4.modern-controls` (plugin `r4.split-screen-rewind`): no
   Rewind in 2P VS Battle (`psx_mod_set_rewind_blocked`), whatever Controls
   is set to.
+- `r4_race_hud.cpp`: `r4.enhancement.race-hud` (plugin `r4.race-hud`), the
+  ImGui race HUD on the host HUD layer, which it also lends to the car
+  effects; skips the stock HUD elements it replaces while its panels draw.
+- `r4_car_effects.cpp` / `.h`: `r4.enhancement.car-effects` (plugin
+  `r4.car-effects`), exhaust flames, drift smoke and sparks, and the live
+  uniforms of `postfx/r4_2026/lighting.pfx`.
+- `r4_race_state.c` / `.h`: the race-state sampler (cars, per-view cameras,
+  screen projection, dominant light) on the view build (0x8006E4D0),
+  registered under `r4.car-effects`, its only reader.
 - See `psxrecomp/docs/MOD_PACKAGES.md`.
