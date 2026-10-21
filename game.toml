@@ -201,15 +201,11 @@ render_thread = true
 # Present thread (docs/RENDER_THREAD.md "Present thread"): the window swap
 # leaves the render thread. Off for one run: PSX_PRESENT_THREAD=0.
 present_thread = true
-# Smooth motion (psxrecomp docs/FRAME_GENERATION.md; Settings -> Display ->
-# Smooth motion): in-between frames up to the display's refresh (any rate,
-# VRR too), only when there is measured time to spare; real frames always
-# come first and no guest code runs again. R4 opts in to reprojection: each
-# in-between frame warps the newer real frame (its object rules were tuned on
-# R4); cars are redrawn at their own in-between position. PSX_FRAME_GEN=0 or
-# PSX_FRAME_GEN_METHOD=redraw for one run.
-frame_generation = true
-frame_generation_method = "reprojection"
+# Smooth motion (psxrecomp frame generation) is off in R4 and not offered
+# (owner, 2026-10-20): its generated frames showed artifacts in races. Every
+# graphics preset below keeps it off too, and the launcher hides the row
+# (launcher/title_r4.cpp).
+frame_generation = false
 # VS split screen draws its far road through per-primitive texture windows
 # (about 515 GP0(E2h) changes a game frame). Let the OpenGL renderer batch
 # across them: the same image in about a tenth of the draws, so 2P with
@@ -252,29 +248,33 @@ dithering = "off"
 # machine whose GPU class cannot hold 60 Hz even at the dynamic floor (Steam
 # Deck, small iGPUs, software GL); Settings -> Display -> Graphics preset shows it, offers
 # Re-detect, and becomes Custom once the player changes a setting a preset
-# sets (Custom is never overridden). Presets set detail, never the frame rate
-# (owner, 2026-10-20): Smooth motion stays on in every preset, Low included;
-# it only uses spare render time. Each table is [video] keys laid over the
+# sets (Custom is never overridden). Presets set detail, never the frame rate;
+# Smooth motion is off in every preset (owner, 2026-10-20: removed from R4).
+# Each table is [video] keys laid over the
 # [video] block above, which is Ultra. Dynamic resolution stays on in every
 # preset as the safety net. Measured on R4 races (analysis/lowend-perf):
 # Smooth motion is the largest render-thread cost (~60-70 % of it), the
 # supersample factor the largest GPU cost; PGXP's depth/colour/seam extras
 # cost ~0.7 ms of render-thread CPU and no measurable GPU time; Low drops them.
 [quality.ultra]
+frame_generation = false
 # The [video] block as shipped and the first-launch default: Match display
 # x1.5 floored at native, Smooth motion from surplus, PGXP extras, mipmaps +
 # 16x aniso, FMV chroma smoothing, bloom.
 
 [quality.high]
+frame_generation = false
 supersample = 1.25
 
 [quality.medium]
+frame_generation = false
 supersample = 1.0
 texture_lod = "off"
 anisotropic_filtering = 1
 # Bloom stays on: R4 opts in (owner, 2026-10-13); only Low drops it.
 
 [quality.low]
+frame_generation = false
 # Detected low-end machines: Steam Deck, integrated GPUs, Apple M1/M2 base. PGXP
 # itself stays on (it closes the seams), and so does its depth buffer: Max
 # Detail's far sections and Smooth motion's reprojection need real depth, or

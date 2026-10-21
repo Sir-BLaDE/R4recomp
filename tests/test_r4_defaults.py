@@ -10,9 +10,10 @@ R4 turns its enhancements on by default (README "On by default"):
     systems are the safety net; "display" or another preset
     is accepted too) so the default holds full speed; the Display row turns
     it off;
-  - game.toml [video] render_thread, present_thread and Smooth motion
-    (frame_generation, method reprojection) on (PSX_RENDER_THREAD=0,
-    PSX_PRESENT_THREAD=0, PSX_FRAME_GEN=0 turn them off for a run);
+  - game.toml [video] render_thread and present_thread on
+    (PSX_RENDER_THREAD=0, PSX_PRESENT_THREAD=0 turn them off for a run);
+    Smooth motion (frame_generation) off in [video] and every preset, and
+    its launcher row hidden (removed from R4, owner 2026-10-20);
   - PGXP extras: depth buffer, colour correction, fine seams (inert while
     the PGXP package is off);
   - [timing] guest_cycle_scale = 2, gated to races with Max Detail.
@@ -124,10 +125,8 @@ def test_game_toml():
           'game.toml: no dynamic_resolution_priority (not in the render-thread stack)')
     for k in ('render_thread', 'present_thread'):
         check(video.get(k) is True, f'game.toml: {k} on by default')
-    check(video.get('frame_generation') is True,
-          'game.toml: Smooth motion (frame_generation) on by default')
-    check(video.get('frame_generation_method') == 'reprojection',
-          'game.toml: Smooth motion uses reprojection (R4 opts in)')
+    check(video.get('frame_generation') is False,
+          'game.toml: Smooth motion (frame_generation) off: removed from R4')
     check(video.get('pgxp_depth_buffer') is True and
           video.get('pgxp_color_correction') is True and
           video.get('pgxp_seam') == 'fine',
@@ -161,12 +160,15 @@ def test_quality_presets():
     video, q = cfg.get('video', {}), cfg.get('quality', {})
     check(sorted(q) == ['high', 'low', 'medium', 'ultra'],
           'game.toml: Low, Medium, High and Ultra graphics presets')
-    check(q.get('ultra') == {}, 'game.toml: Ultra is the shipped [video] block')
+    check(q.get('ultra') == {'frame_generation': False}, 'game.toml: Ultra is the shipped [video] block')
     low = q.get('low', {})
     check(low.get('supersample') == 1.0 and low.get('dynamic_resolution_min') == 'native',
           'game.toml: Low drops supersampling, floor Native')
-    check(all('frame_generation' not in q[n] for n in q),
-          'game.toml: no preset turns Smooth motion off (presets set detail, not frame rate)')
+    check(all(q[n].get('frame_generation') is False for n in q),
+          'game.toml: every preset keeps Smooth motion off')
+    surface = open(os.path.join(ROOT, 'launcher', 'title_r4.cpp'), encoding='utf-8').read()
+    check('{"graphics.frame_generation", Vis::Auto, "0"}' in surface,
+          'launcher: the Smooth motion row is hidden and pinned off')
     check(low.get('pgxp_color_correction') is False and low.get('pgxp_seam') == 'off',
           'game.toml: Low turns colour correction and seam expansion off (PGXP itself stays on)')
     check(all('pgxp_depth_buffer' not in q[n] for n in q) and video.get('pgxp_depth_buffer') is True,
