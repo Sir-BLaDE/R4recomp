@@ -81,8 +81,15 @@ def test_manifests():
     check('Fit' in option_values(ws, 'widescreen', 'aspect'),
           'widescreen: Fit is a declared choice')
 
-    check(not os.path.exists(os.path.join(PRELOADED, 'r4.enhancement.frame-rate')),
-          'frame rate: the old R4 Frame Rate package is gone (Smooth motion replaces it)')
+    fr = manifest('r4.enhancement.frame-rate')
+    check(feature(fr, 'frame-rate').get('default_enabled') is True,
+          'frame rate: draw-only interpolation is on by default')
+    check(option_default(fr, 'frame-rate', 'rate') == '60',
+          'frame rate: 60 FPS by default (owner, 2026-10-22)')
+    check(set(option_values(fr, 'frame-rate', 'rate')) == {'60', '30'},
+          'frame rate: 60 FPS, or 30 FPS for the original frames')
+    check(not any(o['id'] in ('method', 'blend') for o in fr.get('option', [])),
+          'frame rate: no crossfade or image-warp option')
 
     # A release zip carries no loose boot EXE, so psxrecomp hashes nothing
     # and an exe_sha256 target never matches: a default-on package with one

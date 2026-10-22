@@ -85,6 +85,7 @@ Switching a feature off gives you the stock game for that part.
 | **JogCon input**: recognized steering wheels drive as R4's JogCon; ordinary gamepads use native DualShock analog steering | Yes | Mods → **JogCon Input** off; the pad mode is under Settings → Controller |
 | **PGXP**: steady geometry and straight (perspective-correct) textures, with precise culling so the far road has no gaps | Yes | Mods → Visual → **PGXP Precision** off, or turn only its **Precise culling** option off |
 | **Max Detail**: longer draw distance (far bridges, buildings and road no longer pop in), full course and car detail at every distance, 1P detail in split screen, car reflections in the race | Yes | Mods → Detail → **R4 Max Detail** off, or set any one option (Draw distance, Course detail, Car detail, Split screen, Car reflections) back to **Stock**. Mirror scenery stays Stock unless you choose Full |
+| **Race frame rate**: 60 FPS races; an in-between image of the race is drawn with the game's own code while logic keeps its original 30 Hz cadence | Yes, 60 FPS | Mods → Display → **Race frame rate** → Presentation rate **30 FPS (original)**, or turn the mod off |
 | **VS split screen**: the OpenGL renderer draws 2P split screen in about a tenth of the draws (same picture) | Yes | Set `PSX_GL_TEXWIN_BATCH=0` for one run |
 | **Widescreen**: races fill the window at whatever shape you give it (Fit to Window), with real extra scenery at the sides and the HUD at the edges | Yes, Fit to Window | Mods → Display → **R4 Custom Renderer** off (stock 4:3), or pick 16:9 / 21:9 / 32:9 |
 | **Match display + supersampling**: the game renders at your monitor's pixel height (up to 8K/18×), times 1.5 on displays under 4K, and is resolved down, for clean edges (no blur filter on top) | Yes | Settings → Display → **Internal resolution** (Native for the stock picture) and **Supersampling** (1×) |
@@ -237,8 +238,22 @@ executable. Defaults live in `game.toml`:
 ## Smooth motion
 
 Not offered in R4 (owner, 2026-10-20): psxrecomp's frame generation is off in
-every graphics preset and its launcher row is hidden. The game runs at its
-original 30 Hz in races.
+every graphics preset and its launcher row is hidden. Race logic keeps its
+original 30 Hz cadence.
+
+The **Race frame rate** mod (on by default) shows races at 60 FPS. Between
+two game ticks it redraws the race with the game's own draw routines and the
+cars and camera placed halfway, then restores the machine exactly, so logic,
+input and audio keep the original 30 Hz cadence. Presentation rate **30 FPS
+(original)** shows the game's own frames only. It never falls back to image
+warping or crossfading. Online frames are local to each player's view.
+
+The in-between frame costs the emulation thread most of a game frame's work
+(the GL side runs on the render thread, psxrecomp `docs/RENDER_PASSES.md`
+"Queued passes"). When the emulation thread has no room left, the game would
+start missing VBlanks; the mod instead pauses the in-between frames for a
+while (the race shows at 30 FPS, at full speed) and tries again, so a busy
+host settles on steady stretches rather than alternating frame by frame.
 
 ## HD HUD
 
