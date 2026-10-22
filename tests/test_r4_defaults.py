@@ -6,7 +6,7 @@ R4 turns its enhancements on by default (README "On by default"):
   - game.toml [video] internal_resolution = Match display, at the display's
     full resolution (no match_display_max_lines cap; owner, 2026-10-01),
     supersample 1.5 and no post AA filter, with dynamic resolution on and
-    floored at native x1 (owner, 2026-10-08: Ultra by default, the dynamic
+    floored at 1080p (owner, 2026-10-22; Ultra since 2026-10-08: Ultra by default, the dynamic
     systems are the safety net; "display" or another preset
     is accepted too) so the default holds full speed; the Display row turns
     it off;
@@ -120,8 +120,8 @@ def test_game_toml():
     check(floor in ('display', 'native') or (isinstance(floor, str) and floor.endswith('p'))
           or (isinstance(floor, int) and floor >= 240),
           'game.toml: dynamic resolution has a floor ("native", "display" or a preset)')
-    check(floor == 'native',
-          'game.toml: Ultra dynamic resolution floor is native x1 (safety net)')
+    check(floor == '1080p',
+          'game.toml: dynamic resolution never drops below 1080p (owner, 2026-10-22)')
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
@@ -166,7 +166,7 @@ def test_quality_presets():
           'game.toml: Low, Medium, High and Ultra graphics presets')
     check(q.get('ultra') == {'frame_generation': False}, 'game.toml: Ultra is the shipped [video] block')
     low = q.get('low', {})
-    check(low.get('supersample') == 1.0 and low.get('dynamic_resolution_min') == 'native',
+    check(low.get('supersample') == 1.0 and low.get('dynamic_resolution_min') == '1080p',
           'game.toml: Low drops supersampling, floor Native')
     check(all(q[n].get('frame_generation') is False for n in q),
           'game.toml: every preset keeps Smooth motion off')
