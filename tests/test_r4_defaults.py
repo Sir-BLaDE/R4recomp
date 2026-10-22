@@ -84,8 +84,8 @@ def test_manifests():
     fr = manifest('r4.enhancement.frame-rate')
     check(feature(fr, 'frame-rate').get('default_enabled') is True,
           'frame rate: draw-only interpolation is on by default')
-    check(option_default(fr, 'frame-rate', 'rate') == '60',
-          'frame rate: 60 FPS by default (owner, 2026-10-22)')
+    check(option_default(fr, 'frame-rate', 'rate') == '30',
+          'frame rate: 30 FPS by default until 60 holds steadily on screen (60 is a setting)')
     check(set(option_values(fr, 'frame-rate', 'rate')) == {'60', '30'},
           'frame rate: 60 FPS, or 30 FPS for the original frames')
     check(not any(o['id'] in ('method', 'blend') for o in fr.get('option', [])),
