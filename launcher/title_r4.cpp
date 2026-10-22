@@ -1,5 +1,7 @@
 // title_r4.cpp — recomp-launcher title layer for R4: Ridge Racer Type 4 (USA),
-// SLUS-00797. Built into the launcher through R4L_TITLE_SOURCE (CMakeLists.txt).
+// SLUS-00797, and, in a PAL build (R4_REGION=PAL defines R4_REGION_PAL), the
+// European disc SCES-01706. Built into the launcher through R4L_TITLE_SOURCE
+// (CMakeLists.txt).
 #include "r4l/title.h"
 
 #include "imgui.h"
@@ -9,6 +11,12 @@
 #include <cstdio>
 
 #include <cmath>
+
+#if defined(R4_REGION_PAL)
+#define R4_DISC_SERIAL "SCES-01706"
+#else
+#define R4_DISC_SERIAL "SLUS-00797"
+#endif
 
 namespace r4l {
 namespace {
@@ -98,6 +106,13 @@ bool extract_r4_assets(const char* disc_path, const char* out_dir, char* err, si
         std::snprintf(err, cap, "%s", m.c_str());
         return false;
     };
+#if defined(R4_REGION_PAL)
+    // PAL: the logo and font locations in the SCES-01706 R4.BIN are not known
+    // yet; the launcher keeps its default skin.
+    (void)disc_path;
+    (void)out_dir;
+    return fail("R4 launcher art is not available for SCES-01706");
+#endif
     DiscImage disc;
     std::string e;
     if (!disc.open(disc_path, &e)) return fail(e);
@@ -152,8 +167,8 @@ void draw_hero(void* dl_v, float x0, float y0, float x1, float y1, double t) {
 const TitleLayer kR4 = {
     "r4",
     "R4: Ridge Racer Type 4",
-    "Native PC recompilation · SLUS-00797",
-    "SLUS-00797",
+    "Native PC recompilation · " R4_DISC_SERIAL,
+    R4_DISC_SERIAL,
     {255, 92, 54},
     {120, 92, 255},
     4,
@@ -168,8 +183,14 @@ const TitleLayer kR4 = {
     static_cast<int>(sizeof(kControllers) / sizeof(kControllers[0])),
     kNotices,
     static_cast<int>(sizeof(kNotices) / sizeof(kNotices[0])),
+#if defined(R4_REGION_PAL)
+    "A static recompilation of R4: Ridge Racer Type 4 (Europe, SCES-01706) built on "
+    "psxrecomp, with the game logic brought back to the NTSC 30 Hz timing. It runs "
+    "natively, with no emulator behind it.",
+#else
     "A static recompilation of R4: Ridge Racer Type 4 (USA) built on psxrecomp. "
     "It runs natively, with no emulator behind it.",
+#endif
     kSurface,
     static_cast<int>(sizeof(kSurface) / sizeof(kSurface[0])),
     extract_r4_assets,

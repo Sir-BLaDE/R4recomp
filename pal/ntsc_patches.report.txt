@@ -1,0 +1,36 @@
+{'lo-reloc': 7533, 'memory-access': 473, 'constant': 230, 'lo-address': 14, 'lui': 6}
+230 patches; 34 differences not patched:
+0x80021134 ambiguous immediate USA 2442C0B8 PAL 2442BF88
+0x80021DF0 different registers USA 02602021 PAL 02802021
+0x8002514C ambiguous immediate USA 2442C0B0 PAL 2442BEF8
+0x8002A60C ambiguous immediate USA 24844E60 PAL 24844CB0
+0x8002A8B0 ambiguous immediate USA 24634E60 PAL 24634CB0
+0x8002A920 ambiguous immediate USA 24634E60 PAL 24634CB0
+0x8002B42C ambiguous immediate USA 24423BE8 PAL 24423A38
+0x8002C5F4 ambiguous immediate USA 2442C0B0 PAL 2442BEF8
+0x8003F670 address USA 0x8011985C PAL 0x80119754 (translated None)
+0x8003F67C address USA 0x80119860 PAL 0x80119758 (translated None)
+0x80043D8C ambiguous immediate USA 2443C808 PAL 2443C650
+0x80056A70 ambiguous immediate USA 2442C808 PAL 2442C650
+0x80059254 ambiguous immediate USA 24630E54 PAL 24630C9C
+0x8005E31C ambiguous immediate USA 24847348 PAL 24847198
+0x8007438C ambiguous immediate USA 24453BE8 PAL 24453A38
+0x800788D0 ambiguous immediate USA 2442F0B0 PAL 2442EF80
+0x80078B10 ambiguous immediate USA 2442EDE8 PAL 2442ECB8
+0x80078B64 ambiguous immediate USA 2442F0B0 PAL 2442EF80
+0x80078D4C ambiguous immediate USA 2442F0B0 PAL 2442EF80
+0x80078D98 ambiguous immediate USA 2442F0B0 PAL 2442EF80
+0x8007A95C address USA 0x80127430 PAL 0x801272F0 (translated None)
+0x8007AF78 address USA 0x80127430 PAL 0x801272F0 (translated None)
+0x8007AF7C address USA 0x80127430 PAL 0x801272F0 (translated None)
+0x8007C798 address USA 0x80127430 PAL 0x801272F0 (translated None)
+0x8007C79C address USA 0x80127430 PAL 0x801272F0 (translated None)
+0x8007C9E4 ambiguous immediate USA 24C71F5C PAL 24C71F60
+0x8007CA10 ambiguous immediate USA 24C21F7C PAL 24C21F80
+0x8007CA68 ambiguous immediate USA 24C21F7C PAL 24C21F80
+0x8007D724 address USA 0x801149A8 PAL 0x80114878 (translated None)
+0x8007D76C address USA 0x801149A8 PAL 0x80114878 (translated None)
+0x80083B00 ambiguous immediate USA 2442F198 PAL 2442F068
+0x80083EAC ambiguous immediate USA 2529F198 PAL 2529F068
+0x8008BEBC ambiguous immediate USA 248418A0 PAL 248418A8
+0x800926C0 ambiguous immediate USA 2529290C PAL 25292730

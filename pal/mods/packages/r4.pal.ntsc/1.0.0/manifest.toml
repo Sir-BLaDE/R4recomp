@@ -1,0 +1,64 @@
+format_version = 7
+id = "r4.pal.ntsc"
+version = "1.0.0"
+name = "R4 PAL"
+author = "yacineolivier-maker"
+description = "Completes the NTSC-isation of the PAL code (SCES-01706) for the functions Namco rewrote for 25 Hz / 256 lines: 30 Hz lap timer, 240-line display, viewports and HUD. Also sets the game's message language."
+license = "MIT"
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SCES-01706"
+
+[[feature]]
+id = "ntsc-timing"
+name = "30 Hz timing"
+description = "Always on in the PAL build, which runs the USA 30 Hz logic on a 240-line display."
+group = "Compatibility"
+default_enabled = true
+hidden = true
+
+[[plugin]]
+feature = "ntsc-timing"
+id = "r4.pal.ntsc"
+
+[[feature]]
+id = "message-language"
+name = "Message language"
+description = "The language the PAL game starts in, before a setting saved on the memory card is loaded. The game's own selector and a memory card setting always win. Off keeps the game's default (English)."
+group = "Localization"
+default_enabled = true
+
+[[option]]
+feature = "message-language"
+id = "language"
+label = "Language"
+description = "Language of the game's menus and race messages at boot."
+group = "Localization"
+type = "choice"
+default = "english"
+
+[[option.choice]]
+value = "english"
+label = "English"
+
+[[option.choice]]
+value = "french"
+label = "French"
+
+[[option.choice]]
+value = "german"
+label = "German"
+
+[[option.choice]]
+value = "spanish"
+label = "Spanish"
+
+[[option.choice]]
+value = "italian"
+label = "Italian"
+
+[[plugin]]
+feature = "message-language"
+id = "r4.pal.language"

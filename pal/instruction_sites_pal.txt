@@ -1,0 +1,8 @@
+# PAL-only instruction hooks ([recompiler] mod_instruction_sites of game_pal.toml).
+0x8001ED20  # r4.pal.ntsc: frame buffer height 256 -> 240 (s2)
+0x8001ED34  # r4.pal.ntsc: second buffer origin 256 -> 240 (s4)
+0x8001EE5C  # r4.pal.ntsc: DISPENV.screen.y 16 -> 0
+0x8001FC7C  # r4.pal.ntsc: draw area of the second buffer (FUN_8001FC28) k*256 -> k*240
+0x80021CE8  # r4.pal.ntsc: split-screen lap counter y (n-1)*128 -> (n-1)*120
+0x80022614  # r4.pal.ntsc: split-screen race message y (n-1)*128+56 -> (n-1)*120+52
+0x80022644  # r4.pal.ntsc: one-player race message y 120 -> 112

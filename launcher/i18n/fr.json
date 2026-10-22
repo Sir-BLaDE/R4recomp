@@ -1,0 +1,17 @@
+// French UI strings. Keys are the English text; missing keys stay English.
+{
+  "Play": "Jouer", "Graphics": "Graphismes", "Controls": "Commandes", "Mods": "Mods", "Netplay": "Jeu en ligne",
+  "Settings": "Réglages", "About": "À propos", "Disc setup": "Configuration du disque",
+  "PLAY": "JOUER", "RESUME": "REPRENDRE", "SET UP DISC": "CONFIGURER LE DISQUE",
+  "Preset": "Préréglage", "Auto": "Automatique", "Low": "Bas", "Medium": "Moyen", "High": "Élevé", "Ultra": "Ultra",
+  "Custom": "Personnalisé", "Re-detect": "Redétecter", "Smooth motion": "Mouvement fluide",
+  "Screen": "Écran", "Windowed": "Fenêtré", "Fullscreen": "Plein écran", "Exclusive fullscreen": "Plein écran exclusif",
+  "Renderer": "Moteur de rendu", "Internal resolution": "Résolution interne", "Dynamic resolution": "Résolution dynamique",
+  "Control scheme": "Schéma de commandes", "Modern": "Moderne", "Classic": "Classique", "Players": "Joueurs",
+  "Input device": "Périphérique", "Bindings": "Affectations", "Map all keys": "Affecter toutes les touches",
+  "Reset bindings": "Réinitialiser les affectations", "Volume": "Volume", "Audio": "Audio", "System": "Système",
+  "Memory cards": "Cartes mémoire", "Restore defaults": "Rétablir les valeurs par défaut", "Disc": "Disque", "Change disc": "Changer de disque",
+  "Host a race": "Héberger une course", "Join a race": "Rejoindre une course", "Open lobbies": "Salons ouverts",
+  "Install mod...": "Installer un mod...", "Turn all off": "Tout désactiver", "Applies after restart": "Au prochain démarrage",
+  "Credits and notices": "Crédits et mentions", "Version": "Version", "Cancel": "Annuler"
+}

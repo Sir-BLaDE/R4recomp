@@ -1,0 +1,4 @@
+# PAL-only function entry hooks (added to [recompiler] mod_function_entry_funcs of game_pal.toml).
+0x8002B574  # r4.pal.ntsc: race frames -> lap timer milliseconds (30 Hz)
+0x8001E684  # r4.pal.ntsc: R4_Main (default message language, 240-line viewports and HUD)
+0x80021350  # original tachometer needle (PAL 0x80021350, USA 0x800212E0), hook site for HUD mods

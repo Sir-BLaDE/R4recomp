@@ -89,3 +89,8 @@ __pycache__/
 # Local symlinks (disc/, build trees) in feature worktrees
 /disc
 /build-*
+
+# PAL build (pal/README.md): the C generated from your own SCES-01706 disc and
+# the translation report written next to game_pal.toml.
+/generated_pal/
+/game_pal.toml.report.txt

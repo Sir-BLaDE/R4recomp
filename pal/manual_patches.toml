@@ -1,0 +1,183 @@
+# Hand-written patches for the functions Namco rewrote for 25 Hz PAL (they cannot be matched
+# automatically). Each sequence reproduces the arithmetic of the USA function (SLUS-00797).
+
+# --- 0x8002BB88 (USA 0x8002C004): frames -> "M:SS" text. PAL n/25, USA n/30 (magic 0x88888889,
+# addu, sra 4). n >= 0 is guaranteed by the bltz at entry: the sign correction goes away.
+[[recompiler.patch]]
+id = "pal-mss-lui"
+address = "0x8002BB90"
+expected = "0x3C0251EB"
+replacement = "0x3C028888"
+note = "lui v0,0x8888"
+[[recompiler.patch]]
+id = "pal-mss-ori"
+address = "0x8002BB94"
+expected = "0x3442851F"
+replacement = "0x34428889"
+note = "ori v0,v0,0x8889"
+[[recompiler.patch]]
+id = "pal-mss-mfhi"
+address = "0x8002BBA0"
+expected = "0x000417C3"
+replacement = "0x00004010"
+note = "mfhi t0"
+[[recompiler.patch]]
+id = "pal-mss-addu"
+address = "0x8002BBA4"
+expected = "0x00004010"
+replacement = "0x01044021"
+note = "addu t0,t0,a0"
+[[recompiler.patch]]
+id = "pal-mss-sra"
+address = "0x8002BBA8"
+expected = "0x000828C3"
+replacement = "0x00082903"
+note = "sra a1,t0,4  (seconds = n/30)"
+[[recompiler.patch]]
+id = "pal-mss-nop"
+address = "0x8002BBAC"
+expected = "0x00A22823"
+replacement = "0x00000000"
+note = "nop (sign is zero)"
+
+# --- 0x80035478 (USA 0x80035998): countdown in VBlanks. PAL v/50, USA v/60; gauge
+# (500 - v) / 500 -> (600 - v) / 600; PAL Y positions +16 -> USA.
+[[recompiler.patch]]
+id = "pal-cd-lui"
+address = "0x800355B8"
+expected = "0x3C0351EB"
+replacement = "0x3C038888"
+note = "lui v1,0x8888"
+[[recompiler.patch]]
+id = "pal-cd-ori"
+address = "0x800355C4"
+expected = "0x3463851F"
+replacement = "0x34638889"
+note = "ori v1,v1,0x8889"
+[[recompiler.patch]]
+id = "pal-cd-mfhi"
+address = "0x800355D4"
+expected = "0x000217C3"
+replacement = "0x00003810"
+note = "mfhi a3"
+[[recompiler.patch]]
+id = "pal-cd-addu"
+address = "0x800355D8"
+expected = "0x00003810"
+replacement = "0x00E23821"
+note = "addu a3,a3,v0"
+[[recompiler.patch]]
+id = "pal-cd-sra"
+address = "0x800355DC"
+expected = "0x00071903"
+replacement = "0x00078943"
+note = "sra s1,a3,5  (seconds = v/60)"
+[[recompiler.patch]]
+id = "pal-cd-nop"
+address = "0x800355E0"
+expected = "0x00628823"
+replacement = "0x00000000"
+note = "nop"
+[[recompiler.patch]]
+id = "pal-cd-y1"
+address = "0x800355E8"
+expected = "0x240500F4"
+replacement = "0x240500E4"
+note = "y 244 -> 228"
+[[recompiler.patch]]
+id = "pal-cd-y2"
+address = "0x8003562C"
+expected = "0x240500F4"
+replacement = "0x240500E4"
+note = "y 244 -> 228"
+[[recompiler.patch]]
+id = "pal-cd-gauge-lui"
+address = "0x8003563C"
+expected = "0x3C041062"
+replacement = "0x3C041B4E"
+note = "lui a0,0x1B4E (/600)"
+[[recompiler.patch]]
+id = "pal-cd-gauge-ori"
+address = "0x80035640"
+expected = "0x34844DD3"
+replacement = "0x348481B5"
+note = "ori a0,a0,0x81B5"
+[[recompiler.patch]]
+id = "pal-cd-gauge-600"
+address = "0x80035648"
+expected = "0x240201F4"
+replacement = "0x24020258"
+note = "li v0,600"
+[[recompiler.patch]]
+id = "pal-cd-gauge-y"
+address = "0x80035658"
+expected = "0x240500E0"
+replacement = "0x240500D0"
+note = "y 224 -> 208"
+[[recompiler.patch]]
+id = "pal-cd-gauge-sra"
+address = "0x8003566C"
+expected = "0x00072143"
+replacement = "0x00072183"
+note = "sra a0,a3,6"
+
+# --- 0x8005CA88 (USA 0x8005CD98): counter capped at 120 s (3000 frames at 25 Hz -> 3600 at 30 Hz).
+[[recompiler.patch]]
+id = "pal-cap-slti"
+address = "0x8005D1B4"
+expected = "0x28420BB9"
+replacement = "0x28420E11"
+note = "slti v0,v0,3601"
+[[recompiler.patch]]
+id = "pal-cap-li"
+address = "0x8005D1BC"
+expected = "0x24020BB8"
+replacement = "0x24020E10"
+note = "li v0,3600"
+
+# --- 0x8001ECE8 (USA 0x8001ECE0): DISPENV.screen.h is a constant 256 in PAL, the buffer height (s2) in USA.
+[[recompiler.patch]]
+id = "pal-disp-screen-h"
+address = "0x8001EE48"
+expected = "0x24020100"
+replacement = "0x02401021"
+note = "addu v0,s2,zero (screen.h = 240)"
+
+# --- 0x80020B10 (USA 0x80020A98): race layer (param_1 > 1) that sets its draw area to
+# (0, n*256, 320, 256). With the NTSC-ised buffers at 0 / 240, the first buffer overflows into the first
+# 16 lines of the second one, which never redraws them (its area starts at 256): a band flickers at the
+# top of the screen during races. Sequence rewritten in place: RECT (0, n ? 240 : 0, 320, 240).
+[[recompiler.patch]]
+id = "pal-layer-area-wh-1"
+address = "0x80020C54"
+expected = "0x24020140"
+replacement = "0x3C0300F0"
+note = "lui v1,0x00F0"
+
+[[recompiler.patch]]
+id = "pal-layer-area-wh-2"
+address = "0x80020C58"
+expected = "0xA7A20014"
+replacement = "0x34630140"
+note = "ori v1,v1,0x0140 (w = 320, h = 240)"
+
+[[recompiler.patch]]
+id = "pal-layer-area-wh-3"
+address = "0x80020C64"
+expected = "0x24030100"
+replacement = "0xAFA30014"
+note = "sw v1,20(sp): RECT.w / RECT.h"
+
+[[recompiler.patch]]
+id = "pal-layer-area-y-1"
+address = "0x80020C6C"
+expected = "0xA7A30016"
+replacement = "0x00021023"
+note = "subu v0,zero,v0 (-n)"
+
+[[recompiler.patch]]
+id = "pal-layer-area-y-2"
+address = "0x80020C70"
+expected = "0x00021200"
+replacement = "0x304200F0"
+note = "andi v0,v0,0xF0 (n ? 240 : 0), stored to RECT.y by the sh in the jal delay slot"
