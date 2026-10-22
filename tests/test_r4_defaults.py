@@ -108,8 +108,12 @@ def test_game_toml():
     video = g.get('video', {})
     check(video.get('internal_resolution') == 'display',
           'game.toml: internal_resolution = "display" (Match display)')
-    check('match_display_max_lines' not in video,
-          'game.toml: Match display is not capped (full display resolution)')
+    # Owner, 2026-10-21: cap Match display at 8K/18x and drop SSAA on 4K/8K
+    # displays (27x on an 8K panel forced the high-resolution-window path).
+    check(video.get('match_display_max_lines') == 4320,
+          'game.toml: Match display capped at 8K (match_display_max_lines = 4320)')
+    check(video.get('supersample_disable_at_lines') == 2160,
+          'game.toml: no supersampling from 4K displays up (supersample_disable_at_lines = 2160)')
     check(video.get('dynamic_resolution') is True,
           'game.toml: dynamic resolution on by default')
     floor = video.get('dynamic_resolution_min')
