@@ -1,0 +1,30 @@
+format_version = 7
+id = "r4.enhancement.race-hud"
+version = "1.0.0"
+name = "R4 Race HUD"
+author = "yacineolivier-maker"
+description = "A modern race HUD drawn by the PC at the window's resolution: lap and lap times, track record, position, section splits, race messages, tachometer with speed and gear, and a track map. Stock HUD when disabled."
+license = "MIT"
+resolver = "declarative"
+save_compatibility = "shared"
+
+# Presentation only: reads guest RAM and draws on the host HUD layer.
+[[target]]
+game_id = "SLUS-00797"
+
+[[feature]]
+id = "race-hud"
+name = "Race HUD"
+description = "Off by default: turn it on in the Mods page. Races show a sharp, resolution-independent HUD: lap counter and clock, best lap, track record and every lap time, position, a split at each section, wrong-way, final-lap and best-lap messages, a tachometer with speed and gear, and a map of the track. Split screen gets a compact block per player. The stock HUD elements it replaces are hidden while it is on. Offline only; netplay keeps the stock HUD."
+group = "Display"
+channel = "stable"
+default_enabled = false
+
+[[plugin]]
+feature = "race-hud"
+id = "r4.race-hud"
+# No netplay entry: the feature stays offline. Its needle filter (0x800212E0)
+# would be safe as an own-view hook (Link Battle's own-view draw calls that
+# routine inside the sandbox, which discards the skip), but the panels read
+# player 1's car and lap slots from the shared race outside that sandbox, so
+# every other seat would see seat 0's values over its own view.

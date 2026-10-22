@@ -1,0 +1,26 @@
+format_version = 7
+id = "r4.enhancement.car-effects"
+version = "1.0.0"
+name = "R4 Car Effects"
+author = "yacineolivier-maker"
+description = "Exhaust backfires, drift smoke and impact sparks drawn by the PC as particles in the race, plus the live values that anchor the r4_2026 lighting preset on the game's sun and camera. Stock picture when disabled."
+license = "MIT"
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SLUS-00797"
+
+[[feature]]
+id = "car-effects"
+name = "Car Effects"
+description = "Off by default: turn it on in the Mods page. Cars spit flames from the exhaust on upshifts, when lifting off at high revs and on the rev limiter, leave tyre smoke when drifting and throw sparks on impacts. It also smooths the race camera's one-step jitter (a still or crawling car no longer makes the whole picture shake by a pixel at high resolutions) and drives the sun, speed and car-body values of the postfx/r4_2026 lighting preset. Offline only."
+group = "Display"
+default_enabled = false
+
+[[plugin]]
+feature = "car-effects"
+id = "r4.car-effects"
+# No netplay entry: the feature stays offline. Its view-build hook
+# (0x8006E4D0) writes the stabilized camera into the scratchpad and keeps
+# that filter's state from frame to frame, which an own-view mod must not do.
