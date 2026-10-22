@@ -341,8 +341,14 @@ void measure_ambient(int W, int H) {
 
 /* ---------------------------------------------------------------- emission */
 
-/* One backfire out of each tailpipe: flame tongues, core, embers, dark smoke. */
-void backfire(int i, const R4RaceCar &v, float strength) {
+/* One backfire out of each tailpipe: flame tongues, core, embers, dark smoke.
+ * `lead`: time between the car state `v` and the next advance() (a game
+ * frame when emitted from that frame's events, which are advanced right
+ * after): the particles start that much younger, so they leave the pipe of
+ * the car on screen. Born at age 0 they were advanced a whole game frame at
+ * the car's speed before the car moved on: up to 1.5 m ahead of the
+ * tailpipes, cores and embers drawn over the boot for a frame. */
+void backfire(int i, const R4RaceCar &v, float strength, float lead) {
     const float fx = std::sin(v.heading * K_ANGLE), fz = std::cos(v.heading * K_ANGLE);
     for (int side = -1; side <= 1; side += 2) {
         float x, y, z;
@@ -354,6 +360,7 @@ void backfire(int i, const R4RaceCar &v, float strength) {
             p.vx = g.vx[i]; p.vy = g.vy[i]; p.vz = g.vz[i];
             p.life = 0.04f + 0.03f * strength; p.r0 = 0.07f + 0.05f * strength; p.r1 = p.r0 * 1.4f;
             p.rot = rnd() * 6.28f; p.strength = strength; p.kind = FIRE; p.phase = -1.f;   /* -1: core */
+            p.age = 0.001f - lead;
             p.car = (uint8_t)i;
             g.parts.push_back(p);
         }
@@ -370,7 +377,7 @@ void backfire(int i, const R4RaceCar &v, float strength) {
             p.life = 0.05f + 0.08f * rnd() * (0.6f + strength);
             p.r0 = 0.04f + 0.03f * strength; p.r1 = 0.1f + 0.1f * strength;
             p.rot = rnd() * 6.28f; p.vrot = rnd_signed() * 8.f; p.strength = strength; p.kind = FIRE;
-            p.age = -rnd() * 0.03f;   /* spread over 30 ms */
+            p.age = -rnd() * 0.03f - lead;   /* spread over 30 ms */
             p.car = (uint8_t)i;
             g.parts.push_back(p);
         }
@@ -385,6 +392,7 @@ void backfire(int i, const R4RaceCar &v, float strength) {
             p.vz = g.vz[i] - fz * speed + rnd_signed() * 1.8f * M;
             p.vy = g.vy[i] - (0.2f + 0.8f * rnd()) * M;
             p.life = 0.2f + 0.3f * rnd(); p.strength = strength; p.kind = EMBER;
+            p.age = 0.001f - lead;
             p.car = (uint8_t)i;
             g.parts.push_back(p);
         }
@@ -398,7 +406,7 @@ void backfire(int i, const R4RaceCar &v, float strength) {
             p.life = 0.8f + 0.5f * rnd(); p.r0 = 0.12f; p.r1 = 0.55f + 0.3f * strength;
             p.rot = rnd() * 6.28f; p.vrot = rnd_signed() * 0.8f; p.strength = 0.35f * strength;
             p.kind = EXHAUST_SMOKE; p.variant = (uint8_t)(rnd() * SMOKE_TEXTURES) % SMOKE_TEXTURES;
-            p.age = -0.04f;
+            p.age = -0.04f - lead;
             p.car = (uint8_t)i;
             g.parts.push_back(p);
         }
@@ -460,13 +468,13 @@ float game_events(const R4RaceState &c) {
         const int32_t rmax = g.max_rpm[i];
         if (visible) {
             if (v.since_shift == 0 && v.shift_dir > 0) {                 /* upshift: strong + echo */
-                backfire(i, v, 1.f);
+                backfire(i, v, 1.f, dt_game);
                 g.burst[i] = {1 + (int)(rnd() * 2), 0.09f + 0.06f * rnd(), 0.55f};
             } else if (rmax > 3000 && g.prev_rpm[i] > rmax * 7 / 10 && kmh > 60.f &&
                        (g.prev_rpm[i] - v.rpm) * 16 > g.prev_rpm[i] && g.burst[i].remaining == 0) {
                 g.burst[i] = {3 + (int)(rnd() * 3), 0.f, 0.6f};            /* lift-off: pops */
             } else if (rmax > 3000 && v.rpm * 50 >= rmax * 49 && rnd() < 0.2f) {
-                backfire(i, v, 0.45f);                                      /* rev limiter */
+                backfire(i, v, 0.45f, dt_game);                             /* rev limiter */
             }
         }
         g.prev_rpm[i] = v.rpm;
@@ -491,6 +499,7 @@ float game_events(const R4RaceState &c) {
                 p.vz = g.vz[i] * 0.6f + rnd_signed() * 4.f * M;
                 p.vy = -(1.f + rnd() * 3.f) * M;
                 p.life = 0.25f + rnd() * 0.35f;
+                p.age = 0.001f - dt_game;   /* from this frame's car (see backfire) */
                 p.kind = SPARK;
                 p.car = (uint8_t)i;
                 g.parts.push_back(p);
@@ -508,7 +517,7 @@ void emit_continuous(const R4RaceState &c, float dt) {
         if (s.remaining > 0) {
             s.wait -= dt;
             if (s.wait <= 0.f) {
-                backfire(i, v, s.strength * (0.7f + 0.5f * rnd()));
+                backfire(i, v, s.strength * (0.7f + 0.5f * rnd()), dt);
                 --s.remaining;
                 s.wait = 0.06f + 0.11f * rnd();
             }
@@ -947,15 +956,15 @@ void r4_car_effects_draw(ImDrawList *dl, int W, int H, bool split_screen) {
      * frames). Advanced on every presented frame, those moving at the car's
      * speed got up to a game frame ahead of it (2.5 m at full speed): flames
      * and embers crept onto the boot instead of leaving the tailpipes. */
-    if (const int f = g_lab_flame.exchange(0)) {
-        const int i = (f & 0xFF) - 1;
-        if (i >= 0 && i < c.car_count) backfire(i, c.cars[i], (float)(f >> 8) / 1000.f);
-    }
     if (c.frame != g.frame) {
         const float dt_game = game_events(c);
         g.frame = c.frame;
         emit_continuous(c, dt_game);
         advance(dt_game);
+    }
+    if (const int f = g_lab_flame.exchange(0)) {   /* after the advance: from the car on screen */
+        const int i = (f & 0xFF) - 1;
+        if (i >= 0 && i < c.car_count) backfire(i, c.cars[i], (float)(f >> 8) / 1000.f, 0.f);
     }
     lighting(c, split_screen);
 
