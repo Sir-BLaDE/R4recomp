@@ -49,9 +49,23 @@ This project inherits, in order:
 
 ## Feature workflow (owner rules)
 
-- Engine/runtime/recompiler/launcher changes go to `psxrecomp` (or
-  `recomp-ui`) as PRs upstream; game-specific work goes to this repo. Never
-  patch the submodules in place on master.
+- Fork model (owner, 2026-10-22, agreed with the psxrecomp maintainer):
+  R4 pins the fork `tetrisgm/psxrecomp`, branch `r4/main` (upstream master
+  plus our topic branches). Framework work lands there first, so R4 never
+  waits on upstream review. Each change stays a separate topic branch
+  (`fix/<name>`, `feat/<name>`) off upstream master, framework-generic, never
+  R4-only hacks, so it can go upstream unchanged. `docs/UPSTREAM.md` lists
+  every fork delta and its upstream PR state.
+- Sync: merge upstream master into `r4/main` at least weekly and before every
+  release, so R4 keeps the maintainer's fixes.
+- Upstream: open PRs in batches at milestones (not one per prompt), each
+  small, tested, with evidence; address review on the topic branch and merge
+  the fix into `r4/main`. Never ask the maintainer for fast turnaround.
+- End state: when the fork's delta is merged upstream, re-pin R4 to
+  upstream master, point `.gitmodules` back at RetroPortingToolKit/psxrecomp,
+  and archive the fork. Game-specific work stays in this repo.
+- recomp-launcher is our own repo (`tetrisgm/recomp-launcher`), pinned at
+  its `r4/main`.
 - psxrecomp's default behaviour stays faithful for every PS1 title. Enhancements
   are elective and opt-in (off by default, enabled by config or a mod), never a
   change to the base path.
