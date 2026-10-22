@@ -255,8 +255,8 @@ in the mod selects your own pack. Details: `docs/HD_HUD.md`.
 resolution instead of stretching 320×240 (OpenGL). R4 defaults to Match
 display with 1.5× supersampling (`[video] internal_resolution = "display"`,
 `supersample = 1.5`; the framework default is Native) and dynamic resolution
-floored at the display (`dynamic_resolution_min = "display"`); it takes
-effect when the game starts.
+floored at 1080p in every preset (`dynamic_resolution_min = "1080p"`): it
+never renders below 1080 lines.
 
 | Preset | Scale | Race frame | Notes |
 |---|---|---|---|
