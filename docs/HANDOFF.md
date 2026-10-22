@@ -1,27 +1,17 @@
 # Handoff
 
-## Current work (2026-10-14)
+## Current work (2026-10-22)
 
-Released: v0.1.0 only. Next release waits on the psxrecomp PRs below, then a
-rebuild from master and the owner's go and version number. Never tag or
-publish without that ask. Local RC report: `analysis/handoff/rc-1012/RC_REPORT.md`.
+Released: v0.1.0 only. Next release needs the owner's go and version number.
 
-On R4 master: psxrecomp master pin (dithering off, bloom on, #38), Linux zip
-(#24), Modern rumble (#31), link-bridge snapshot fix (#39), widescreen VBlank
-cache (#37).
+Framework: R4 pins psxrecomp and recomp-launcher `r4/main`, our own branches
+(owner 2026-10-22: land fixes ourselves, never wait on upstream review).
+Upstream PRs stay open for later re-pin to master: psxrecomp #723, #727,
+#732-#737; recomp-launcher #3. Base build is steady 30 fps at 18x (#56).
 
-Open R4 PRs -> psxrecomp PR they wait on:
-- #22 v_wait idle skip (audited site list) -> #590.
-- #23 graphics presets (Low on low-end, Ultra otherwise; bloom off in Low) -> #591.
-- #25 batched cycle charge -> #597.
-- #26 -> #27 -> #28 -> #36 recomp-launcher in-game menu -> #598-#603
-  (provider-neutral `psx_menu_host.h`; recomp-ui stays default, R4 opts in).
-- #32 JogCon wheel force feedback (off by default) -> #609 (needs a physical wheel test).
-Also open: #593 Steam Deck Game Mode (needs real Deck); #660-#662 4P rollback
-determinism (issue #636).
-
-Merge order once upstream lands: re-pin each R4 PR to psxrecomp master; keep
-both sides of `docs/framework_pin_history.md` when rebasing.
+In flight (R4 PRs): #49 PAL (SCES-01706), #50 race HUD / car effects /
+lighting (needs psxrecomp #710, #716 on `r4/main`), #54 60 fps race
+interpolation (needs psxrecomp #727 + `fix/present-no-drop` pacing).
 
 ## Owner decisions
 
