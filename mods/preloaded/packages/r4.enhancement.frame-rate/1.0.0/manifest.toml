@@ -24,7 +24,7 @@ id = "rate"
 label = "Presentation rate"
 group = "Display"
 type = "choice"
-default = "60"
+default = "30"
 
 [[option.choice]]
 value = "60"
