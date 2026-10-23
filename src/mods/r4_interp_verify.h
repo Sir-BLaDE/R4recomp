@@ -138,6 +138,7 @@ cleanup:
         r4_draw_mods_destroy(jobs[i].hook.mods); psx_ctx_destroy(jobs[i].hook.context);
     }
     psx_ctx_snapshot_release(snapshot); free(reference.words);
+    fflush(stderr);
     return 1;
 }
 #else
