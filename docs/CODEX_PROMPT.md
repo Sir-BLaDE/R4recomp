@@ -78,7 +78,11 @@ owner.
 - Owner display decisions: 18x internal resolution (Match display up to 8K,
   supersample 1.5 below 4K), dynamic resolution never below 1080p, PGXP on
   (with depth buffer, colour correction, fine seams + seam snapping),
-  widescreen on, 30 FPS default until 60 holds steadily.
+  widescreen on. Target selectable render/present rates are 60 (default),
+  90, 100, 120 and 144 FPS. Current code defaults to 30; this is an
+  implementation gap, not the desired default. Base simulation stays 30 Hz
+  on main. A possible 60 Hz simulation mode is separate, unproven and not
+  required, and must never be coupled to rendering FPS.
 - Credit "Shokunin", never a legal name. Commit trailer:
   `Co-Authored-By: <your model> <noreply@...>` as your harness requires.
 
@@ -112,17 +116,17 @@ Thread map today:
 |---|---|---|
 | Game logic (recompiled code) | main | stays: one sequential program |
 | Real-frame draw (track, cars, HUD) | main | draw workers, gated on isolation |
-| In-between frames (60/120/144 Hz) | main, queued render passes | one worker each |
-| Course renderer inside a frame (0x8006F00C, ~8-9 ms) | main | split across workers later |
+| Timestamped interpolated frames | main, queued render passes | bounded shared worker pool |
+| Course renderer inside a frame (0x8006F00C, ~8-9 ms) | main | decompose ordered work across workers |
 | GPU command parsing (DrawOTag, ~0.6 ms) | main | stays: reads live game state |
 | Seam strips (~1.3 ms) | render thread | stays serial (order-dependent) |
 | GL render / present | render + present threads | done; GL state cache cut render thread 95% -> 38% at 18x |
 | Disc reads, HD textures | workers | done |
 
-Costs per 30 Hz tick at 18x on the loaded PC: logic + own draw ~21 ms
+Historical measurements from the prior build, per 30 Hz tick at 18x on the loaded PC: logic + own draw ~21 ms
 (race game thread now ~7 ms + draw); each in-between redraw 10-12 ms. 60 FPS
 measured 33-41 distinct frames/s on screen (60/30 stretches), hence the 30
-default. Recompiled functions carry overhead per guest instruction: PGXP
+code default (#61), not the owner target. Recompiled functions carry overhead per guest instruction: PGXP
 ~30%, cycle/icache model 13-15%, GTE ~10%, memory calls; draw-only work
 doesn't need the cycle model or debug hooks.
 
@@ -160,8 +164,9 @@ B. fork `feat/draw-isolation-gate` (6f8b4621) + R4 draft PR #65
    view temporaries draw-private; dead stack garbage only; sound state feeds
    logic. Main must keep input, sound tick, CD polling, DrawSync/VSync/
    PutDispEnv/PutDrawEnv/DrawOTag, logic, and the draw's sound calls; a
-   threaded build must charge draw cycles to the guest clock and give HUD
-   calls the logic state of their call point.
+   replacement of the real-frame draw must preserve its guest-cycle effects
+   and give HUD calls the logic state of their call point. Extra interpolated
+   draws must not advance authoritative guest time.
 C. fork `feat/host-threading` (merged in r4/main; doc docs/HOST_THREADING.md).
    Open items: on-screen distinct-frame count before/after; one ring command
    per triangle instead of ~6; cache gpu_get_display_info. Profiling:
@@ -176,37 +181,48 @@ savestates), and an in-game test autodriver (src/mods/r4_autodrive.h,
 R4_AUTODRIVE=1, local only). psxrecomp/tools/fp_identity.py compares frame
 fingerprints between builds.
 
-## 6. Remaining work, in order (1 and 2 can run in parallel)
+## 6. Integrated rendering work
 
-1. Gate (B): find the reader of 0x8010FFE8/F8, keep the objects draw's
-   sound calls on main, rerun until isolated == stock over a whole race;
-   then Time Attack, split screen, attract demo, after-goal replay; then
-   with default mods on. Merge PR #65 when it passes.
-2. Contexts (A): handle BIOS calls from draw code (clone the few BIOS
-   functions involved or give memcpy/memset context versions); run
-   0x8006F00C, then the full Grand Prix draw sequence from r4_interp.c,
-   adding roots for each indirect target the failure trail names.
-3. Tests: 4 parallel contexts == serial; emitter tests; main-context speed
-   vs baseline; fp_identity; lean vs full per-draw ms. Then merge A into
-   r4/main and pin R4 (commit the [threaded_draw] roots and _draw.c).
-4. Worker pool: N draw workers fed a per-tick snapshot; in-between frames
-   first (one worker each); command lists replayed on the render thread
-   inside the queued-pass transaction (psxrecomp docs/RENDER_PASSES.md); a
-   late worker drops an in-between frame, never stalls; charge draw cycles
-   to the guest clock.
-5. 60 FPS default: >= 58 distinct frames/s average on screen, no 30
-   stretches, with the owner's other jobs running, resolution never below
-   1080p; then set r4.enhancement.frame-rate option `rate` default "60" in
-   mods/preloaded/packages/r4.enhancement.frame-rate/1.0.0/manifest.toml and
-   tests/test_r4_defaults.py, with numbers in the PR.
-6. Real-frame draw on a worker once the gate passes (main runs logic only).
-7. 120/144 Hz: more in-between frames per tick; worker count from cores.
-8. Split the track draw across workers to cut per-frame latency.
-9. Stereo/VR: one worker per eye (psxrecomp docs/STEREO_RENDERING.md),
-   for the Steam Frame.
-10. Host-threading open items (C).
-11. Upstream: batched PRs from the topic branches; keep docs/UPSTREAM.md
-    current. Rebuild and reinstall the owner's R4 after each milestone.
+Read docs/CODEX_PLAN.md for the shared contracts and worker audit. Develop
+independent pieces in parallel and integrate them continuously:
+
+- Isolation/snapshots: resolve the sound-state dependency, preserve main-
+  thread sound/input/device work and draw/HUD call-point state, verify the
+  real-frame handoff and immutable snapshot lifetimes.
+- Lean contexts: complete BIOS support and indirect roots, then all mode
+  sequences. Preserve main execution semantics and fail closed on faults.
+- Immutable rendering data: snapshot GTE pose/config, active mod options and
+  private draw hooks; preserve PGXP RAM/packet precision and HUD metadata.
+  First prove serial captured output equals the current pass. Raw GPU words
+  alone are not a safe asynchronous replay format.
+- Worker pool: bounded jobs and owned results; ordered command replay inside
+  render transactions. Real-frame drawing moves only when isolation and
+  guest-clock accounting pass. Extra interpolated draws add no guest time.
+- Scheduling/pacing: use output timestamps and interpolated simulation
+  snapshots at 60/90/100/120/144 FPS, including 100/30 and 144/30 ratios.
+  Do not assume a fixed number of extra frames per tick or one core per
+  output rate. Worker count follows cores and measured workload. Explicit
+  generation/deadline/session tokens reject stale results; late optional
+  frames drop without stalling or changing simulation speed.
+- Track decomposition/host throughput: split independent track work while
+  preserving order, improve ring commands and display-info caching, and
+  measure scheduling, merge and render/present costs together.
+
+Cross-cutting checks cover Grand Prix, Time Attack, split screen, attract
+and after-goal replay, baseline and default mods: zero dispatch misses,
+whole-race isolation identity, four parallel contexts equal serial, emitter
+checks, fp_identity, main-context speed, lean/full draw time and snapshot
+cost. Test rate changes, late jobs, load/reset/rewind and mod changes.
+Measure on-screen distinct frames and cadence at every selectable rate
+under the owner's background load; resolution never below 1080p.
+
+Set the requested render-rate default to 60 in the frame-rate manifest and
+tests/test_r4_defaults.py as part of integration. Report actual performance
+and unverified behavior; do not turn the historical >=58 FPS threshold into
+a condition on the owner's desired default. Potential 60 Hz simulation is
+separate and not a prerequisite. Keep fork delta/pin history current, land
+verified coherent work, and rebuild/reinstall at milestones. Release still
+requires the owner's go and version number.
 
 Keep docs/HANDOFF.md (current work, blockers, references) and
 docs/CODEX_PLAN.md current as you go. Report to the owner in plain
