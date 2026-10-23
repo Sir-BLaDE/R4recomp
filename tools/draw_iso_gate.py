@@ -379,9 +379,13 @@ def compare(a, b, quiet=False):
         for c in diff:
             print(f"   {c}: {ta[i][c]} vs {tb[i][c]}")
         verdict = 1
-    elif len(ta) != len(tb) and not ended:
-        print(f"INCOMPLETE ticks: {len(ta)} vs {len(tb)} lines (the first {n} agree)")
-        verdict = verdict or 3
+    elif len(ta) != len(tb):
+        if ended:
+            print(f"MISMATCH ticks: both runs ended but produced {len(ta)} vs {len(tb)} rows")
+            verdict = 1
+        else:
+            print(f"INCOMPLETE ticks: {len(ta)} vs {len(tb)} lines (the first {n} agree)")
+            verdict = verdict or 3
     else:
         print(f"ticks: {n} race ticks identical ({', '.join(JUDGE)})")
     fa, fb = load_fp(a), load_fp(b)
