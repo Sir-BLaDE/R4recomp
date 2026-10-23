@@ -18,7 +18,7 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
 | Host threading: cached GL blend/stencil state, batched render-thread ring, disc read-ahead worker (docs/HOST_THREADING.md) | `feat/host-threading` | none yet | in `r4/main` (`ba0a839e`) |
 | Threaded draw contexts, lean clones, OpenBIOS qualification and bounded worker pool | `feat/threaded-contexts` | none yet | in `r4/main`; private draw verified at 60 Hz |
-| Draw-isolation gate (debug only) | `feat/draw-isolation-gate` | none yet | in `r4/main`; R4 PR #65 remains draft pending mode checks |
+| Draw-isolation gate (debug only) | `feat/draw-isolation-gate` | none yet | in `r4/main` via `6f8b4621`; R4 PR #65 merged |
 | Timestamped async output, ordered presentation, depth/seam checkpoints and private GPU replay | `feat/output-timestamp-plan`, `feat/async-render-admission`, `fix/async-output-grid`, `fix/async-presentation-ownership`, `fix/async-untracked-copy` | none yet | in `r4/main`; pixel/ordering receipts in `docs/HANDOFF.md` |
 | HD provenance leases and async backup transfer | `fix/hd-tracking-generation`, `perf/async-backup-transfer` | none yet | in `r4/main`; PC/Mac component checks and R4 race probe |
 | Bounded presenter capacity and per-title slots | `feat/bounded-present-capacity` | none yet | in `r4/main`; eight slots at R4's 8K budget, direct fallback on allocation failure |

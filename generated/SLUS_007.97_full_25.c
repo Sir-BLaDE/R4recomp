@@ -9220,6 +9220,7 @@ void func_80059E24(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80059E24u);
+    if (psx_mod_function_entry(cpu, 0x80059E24u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80059E24, Size: 268 bytes, Blocks: 4 */
 
 block_80059E24:

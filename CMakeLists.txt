@@ -405,6 +405,9 @@ if(R4_BUILD_TESTS AND BUILD_TESTING)
                 WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
             set_tests_properties(r4_defaults PROPERTIES SKIP_RETURN_CODE 77)
         endif()
+        add_test(NAME r4_draw_iso_gate
+            COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_draw_iso_gate.py"
+            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
         # The pinned psxrecomp reads every game.toml [video] key. Skipped
         # (with the list) while R4 is ahead of its pin; the strict form
         # refuses that state for a release (tools/package_release.sh).

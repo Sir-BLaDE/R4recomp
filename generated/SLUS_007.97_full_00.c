@@ -31353,6 +31353,7 @@ void func_80014A84(CPUState* cpu)
     psx_cyc_bb_defer_begin();
 #endif
     debug_server_log_call_entry(0x80014A84u);
+    if (psx_mod_function_entry(cpu, 0x80014A84u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80014A84, Size: 12 bytes, Blocks: 1 */
 
 block_80014A84:
