@@ -12,6 +12,10 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | Dynres: hold through savestate load | `r4/main` commit `ade1ecd3` | none yet | needs topic branch + PR |
 | Host HUD layer (yacineolivier-maker) | PR head | #710 | open |
 | Postfx depth / history / live uniforms (yacineolivier-maker) | PR head | #716 | open |
-| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | split per review |
+| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | split per review; #727 still has the old scope |
+| Queued render passes, 60 FPS pacing (docs/RENDER_PASSES.md) | `feat/render-pass-queued` | none yet | in `r4/main` |
+| MinGW test link fixes | `fix/mingw-test-link` | none yet | in `r4/main` (+2 r4/main-only commits) |
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
 | Host threading: cached GL blend/stencil state, batched render-thread ring, disc read-ahead worker (docs/HOST_THREADING.md) | `feat/host-threading` | none yet | in `r4/main` (`ba0a839e`) |
+| Threaded draw contexts + lean draw clones (WIP) | `feat/threaded-contexts` | none | not in `r4/main` |
+| Draw-isolation gate (WIP, debug only) | `feat/draw-isolation-gate` | none | not in `r4/main`; R4 PR #65 draft |
