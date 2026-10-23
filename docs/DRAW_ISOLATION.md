@@ -141,9 +141,26 @@ in progress; no whole-race gate has passed. The exact tick dump identifies
 the BIOS random seed at `0x80008548` (OpenBIOS `0xBFC060E4`, load at
 `0xBFC060E8`), particle counter `0x800F4E30`, and particle `0x8010B800`.
 The current test routes `rand()` stub `0x80096640` and the HUD cue through main.
+Commit `6000b17` passes the stock Grand Prix whole-race gate: all 18,101
+tick rows match across base, nested and isolated runs through TIME OVER
+(phase 5), with zero dispatch misses. Base/nested also match all 32,767
+shared retained fingerprint frames. Wall times under shared load were
+356.6 / 343.8 / 1071.7 seconds respectively; isolation's full-memory
+diagnostic copies are not a worker performance measurement. Local receipts:
+`C:/Users/Shokunin/dev/r4-iso-runs/sound-rng-v4-20261023`, executable SHA-256
+`aa46cd52d2588ab2df2139f12d174c9cac59933fb6e0432596e3df2eccbe5f25`.
 The framework suspend/resume test checks separate RAM/GTE,
 main writes visible on resume, and an IRQ inside the main call staying main.
-Race verification is pending; this does not yet authorize worker execution.
+Broader-mode and default-mod verification remain pending; this does not yet
+authorize real-frame worker execution.
+
+Default-mod A/A runs already differ before testing isolation: the first
+tick differs at SDK pad/SIO timeout sample `0x801147E8` (writers
+`0x8009A9EC`, `0x80098858`), with alternating subsequent frame hashes.
+Three short A/A runs with `PSX_GCS_BATCH=0` match 51 ticks each. This narrows
+the restore reproducibility issue to scaled batching; it is not a passing
+default gate or permission to ignore the differences. Receipts are under
+`C:/Users/Shokunin/dev/r4-iso-runs/defaults-v4-20261023`.
 
 The driver refuses existing run directories, supports `--defaults`, requires
 both runs to reach the race end, and compares isolated merged tick state
@@ -163,9 +180,7 @@ as the existing render-pass transaction does by restoring RAM. It must not
 replay sound or advance main RNG. The synchronous gate hooks are not an API
 for a worker to mutate the main machine concurrently.
 
-1. Finish the whole-race stock/nested/isolated comparison with sound and RNG
-   dependencies on main. The current run has passed the earlier tick 2799
-   failure; a partial match does not pass the gate.
+1. Resolve default-mod A/A restore reproducibility with scaled batching.
 2. Cover Time Attack (mode 1), split screen (mode 3), attract demo and
    after-goal replay. Demo/replay need entry hooks for `0x800914B0`,
    `0x80014A84`, `0x800558E8`, `0x80020074` and demo text calls.
