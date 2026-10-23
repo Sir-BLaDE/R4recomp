@@ -87,6 +87,8 @@ the default (#61).
 
 ## Prompt for Codex
 
+Self-contained version (setup, rules, full state): `docs/CODEX_PROMPT.md`.
+
 ```
 You are continuing R4 (Ridge Racer Type 4 static recompilation) multi-core
 drawing work on the Windows PC. Read, in order: CLAUDE.md, docs/HANDOFF.md,
