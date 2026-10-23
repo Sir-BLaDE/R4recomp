@@ -199,12 +199,10 @@ static void r4_workers_reset(void) {
 }
 static int r4_workers_init(void) {
     if (workers.initialized) return workers.pool != NULL;
-    /* Kept behind an explicit development switch until visual identity and
-     * distinct-frame acceptance have passed with all default enhancements. */
     const char *opt = getenv("R4_DRAW_WORKERS");
-    if (!opt || !*opt || !strcmp(opt, "0") || !psx_ctx_available()) return 0;
+    if ((opt && !strcmp(opt, "0")) || !psx_ctx_available()) return 0;
     workers.initialized = 1;
-    int count = atoi(opt);
+    int count = opt && *opt ? atoi(opt) : 4;
     if (count <= 0) {
 #ifdef PSX_SDL3
         count = SDL_GetNumLogicalCPUCores();

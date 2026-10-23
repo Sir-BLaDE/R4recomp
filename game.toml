@@ -196,6 +196,7 @@ antialiasing_mode = "off"
 # every preset.
 dynamic_resolution = true
 dynamic_resolution_min = "1080p"
+dynamic_resolution_start_min = true
 # Render thread (psxrecomp docs/RENDER_THREAD.md): the OpenGL backend runs on
 # its own thread, so a frame costs max(game, GL) instead of game + GL. Nothing
 # the guest reads back changes. Off for one run: PSX_RENDER_THREAD=0. Smooth
@@ -204,6 +205,7 @@ render_thread = true
 # Present thread (docs/RENDER_THREAD.md "Present thread"): the window swap
 # leaves the render thread. Off for one run: PSX_PRESENT_THREAD=0.
 present_thread = true
+present_thread_slots = 8
 # Smooth motion (psxrecomp frame generation) is off in R4 and not offered
 # (owner, 2026-10-20): its generated frames showed artifacts in races. Every
 # graphics preset below keeps it off too, and the launcher hides the row
