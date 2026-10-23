@@ -17,6 +17,13 @@ work; they do not change that requested default.
 
 ## Where things stand (2026-10-23)
 
+Release-candidate scope is now the installed 60 FPS extra-frame worker path.
+The owner visually approved its frame order. The short checks and build
+results below are sufficient to close that milestone; real-frame draw offload
+and guaranteed throughput at 90/100/120/144 FPS are deferred follow-up work.
+Those rates remain selectable, without a sustained-rate claim. No new release
+or tag has been authorized.
+
 The extra-frame worker milestone and developer-only isolation gate are
 merged to R4 master (PRs #69 and #65). The fork pin in this branch is
 `990ffb00` (queued-frame bloom provenance; R4 PR #77), and its development build is installed. Four private contexts preserve the
@@ -45,11 +52,11 @@ The timed real-frame worker remains a local diagnostic: its Grand Prix track
 call has progressed through private guest timing, OpenBIOS, interrupt/device
 service, mod hooks and scratchpad, but still refuses at a later device
 deadline. It has not completed an identity comparison and is not installed.
-The presenter offload branch has immutable frame attachments and separate GL
-resource pools; composition itself remains on the render thread. A generic
-HUD prepare/replay path is under development so the after-postfx race HUD can
-move without changing pixels. See `docs/HANDOFF.md` for the current branch and
-receipt references.
+The local presenter offload branch has immutable frame attachments and
+separate GL resource pools. Its ordered-preparation checks pass, but generated
+pixel parity does not, so it stays disabled. A generic HUD prepare/replay
+checkpoint builds, but exact HUD pixel parity is unverified. See
+`docs/HANDOFF.md` for branch and receipt references.
 
 | Stage | Thread today | State |
 |---|---|---|
