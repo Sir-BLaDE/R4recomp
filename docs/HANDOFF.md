@@ -1,17 +1,26 @@
 # Handoff
 
-## Current work (2026-10-22)
+## Current work (2026-10-23)
 
-Released: v0.1.0 only. Next release needs the owner's go and version number.
+Released: v0.1.0 only. A release needs the owner's go and version number.
 
-Framework: R4 pins psxrecomp and recomp-launcher `r4/main`, our own branches
-(owner 2026-10-22: land fixes ourselves, never wait on upstream review).
-Upstream PRs stay open for later re-pin to master: psxrecomp #723, #727,
-#732-#737; recomp-launcher #3. Base build is steady 30 fps at 18x (#56).
+Framework: R4 pins the fork `tetrisgm/psxrecomp` `r4/main` (CLAUDE.md fork
+model). `docs/UPSTREAM.md` lists every fork delta and its upstream PR;
+`docs/framework_pin_history.md` every pin. Owner's install:
+`C:\Users\Shokunin\Games\R4` (desktop shortcut "R4"), built from `dea73b5`.
 
-In flight (R4 PRs): #49 PAL (SCES-01706), #50 race HUD / car effects /
-lighting (needs psxrecomp #710, #716 on `r4/main`), #54 60 fps race
-interpolation (needs psxrecomp #727 + `fix/present-no-drop` pacing).
+Landed 2026-10-22: PAL (#49), race HUD/effects/lighting (#50, fixes #62),
+1080p dynres floor (#57), fork model (#58), review fixes (#59), upstream sync
+(#60), 60 FPS as a setting with 30 the default (#54, #61), PGXP seam
+snapping (#63), host threading (#64; render thread 95% -> 38% busy at 18x).
+
+In progress: multi-core drawing, so 60/120/144 Hz and VR hold under load.
+Plan and Codex prompt: `docs/CODEX_PLAN.md`. Branches:
+- `feat/threaded-contexts` (fork): per-thread draw contexts + lean draw
+  clones; stops at the first BIOS call. Its `docs/THREADED_CONTEXTS.md`.
+- `feat/draw-isolation-gate` (fork) + R4 draft PR #65: which draw writes feed
+  logic; first finding: sound state `0x8010FFE8/F8`. R4 `docs/DRAW_ISOLATION.md` (PR #65).
+- `feat/host-threading` next steps: its `docs/HOST_THREADING.md`.
 
 ## Owner decisions
 
