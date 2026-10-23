@@ -7818,6 +7818,7 @@ void func_80020074(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80020074u);
+    if (psx_mod_function_entry(cpu, 0x80020074u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80020074, Size: 280 bytes, Blocks: 10 */
 
 block_80020074:

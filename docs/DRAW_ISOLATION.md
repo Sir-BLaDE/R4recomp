@@ -136,8 +136,7 @@ countdown state: voice 8/9 volumes were `0x1B36` instead of stock `0x1AB5`.
 `0x8004F5E0` queues HUD voice cues from `0x8003C4B4`/`0x80039C04`; the
 static audit identifies it as another main-side call to cover before the
 broader mode gate. The three-hook GP run matches through tick 2798, then
-diverges in frame output, RAM and scratchpad at tick 2799. Diagnosis is
-in progress; no whole-race gate has passed. The exact tick dump identifies
+diverged in frame output, RAM and scratchpad at tick 2799. The exact tick dump identified
 the BIOS random seed at `0x80008548` (OpenBIOS `0xBFC060E4`, load at
 `0xBFC060E8`), particle counter `0x800F4E30`, and particle `0x8010B800`.
 The current test routes `rand()` stub `0x80096640` and the HUD cue through main.
@@ -154,12 +153,25 @@ main writes visible on resume, and an IRQ inside the main call staying main.
 Broader-mode and default-mod verification remain pending; this does not yet
 authorize real-frame worker execution.
 
+Time Attack has 3,258 matching stock/isolated ticks (6,500-frame bounded
+runs, zero misses), but has not reached the goal. Its route needs a finishing
+driver because this mode has no GP time-limit exit. Receipts:
+`C:/Users/Shokunin/dev/r4-iso-runs/ta-v4-20261023`.
+
+The next build also hands scratchpad heap/OT pointers `0x1F800000/4` to
+main at the pass point. Max Detail's DrawOTag hook consumes the heap end
+for its next-frame budget; withholding it changed the course visibility
+list at default-mod tick 118. A public-range ablation restored that tick's
+exact frame hash. Demo/replay producers now have entry hooks; their
+verification remains pending.
+
 Default-mod A/A runs already differ before testing isolation: the first
 tick differs at SDK pad/SIO timeout sample `0x801147E8` (writers
 `0x8009A9EC`, `0x80098858`), with alternating subsequent frame hashes.
-Three short A/A runs with `PSX_GCS_BATCH=0` match 51 ticks each. This narrows
-the restore reproducibility issue to scaled batching; it is not a passing
-default gate or permission to ignore the differences. Receipts are under
+Three short A/A runs with `PSX_GCS_BATCH=0` matched 51 ticks each, but later
+runs also diverged with batching disabled. The two first-tick hash values
+occur under both settings; batching is not isolated as the cause. This is
+not a passing default gate or permission to ignore differences. Receipts are under
 `C:/Users/Shokunin/dev/r4-iso-runs/defaults-v4-20261023`.
 
 The driver refuses existing run directories, supports `--defaults`, requires
@@ -180,10 +192,9 @@ as the existing render-pass transaction does by restoring RAM. It must not
 replay sound or advance main RNG. The synchronous gate hooks are not an API
 for a worker to mutate the main machine concurrently.
 
-1. Resolve default-mod A/A restore reproducibility with scaled batching.
-2. Cover Time Attack (mode 1), split screen (mode 3), attract demo and
-   after-goal replay. Demo/replay need entry hooks for `0x800914B0`,
-   `0x80014A84`, `0x800558E8`, `0x80020074` and demo text calls.
+1. Resolve default-mod A/A restore reproducibility.
+2. Finish Time Attack (mode 1), split screen (mode 3), attract demo and
+   after-goal replay verification with the expanded hooks.
 3. Repeat with default mods (widescreen, max detail, PGXP) and verify hook
    composition with both nested and isolated runs.
 4. Specify the worker handoff: per-call-point state, frame output, main-side

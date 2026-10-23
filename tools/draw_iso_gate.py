@@ -215,6 +215,13 @@ def route_steps(drive_cycles=24):
     return steps
 
 
+def current_handler(port):
+    major = read_u32(port, 0x800F4E1A) & 0xFFFF
+    minor = read_u32(port, 0x800F3BD6) & 0xFFFF
+    row = read_u32(port, 0x8009EBCC + major * 4)
+    return read_u32(port, row + minor * 4)
+
+
 def run(args):
     out = os.path.join(args.out, args.label or args.mode)
     if os.path.exists(out):
@@ -247,13 +254,21 @@ def run(args):
         # every run replays the same input on the same guest frames.
         cmd({"cmd": "clear_input"}, port=args.port)
         cmd({"cmd": "input_route_clear"}, port=args.port)
-        for st in route_steps():
+        steps = route_steps() if args.scene == "race" else [{"buttons": "0xFFFF", "frames": 60000}]
+        for st in steps:
             cmd({"cmd": "input_route_append", **st}, port=args.port)
         cmd({"cmd": "input_route_start", "on_load": 4}, port=args.port)
         cmd({"cmd": "frame_fingerprint", "reset_on_load": 1}, port=args.port)
+        if args.second_pad:
+            cmd({"cmd": "set_input", "port": 2, "connected": 1,
+                 "buttons": "0xFFFF"}, port=args.port)
         savestate(args.port, "load")
         start = frame(args.port)
         info["start_frame"] = start
+        info["scene"] = args.scene
+        expected_handler = {"demo": 0x8005E118, "replay": 0x8002A464}.get(args.scene)
+        if expected_handler and current_handler(args.port) != expected_handler:
+            raise SystemExit(f"savestate is not in requested {args.scene} scene")
         ended_at = None
         last_phase = None
         while True:
@@ -262,7 +277,9 @@ def run(args):
             if ph != last_phase:
                 print(f"  frame {f} phase {ph}", flush=True)
                 last_phase = ph
-            if ph is not None and ph >= 4 and ended_at is None:
+            ended = (current_handler(args.port) != expected_handler if expected_handler
+                     else ph is not None and ph >= 4)
+            if ended and ended_at is None:
                 ended_at = f
             if ended_at is not None and f >= ended_at + args.after:
                 break
@@ -390,6 +407,9 @@ def main():
         p.add_argument("--after", type=int, default=600, help="frames to keep running after the race ends")
         p.add_argument("--env", action="append", help="extra K=V for the runtime")
         p.add_argument("--defaults", action="store_true", help="enable shipped default mods")
+        p.add_argument("--second-pad", action="store_true", help="keep a neutral second pad connected")
+        p.add_argument("--scene", choices=["race", "demo", "replay"], default="race",
+                       help="demo/replay use neutral input and end when their handler exits")
         if name == "run":
             p.add_argument("mode", choices=["base", "nest", "iso", "poison"])
             p.add_argument("--label")

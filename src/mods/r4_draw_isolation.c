@@ -86,6 +86,9 @@ static const uint32_t k_draw_fns[] = {
     /* 3D: viewport, view build, cars, course, objects, course tail, mirror */
     0x8006F2B0u, 0x8006E4D0u, 0x8002E554u, 0x8002DC00u, 0x8006F00Cu, 0x80074AD8u,
     0x800374F8u, 0x80070A58u,
+    /* Demo/replay setup, fade, text and replay badge (r4_interp.c). */
+    0x800914B0u, 0x80014A84u, 0x800558E8u, 0x80020074u, 0x80090600u,
+    0x8004CBACu, 0x80059E24u, 0x80096660u, 0x8004C8BCu, 0x8004CC40u,
 };
 #define N_FNS (sizeof k_draw_fns / sizeof k_draw_fns[0])
 #define IDX_CLEAR_OT N_FNS   /* the main loop's ClearOTagR pair */
@@ -382,7 +385,14 @@ static void on_vsync(CPUState *cpu, uint32_t address) {
 
     /* The buffer this tick built; the main loop submits it after VSync(0). */
     buf = mrd32(R4_CUR_BUF);
-    if (psx_draw_iso_enabled()) psx_draw_iso_handoff(buf, 0x70u);  /* DRAWENV, DISPENV */
+    if (psx_draw_iso_enabled()) {
+        psx_draw_iso_handoff(buf, 0x70u);  /* DRAWENV, DISPENV */
+        /* The submitted frame's heap/OT pointers are output too. In
+         * particular max-detail's DrawOTag hook reads the heap end to
+         * budget the following frame; retaining main's stale pointer
+         * changes its visibility governor. */
+        psx_draw_iso_handoff(0x1F800000u, 8u);
+    }
     for (uint32_t k = 0; k < 0x70u; k += 4u) ot_hash = (ot_hash ^ mrd32(buf + k)) * 0x100000001B3ull;
     ot_hash = walk_ot(buf + 0xB6Cu, &ot_words, ot_hash);
     if (mrd32(R4_OT2_ENABLED)) ot_hash = walk_ot(buf + 0x166Cu, &ot_words, ot_hash);
