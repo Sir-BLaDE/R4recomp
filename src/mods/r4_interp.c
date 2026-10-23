@@ -585,6 +585,10 @@ static int r4_pass(struct CPUState *cpu, void *user, uint32_t alpha_q16) {
 }
 
 /* ---- hooks ------------------------------------------------------------ */
+#ifdef R4_ASYNC_DRAW
+#include "r4_interp_workers.h"
+#include "r4_interp_verify.h"
+#endif
 
 static void r4_loop_head(CPUState *cpu, uint32_t address) {
     (void)address;
@@ -619,11 +623,21 @@ static void r4_pass_point(CPUState *cpu, uint32_t address) {
         cpu->gpr[4] != 0u)
         return;
     R.pre_valid = 0;
-    if (!pre_valid) { R.prev_valid = 0; return; }
+    if (!pre_valid) {
+#ifdef R4_ASYNC_DRAW
+        r4_workers_reset();
+#endif
+        R.prev_valid = 0; return;
+    }
 
     handler = r4_handler();
     mode = handler == R.pre_handler ? r4_mode_of(handler) : R4_MODE_NONE;
-    if (!r4_gates(mode)) { R.prev_valid = 0; return; }
+    if (!r4_gates(mode)) {
+#ifdef R4_ASYNC_DRAW
+        r4_workers_reset();
+#endif
+        R.prev_valid = 0; return;
+    }
 
     tick = rd32(R4_TICK);
     demo_tick = rd32(R4_DEMO_TICK);
@@ -633,9 +647,11 @@ static void r4_pass_point(CPUState *cpu, uint32_t address) {
     continuous = R.prev_valid && R.prev_mode == mode &&
                  (mode == R4_MODE_DEMO ? demo_tick == R.prev_demo_tick + 1u
                                        : tick == R.prev_tick + 1u);
-    n = continuous ? psx_mod_render_pass_plan(2u, 1u, alphas, R4_MAX_PASSES) : 0;
+#ifdef R4_ASYNC_DRAW
+    if (!continuous) r4_workers_reset();
+#endif
     {
-        if (n) {
+        if (continuous) {
             uint32_t b = rd32(R4_FRAME_COUNTER) & 1u;
             uint32_t disp = R4_BUF_BASE + b * R4_BUF_STRIDE + 0x5Cu;
             PSXModRenderPass pass;
@@ -654,12 +670,19 @@ static void r4_pass_point(CPUState *cpu, uint32_t address) {
             pass.y = rd16(disp + 2u);
             pass.w = rd16(disp + 4u);
             pass.h = rd16(disp + 6u);
+#ifdef R4_ASYNC_DRAW
+            if (!r4_verify_draw(cpu, &blend, &pass) &&
+                !r4_workers_submit(cpu, &blend, &pass))
+#endif
+            {
+            n = psx_mod_render_pass_plan(2u, 1u, alphas, R4_MAX_PASSES);
             for (uint32_t i = 0; i < n; i++) {
                 pass.alpha_q16 = alphas[i];
                 (void)psx_mod_render_pass(cpu, &pass, r4_pass, &blend);
                 /* r4_pass clears this itself only when it returns; a pass
                  * the framework's watchdog rolls back leaves by longjmp. */
                 R.in_pass = 0;
+            }
             }
 
         }
@@ -680,6 +703,9 @@ int r4_interp_register_hooks(void) {
 }
 
 void r4_interp_activate(int enabled) {
+#ifdef R4_ASYNC_DRAW
+    r4_workers_reset();
+#endif
     memset(&R, 0, sizeof R);
     memset(&L, 0, sizeof L);
     R.enabled = enabled;

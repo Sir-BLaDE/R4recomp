@@ -34,6 +34,10 @@ scheduling/replay. Topic commits remain separate from local integration.
 Verified checkpoints:
 - Baseline A/A: 12,000 frame fingerprints exactly equal, zero misses;
   local receipts `analysis/perf-baseline/base-{a,b}.json`.
+- Integrated main-context path also matches those 12,000 frames exactly,
+  zero misses: `analysis/perf-baseline/context-main.json`.
+- First async integration builds pass all 31 project tests on PC and Mac.
+  This does not yet verify actual worker output or screen cadence.
 - Stock Grand Prix isolation: 18,101 ticks through TIMEOVER match base/nested/
   isolated; zero misses. Nested also matches 32,767 shared frame fingerprints.
   Receipt: `C:/Users/Shokunin/dev/r4-iso-runs/sound-rng-v4-20261023`.
@@ -63,10 +67,13 @@ Verified checkpoints:
 
 - Integration: full draw target closure, default enhancement hook snapshots,
   ordered GPU/PGXP metadata, and worker result admission are still being wired.
-  No integrated distinct-frame or visual acceptance yet.
+  The existing mod recipe now feeds a bounded worker pool; exact serial versus
+  four-worker receipt verification is next. No integrated distinct-frame or
+  visual acceptance yet.
 - Gate: remaining modes unverified. Default-mod base/base restore is not yet
   deterministic at the first SIO sample; disabling batching did not resolve it.
-  A separate isolated draw difference at tick 118 is under investigation.
+  The isolated difference at tick 118 was traced to packet-heap handoff used
+  by the detail governor; its fix is undergoing the extended mode checks.
 - Release: owner picks the version and gives the go.
 - Online battle keeps its experimental switch until psxrecomp reserves link memory per netplay session.
 

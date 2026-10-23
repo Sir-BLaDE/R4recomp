@@ -172,6 +172,9 @@ if(R4_REGION STREQUAL "PAL")
     target_compile_definitions(psx-runtime PRIVATE R4_REGION_PAL=1)
     target_include_directories(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods")
 endif()
+if(R4_REGION STREQUAL "USA" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/${R4_GEN_STEM}_draw.c")
+    target_compile_definitions(psx-runtime PRIVATE R4_THREADED_DRAW=1 R4_ASYNC_DRAW=1)
+endif()
 
 # Launcher translations of this project (launcher/i18n/<code>.json), staged
 # next to recomp-ui's own. Select one with -DR4L_UI_LANGUAGE=fr or the

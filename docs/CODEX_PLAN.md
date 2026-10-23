@@ -43,15 +43,19 @@ the correctness reference. Real-frame offload and track decomposition do not
 block proving parallel intermediate frames.
 
 - Contexts: qualified OpenBIOS memcpy/memset and immutable GTE/PGXP snapshots
-  pass PC/Mac tests. Completing indirect targets and per-job enhancement hooks.
+  pass PC/Mac tests. All mode roots and default enhancement adapters are
+  integrated; the exact mod recipe still needs serial/parallel equality.
 - Isolation: stock Grand Prix whole-race comparison passes 18,101 ticks;
   other modes and default enhancements remain. Default base/base restore
   exposes SIO sampling nondeterminism before isolation is enabled; the cause
   is still being investigated.
 - Output: rational timestamp planning, bounded workers, nonblocking render
   transaction admission and exact-deadline presentation pass component tests.
-  Ordered packet provenance and actual R4 integration remain in progress.
-- Baseline identity: two 12,000-frame runs agree exactly with zero misses.
+  Ordered packet provenance and the R4 worker adapter are integrated.
+  Generation texture snapshots and private geometry fallback are in verification.
+- Baseline identity: two baseline runs and the integrated main-context run
+  agree exactly over 12,000 frames with zero misses; 31 project tests pass on
+  both PC and Mac before the latest geometry/texture changes.
   Integrated game performance and screen-frame counts are not yet measured.
 
 Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
