@@ -3,10 +3,11 @@
 ## Current work (2026-10-23)
 
 Released: v0.1.0 only. A release still needs the owner's go and version.
-The local development build is installed at `C:\Users\Shokunin\Games\R4`;
-its previous program files and bundled mods are backed up at
-`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1135`. Saves, settings and
-input bindings were preserved. This is not a release or tag.
+The pinned development build is installed at `C:\Users\Shokunin\Games\R4`.
+Its replaced executable and execution contract are backed up at
+`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1235`; the earlier backup is
+`R4-dev-backup-20261023-1135`. Saves, settings and bindings were preserved.
+This is not a release or tag.
 
 Extra-frame workers are enabled by default (four contexts, `R4_DRAW_WORKERS=0`
 for the serial reference). The game still simulates at 30 Hz; workers prepare
@@ -27,18 +28,27 @@ four contexts). The per-frame GPU-readback trace is diagnostic only: its long
 All 31 PC project tests and 28/28 Mac tests available without the disc pass.
 Framework fork `r4/main` is pushed at `688380ef`; its OpenBIOS emitter stamp
 passes on both machines. R4 now points at that fork commit; game regeneration
-changed no generated files. Fresh pinned-build race checks on this shared PC
-vary with host load: `worker-prio-on-v49` delivered 905/15.031 s (60.2/s),
-zero >25 ms sample gaps, worker lateness, refusals and dispatch misses;
-`worker-prio-on-v50` delivered 905/15.063 s (60.1/s) with two gaps. An earlier
-run fell to 43.7/s while the render/GPU path was delayed. The 60 Hz cadence
-therefore still needs a reliable loaded-host check before refreshing the dev
-install. Runtime screenshots show the moving race, but automated desktop
-capture records the visible SDL window as black even with the previously
-installed build; owner visual confirmation is pending.
+changed no generated files. `analysis/worker-pinned-v78` measured 900 distinct
+presented frames in its last 15 seconds (60.0/s), no >25 ms gap, reversed
+deadline, dropped worker job or dispatch miss. The installed binary passed
+`analysis/worker-installed-v79` (301 distinct frames in five seconds, no gap,
+reversal or miss). A presenter-owned race capture is
+`analysis/worker-present-v77/presenter.gif`; desktop capture showed the
+owner's other apps and is no longer used. The optional capture code is on
+framework topic `feat/presenter-frame-capture`, outside the installed binary.
+An earlier loaded run fell to 43.7/s, so all-load stability is unproven.
 
-Next: close the loaded-host output gaps, update the dev install, land the R4
-PR, then tackle real-frame draw offload behind the isolation gate. Short checks
+Higher-rate five-second checks: 90 Hz delivered 271 distinct frames in its
+last three seconds; 100 delivered 273, 120 delivered 291, and 144 delivered
+233. All kept deadline order and zero dispatch misses. At 144 Hz the render
+thread was busy for 5.25 s of a 5.09 s sample, with 190 late render jobs and
+95 optional worker drops. Its host profile attributes 25.6% of render-thread
+samples to `pgxp_snap_triangle`; these are measured bottlenecks, not a completed
+144 Hz target. Receipts: `analysis/worker-rate{90-v80,100-v81,120-v82,144-v83}`
+and `analysis/worker-rate144-profile-v84`.
+
+Next: optimize the render-thread bottleneck, finish the real-frame isolation
+gate and cycle accounting, then remeasure the higher requested rates. Short checks
 (15-second samples, <=30-second automated runs) remain the owner's budget.
 References and sequence: `docs/CODEX_PLAN.md`.
 ## Owner decisions
@@ -58,11 +68,9 @@ References and sequence: `docs/CODEX_PLAN.md`.
 
 ## Blockers
 
-- Pin: obtain a stable build-matched race check and refresh the dev install;
-  then land the R4 PR. No release or tag without owner approval/version.
-- Visible check: desktop capture of both the current and previously installed
-  SDL window is black while the runtime's own screenshots contain the race.
-  Confirm what the owner saw before treating on-screen cadence as proven.
+- Delivery: development install is current; R4 PR #69 remains draft while
+  real-frame isolation and higher-rate throughput are unfinished. No release
+  or tag without owner approval/version.
 - Gate: stock Grand Prix isolation passed 18,101 ticks, but Time Attack,
   split screen, attract/replay and default mods remain unverified. The
   default-mod base/base restore differs at its first SIO sample; see

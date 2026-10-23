@@ -27,19 +27,18 @@ readback trace `analysis/worker-trace-v39.csv` confirmed 180 changed images
 in three seconds with ordered, unique provenance; full-frame equality is in
 `analysis/worker-pixels-v13`. PC project tests: 31/31; Mac: 28/28 available
 without the disc. Fork `r4/main` is pushed at `688380ef`, game C regeneration
-is unchanged, and the pinned-build cadence check/PR remain. Host-load samples
-range from 43.7 to 60.2 presents/s; the newest Windows render-thread priority
-change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`. Details:
-`docs/HANDOFF.md`.
-The automated desktop capture currently returns black for both this build and
-the earlier installed build, although runtime screenshots contain the moving
-race; owner visual confirmation of actual on-screen cadence is pending.
+is unchanged. The pinned build passed 900 distinct presents in 15 seconds;
+the installed binary passed a five-second check. The Windows render-thread
+priority change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`.
+Presenter-owned capture avoids desktop interference. Higher-rate measurements
+show 90 Hz near target but 100/120/144 Hz below target; render-thread PGXP seam
+snapping is the largest sampled cost at 144 Hz. Details: `docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
 |---|---|---|
 | Game logic (recompiled native code) | main | stays on main; it is one sequential program |
 | Real-frame draw (track, cars, HUD) | main | target: draw workers; gated on isolation |
-| Timestamped interpolated frames | four draw workers | 60 Hz milestone verified; higher rates need throughput checks |
+| Timestamped interpolated frames | four draw workers | 60 Hz milestone installed; 90 Hz near target, 100/120/144 below target |
 | Track renderer inside one frame (0x8006F00C) | main | target: decompose ordered track work across workers |
 | GPU command parsing (DrawOTag) | main | stays on main: reads state the game keeps changing (docs/HOST_THREADING.md) |
 | Seam strips | render thread | already off main; order-dependent, stays serial |
@@ -70,7 +69,8 @@ block proving parallel intermediate frames.
   private render transactions pass the short 60 Hz race checks. Measure higher
   requested rates after the fork/pin lands; never alter the 30 Hz logic clock.
 - Fork: `r4/main` is verified and pushed; the pinned R4 build passes PC/Mac
-  tests. Close loaded-host pacing gaps, update the local install and land R4 PR.
+  tests and is installed. Optimize render throughput and finish isolation
+  before landing draft R4 PR #69.
 
 Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
 notes: `docs/THREADED_CONTEXTS.md`, `docs/RENDER_PASSES.md`, `docs/HOST_THREADING.md`
