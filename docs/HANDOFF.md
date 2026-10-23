@@ -67,6 +67,9 @@ References and sequence: `docs/CODEX_PLAN.md`.
   split screen, attract/replay and default mods remain unverified. The
   default-mod base/base restore differs at its first SIO sample; see
   `docs/DRAW_ISOLATION.md` on the gate branch and the local isolation receipts.
+  A newer default-mod Time Attack short check matched 252 shared ticks and
+  504 input polls with zero misses (`r4-iso-runs/ta-default-v8-short-20261023`);
+  the finish remains unverified.
 - Further threading: real-frame draw still runs on main. Offload it only after
   isolation proves logic/sound state handoff; then measure 90/100/120/144 Hz
   and split track draw when frame latency demands it.
