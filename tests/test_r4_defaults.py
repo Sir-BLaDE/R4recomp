@@ -129,6 +129,8 @@ def test_game_toml():
           'game.toml: dynamic resolution has a floor ("native", "display" or a preset)')
     check(floor == '1080p',
           'game.toml: dynamic resolution never drops below 1080p (owner, 2026-10-22)')
+    check(video.get('dynamic_resolution_start_min') is True,
+          'game.toml: begin at the 1080p floor, then raise quality when output has headroom')
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
@@ -136,6 +138,8 @@ def test_game_toml():
           'game.toml: no dynamic_resolution_priority (not in the render-thread stack)')
     for k in ('render_thread', 'present_thread'):
         check(video.get(k) is True, f'game.toml: {k} on by default')
+    check(video.get('present_thread_slots') == 8,
+          'game.toml: eight bounded presenter slots for 60 Hz output')
     check(video.get('frame_generation') is False,
           'game.toml: Smooth motion (frame_generation) off: removed from R4')
     check(video.get('pgxp_depth_buffer') is True and

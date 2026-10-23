@@ -25,8 +25,12 @@ measured 902 presents/15.031 s (60.0/s), no interval over 25 ms during the
 sample, no timed refusal, and zero worker faults or dispatch misses. The
 readback trace `analysis/worker-trace-v39.csv` confirmed 180 changed images
 in three seconds with ordered, unique provenance; full-frame equality is in
-`analysis/worker-pixels-v13`. PC project tests: 31/31. Mac verification and
-fork pin/PR landing remain. Details: `docs/HANDOFF.md`.
+`analysis/worker-pixels-v13`. PC project tests: 31/31; Mac: 28/28 available
+without the disc. Fork `r4/main` is pushed at `688380ef`, game C regeneration
+is unchanged, and the pinned-build cadence check/PR remain. Host-load samples
+range from 43.7 to 60.2 presents/s; the newest Windows render-thread priority
+change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`. Details:
+`docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
 |---|---|---|
@@ -62,8 +66,8 @@ block proving parallel intermediate frames.
 - Output: rational timestamps, bounded workers, ordered presentation and
   private render transactions pass the short 60 Hz race checks. Measure higher
   requested rates after the fork/pin lands; never alter the 30 Hz logic clock.
-- Fork: the local `r4/main` assembly is awaiting Mac verification, then a
-  fast-forward push, R4 pin/regen and game PR. The local dev build is installed.
+- Fork: `r4/main` is verified and pushed; the pinned R4 build passes PC/Mac
+  tests. Close loaded-host pacing gaps, update the local install and land R4 PR.
 
 Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
 notes: `docs/THREADED_CONTEXTS.md`, `docs/RENDER_PASSES.md`, `docs/HOST_THREADING.md`

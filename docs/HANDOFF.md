@@ -24,16 +24,21 @@ its last three seconds, no reversed deadlines or duplicate provenance,
 exactly in `analysis/worker-pixels-v13` (7668x4320, 19,669 command receipts,
 four contexts). The per-frame GPU-readback trace is diagnostic only: its long
 15-second run slowed the game, so it is not a throughput benchmark.
-All 31 PC project tests pass. Mac verification of the assembled fork and game
-branch is in progress in fresh clones. Framework local `r4/main` at
-`26a984d5` is not pushed yet; R4 `feat/threaded-rendering` at `ffc6272`
-has not been pinned to it. The dev install was built from the tested local
-integration; reconcile the fork and pin before landing a game PR.
+All 31 PC project tests and 28/28 Mac tests available without the disc pass.
+Framework fork `r4/main` is pushed at `688380ef`; its OpenBIOS emitter stamp
+passes on both machines. R4 now points at that fork commit; game regeneration
+changed no generated files. Fresh pinned-build race checks on this shared PC
+vary with host load: `worker-prio-on-v49` delivered 905/15.031 s (60.2/s),
+zero >25 ms sample gaps, worker lateness, refusals and dispatch misses;
+`worker-prio-on-v50` delivered 905/15.063 s (60.1/s) with two gaps. An earlier
+run fell to 43.7/s while the render/GPU path was delayed. The 60 Hz cadence
+therefore still needs a reliable loaded-host check before refreshing the dev
+install. The brief visible race samples showed a moving car, not a wall stop.
 
-Next: finish Mac checks, fast-forward push the verified fork, deliberately pin
-R4 and regenerate, then tackle real-frame draw offload behind the isolation
-gate. Short checks (15-second samples, <=30-second automated runs) remain the
-owner's budget. References and sequence: `docs/CODEX_PLAN.md`.
+Next: close the loaded-host output gaps, update the dev install, land the R4
+PR, then tackle real-frame draw offload behind the isolation gate. Short checks
+(15-second samples, <=30-second automated runs) remain the owner's budget.
+References and sequence: `docs/CODEX_PLAN.md`.
 ## Owner decisions
 
 - Display: widescreen Fit, Match display, supersample 1.5, FXAA off, dynres
@@ -51,8 +56,8 @@ owner's budget. References and sequence: `docs/CODEX_PLAN.md`.
 
 ## Blockers
 
-- Fork/pin: verify the assembled framework and game on Mac, push the fork,
-  then pin and regenerate R4. The installed dev build uses local integration.
+- Pin: obtain a stable build-matched race check and refresh the dev install;
+  then land the R4 PR. No release or tag without owner approval/version.
 - Gate: stock Grand Prix isolation passed 18,101 ticks, but Time Attack,
   split screen, attract/replay and default mods remain unverified. The
   default-mod base/base restore differs at its first SIO sample; see
