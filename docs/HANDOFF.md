@@ -4,7 +4,7 @@
 
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
-`0421f31e` (queued-pass seam preparation, fork PR #2; R4 PR #75). The development build is installed at
+`990ffb00` (queued-frame postfx provenance; previous seam-preparation pin was R4 PR #75). The previous development build is installed at
 `C:\Users\Shokunin\Games\R4`; the previous executable is backed up at
 `C:\Users\Shokunin\Games\R4-dev-backup-20261023-1422`. Settings, saves and
 bindings were preserved. This is not a release or tag.
@@ -40,6 +40,12 @@ build, 32/32 Windows and 29/29 available Mac project tests, and a
 three-second slot-2 probe passed with zero misses. Postfx/driver presentation, live VRAM packing and
 texture work dominate the remaining render cost. Earlier post-effect
 capability and viewport caching showed no measurable gain and remain local.
+Fork `990ffb00` also fixes queued-frame bloom source provenance; previously
+the configured effect ran zero times in a short 60 Hz race. The corrected
+build ran it 181 times in three seconds (about 0.57 ms/pass) and retained
+60 distinct frames/s in steady seconds, with zero worker failures or dispatch
+misses. Windows and Mac hidden GL fixtures passed 151 checks each. The fix is
+pinned but not yet installed.
 
 Next: move real-frame draw off main only after private execution preserves
 guest timing, IRQ/device service and call-point side effects. The gate's
