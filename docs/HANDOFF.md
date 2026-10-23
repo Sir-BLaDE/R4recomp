@@ -2,78 +2,38 @@
 
 ## Current work (2026-10-23)
 
-Released: v0.1.0 only. A release needs the owner's go and version number.
+Released: v0.1.0 only. A release still needs the owner's go and version.
+The local development build is installed at `C:\Users\Shokunin\Games\R4`;
+its previous program files and bundled mods are backed up at
+`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1135`. Saves, settings and
+input bindings were preserved. This is not a release or tag.
 
-Framework: R4 pins the fork `tetrisgm/psxrecomp` `r4/main` (CLAUDE.md fork
-model). `docs/UPSTREAM.md` lists every fork delta and its upstream PR;
-`docs/framework_pin_history.md` every pin. Owner's install:
-`C:\Users\Shokunin\Games\R4` (desktop shortcut "R4"), built from `dea73b5`.
+Extra-frame workers are enabled by default (four contexts, `R4_DRAW_WORKERS=0`
+for the serial reference). The game still simulates at 30 Hz; workers prepare
+interpolated draws for the existing 60 FPS mod's exact frame order and timing.
+The development build offers 60 (default), 90, 100, 120 and 144 FPS. R4 now
+configures eight bounded presenter slots and starts dynamic resolution at its
+1200-line floor, with its 18x ceiling still available when headroom permits.
 
-Landed 2026-10-22: PAL (#49), race HUD/effects/lighting (#50, fixes #62),
-1080p dynres floor (#57), fork model (#58), review fixes (#59), upstream sync
-(#60), 60 FPS as a setting with 30 the default (#54, #61), PGXP seam
-snapping (#63), host threading (#64; render thread 95% -> 38% busy at 18x).
+Acceptance receipts: `analysis/worker-cadence-v42` measured 902 presents in
+15.031 s (60.0/s), zero gaps over 25 ms during the sample, zero timed
+refusals, worker faults and dispatch misses. The separate
+`analysis/worker-trace-v39.csv` measured 180 consecutive changed images over
+its last three seconds, no reversed deadlines or duplicate provenance,
+16.67 ms median gap and no gap over 25 ms. Full-resolution pixels matched
+exactly in `analysis/worker-pixels-v13` (7668x4320, 19,669 command receipts,
+four contexts). The per-frame GPU-readback trace is diagnostic only: its long
+15-second run slowed the game, so it is not a throughput benchmark.
+All 31 PC project tests pass. Mac verification of the assembled fork and game
+branch is in progress in fresh clones. Framework local `r4/main` at
+`26a984d5` is not pushed yet; R4 `feat/threaded-rendering` at `ffc6272`
+has not been pinned to it. The dev install was built from the tested local
+integration; reconcile the fork and pin before landing a game PR.
 
-In progress: integrated threaded rendering. Main runs the base 30 Hz game
-simulation; rendering/presentation target selectable 60 (default), 90, 100,
-120 and 144 FPS through timestamped snapshot interpolation. The development branch now offers all requested rates and defaults to 60 FPS. A possible 60 Hz simulation option is separate,
-unproven and not required. Isolation, contexts, immutable mod/PGXP inputs,
-worker pool, scheduling/pacing, track decomposition and host throughput
-share the verification plan.
-First integration target: execute the working 60 FPS mod's existing draw
-sequence on private workers, then schedule the same sequence at 60/90/100/120/144
-output timestamps. Keep its serial path as the reference and fallback.
-Original-frame offload and track decomposition follow this proof in parallel.
-Plan: `docs/CODEX_PLAN.md`.
-Owner verification budget: 15-second performance samples, 30-second automated
-runs, build-compatible race savestates and intro skipping. Stop long race
-comparisons; prioritize core implementation and brief visible race feedback.
-Pixel correctness now passes with default seam snapping: v13 full/full and
-full/private compare all 7668x4320 pixels exactly, 19,669 command receipts
-and four parallel contexts match. Receipt: `analysis/worker-pixels-v13`.
-The cause was seam-snap history leaking across discarded passes; depth
-checkpointing also fixes an independently proven transaction defect.
-OpenBIOS A0/2F private execution is fixed (`8f931e66`); moving-race v10 runs
-15 seconds with zero main dispatch misses and worker failures. The prior
-visible v7 sample measured 29.1 distinct frames/s, not accepted for installation.
-Output-grid lookahead and generation lifetime fixes are integrated locally.
-No worker milestone installation has occurred.
-Temporal display ownership and timestamp sorting fixed two ordering defects;
-actual presenter-pixel tests found and fixed inherited GL raster state. The
-current 4-slot hidden 15-second probe (`analysis/worker-grid-v25`) presents
-401 images (26.7/s), zero worker faults/misses, and only four expired main
-deadlines after exact-grid skipping. HD resource invalidations reached zero;
-the remaining generated-copy guard rejects valid work (932 GPU commands) and
-render-thread deadlines still miss. It does not meet the 60 FPS target.
-Desktop/GDI capture sampled the wrong
-surface and its distinct-frame numbers are invalid for recent probes.
-
-Active checkouts (no new worktrees): root R4 `feat/threaded-rendering`, framework
-local `int/threaded-rendering` (never a landing source); `r4-ctx`/`psx-ctx` for
-contexts and private mod hooks; `r4-iso` for isolation; `psx-hostthr` for output
-scheduling/replay. Topic commits remain separate from local integration.
-
-Verified checkpoints:
-- Baseline A/A: 12,000 frame fingerprints exactly equal, zero misses;
-  local receipts `analysis/perf-baseline/base-{a,b}.json`.
-- Integrated main-context path also matches those 12,000 frames exactly,
-  zero misses: `analysis/perf-baseline/context-main.json`.
-- First async integration builds pass all 31 project tests on PC and Mac.
-  This does not yet verify actual worker output or screen cadence.
-- Exact existing Grand Prix interpolation recipe: 2,343 command/precision
-  receipts match full versus private serial and four workers. Zero dispatch
-  misses and worker failures. Receipt: `analysis/worker-exact-20261023-b`.
-  Full-resolution pixel comparison and cadence remain pending.
-- Stock Grand Prix isolation: 18,101 ticks through TIMEOVER match base/nested/
-  isolated; zero misses. Nested also matches 32,767 shared frame fingerprints.
-  Receipt: `C:/Users/Shokunin/dev/r4-iso-runs/sound-rng-v4-20261023`.
-- Private BIOS memcpy/memset versus recompiled OpenBIOS, four-context GTE/PGXP,
-  worker ownership/expiry and R4 private access fixtures pass PC and Mac.
-- Timestamp planner, nonblocking render transactions and exact-deadline hidden
-  GL presentation pass PC and Mac. These are component checks, not measured
-  game FPS. Framework topics document their receipts.
-
-
+Next: finish Mac checks, fast-forward push the verified fork, deliberately pin
+R4 and regenerate, then tackle real-frame draw offload behind the isolation
+gate. Short checks (15-second samples, <=30-second automated runs) remain the
+owner's budget. References and sequence: `docs/CODEX_PLAN.md`.
 ## Owner decisions
 
 - Display: widescreen Fit, Match display, supersample 1.5, FXAA off, dynres
@@ -91,15 +51,15 @@ Verified checkpoints:
 
 ## Blockers
 
-- Integration: full draw target closure, default enhancement hook snapshots,
-  ordered GPU/PGXP metadata, and worker result admission are still being wired.
-  The existing mod recipe now feeds a bounded worker pool; exact serial versus
-  four-worker receipt verification is next. No integrated distinct-frame or
-  visual acceptance yet.
-- Gate: remaining modes unverified. Default-mod base/base restore is not yet
-  deterministic at the first SIO sample; disabling batching did not resolve it.
-  The isolated difference at tick 118 was traced to packet-heap handoff used
-  by the detail governor; its fix is undergoing the extended mode checks.
+- Fork/pin: verify the assembled framework and game on Mac, push the fork,
+  then pin and regenerate R4. The installed dev build uses local integration.
+- Gate: stock Grand Prix isolation passed 18,101 ticks, but Time Attack,
+  split screen, attract/replay and default mods remain unverified. The
+  default-mod base/base restore differs at its first SIO sample; see
+  `docs/DRAW_ISOLATION.md` on the gate branch and the local isolation receipts.
+- Further threading: real-frame draw still runs on main. Offload it only after
+  isolation proves logic/sound state handoff; then measure 90/100/120/144 Hz
+  and split track draw when frame latency demands it.
 - Release: owner picks the version and gives the go.
 - Online battle keeps its experimental switch until psxrecomp reserves link memory per netplay session.
 

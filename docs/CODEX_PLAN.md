@@ -17,11 +17,22 @@ work; they do not change that requested default.
 
 ## Where things stand (2026-10-23)
 
+The extra-frame worker milestone is locally installed as a development build.
+At default 60 FPS, four private draw contexts preserve the working mod's exact
+interpolation sequence, with eight bounded presenter slots and dynamic
+resolution starting at its 1200-line floor. `analysis/worker-cadence-v42`
+measured 902 presents/15.031 s (60.0/s), no interval over 25 ms during the
+sample, no timed refusal, and zero worker faults or dispatch misses. The
+readback trace `analysis/worker-trace-v39.csv` confirmed 180 changed images
+in three seconds with ordered, unique provenance; full-frame equality is in
+`analysis/worker-pixels-v13`. PC project tests: 31/31. Mac verification and
+fork pin/PR landing remain. Details: `docs/HANDOFF.md`.
+
 | Stage | Thread today | State |
 |---|---|---|
 | Game logic (recompiled native code) | main | stays on main; it is one sequential program |
 | Real-frame draw (track, cars, HUD) | main | target: draw workers; gated on isolation |
-| Timestamped interpolated frames | main, queued passes (#54) | target: bounded shared draw-worker pool |
+| Timestamped interpolated frames | four draw workers | 60 Hz milestone verified; higher rates need throughput checks |
 | Track renderer inside one frame (0x8006F00C) | main | target: decompose ordered track work across workers |
 | GPU command parsing (DrawOTag) | main | stays on main: reads state the game keeps changing (docs/HOST_THREADING.md) |
 | Seam strips | render thread | already off main; order-dependent, stays serial |
@@ -42,21 +53,17 @@ admits its captured output without waiting. The serial implementation remains
 the correctness reference. Real-frame offload and track decomposition do not
 block proving parallel intermediate frames.
 
-- Contexts: qualified OpenBIOS memcpy/memset and immutable GTE/PGXP snapshots
-  pass PC/Mac tests. All mode roots and default enhancement adapters are
-  integrated; the exact mod recipe still needs serial/parallel equality.
+- Contexts: OpenBIOS qualification, immutable GTE/PGXP snapshots, the full
+  default draw recipe, four-worker receipts and full-frame pixel equality pass.
 - Isolation: stock Grand Prix whole-race comparison passes 18,101 ticks;
   other modes and default enhancements remain. Default base/base restore
   exposes SIO sampling nondeterminism before isolation is enabled; the cause
   is still being investigated.
-- Output: rational timestamp planning, bounded workers, nonblocking render
-  transaction admission and exact-deadline presentation pass component tests.
-  Ordered packet provenance and the R4 worker adapter are integrated.
-  Generation texture snapshots and private geometry fallback are in verification.
-- Baseline identity: two baseline runs and the integrated main-context run
-  agree exactly over 12,000 frames with zero misses; 31 project tests pass on
-  both PC and Mac before the latest geometry/texture changes.
-  Integrated game performance and screen-frame counts are not yet measured.
+- Output: rational timestamps, bounded workers, ordered presentation and
+  private render transactions pass the short 60 Hz race checks. Measure higher
+  requested rates after the fork/pin lands; never alter the 30 Hz logic clock.
+- Fork: the local `r4/main` assembly is awaiting Mac verification, then a
+  fast-forward push, R4 pin/regen and game PR. The local dev build is installed.
 
 Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
 notes: `docs/THREADED_CONTEXTS.md`, `docs/RENDER_PASSES.md`, `docs/HOST_THREADING.md`
