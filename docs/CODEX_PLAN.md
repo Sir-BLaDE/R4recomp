@@ -52,10 +52,13 @@ The timed real-frame worker remains a local diagnostic: its Grand Prix track
 call has progressed through private guest timing, OpenBIOS, interrupt/device
 service, mod hooks and scratchpad, but still refuses at a later device
 deadline. It has not completed an identity comparison and is not installed.
-The local presenter offload branch has immutable frame attachments and
-separate GL resource pools. Its ordered-preparation checks pass, but generated
-pixel parity does not, so it stays disabled. A generic HUD prepare/replay
-checkpoint builds, but exact HUD pixel parity is unverified. See
+The local presenter branch has immutable frame attachments and ordered jobs.
+A borrowed-provenance bug is fixed; the short fixture found matching output
+whenever generated source pixels matched. R4's HUD still disables offload,
+and whole-game pixel parity and net throughput are unverified. Moving only
+post-effects is unlikely to close the 144 Hz gap. A generic HUD prepare/replay
+checkpoint builds, but its packets are not yet attached to presenter slots.
+See
 `docs/HANDOFF.md` for branch and receipt references.
 
 | Stage | Thread today | State |
