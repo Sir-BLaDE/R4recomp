@@ -14,7 +14,13 @@ Landed 2026-10-22: PAL (#49), race HUD/effects/lighting (#50, fixes #62),
 (#60), 60 FPS as a setting with 30 the default (#54, #61), PGXP seam
 snapping (#63), host threading (#64; render thread 95% -> 38% busy at 18x).
 
-In progress: multi-core drawing, so 60/120/144 Hz and VR hold under load.
+In progress: integrated threaded rendering. Main runs the base 30 Hz game
+simulation; rendering/presentation target selectable 60 (default), 90, 100,
+120 and 144 FPS through timestamped snapshot interpolation. Current code
+still defaults to 30 FPS. A possible 60 Hz simulation option is separate,
+unproven and not required. Isolation, contexts, immutable mod/PGXP inputs,
+worker pool, scheduling/pacing, track decomposition and host throughput
+share the verification plan.
 Plan and Codex prompt: `docs/CODEX_PLAN.md`. Branches:
 - `feat/threaded-contexts` (fork): per-thread draw contexts + lean draw
   clones; stops at the first BIOS call. Its `docs/THREADED_CONTEXTS.md`.
@@ -25,7 +31,7 @@ Plan and Codex prompt: `docs/CODEX_PLAN.md`. Branches:
 ## Owner decisions
 
 - Display: widescreen Fit, Match display, supersample 1.5, FXAA off, dynres
-  floor = display, render + present threads, Smooth motion off (removed,
+  floor = 1080p, render + present threads, Smooth motion off (removed,
   owner 2026-10-20), PGXP depth buffer / colour correction / fine seams. All in `game.toml`.
 - `guest_cycle_scale = 2` (races, Max Detail gate).
 - HD HUD bundled, on by default, credited to Kuid0us.
@@ -39,6 +45,9 @@ Plan and Codex prompt: `docs/CODEX_PLAN.md`. Branches:
 
 ## Blockers
 
+- Rendering integration: context snapshots still need immutable GTE/config,
+  mod-hook and PGXP packet ownership; queued passes need asynchronous
+  generation/deadline tokens. Audit references: `docs/CODEX_PLAN.md`.
 - Release: owner picks the version and gives the go.
 - Online battle keeps its experimental switch until psxrecomp reserves link memory per netplay session.
 
