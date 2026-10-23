@@ -672,6 +672,18 @@ kseg_mask = "0x1FFFFFFF"
 [threaded_draw]
 roots = [
     "0x8006F00C",   # course renderer
+    "0x80061078",   # course indirect dispatch, observed from 0x80060F94
+    # Course draw programs at EXE 0x800A2370..0x800A2450, dispatched by
+    # 0x800614B8 through the pointer at a0+0x7C (USA DISC.md image).
+    "0x80061C34", "0x800628C8", "0x80063344", "0x80063E64", "0x80064A68",
+    "0x80065744", "0x800661FC", "0x80066D58", "0x8006723C", "0x80067DB8",
+    "0x80061028", "0x8006BF54", "0x8006CBA4", "0x8006A928", "0x8006B3EC",
+    "0x80068A0C", "0x80069954",
+    # Grand Prix draw sequence (src/mods/r4_interp.c seq_grand_prix).
+    "0x8006F2B0", "0x80034444", "0x80039C04", "0x8002BEA4", "0x8002C0F8",
+    "0x800212E0", "0x80021134", "0x80021614", "0x80021960", "0x80021A20",
+    "0x80021DDC", "0x80022048", "0x80021BA4", "0x80020A98", "0x8006E4D0",
+    "0x8002E554", "0x8002258C", "0x80074AD8", "0x800374F8", "0x80070A58",
     "0x80093418",   # ClearOTagR
     "0x80093520",   # DrawOTag
     "0x80093590",   # PutDrawEnv
