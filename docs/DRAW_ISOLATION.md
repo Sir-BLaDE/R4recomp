@@ -202,6 +202,13 @@ remain unverified. `--autodrive` enables a test-only centreline driver; its
 per-player input logs must match as well as the guest state. Demo/replay-only
 hooks are inactive in the three race modes.
 
+The 30-second Time Attack check with the finishing driver matches all 588
+shared ticks and 1,175 shared input polls, with zero dispatch misses
+(`ta-v7-short-20261023`). Neither run reached the goal; the comparator reports
+incomplete whole-race coverage. The test input uses the post-sampling frame
+hook because ordinary controller transforms intentionally skip headless and
+TCP-injected input. Windows build and three relevant CTests passed.
+
 ### Worker side-effect contract
 
 The gate models **real-frame** drawing: sound and RNG calls occur on main

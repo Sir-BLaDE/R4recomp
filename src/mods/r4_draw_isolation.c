@@ -147,20 +147,19 @@ static void autodrive_reset(void) {
     if (r4_autodrive_enabled() && path && *path) s_ad_log = fopen(path, "w");
 }
 
-static int autodrive_input(const PSXModPadFrame *frame, PSXModPadOutput *out) {
-    uint32_t buttons;
-    if (!I.active || !I.race || !frame || frame->player > 1) return 0;
-    if (frame->player && I.race_mode != R4_MODE_SPLIT) return 0;
-    buttons = r4_autodrive_buttons(frame->player, I.race_mode == R4_MODE_SPLIT
-        ? 0x80118520u + 16u * frame->player : 0x1F800008u);
-    if (!buttons) return 0;
-    memset(out, 0, sizeof *out);
-    out->struct_size = sizeof *out;
-    out->buttons = buttons;
-    out->type = PSX_MOD_PAD_DIGITAL;
-    out->lx = out->ly = out->rx = out->ry = 0x80;
-    if (s_ad_log) fprintf(s_ad_log, "%u:%04X\n", frame->player, buttons);
-    return 1;
+/* Test harness inputs run after frontend sampling, including headless/TCP
+ * routes (ordinary controller transforms deliberately exclude those modes). */
+#include "sio.h"
+extern void mod_register_frame_hook(void (*hook)(void));
+static void autodrive_input(void) {
+    if (!I.active || !I.race || !r4_autodrive_enabled()) return;
+    for (unsigned player = 0; player < (I.race_mode == R4_MODE_SPLIT ? 2u : 1u); ++player) {
+        uint32_t buttons = r4_autodrive_buttons(player, I.race_mode == R4_MODE_SPLIT
+            ? 0x80118520u + 16u * player : 0x1F800008u);
+        if (!buttons) continue;
+        sio_set_pad_state_slot((int)player, (uint16_t)buttons);
+        if (s_ad_log) fprintf(s_ad_log, "%u:%04X\n", player, buttons);
+    }
 }
 
 static uint32_t r4_handler(void) {
@@ -537,15 +536,7 @@ static void activate(void) {
     I.t_spans = I.t_irq = I.t_mmio_w = I.t_mmio_r = 0;
     I.ram = 0;
     autodrive_reset();
-    if (r4_autodrive_enabled()) {
-        PSXModPadTransform transform = {0};
-        transform.struct_size = sizeof transform;
-        transform.allowed_types = PSX_MOD_PAD_TYPE_BIT(PSX_MOD_PAD_DIGITAL);
-        transform.initial_type = PSX_MOD_PAD_DIGITAL;
-        transform.transform = autodrive_input;
-        (void)psx_mod_set_pad_transform(0, &transform);
-        (void)psx_mod_set_pad_transform(1, &transform);
-    }
+
 }
 
 /* Isolation starts lazily on the first race tick with a live CPU. */
@@ -592,6 +583,7 @@ PSX_MOD_CONSTRUCTOR(r4_draw_isolation_register) {
     ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, 0x80051B00u, on_main_fn);
     ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, 0x80096640u, on_main_fn);
     I.registered = ok;
+    mod_register_frame_hook(autodrive_input);
     psx_mod_register_activation_plugin(ISO_PLUGIN, activate);
     psx_mod_register_savestate_plugin(ISO_PLUGIN, autodrive_reset);
     atexit(at_exit);
