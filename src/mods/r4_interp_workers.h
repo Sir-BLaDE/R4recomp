@@ -30,6 +30,7 @@ static struct {
     uint64_t session, next_window, window_remainder;
     uint64_t submitted, admitted, dropped, failures, elapsed_ns, executed;
     uint64_t captures, capture_ns;
+    int64_t lead_min_ns, lead_max_ns;
     int initialized;
 } workers;
 static _Thread_local R4DrawJob *worker_job;
@@ -185,6 +186,8 @@ static void r4_workers_shutdown(void) {
             (unsigned long long)workers.executed,
             workers.executed ? workers.elapsed_ns / (1000000.0 * workers.executed) : 0.0,
             workers.captures ? workers.capture_ns / (1000000.0 * workers.captures) : 0.0);
+    fprintf(stderr, "R4 worker lead_ms: min=%.3f max=%.3f\n",
+            workers.lead_min_ns / 1000000.0, workers.lead_max_ns / 1000000.0);
 }
 static void r4_workers_reset(void) {
     workers.next_window = workers.window_remainder = 0;
@@ -241,6 +244,9 @@ static int r4_workers_submit(CPUState *cpu, const R4Blend *blend, const PSXModRe
     if (!workers.next_window || now > workers.next_window + 2u * duration)
         workers.next_window = now + duration;
     uint64_t begin = workers.next_window;
+    int64_t lead = (int64_t)begin - (int64_t)now;
+    if (!workers.submitted || lead < workers.lead_min_ns) workers.lead_min_ns = lead;
+    if (!workers.submitted || lead > workers.lead_max_ns) workers.lead_max_ns = lead;
     workers.next_window += duration;
     RenderPassAsyncToken tokens[R4_MAX_PASSES];
     unsigned n = render_pass_async_reserve(2, begin, workers.next_window,

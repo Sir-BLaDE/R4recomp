@@ -28,15 +28,23 @@ Plan: `docs/CODEX_PLAN.md`.
 Owner verification budget: 15-second performance samples, 30-second automated
 runs, build-compatible race savestates and intro skipping. Stop long race
 comparisons; prioritize core implementation and brief visible race feedback.
-Current acceptance blockers: full/full diagnostic repeats differ at 19,969
-pixels despite 19,669 identical command receipts (v11); private comparison
-therefore cannot yet establish pixel correctness. A real depth-checkpoint
-defect was fixed and component-tested but did not explain this difference.
+Pixel correctness now passes with default seam snapping: v13 full/full and
+full/private compare all 7668x4320 pixels exactly, 19,669 command receipts
+and four parallel contexts match. Receipt: `analysis/worker-pixels-v13`.
+The cause was seam-snap history leaking across discarded passes; depth
+checkpointing also fixes an independently proven transaction defect.
 OpenBIOS A0/2F private execution is fixed (`8f931e66`); moving-race v10 runs
 15 seconds with zero main dispatch misses and worker failures. The prior
 visible v7 sample measured 29.1 distinct frames/s, not accepted for installation.
 Output-grid lookahead, generation lifetime and resource invalidation fixes
 are in progress. No worker milestone installation has occurred.
+Temporal display ownership and timestamp sorting fixed two ordering defects;
+actual presenter-pixel tests found and fixed inherited GL raster state. The
+current 4-slot hidden 15-second probe (`analysis/worker-four-v21`) presents
+486 images (32.4/s), zero worker faults/misses, but rejects 154 images after
+HD texture metadata invalidation and 141 for presenter capacity. It does not
+meet the 60 FPS acceptance target. Desktop/GDI capture sampled the wrong
+surface and its distinct-frame numbers are invalid for recent probes.
 
 Active checkouts (no new worktrees): root R4 `feat/threaded-rendering`, framework
 local `int/threaded-rendering` (never a landing source); `r4-ctx`/`psx-ctx` for
