@@ -59,6 +59,17 @@ class GateComparison(unittest.TestCase):
             self.assertEqual(verdict(), 4)  # missing miss telemetry fails closed
             run["miss_total"] = 0
             (b / "run.json").write_text(json.dumps(run))
+            for path in (a, b):
+                info = json.loads((path / "run.json").read_text())
+                info["autodrive"] = True
+                (path / "run.json").write_text(json.dumps(info))
+            self.assertEqual(verdict(), 3)  # driving input must be observed
+            for path in (a, b):
+                (path / "inputs.txt").write_text("BFFF\nBFDF\n")
+            self.assertEqual(verdict(), 0)
+            (b / "inputs.txt").write_text("BFFF\nBF7F\n")
+            self.assertEqual(verdict(), 1)
+            (b / "inputs.txt").write_text("BFFF\nBFDF\n")
             text = (b / "ticks.csv").read_text()
             (b / "ticks.csv").write_text(text.replace("0,1,", "0,2,", 1))
             self.assertEqual(verdict(), 1)

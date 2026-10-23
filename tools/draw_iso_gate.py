@@ -241,15 +241,27 @@ def run(args):
     env = {"R4_DRAW_ISO_MODE": args.mode,
            "R4_DRAW_ISO_LOG": os.path.join(out, "ticks.csv"),
            "R4_DRAW_ISO_SUMMARY": os.path.join(out, "summary.txt")}
+    if args.autodrive:
+        env.update({"R4_AUTODRIVE": "1", "R4_DRAW_ISO_INPUT_LOG": os.path.join(out, "inputs.txt")})
     for kv in args.env or []:
         k, v = kv.split("=", 1)
         env[k] = v
     set_mod_state(args.build, args.defaults)
     t0 = time.time()
     proc = launch(args.build, args.port, out, env)
-    info = {"mode": args.mode, "env": env, "defaults": args.defaults, "runtime_sha256": identity}
+    info = {"mode": args.mode, "env": env, "defaults": args.defaults,
+            "autodrive": args.autodrive, "runtime_sha256": identity}
     try:
         wait_frames(30, args.port)
+        if getattr(args, "warm_title", False):
+            # Widescreen engages at game entry, outside the savestate. Loading
+            # while BIOS boot is still active gives the first draw's mod hooks
+            # a different margin. Reach the title before restoring the fixture.
+            wait_frames(max(0, 1800 - frame(args.port)), args.port)
+            cmd({"cmd": "set_input", "buttons": "0xFFF7"}, port=args.port)
+            wait_frames(36, args.port)
+            cmd({"cmd": "clear_input"}, port=args.port)
+            wait_frames(240, args.port)
         # The route and the fingerprint ring both restart at the load, so
         # every run replays the same input on the same guest frames.
         cmd({"cmd": "clear_input"}, port=args.port)
@@ -264,6 +276,7 @@ def run(args):
                  "buttons": "0xFFFF"}, port=args.port)
         savestate(args.port, "load")
         start = frame(args.port)
+        deadline = time.monotonic() + getattr(args, "seconds", 30)
         info["start_frame"] = start
         info["scene"] = args.scene
         expected_handler = {"demo": 0x8005E118, "replay": 0x8002A464}.get(args.scene)
@@ -285,6 +298,8 @@ def run(args):
                 break
             if f >= start + args.frames:
                 break
+            if time.monotonic() >= deadline:
+                break
             if proc.poll() is not None:
                 raise SystemExit(f"runtime died ({proc.returncode}); see {out}/runtime.log")
             time.sleep(0.5)
@@ -297,10 +312,10 @@ def run(args):
         info["miss_total"] = d.get("miss_total")
         cmd({"cmd": "screenshot", "path": os.path.join(out, "end.png")}, port=args.port)
     finally:
-        try:
-            cmd({"cmd": "input_route_stop"}, port=args.port)
-        finally:
-            stop(proc, args.port)
+        # Keep deterministic input active until this owned process exits.
+        # Stopping the route first lets its final logged ticks consume neutral
+        # input at a host-timing-dependent point.
+        stop(proc, args.port)
     info["wall_s"] = round(time.time() - t0, 1)
     with open(os.path.join(out, "run.json"), "w") as f:
         json.dump(info, f, indent=1)
@@ -333,6 +348,23 @@ def compare(a, b, quiet=False):
     ended = all(r.get("race_ended_frame") is not None for r in (ra, rb))
     ta, tb = load_ticks(a), load_ticks(b)
     verdict = 0
+    if ra.get("autodrive") or rb.get("autodrive"):
+        inputs = []
+        for directory in (a, b):
+            try:
+                with open(os.path.join(directory, "inputs.txt")) as source:
+                    inputs.append(source.read().splitlines())
+            except OSError:
+                inputs.append([])
+        common = min(map(len, inputs))
+        if not all(r.get("autodrive") for r in (ra, rb)) or not common:
+            print("INCOMPLETE: both autodrive input logs are required")
+            verdict = 3
+        elif inputs[0][:common] != inputs[1][:common]:
+            print("MISMATCH: autodriver applied different inputs")
+            verdict = 1
+        else:
+            print(f"autodrive: {common} shared input polls identical")
     n = min(len(ta), len(tb))
     first = None
     for i in range(n):
@@ -405,11 +437,14 @@ def main():
         p.add_argument("--port", type=int, default=5341)
         p.add_argument("--frames", type=int, default=40000, help="stop after this many frames")
         p.add_argument("--after", type=int, default=600, help="frames to keep running after the race ends")
+        p.add_argument("--seconds", type=float, default=30, help="wall-time bound after loading (default: 30)")
+        p.add_argument("--warm-title", action="store_true", help="diagnostic: initialize widescreen through title before loading")
         p.add_argument("--env", action="append", help="extra K=V for the runtime")
         p.add_argument("--defaults", action="store_true", help="enable shipped default mods")
         p.add_argument("--second-pad", action="store_true", help="keep a neutral second pad connected")
         p.add_argument("--scene", choices=["race", "demo", "replay"], default="race",
                        help="demo/replay use neutral input and end when their handler exits")
+        p.add_argument("--autodrive", action="store_true", help="test driver; comparisons also require equal input logs")
         if name == "run":
             p.add_argument("mode", choices=["base", "nest", "iso", "poison"])
             p.add_argument("--label")

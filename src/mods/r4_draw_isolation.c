@@ -91,6 +91,7 @@ static const uint32_t k_draw_fns[] = {
     0x8004CBACu, 0x80059E24u, 0x80096660u, 0x8004C8BCu, 0x8004CC40u,
 };
 #define N_FNS (sizeof k_draw_fns / sizeof k_draw_fns[0])
+#define N_COMMON_FNS (N_FNS - 10u) /* final ten roots belong to demo/replay */
 #define IDX_CLEAR_OT N_FNS   /* the main loop's ClearOTagR pair */
 #define N_SLOTS (N_FNS + 1u)
 
@@ -131,6 +132,35 @@ static uint16_t rd16(uint32_t a) { return psx_mod_read_half(a); }
 /* What stock R4 would read: the merged view while isolating. */
 static uint32_t mrd32(uint32_t a) {
     return psx_draw_iso_enabled() ? psx_draw_iso_read_word(a) : rd32(a);
+}
+
+/* Test-only driver from the owner's timing harness. Read the merged camera:
+ * the gate intentionally keeps main's draw scratch private. */
+#define r4_gate_ad_read mrd32
+#include "r4_gate_autodrive.h"
+static FILE *s_ad_log;
+
+static void autodrive_reset(void) {
+    const char *path = getenv("R4_DRAW_ISO_INPUT_LOG");
+    r4_autodrive_reset();
+    if (s_ad_log) { fclose(s_ad_log); s_ad_log = NULL; }
+    if (r4_autodrive_enabled() && path && *path) s_ad_log = fopen(path, "w");
+}
+
+static int autodrive_input(const PSXModPadFrame *frame, PSXModPadOutput *out) {
+    uint32_t buttons;
+    if (!I.active || !I.race || !frame || frame->player > 1) return 0;
+    if (frame->player && I.race_mode != R4_MODE_SPLIT) return 0;
+    buttons = r4_autodrive_buttons(frame->player, I.race_mode == R4_MODE_SPLIT
+        ? 0x80118520u + 16u * frame->player : 0x1F800008u);
+    if (!buttons) return 0;
+    memset(out, 0, sizeof *out);
+    out->struct_size = sizeof *out;
+    out->buttons = buttons;
+    out->type = PSX_MOD_PAD_DIGITAL;
+    out->lx = out->ly = out->rx = out->ry = 0x80;
+    if (s_ad_log) fprintf(s_ad_log, "%u:%04X\n", frame->player, buttons);
+    return 1;
 }
 
 static uint32_t r4_handler(void) {
@@ -288,6 +318,8 @@ static void on_draw_fn(CPUState *cpu, uint32_t address) {
     if (!eligible(cpu)) return;
     for (slot = 0; slot < N_FNS && k_draw_fns[slot] != fn; slot++) {}
     if (slot == N_FNS || skipped(fn)) return;
+    if (slot >= N_COMMON_FNS && I.race_mode != R4_MODE_DEMO &&
+        I.race_mode != R4_MODE_REPLAY) return;
     run_isolated(cpu, fn, slot);
 }
 
@@ -504,6 +536,16 @@ static void activate(void) {
     I.in_tick = I.depth = I.race = 0;
     I.t_spans = I.t_irq = I.t_mmio_w = I.t_mmio_r = 0;
     I.ram = 0;
+    autodrive_reset();
+    if (r4_autodrive_enabled()) {
+        PSXModPadTransform transform = {0};
+        transform.struct_size = sizeof transform;
+        transform.allowed_types = PSX_MOD_PAD_TYPE_BIT(PSX_MOD_PAD_DIGITAL);
+        transform.initial_type = PSX_MOD_PAD_DIGITAL;
+        transform.transform = autodrive_input;
+        (void)psx_mod_set_pad_transform(0, &transform);
+        (void)psx_mod_set_pad_transform(1, &transform);
+    }
 }
 
 /* Isolation starts lazily on the first race tick with a live CPU. */
@@ -534,6 +576,7 @@ static void on_clear_otag_entry(CPUState *cpu, uint32_t address) {
 
 static void at_exit(void) {
     if (I.log) { fflush(I.log); }
+    if (s_ad_log) fflush(s_ad_log);
     write_summary();
 }
 
@@ -550,5 +593,6 @@ PSX_MOD_CONSTRUCTOR(r4_draw_isolation_register) {
     ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, 0x80096640u, on_main_fn);
     I.registered = ok;
     psx_mod_register_activation_plugin(ISO_PLUGIN, activate);
+    psx_mod_register_savestate_plugin(ISO_PLUGIN, autodrive_reset);
     atexit(at_exit);
 }

@@ -158,12 +158,16 @@ runs, zero misses), but has not reached the goal. Its route needs a finishing
 driver because this mode has no GP time-limit exit. Receipts:
 `C:/Users/Shokunin/dev/r4-iso-runs/ta-v4-20261023`.
 
-The next build also hands scratchpad heap/OT pointers `0x1F800000/4` to
+Commit `e1322e6` also hands scratchpad heap/OT pointers `0x1F800000/4` to
 main at the pass point. Max Detail's DrawOTag hook consumes the heap end
 for its next-frame budget; withholding it changed the course visibility
 list at default-mod tick 118. A public-range ablation restored that tick's
-exact frame hash. Demo/replay producers now have entry hooks; their
-verification remains pending.
+exact frame hash. Demo/replay producers now have entry hooks. The stock
+attract-demo gate passes through the handler exit: base/nested/isolated
+match 1,401 tick rows, base/nested match 3,492 shared fingerprints, and all
+three have zero dispatch misses. Receipts:
+`C:/Users/Shokunin/dev/r4-iso-runs/demo-v5-20261023` (runtime SHA-256
+`cb4dea71939d8b26aef2a0c6bbb67ce3e588f6f330ae970f2548cc0b28dc6d75`).
 
 Default-mod A/A runs already differ before testing isolation: the first
 tick differs at SDK pad/SIO timeout sample `0x801147E8` (writers
@@ -174,10 +178,29 @@ occur under both settings; batching is not isolated as the cause. This is
 not a passing default gate or permission to ignore differences. Receipts are under
 `C:/Users/Shokunin/dev/r4-iso-runs/defaults-v4-20261023`.
 
+First-frame access recordings locate the earlier cause: Max Detail's
+`0x80014A90` entry hook conditionally writes reflection page `0x8009E288`
+according to the widescreen margin. Loading immediately after boot can run
+this hook before widescreen engagement. Booting to the title before loading
+made two 600-frame baseline runs agree through their shared deterministic
+input interval (305 ticks / 610 fingerprints). Longer warm-start baseline
+runs match 2,871 shared ticks before the owner stopped long verification;
+no hash fields have been relaxed. Receipts are under `defaults-v5-20261023`.
+The driver now keeps its input route running until process exit, avoiding
+host-timed neutral-input ticks during shutdown.
+
 The driver refuses existing run directories, supports `--defaults`, requires
 both runs to reach the race end, and compares isolated merged tick state
 without treating dead-stack write fingerprints as failures. Nested stock
-runs still require full fingerprint equality.
+runs still require full fingerprint equality. The owner subsequently bounded
+automated runs to 30 seconds (performance samples to 15 seconds); the driver
+now defaults to `--seconds 30`. Partial coverage remains labelled incomplete
+by the whole-race comparator and no longer blocks implementation. Split-screen
+matched 10,810 shared ticks before that stop, with zero dispatch misses on
+both sides (`split-v5-20261023`). Time Attack and after-goal replay tails
+remain unverified. `--autodrive` enables a test-only centreline driver; its
+per-player input logs must match as well as the guest state. Demo/replay-only
+hooks are inactive in the three race modes.
 
 ### Worker side-effect contract
 
