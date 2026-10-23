@@ -28,10 +28,12 @@ static struct {
     PsxExecCtx *contexts[PSX_CTX_MAX];
     unsigned count, pending;
     uint64_t session, next_window, window_remainder;
-    uint64_t submitted, admitted, dropped, failures, elapsed_ns;
+    uint64_t submitted, admitted, dropped, failures, elapsed_ns, executed;
+    uint64_t captures, capture_ns;
     int initialized;
 } workers;
 static _Thread_local R4DrawJob *worker_job;
+static void r4_workers_reset(void);
 
 static uint64_t r4_worker_clock(void *unused) {
     (void)unused; return pt_clock_ns();
@@ -136,6 +138,7 @@ static int r4_worker_finish(void *user) {
 static void r4_workers_poll(void *unused) {
     (void)unused;
     if (!workers.pool || g_psx_guest_time_frozen) return;
+    if (r4_optional_draw_hooks_active() && workers.next_window) r4_workers_reset();
     DrawWorkerResult result;
     while (draw_worker_poll(workers.pool, &result)) {
         R4DrawJob *job = result.job.payload;
@@ -150,17 +153,25 @@ static void r4_workers_poll(void *unused) {
             admitted = render_pass_async_admit(&job->token, job->frame->gpu, &provider);
         }
         workers.elapsed_ns += job->elapsed_ns;
+        if (job->elapsed_ns) workers.executed++;
         if (admitted) workers.admitted++; else workers.dropped++;
-        if (result.status == -3 && workers.failures++ < 8) {
+        if (result.executed && result.execution_status == -3 && workers.failures++ < 8) {
             uint32_t pc = 0; const char *what = NULL;
             PsxCtxStatus status = psx_ctx_status(job->context, &pc, &what);
             fprintf(stderr, "R4 worker draw failed: %s pc=%08X %s\n",
                     psx_ctx_status_name(status), pc, what ? what : "");
+            CPUState *failed_cpu = psx_ctx_cpu(job->context);
+            uint32_t trail[16], fault_ra = 0;
+            int trail_count = psx_ctx_trail(job->context, trail, 16, &fault_ra);
+            fprintf(stderr, "R4 worker fault: t1=%08X ra=%08X fault_ra=%08X trail=",
+                    failed_cpu->gpr[9], failed_cpu->gpr[31], fault_ra);
+            for (int ti = 0; ti < trail_count; ++ti) fprintf(stderr, "%08X,", trail[ti]);
+            fprintf(stderr, "\n");
         }
         (void)draw_worker_release(workers.pool, &result);
         workers.pending--;
     }
-    if (!R.enabled && !workers.pending) draw_service_register(NULL, NULL);
+    if (!workers.pending) draw_service_register(NULL, NULL);
 }
 static void r4_workers_shutdown(void) {
     draw_service_register(NULL, NULL);
@@ -168,10 +179,12 @@ static void r4_workers_shutdown(void) {
     workers.pool = NULL;
     for (unsigned i = 0; i < workers.count; i++) psx_ctx_destroy(workers.contexts[i]);
     workers.count = 0;
-    fprintf(stderr, "R4 workers: submitted=%llu admitted=%llu dropped=%llu failures=%llu draw_ms=%.3f\n",
+    fprintf(stderr, "R4 workers: submitted=%llu admitted=%llu dropped=%llu failures=%llu executed=%llu draw_ms=%.3f capture_ms=%.3f\n",
             (unsigned long long)workers.submitted, (unsigned long long)workers.admitted,
             (unsigned long long)workers.dropped, (unsigned long long)workers.failures,
-            workers.submitted ? workers.elapsed_ns / (1000000.0 * workers.submitted) : 0.0);
+            (unsigned long long)workers.executed,
+            workers.executed ? workers.elapsed_ns / (1000000.0 * workers.executed) : 0.0,
+            workers.captures ? workers.capture_ns / (1000000.0 * workers.captures) : 0.0);
 }
 static void r4_workers_reset(void) {
     workers.next_window = workers.window_remainder = 0;
@@ -217,14 +230,7 @@ static int r4_workers_submit(CPUState *cpu, const R4Blend *blend, const PSXModRe
         return 0;
     }
     r4_workers_poll(NULL);
-    R4DrawFrame *frame = calloc(1, sizeof *frame);
-    if (!frame) return 0;
-    frame->refs = 1; frame->blend = *blend;
-    frame->snapshot = psx_ctx_snapshot_capture(cpu, PSX_CTX_SNAP_PGXP);
-    frame->gpu = gpu_replay_capture();
-    if (!frame->snapshot || !frame->gpu) { r4_frame_release(frame); return 0; }
-    R4DrawMods *first_mods = r4_draw_mods_capture();
-    if (!first_mods) { r4_frame_release(frame); return 0; }
+    if (r4_optional_draw_hooks_active()) return 0;
     /* Main reaches the same point once per simulation tick. The output grid
      * remains continuous across ticks; output rate never changes this span. */
     uint64_t now = pt_clock_ns();
@@ -233,12 +239,29 @@ static int r4_workers_submit(CPUState *cpu, const R4Blend *blend, const PSXModRe
     workers.window_remainder = duration % 33868800u;
     duration /= 33868800u;
     if (!workers.next_window || now > workers.next_window + 2u * duration)
-        workers.next_window = now;
+        workers.next_window = now + duration;
     uint64_t begin = workers.next_window;
     workers.next_window += duration;
     RenderPassAsyncToken tokens[R4_MAX_PASSES];
     unsigned n = render_pass_async_reserve(2, begin, workers.next_window,
         rect->x, rect->y, rect->w, rect->h, tokens, R4_MAX_PASSES);
+    unsigned extras = 0;
+    for (unsigned i = 0; i < n; i++) extras += tokens[i].output.alpha_q16 != 0;
+    if (!extras) return 1;
+    if (workers.pending >= workers.count) { workers.dropped += extras; return 1; }
+    uint64_t capture_start = pt_clock_ns();
+    R4DrawFrame *frame = calloc(1, sizeof *frame);
+    if (!frame) { workers.dropped += extras; return 1; }
+    frame->refs = 1; frame->blend = *blend;
+    frame->snapshot = psx_ctx_snapshot_capture(cpu, PSX_CTX_SNAP_PGXP);
+    frame->gpu = gpu_replay_capture();
+    if (!frame->snapshot || !frame->gpu) {
+        r4_frame_release(frame); workers.dropped += extras; return 1;
+    }
+    R4DrawMods *first_mods = r4_draw_mods_capture();
+    if (!first_mods) { r4_frame_release(frame); workers.dropped += extras; return 1; }
+    workers.capture_ns += pt_clock_ns() - capture_start;
+    workers.captures++;
     for (unsigned i = 0; i < n; i++) {
         if (!tokens[i].output.alpha_q16) continue; /* phase zero is captured by reserve */
         R4DrawJob *job = calloc(1, sizeof *job);

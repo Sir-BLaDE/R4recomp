@@ -25,6 +25,18 @@ sequence on private workers, then schedule the same sequence at 60/90/100/120/14
 output timestamps. Keep its serial path as the reference and fallback.
 Original-frame offload and track decomposition follow this proof in parallel.
 Plan: `docs/CODEX_PLAN.md`.
+Owner verification budget: 15-second performance samples, 30-second automated
+runs, build-compatible race savestates and intro skipping. Stop long race
+comparisons; prioritize core implementation and brief visible race feedback.
+Current acceptance blockers: full/full diagnostic repeats differ at 19,969
+pixels despite 19,669 identical command receipts (v11); private comparison
+therefore cannot yet establish pixel correctness. A real depth-checkpoint
+defect was fixed and component-tested but did not explain this difference.
+OpenBIOS A0/2F private execution is fixed (`8f931e66`); moving-race v10 runs
+15 seconds with zero main dispatch misses and worker failures. The prior
+visible v7 sample measured 29.1 distinct frames/s, not accepted for installation.
+Output-grid lookahead, generation lifetime and resource invalidation fixes
+are in progress. No worker milestone installation has occurred.
 
 Active checkouts (no new worktrees): root R4 `feat/threaded-rendering`, framework
 local `int/threaded-rendering` (never a landing source); `r4-ctx`/`psx-ctx` for
@@ -38,6 +50,10 @@ Verified checkpoints:
   zero misses: `analysis/perf-baseline/context-main.json`.
 - First async integration builds pass all 31 project tests on PC and Mac.
   This does not yet verify actual worker output or screen cadence.
+- Exact existing Grand Prix interpolation recipe: 2,343 command/precision
+  receipts match full versus private serial and four workers. Zero dispatch
+  misses and worker failures. Receipt: `analysis/worker-exact-20261023-b`.
+  Full-resolution pixel comparison and cadence remain pending.
 - Stock Grand Prix isolation: 18,101 ticks through TIMEOVER match base/nested/
   isolated; zero misses. Nested also matches 32,767 shared frame fingerprints.
   Receipt: `C:/Users/Shokunin/dev/r4-iso-runs/sound-rng-v4-20261023`.

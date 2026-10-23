@@ -685,6 +685,8 @@ roots = [
     "0x8005F6F4", "0x8005F758", "0x8005F7E8", "0x8005F964",
     "0x80060178", "0x800601F4", "0x8006029C", "0x80060E34",
     "0x800608BC", "0x80060958", "0x80060BB0", "0x80060EDC",
+    "0x80060AFC", # constructed in t2 by 0x8006095C/0x80060960, moving object draw
+    "0x8007559C", # object draw dispatch table at 0x8001137C (also normal-code seed)
     # Indirect seven-way draw dispatch table at EXE 0x800111A8.
     "0x80055590", "0x800555A0", "0x800555B0", "0x800555C0",
     "0x800555D0", "0x800555E0", "0x800555F0",

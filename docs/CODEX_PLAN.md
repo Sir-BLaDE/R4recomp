@@ -99,9 +99,16 @@ milestones.
 
 ## Shared verification and delivery
 
+Owner update (2026-10-23): bound performance samples to 15 seconds and automated
+runs to 30 seconds. Reuse build-compatible race savestates and skip intros.
+Brief visible race checks provide owner feedback. Do not let exhaustive race
+comparisons block completing the core worker, threading and overhead work;
+report coverage limits explicitly.
+
 Verify Grand Prix, Time Attack, split screen, attract demo and after-goal
 replay, both baseline and default mods. Require zero dispatch misses, whole-
-race isolation identity, four concurrent contexts equal to serial, emitter
+race identity where already recorded, bounded isolation checks for remaining
+modes, four concurrent contexts equal to serial, emitter
 checks, `fp_identity`, and unchanged main-context behavior/performance.
 Measure lean/full draw time, snapshot cost, worker latency, render/present
 throughput and on-screen distinct frames/cadence under background load at
@@ -115,23 +122,19 @@ desired default. Keep fork deltas and pin history current, land coherent
 verified changes, and rebuild/reinstall at milestones. Release/tag/publish
 still needs the owner's go and version.
 
-## Worker integration audit references
+## Worker integration references
 
-- `src/mods/r4_interp.c:r4_pass_point` is the existing VSync capture point;
-  its blend points into mutable `R.prev/R.cur`. Copy values into each job and
-  replace global memory helpers and `R.in_pass` with context-local execution.
-- Context branch `runtime/src/gte.cpp:s_render_pose` and FOV/widescreen
-  globals need snapshot ownership. `runtime/include/pgxp_ctx.h` currently
-  omits RAM shadows; `psx_ctx_precise_vertex` queries final shadow state.
-  Preserve precision for preexisting and reused packet addresses at capture.
-- Context-safe hooks must retain behavior from `r4_widescreen_plugin.c`,
-  `r4_max_detail_plugin.c`, `r4_camera_look_plugin.c`,
-  `r4_hide_rear_view_mirror.c` and `r4_race_hud.cpp` under `src/mods/`.
-- Framework `runtime/src/render_pass.c` owns singleton checkpoint/plan state;
-  its current API cannot run on workers. `runtime/src/gpu_gl_renderer.c`
-  queues `RTH_PASS_BEGIN/END`, but asynchronous results need explicit
-  generation/deadline ownership. `PsxCtxGpuWord` alone does not carry all
-  parser inputs; `runtime/src/gpu.c` also reads RAM and host packet metadata.
+- `src/mods/r4_interp_workers.h`: owned interpolation values, snapshot lifetime,
+  bounded workers, immutable GPU/PGXP receipts and generation retirement.
+- `src/mods/r4_draw_mods.c`: private adapters for default enhancement hooks;
+  unsupported optional hooks retain serial fallback.
+- `src/mods/r4_interp_verify.h`: exact original draw versus private serial/four
+  workers; full-resolution GPU replay pixel check remains under verification.
+- Framework `docs/THREADED_CONTEXTS.md`: private precision state, geometry-cache
+  index and track partition constraints. Real-frame replacement also needs
+  faithful cycle/IRQ accounting and ordered main-thread sound/RNG calls.
+- Framework `runtime/src/render_pass.c` and `gpu_gl_renderer.c`: main-thread
+  command admission, immutable texture sources, timed presentation and drops.
 
 ## Rules that bit us
 

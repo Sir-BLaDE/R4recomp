@@ -8,7 +8,7 @@
 #include "SLUS_007.97_decls.h"
 #include "psx_dctx_codegen.h"
 
-/* 579 clone bodies, 4966 trampoline rows; roots: 0x8006F00C 0x80061078 0x80061C34 0x800628C8 0x80063344 0x80063E64 0x80064A68 0x80065744 0x800661FC 0x80066D58 0x8006723C 0x80067DB8 0x80061028 0x8006BF54 0x8006CBA4 0x8006A928 0x8006B3EC 0x80068A0C 0x80069954 0x8005FB50 0x8005FBB8 0x8005FC44 0x8005FDC8 0x8005F6F4 0x8005F758 0x8005F7E8 0x8005F964 0x80060178 0x800601F4 0x8006029C 0x80060E34 0x800608BC 0x80060958 0x80060BB0 0x80060EDC 0x80055590 0x800555A0 0x800555B0 0x800555C0 0x800555D0 0x800555E0 0x800555F0 0x80014A84 0x80020074 0x800207D4 0x80021774 0x80021C38 0x80022340 0x8002C194 0x8002DC00 0x8003C4B4 0x8004C8BC 0x8004CBAC 0x8004CC40 0x800558E8 0x80055968 0x800559BC 0x80059E24 0x80090600 0x800914B0 0x80096660 0x8006F2B0 0x80034444 0x80039C04 0x8002BEA4 0x8002C0F8 0x800212E0 0x80021134 0x80021614 0x80021960 0x80021A20 0x80021DDC 0x80022048 0x80021BA4 0x80020A98 0x8006E4D0 0x8002E554 0x8002258C 0x80074AD8 0x800374F8 0x80070A58 0x80093418 0x80093520 0x80093590 0x80094D7C 0x80094DA0 0x800945A0 0x80094C8C 0x80094CC4 0x80094D04 0x80094A0C 0x800947D0 0x80095050 0x80094CB0 0x800944C0 0x80094D4C 0x800952B0 0x800944A8 0x80095400 */
+/* 618 clone bodies, 5011 trampoline rows; roots: 0x8006F00C 0x80061078 0x80061C34 0x800628C8 0x80063344 0x80063E64 0x80064A68 0x80065744 0x800661FC 0x80066D58 0x8006723C 0x80067DB8 0x80061028 0x8006BF54 0x8006CBA4 0x8006A928 0x8006B3EC 0x80068A0C 0x80069954 0x8005FB50 0x8005FBB8 0x8005FC44 0x8005FDC8 0x8005F6F4 0x8005F758 0x8005F7E8 0x8005F964 0x80060178 0x800601F4 0x8006029C 0x80060E34 0x800608BC 0x80060958 0x80060BB0 0x80060EDC 0x80060AFC 0x8007559C 0x80055590 0x800555A0 0x800555B0 0x800555C0 0x800555D0 0x800555E0 0x800555F0 0x80014A84 0x80020074 0x800207D4 0x80021774 0x80021C38 0x80022340 0x8002C194 0x8002DC00 0x8003C4B4 0x8004C8BC 0x8004CBAC 0x8004CC40 0x800558E8 0x80055968 0x800559BC 0x80059E24 0x80090600 0x800914B0 0x80096660 0x8006F2B0 0x80034444 0x80039C04 0x8002BEA4 0x8002C0F8 0x800212E0 0x80021134 0x80021614 0x80021960 0x80021A20 0x80021DDC 0x80022048 0x80021BA4 0x80020A98 0x8006E4D0 0x8002E554 0x8002258C 0x80074AD8 0x800374F8 0x80070A58 0x80093418 0x80093520 0x80093590 0x80094D7C 0x80094DA0 0x800945A0 0x80094C8C 0x80094CC4 0x80094D04 0x80094A0C 0x800947D0 0x80095050 0x80094CB0 0x800944C0 0x80094D4C 0x800952B0 0x800944A8 0x80095400 */
 
 void dctx_func_800138FC(CPUState* cpu);
 void dctx_func_80014060(CPUState* cpu);
@@ -94,6 +94,9 @@ void dctx_func_8002DC00(CPUState* cpu);
 void dctx_func_8002E554(CPUState* cpu);
 void dctx_func_8002E5A4(CPUState* cpu);
 void dctx_func_8002E5F0(CPUState* cpu);
+void dctx_func_8002E6A0(CPUState* cpu);
+void dctx_func_8002E6AC(CPUState* cpu);
+void dctx_func_8002E798(CPUState* cpu);
 void dctx_func_80034444(CPUState* cpu);
 void dctx_func_800374F8(CPUState* cpu);
 void dctx_func_800399B4(CPUState* cpu);
@@ -157,6 +160,7 @@ void dctx_func_800608D0(CPUState* cpu);
 void dctx_func_80060958(CPUState* cpu);
 void dctx_func_80060968(CPUState* cpu);
 void dctx_func_80060970(CPUState* cpu);
+void dctx_func_80060AFC(CPUState* cpu);
 void dctx_func_80060BB0(CPUState* cpu);
 void dctx_func_80060BB8(CPUState* cpu);
 void dctx_func_80060E34(CPUState* cpu);
@@ -429,11 +433,34 @@ void dctx_func_80074DD8(CPUState* cpu);
 void dctx_func_80074DE0(CPUState* cpu);
 void dctx_func_80074E00(CPUState* cpu);
 void dctx_func_80074E08(CPUState* cpu);
+void dctx_func_80075044(CPUState* cpu);
+void dctx_func_80075070(CPUState* cpu);
+void dctx_func_80075098(CPUState* cpu);
+void dctx_func_800750C0(CPUState* cpu);
+void dctx_func_800751C8(CPUState* cpu);
 void dctx_func_800751CC(CPUState* cpu);
+void dctx_func_800752F0(CPUState* cpu);
+void dctx_func_80075530(CPUState* cpu);
+void dctx_func_80075554(CPUState* cpu);
 void dctx_func_80075594(CPUState* cpu);
+void dctx_func_8007559C(CPUState* cpu);
+void dctx_func_800755F8(CPUState* cpu);
+void dctx_func_80075600(CPUState* cpu);
+void dctx_func_80075618(CPUState* cpu);
+void dctx_func_8007561C(CPUState* cpu);
+void dctx_func_80075624(CPUState* cpu);
 void dctx_func_8007563C(CPUState* cpu);
+void dctx_func_80075788(CPUState* cpu);
+void dctx_func_800757FC(CPUState* cpu);
+void dctx_func_800758F4(CPUState* cpu);
+void dctx_func_80075BF0(CPUState* cpu);
+void dctx_func_80075DB0(CPUState* cpu);
 void dctx_func_80075DD4(CPUState* cpu);
 void dctx_func_80075DD8(CPUState* cpu);
+void dctx_func_80075EF0(CPUState* cpu);
+void dctx_func_80076538(CPUState* cpu);
+void dctx_func_80076BAC(CPUState* cpu);
+void dctx_func_80077214(CPUState* cpu);
 void dctx_func_80077CCC(CPUState* cpu);
 void dctx_func_80077CD0(CPUState* cpu);
 void dctx_func_80077CD4(CPUState* cpu);
@@ -583,6 +610,18 @@ void dctx_func_80096650(CPUState* cpu);
 void dctx_func_80096660(CPUState* cpu);
 void dctx_func_8009666C(CPUState* cpu);
 void dctx_func_80096924(CPUState* cpu);
+void dctx_func_80096930(CPUState* cpu);
+void dctx_func_8009693C(CPUState* cpu);
+void dctx_func_80096968(CPUState* cpu);
+void dctx_func_800969C0(CPUState* cpu);
+void dctx_func_80096AE0(CPUState* cpu);
+void dctx_func_80096BE0(CPUState* cpu);
+void dctx_func_80096BF4(CPUState* cpu);
+void dctx_func_80096C00(CPUState* cpu);
+void dctx_func_80096D08(CPUState* cpu);
+void dctx_func_80096D28(CPUState* cpu);
+void dctx_func_80096DB4(CPUState* cpu);
+void dctx_func_80096DE8(CPUState* cpu);
 void dctx_func_80096EF0(CPUState* cpu);
 void dctx_func_80096F00(CPUState* cpu);
 void dctx_func_80096F10(CPUState* cpu);
@@ -99659,6 +99698,24 @@ void dctx_func_8002E5F0(CPUState* cpu)
     dctx_alias_body_8002E554(cpu, 0x8002E5F0u);  /* alias entry into host dctx_func_8002E554 */
 }
 
+void dctx_func_8002E6A0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x8002E6A0u);
+    dctx_alias_body_8002E554(cpu, 0x8002E6A0u);  /* alias entry into host dctx_func_8002E554 */
+}
+
+void dctx_func_8002E6AC(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x8002E6ACu);
+    dctx_alias_body_8002E554(cpu, 0x8002E6ACu);  /* alias entry into host dctx_func_8002E554 */
+}
+
+void dctx_func_8002E798(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x8002E798u);
+    dctx_alias_body_8002E554(cpu, 0x8002E798u);  /* alias entry into host dctx_func_8002E554 */
+}
+
 void dctx_func_80034444(CPUState* cpu)
 {
 #if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
@@ -136494,6 +136551,441 @@ block_80060AEC: PSX_DCTX_TICK();
 #endif
     psx_check_interrupts_at(cpu, _jt_80060AF4);
     cpu->pc = _jt_80060AF4; return;  /* CPS: jr $ra */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+void dctx_func_80060AFC(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    if (cpu->pc != 0u) {
+        uint32_t _cont = cpu->pc; cpu->pc = 0;
+        switch (_cont) {
+            case 0x80060BA0u: goto block_80060BA0;
+            default: break;
+        }
+    }
+    debug_server_log_call_entry(0x80060AFCu);
+    /* Address: 0x80060AFC, Size: 180 bytes, Blocks: 2 */
+
+block_80060AFC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80060AFCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80060AFCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80060AFCu, 41u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060AFCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 8;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6] + 8, cpu->gpr[14]);
+    PGXP_STORE(0xACCE0008u, _pgxa, cpu->gpr[14]); }  /* 0x80060AFC: 0xACCE0008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060AFCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B00u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 16;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6] + 16, cpu->gpr[15]);
+    PGXP_STORE(0xACCF0010u, _pgxa, cpu->gpr[15]); }  /* 0x80060B00: 0xACCF0010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B00u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 24;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6] + 24, cpu->gpr[24]);
+    PGXP_STORE(0xACD80018u, _pgxa, cpu->gpr[24]); }  /* 0x80060B04: 0xACD80018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B04u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2000040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 32;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6] + 32, cpu->gpr[25]);
+    PGXP_STORE(0xACD90020u, _pgxa, cpu->gpr[25]); }  /* 0x80060B08: 0xACD90020 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B08u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[12]; cpu->gpr[12] = cpu->gpr[12] << 3;
+    PGXP_ALU(0x000C60C0u, cpu->gpr[12], _pgx1, 3u); }  /* 0x80060B0C: 0x000C60C0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B0Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1200u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[12]; uint32_t _pgx2 = cpu->gpr[9]; cpu->gpr[12] = cpu->gpr[12] + cpu->gpr[9];
+    PGXP_ALU(0x01896021u, cpu->gpr[12], _pgx1, _pgx2); }  /* 0x80060B10: 0x01896021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    { uint32_t _pgxa = cpu->gpr[12]; uint32_t _pgxv = psx_cyc_lwc2_read(cpu, _pgxa); cpu->gte_data[0] = _pgxv; PGXP_COP2(0xC9800000u, _pgxv, _pgxa); }  /* lwc2 gte[0], (cpu->gpr[12]) */  /* 0x80060B14: 0xC9800000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B14u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    { uint32_t _pgxa = cpu->gpr[12] + 4; uint32_t _pgxv = psx_cyc_lwc2_read(cpu, _pgxa); gte_write_data(cpu, 1, _pgxv); PGXP_COP2(0xC9810004u, _pgxv, _pgxa); }  /* lwc2 gte[1] */  /* 0x80060B18: 0xC9810004 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B18u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80060B1C: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B1Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    gte_execute(cpu, 0x0180001);  /* gte cmd 0x01 */  /* 0x80060B20: 0x4A180001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    { uint32_t _pgxa = cpu->gpr[8] + 8; uint32_t _pgxv = psx_cyc_lwc2_read(cpu, _pgxa); cpu->gte_data[6] = _pgxv; PGXP_COP2(0xC9060008u, _pgxv, _pgxa); }  /* lwc2 gte[6], (cpu->gpr[8] + 8) */  /* 0x80060B24: 0xC9060008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B24u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[8] + 25; cpu->gpr[13] = (int32_t)(int8_t)psx_cyc_load_byte(cpu, cpu->gpr[8] + 25, 13, 0x100u);
+    PGXP_LOAD(0x810D0019u, _pgxa, cpu->gpr[13]); }  /* 0x80060B28: 0x810D0019 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B28u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[8] + 12; cpu->gpr[15] = psx_cyc_load_word(cpu, cpu->gpr[8] + 12, 15, 0x100u);
+    PGXP_LOAD(0x8D0F000Cu, _pgxa, cpu->gpr[15]); }  /* 0x80060B2C: 0x8D0F000C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B2Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    gte_execute(cpu, 0x0780010);  /* gte cmd 0x10 */  /* 0x80060B30: 0x4A780010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B30u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[4] + 120; cpu->gpr[14] = psx_cyc_load_word(cpu, cpu->gpr[4] + 120, 14, 0x10u);
+    PGXP_LOAD(0x8C8E0078u, _pgxa, cpu->gpr[14]); }  /* 0x80060B34: 0x8C8E0078 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B34u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[8] + 16; cpu->gpr[24] = psx_cyc_load_word(cpu, cpu->gpr[8] + 16, 24, 0x100u);
+    PGXP_LOAD(0x8D180010u, _pgxa, cpu->gpr[24]); }  /* 0x80060B38: 0x8D180010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B38u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[8] + 20; cpu->gpr[25] = psx_cyc_load_word(cpu, cpu->gpr[8] + 20, 25, 0x100u);
+    PGXP_LOAD(0x8D190014u, _pgxa, cpu->gpr[25]); }  /* 0x80060B3C: 0x8D190014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B3Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xC000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; uint32_t _pgx2 = cpu->gpr[14]; cpu->gpr[15] = cpu->gpr[15] + cpu->gpr[14];
+    PGXP_ALU(0x01EE7821u, cpu->gpr[15], _pgx1, _pgx2); }  /* 0x80060B40: 0x01EE7821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 12;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6] + 12, cpu->gpr[15]);
+    PGXP_STORE(0xACCF000Cu, _pgxa, cpu->gpr[15]); }  /* 0x80060B44: 0xACCF000C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B44u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 20;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6] + 20, cpu->gpr[24]);
+    PGXP_STORE(0xACD80014u, _pgxa, cpu->gpr[24]); }  /* 0x80060B48: 0xACD80014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B48u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2008000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[25]; cpu->gpr[15] = cpu->gpr[25] & 0xFFFF;
+    PGXP_ALU(0x332FFFFFu, cpu->gpr[15], _pgx1, 0xFFFFu); }  /* 0x80060B4C: 0x332FFFFF */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B4Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x3000000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[25]; cpu->gpr[24] = (uint32_t)cpu->gpr[25] >> 16;
+    PGXP_ALU(0x0019C402u, cpu->gpr[24], _pgx1, 16u); }  /* 0x80060B50: 0x0019C402 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 28;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[6] + 28, (uint16_t)cpu->gpr[15]);
+    PGXP_STORE(0xA4CF001Cu, _pgxa, cpu->gpr[15]); }  /* 0x80060B54: 0xA4CF001C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B54u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6] + 36;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[6] + 36, (uint16_t)cpu->gpr[24]);
+    PGXP_STORE(0xA4D80024u, _pgxa, cpu->gpr[24]); }  /* 0x80060B58: 0xA4D80024 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B58u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2080u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[7]; uint32_t _pgx2 = cpu->gpr[13]; cpu->gpr[7] = cpu->gpr[7] + cpu->gpr[13];
+    PGXP_ALU(0x00ED3821u, cpu->gpr[7], _pgx1, _pgx2); }  /* 0x80060B5C: 0x00ED3821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B5Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B60u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[4] + 4; cpu->gpr[14] = psx_cyc_load_word(cpu, cpu->gpr[4] + 4, 14, 0x10u);
+    PGXP_LOAD(0x8C8E0004u, _pgxa, cpu->gpr[14]); }  /* 0x80060B60: 0x8C8E0004 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[7]; cpu->gpr[7] = cpu->gpr[7] << 2;
+    PGXP_ALU(0x00073880u, cpu->gpr[7], _pgx1, 2u); }  /* 0x80060B64: 0x00073880 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B64u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4080u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[7]; uint32_t _pgx2 = cpu->gpr[14]; cpu->gpr[7] = cpu->gpr[7] + cpu->gpr[14];
+    PGXP_ALU(0x00EE3821u, cpu->gpr[7], _pgx1, _pgx2); }  /* 0x80060B68: 0x00EE3821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B68u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[7]; cpu->gpr[7] = cpu->gpr[7] + 512;
+    PGXP_ALU(0x24E70200u, cpu->gpr[7], _pgx1, 0x00000200u); }  /* 0x80060B6C: 0x24E70200 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B6Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4040u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[14] = cpu->gpr[6] << 8;
+    PGXP_ALU(0x00067200u, cpu->gpr[14], _pgx1, 8u); }  /* 0x80060B70: 0x00067200 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B70u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[7]; cpu->gpr[13] = psx_cyc_load_word(cpu, cpu->gpr[7], 13, 0x80u);
+    PGXP_LOAD(0x8CED0000u, _pgxa, cpu->gpr[13]); }  /* 0x80060B74: 0x8CED0000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B74u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[14]; cpu->gpr[14] = (uint32_t)cpu->gpr[14] >> 8;
+    PGXP_ALU(0x000E7202u, cpu->gpr[14], _pgx1, 8u); }  /* 0x80060B78: 0x000E7202 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B78u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2u);
+#endif
+    cpu->gpr[1] = 0x0900 << 16;  /* 0x09000000 */
+    PGXP_ALU(0x3C010900u, cpu->gpr[1], 0u, 0u);  /* 0x80060B7C: 0x3C010900 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B7Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2002u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[13]; uint32_t _pgx2 = cpu->gpr[1]; cpu->gpr[13] = cpu->gpr[13] | cpu->gpr[1];
+    PGXP_ALU(0x01A16825u, cpu->gpr[13], _pgx1, _pgx2); }  /* 0x80060B80: 0x01A16825 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4080u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[7];  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[7], cpu->gpr[14]);
+    PGXP_STORE(0xACEE0000u, _pgxa, cpu->gpr[14]); }  /* 0x80060B84: 0xACEE0000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B84u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2040u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[6];  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[6], cpu->gpr[13]);
+    PGXP_STORE(0xACCD0000u, _pgxa, cpu->gpr[13]); }  /* 0x80060B88: 0xACCD0000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B88u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+     { uint32_t _pgxa = cpu->gpr[6] + 4; uint32_t _pgxv = cpu->gte_data[22]; psx_store_cycle_barrier(); psx_dctx_sw(cpu, _pgxa, _pgxv); gte_precision_store_word(_pgxa, 22); PGXP_COP2(0xE8D60004u, _pgxv, _pgxa); }  /* swc2 gte[22], 4(cpu->gpr[6]) */  /* 0x80060B8C: 0xE8D60004 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B8Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060B90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[6] = cpu->gpr[6] + 40;
+    PGXP_ALU(0x20C60028u, cpu->gpr[6], _pgx1, 0x00000028u); }  /* 0x80060B90: 0x20C60028 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[5] = cpu->gpr[5] + -1;
+    PGXP_ALU(0x24A5FFFFu, cpu->gpr[5], _pgx1, 0xFFFFFFFFu); }  /* 0x80060B94: 0x24A5FFFF */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B94u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    int _bc_80060B98 = (cpu->gpr[5] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[8]; cpu->gpr[8] = cpu->gpr[8] + 28;
+    PGXP_ALU(0x2508001Cu, cpu->gpr[8], _pgx1, 0x0000001Cu); }  /* 0x80060B9C: 0x2508001C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060B9Cu);
+#endif
+    if (_bc_80060B98) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80060970u);
+        cpu->pc = 0x80060970u; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80060BA0u);
+        goto block_80060BA0;  /* not taken */
+    }
+
+block_80060BA0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80060BA0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80060BA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80060BA0u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80060BA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x110u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[4] + 116;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[4] + 116, cpu->gpr[8]);
+    PGXP_STORE(0xAC880074u, _pgxa, cpu->gpr[8]); }  /* 0x80060BA0: 0xAC880074 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060BA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x50u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[4];  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[4], cpu->gpr[6]);
+    PGXP_STORE(0xAC860000u, _pgxa, cpu->gpr[6]); }  /* 0x80060BA4: 0xAC860000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060BA4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000001u);
+#endif
+    uint32_t _jt_80060BA8 = cpu->gpr[31];  /* latch indirect target before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80060BAC: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80060BACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, _jt_80060BA8);
+    cpu->pc = _jt_80060BA8; return;  /* CPS: jr $ra */
     ;  /* label compatibility: C requires a statement after the last label */
 }
 
@@ -333955,6 +334447,54 @@ void dctx_func_80074E08(CPUState* cpu)
     dctx_alias_body_80074E00(cpu, 0x80074E08u);  /* alias entry into host dctx_func_80074E00 */
 }
 
+void dctx_func_80075044(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075044u);
+    dctx_alias_body_80074E00(cpu, 0x80075044u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_80075070(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075070u);
+    dctx_alias_body_80074E00(cpu, 0x80075070u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_80075098(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075098u);
+    dctx_alias_body_80074E00(cpu, 0x80075098u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_800750C0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x800750C0u);
+    dctx_alias_body_80074E00(cpu, 0x800750C0u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_800751C8(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x800751C8u);
+    dctx_alias_body_80074E00(cpu, 0x800751C8u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_800752F0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x800752F0u);
+    dctx_alias_body_80074E00(cpu, 0x800752F0u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_80075530(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075530u);
+    dctx_alias_body_80074E00(cpu, 0x80075530u);  /* alias entry into host dctx_func_80074E00 */
+}
+
+void dctx_func_80075554(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075554u);
+    dctx_alias_body_80074E00(cpu, 0x80075554u);  /* alias entry into host dctx_func_80074E00 */
+}
+
 void dctx_func_800751CC(CPUState* cpu)
 {
 #if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
@@ -336687,11 +337227,6204 @@ block_80075594: PSX_DCTX_TICK();
 #endif
     psx_check_interrupts_at(cpu, 0x80075DD8u);
     cpu->pc = 0x80075DD8u; return;  /* CPS j: split */
-    cpu->pc = 0x8007559Cu; return;  /* image-edge fallthrough: tail-transfer */
+    if (!psx_game_text_native_ok(0x8007559Cu)) { cpu->pc = 0x8007559Cu; return; }  /* stale-static guard */
+    dctx_func_8007559C(cpu);  /* fallthrough to next function */
     ;  /* label compatibility: C requires a statement after the last label */
 }
 
-/* Overlapping-alias body for host func_80075624: 11 entries */
+void dctx_func_8007559C(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    if (cpu->pc != 0u) {
+        uint32_t _cont = cpu->pc; cpu->pc = 0;
+        switch (_cont) {
+            case 0x800755BCu: goto block_800755BC;
+            case 0x800755CCu: goto block_800755CC;
+            case 0x800755F0u: goto block_800755F0;
+            default: break;
+        }
+    }
+    debug_server_log_call_entry(0x8007559Cu);
+    /* Address: 0x8007559C, Size: 92 bytes, Blocks: 4 */
+
+block_8007559C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x8007559Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x8007559Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x8007559Cu, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x8007559Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x800011u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[23]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[23];  /* move */
+    PGXP_ALU(0x02E02021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x8007559C: 0x02E02021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007559Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000020u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[5] = cpu->gpr[29] + 280;
+    PGXP_ALU(0x27A50118u, cpu->gpr[5], _pgx1, 0x00000118u); }  /* 0x800755A0: 0x27A50118 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000040u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[6] = cpu->gpr[29] + 24;
+    PGXP_ALU(0x27A60018u, cpu->gpr[6], _pgx1, 0x00000018u); }  /* 0x800755A4: 0x27A60018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755A4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x81u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[7] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00003821u, cpu->gpr[7], _pgx1, _pgx2); }  /* 0x800755A8: 0x00003821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755A8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 284;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 284, (uint16_t)cpu->gpr[0]);
+    PGXP_STORE(0xA7A0011Cu, _pgxa, cpu->gpr[0]); }  /* 0x800755AC: 0xA7A0011C */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755ACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755B0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 282;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 282, (uint16_t)cpu->gpr[0]);
+    PGXP_STORE(0xA7A0011Au, _pgxa, cpu->gpr[0]); }  /* 0x800755B0: 0xA7A0011A */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755B0u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x800755BCu;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 280;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 280, (uint16_t)cpu->gpr[0]);
+    PGXP_STORE(0xA7A00118u, _pgxa, cpu->gpr[0]); }  /* 0x800755B8: 0xA7A00118 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755B8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80077D20u);
+    cpu->pc = 0x80077D20u; return;  /* CPS jal -> 0x80077D20 */
+
+block_800755BC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800755BCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800755BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800755BCu, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x800011u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[23]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[23];  /* move */
+    PGXP_ALU(0x02E02021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x800755BC: 0x02E02021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755C0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000020u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[5] = cpu->gpr[29] + 24;
+    PGXP_ALU(0x27A50018u, cpu->gpr[5], _pgx1, 0x00000018u); }  /* 0x800755C0: 0x27A50018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755C0u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x800755CCu;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x41u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00003021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x800755C8: 0x00003021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755C8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80077E98u);
+    cpu->pc = 0x80077E98u; return;  /* CPS jal -> 0x80077E98 */
+
+block_800755CC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800755CCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800755CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800755CCu, 9u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x800755CC: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755D0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4640; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4640, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE0u, _pgxa, cpu->gpr[2]); }  /* 0x800755D0: 0x8E82EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755D0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7360; cpu->gpr[21] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7360, 21, 0x20000000u);
+    PGXP_LOAD(0x8FB51CC0u, _pgxa, cpu->gpr[21]); }  /* 0x800755D4: 0x8FB51CC0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755D4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800755D8: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755D8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[21]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[21] + cpu->gpr[2];
+    PGXP_ALU(0x02A21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800755DC: 0x02A21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755DCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755E0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[2] + 8, 3, 0x4u);
+    PGXP_LOAD(0x8C430008u, _pgxa, cpu->gpr[3]); }  /* 0x800755E0: 0x8C430008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 4;
+    PGXP_ALU(0x24020004u, cpu->gpr[2], _pgx1, 0x00000004u); }  /* 0x800755E4: 0x24020004 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755E4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    int _bc_800755E8 = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[17] = 47;
+    PGXP_ALU(0x2411002Fu, cpu->gpr[17], _pgx1, 0x0000002Fu); }  /* 0x800755EC: 0x2411002F */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755ECu);
+#endif
+    if (_bc_800755E8) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075618u);
+        cpu->pc = 0x80075618u; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800755F0u);
+        goto block_800755F0;  /* not taken */
+    }
+
+block_800755F0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800755F0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800755F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800755F0u, 2u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[17] = 2;
+    PGXP_ALU(0x24110002u, cpu->gpr[17], _pgx1, 0x00000002u); }  /* 0x800755F0: 0x24110002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000011u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[30]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[30];  /* move */
+    PGXP_ALU(0x03C02021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x800755F4: 0x03C02021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755F4u);
+#endif
+    if (!psx_game_text_native_ok(0x800755F8u)) { cpu->pc = 0x800755F8u; return; }  /* stale-static guard */
+    dctx_func_800755F8(cpu); return;  /* fallthrough to split piece */
+    if (!psx_game_text_native_ok(0x800755F8u)) { cpu->pc = 0x800755F8u; return; }  /* stale-static guard */
+    dctx_func_800755F8(cpu);  /* fallthrough to next function */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+void dctx_func_800755F8(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    debug_server_log_call_entry(0x800755F8u);
+    /* Address: 0x800755F8, Size: 8 bytes, Blocks: 1 */
+
+block_800755F8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800755F8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800755F8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800755F8u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800755F8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075600u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20021u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[17];  /* move */
+    PGXP_ALU(0x02202821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x800755FC: 0x02202821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800755FCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x8005FFF0u);
+    cpu->pc = 0x8005FFF0u; return;  /* CPS jal -> 0x8005FFF0 */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+void dctx_func_80075600(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    if (cpu->pc != 0u) {
+        uint32_t _cont = cpu->pc; cpu->pc = 0;
+        switch (_cont) {
+            case 0x80075610u: goto block_80075610;
+            default: break;
+        }
+    }
+    debug_server_log_call_entry(0x80075600u);
+    /* Address: 0x80075600, Size: 24 bytes, Blocks: 2 */
+
+block_80075600: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075600u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075600u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075600u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075600u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[17] = cpu->gpr[17] + 1;
+    PGXP_ALU(0x26310001u, cpu->gpr[17], _pgx1, 0x00000001u); }  /* 0x80075600: 0x26310001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075600u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[2] = ((int32_t)cpu->gpr[17] < 6) ? 1 : 0;
+    PGXP_ALU(0x2A220006u, cpu->gpr[2], _pgx1, 0x0006u); }  /* 0x80075604: 0x2A220006 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075604u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075608 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000011u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[30]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[30];  /* move */
+    PGXP_ALU(0x03C02021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x8007560C: 0x03C02021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007560Cu);
+#endif
+    if (_bc_80075608) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800755F8u);
+        cpu->pc = 0x800755F8u; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075610u);
+        goto block_80075610;  /* not taken */
+    }
+
+block_80075610: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075610u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075610u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075610u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075610u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x80075614: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075614u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DD8u);
+    cpu->pc = 0x80075DD8u; return;  /* CPS j: split */
+    if (!psx_game_text_native_ok(0x80075618u)) { cpu->pc = 0x80075618u; return; }  /* stale-static guard */
+    dctx_func_80075618(cpu);  /* fallthrough to next function */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+void dctx_func_80075618(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    debug_server_log_call_entry(0x80075618u);
+    /* Address: 0x80075618, Size: 12 bytes, Blocks: 1 */
+
+block_80075618: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075618u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075618u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075618u, 3u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075618u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000011u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[30]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[30];  /* move */
+    PGXP_ALU(0x03C02021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075618: 0x03C02021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075618u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075624u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075620u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20021u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[17];  /* move */
+    PGXP_ALU(0x02202821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x80075620: 0x02202821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075620u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x8005FFF0u);
+    cpu->pc = 0x8005FFF0u; return;  /* CPS jal -> 0x8005FFF0 */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+void dctx_func_8007561C(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    debug_server_log_call_entry(0x8007561Cu);
+    /* Address: 0x8007561C, Size: 8 bytes, Blocks: 1 */
+
+block_8007561C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x8007561Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x8007561Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x8007561Cu, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x8007561Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075624u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075620u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20021u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[17];  /* move */
+    PGXP_ALU(0x02202821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x80075620: 0x02202821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075620u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x8005FFF0u);
+    cpu->pc = 0x8005FFF0u; return;  /* CPS jal -> 0x8005FFF0 */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+void dctx_func_80075624(CPUState* cpu)
+{
+#if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
+    __attribute__((cleanup(psx_cyc_bb_defer_cleanup))) int _psx_cyc_bb_guard = 1;
+    psx_cyc_bb_defer_begin();
+#endif
+    if (cpu->pc != 0u) {
+        uint32_t _cont = cpu->pc; cpu->pc = 0;
+        switch (_cont) {
+            case 0x800756C4u: goto block_800756C4;
+            case 0x800756E8u: goto block_800756E8;
+            case 0x80075758u: goto block_80075758;
+            case 0x800757F4u: goto block_800757F4;
+            case 0x80075854u: goto block_80075854;
+            case 0x800758ECu: goto block_800758EC;
+            case 0x80075938u: goto block_80075938;
+            case 0x80075B18u: goto block_80075B18;
+            case 0x80075B28u: goto block_80075B28;
+            case 0x80075B34u: goto block_80075B34;
+            case 0x80075D4Cu: goto block_80075D4C;
+            case 0x80075D60u: goto block_80075D60;
+            case 0x80075DC0u: goto block_80075DC0;
+            case 0x80075DD4u: goto block_80075DD4;
+            case 0x80075634u: goto block_80075634;
+            case 0x8007563Cu: goto block_8007563C;
+            case 0x80075704u: goto block_80075704;
+            case 0x80075734u: goto block_80075734;
+            case 0x80075744u: goto block_80075744;
+            case 0x80075778u: goto block_80075778;
+            case 0x80075780u: goto block_80075780;
+            case 0x80075788u: goto block_80075788;
+            case 0x800757BCu: goto block_800757BC;
+            case 0x800757DCu: goto block_800757DC;
+            case 0x800757FCu: goto block_800757FC;
+            case 0x80075830u: goto block_80075830;
+            case 0x80075840u: goto block_80075840;
+            case 0x80075874u: goto block_80075874;
+            case 0x8007587Cu: goto block_8007587C;
+            case 0x80075880u: goto block_80075880;
+            case 0x80075888u: goto block_80075888;
+            case 0x800758A8u: goto block_800758A8;
+            case 0x800758C4u: goto block_800758C4;
+            case 0x800758C8u: goto block_800758C8;
+            case 0x800758F4u: goto block_800758F4;
+            case 0x80075908u: goto block_80075908;
+            case 0x80075998u: goto block_80075998;
+            case 0x800759ACu: goto block_800759AC;
+            case 0x800759B4u: goto block_800759B4;
+            case 0x800759B8u: goto block_800759B8;
+            case 0x80075A38u: goto block_80075A38;
+            case 0x80075A60u: goto block_80075A60;
+            case 0x80075A68u: goto block_80075A68;
+            case 0x80075A88u: goto block_80075A88;
+            case 0x80075A98u: goto block_80075A98;
+            case 0x80075A9Cu: goto block_80075A9C;
+            case 0x80075AA4u: goto block_80075AA4;
+            case 0x80075AA8u: goto block_80075AA8;
+            case 0x80075B3Cu: goto block_80075B3C;
+            case 0x80075B40u: goto block_80075B40;
+            case 0x80075B54u: goto block_80075B54;
+            case 0x80075B58u: goto block_80075B58;
+            case 0x80075B70u: goto block_80075B70;
+            case 0x80075B94u: goto block_80075B94;
+            case 0x80075BC0u: goto block_80075BC0;
+            case 0x80075BF0u: goto block_80075BF0;
+            case 0x80075C04u: goto block_80075C04;
+            case 0x80075C70u: goto block_80075C70;
+            case 0x80075C84u: goto block_80075C84;
+            case 0x80075C8Cu: goto block_80075C8C;
+            case 0x80075C98u: goto block_80075C98;
+            case 0x80075CACu: goto block_80075CAC;
+            case 0x80075CB4u: goto block_80075CB4;
+            case 0x80075CB8u: goto block_80075CB8;
+            case 0x80075CD0u: goto block_80075CD0;
+            case 0x80075CF4u: goto block_80075CF4;
+            case 0x80075D20u: goto block_80075D20;
+            case 0x80075D58u: goto block_80075D58;
+            case 0x80075D80u: goto block_80075D80;
+            case 0x80075DB0u: goto block_80075DB0;
+            case 0x80075DCCu: goto block_80075DCC;
+            default: break;
+        }
+    }
+    debug_server_log_call_entry(0x80075624u);
+    /* Address: 0x80075624, Size: 1972 bytes, Blocks: 72 */
+
+block_80075624: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075624u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075624u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075624u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075624u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[17] = cpu->gpr[17] + 1;
+    PGXP_ALU(0x26310001u, cpu->gpr[17], _pgx1, 0x00000001u); }  /* 0x80075624: 0x26310001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075624u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[17]; cpu->gpr[2] = ((int32_t)cpu->gpr[17] < 51) ? 1 : 0;
+    PGXP_ALU(0x2A220033u, cpu->gpr[2], _pgx1, 0x0033u); }  /* 0x80075628: 0x2A220033 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075628u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_8007562C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075630u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000011u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[30]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[30];  /* move */
+    PGXP_ALU(0x03C02021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075630: 0x03C02021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075630u);
+#endif
+    if (_bc_8007562C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x8007561Cu);
+        cpu->pc = 0x8007561Cu; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075634u);
+        goto block_80075634;  /* not taken */
+    }
+
+block_80075634: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075634u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075634u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075634u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075634u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x80075638: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075638u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DD8u);
+    cpu->pc = 0x80075DD8u; return;  /* CPS j: split */
+
+block_8007563C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x8007563Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x8007563Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x8007563Cu, 34u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x8007563Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 12);
+#endif
+    cpu->gpr[12] = cpu->gte_ctrl[0];  /* cfc2 */
+    PGXP_COP2(0x484C0000u, cpu->gpr[12], 0u);  /* 0x8007563C: 0x484C0000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007563Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075640u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 13);
+#endif
+    cpu->gpr[13] = cpu->gte_ctrl[1];  /* cfc2 */
+    PGXP_COP2(0x484D0800u, cpu->gpr[13], 0u);  /* 0x80075640: 0x484D0800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075640u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[8] = cpu->gpr[12];  /* ctc2 */
+    PGXP_COP2(0x48CC4000u, cpu->gpr[12], 0u);  /* 0x80075644: 0x48CC4000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075644u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[9] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD4800u, cpu->gpr[13], 0u);  /* 0x80075648: 0x48CD4800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075648u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 12);
+#endif
+    cpu->gpr[12] = cpu->gte_ctrl[2];  /* cfc2 */
+    PGXP_COP2(0x484C1000u, cpu->gpr[12], 0u);  /* 0x8007564C: 0x484C1000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007564Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075650u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 13);
+#endif
+    cpu->gpr[13] = cpu->gte_ctrl[3];  /* cfc2 */
+    PGXP_COP2(0x484D1800u, cpu->gpr[13], 0u);  /* 0x80075650: 0x484D1800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075650u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[10] = cpu->gpr[12];  /* ctc2 */
+    PGXP_COP2(0x48CC5000u, cpu->gpr[12], 0u);  /* 0x80075654: 0x48CC5000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075654u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[11] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD5800u, cpu->gpr[13], 0u);  /* 0x80075658: 0x48CD5800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075658u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 12);
+#endif
+    cpu->gpr[12] = gte_read_ctrl(cpu, 4);  /* cfc2 */
+    PGXP_COP2(0x484C2000u, cpu->gpr[12], 0u);  /* 0x8007565C: 0x484C2000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007565Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075660u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 13);
+#endif
+    cpu->gpr[13] = cpu->gte_ctrl[5];  /* cfc2 */
+    PGXP_COP2(0x484D2800u, cpu->gpr[13], 0u);  /* 0x80075660: 0x484D2800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075660u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    gte_write_ctrl(cpu, 12, cpu->gpr[12]);  /* ctc2 */
+    PGXP_COP2(0x48CC6000u, cpu->gpr[12], 0u);  /* 0x80075664: 0x48CC6000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075664u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[13] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD6800u, cpu->gpr[13], 0u);  /* 0x80075668: 0x48CD6800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075668u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 12);
+#endif
+    cpu->gpr[12] = cpu->gte_ctrl[6];  /* cfc2 */
+    PGXP_COP2(0x484C3000u, cpu->gpr[12], 0u);  /* 0x8007566C: 0x484C3000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007566Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075670u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_read(cpu, 13);
+#endif
+    cpu->gpr[13] = cpu->gte_ctrl[7];  /* cfc2 */
+    PGXP_COP2(0x484D3800u, cpu->gpr[13], 0u);  /* 0x80075670: 0x484D3800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075670u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[14] = cpu->gpr[12];  /* ctc2 */
+    PGXP_COP2(0x48CC7000u, cpu->gpr[12], 0u);  /* 0x80075674: 0x48CC7000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075674u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[15] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD7800u, cpu->gpr[13], 0u);  /* 0x80075678: 0x48CD7800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075678u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[24] = 4096;
+    PGXP_ALU(0x24181000u, cpu->gpr[24], _pgx1, 0x00001000u); }  /* 0x8007567C: 0x24181000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007567Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075680u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[0] = cpu->gpr[24];  /* ctc2 */
+    PGXP_COP2(0x48D80000u, cpu->gpr[24], 0u);  /* 0x80075680: 0x48D80000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075680u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[1] = cpu->gpr[0];  /* ctc2 */
+    PGXP_COP2(0x48C00800u, cpu->gpr[0], 0u);  /* 0x80075684: 0x48C00800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075684u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[2] = cpu->gpr[24];  /* ctc2 */
+    PGXP_COP2(0x48D81000u, cpu->gpr[24], 0u);  /* 0x80075688: 0x48D81000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075688u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[3] = cpu->gpr[0];  /* ctc2 */
+    PGXP_COP2(0x48C01800u, cpu->gpr[0], 0u);  /* 0x8007568C: 0x48C01800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007568Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075690u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    gte_write_ctrl(cpu, 4, cpu->gpr[24]);  /* ctc2 */
+    PGXP_COP2(0x48D82000u, cpu->gpr[24], 0u);  /* 0x80075690: 0x48D82000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075690u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[5] = cpu->gpr[0];  /* ctc2 */
+    PGXP_COP2(0x48C02800u, cpu->gpr[0], 0u);  /* 0x80075694: 0x48C02800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075694u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[6] = cpu->gpr[0];  /* ctc2 */
+    PGXP_COP2(0x48C03000u, cpu->gpr[0], 0u);  /* 0x80075698: 0x48C03000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075698u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[7] = cpu->gpr[0];  /* ctc2 */
+    PGXP_COP2(0x48C03800u, cpu->gpr[0], 0u);  /* 0x8007569C: 0x48C03800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007569Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2000000u);
+#endif
+    cpu->gpr[25] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C198011u, cpu->gpr[25], 0u, 0u);  /* 0x800756A0: 0x3C198011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756A0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[25] + -4640; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[25] + -4640, 2, 0x2000000u);
+    PGXP_LOAD(0x8F22EDE0u, _pgxa, cpu->gpr[2]); }  /* 0x800756A4: 0x8F22EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756A4u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7360; cpu->gpr[15] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7360, 15, 0x20000000u);
+    PGXP_LOAD(0x8FAF1CC0u, _pgxa, cpu->gpr[15]); }  /* 0x800756A8: 0x8FAF1CC0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756A8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800756AC: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756ACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756B0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[15] + cpu->gpr[2];
+    PGXP_ALU(0x01E21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800756B0: 0x01E21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756B0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2]; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[2], 4, 0x4u);
+    PGXP_LOAD(0x8C440000u, _pgxa, cpu->gpr[4]); }  /* 0x800756B4: 0x8C440000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756B4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 1;
+    PGXP_ALU(0x24050001u, cpu->gpr[5], _pgx1, 0x00000001u); }  /* 0x800756B8: 0x24050001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756B8u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x800756C4u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756C0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x30u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[4] = cpu->gpr[4] + cpu->gpr[5];
+    PGXP_ALU(0x00852021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x800756C0: 0x00852021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756C0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x8001AFB0u);
+    cpu->pc = 0x8001AFB0u; return;  /* CPS jal -> 0x8001AFB0 */
+
+block_800756C4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800756C4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800756C4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800756C4u, 9u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756C4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x800756C4: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756C4u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4640; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4640, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE0u, _pgxa, cpu->gpr[2]); }  /* 0x800756C8: 0x8E82EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756C8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7360; cpu->gpr[21] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7360, 21, 0x20000000u);
+    PGXP_LOAD(0x8FB51CC0u, _pgxa, cpu->gpr[21]); }  /* 0x800756CC: 0x8FB51CC0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756D0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800756D0: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756D0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[21]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[21] + cpu->gpr[2];
+    PGXP_ALU(0x02A21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800756D4: 0x02A21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756D4u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2]; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[2], 4, 0x4u);
+    PGXP_LOAD(0x8C440000u, _pgxa, cpu->gpr[4]); }  /* 0x800756D8: 0x8C440000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756D8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x800756DC: 0x00002821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756DCu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x800756E8u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; cpu->gpr[4] = cpu->gpr[4] + 2;
+    PGXP_ALU(0x24840002u, cpu->gpr[4], _pgx1, 0x00000002u); }  /* 0x800756E4: 0x24840002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756E4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x8001AFB0u);
+    cpu->pc = 0x8001AFB0u; return;  /* CPS jal -> 0x8001AFB0 */
+
+block_800756E8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800756E8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800756E8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800756E8u, 7u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756E8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4640; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4640, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE0u, _pgxa, cpu->gpr[2]); }  /* 0x800756E8: 0x8E82EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756E8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800756EC: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756ECu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800756F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[21]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[21] + cpu->gpr[2];
+    PGXP_ALU(0x02A21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800756F0: 0x02A21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756F0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[2] + 8, 3, 0x4u);
+    PGXP_LOAD(0x8C430008u, _pgxa, cpu->gpr[3]); }  /* 0x800756F4: 0x8C430008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756F4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 5;
+    PGXP_ALU(0x24020005u, cpu->gpr[2], _pgx1, 0x00000005u); }  /* 0x800756F8: 0x24020005 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800756F8u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    int _bc_800756FC = (cpu->gpr[3] == cpu->gpr[2]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075700u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = 0x4EC4 << 16;  /* 0x4EC40000 */
+    PGXP_ALU(0x3C034EC4u, cpu->gpr[3], 0u, 0u);  /* 0x80075700: 0x3C034EC4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075700u);
+#endif
+    if (_bc_800756FC) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075DD4u);
+        goto block_80075DD4;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075704u);
+        goto block_80075704;  /* not taken */
+    }
+
+block_80075704: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075704u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075704u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075704u, 12u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075704u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] | 0xEC4F;
+    PGXP_ALU(0x3463EC4Fu, cpu->gpr[3], _pgx1, 0xEC4Fu); }  /* 0x80075704: 0x3463EC4F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075704u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7356; cpu->gpr[24] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7356, 24, 0x20000000u);
+    PGXP_LOAD(0x8FB81CBCu, _pgxa, cpu->gpr[24]); }  /* 0x80075708: 0x8FB81CBC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075708u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 3510;
+    PGXP_ALU(0x24020DB6u, cpu->gpr[2], _pgx1, 0x00000DB6u); }  /* 0x8007570C: 0x24020DB6 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007570Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075710u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[24]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[24];
+    PGXP_ALU(0x00581023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075710: 0x00581023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075710u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[2] * (int64_t)(int32_t)cpu->gpr[3]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[2]));
+#endif
+    PGXP_MULDIV(0x00430018u, cpu->hi, cpu->lo, cpu->gpr[2], cpu->gpr[3]);  /* 0x80075714: 0x00430018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075714u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (int32_t)cpu->gpr[2] >> 31;
+    PGXP_ALU(0x000217C3u, cpu->gpr[2], _pgx1, 31u); }  /* 0x80075718: 0x000217C3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075718u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = cpu->hi;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00007810u, cpu->gpr[15], cpu->hi, 0u);  /* 0x8007571C: 0x00007810 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007571Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075720u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; cpu->gpr[3] = (int32_t)cpu->gpr[15] >> 2;
+    PGXP_ALU(0x000F1883u, cpu->gpr[3], _pgx1, 2u); }  /* 0x80075720: 0x000F1883 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075720u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[16] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00628023u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075724: 0x00628023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075724u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[24]; cpu->gpr[2] = ((int32_t)cpu->gpr[24] < 3511) ? 1 : 0;
+    PGXP_ALU(0x2B020DB7u, cpu->gpr[2], _pgx1, 0x0DB7u); }  /* 0x80075728: 0x2B020DB7 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075728u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_8007572C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075730u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x80075730: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075730u);
+#endif
+    if (_bc_8007572C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075744u);
+        goto block_80075744;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075734u);
+        goto block_80075734;  /* not taken */
+    }
+
+block_80075734: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075734u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075734u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075734u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075734u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 19992; cpu->gpr[2] = (int32_t)(int8_t)psx_cyc_load_byte(cpu, cpu->gpr[2] + 19992, 2, 0x4u);
+    PGXP_LOAD(0x80424E18u, _pgxa, cpu->gpr[2]); }  /* 0x80075734: 0x80424E18 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075734u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075738: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075738u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_8007573C = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075740u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 116) ? 1 : 0;
+    PGXP_ALU(0x2A020074u, cpu->gpr[2], _pgx1, 0x0074u); }  /* 0x80075740: 0x2A020074 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075740u);
+#endif
+    if (_bc_8007573C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075880u);
+        goto block_80075880;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075744u);
+        goto block_80075744;  /* not taken */
+    }
+
+block_80075744: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075744u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075744u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075744u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075744u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 6;
+    PGXP_ALU(0x24040006u, cpu->gpr[4], _pgx1, 0x00000006u); }  /* 0x80075744: 0x24040006 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075744u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 7680;
+    PGXP_ALU(0x24051E00u, cpu->gpr[5], _pgx1, 0x00001E00u); }  /* 0x80075748: 0x24051E00 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075748u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x41u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00003021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x8007574C: 0x00003021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007574Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075750u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075758u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x81u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[7] = 64;
+    PGXP_ALU(0x24070040u, cpu->gpr[7], _pgx1, 0x00000040u); }  /* 0x80075754: 0x24070040 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075754u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051B00u);
+    cpu->pc = 0x80051B00u; return;  /* CPS jal -> 0x80051B00 */
+
+block_80075758: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075758u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075758u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075758u, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075758u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x80075758: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075758u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4636; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4636, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE4u, _pgxa, cpu->gpr[2]); }  /* 0x8007575C: 0x8E82EDE4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007575Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075760u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075760: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075760u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[22]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[22] + cpu->gpr[2];
+    PGXP_ALU(0x02C21821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075764: 0x02C21821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075764u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3] + 8; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[3] + 8, 2, 0x8u);
+    PGXP_LOAD(0x8C620008u, _pgxa, cpu->gpr[2]); }  /* 0x80075768: 0x8C620008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075768u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[21] = 1;
+    PGXP_ALU(0x24150001u, cpu->gpr[21], _pgx1, 0x00000001u); }  /* 0x8007576C: 0x24150001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007576Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075770u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    int _bc_80075770 = (cpu->gpr[2] != cpu->gpr[21]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[16] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00008021u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075774: 0x00008021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075774u);
+#endif
+    if (_bc_80075770) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075780u);
+        goto block_80075780;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075778u);
+        goto block_80075778;  /* not taken */
+    }
+
+block_80075778: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075778u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075778u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075778u, 2u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075778u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 2;
+    PGXP_ALU(0x24020002u, cpu->gpr[2], _pgx1, 0x00000002u); }  /* 0x80075778: 0x24020002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075778u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3] + 8;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[3] + 8, cpu->gpr[2]);
+    PGXP_STORE(0xAC620008u, _pgxa, cpu->gpr[2]); }  /* 0x8007577C: 0xAC620008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007577Cu);
+#endif
+    /* fall through to block_80075780 */
+
+block_80075780: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075780u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075780u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075780u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075780u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 116) ? 1 : 0;
+    PGXP_ALU(0x2A020074u, cpu->gpr[2], _pgx1, 0x0074u); }  /* 0x80075784: 0x2A020074 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075784u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075880u);
+    goto block_80075880;  /* j */
+
+block_80075788: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075788u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075788u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075788u, 13u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075788u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = 0x51EB << 16;  /* 0x51EB0000 */
+    PGXP_ALU(0x3C0351EBu, cpu->gpr[3], 0u, 0u);  /* 0x80075788: 0x3C0351EB */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075788u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] | 0x851F;
+    PGXP_ALU(0x3463851Fu, cpu->gpr[3], _pgx1, 0x851Fu); }  /* 0x8007578C: 0x3463851F */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007578Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075790u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7356; cpu->gpr[24] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7356, 24, 0x20000000u);
+    PGXP_LOAD(0x8FB81CBCu, _pgxa, cpu->gpr[24]); }  /* 0x80075790: 0x8FB81CBC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075790u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 3200;
+    PGXP_ALU(0x24020C80u, cpu->gpr[2], _pgx1, 0x00000C80u); }  /* 0x80075794: 0x24020C80 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075794u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[24]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[24];
+    PGXP_ALU(0x00581023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075798: 0x00581023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075798u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[2] * (int64_t)(int32_t)cpu->gpr[3]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[2]));
+#endif
+    PGXP_MULDIV(0x00430018u, cpu->hi, cpu->lo, cpu->gpr[2], cpu->gpr[3]);  /* 0x8007579C: 0x00430018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007579Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (int32_t)cpu->gpr[2] >> 31;
+    PGXP_ALU(0x000217C3u, cpu->gpr[2], _pgx1, 31u); }  /* 0x800757A0: 0x000217C3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = cpu->hi;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00007810u, cpu->gpr[15], cpu->hi, 0u);  /* 0x800757A4: 0x00007810 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757A4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; cpu->gpr[3] = (int32_t)cpu->gpr[15] >> 3;
+    PGXP_ALU(0x000F18C3u, cpu->gpr[3], _pgx1, 3u); }  /* 0x800757A8: 0x000F18C3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757A8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[16] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00628023u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x800757AC: 0x00628023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757ACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757B0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 61) ? 1 : 0;
+    PGXP_ALU(0x2A02003Du, cpu->gpr[2], _pgx1, 0x003Du); }  /* 0x800757B0: 0x2A02003D */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757B0u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_800757B4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x800757B8: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757B8u);
+#endif
+    if (_bc_800757B4) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075DD8u);
+        cpu->pc = 0x80075DD8u; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800757BCu);
+        goto block_800757BC;  /* not taken */
+    }
+
+block_800757BC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800757BCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800757BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800757BCu, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x800757BC: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757C0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4636; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4636, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE4u, _pgxa, cpu->gpr[2]); }  /* 0x800757C0: 0x8E82EDE4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757C0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800757C4: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757C4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[22]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[22] + cpu->gpr[2];
+    PGXP_ALU(0x02C21821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x800757C8: 0x02C21821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757C8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3] + 8; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[3] + 8, 2, 0x8u);
+    PGXP_LOAD(0x8C620008u, _pgxa, cpu->gpr[2]); }  /* 0x800757CC: 0x8C620008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757D0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800757D0: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757D0u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_800757D4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[21] = 1;
+    PGXP_ALU(0x24150001u, cpu->gpr[21], _pgx1, 0x00000001u); }  /* 0x800757D8: 0x24150001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757D8u);
+#endif
+    if (_bc_800757D4) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075DD8u);
+        cpu->pc = 0x80075DD8u; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800757DCu);
+        goto block_800757DC;  /* not taken */
+    }
+
+block_800757DC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800757DCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800757DCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800757DCu, 6u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757DCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200008u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3] + 8;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[3] + 8, cpu->gpr[21]);
+    PGXP_STORE(0xAC750008u, _pgxa, cpu->gpr[21]); }  /* 0x800757DC: 0xAC750008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757DCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 38;
+    PGXP_ALU(0x24040026u, cpu->gpr[4], _pgx1, 0x00000026u); }  /* 0x800757E0: 0x24040026 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 127;
+    PGXP_ALU(0x2405007Fu, cpu->gpr[5], _pgx1, 0x0000007Fu); }  /* 0x800757E4: 0x2405007F */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757E4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x41u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[6] = 64;
+    PGXP_ALU(0x24060040u, cpu->gpr[6], _pgx1, 0x00000040u); }  /* 0x800757E8: 0x24060040 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757E8u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x800757F4u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x81u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[7] = -1;
+    PGXP_ALU(0x2407FFFFu, cpu->gpr[7], _pgx1, 0xFFFFFFFFu); }  /* 0x800757F0: 0x2407FFFF */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x8004F520u);
+    cpu->pc = 0x8004F520u; return;  /* CPS jal -> 0x8004F520 */
+
+block_800757F4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800757F4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800757F4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800757F4u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757F4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x800757F8: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757F8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DD8u);
+    cpu->pc = 0x80075DD8u; return;  /* CPS j: split */
+
+block_800757FC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800757FCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800757FCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800757FCu, 13u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800757FCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = 0x4EC4 << 16;  /* 0x4EC40000 */
+    PGXP_ALU(0x3C034EC4u, cpu->gpr[3], 0u, 0u);  /* 0x800757FC: 0x3C034EC4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800757FCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075800u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] | 0xEC4F;
+    PGXP_ALU(0x3463EC4Fu, cpu->gpr[3], _pgx1, 0xEC4Fu); }  /* 0x80075800: 0x3463EC4F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075800u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7356; cpu->gpr[24] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7356, 24, 0x20000000u);
+    PGXP_LOAD(0x8FB81CBCu, _pgxa, cpu->gpr[24]); }  /* 0x80075804: 0x8FB81CBC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075804u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 4510;
+    PGXP_ALU(0x2402119Eu, cpu->gpr[2], _pgx1, 0x0000119Eu); }  /* 0x80075808: 0x2402119E */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075808u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[24]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[24];
+    PGXP_ALU(0x00581023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x8007580C: 0x00581023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007580Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075810u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[2] * (int64_t)(int32_t)cpu->gpr[3]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[2]));
+#endif
+    PGXP_MULDIV(0x00430018u, cpu->hi, cpu->lo, cpu->gpr[2], cpu->gpr[3]);  /* 0x80075810: 0x00430018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075810u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (int32_t)cpu->gpr[2] >> 31;
+    PGXP_ALU(0x000217C3u, cpu->gpr[2], _pgx1, 31u); }  /* 0x80075814: 0x000217C3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075814u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = cpu->hi;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00007810u, cpu->gpr[15], cpu->hi, 0u);  /* 0x80075818: 0x00007810 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075818u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; cpu->gpr[3] = (int32_t)cpu->gpr[15] >> 2;
+    PGXP_ALU(0x000F1883u, cpu->gpr[3], _pgx1, 2u); }  /* 0x8007581C: 0x000F1883 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007581Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075820u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[16] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00628023u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075820: 0x00628023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075820u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[24]; cpu->gpr[2] = ((int32_t)cpu->gpr[24] < 4511) ? 1 : 0;
+    PGXP_ALU(0x2B02119Fu, cpu->gpr[2], _pgx1, 0x119Fu); }  /* 0x80075824: 0x2B02119F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075824u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075828 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x8007582C: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007582Cu);
+#endif
+    if (_bc_80075828) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075840u);
+        goto block_80075840;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075830u);
+        goto block_80075830;  /* not taken */
+    }
+
+block_80075830: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075830u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075830u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075830u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075830u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 19992; cpu->gpr[2] = (int32_t)(int8_t)psx_cyc_load_byte(cpu, cpu->gpr[2] + 19992, 2, 0x4u);
+    PGXP_LOAD(0x80424E18u, _pgxa, cpu->gpr[2]); }  /* 0x80075830: 0x80424E18 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075830u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075834: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075834u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075838 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 34) ? 1 : 0;
+    PGXP_ALU(0x2A020022u, cpu->gpr[2], _pgx1, 0x0022u); }  /* 0x8007583C: 0x2A020022 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007583Cu);
+#endif
+    if (_bc_80075838) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075880u);
+        goto block_80075880;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075840u);
+        goto block_80075840;  /* not taken */
+    }
+
+block_80075840: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075840u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075840u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075840u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075840u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 6;
+    PGXP_ALU(0x24040006u, cpu->gpr[4], _pgx1, 0x00000006u); }  /* 0x80075840: 0x24040006 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075840u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 7680;
+    PGXP_ALU(0x24051E00u, cpu->gpr[5], _pgx1, 0x00001E00u); }  /* 0x80075844: 0x24051E00 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075844u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x41u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00003021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x80075848: 0x00003021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075848u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075854u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075850u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x81u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[7] = 64;
+    PGXP_ALU(0x24070040u, cpu->gpr[7], _pgx1, 0x00000040u); }  /* 0x80075850: 0x24070040 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075850u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051B00u);
+    cpu->pc = 0x80051B00u; return;  /* CPS jal -> 0x80051B00 */
+
+block_80075854: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075854u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075854u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075854u, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075854u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x80075854: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075854u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4636; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4636, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE4u, _pgxa, cpu->gpr[2]); }  /* 0x80075858: 0x8E82EDE4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075858u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x8007585C: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007585Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075860u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[22]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[22] + cpu->gpr[2];
+    PGXP_ALU(0x02C21821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075860: 0x02C21821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075860u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3] + 8; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[3] + 8, 2, 0x8u);
+    PGXP_LOAD(0x8C620008u, _pgxa, cpu->gpr[2]); }  /* 0x80075864: 0x8C620008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075864u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[21] = 1;
+    PGXP_ALU(0x24150001u, cpu->gpr[21], _pgx1, 0x00000001u); }  /* 0x80075868: 0x24150001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075868u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    int _bc_8007586C = (cpu->gpr[2] != cpu->gpr[21]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075870u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[16] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00008021u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075870: 0x00008021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075870u);
+#endif
+    if (_bc_8007586C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x8007587Cu);
+        goto block_8007587C;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075874u);
+        goto block_80075874;  /* not taken */
+    }
+
+block_80075874: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075874u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075874u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075874u, 2u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075874u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 2;
+    PGXP_ALU(0x24020002u, cpu->gpr[2], _pgx1, 0x00000002u); }  /* 0x80075874: 0x24020002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075874u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3] + 8;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[3] + 8, cpu->gpr[2]);
+    PGXP_STORE(0xAC620008u, _pgxa, cpu->gpr[2]); }  /* 0x80075878: 0xAC620008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075878u);
+#endif
+    /* fall through to block_8007587C */
+
+block_8007587C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x8007587Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x8007587Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x8007587Cu, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x8007587Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[16]; cpu->gpr[2] = ((int32_t)cpu->gpr[16] < 34) ? 1 : 0;
+    PGXP_ALU(0x2A020022u, cpu->gpr[2], _pgx1, 0x0022u); }  /* 0x8007587C: 0x2A020022 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007587Cu);
+#endif
+    /* fall through to block_80075880 */
+
+block_80075880: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075880u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075880u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075880u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075880u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075880 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2000000u);
+#endif
+    cpu->gpr[25] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C198011u, cpu->gpr[25], 0u, 0u);  /* 0x80075884: 0x3C198011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075884u);
+#endif
+    if (_bc_80075880) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800758A8u);
+        goto block_800758A8;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075888u);
+        goto block_80075888;  /* not taken */
+    }
+
+block_80075888: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075888u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075888u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075888u, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075888u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000000u);
+#endif
+    cpu->gpr[24] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C188011u, cpu->gpr[24], 0u, 0u);  /* 0x80075888: 0x3C188011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075888u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[24] + -4636; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[24] + -4636, 2, 0x1000000u);
+    PGXP_LOAD(0x8F02EDE4u, _pgxa, cpu->gpr[2]); }  /* 0x8007588C: 0x8F02EDE4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007588Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075890u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075890: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075890u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x400004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[22]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[22] + cpu->gpr[2];
+    PGXP_ALU(0x02C21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075894: 0x02C21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075894u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 8; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 8, 2, 0x4u);
+    PGXP_LOAD(0x8C420008u, _pgxa, cpu->gpr[2]); }  /* 0x80075898: 0x8C420008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075898u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x8007589C: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007589Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_800758A0 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 6;
+    PGXP_ALU(0x24040006u, cpu->gpr[4], _pgx1, 0x00000006u); }  /* 0x800758A4: 0x24040006 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758A4u);
+#endif
+    if (_bc_800758A0) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800758C8u);
+        goto block_800758C8;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800758A8u);
+        goto block_800758A8;  /* not taken */
+    }
+
+block_800758A8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800758A8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800758A8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800758A8u, 7u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758A8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[25] + -4636; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[25] + -4636, 2, 0x2000000u);
+    PGXP_LOAD(0x8F22EDE4u, _pgxa, cpu->gpr[2]); }  /* 0x800758A8: 0x8F22EDE4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758A8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800758AC: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758ACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758B0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x400004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[22]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[22] + cpu->gpr[2];
+    PGXP_ALU(0x02C21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800758B0: 0x02C21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758B0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 8; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 8, 2, 0x4u);
+    PGXP_LOAD(0x8C420008u, _pgxa, cpu->gpr[2]); }  /* 0x800758B4: 0x8C420008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758B4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[15] = 1;
+    PGXP_ALU(0x240F0001u, cpu->gpr[15], _pgx1, 0x00000001u); }  /* 0x800758B8: 0x240F0001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758B8u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8004u);
+#endif
+    int _bc_800758BC = (cpu->gpr[2] != cpu->gpr[15]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758C0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x800758C0: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758C0u);
+#endif
+    if (_bc_800758BC) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075DD8u);
+        cpu->pc = 0x80075DD8u; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800758C4u);
+        goto block_800758C4;  /* not taken */
+    }
+
+block_800758C4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800758C4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800758C4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800758C4u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758C4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 6;
+    PGXP_ALU(0x24040006u, cpu->gpr[4], _pgx1, 0x00000006u); }  /* 0x800758C4: 0x24040006 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758C4u);
+#endif
+    /* fall through to block_800758C8 */
+
+block_800758C8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800758C8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800758C8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800758C8u, 9u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758C8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 7680;
+    PGXP_ALU(0x24051E00u, cpu->gpr[5], _pgx1, 0x00001E00u); }  /* 0x800758C8: 0x24051E00 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758C8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10041u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[16]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[16];  /* move */
+    PGXP_ALU(0x02003021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x800758CC: 0x02003021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758D0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x800758D0: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758D0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4636; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4636, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE4u, _pgxa, cpu->gpr[2]); }  /* 0x800758D4: 0x8E82EDE4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758D4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x81u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[7] = 64;
+    PGXP_ALU(0x24070040u, cpu->gpr[7], _pgx1, 0x00000040u); }  /* 0x800758D8: 0x24070040 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758D8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x400004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[22]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[22] + cpu->gpr[2];
+    PGXP_ALU(0x02C21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800758DC: 0x02C21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758DCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[21] = 1;
+    PGXP_ALU(0x24150001u, cpu->gpr[21], _pgx1, 0x00000001u); }  /* 0x800758E0: 0x24150001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758E0u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x800758ECu;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 8;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[2] + 8, cpu->gpr[21]);
+    PGXP_STORE(0xAC550008u, _pgxa, cpu->gpr[21]); }  /* 0x800758E8: 0xAC550008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758E8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051B00u);
+    cpu->pc = 0x80051B00u; return;  /* CPS jal -> 0x80051B00 */
+
+block_800758EC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800758ECu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800758ECu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800758ECu, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758ECu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x800758F0: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DD8u);
+    cpu->pc = 0x80075DD8u; return;  /* CPS j: split */
+
+block_800758F4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800758F4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800758F4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800758F4u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800758F4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x8010 << 16;  /* 0x80100000 */
+    PGXP_ALU(0x3C028010u, cpu->gpr[2], 0u, 0u);  /* 0x800758F4: 0x3C028010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758F4u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + -1952; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + -1952, 2, 0x4u);
+    PGXP_LOAD(0x8C42F860u, _pgxa, cpu->gpr[2]); }  /* 0x800758F8: 0x8C42F860 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758F8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800758FC: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800758FCu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075900u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075900 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000010u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[4] = cpu->gpr[29] + 280;
+    PGXP_ALU(0x27A40118u, cpu->gpr[4], _pgx1, 0x00000118u); }  /* 0x80075904: 0x27A40118 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075904u);
+#endif
+    if (_bc_80075900) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80077CCCu);
+        cpu->pc = 0x80077CCCu; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075908u);
+        goto block_80075908;  /* not taken */
+    }
+
+block_80075908: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075908u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075908u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075908u, 12u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075908u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 24; cpu->gpr[2] = psx_cyc_load_half(cpu, cpu->gpr[30] + 24, 2, 0x40000000u);
+    PGXP_LOAD(0x97C20018u, _pgxa, cpu->gpr[2]); }  /* 0x80075908: 0x97C20018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075908u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000020u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[5] = cpu->gpr[29] + 24;
+    PGXP_ALU(0x27A50018u, cpu->gpr[5], _pgx1, 0x00000018u); }  /* 0x8007590C: 0x27A50018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007590Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075910u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 52;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 52, cpu->gpr[0]);
+    PGXP_STORE(0xAFA00034u, _pgxa, cpu->gpr[0]); }  /* 0x80075910: 0xAFA00034 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075910u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 48;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 48, cpu->gpr[0]);
+    PGXP_STORE(0xAFA00030u, _pgxa, cpu->gpr[0]); }  /* 0x80075914: 0xAFA00030 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075914u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 44;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 44, cpu->gpr[0]);
+    PGXP_STORE(0xAFA0002Cu, _pgxa, cpu->gpr[0]); }  /* 0x80075918: 0xAFA0002C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075918u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 280;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 280, (uint16_t)cpu->gpr[2]);
+    PGXP_STORE(0xA7A20118u, _pgxa, cpu->gpr[2]); }  /* 0x8007591C: 0xA7A20118 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007591Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075920u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 28; cpu->gpr[2] = psx_cyc_load_half(cpu, cpu->gpr[30] + 28, 2, 0x40000000u);
+    PGXP_LOAD(0x97C2001Cu, _pgxa, cpu->gpr[2]); }  /* 0x80075920: 0x97C2001C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075920u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 32; cpu->gpr[3] = psx_cyc_load_half(cpu, cpu->gpr[30] + 32, 3, 0x40000000u);
+    PGXP_LOAD(0x97C30020u, _pgxa, cpu->gpr[3]); }  /* 0x80075924: 0x97C30020 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075924u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[0] - cpu->gpr[2];
+    PGXP_ALU(0x00021023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075928: 0x00021023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075928u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 282;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 282, (uint16_t)cpu->gpr[2]);
+    PGXP_STORE(0xA7A2011Au, _pgxa, cpu->gpr[2]); }  /* 0x8007592C: 0xA7A2011A */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007592Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075930u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075938u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000008u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 284;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 284, (uint16_t)cpu->gpr[3]);
+    PGXP_STORE(0xA7A3011Cu, _pgxa, cpu->gpr[3]); }  /* 0x80075934: 0xA7A3011C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075934u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80091A20u);
+    cpu->pc = 0x80091A20u; return;  /* CPS jal -> 0x80091A20 */
+
+block_80075938: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075938u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075938u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075938u, 24u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075938u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[2] = cpu->gpr[29] + 24;
+    PGXP_ALU(0x27A20018u, cpu->gpr[2], _pgx1, 0x00000018u); }  /* 0x80075938: 0x27A20018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075938u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2]; cpu->gpr[12] = psx_cyc_load_word(cpu, cpu->gpr[2], 12, 0x4u);
+    PGXP_LOAD(0x8C4C0000u, _pgxa, cpu->gpr[12]); }  /* 0x8007593C: 0x8C4C0000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007593Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075940u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 4; cpu->gpr[13] = psx_cyc_load_word(cpu, cpu->gpr[2] + 4, 13, 0x4u);
+    PGXP_LOAD(0x8C4D0004u, _pgxa, cpu->gpr[13]); }  /* 0x80075940: 0x8C4D0004 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075940u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[0] = cpu->gpr[12];  /* ctc2 */
+    PGXP_COP2(0x48CC0000u, cpu->gpr[12], 0u);  /* 0x80075944: 0x48CC0000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075944u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[1] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD0800u, cpu->gpr[13], 0u);  /* 0x80075948: 0x48CD0800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075948u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 8; cpu->gpr[12] = psx_cyc_load_word(cpu, cpu->gpr[2] + 8, 12, 0x4u);
+    PGXP_LOAD(0x8C4C0008u, _pgxa, cpu->gpr[12]); }  /* 0x8007594C: 0x8C4C0008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007594Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075950u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 12; cpu->gpr[13] = psx_cyc_load_word(cpu, cpu->gpr[2] + 12, 13, 0x4u);
+    PGXP_LOAD(0x8C4D000Cu, _pgxa, cpu->gpr[13]); }  /* 0x80075950: 0x8C4D000C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075950u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 16; cpu->gpr[14] = psx_cyc_load_word(cpu, cpu->gpr[2] + 16, 14, 0x4u);
+    PGXP_LOAD(0x8C4E0010u, _pgxa, cpu->gpr[14]); }  /* 0x80075954: 0x8C4E0010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075954u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[2] = cpu->gpr[12];  /* ctc2 */
+    PGXP_COP2(0x48CC1000u, cpu->gpr[12], 0u);  /* 0x80075958: 0x48CC1000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075958u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[3] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD1800u, cpu->gpr[13], 0u);  /* 0x8007595C: 0x48CD1800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007595Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075960u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    gte_write_ctrl(cpu, 4, cpu->gpr[14]);  /* ctc2 */
+    PGXP_COP2(0x48CE2000u, cpu->gpr[14], 0u);  /* 0x80075960: 0x48CE2000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075960u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 20; cpu->gpr[12] = psx_cyc_load_word(cpu, cpu->gpr[2] + 20, 12, 0x4u);
+    PGXP_LOAD(0x8C4C0014u, _pgxa, cpu->gpr[12]); }  /* 0x80075964: 0x8C4C0014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075964u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 24; cpu->gpr[13] = psx_cyc_load_word(cpu, cpu->gpr[2] + 24, 13, 0x4u);
+    PGXP_LOAD(0x8C4D0018u, _pgxa, cpu->gpr[13]); }  /* 0x80075968: 0x8C4D0018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075968u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[5] = cpu->gpr[12];  /* ctc2 */
+    PGXP_COP2(0x48CC2800u, cpu->gpr[12], 0u);  /* 0x8007596C: 0x48CC2800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007596Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075970u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 28; cpu->gpr[14] = psx_cyc_load_word(cpu, cpu->gpr[2] + 28, 14, 0x4u);
+    PGXP_LOAD(0x8C4E001Cu, _pgxa, cpu->gpr[14]); }  /* 0x80075970: 0x8C4E001C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075970u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[6] = cpu->gpr[13];  /* ctc2 */
+    PGXP_COP2(0x48CD3000u, cpu->gpr[13], 0u);  /* 0x80075974: 0x48CD3000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075974u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_gte_stall(cpu);
+#endif
+    cpu->gte_ctrl[7] = cpu->gpr[14];  /* ctc2 */
+    PGXP_COP2(0x48CE3800u, cpu->gpr[14], 0u);  /* 0x80075978: 0x48CE3800 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075978u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000000u);
+#endif
+    cpu->gpr[24] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C18800Fu, cpu->gpr[24], 0u, 0u);  /* 0x8007597C: 0x3C18800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007597Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075980u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[24] + 15044; cpu->gpr[2] = psx_cyc_load_half(cpu, cpu->gpr[24] + 15044, 2, 0x1000000u);
+    PGXP_LOAD(0x97023AC4u, _pgxa, cpu->gpr[2]); }  /* 0x80075980: 0x97023AC4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075980u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075984: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075984u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + -2;
+    PGXP_ALU(0x2442FFFEu, cpu->gpr[2], _pgx1, 0xFFFFFFFEu); }  /* 0x80075988: 0x2442FFFE */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075988u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)2) ? 1 : 0;
+    PGXP_ALU(0x2C420002u, cpu->gpr[2], _pgx1, 0x0002u); }  /* 0x8007598C: 0x2C420002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007598Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075990u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075990 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x0002 << 16;  /* 0x00020000 */
+    PGXP_ALU(0x3C020002u, cpu->gpr[2], 0u, 0u);  /* 0x80075994: 0x3C020002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075994u);
+#endif
+    if (_bc_80075990) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800759B4u);
+        goto block_800759B4;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075998u);
+        goto block_80075998;  /* not taken */
+    }
+
+block_80075998: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075998u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075998u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075998u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075998u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[30] + 8, 3, 0x40000000u);
+    PGXP_LOAD(0x8FC30008u, _pgxa, cpu->gpr[3]); }  /* 0x80075998: 0x8FC30008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075998u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] | 0x1EF7;
+    PGXP_ALU(0x34421EF7u, cpu->gpr[2], _pgx1, 0x1EF7u); }  /* 0x8007599C: 0x34421EF7 */
+#ifdef PSX_COSIM
+    cosim_instr(0x8007599Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759A0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = ((int32_t)cpu->gpr[2] < (int32_t)cpu->gpr[3]) ? 1 : 0;
+    PGXP_ALU(0x0043102Au, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800759A0: 0x0043102A */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759A0u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_800759A4 = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 2;
+    PGXP_ALU(0x24020002u, cpu->gpr[2], _pgx1, 0x00000002u); }  /* 0x800759A8: 0x24020002 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759A8u);
+#endif
+    if (_bc_800759A4) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800759B4u);
+        goto block_800759B4;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x800759ACu);
+        goto block_800759AC;  /* not taken */
+    }
+
+block_800759AC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800759ACu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800759ACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800759ACu, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759ACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759B0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 44;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 44, cpu->gpr[2]);
+    PGXP_STORE(0xAE62002Cu, _pgxa, cpu->gpr[2]); }  /* 0x800759B0: 0xAE62002C */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759B0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x800759B8u);
+    goto block_800759B8;  /* j */
+
+block_800759B4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800759B4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800759B4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800759B4u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759B4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 44;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 44, cpu->gpr[0]);
+    PGXP_STORE(0xAE60002Cu, _pgxa, cpu->gpr[0]); }  /* 0x800759B4: 0xAE60002C */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759B4u);
+#endif
+    /* fall through to block_800759B8 */
+
+block_800759B8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x800759B8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x800759B8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x800759B8u, 32u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759B8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x2000000u);
+#endif
+    cpu->gpr[25] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C198011u, cpu->gpr[25], 0u, 0u);  /* 0x800759B8: 0x3C198011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759B8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    cpu->gpr[4] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C048011u, cpu->gpr[4], 0u, 0u);  /* 0x800759BC: 0x3C048011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759BCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759C0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[25] + -4640; cpu->gpr[5] = psx_cyc_load_word(cpu, cpu->gpr[25] + -4640, 5, 0x2000000u);
+    PGXP_LOAD(0x8F25EDE0u, _pgxa, cpu->gpr[5]); }  /* 0x800759C0: 0x8F25EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759C0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7360; cpu->gpr[15] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7360, 15, 0x20000000u);
+    PGXP_LOAD(0x8FAF1CC0u, _pgxa, cpu->gpr[15]); }  /* 0x800759C4: 0x8FAF1CC0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759C4u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 44; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[19] + 44, 2, 0x80000u);
+    PGXP_LOAD(0x8E62002Cu, _pgxa, cpu->gpr[2]); }  /* 0x800759C8: 0x8E62002C */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759C8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8020u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[5] = cpu->gpr[15] + cpu->gpr[5];
+    PGXP_ALU(0x01E52821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x800759CC: 0x01E52821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759CCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759D0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[5] + 36; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[5] + 36, 3, 0x20u);
+    PGXP_LOAD(0x8CA30024u, _pgxa, cpu->gpr[3]); }  /* 0x800759D0: 0x8CA30024 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759D0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[4] + -4644; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[4] + -4644, 4, 0x10u);
+    PGXP_LOAD(0x8C84EDDCu, _pgxa, cpu->gpr[4]); }  /* 0x800759D4: 0x8C84EDDC */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759D4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] + cpu->gpr[2];
+    PGXP_ALU(0x00621821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x800759D8: 0x00621821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759D8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] << 3;
+    PGXP_ALU(0x000310C0u, cpu->gpr[2], _pgx1, 3u); }  /* 0x800759DC: 0x000310C0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759DCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[3];
+    PGXP_ALU(0x00431021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800759E0: 0x00431021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759E0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
+    PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x800759E4: 0x00021080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759E4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x14u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[4];
+    PGXP_ALU(0x00441021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x800759E8: 0x00441021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759E8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[30] + 8, 3, 0x40000000u);
+    PGXP_LOAD(0x8FC30008u, _pgxa, cpu->gpr[3]); }  /* 0x800759EC: 0x8FC30008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759ECu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x800759F0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 12; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 12, 2, 0x4u);
+    PGXP_LOAD(0x8C42000Cu, _pgxa, cpu->gpr[2]); }  /* 0x800759F0: 0x8C42000C */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759F0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x800759F4: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759F4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00621823u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x800759F8: 0x00621823 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759F8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80008u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 20;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 20, cpu->gpr[3]);
+    PGXP_STORE(0xAE630014u, _pgxa, cpu->gpr[3]); }  /* 0x800759FC: 0xAE630014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x800759FCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A00u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[5] + 36; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[5] + 36, 3, 0x20u);
+    PGXP_LOAD(0x8CA30024u, _pgxa, cpu->gpr[3]); }  /* 0x80075A00: 0x8CA30024 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A00u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 44; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[19] + 44, 2, 0x80000u);
+    PGXP_LOAD(0x8E62002Cu, _pgxa, cpu->gpr[2]); }  /* 0x80075A04: 0x8E62002C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A04u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075A08: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A08u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] + cpu->gpr[2];
+    PGXP_ALU(0x00621821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075A0C: 0x00621821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A0Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] << 3;
+    PGXP_ALU(0x000310C0u, cpu->gpr[2], _pgx1, 3u); }  /* 0x80075A10: 0x000310C0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[3];
+    PGXP_ALU(0x00431021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075A14: 0x00431021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A14u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
+    PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80075A18: 0x00021080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A18u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x14u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[4];
+    PGXP_ALU(0x00441021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075A1C: 0x00441021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A1Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A20u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[30] + 8, 3, 0x40000000u);
+    PGXP_LOAD(0x8FC30008u, _pgxa, cpu->gpr[3]); }  /* 0x80075A20: 0x8FC30008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A20u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 48; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 48, 2, 0x4u);
+    PGXP_LOAD(0x8C420030u, _pgxa, cpu->gpr[2]); }  /* 0x80075A24: 0x8C420030 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A24u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 20; cpu->gpr[5] = psx_cyc_load_word(cpu, cpu->gpr[19] + 20, 5, 0x80000u);
+    PGXP_LOAD(0x8E650014u, _pgxa, cpu->gpr[5]); }  /* 0x80075A28: 0x8E650014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A28u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[4] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00622023u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075A2C: 0x00622023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A2Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    int _bc_80075A30 = ((int32_t)cpu->gpr[5] <= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80010u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 24;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 24, cpu->gpr[4]);
+    PGXP_STORE(0xAE640018u, _pgxa, cpu->gpr[4]); }  /* 0x80075A34: 0xAE640018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A34u);
+#endif
+    if (_bc_80075A30) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075A60u);
+        goto block_80075A60;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075A38u);
+        goto block_80075A38;  /* not taken */
+    }
+
+block_80075A38: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075A38u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075A38u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075A38u, 10u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A38u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    cpu->gpr[4] = 0x51EB << 16;  /* 0x51EB0000 */
+    PGXP_ALU(0x3C0451EBu, cpu->gpr[4], 0u, 0u);  /* 0x80075A38: 0x3C0451EB */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A38u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; cpu->gpr[4] = cpu->gpr[4] | 0x851F;
+    PGXP_ALU(0x3484851Fu, cpu->gpr[4], _pgx1, 0x851Fu); }  /* 0x80075A3C: 0x3484851F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A3Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x25u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[2] = cpu->gpr[5];  /* move */
+    PGXP_ALU(0x00A01021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075A40: 0x00A01021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x9u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[3] = 10800;
+    PGXP_ALU(0x24032A30u, cpu->gpr[3], _pgx1, 0x00002A30u); }  /* 0x80075A44: 0x24032A30 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A44u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00621823u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075A48: 0x00621823 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A48u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x18u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[3] * (int64_t)(int32_t)cpu->gpr[4]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[3]));
+#endif
+    PGXP_MULDIV(0x00640018u, cpu->hi, cpu->lo, cpu->gpr[3], cpu->gpr[4]);  /* 0x80075A4C: 0x00640018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A4Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[2] = (int32_t)cpu->gpr[5] >> 4;
+    PGXP_ALU(0x00051103u, cpu->gpr[2], _pgx1, 4u); }  /* 0x80075A50: 0x00051103 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 456;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 456, cpu->gpr[2]);
+    PGXP_STORE(0xAFA201C8u, _pgxa, cpu->gpr[2]); }  /* 0x80075A54: 0xAFA201C8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A54u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = (int32_t)cpu->gpr[3] >> 31;
+    PGXP_ALU(0x00031FC3u, cpu->gpr[3], _pgx1, 31u); }  /* 0x80075A5C: 0x00031FC3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A5Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075A88u);
+    goto block_80075A88;  /* j */
+
+block_80075A60: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075A60u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075A60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075A60u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    int _bc_80075A60 = ((int32_t)cpu->gpr[4] >= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[16] = 108;
+    PGXP_ALU(0x2410006Cu, cpu->gpr[16], _pgx1, 0x0000006Cu); }  /* 0x80075A64: 0x2410006C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A64u);
+#endif
+    if (_bc_80075A60) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075A98u);
+        goto block_80075A98;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075A68u);
+        goto block_80075A68;  /* not taken */
+    }
+
+block_80075A68: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075A68u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075A68u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075A68u, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A68u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x51EB << 16;  /* 0x51EB0000 */
+    PGXP_ALU(0x3C0251EBu, cpu->gpr[2], 0u, 0u);  /* 0x80075A68: 0x3C0251EB */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A68u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 24; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[19] + 24, 3, 0x80000u);
+    PGXP_LOAD(0x8E630018u, _pgxa, cpu->gpr[3]); }  /* 0x80075A6C: 0x8E630018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A6Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] | 0x851F;
+    PGXP_ALU(0x3442851Fu, cpu->gpr[2], _pgx1, 0x851Fu); }  /* 0x80075A70: 0x3442851F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] + 10800;
+    PGXP_ALU(0x24632A30u, cpu->gpr[3], _pgx1, 0x00002A30u); }  /* 0x80075A74: 0x24632A30 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A74u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[3] * (int64_t)(int32_t)cpu->gpr[2]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[3]));
+#endif
+    PGXP_MULDIV(0x00620018u, cpu->hi, cpu->lo, cpu->gpr[3], cpu->gpr[2]);  /* 0x80075A78: 0x00620018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A78u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x14u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; cpu->gpr[2] = (int32_t)cpu->gpr[4] >> 4;
+    PGXP_ALU(0x00041103u, cpu->gpr[2], _pgx1, 4u); }  /* 0x80075A7C: 0x00041103 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A7Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = (int32_t)cpu->gpr[3] >> 31;
+    PGXP_ALU(0x00031FC3u, cpu->gpr[3], _pgx1, 31u); }  /* 0x80075A80: 0x00031FC3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 456;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 456, cpu->gpr[2]);
+    PGXP_STORE(0xAFA201C8u, _pgxa, cpu->gpr[2]); }  /* 0x80075A84: 0xAFA201C8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A84u);
+#endif
+    /* fall through to block_80075A88 */
+
+block_80075A88: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075A88u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075A88u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075A88u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A88u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = cpu->hi;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00007810u, cpu->gpr[15], cpu->hi, 0u);  /* 0x80075A88: 0x00007810 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A88u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; cpu->gpr[2] = (int32_t)cpu->gpr[15] >> 5;
+    PGXP_ALU(0x000F1143u, cpu->gpr[2], _pgx1, 5u); }  /* 0x80075A8C: 0x000F1143 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A8Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[16] = cpu->gpr[2] - cpu->gpr[3];
+    PGXP_ALU(0x00438023u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075A94: 0x00438023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A94u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075A9Cu);
+    goto block_80075A9C;  /* j */
+
+block_80075A98: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075A98u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075A98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075A98u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 456;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 456, cpu->gpr[0]);
+    PGXP_STORE(0xAFA001C8u, _pgxa, cpu->gpr[0]); }  /* 0x80075A98: 0xAFA001C8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075A98u);
+#endif
+    /* fall through to block_80075A9C */
+
+block_80075A9C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075A9Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075A9Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075A9Cu, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075A9Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10000u);
+#endif
+    int _bc_80075A9C = ((int32_t)cpu->gpr[16] >= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100000u);
+#endif
+    cpu->gpr[20] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C148011u, cpu->gpr[20], 0u, 0u);  /* 0x80075AA0: 0x3C148011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AA0u);
+#endif
+    if (_bc_80075A9C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075AA8u);
+        goto block_80075AA8;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075AA4u);
+        goto block_80075AA4;  /* not taken */
+    }
+
+block_80075AA4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075AA4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075AA4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075AA4u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AA4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[16] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00008021u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075AA4: 0x00008021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AA4u);
+#endif
+    /* fall through to block_80075AA8 */
+
+block_80075AA8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075AA8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075AA8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075AA8u, 28u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AA8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[20] + -4640; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[20] + -4640, 2, 0x100000u);
+    PGXP_LOAD(0x8E82EDE0u, _pgxa, cpu->gpr[2]); }  /* 0x80075AA8: 0x8E82EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AA8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7360; cpu->gpr[21] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7360, 21, 0x20000000u);
+    PGXP_LOAD(0x8FB51CC0u, _pgxa, cpu->gpr[21]); }  /* 0x80075AAC: 0x8FB51CC0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000010u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[4] = cpu->gpr[29] + 288;
+    PGXP_ALU(0x27A40120u, cpu->gpr[4], _pgx1, 0x00000120u); }  /* 0x80075AB0: 0x27A40120 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000001u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 460;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 460, cpu->gpr[0]);
+    PGXP_STORE(0xAFA001CCu, _pgxa, cpu->gpr[0]); }  /* 0x80075AB4: 0xAFA001CC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AB4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x200004u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[21]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[21] + cpu->gpr[2];
+    PGXP_ALU(0x02A21021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075AB8: 0x02A21021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AB8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 36; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[2] + 36, 3, 0x4u);
+    PGXP_LOAD(0x8C430024u, _pgxa, cpu->gpr[3]); }  /* 0x80075ABC: 0x8C430024 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075ABCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AC0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 44; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[19] + 44, 2, 0x80000u);
+    PGXP_LOAD(0x8E62002Cu, _pgxa, cpu->gpr[2]); }  /* 0x80075AC0: 0x8E62002C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    cpu->gpr[5] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C058011u, cpu->gpr[5], 0u, 0u);  /* 0x80075AC4: 0x3C058011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AC4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] + cpu->gpr[2];
+    PGXP_ALU(0x00621821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075AC8: 0x00621821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AC8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] << 3;
+    PGXP_ALU(0x000310C0u, cpu->gpr[2], _pgx1, 3u); }  /* 0x80075ACC: 0x000310C0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075ACCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[3];
+    PGXP_ALU(0x00431021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075AD0: 0x00431021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AD0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[5] + -4644; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[5] + -4644, 3, 0x20u);
+    PGXP_LOAD(0x8CA3EDDCu, _pgxa, cpu->gpr[3]); }  /* 0x80075AD4: 0x8CA3EDDC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AD4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
+    PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80075AD8: 0x00021080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AD8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[3];
+    PGXP_ALU(0x00431021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075ADC: 0x00431021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075ADCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AE0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 16; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[30] + 16, 3, 0x40000000u);
+    PGXP_LOAD(0x8FC30010u, _pgxa, cpu->gpr[3]); }  /* 0x80075AE0: 0x8FC30010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AE0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 20; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 20, 2, 0x4u);
+    PGXP_LOAD(0x8C420014u, _pgxa, cpu->gpr[2]); }  /* 0x80075AE4: 0x8C420014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AE4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000040u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[6] = cpu->gpr[29] + 7352;
+    PGXP_ALU(0x27A61CB8u, cpu->gpr[6], _pgx1, 0x00001CB8u); }  /* 0x80075AE8: 0x27A61CB8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AE8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00621823u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075AEC: 0x00621823 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AECu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075AF0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 456; cpu->gpr[2] = psx_cyc_load_half(cpu, cpu->gpr[29] + 456, 2, 0x20000000u);
+    PGXP_LOAD(0x97A201C8u, _pgxa, cpu->gpr[2]); }  /* 0x80075AF0: 0x97A201C8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AF0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = (int32_t)cpu->gpr[3] >> 4;
+    PGXP_ALU(0x00031903u, cpu->gpr[3], _pgx1, 4u); }  /* 0x80075AF4: 0x00031903 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AF4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000008u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 464;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[29] + 464, cpu->gpr[3]);
+    PGXP_STORE(0xAFA301D0u, _pgxa, cpu->gpr[3]); }  /* 0x80075AF8: 0xAFA301D0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AF8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 460; cpu->gpr[3] = psx_cyc_load_half(cpu, cpu->gpr[29] + 460, 3, 0x20000000u);
+    PGXP_LOAD(0x97A301CCu, _pgxa, cpu->gpr[3]); }  /* 0x80075AFC: 0x97A301CC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075AFCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B00u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 464; cpu->gpr[7] = psx_cyc_load_half(cpu, cpu->gpr[29] + 464, 7, 0x20000000u);
+    PGXP_LOAD(0x97A701D0u, _pgxa, cpu->gpr[7]); }  /* 0x80075B00: 0x97A701D0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B00u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000020u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[29]; cpu->gpr[5] = cpu->gpr[29] + 456;
+    PGXP_ALU(0x27A501C8u, cpu->gpr[5], _pgx1, 0x000001C8u); }  /* 0x80075B04: 0x27A501C8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B04u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 288;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 288, (uint16_t)cpu->gpr[2]);
+    PGXP_STORE(0xA7A20120u, _pgxa, cpu->gpr[2]); }  /* 0x80075B08: 0xA7A20120 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B08u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000008u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 290;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 290, (uint16_t)cpu->gpr[3]);
+    PGXP_STORE(0xA7A30122u, _pgxa, cpu->gpr[3]); }  /* 0x80075B0C: 0xA7A30122 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B0Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075B18u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20000080u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 292;  psx_store_cycle_barrier(); psx_dctx_sh(cpu, cpu->gpr[29] + 292, (uint16_t)cpu->gpr[7]);
+    PGXP_STORE(0xA7A70124u, _pgxa, cpu->gpr[7]); }  /* 0x80075B14: 0xA7A70124 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B14u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x800918E0u);
+    cpu->pc = 0x800918E0u; return;  /* CPS jal -> 0x800918E0 */
+
+block_80075B18: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B18u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B18u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B18u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B18u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 464; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[29] + 464, 4, 0x20000000u);
+    PGXP_LOAD(0x8FA401D0u, _pgxa, cpu->gpr[4]); }  /* 0x80075B18: 0x8FA401D0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B18u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 456; cpu->gpr[5] = psx_cyc_load_word(cpu, cpu->gpr[29] + 456, 5, 0x20000000u);
+    PGXP_LOAD(0x8FA501C8u, _pgxa, cpu->gpr[5]); }  /* 0x80075B1C: 0x8FA501C8 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B1Cu);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075B28u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[4] = cpu->gpr[0] - cpu->gpr[4];
+    PGXP_ALU(0x00042023u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075B24: 0x00042023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B24u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x800926B0u);
+    cpu->pc = 0x800926B0u; return;  /* CPS jal -> 0x800926B0 */
+
+block_80075B28: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B28u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B28u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B28u, 3u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B28u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x15u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[2];  /* move */
+    PGXP_ALU(0x00402021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075B28: 0x00402021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B28u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075B34u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80010u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 28;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 28, cpu->gpr[4]);
+    PGXP_STORE(0xAE64001Cu, _pgxa, cpu->gpr[4]); }  /* 0x80075B30: 0xAE64001C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x800906D0u);
+    cpu->pc = 0x800906D0u; return;  /* CPS jal -> 0x800906D0 */
+
+block_80075B34: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B34u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B34u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B34u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B34u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    int _bc_80075B34 = ((int32_t)cpu->gpr[2] >= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075B38: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B38u);
+#endif
+    if (_bc_80075B34) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075B40u);
+        goto block_80075B40;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075B3Cu);
+        goto block_80075B3C;  /* not taken */
+    }
+
+block_80075B3C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B3Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B3Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B3Cu, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B3Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + 63;
+    PGXP_ALU(0x2442003Fu, cpu->gpr[2], _pgx1, 0x0000003Fu); }  /* 0x80075B3C: 0x2442003F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B3Cu);
+#endif
+    /* fall through to block_80075B40 */
+
+block_80075B40: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B40u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B40u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (int32_t)cpu->gpr[2] >> 6;
+    PGXP_ALU(0x00021183u, cpu->gpr[2], _pgx1, 6u); }  /* 0x80075B40: 0x00021183 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[5] = cpu->gpr[2] + 64;
+    PGXP_ALU(0x24450040u, cpu->gpr[5], _pgx1, 0x00000040u); }  /* 0x80075B44: 0x24450040 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B44u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[2] = ((int32_t)cpu->gpr[5] < 128) ? 1 : 0;
+    PGXP_ALU(0x28A20080u, cpu->gpr[2], _pgx1, 0x0080u); }  /* 0x80075B48: 0x28A20080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B48u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075B4C = (cpu->gpr[2] != cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x80075B50: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B50u);
+#endif
+    if (_bc_80075B4C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075B58u);
+        goto block_80075B58;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075B54u);
+        goto block_80075B54;  /* not taken */
+    }
+
+block_80075B54: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B54u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B54u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B54u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B54u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 127;
+    PGXP_ALU(0x2405007Fu, cpu->gpr[5], _pgx1, 0x0000007Fu); }  /* 0x80075B54: 0x2405007F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B54u);
+#endif
+    /* fall through to block_80075B58 */
+
+block_80075B58: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B58u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B58u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B58u, 6u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B58u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 20212; cpu->gpr[2] = psx_cyc_load_half(cpu, cpu->gpr[2] + 20212, 2, 0x4u);
+    PGXP_LOAD(0x94424EF4u, _pgxa, cpu->gpr[2]); }  /* 0x80075B58: 0x94424EF4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B58u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075B5C: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B5Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + -2;
+    PGXP_ALU(0x2442FFFEu, cpu->gpr[2], _pgx1, 0xFFFFFFFEu); }  /* 0x80075B60: 0x2442FFFE */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)3) ? 1 : 0;
+    PGXP_ALU(0x2C420003u, cpu->gpr[2], _pgx1, 0x0003u); }  /* 0x80075B64: 0x2C420003 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B64u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075B68 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C028011u, cpu->gpr[2], 0u, 0u);  /* 0x80075B6C: 0x3C028011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B6Cu);
+#endif
+    if (_bc_80075B68) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075BC0u);
+        goto block_80075BC0;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075B70u);
+        goto block_80075B70;  /* not taken */
+    }
+
+block_80075B70: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B70u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B70u, 9u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + -5768;
+    PGXP_ALU(0x2442E978u, cpu->gpr[2], _pgx1, 0xFFFFE978u); }  /* 0x80075B70: 0x2442E978 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x800008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[23]; cpu->gpr[3] = cpu->gpr[23] << 2;
+    PGXP_ALU(0x00171880u, cpu->gpr[3], _pgx1, 2u); }  /* 0x80075B74: 0x00171880 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B74u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] + cpu->gpr[2];
+    PGXP_ALU(0x00621821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075B78: 0x00621821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B78u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x80075B7C: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B7Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B80u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3]; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[3], 3, 0x8u);
+    PGXP_LOAD(0x8C630000u, _pgxa, cpu->gpr[3]); }  /* 0x80075B80: 0x8C630000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B80u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 12180; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 12180, 2, 0x4u);
+    PGXP_LOAD(0x8C422F94u, _pgxa, cpu->gpr[2]); }  /* 0x80075B84: 0x8C422F94 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B84u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075B88: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B88u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    int _bc_80075B8C = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10020u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[5]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02050018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[5]);  /* 0x80075B90: 0x02050018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B90u);
+#endif
+    if (_bc_80075B8C) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075D20u);
+        goto block_80075D20;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075B94u);
+        goto block_80075B94;  /* not taken */
+    }
+
+block_80075B94: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075B94u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075B94u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075B94u, 11u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075B94u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00001812u, cpu->gpr[3], cpu->lo, 0u);  /* 0x80075B94: 0x00001812 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B94u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 128;
+    PGXP_ALU(0x24020080u, cpu->gpr[2], _pgx1, 0x00000080u); }  /* 0x80075B98: 0x24020080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[5];
+    PGXP_ALU(0x00451023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075B9C: 0x00451023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075B9Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075BA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[2]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02020018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[2]);  /* 0x80075BA0: 0x02020018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 1;
+    PGXP_ALU(0x24040001u, cpu->gpr[4], _pgx1, 0x00000001u); }  /* 0x80075BA4: 0x24040001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BA4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x28u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[5] = cpu->gpr[3] << 9;
+    PGXP_ALU(0x00032A40u, cpu->gpr[5], _pgx1, 9u); }  /* 0x80075BA8: 0x00032A40 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BA8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[5] = (int32_t)cpu->gpr[5] >> 16;
+    PGXP_ALU(0x00052C03u, cpu->gpr[5], _pgx1, 16u); }  /* 0x80075BAC: 0x00052C03 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075BB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100u);
+#endif
+    cpu->gpr[8] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00004012u, cpu->gpr[8], cpu->lo, 0u);  /* 0x80075BB0: 0x00004012 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x140u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[8]; cpu->gpr[6] = cpu->gpr[8] << 9;
+    PGXP_ALU(0x00083240u, cpu->gpr[6], _pgx1, 9u); }  /* 0x80075BB4: 0x00083240 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BB4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[6] = (int32_t)cpu->gpr[6] >> 16;
+    PGXP_ALU(0x00063403u, cpu->gpr[6], _pgx1, 16u); }  /* 0x80075BBC: 0x00063403 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BBCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075D58u);
+    goto block_80075D58;  /* j */
+
+block_80075BC0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075BC0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075BC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075BC0u, 12u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075BC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10020u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[5]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02050018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[5]);  /* 0x80075BC0: 0x02050018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00001812u, cpu->gpr[3], cpu->lo, 0u);  /* 0x80075BC4: 0x00001812 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BC4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 128;
+    PGXP_ALU(0x24020080u, cpu->gpr[2], _pgx1, 0x00000080u); }  /* 0x80075BC8: 0x24020080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BC8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[5];
+    PGXP_ALU(0x00451023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075BCC: 0x00451023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BCCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075BD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[2]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02020018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[2]);  /* 0x80075BD0: 0x02020018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075BD4: 0x00002021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BD4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x28u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[5] = cpu->gpr[3] << 9;
+    PGXP_ALU(0x00032A40u, cpu->gpr[5], _pgx1, 9u); }  /* 0x80075BD8: 0x00032A40 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BD8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[5] = (int32_t)cpu->gpr[5] >> 16;
+    PGXP_ALU(0x00052C03u, cpu->gpr[5], _pgx1, 16u); }  /* 0x80075BDC: 0x00052C03 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BDCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075BE0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100u);
+#endif
+    cpu->gpr[8] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00004012u, cpu->gpr[8], cpu->lo, 0u);  /* 0x80075BE0: 0x00004012 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BE0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x140u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[8]; cpu->gpr[6] = cpu->gpr[8] << 9;
+    PGXP_ALU(0x00083240u, cpu->gpr[6], _pgx1, 9u); }  /* 0x80075BE4: 0x00083240 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BE4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[6] = (int32_t)cpu->gpr[6] >> 16;
+    PGXP_ALU(0x00063403u, cpu->gpr[6], _pgx1, 16u); }  /* 0x80075BEC: 0x00063403 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BECu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DCCu);
+    goto block_80075DCC;  /* j */
+
+block_80075BF0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075BF0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075BF0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075BF0u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075BF0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x8010 << 16;  /* 0x80100000 */
+    PGXP_ALU(0x3C028010u, cpu->gpr[2], 0u, 0u);  /* 0x80075BF0: 0x3C028010 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BF0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + -1952; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + -1952, 2, 0x4u);
+    PGXP_LOAD(0x8C42F860u, _pgxa, cpu->gpr[2]); }  /* 0x80075BF4: 0x8C42F860 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BF4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075BF8: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075BF8u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075BFC = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C00u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x80075C00: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C00u);
+#endif
+    if (_bc_80075BFC) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80077CCCu);
+        cpu->pc = 0x80077CCCu; return;  /* CPS taken: split */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075C04u);
+        goto block_80075C04;  /* not taken */
+    }
+
+block_80075C04: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075C04u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075C04u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075C04u, 27u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C04u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[15] + -4640; cpu->gpr[5] = psx_cyc_load_word(cpu, cpu->gpr[15] + -4640, 5, 0x8000u);
+    PGXP_LOAD(0x8DE5EDE0u, _pgxa, cpu->gpr[5]); }  /* 0x80075C04: 0x8DE5EDE0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C04u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[29] + 7360; cpu->gpr[20] = psx_cyc_load_word(cpu, cpu->gpr[29] + 7360, 20, 0x20000000u);
+    PGXP_LOAD(0x8FB41CC0u, _pgxa, cpu->gpr[20]); }  /* 0x80075C08: 0x8FB41CC0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C08u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    cpu->gpr[4] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C048011u, cpu->gpr[4], 0u, 0u);  /* 0x80075C0C: 0x3C048011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C0Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100020u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[20]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[5] = cpu->gpr[20] + cpu->gpr[5];
+    PGXP_ALU(0x02852821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x80075C10: 0x02852821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C10u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[5] + 36; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[5] + 36, 3, 0x20u);
+    PGXP_LOAD(0x8CA30024u, _pgxa, cpu->gpr[3]); }  /* 0x80075C14: 0x8CA30024 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C14u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[4] + -4644; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[4] + -4644, 4, 0x10u);
+    PGXP_LOAD(0x8C84EDDCu, _pgxa, cpu->gpr[4]); }  /* 0x80075C18: 0x8C84EDDC */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C18u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] << 3;
+    PGXP_ALU(0x000310C0u, cpu->gpr[2], _pgx1, 3u); }  /* 0x80075C1C: 0x000310C0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C1Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[3];
+    PGXP_ALU(0x00431021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075C20: 0x00431021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
+    PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80075C24: 0x00021080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C24u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x14u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[4];
+    PGXP_ALU(0x00441021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075C28: 0x00441021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C28u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[30] + 8, 3, 0x40000000u);
+    PGXP_LOAD(0x8FC30008u, _pgxa, cpu->gpr[3]); }  /* 0x80075C2C: 0x8FC30008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C2Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C30u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 12; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 12, 2, 0x4u);
+    PGXP_LOAD(0x8C42000Cu, _pgxa, cpu->gpr[2]); }  /* 0x80075C30: 0x8C42000C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075C34: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C34u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00621823u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075C38: 0x00621823 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C38u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80008u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 20;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 20, cpu->gpr[3]);
+    PGXP_STORE(0xAE630014u, _pgxa, cpu->gpr[3]); }  /* 0x80075C3C: 0xAE630014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C3Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C40u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[5] + 36; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[5] + 36, 3, 0x20u);
+    PGXP_LOAD(0x8CA30024u, _pgxa, cpu->gpr[3]); }  /* 0x80075C40: 0x8CA30024 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[5] = 64;
+    PGXP_ALU(0x24050040u, cpu->gpr[5], _pgx1, 0x00000040u); }  /* 0x80075C44: 0x24050040 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C44u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[3] << 3;
+    PGXP_ALU(0x000310C0u, cpu->gpr[2], _pgx1, 3u); }  /* 0x80075C48: 0x000310C0 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C48u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[3]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[3];
+    PGXP_ALU(0x00431021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075C4C: 0x00431021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C4Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] << 2;
+    PGXP_ALU(0x00021080u, cpu->gpr[2], _pgx1, 2u); }  /* 0x80075C50: 0x00021080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x14u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] + cpu->gpr[4];
+    PGXP_ALU(0x00441021u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075C54: 0x00441021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C54u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[30] + 8; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[30] + 8, 3, 0x40000000u);
+    PGXP_LOAD(0x8FC30008u, _pgxa, cpu->gpr[3]); }  /* 0x80075C58: 0x8FC30008 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C58u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 48; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 48, 2, 0x4u);
+    PGXP_LOAD(0x8C420030u, _pgxa, cpu->gpr[2]); }  /* 0x80075C5C: 0x8C420030 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C5Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C60u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 20; cpu->gpr[4] = psx_cyc_load_word(cpu, cpu->gpr[19] + 20, 4, 0x80000u);
+    PGXP_LOAD(0x8E640014u, _pgxa, cpu->gpr[4]); }  /* 0x80075C60: 0x8E640014 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00621023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075C64: 0x00621023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C64u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    int _bc_80075C68 = ((int32_t)cpu->gpr[4] <= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80004u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[19] + 24;  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[19] + 24, cpu->gpr[2]);
+    PGXP_STORE(0xAE620018u, _pgxa, cpu->gpr[2]); }  /* 0x80075C6C: 0xAE620018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C6Cu);
+#endif
+    if (_bc_80075C68) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075C84u);
+        goto block_80075C84;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075C70u);
+        goto block_80075C70;  /* not taken */
+    }
+
+block_80075C70: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075C70u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075C70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075C70u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = 0x51EB << 16;  /* 0x51EB0000 */
+    PGXP_ALU(0x3C0351EBu, cpu->gpr[3], 0u, 0u);  /* 0x80075C70: 0x3C0351EB */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] | 0x851F;
+    PGXP_ALU(0x3463851Fu, cpu->gpr[3], _pgx1, 0x851Fu); }  /* 0x80075C74: 0x3463851F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C74u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 10800;
+    PGXP_ALU(0x24022A30u, cpu->gpr[2], _pgx1, 0x00002A30u); }  /* 0x80075C78: 0x24022A30 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C78u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x14u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[4];
+    PGXP_ALU(0x00441023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075C80: 0x00441023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075C98u);
+    goto block_80075C98;  /* j */
+
+block_80075C84: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075C84u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075C84u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075C84u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C84u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    int _bc_80075C84 = ((int32_t)cpu->gpr[2] >= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[16] = 108;
+    PGXP_ALU(0x2410006Cu, cpu->gpr[16], _pgx1, 0x0000006Cu); }  /* 0x80075C88: 0x2410006C */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C88u);
+#endif
+    if (_bc_80075C84) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075CACu);
+        goto block_80075CAC;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075C8Cu);
+        goto block_80075C8C;  /* not taken */
+    }
+
+block_80075C8C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075C8Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075C8Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075C8Cu, 3u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C8Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = 0x51EB << 16;  /* 0x51EB0000 */
+    PGXP_ALU(0x3C0351EBu, cpu->gpr[3], 0u, 0u);  /* 0x80075C8C: 0x3C0351EB */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C8Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[3] = cpu->gpr[3] | 0x851F;
+    PGXP_ALU(0x3463851Fu, cpu->gpr[3], _pgx1, 0x851Fu); }  /* 0x80075C90: 0x3463851F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + 10800;
+    PGXP_ALU(0x24422A30u, cpu->gpr[2], _pgx1, 0x00002A30u); }  /* 0x80075C94: 0x24422A30 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C94u);
+#endif
+    /* fall through to block_80075C98 */
+
+block_80075C98: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075C98u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075C98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075C98u, 5u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075C98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[2] * (int64_t)(int32_t)cpu->gpr[3]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[2]));
+#endif
+    PGXP_MULDIV(0x00430018u, cpu->hi, cpu->lo, cpu->gpr[2], cpu->gpr[3]);  /* 0x80075C98: 0x00430018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (int32_t)cpu->gpr[2] >> 31;
+    PGXP_ALU(0x000217C3u, cpu->gpr[2], _pgx1, 31u); }  /* 0x80075C9C: 0x000217C3 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075C9Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = cpu->hi;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00007810u, cpu->gpr[15], cpu->hi, 0u);  /* 0x80075CA0: 0x00007810 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[15]; cpu->gpr[3] = (int32_t)cpu->gpr[15] >> 5;
+    PGXP_ALU(0x000F1943u, cpu->gpr[3], _pgx1, 5u); }  /* 0x80075CA4: 0x000F1943 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CA4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1000Cu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[16] = cpu->gpr[3] - cpu->gpr[2];
+    PGXP_ALU(0x00628023u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075CA8: 0x00628023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CA8u);
+#endif
+    /* fall through to block_80075CAC */
+
+block_80075CAC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075CACu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075CACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075CACu, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10000u);
+#endif
+    int _bc_80075CAC = ((int32_t)cpu->gpr[16] >= 0);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x80075CB0: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CB0u);
+#endif
+    if (_bc_80075CAC) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075CB8u);
+        goto block_80075CB8;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075CB4u);
+        goto block_80075CB4;  /* not taken */
+    }
+
+block_80075CB4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075CB4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075CB4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075CB4u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CB4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10001u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[16] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00008021u, cpu->gpr[16], _pgx1, _pgx2); }  /* 0x80075CB4: 0x00008021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CB4u);
+#endif
+    /* fall through to block_80075CB8 */
+
+block_80075CB8: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075CB8u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075CB8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075CB8u, 6u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CB8u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 20212; cpu->gpr[2] = psx_cyc_load_half(cpu, cpu->gpr[2] + 20212, 2, 0x4u);
+    PGXP_LOAD(0x94424EF4u, _pgxa, cpu->gpr[2]); }  /* 0x80075CB8: 0x94424EF4 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CB8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075CBC: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CBCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + -2;
+    PGXP_ALU(0x2442FFFEu, cpu->gpr[2], _pgx1, 0xFFFFFFFEu); }  /* 0x80075CC0: 0x2442FFFE */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = (cpu->gpr[2] < (uint32_t)3) ? 1 : 0;
+    PGXP_ALU(0x2C420003u, cpu->gpr[2], _pgx1, 0x0003u); }  /* 0x80075CC4: 0x2C420003 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CC4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    int _bc_80075CC8 = (cpu->gpr[2] == cpu->gpr[0]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C028011u, cpu->gpr[2], 0u, 0u);  /* 0x80075CCC: 0x3C028011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CCCu);
+#endif
+    if (_bc_80075CC8) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075D80u);
+        goto block_80075D80;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075CD0u);
+        goto block_80075CD0;  /* not taken */
+    }
+
+block_80075CD0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075CD0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075CD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075CD0u, 9u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; cpu->gpr[2] = cpu->gpr[2] + -5768;
+    PGXP_ALU(0x2442E978u, cpu->gpr[2], _pgx1, 0xFFFFE978u); }  /* 0x80075CD0: 0x2442E978 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x800008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[23]; cpu->gpr[3] = cpu->gpr[23] << 2;
+    PGXP_ALU(0x00171880u, cpu->gpr[3], _pgx1, 2u); }  /* 0x80075CD4: 0x00171880 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CD4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[2]; cpu->gpr[3] = cpu->gpr[3] + cpu->gpr[2];
+    PGXP_ALU(0x00621821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075CD8: 0x00621821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CD8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x80075CDC: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CDCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CE0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3]; cpu->gpr[3] = psx_cyc_load_word(cpu, cpu->gpr[3], 3, 0x8u);
+    PGXP_LOAD(0x8C630000u, _pgxa, cpu->gpr[3]); }  /* 0x80075CE0: 0x8C630000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CE0u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 12180; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 12180, 2, 0x4u);
+    PGXP_LOAD(0x8C422F94u, _pgxa, cpu->gpr[2]); }  /* 0x80075CE4: 0x8C422F94 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CE4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075CE8: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CE8u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    int _bc_80075CEC = (cpu->gpr[3] != cpu->gpr[2]);  /* save branch cond before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CF0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10020u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[5]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02050018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[5]);  /* 0x80075CF0: 0x02050018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CF0u);
+#endif
+    if (_bc_80075CEC) {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075D20u);
+        goto block_80075D20;  /* taken */
+    } else {
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+        psx_cyc_bb_defer_flush();
+#endif
+        psx_check_interrupts_at(cpu, 0x80075CF4u);
+        goto block_80075CF4;  /* not taken */
+    }
+
+block_80075CF4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075CF4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075CF4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075CF4u, 11u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075CF4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00001812u, cpu->gpr[3], cpu->lo, 0u);  /* 0x80075CF4: 0x00001812 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CF4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 128;
+    PGXP_ALU(0x24020080u, cpu->gpr[2], _pgx1, 0x00000080u); }  /* 0x80075CF8: 0x24020080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CF8u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[5];
+    PGXP_ALU(0x00451023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075CFC: 0x00451023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075CFCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D00u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[2]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02020018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[2]);  /* 0x80075D00: 0x02020018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D00u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 1;
+    PGXP_ALU(0x24040001u, cpu->gpr[4], _pgx1, 0x00000001u); }  /* 0x80075D04: 0x24040001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D04u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x28u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[5] = cpu->gpr[3] << 9;
+    PGXP_ALU(0x00032A40u, cpu->gpr[5], _pgx1, 9u); }  /* 0x80075D08: 0x00032A40 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D08u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[5] = (int32_t)cpu->gpr[5] >> 16;
+    PGXP_ALU(0x00052C03u, cpu->gpr[5], _pgx1, 16u); }  /* 0x80075D0C: 0x00052C03 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D0Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100u);
+#endif
+    cpu->gpr[8] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00004012u, cpu->gpr[8], cpu->lo, 0u);  /* 0x80075D10: 0x00004012 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D10u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x140u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[8]; cpu->gpr[6] = cpu->gpr[8] << 9;
+    PGXP_ALU(0x00083240u, cpu->gpr[6], _pgx1, 9u); }  /* 0x80075D14: 0x00083240 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D14u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[6] = (int32_t)cpu->gpr[6] >> 16;
+    PGXP_ALU(0x00063403u, cpu->gpr[6], _pgx1, 16u); }  /* 0x80075D1C: 0x00063403 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D1Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075D58u);
+    goto block_80075D58;  /* j */
+
+block_80075D20: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075D20u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075D20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075D20u, 11u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00001812u, cpu->gpr[3], cpu->lo, 0u);  /* 0x80075D20: 0x00001812 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D20u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 128;
+    PGXP_ALU(0x24020080u, cpu->gpr[2], _pgx1, 0x00000080u); }  /* 0x80075D24: 0x24020080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D24u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[5];
+    PGXP_ALU(0x00451023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075D28: 0x00451023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D28u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[2]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02020018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[2]);  /* 0x80075D2C: 0x02020018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D2Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075D30: 0x00002021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D30u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x28u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[5] = cpu->gpr[3] << 9;
+    PGXP_ALU(0x00032A40u, cpu->gpr[5], _pgx1, 9u); }  /* 0x80075D34: 0x00032A40 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D34u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[5] = (int32_t)cpu->gpr[5] >> 16;
+    PGXP_ALU(0x00052C03u, cpu->gpr[5], _pgx1, 16u); }  /* 0x80075D38: 0x00052C03 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D38u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100u);
+#endif
+    cpu->gpr[8] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00004012u, cpu->gpr[8], cpu->lo, 0u);  /* 0x80075D3C: 0x00004012 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D3Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D40u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x140u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[8]; cpu->gpr[6] = cpu->gpr[8] << 9;
+    PGXP_ALU(0x00083240u, cpu->gpr[6], _pgx1, 9u); }  /* 0x80075D40: 0x00083240 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D40u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075D4Cu;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[6] = (int32_t)cpu->gpr[6] >> 16;
+    PGXP_ALU(0x00063403u, cpu->gpr[6], _pgx1, 16u); }  /* 0x80075D48: 0x00063403 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D48u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051840u);
+    cpu->pc = 0x80051840u; return;  /* CPS jal -> 0x80051840 */
+
+block_80075D4C: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075D4Cu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075D4Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075D4Cu, 3u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D4Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 1;
+    PGXP_ALU(0x24040001u, cpu->gpr[4], _pgx1, 0x00000001u); }  /* 0x80075D4C: 0x24040001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D4Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x80075D50: 0x00002821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D50u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x61u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[5];  /* move */
+    PGXP_ALU(0x00A03021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x80075D54: 0x00A03021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D54u);
+#endif
+    /* fall through to block_80075D58 */
+
+block_80075D58: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075D58u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075D58u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075D58u, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D58u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075D60u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075D5C: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D5Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051840u);
+    cpu->pc = 0x80051840u; return;  /* CPS jal -> 0x80051840 */
+
+block_80075D60: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075D60u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075D60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075D60u, 8u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    cpu->gpr[4] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C048011u, cpu->gpr[4], 0u, 0u);  /* 0x80075D60: 0x3C048011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D60u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; cpu->gpr[4] = cpu->gpr[4] + -5768;
+    PGXP_ALU(0x2484E978u, cpu->gpr[4], _pgx1, 0xFFFFE978u); }  /* 0x80075D64: 0x2484E978 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D64u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x800008u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[23]; cpu->gpr[3] = cpu->gpr[23] << 2;
+    PGXP_ALU(0x00171880u, cpu->gpr[3], _pgx1, 2u); }  /* 0x80075D68: 0x00171880 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D68u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x4u);
+#endif
+    cpu->gpr[2] = 0x800F << 16;  /* 0x800F0000 */
+    PGXP_ALU(0x3C02800Fu, cpu->gpr[2], 0u, 0u);  /* 0x80075D6C: 0x3C02800F */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D6Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D70u);
+#endif
+    { uint32_t _pgxa = cpu->gpr[2] + 12180; cpu->gpr[2] = psx_cyc_load_word(cpu, cpu->gpr[2] + 12180, 2, 0x4u);
+    PGXP_LOAD(0x8C422F94u, _pgxa, cpu->gpr[2]); }  /* 0x80075D70: 0x8C422F94 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D70u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x18u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; uint32_t _pgx2 = cpu->gpr[4]; cpu->gpr[3] = cpu->gpr[3] + cpu->gpr[4];
+    PGXP_ALU(0x00641821u, cpu->gpr[3], _pgx1, _pgx2); }  /* 0x80075D74: 0x00641821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D74u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0xCu);
+#endif
+    { uint32_t _pgxa = cpu->gpr[3];  psx_store_cycle_barrier(); psx_dctx_sw(cpu, cpu->gpr[3], cpu->gpr[2]);
+    PGXP_STORE(0xAC620000u, _pgxa, cpu->gpr[2]); }  /* 0x80075D7C: 0xAC620000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D7Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DD4u);
+    goto block_80075DD4;  /* j */
+
+block_80075D80: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075D80u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075D80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075D80u, 12u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10020u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[5]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02050018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[5]);  /* 0x80075D80: 0x02050018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D80u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8u);
+#endif
+    cpu->gpr[3] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00001812u, cpu->gpr[3], cpu->lo, 0u);  /* 0x80075D84: 0x00001812 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D84u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x5u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[2] = 128;
+    PGXP_ALU(0x24020080u, cpu->gpr[2], _pgx1, 0x00000080u); }  /* 0x80075D88: 0x24020080 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D88u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x24u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[2]; uint32_t _pgx2 = cpu->gpr[5]; cpu->gpr[2] = cpu->gpr[2] - cpu->gpr[5];
+    PGXP_ALU(0x00451023u, cpu->gpr[2], _pgx1, _pgx2); }  /* 0x80075D8C: 0x00451023 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D8Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075D90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x10004u);
+#endif
+    { int64_t result = (int64_t)(int32_t)cpu->gpr[16] * (int64_t)(int32_t)cpu->gpr[2]; cpu->lo = (uint32_t)result; cpu->hi = (uint32_t)(result >> 32); }
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_set(cpu, psx_mult_latency_s(cpu->gpr[16]));
+#endif
+    PGXP_MULDIV(0x02020018u, cpu->hi, cpu->lo, cpu->gpr[16], cpu->gpr[2]);  /* 0x80075D90: 0x02020018 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D90u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075D94: 0x00002021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D94u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x28u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[3]; cpu->gpr[5] = cpu->gpr[3] << 9;
+    PGXP_ALU(0x00032A40u, cpu->gpr[5], _pgx1, 9u); }  /* 0x80075D98: 0x00032A40 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D98u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x20u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; cpu->gpr[5] = (int32_t)cpu->gpr[5] >> 16;
+    PGXP_ALU(0x00052C03u, cpu->gpr[5], _pgx1, 16u); }  /* 0x80075D9C: 0x00052C03 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075D9Cu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075DA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x100u);
+#endif
+    cpu->gpr[8] = cpu->lo;
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_muldiv_stall(cpu);
+#endif
+    PGXP_ALU(0x00004012u, cpu->gpr[8], cpu->lo, 0u);  /* 0x80075DA0: 0x00004012 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DA0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x140u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[8]; cpu->gpr[6] = cpu->gpr[8] << 9;
+    PGXP_ALU(0x00083240u, cpu->gpr[6], _pgx1, 9u); }  /* 0x80075DA4: 0x00083240 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DA4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x0u);
+#endif
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x40u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[6]; cpu->gpr[6] = (int32_t)cpu->gpr[6] >> 16;
+    PGXP_ALU(0x00063403u, cpu->gpr[6], _pgx1, 16u); }  /* 0x80075DAC: 0x00063403 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DACu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80075DCCu);
+    goto block_80075DCC;  /* j */
+
+block_80075DB0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075DB0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075DB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075DB0u, 4u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075DB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[4] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002021u, cpu->gpr[4], _pgx1, _pgx2); }  /* 0x80075DB0: 0x00002021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DB0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x31u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[4];  /* move */
+    PGXP_ALU(0x00802821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x80075DB4: 0x00802821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DB4u);
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075DC0u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x51u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[4]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[4];  /* move */
+    PGXP_ALU(0x00803021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x80075DBC: 0x00803021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DBCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051840u);
+    cpu->pc = 0x80051840u; return;  /* CPS jal -> 0x80051840 */
+
+block_80075DC0: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075DC0u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075DC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075DC0u, 3u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075DC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x11u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; cpu->gpr[4] = 1;
+    PGXP_ALU(0x24040001u, cpu->gpr[4], _pgx1, 0x00000001u); }  /* 0x80075DC0: 0x24040001 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DC0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x21u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[0]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[5] = cpu->gpr[0];  /* move */
+    PGXP_ALU(0x00002821u, cpu->gpr[5], _pgx1, _pgx2); }  /* 0x80075DC4: 0x00002821 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DC4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x61u);
+#endif
+    { uint32_t _pgx1 = cpu->gpr[5]; uint32_t _pgx2 = cpu->gpr[0]; cpu->gpr[6] = cpu->gpr[5];  /* move */
+    PGXP_ALU(0x00A03021u, cpu->gpr[6], _pgx1, _pgx2); }  /* 0x80075DC8: 0x00A03021 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DC8u);
+#endif
+    /* fall through to block_80075DCC */
+
+block_80075DCC: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075DCCu);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075DCCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075DCCu, 2u, 0)) return;
+#endif
+    #ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075DCCu);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x80000000u);
+#endif
+    cpu->gpr[31] = 0x80075DD4u;  /* jal link before delay slot */
+    /* delay slot (always executes) */
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075DD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x1u);
+#endif
+    /* nop */  /* 0x80075DD0: 0x00000000 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DD0u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_bb_defer_flush();
+#endif
+    psx_check_interrupts_at(cpu, 0x80051840u);
+    cpu->pc = 0x80051840u; return;  /* CPS jal -> 0x80051840 */
+
+block_80075DD4: PSX_DCTX_TICK();
+#ifndef PSX_NO_DEBUG_TOOLS
+    debug_server_cyc_observe(0x80075DD4u);
+#endif
+#ifdef PSX_COSIM
+    cosim_block(0x80075DD4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    if (psx_slice_block(cpu, 0x80075DD4u, 1u, 0)) return;
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_icache_fetch(cpu, 0x80075DD4u);
+#endif
+#ifdef PSX_ENABLE_BLOCK_CYCLES
+    psx_cyc_step(cpu, 0x8000u);
+#endif
+    cpu->gpr[15] = 0x8011 << 16;  /* 0x80110000 */
+    PGXP_ALU(0x3C0F8011u, cpu->gpr[15], 0u, 0u);  /* 0x80075DD4: 0x3C0F8011 */
+#ifdef PSX_COSIM
+    cosim_instr(0x80075DD4u);
+#endif
+    if (!psx_game_text_native_ok(0x80075DD8u)) { cpu->pc = 0x80075DD8u; return; }  /* stale-static guard */
+    dctx_func_80075DD8(cpu); return;  /* fallthrough to split piece */
+    ;  /* label compatibility: C requires a statement after the last label */
+}
+
+/* Overlapping-alias body for host dctx_func_80075624: 11 entries */
 void dctx_alias_body_80075624(CPUState* cpu, uint32_t entry)
 {
     if (cpu->pc != 0u) {
@@ -362508,13 +369241,67 @@ block_80077CF0: PSX_DCTX_TICK();
 void dctx_func_8007563C(CPUState* cpu)
 {
     debug_server_log_call_entry(0x8007563Cu);
-    dctx_alias_body_80075624(cpu, 0x8007563Cu);  /* alias entry into host func_80075624 */
+    dctx_alias_body_80075624(cpu, 0x8007563Cu);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80075788(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075788u);
+    dctx_alias_body_80075624(cpu, 0x80075788u);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_800757FC(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x800757FCu);
+    dctx_alias_body_80075624(cpu, 0x800757FCu);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_800758F4(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x800758F4u);
+    dctx_alias_body_80075624(cpu, 0x800758F4u);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80075BF0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075BF0u);
+    dctx_alias_body_80075624(cpu, 0x80075BF0u);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80075DB0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075DB0u);
+    dctx_alias_body_80075624(cpu, 0x80075DB0u);  /* alias entry into host dctx_func_80075624 */
 }
 
 void dctx_func_80075DD4(CPUState* cpu)
 {
     debug_server_log_call_entry(0x80075DD4u);
-    dctx_alias_body_80075624(cpu, 0x80075DD4u);  /* alias entry into host func_80075624 */
+    dctx_alias_body_80075624(cpu, 0x80075DD4u);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80075EF0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80075EF0u);
+    dctx_alias_body_80075624(cpu, 0x80075EF0u);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80076538(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80076538u);
+    dctx_alias_body_80075624(cpu, 0x80076538u);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80076BAC(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80076BACu);
+    dctx_alias_body_80075624(cpu, 0x80076BACu);  /* alias entry into host dctx_func_80075624 */
+}
+
+void dctx_func_80077214(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80077214u);
+    dctx_alias_body_80075624(cpu, 0x80077214u);  /* alias entry into host dctx_func_80075624 */
 }
 
 void dctx_func_80075DD8(CPUState* cpu)
@@ -455110,6 +461897,78 @@ void dctx_func_80096924(CPUState* cpu)
     dctx_alias_body_8009666C(cpu, 0x80096924u);  /* alias entry into host dctx_func_8009666C */
 }
 
+void dctx_func_80096930(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096930u);
+    dctx_alias_body_8009666C(cpu, 0x80096930u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_8009693C(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x8009693Cu);
+    dctx_alias_body_8009666C(cpu, 0x8009693Cu);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096968(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096968u);
+    dctx_alias_body_8009666C(cpu, 0x80096968u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_800969C0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x800969C0u);
+    dctx_alias_body_8009666C(cpu, 0x800969C0u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096AE0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096AE0u);
+    dctx_alias_body_8009666C(cpu, 0x80096AE0u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096BE0(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096BE0u);
+    dctx_alias_body_8009666C(cpu, 0x80096BE0u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096BF4(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096BF4u);
+    dctx_alias_body_8009666C(cpu, 0x80096BF4u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096C00(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096C00u);
+    dctx_alias_body_8009666C(cpu, 0x80096C00u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096D08(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096D08u);
+    dctx_alias_body_8009666C(cpu, 0x80096D08u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096D28(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096D28u);
+    dctx_alias_body_8009666C(cpu, 0x80096D28u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096DB4(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096DB4u);
+    dctx_alias_body_8009666C(cpu, 0x80096DB4u);  /* alias entry into host dctx_func_8009666C */
+}
+
+void dctx_func_80096DE8(CPUState* cpu)
+{
+    debug_server_log_call_entry(0x80096DE8u);
+    dctx_alias_body_8009666C(cpu, 0x80096DE8u);  /* alias entry into host dctx_func_8009666C */
+}
+
 void dctx_func_80096EF0(CPUState* cpu)
 {
 #if defined(PSX_ENABLE_BLOCK_CYCLES) && (defined(__GNUC__) || defined(__clang__))
@@ -456524,6 +463383,9 @@ static const uint32_t k_dctx_ranges[] = {
     0x8002E554u, 0x2BCu,
     0x8002E554u, 0x2BCu,
     0x8002E554u, 0x2BCu,
+    0x8002E554u, 0x2BCu,
+    0x8002E554u, 0x2BCu,
+    0x8002E554u, 0x2BCu,
     0x80034444u, 0x70Cu,
     0x800374F8u, 0x6Cu,
     0x800399B4u, 0x24u,
@@ -456587,6 +463449,7 @@ static const uint32_t k_dctx_ranges[] = {
     0x80060958u, 0x10u,
     0x80060968u, 0x8u,
     0x80060970u, 0x18Cu,
+    0x80060AFCu, 0xB4u,
     0x80060BB0u, 0x8u,
     0x80060BB8u, 0x27Cu,
     0x80060E34u, 0x24u,
@@ -456859,11 +463722,34 @@ static const uint32_t k_dctx_ranges[] = {
     0x80074DE0u, 0x20u,
     0x80074E00u, 0x3CCu,
     0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
     0x800751CCu, 0x3C8u,
+    0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
+    0x80074E00u, 0x794u,
     0x80075594u, 0x8u,
+    0x8007559Cu, 0x5Cu,
+    0x800755F8u, 0x8u,
+    0x80075600u, 0x18u,
+    0x80075618u, 0xCu,
+    0x8007561Cu, 0x8u,
+    0x80075624u, 0x7B4u,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
     0x80075624u, 0x26FCu,
     0x80075624u, 0x26FCu,
     0x80075DD8u, 0x1EF4u,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
+    0x80075624u, 0x26FCu,
     0x80077CCCu, 0x4u,
     0x80077CD0u, 0x4u,
     0x80077CD4u, 0x1Cu,
@@ -457011,6 +463897,18 @@ static const uint32_t k_dctx_ranges[] = {
     0x80096640u, 0x10u,
     0x80096650u, 0x10u,
     0x80096660u, 0xCu,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
+    0x8009666Cu, 0x878u,
     0x8009666Cu, 0x878u,
     0x8009666Cu, 0x878u,
     0x80096EF0u, 0x10u,
@@ -458111,6 +465009,8 @@ static const PsxDctxRow k_dctx_rows[] = {
     {0x8002E664u, 0x8002E664u, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E678u, 0x8002E678u, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E698u, 0x8002E698u, 82u, 1u, dctx_func_8002E5A4},
+    {0x8002E6A0u, 0x00000000u, 84u, 1u, dctx_func_8002E6A0},
+    {0x8002E6ACu, 0x00000000u, 85u, 1u, dctx_func_8002E6AC},
     {0x8002E6C0u, 0x8002E6C0u, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E6C4u, 0x8002E6C4u, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E6D8u, 0x8002E6D8u, 82u, 1u, dctx_func_8002E5A4},
@@ -458128,3875 +465028,3918 @@ static const PsxDctxRow k_dctx_rows[] = {
     {0x8002E778u, 0x8002E778u, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E77Cu, 0x8002E77Cu, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E790u, 0x8002E790u, 82u, 1u, dctx_func_8002E5A4},
+    {0x8002E798u, 0x00000000u, 86u, 1u, dctx_func_8002E798},
     {0x8002E7ACu, 0x8002E7ACu, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E7BCu, 0x8002E7BCu, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E7D4u, 0x8002E7D4u, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E7DCu, 0x8002E7DCu, 82u, 1u, dctx_func_8002E5A4},
     {0x8002E7F0u, 0x8002E7F0u, 82u, 1u, dctx_func_8002E5A4},
-    {0x80034444u, 0x00000000u, 84u, 1u, dctx_func_80034444},
-    {0x80034484u, 0x80034484u, 84u, 1u, dctx_func_80034444},
-    {0x80034494u, 0x80034494u, 84u, 1u, dctx_func_80034444},
-    {0x800344F0u, 0x800344F0u, 84u, 1u, dctx_func_80034444},
-    {0x800344FCu, 0x800344FCu, 84u, 1u, dctx_func_80034444},
-    {0x80034520u, 0x80034520u, 84u, 1u, dctx_func_80034444},
-    {0x8003454Cu, 0x8003454Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034550u, 0x80034550u, 84u, 1u, dctx_func_80034444},
-    {0x80034564u, 0x80034564u, 84u, 1u, dctx_func_80034444},
-    {0x80034574u, 0x80034574u, 84u, 1u, dctx_func_80034444},
-    {0x800345A0u, 0x800345A0u, 84u, 1u, dctx_func_80034444},
-    {0x800345A8u, 0x800345A8u, 84u, 1u, dctx_func_80034444},
-    {0x800345B0u, 0x800345B0u, 84u, 1u, dctx_func_80034444},
-    {0x800345B8u, 0x800345B8u, 84u, 1u, dctx_func_80034444},
-    {0x800345C0u, 0x800345C0u, 84u, 1u, dctx_func_80034444},
-    {0x800345C4u, 0x800345C4u, 84u, 1u, dctx_func_80034444},
-    {0x800345D8u, 0x800345D8u, 84u, 1u, dctx_func_80034444},
-    {0x800345E0u, 0x800345E0u, 84u, 1u, dctx_func_80034444},
-    {0x80034640u, 0x80034640u, 84u, 1u, dctx_func_80034444},
-    {0x80034648u, 0x80034648u, 84u, 1u, dctx_func_80034444},
-    {0x80034658u, 0x80034658u, 84u, 1u, dctx_func_80034444},
-    {0x80034664u, 0x80034664u, 84u, 1u, dctx_func_80034444},
-    {0x800346A0u, 0x800346A0u, 84u, 1u, dctx_func_80034444},
-    {0x800346C0u, 0x800346C0u, 84u, 1u, dctx_func_80034444},
-    {0x8003473Cu, 0x8003473Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034744u, 0x80034744u, 84u, 1u, dctx_func_80034444},
-    {0x8003474Cu, 0x8003474Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034754u, 0x80034754u, 84u, 1u, dctx_func_80034444},
-    {0x8003475Cu, 0x8003475Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034768u, 0x80034768u, 84u, 1u, dctx_func_80034444},
-    {0x800347ACu, 0x800347ACu, 84u, 1u, dctx_func_80034444},
-    {0x800347CCu, 0x800347CCu, 84u, 1u, dctx_func_80034444},
-    {0x800347D4u, 0x800347D4u, 84u, 1u, dctx_func_80034444},
-    {0x800347DCu, 0x800347DCu, 84u, 1u, dctx_func_80034444},
-    {0x8003482Cu, 0x8003482Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034834u, 0x80034834u, 84u, 1u, dctx_func_80034444},
-    {0x8003484Cu, 0x8003484Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034880u, 0x80034880u, 84u, 1u, dctx_func_80034444},
-    {0x80034890u, 0x80034890u, 84u, 1u, dctx_func_80034444},
-    {0x80034898u, 0x80034898u, 84u, 1u, dctx_func_80034444},
-    {0x800348E4u, 0x800348E4u, 84u, 1u, dctx_func_80034444},
-    {0x800348ECu, 0x800348ECu, 84u, 1u, dctx_func_80034444},
-    {0x800348F4u, 0x800348F4u, 84u, 1u, dctx_func_80034444},
-    {0x80034900u, 0x80034900u, 84u, 1u, dctx_func_80034444},
-    {0x80034914u, 0x80034914u, 84u, 1u, dctx_func_80034444},
-    {0x80034930u, 0x80034930u, 84u, 1u, dctx_func_80034444},
-    {0x80034938u, 0x80034938u, 84u, 1u, dctx_func_80034444},
-    {0x80034988u, 0x80034988u, 84u, 1u, dctx_func_80034444},
-    {0x80034998u, 0x80034998u, 84u, 1u, dctx_func_80034444},
-    {0x800349A0u, 0x800349A0u, 84u, 1u, dctx_func_80034444},
-    {0x800349A8u, 0x800349A8u, 84u, 1u, dctx_func_80034444},
-    {0x800349C8u, 0x800349C8u, 84u, 1u, dctx_func_80034444},
-    {0x800349CCu, 0x800349CCu, 84u, 1u, dctx_func_80034444},
-    {0x800349F8u, 0x800349F8u, 84u, 1u, dctx_func_80034444},
-    {0x80034A08u, 0x80034A08u, 84u, 1u, dctx_func_80034444},
-    {0x80034A50u, 0x80034A50u, 84u, 1u, dctx_func_80034444},
-    {0x80034A78u, 0x80034A78u, 84u, 1u, dctx_func_80034444},
-    {0x80034A88u, 0x80034A88u, 84u, 1u, dctx_func_80034444},
-    {0x80034AA4u, 0x80034AA4u, 84u, 1u, dctx_func_80034444},
-    {0x80034AACu, 0x80034AACu, 84u, 1u, dctx_func_80034444},
-    {0x80034AE0u, 0x80034AE0u, 84u, 1u, dctx_func_80034444},
-    {0x80034B1Cu, 0x80034B1Cu, 84u, 1u, dctx_func_80034444},
-    {0x80034B20u, 0x80034B20u, 84u, 1u, dctx_func_80034444},
-    {0x800374F8u, 0x00000000u, 85u, 1u, dctx_func_800374F8},
-    {0x80037510u, 0x80037510u, 85u, 1u, dctx_func_800374F8},
-    {0x8003751Cu, 0x8003751Cu, 85u, 1u, dctx_func_800374F8},
-    {0x80037528u, 0x80037528u, 85u, 1u, dctx_func_800374F8},
-    {0x80037538u, 0x80037538u, 85u, 1u, dctx_func_800374F8},
-    {0x8003754Cu, 0x8003754Cu, 85u, 1u, dctx_func_800374F8},
-    {0x80037554u, 0x80037554u, 85u, 1u, dctx_func_800374F8},
-    {0x800399B4u, 0x00000000u, 86u, 1u, dctx_func_800399B4},
-    {0x800399C8u, 0x800399C8u, 86u, 1u, dctx_func_800399B4},
-    {0x80039C04u, 0x00000000u, 87u, 1u, dctx_func_80039C04},
-    {0x80039C24u, 0x80039C24u, 87u, 1u, dctx_func_80039C04},
-    {0x80039C38u, 0x80039C38u, 87u, 1u, dctx_func_80039C04},
-    {0x80039C6Cu, 0x80039C6Cu, 87u, 1u, dctx_func_80039C04},
-    {0x80039C78u, 0x80039C78u, 87u, 1u, dctx_func_80039C04},
-    {0x80039C80u, 0x80039C80u, 87u, 1u, dctx_func_80039C04},
-    {0x80039C94u, 0x80039C94u, 87u, 1u, dctx_func_80039C04},
-    {0x80039CA0u, 0x80039CA0u, 87u, 1u, dctx_func_80039C04},
-    {0x80039CB0u, 0x80039CB0u, 87u, 1u, dctx_func_80039C04},
-    {0x8003C4B4u, 0x00000000u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C4E4u, 0x8003C4E4u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C4F8u, 0x8003C4F8u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C500u, 0x8003C500u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C524u, 0x8003C524u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C534u, 0x8003C534u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C544u, 0x8003C544u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C54Cu, 0x8003C54Cu, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C550u, 0x8003C550u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C580u, 0x8003C580u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C590u, 0x8003C590u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C594u, 0x8003C594u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5A8u, 0x8003C5A8u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5B4u, 0x8003C5B4u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5BCu, 0x8003C5BCu, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5C4u, 0x8003C5C4u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5C8u, 0x8003C5C8u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5CCu, 0x8003C5CCu, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C5D0u, 0x8003C5D0u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C604u, 0x8003C604u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C624u, 0x8003C624u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C62Cu, 0x8003C62Cu, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C640u, 0x8003C640u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C644u, 0x8003C644u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C658u, 0x8003C658u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C670u, 0x8003C670u, 88u, 1u, dctx_func_8003C4B4},
-    {0x8003C71Cu, 0x8003C71Cu, 88u, 1u, dctx_func_8003C4B4},
-    {0x8004BA24u, 0x00000000u, 89u, 1u, dctx_func_8004BA24},
-    {0x8004C8BCu, 0x00000000u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004C8E8u, 0x8004C8E8u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004C91Cu, 0x8004C91Cu, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004C92Cu, 0x8004C92Cu, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004C98Cu, 0x8004C98Cu, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004C998u, 0x8004C998u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004C9A8u, 0x8004C9A8u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004CA24u, 0x8004CA24u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004CA28u, 0x8004CA28u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004CA38u, 0x8004CA38u, 90u, 1u, dctx_func_8004C8BC},
-    {0x8004CBACu, 0x00000000u, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CBC8u, 0x8004CBC8u, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CBE8u, 0x8004CBE8u, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CBF8u, 0x8004CBF8u, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CC08u, 0x8004CC08u, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CC0Cu, 0x8004CC0Cu, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CC1Cu, 0x8004CC1Cu, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CC30u, 0x8004CC30u, 91u, 1u, dctx_func_8004CBAC},
-    {0x8004CC40u, 0x00000000u, 92u, 1u, dctx_func_8004CC40},
-    {0x8004F20Cu, 0x00000000u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F244u, 0x8004F244u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F254u, 0x8004F254u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F260u, 0x8004F260u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F26Cu, 0x8004F26Cu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F278u, 0x8004F278u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F27Cu, 0x8004F27Cu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F31Cu, 0x8004F31Cu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F344u, 0x8004F344u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F364u, 0x8004F364u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F368u, 0x8004F368u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F380u, 0x8004F380u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F384u, 0x8004F384u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3A0u, 0x8004F3A0u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3A4u, 0x8004F3A4u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3BCu, 0x8004F3BCu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3C0u, 0x8004F3C0u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3D0u, 0x8004F3D0u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3E4u, 0x8004F3E4u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F3E8u, 0x8004F3E8u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F434u, 0x8004F434u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F454u, 0x8004F454u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F45Cu, 0x8004F45Cu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F47Cu, 0x8004F47Cu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F480u, 0x8004F480u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F4CCu, 0x8004F4CCu, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F4F8u, 0x8004F4F8u, 93u, 1u, dctx_func_8004F20C},
-    {0x8004F520u, 0x00000000u, 94u, 1u, dctx_func_8004F520},
-    {0x8004F544u, 0x8004F544u, 94u, 1u, dctx_func_8004F520},
-    {0x8004F5E0u, 0x00000000u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F5F8u, 0x8004F5F8u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F614u, 0x8004F614u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F62Cu, 0x8004F62Cu, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F634u, 0x8004F634u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F64Cu, 0x8004F64Cu, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F654u, 0x8004F654u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F65Cu, 0x8004F65Cu, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F678u, 0x8004F678u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F688u, 0x8004F688u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F68Cu, 0x8004F68Cu, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F6A0u, 0x8004F6A0u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F6A4u, 0x8004F6A4u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F6B0u, 0x8004F6B0u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F6C0u, 0x8004F6C0u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F6D0u, 0x8004F6D0u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F6F4u, 0x8004F6F4u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F714u, 0x8004F714u, 95u, 1u, dctx_func_8004F5E0},
-    {0x8004F718u, 0x8004F718u, 95u, 1u, dctx_func_8004F5E0},
-    {0x80051840u, 0x00000000u, 96u, 1u, dctx_func_80051840},
-    {0x80051B00u, 0x00000000u, 97u, 1u, dctx_func_80051B00},
-    {0x80051BBCu, 0x80051BBCu, 97u, 1u, dctx_func_80051B00},
-    {0x80051BC4u, 0x80051BC4u, 97u, 1u, dctx_func_80051B00},
-    {0x80051BCCu, 0x80051BCCu, 97u, 1u, dctx_func_80051B00},
-    {0x80051BD4u, 0x80051BD4u, 97u, 1u, dctx_func_80051B00},
-    {0x80051BD8u, 0x80051BD8u, 97u, 1u, dctx_func_80051B00},
-    {0x800551FCu, 0x00000000u, 98u, 1u, dctx_func_800551FC},
-    {0x80055204u, 0x80055204u, 98u, 1u, dctx_func_800551FC},
-    {0x80055220u, 0x80055220u, 98u, 1u, dctx_func_800551FC},
-    {0x8005523Cu, 0x8005523Cu, 98u, 1u, dctx_func_800551FC},
-    {0x80055264u, 0x80055264u, 98u, 1u, dctx_func_800551FC},
-    {0x8005526Cu, 0x8005526Cu, 98u, 1u, dctx_func_800551FC},
-    {0x80055270u, 0x80055270u, 98u, 1u, dctx_func_800551FC},
-    {0x80055274u, 0x80055274u, 98u, 1u, dctx_func_800551FC},
-    {0x8005527Cu, 0x8005527Cu, 98u, 1u, dctx_func_800551FC},
-    {0x80055284u, 0x80055284u, 98u, 1u, dctx_func_800551FC},
-    {0x8005528Cu, 0x8005528Cu, 98u, 1u, dctx_func_800551FC},
-    {0x800552A0u, 0x800552A0u, 98u, 1u, dctx_func_800551FC},
-    {0x800552A4u, 0x800552A4u, 98u, 1u, dctx_func_800551FC},
-    {0x800552ACu, 0x00000000u, 99u, 1u, dctx_func_800552AC},
-    {0x800552B4u, 0x800552B4u, 99u, 1u, dctx_func_800552AC},
-    {0x800552B8u, 0x800552B8u, 99u, 1u, dctx_func_800552AC},
-    {0x800552E0u, 0x800552E0u, 99u, 1u, dctx_func_800552AC},
-    {0x800552E8u, 0x800552E8u, 99u, 1u, dctx_func_800552AC},
-    {0x800552ECu, 0x800552ECu, 99u, 1u, dctx_func_800552AC},
-    {0x800552F8u, 0x800552F8u, 99u, 1u, dctx_func_800552AC},
-    {0x80055300u, 0x80055300u, 99u, 1u, dctx_func_800552AC},
-    {0x80055320u, 0x80055320u, 99u, 1u, dctx_func_800552AC},
-    {0x80055328u, 0x80055328u, 99u, 1u, dctx_func_800552AC},
-    {0x80055330u, 0x00000000u, 100u, 1u, dctx_func_80055330},
-    {0x8005533Cu, 0x8005533Cu, 100u, 1u, dctx_func_80055330},
-    {0x80055340u, 0x00000000u, 101u, 1u, dctx_func_80055340},
-    {0x80055348u, 0x00000000u, 102u, 1u, dctx_func_80055348},
-    {0x80055374u, 0x80055374u, 102u, 1u, dctx_func_80055348},
-    {0x80055380u, 0x80055380u, 102u, 1u, dctx_func_80055348},
-    {0x80055398u, 0x80055398u, 102u, 1u, dctx_func_80055348},
-    {0x800553A8u, 0x00000000u, 103u, 1u, dctx_func_800553A8},
-    {0x800553D4u, 0x800553D4u, 103u, 1u, dctx_func_800553A8},
-    {0x800553E0u, 0x800553E0u, 103u, 1u, dctx_func_800553A8},
-    {0x800553F8u, 0x800553F8u, 103u, 1u, dctx_func_800553A8},
-    {0x80055408u, 0x00000000u, 104u, 1u, dctx_func_80055408},
-    {0x80055434u, 0x80055434u, 104u, 1u, dctx_func_80055408},
-    {0x80055440u, 0x80055440u, 104u, 1u, dctx_func_80055408},
-    {0x80055458u, 0x80055458u, 104u, 1u, dctx_func_80055408},
-    {0x80055468u, 0x00000000u, 105u, 1u, dctx_func_80055468},
-    {0x80055494u, 0x80055494u, 105u, 1u, dctx_func_80055468},
-    {0x800554A0u, 0x800554A0u, 105u, 1u, dctx_func_80055468},
-    {0x800554B8u, 0x800554B8u, 105u, 1u, dctx_func_80055468},
-    {0x800554C8u, 0x00000000u, 106u, 1u, dctx_func_800554C8},
-    {0x800554E4u, 0x800554E4u, 106u, 1u, dctx_func_800554C8},
-    {0x800554E8u, 0x800554E8u, 106u, 1u, dctx_func_800554C8},
-    {0x80055510u, 0x80055510u, 106u, 1u, dctx_func_800554C8},
-    {0x80055518u, 0x80055518u, 106u, 1u, dctx_func_800554C8},
-    {0x8005551Cu, 0x8005551Cu, 106u, 1u, dctx_func_800554C8},
-    {0x80055528u, 0x80055528u, 106u, 1u, dctx_func_800554C8},
-    {0x80055530u, 0x80055530u, 106u, 1u, dctx_func_800554C8},
-    {0x80055538u, 0x80055538u, 106u, 1u, dctx_func_800554C8},
-    {0x8005554Cu, 0x8005554Cu, 106u, 1u, dctx_func_800554C8},
-    {0x80055550u, 0x80055550u, 106u, 1u, dctx_func_800554C8},
-    {0x80055558u, 0x00000000u, 107u, 1u, dctx_func_80055558},
-    {0x80055570u, 0x80055570u, 107u, 1u, dctx_func_80055558},
-    {0x80055590u, 0x00000000u, 108u, 1u, dctx_func_80055590},
-    {0x80055598u, 0x80055598u, 108u, 1u, dctx_func_80055590},
-    {0x800555A0u, 0x00000000u, 109u, 1u, dctx_func_800555A0},
-    {0x800555A8u, 0x800555A8u, 108u, 1u, dctx_func_80055590},
-    {0x800555B0u, 0x00000000u, 110u, 1u, dctx_func_800555B0},
-    {0x800555B8u, 0x800555B8u, 108u, 1u, dctx_func_80055590},
-    {0x800555C0u, 0x00000000u, 111u, 1u, dctx_func_800555C0},
-    {0x800555C8u, 0x800555C8u, 108u, 1u, dctx_func_80055590},
-    {0x800555D0u, 0x00000000u, 112u, 1u, dctx_func_800555D0},
-    {0x800555D8u, 0x800555D8u, 108u, 1u, dctx_func_80055590},
-    {0x800555E0u, 0x00000000u, 113u, 1u, dctx_func_800555E0},
-    {0x800555E8u, 0x800555E8u, 108u, 1u, dctx_func_80055590},
-    {0x800555F0u, 0x00000000u, 114u, 1u, dctx_func_800555F0},
-    {0x800555F8u, 0x800555F8u, 108u, 1u, dctx_func_80055590},
-    {0x80055654u, 0x00000000u, 115u, 1u, dctx_func_80055654},
-    {0x80055660u, 0x00000000u, 116u, 1u, dctx_func_80055660},
-    {0x800556C0u, 0x800556C0u, 116u, 1u, dctx_func_80055660},
-    {0x800556E8u, 0x800556E8u, 116u, 1u, dctx_func_80055660},
-    {0x800556ECu, 0x800556ECu, 116u, 1u, dctx_func_80055660},
-    {0x80055700u, 0x80055700u, 116u, 1u, dctx_func_80055660},
-    {0x8005570Cu, 0x8005570Cu, 116u, 1u, dctx_func_80055660},
-    {0x80055718u, 0x80055718u, 116u, 1u, dctx_func_80055660},
-    {0x80055874u, 0x80055874u, 116u, 1u, dctx_func_80055660},
-    {0x800558B8u, 0x800558B8u, 116u, 1u, dctx_func_80055660},
-    {0x800558E8u, 0x00000000u, 117u, 1u, dctx_func_800558E8},
-    {0x8005590Cu, 0x8005590Cu, 117u, 1u, dctx_func_800558E8},
-    {0x80055968u, 0x00000000u, 118u, 1u, dctx_func_80055968},
-    {0x80055988u, 0x80055988u, 118u, 1u, dctx_func_80055968},
-    {0x800559ACu, 0x800559ACu, 118u, 1u, dctx_func_80055968},
-    {0x800559BCu, 0x00000000u, 119u, 1u, dctx_func_800559BC},
-    {0x800559D4u, 0x800559D4u, 119u, 1u, dctx_func_800559BC},
-    {0x800559F0u, 0x800559F0u, 119u, 1u, dctx_func_800559BC},
-    {0x800559F8u, 0x800559F8u, 119u, 1u, dctx_func_800559BC},
-    {0x80059E24u, 0x00000000u, 120u, 1u, dctx_func_80059E24},
-    {0x80059E48u, 0x80059E48u, 120u, 1u, dctx_func_80059E24},
-    {0x80059E50u, 0x80059E50u, 120u, 1u, dctx_func_80059E24},
-    {0x80059E54u, 0x80059E54u, 120u, 1u, dctx_func_80059E24},
-    {0x8005F3F4u, 0x00000000u, 121u, 1u, dctx_func_8005F3F4},
-    {0x8005F43Cu, 0x8005F43Cu, 121u, 1u, dctx_func_8005F3F4},
-    {0x8005F444u, 0x8005F444u, 121u, 1u, dctx_func_8005F3F4},
-    {0x8005F44Cu, 0x8005F44Cu, 121u, 1u, dctx_func_8005F3F4},
-    {0x8005F460u, 0x8005F460u, 121u, 1u, dctx_func_8005F3F4},
-    {0x8005F524u, 0x00000000u, 122u, 1u, dctx_func_8005F524},
-    {0x8005F564u, 0x00000000u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F5C8u, 0x8005F5C8u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F5D4u, 0x8005F5D4u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F5D8u, 0x8005F5D8u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F5DCu, 0x8005F5DCu, 123u, 1u, dctx_func_8005F564},
-    {0x8005F5E0u, 0x8005F5E0u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F5E4u, 0x8005F5E4u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F628u, 0x8005F628u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F630u, 0x8005F630u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F638u, 0x8005F638u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F63Cu, 0x8005F63Cu, 123u, 1u, dctx_func_8005F564},
-    {0x8005F640u, 0x8005F640u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F648u, 0x8005F648u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F650u, 0x8005F650u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F658u, 0x8005F658u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F65Cu, 0x8005F65Cu, 123u, 1u, dctx_func_8005F564},
-    {0x8005F660u, 0x8005F660u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F680u, 0x8005F680u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F688u, 0x8005F688u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F690u, 0x8005F690u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F694u, 0x8005F694u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F698u, 0x8005F698u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6A0u, 0x8005F6A0u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6A8u, 0x8005F6A8u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6B0u, 0x8005F6B0u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6B4u, 0x8005F6B4u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6B8u, 0x8005F6B8u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6C8u, 0x8005F6C8u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6D8u, 0x8005F6D8u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6E4u, 0x8005F6E4u, 123u, 1u, dctx_func_8005F564},
-    {0x8005F6F4u, 0x00000000u, 124u, 1u, dctx_func_8005F6F4},
-    {0x8005F748u, 0x8005F748u, 124u, 1u, dctx_func_8005F6F4},
-    {0x8005F758u, 0x00000000u, 125u, 1u, dctx_func_8005F758},
-    {0x8005F7D8u, 0x8005F7D8u, 125u, 1u, dctx_func_8005F758},
-    {0x8005F7E8u, 0x00000000u, 126u, 1u, dctx_func_8005F7E8},
-    {0x8005F860u, 0x8005F860u, 126u, 1u, dctx_func_8005F7E8},
-    {0x8005F8B0u, 0x8005F8B0u, 126u, 1u, dctx_func_8005F7E8},
-    {0x8005F944u, 0x8005F944u, 126u, 1u, dctx_func_8005F7E8},
-    {0x8005F954u, 0x8005F954u, 126u, 1u, dctx_func_8005F7E8},
-    {0x8005F964u, 0x00000000u, 127u, 1u, dctx_func_8005F964},
-    {0x8005F9E0u, 0x8005F9E0u, 127u, 1u, dctx_func_8005F964},
-    {0x8005FA70u, 0x8005FA70u, 127u, 1u, dctx_func_8005F964},
-    {0x8005FB30u, 0x8005FB30u, 127u, 1u, dctx_func_8005F964},
-    {0x8005FB40u, 0x8005FB40u, 127u, 1u, dctx_func_8005F964},
-    {0x8005FB50u, 0x00000000u, 128u, 1u, dctx_func_8005FB50},
-    {0x8005FBA8u, 0x8005FBA8u, 128u, 1u, dctx_func_8005FB50},
-    {0x8005FBB8u, 0x00000000u, 129u, 1u, dctx_func_8005FBB8},
-    {0x8005FC34u, 0x8005FC34u, 129u, 1u, dctx_func_8005FBB8},
-    {0x8005FC44u, 0x00000000u, 130u, 1u, dctx_func_8005FC44},
-    {0x8005FCBCu, 0x8005FCBCu, 130u, 1u, dctx_func_8005FC44},
-    {0x8005FD0Cu, 0x8005FD0Cu, 130u, 1u, dctx_func_8005FC44},
-    {0x8005FDA8u, 0x8005FDA8u, 130u, 1u, dctx_func_8005FC44},
-    {0x8005FDB8u, 0x8005FDB8u, 130u, 1u, dctx_func_8005FC44},
-    {0x8005FDC8u, 0x00000000u, 131u, 1u, dctx_func_8005FDC8},
-    {0x8005FE44u, 0x8005FE44u, 131u, 1u, dctx_func_8005FDC8},
-    {0x8005FEB8u, 0x8005FEB8u, 131u, 1u, dctx_func_8005FDC8},
-    {0x8005FF78u, 0x8005FF78u, 131u, 1u, dctx_func_8005FDC8},
-    {0x8005FF88u, 0x8005FF88u, 131u, 1u, dctx_func_8005FDC8},
-    {0x8005FFF0u, 0x00000000u, 132u, 1u, dctx_func_8005FFF0},
-    {0x8005FFFCu, 0x8005FFFCu, 132u, 1u, dctx_func_8005FFF0},
-    {0x80060004u, 0x80060004u, 132u, 1u, dctx_func_8005FFF0},
-    {0x80060024u, 0x80060024u, 132u, 1u, dctx_func_8005FFF0},
-    {0x80060038u, 0x80060038u, 132u, 1u, dctx_func_8005FFF0},
-    {0x80060048u, 0x00000000u, 133u, 1u, dctx_func_80060048},
-    {0x80060078u, 0x80060078u, 133u, 1u, dctx_func_80060048},
-    {0x800600D0u, 0x800600D0u, 133u, 1u, dctx_func_80060048},
-    {0x800600F8u, 0x800600F8u, 133u, 1u, dctx_func_80060048},
-    {0x80060170u, 0x80060170u, 133u, 1u, dctx_func_80060048},
-    {0x80060178u, 0x00000000u, 134u, 1u, dctx_func_80060178},
-    {0x80060188u, 0x00000000u, 135u, 1u, dctx_func_80060188},
-    {0x800601E4u, 0x800601E4u, 135u, 1u, dctx_func_80060188},
-    {0x800601F4u, 0x00000000u, 136u, 1u, dctx_func_800601F4},
-    {0x80060204u, 0x00000000u, 137u, 1u, dctx_func_80060204},
-    {0x8006028Cu, 0x8006028Cu, 137u, 1u, dctx_func_80060204},
-    {0x8006029Cu, 0x00000000u, 138u, 1u, dctx_func_8006029C},
-    {0x800602A8u, 0x00000000u, 139u, 1u, dctx_func_800602A8},
-    {0x8006031Cu, 0x8006031Cu, 139u, 1u, dctx_func_800602A8},
-    {0x8006039Cu, 0x00000000u, 140u, 1u, dctx_func_8006039C},
-    {0x800603A8u, 0x800603A8u, 140u, 1u, dctx_func_8006039C},
-    {0x800603FCu, 0x800603FCu, 140u, 1u, dctx_func_8006039C},
-    {0x80060574u, 0x80060574u, 140u, 1u, dctx_func_8006039C},
-    {0x800606F4u, 0x800606F4u, 140u, 1u, dctx_func_8006039C},
-    {0x800606F8u, 0x800606F8u, 140u, 1u, dctx_func_8006039C},
-    {0x80060700u, 0x80060700u, 140u, 1u, dctx_func_8006039C},
-    {0x8006071Cu, 0x8006071Cu, 140u, 1u, dctx_func_8006039C},
-    {0x80060720u, 0x80060720u, 140u, 1u, dctx_func_8006039C},
-    {0x80060724u, 0x80060724u, 140u, 1u, dctx_func_8006039C},
-    {0x80060728u, 0x80060728u, 140u, 1u, dctx_func_8006039C},
-    {0x80060748u, 0x80060748u, 140u, 1u, dctx_func_8006039C},
-    {0x80060750u, 0x80060750u, 140u, 1u, dctx_func_8006039C},
-    {0x80060758u, 0x80060758u, 140u, 1u, dctx_func_8006039C},
-    {0x8006075Cu, 0x8006075Cu, 140u, 1u, dctx_func_8006039C},
-    {0x80060760u, 0x80060760u, 140u, 1u, dctx_func_8006039C},
-    {0x80060768u, 0x80060768u, 140u, 1u, dctx_func_8006039C},
-    {0x80060770u, 0x80060770u, 140u, 1u, dctx_func_8006039C},
-    {0x80060778u, 0x80060778u, 140u, 1u, dctx_func_8006039C},
-    {0x8006077Cu, 0x8006077Cu, 140u, 1u, dctx_func_8006039C},
-    {0x80060780u, 0x80060780u, 140u, 1u, dctx_func_8006039C},
-    {0x800607A0u, 0x800607A0u, 140u, 1u, dctx_func_8006039C},
-    {0x800607A8u, 0x800607A8u, 140u, 1u, dctx_func_8006039C},
-    {0x800607B0u, 0x800607B0u, 140u, 1u, dctx_func_8006039C},
-    {0x800607B4u, 0x800607B4u, 140u, 1u, dctx_func_8006039C},
-    {0x800607B8u, 0x800607B8u, 140u, 1u, dctx_func_8006039C},
-    {0x800607C0u, 0x800607C0u, 140u, 1u, dctx_func_8006039C},
-    {0x800607C8u, 0x800607C8u, 140u, 1u, dctx_func_8006039C},
-    {0x800607D0u, 0x800607D0u, 140u, 1u, dctx_func_8006039C},
-    {0x800607D4u, 0x800607D4u, 140u, 1u, dctx_func_8006039C},
-    {0x800607D8u, 0x800607D8u, 140u, 1u, dctx_func_8006039C},
-    {0x80060818u, 0x80060818u, 140u, 1u, dctx_func_8006039C},
-    {0x80060824u, 0x80060824u, 140u, 1u, dctx_func_8006039C},
-    {0x8006082Cu, 0x8006082Cu, 140u, 1u, dctx_func_8006039C},
-    {0x8006084Cu, 0x00000000u, 141u, 1u, dctx_func_8006084C},
-    {0x800608BCu, 0x00000000u, 142u, 1u, dctx_func_800608BC},
-    {0x800608D0u, 0x00000000u, 143u, 1u, dctx_func_800608D0},
-    {0x80060948u, 0x80060948u, 143u, 1u, dctx_func_800608D0},
-    {0x80060958u, 0x00000000u, 144u, 1u, dctx_func_80060958},
-    {0x80060968u, 0x00000000u, 145u, 1u, dctx_func_80060968},
-    {0x80060970u, 0x00000000u, 146u, 1u, dctx_func_80060970},
-    {0x800609CCu, 0x800609CCu, 146u, 1u, dctx_func_80060970},
-    {0x800609D8u, 0x800609D8u, 146u, 1u, dctx_func_80060970},
-    {0x800609DCu, 0x800609DCu, 146u, 1u, dctx_func_80060970},
-    {0x800609E0u, 0x800609E0u, 146u, 1u, dctx_func_80060970},
-    {0x800609E4u, 0x800609E4u, 146u, 1u, dctx_func_80060970},
-    {0x800609E8u, 0x800609E8u, 146u, 1u, dctx_func_80060970},
-    {0x80060A30u, 0x80060A30u, 146u, 1u, dctx_func_80060970},
-    {0x80060A38u, 0x80060A38u, 146u, 1u, dctx_func_80060970},
-    {0x80060A40u, 0x80060A40u, 146u, 1u, dctx_func_80060970},
-    {0x80060A44u, 0x80060A44u, 146u, 1u, dctx_func_80060970},
-    {0x80060A48u, 0x80060A48u, 146u, 1u, dctx_func_80060970},
-    {0x80060A50u, 0x80060A50u, 146u, 1u, dctx_func_80060970},
-    {0x80060A58u, 0x80060A58u, 146u, 1u, dctx_func_80060970},
-    {0x80060A60u, 0x80060A60u, 146u, 1u, dctx_func_80060970},
-    {0x80060A64u, 0x80060A64u, 146u, 1u, dctx_func_80060970},
-    {0x80060A68u, 0x80060A68u, 146u, 1u, dctx_func_80060970},
-    {0x80060A88u, 0x80060A88u, 146u, 1u, dctx_func_80060970},
-    {0x80060A90u, 0x80060A90u, 146u, 1u, dctx_func_80060970},
-    {0x80060A98u, 0x80060A98u, 146u, 1u, dctx_func_80060970},
-    {0x80060A9Cu, 0x80060A9Cu, 146u, 1u, dctx_func_80060970},
-    {0x80060AA0u, 0x80060AA0u, 146u, 1u, dctx_func_80060970},
-    {0x80060AA8u, 0x80060AA8u, 146u, 1u, dctx_func_80060970},
-    {0x80060AB0u, 0x80060AB0u, 146u, 1u, dctx_func_80060970},
-    {0x80060AB8u, 0x80060AB8u, 146u, 1u, dctx_func_80060970},
-    {0x80060ABCu, 0x80060ABCu, 146u, 1u, dctx_func_80060970},
-    {0x80060AC0u, 0x80060AC0u, 146u, 1u, dctx_func_80060970},
-    {0x80060AD0u, 0x80060AD0u, 146u, 1u, dctx_func_80060970},
-    {0x80060AE0u, 0x80060AE0u, 146u, 1u, dctx_func_80060970},
-    {0x80060AECu, 0x80060AECu, 146u, 1u, dctx_func_80060970},
-    {0x80060BB0u, 0x00000000u, 147u, 1u, dctx_func_80060BB0},
-    {0x80060BB8u, 0x00000000u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060BC8u, 0x80060BC8u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C30u, 0x80060C30u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C3Cu, 0x80060C3Cu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C40u, 0x80060C40u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C44u, 0x80060C44u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C48u, 0x80060C48u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C4Cu, 0x80060C4Cu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C94u, 0x80060C94u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060C9Cu, 0x80060C9Cu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CA4u, 0x80060CA4u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CA8u, 0x80060CA8u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CACu, 0x80060CACu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CB4u, 0x80060CB4u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CBCu, 0x80060CBCu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CC4u, 0x80060CC4u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CC8u, 0x80060CC8u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CCCu, 0x80060CCCu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CECu, 0x80060CECu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CF4u, 0x80060CF4u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060CFCu, 0x80060CFCu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D00u, 0x80060D00u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D04u, 0x80060D04u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D0Cu, 0x80060D0Cu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D14u, 0x80060D14u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D1Cu, 0x80060D1Cu, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D20u, 0x80060D20u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D24u, 0x80060D24u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D34u, 0x80060D34u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D74u, 0x80060D74u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D78u, 0x80060D78u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D80u, 0x80060D80u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060D84u, 0x80060D84u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060DE4u, 0x80060DE4u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060E14u, 0x80060E14u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060E20u, 0x80060E20u, 148u, 1u, dctx_func_80060BB8},
-    {0x80060E34u, 0x00000000u, 149u, 1u, dctx_func_80060E34},
-    {0x80060E58u, 0x00000000u, 150u, 1u, dctx_func_80060E58},
-    {0x80060EDCu, 0x80060EDCu, 150u, 1u, dctx_func_80060E58},
-    {0x80060F00u, 0x80060F00u, 150u, 1u, dctx_func_80060E58},
-    {0x80060F94u, 0x00000000u, 151u, 1u, dctx_func_80060F94},
-    {0x80060FE4u, 0x80060FE4u, 151u, 1u, dctx_func_80060F94},
-    {0x80061000u, 0x80061000u, 151u, 1u, dctx_func_80060F94},
-    {0x80061018u, 0x80061018u, 151u, 1u, dctx_func_80060F94},
-    {0x80061028u, 0x00000000u, 152u, 1u, dctx_func_80061028},
-    {0x80061078u, 0x00000000u, 153u, 1u, dctx_func_80061078},
-    {0x80061080u, 0x00000000u, 154u, 1u, dctx_func_80061080},
-    {0x80061090u, 0x80061090u, 154u, 1u, dctx_func_80061080},
-    {0x800610CCu, 0x00000000u, 155u, 1u, dctx_func_800610CC},
-    {0x800610D4u, 0x800610D4u, 155u, 1u, dctx_func_800610CC},
-    {0x80061218u, 0x80061218u, 155u, 1u, dctx_func_800610CC},
-    {0x80061220u, 0x80061220u, 155u, 1u, dctx_func_800610CC},
-    {0x8006123Cu, 0x8006123Cu, 155u, 1u, dctx_func_800610CC},
-    {0x80061244u, 0x80061244u, 155u, 1u, dctx_func_800610CC},
-    {0x80061258u, 0x80061258u, 155u, 1u, dctx_func_800610CC},
-    {0x80061264u, 0x80061264u, 155u, 1u, dctx_func_800610CC},
-    {0x80061270u, 0x80061270u, 155u, 1u, dctx_func_800610CC},
-    {0x80061278u, 0x80061278u, 155u, 1u, dctx_func_800610CC},
-    {0x80061280u, 0x80061280u, 155u, 1u, dctx_func_800610CC},
-    {0x80061288u, 0x80061288u, 155u, 1u, dctx_func_800610CC},
-    {0x80061294u, 0x80061294u, 155u, 1u, dctx_func_800610CC},
-    {0x800612A0u, 0x800612A0u, 155u, 1u, dctx_func_800610CC},
-    {0x800612ACu, 0x800612ACu, 155u, 1u, dctx_func_800610CC},
-    {0x800612B4u, 0x800612B4u, 155u, 1u, dctx_func_800610CC},
-    {0x800612C0u, 0x800612C0u, 155u, 1u, dctx_func_800610CC},
-    {0x800612CCu, 0x800612CCu, 155u, 1u, dctx_func_800610CC},
-    {0x800612D8u, 0x800612D8u, 155u, 1u, dctx_func_800610CC},
-    {0x800612E4u, 0x800612E4u, 155u, 1u, dctx_func_800610CC},
-    {0x800612E8u, 0x800612E8u, 155u, 1u, dctx_func_800610CC},
-    {0x800612F0u, 0x800612F0u, 155u, 1u, dctx_func_800610CC},
-    {0x800612F8u, 0x800612F8u, 155u, 1u, dctx_func_800610CC},
-    {0x80061304u, 0x80061304u, 155u, 1u, dctx_func_800610CC},
-    {0x80061324u, 0x80061324u, 155u, 1u, dctx_func_800610CC},
-    {0x80061328u, 0x80061328u, 155u, 1u, dctx_func_800610CC},
-    {0x80061330u, 0x80061330u, 155u, 1u, dctx_func_800610CC},
-    {0x80061334u, 0x80061334u, 155u, 1u, dctx_func_800610CC},
-    {0x80061340u, 0x80061340u, 155u, 1u, dctx_func_800610CC},
-    {0x80061344u, 0x80061344u, 155u, 1u, dctx_func_800610CC},
-    {0x8006136Cu, 0x8006136Cu, 155u, 1u, dctx_func_800610CC},
-    {0x80061374u, 0x80061374u, 155u, 1u, dctx_func_800610CC},
-    {0x800613A4u, 0x800613A4u, 155u, 1u, dctx_func_800610CC},
-    {0x80061400u, 0x80061400u, 155u, 1u, dctx_func_800610CC},
-    {0x80061408u, 0x80061408u, 155u, 1u, dctx_func_800610CC},
-    {0x8006142Cu, 0x00000000u, 156u, 1u, dctx_func_8006142C},
-    {0x80061444u, 0x00000000u, 157u, 1u, dctx_func_80061444},
-    {0x800614B8u, 0x00000000u, 158u, 1u, dctx_func_800614B8},
-    {0x800614D4u, 0x00000000u, 159u, 1u, dctx_func_800614D4},
-    {0x800614E0u, 0x800614E0u, 159u, 1u, dctx_func_800614D4},
-    {0x80061520u, 0x80061520u, 159u, 1u, dctx_func_800614D4},
-    {0x80061554u, 0x80061554u, 159u, 1u, dctx_func_800614D4},
-    {0x800615DCu, 0x800615DCu, 159u, 1u, dctx_func_800614D4},
-    {0x800615E8u, 0x800615E8u, 159u, 1u, dctx_func_800614D4},
-    {0x80061620u, 0x80061620u, 159u, 1u, dctx_func_800614D4},
-    {0x80061668u, 0x80061668u, 159u, 1u, dctx_func_800614D4},
-    {0x80061670u, 0x80061670u, 159u, 1u, dctx_func_800614D4},
-    {0x8006167Cu, 0x8006167Cu, 159u, 1u, dctx_func_800614D4},
-    {0x800616A8u, 0x00000000u, 160u, 1u, dctx_func_800616A8},
-    {0x800616E8u, 0x00000000u, 161u, 1u, dctx_func_800616E8},
-    {0x80061738u, 0x00000000u, 162u, 1u, dctx_func_80061738},
-    {0x8006178Cu, 0x00000000u, 163u, 1u, dctx_func_8006178C},
-    {0x80061790u, 0x80061790u, 163u, 1u, dctx_func_8006178C},
-    {0x8006179Cu, 0x8006179Cu, 163u, 1u, dctx_func_8006178C},
-    {0x800617ACu, 0x800617ACu, 163u, 1u, dctx_func_8006178C},
-    {0x800617B4u, 0x800617B4u, 163u, 1u, dctx_func_8006178C},
-    {0x800617BCu, 0x800617BCu, 163u, 1u, dctx_func_8006178C},
-    {0x800617C4u, 0x800617C4u, 163u, 1u, dctx_func_8006178C},
-    {0x800617D0u, 0x800617D0u, 163u, 1u, dctx_func_8006178C},
-    {0x800617D8u, 0x800617D8u, 163u, 1u, dctx_func_8006178C},
-    {0x800617E0u, 0x800617E0u, 163u, 1u, dctx_func_8006178C},
-    {0x800617E8u, 0x00000000u, 164u, 1u, dctx_func_800617E8},
-    {0x80061868u, 0x80061868u, 164u, 1u, dctx_func_800617E8},
-    {0x80061874u, 0x80061874u, 164u, 1u, dctx_func_800617E8},
-    {0x8006187Cu, 0x8006187Cu, 164u, 1u, dctx_func_800617E8},
-    {0x80061888u, 0x80061888u, 164u, 1u, dctx_func_800617E8},
-    {0x80061898u, 0x80061898u, 164u, 1u, dctx_func_800617E8},
-    {0x800618A4u, 0x800618A4u, 164u, 1u, dctx_func_800617E8},
-    {0x800618A8u, 0x800618A8u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A28u, 0x80061A28u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A38u, 0x80061A38u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A44u, 0x80061A44u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A58u, 0x80061A58u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A60u, 0x80061A60u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A68u, 0x80061A68u, 164u, 1u, dctx_func_800617E8},
-    {0x80061A9Cu, 0x80061A9Cu, 164u, 1u, dctx_func_800617E8},
-    {0x80061AA8u, 0x80061AA8u, 164u, 1u, dctx_func_800617E8},
-    {0x80061AECu, 0x80061AECu, 164u, 1u, dctx_func_800617E8},
-    {0x80061B68u, 0x80061B68u, 164u, 1u, dctx_func_800617E8},
-    {0x80061B78u, 0x80061B78u, 164u, 1u, dctx_func_800617E8},
-    {0x80061B80u, 0x80061B80u, 164u, 1u, dctx_func_800617E8},
-    {0x80061B8Cu, 0x00000000u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BA0u, 0x80061BA0u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BA8u, 0x80061BA8u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BB0u, 0x80061BB0u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BB4u, 0x80061BB4u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BB8u, 0x80061BB8u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BC4u, 0x80061BC4u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BCCu, 0x80061BCCu, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BD4u, 0x80061BD4u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BD8u, 0x80061BD8u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BDCu, 0x80061BDCu, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BE8u, 0x80061BE8u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BF0u, 0x80061BF0u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061BF8u, 0x80061BF8u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061C00u, 0x80061C00u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061C0Cu, 0x80061C0Cu, 165u, 1u, dctx_func_80061B8C},
-    {0x80061C14u, 0x80061C14u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061C1Cu, 0x80061C1Cu, 165u, 1u, dctx_func_80061B8C},
-    {0x80061C24u, 0x80061C24u, 165u, 1u, dctx_func_80061B8C},
-    {0x80061C2Cu, 0x00000000u, 166u, 1u, dctx_func_80061C2C},
-    {0x80061C34u, 0x00000000u, 167u, 1u, dctx_func_80061C34},
-    {0x80061C3Cu, 0x00000000u, 168u, 1u, dctx_func_80061C3C},
-    {0x80061C4Cu, 0x80061C4Cu, 168u, 1u, dctx_func_80061C3C},
-    {0x80061C88u, 0x00000000u, 169u, 1u, dctx_func_80061C88},
-    {0x80061C90u, 0x80061C90u, 169u, 1u, dctx_func_80061C88},
-    {0x80061DD4u, 0x80061DD4u, 169u, 1u, dctx_func_80061C88},
-    {0x80061DDCu, 0x80061DDCu, 169u, 1u, dctx_func_80061C88},
-    {0x80061DF8u, 0x80061DF8u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E00u, 0x80061E00u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E14u, 0x80061E14u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E20u, 0x80061E20u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E2Cu, 0x80061E2Cu, 169u, 1u, dctx_func_80061C88},
-    {0x80061E34u, 0x80061E34u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E3Cu, 0x80061E3Cu, 169u, 1u, dctx_func_80061C88},
-    {0x80061E44u, 0x80061E44u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E50u, 0x80061E50u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E5Cu, 0x80061E5Cu, 169u, 1u, dctx_func_80061C88},
-    {0x80061E68u, 0x80061E68u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E70u, 0x80061E70u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E7Cu, 0x80061E7Cu, 169u, 1u, dctx_func_80061C88},
-    {0x80061E88u, 0x80061E88u, 169u, 1u, dctx_func_80061C88},
-    {0x80061E94u, 0x80061E94u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EA0u, 0x80061EA0u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EA4u, 0x80061EA4u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EACu, 0x80061EACu, 169u, 1u, dctx_func_80061C88},
-    {0x80061EB4u, 0x80061EB4u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EC0u, 0x80061EC0u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EE0u, 0x80061EE0u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EE4u, 0x80061EE4u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EECu, 0x80061EECu, 169u, 1u, dctx_func_80061C88},
-    {0x80061EF0u, 0x80061EF0u, 169u, 1u, dctx_func_80061C88},
-    {0x80061EFCu, 0x80061EFCu, 169u, 1u, dctx_func_80061C88},
-    {0x80061F00u, 0x80061F00u, 169u, 1u, dctx_func_80061C88},
-    {0x80061F28u, 0x80061F28u, 169u, 1u, dctx_func_80061C88},
-    {0x80061F30u, 0x80061F30u, 169u, 1u, dctx_func_80061C88},
-    {0x80061F7Cu, 0x80061F7Cu, 169u, 1u, dctx_func_80061C88},
-    {0x80062008u, 0x80062008u, 169u, 1u, dctx_func_80061C88},
-    {0x80062010u, 0x80062010u, 169u, 1u, dctx_func_80061C88},
-    {0x80062060u, 0x00000000u, 170u, 1u, dctx_func_80062060},
-    {0x800620A4u, 0x00000000u, 171u, 1u, dctx_func_800620A4},
-    {0x8006214Cu, 0x00000000u, 172u, 1u, dctx_func_8006214C},
-    {0x80062168u, 0x00000000u, 173u, 1u, dctx_func_80062168},
-    {0x80062174u, 0x80062174u, 173u, 1u, dctx_func_80062168},
-    {0x800621B4u, 0x800621B4u, 173u, 1u, dctx_func_80062168},
-    {0x800621E8u, 0x800621E8u, 173u, 1u, dctx_func_80062168},
-    {0x80062270u, 0x80062270u, 173u, 1u, dctx_func_80062168},
-    {0x8006227Cu, 0x8006227Cu, 173u, 1u, dctx_func_80062168},
-    {0x800622B4u, 0x800622B4u, 173u, 1u, dctx_func_80062168},
-    {0x800622FCu, 0x800622FCu, 173u, 1u, dctx_func_80062168},
-    {0x80062304u, 0x80062304u, 173u, 1u, dctx_func_80062168},
-    {0x80062310u, 0x80062310u, 173u, 1u, dctx_func_80062168},
-    {0x8006233Cu, 0x00000000u, 174u, 1u, dctx_func_8006233C},
-    {0x8006237Cu, 0x00000000u, 175u, 1u, dctx_func_8006237C},
-    {0x800623CCu, 0x00000000u, 176u, 1u, dctx_func_800623CC},
-    {0x80062420u, 0x00000000u, 177u, 1u, dctx_func_80062420},
-    {0x80062424u, 0x80062424u, 177u, 1u, dctx_func_80062420},
-    {0x80062430u, 0x80062430u, 177u, 1u, dctx_func_80062420},
-    {0x80062440u, 0x80062440u, 177u, 1u, dctx_func_80062420},
-    {0x80062448u, 0x80062448u, 177u, 1u, dctx_func_80062420},
-    {0x80062450u, 0x80062450u, 177u, 1u, dctx_func_80062420},
-    {0x80062458u, 0x80062458u, 177u, 1u, dctx_func_80062420},
-    {0x80062464u, 0x80062464u, 177u, 1u, dctx_func_80062420},
-    {0x8006246Cu, 0x8006246Cu, 177u, 1u, dctx_func_80062420},
-    {0x80062474u, 0x80062474u, 177u, 1u, dctx_func_80062420},
-    {0x8006247Cu, 0x00000000u, 178u, 1u, dctx_func_8006247C},
-    {0x800624FCu, 0x800624FCu, 178u, 1u, dctx_func_8006247C},
-    {0x80062508u, 0x80062508u, 178u, 1u, dctx_func_8006247C},
-    {0x80062510u, 0x80062510u, 178u, 1u, dctx_func_8006247C},
-    {0x8006251Cu, 0x8006251Cu, 178u, 1u, dctx_func_8006247C},
-    {0x8006252Cu, 0x8006252Cu, 178u, 1u, dctx_func_8006247C},
-    {0x80062538u, 0x80062538u, 178u, 1u, dctx_func_8006247C},
-    {0x8006253Cu, 0x8006253Cu, 178u, 1u, dctx_func_8006247C},
-    {0x800626BCu, 0x800626BCu, 178u, 1u, dctx_func_8006247C},
-    {0x800626CCu, 0x800626CCu, 178u, 1u, dctx_func_8006247C},
-    {0x800626D8u, 0x800626D8u, 178u, 1u, dctx_func_8006247C},
-    {0x800626ECu, 0x800626ECu, 178u, 1u, dctx_func_8006247C},
-    {0x800626F4u, 0x800626F4u, 178u, 1u, dctx_func_8006247C},
-    {0x800626FCu, 0x800626FCu, 178u, 1u, dctx_func_8006247C},
-    {0x80062730u, 0x80062730u, 178u, 1u, dctx_func_8006247C},
-    {0x8006273Cu, 0x8006273Cu, 178u, 1u, dctx_func_8006247C},
-    {0x80062780u, 0x80062780u, 178u, 1u, dctx_func_8006247C},
-    {0x800627FCu, 0x800627FCu, 178u, 1u, dctx_func_8006247C},
-    {0x8006280Cu, 0x8006280Cu, 178u, 1u, dctx_func_8006247C},
-    {0x80062814u, 0x80062814u, 178u, 1u, dctx_func_8006247C},
-    {0x80062820u, 0x00000000u, 179u, 1u, dctx_func_80062820},
-    {0x80062834u, 0x80062834u, 179u, 1u, dctx_func_80062820},
-    {0x8006283Cu, 0x8006283Cu, 179u, 1u, dctx_func_80062820},
-    {0x80062844u, 0x80062844u, 179u, 1u, dctx_func_80062820},
-    {0x80062848u, 0x80062848u, 179u, 1u, dctx_func_80062820},
-    {0x8006284Cu, 0x8006284Cu, 179u, 1u, dctx_func_80062820},
-    {0x80062858u, 0x80062858u, 179u, 1u, dctx_func_80062820},
-    {0x80062860u, 0x80062860u, 179u, 1u, dctx_func_80062820},
-    {0x80062868u, 0x80062868u, 179u, 1u, dctx_func_80062820},
-    {0x8006286Cu, 0x8006286Cu, 179u, 1u, dctx_func_80062820},
-    {0x80062870u, 0x80062870u, 179u, 1u, dctx_func_80062820},
-    {0x8006287Cu, 0x8006287Cu, 179u, 1u, dctx_func_80062820},
-    {0x80062884u, 0x80062884u, 179u, 1u, dctx_func_80062820},
-    {0x8006288Cu, 0x8006288Cu, 179u, 1u, dctx_func_80062820},
-    {0x80062894u, 0x80062894u, 179u, 1u, dctx_func_80062820},
-    {0x800628A0u, 0x800628A0u, 179u, 1u, dctx_func_80062820},
-    {0x800628A8u, 0x800628A8u, 179u, 1u, dctx_func_80062820},
-    {0x800628B0u, 0x800628B0u, 179u, 1u, dctx_func_80062820},
-    {0x800628B8u, 0x800628B8u, 179u, 1u, dctx_func_80062820},
-    {0x800628C0u, 0x00000000u, 180u, 1u, dctx_func_800628C0},
-    {0x800628C8u, 0x00000000u, 181u, 1u, dctx_func_800628C8},
-    {0x800628D0u, 0x00000000u, 182u, 1u, dctx_func_800628D0},
-    {0x800628E0u, 0x800628E0u, 182u, 1u, dctx_func_800628D0},
-    {0x8006291Cu, 0x00000000u, 183u, 1u, dctx_func_8006291C},
-    {0x80062924u, 0x80062924u, 183u, 1u, dctx_func_8006291C},
-    {0x80062A68u, 0x80062A68u, 183u, 1u, dctx_func_8006291C},
-    {0x80062A70u, 0x80062A70u, 183u, 1u, dctx_func_8006291C},
-    {0x80062A8Cu, 0x80062A8Cu, 183u, 1u, dctx_func_8006291C},
-    {0x80062A94u, 0x80062A94u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AA8u, 0x80062AA8u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AB4u, 0x80062AB4u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AC0u, 0x80062AC0u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AC8u, 0x80062AC8u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AD0u, 0x80062AD0u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AD8u, 0x80062AD8u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AE4u, 0x80062AE4u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AF0u, 0x80062AF0u, 183u, 1u, dctx_func_8006291C},
-    {0x80062AFCu, 0x80062AFCu, 183u, 1u, dctx_func_8006291C},
-    {0x80062B04u, 0x80062B04u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B10u, 0x80062B10u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B1Cu, 0x80062B1Cu, 183u, 1u, dctx_func_8006291C},
-    {0x80062B28u, 0x80062B28u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B34u, 0x80062B34u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B38u, 0x80062B38u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B40u, 0x80062B40u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B48u, 0x80062B48u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B50u, 0x80062B50u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B70u, 0x80062B70u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B74u, 0x80062B74u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B7Cu, 0x80062B7Cu, 183u, 1u, dctx_func_8006291C},
-    {0x80062B80u, 0x80062B80u, 183u, 1u, dctx_func_8006291C},
-    {0x80062B8Cu, 0x80062B8Cu, 183u, 1u, dctx_func_8006291C},
-    {0x80062B90u, 0x80062B90u, 183u, 1u, dctx_func_8006291C},
-    {0x80062BB8u, 0x80062BB8u, 183u, 1u, dctx_func_8006291C},
-    {0x80062BC0u, 0x80062BC0u, 183u, 1u, dctx_func_8006291C},
-    {0x80062BF4u, 0x80062BF4u, 183u, 1u, dctx_func_8006291C},
-    {0x80062BFCu, 0x80062BFCu, 183u, 1u, dctx_func_8006291C},
-    {0x80062C20u, 0x00000000u, 184u, 1u, dctx_func_80062C20},
-    {0x80062C38u, 0x00000000u, 185u, 1u, dctx_func_80062C38},
-    {0x80062C94u, 0x00000000u, 186u, 1u, dctx_func_80062C94},
-    {0x80062CB0u, 0x00000000u, 187u, 1u, dctx_func_80062CB0},
-    {0x80062CBCu, 0x80062CBCu, 187u, 1u, dctx_func_80062CB0},
-    {0x80062CFCu, 0x80062CFCu, 187u, 1u, dctx_func_80062CB0},
-    {0x80062D28u, 0x80062D28u, 187u, 1u, dctx_func_80062CB0},
-    {0x80062D84u, 0x80062D84u, 187u, 1u, dctx_func_80062CB0},
-    {0x80062DBCu, 0x80062DBCu, 187u, 1u, dctx_func_80062CB0},
-    {0x80062E04u, 0x80062E04u, 187u, 1u, dctx_func_80062CB0},
-    {0x80062E0Cu, 0x80062E0Cu, 187u, 1u, dctx_func_80062CB0},
-    {0x80062E18u, 0x80062E18u, 187u, 1u, dctx_func_80062CB0},
-    {0x80062E44u, 0x00000000u, 188u, 1u, dctx_func_80062E44},
-    {0x80062E84u, 0x00000000u, 189u, 1u, dctx_func_80062E84},
-    {0x80062ED4u, 0x00000000u, 190u, 1u, dctx_func_80062ED4},
-    {0x80062F28u, 0x00000000u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F2Cu, 0x80062F2Cu, 191u, 1u, dctx_func_80062F28},
-    {0x80062F38u, 0x80062F38u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F48u, 0x80062F48u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F50u, 0x80062F50u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F58u, 0x80062F58u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F60u, 0x80062F60u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F6Cu, 0x80062F6Cu, 191u, 1u, dctx_func_80062F28},
-    {0x80062F74u, 0x80062F74u, 191u, 1u, dctx_func_80062F28},
-    {0x80062F7Cu, 0x80062F7Cu, 191u, 1u, dctx_func_80062F28},
-    {0x80062F84u, 0x00000000u, 192u, 1u, dctx_func_80062F84},
-    {0x80062FF4u, 0x80062FF4u, 192u, 1u, dctx_func_80062F84},
-    {0x80063000u, 0x80063000u, 192u, 1u, dctx_func_80062F84},
-    {0x80063008u, 0x80063008u, 192u, 1u, dctx_func_80062F84},
-    {0x80063014u, 0x80063014u, 192u, 1u, dctx_func_80062F84},
-    {0x80063024u, 0x80063024u, 192u, 1u, dctx_func_80062F84},
-    {0x80063030u, 0x80063030u, 192u, 1u, dctx_func_80062F84},
-    {0x80063034u, 0x80063034u, 192u, 1u, dctx_func_80062F84},
-    {0x80063150u, 0x80063150u, 192u, 1u, dctx_func_80062F84},
-    {0x80063160u, 0x80063160u, 192u, 1u, dctx_func_80062F84},
-    {0x8006316Cu, 0x8006316Cu, 192u, 1u, dctx_func_80062F84},
-    {0x80063180u, 0x80063180u, 192u, 1u, dctx_func_80062F84},
-    {0x80063188u, 0x80063188u, 192u, 1u, dctx_func_80062F84},
-    {0x80063190u, 0x80063190u, 192u, 1u, dctx_func_80062F84},
-    {0x800631C4u, 0x800631C4u, 192u, 1u, dctx_func_80062F84},
-    {0x800631D0u, 0x800631D0u, 192u, 1u, dctx_func_80062F84},
-    {0x80063214u, 0x80063214u, 192u, 1u, dctx_func_80062F84},
-    {0x80063278u, 0x80063278u, 192u, 1u, dctx_func_80062F84},
-    {0x80063288u, 0x80063288u, 192u, 1u, dctx_func_80062F84},
-    {0x80063290u, 0x80063290u, 192u, 1u, dctx_func_80062F84},
-    {0x8006329Cu, 0x00000000u, 193u, 1u, dctx_func_8006329C},
-    {0x800632B0u, 0x800632B0u, 193u, 1u, dctx_func_8006329C},
-    {0x800632B8u, 0x800632B8u, 193u, 1u, dctx_func_8006329C},
-    {0x800632C0u, 0x800632C0u, 193u, 1u, dctx_func_8006329C},
-    {0x800632C4u, 0x800632C4u, 193u, 1u, dctx_func_8006329C},
-    {0x800632C8u, 0x800632C8u, 193u, 1u, dctx_func_8006329C},
-    {0x800632D4u, 0x800632D4u, 193u, 1u, dctx_func_8006329C},
-    {0x800632DCu, 0x800632DCu, 193u, 1u, dctx_func_8006329C},
-    {0x800632E4u, 0x800632E4u, 193u, 1u, dctx_func_8006329C},
-    {0x800632E8u, 0x800632E8u, 193u, 1u, dctx_func_8006329C},
-    {0x800632ECu, 0x800632ECu, 193u, 1u, dctx_func_8006329C},
-    {0x800632F8u, 0x800632F8u, 193u, 1u, dctx_func_8006329C},
-    {0x80063300u, 0x80063300u, 193u, 1u, dctx_func_8006329C},
-    {0x80063308u, 0x80063308u, 193u, 1u, dctx_func_8006329C},
-    {0x80063310u, 0x80063310u, 193u, 1u, dctx_func_8006329C},
-    {0x8006331Cu, 0x8006331Cu, 193u, 1u, dctx_func_8006329C},
-    {0x80063324u, 0x80063324u, 193u, 1u, dctx_func_8006329C},
-    {0x8006332Cu, 0x8006332Cu, 193u, 1u, dctx_func_8006329C},
-    {0x80063334u, 0x80063334u, 193u, 1u, dctx_func_8006329C},
-    {0x8006333Cu, 0x00000000u, 194u, 1u, dctx_func_8006333C},
-    {0x80063344u, 0x00000000u, 195u, 1u, dctx_func_80063344},
-    {0x8006334Cu, 0x00000000u, 196u, 1u, dctx_func_8006334C},
-    {0x8006335Cu, 0x8006335Cu, 196u, 1u, dctx_func_8006334C},
-    {0x80063398u, 0x00000000u, 197u, 1u, dctx_func_80063398},
-    {0x800633A0u, 0x800633A0u, 197u, 1u, dctx_func_80063398},
-    {0x800634E4u, 0x800634E4u, 197u, 1u, dctx_func_80063398},
-    {0x800634ECu, 0x800634ECu, 197u, 1u, dctx_func_80063398},
-    {0x80063508u, 0x80063508u, 197u, 1u, dctx_func_80063398},
-    {0x80063510u, 0x80063510u, 197u, 1u, dctx_func_80063398},
-    {0x80063524u, 0x80063524u, 197u, 1u, dctx_func_80063398},
-    {0x80063530u, 0x80063530u, 197u, 1u, dctx_func_80063398},
-    {0x8006353Cu, 0x8006353Cu, 197u, 1u, dctx_func_80063398},
-    {0x80063544u, 0x80063544u, 197u, 1u, dctx_func_80063398},
-    {0x8006354Cu, 0x8006354Cu, 197u, 1u, dctx_func_80063398},
-    {0x80063554u, 0x80063554u, 197u, 1u, dctx_func_80063398},
-    {0x80063560u, 0x80063560u, 197u, 1u, dctx_func_80063398},
-    {0x8006356Cu, 0x8006356Cu, 197u, 1u, dctx_func_80063398},
-    {0x80063578u, 0x80063578u, 197u, 1u, dctx_func_80063398},
-    {0x80063580u, 0x80063580u, 197u, 1u, dctx_func_80063398},
-    {0x8006358Cu, 0x8006358Cu, 197u, 1u, dctx_func_80063398},
-    {0x80063598u, 0x80063598u, 197u, 1u, dctx_func_80063398},
-    {0x800635A4u, 0x800635A4u, 197u, 1u, dctx_func_80063398},
-    {0x800635B0u, 0x800635B0u, 197u, 1u, dctx_func_80063398},
-    {0x800635B4u, 0x800635B4u, 197u, 1u, dctx_func_80063398},
-    {0x800635BCu, 0x800635BCu, 197u, 1u, dctx_func_80063398},
-    {0x800635C4u, 0x800635C4u, 197u, 1u, dctx_func_80063398},
-    {0x800635CCu, 0x800635CCu, 197u, 1u, dctx_func_80063398},
-    {0x800635ECu, 0x800635ECu, 197u, 1u, dctx_func_80063398},
-    {0x800635F0u, 0x800635F0u, 197u, 1u, dctx_func_80063398},
-    {0x800635F8u, 0x800635F8u, 197u, 1u, dctx_func_80063398},
-    {0x800635FCu, 0x800635FCu, 197u, 1u, dctx_func_80063398},
-    {0x80063608u, 0x80063608u, 197u, 1u, dctx_func_80063398},
-    {0x8006360Cu, 0x8006360Cu, 197u, 1u, dctx_func_80063398},
-    {0x80063638u, 0x80063638u, 197u, 1u, dctx_func_80063398},
-    {0x80063640u, 0x80063640u, 197u, 1u, dctx_func_80063398},
-    {0x8006368Cu, 0x8006368Cu, 197u, 1u, dctx_func_80063398},
-    {0x80063694u, 0x80063694u, 197u, 1u, dctx_func_80063398},
-    {0x800636E4u, 0x00000000u, 198u, 1u, dctx_func_800636E4},
-    {0x80063728u, 0x00000000u, 199u, 1u, dctx_func_80063728},
-    {0x800637B4u, 0x00000000u, 200u, 1u, dctx_func_800637B4},
-    {0x800637D0u, 0x00000000u, 201u, 1u, dctx_func_800637D0},
-    {0x800637DCu, 0x800637DCu, 201u, 1u, dctx_func_800637D0},
-    {0x8006381Cu, 0x8006381Cu, 201u, 1u, dctx_func_800637D0},
-    {0x80063848u, 0x80063848u, 201u, 1u, dctx_func_800637D0},
-    {0x800638A4u, 0x800638A4u, 201u, 1u, dctx_func_800637D0},
-    {0x800638DCu, 0x800638DCu, 201u, 1u, dctx_func_800637D0},
-    {0x80063924u, 0x80063924u, 201u, 1u, dctx_func_800637D0},
-    {0x8006392Cu, 0x8006392Cu, 201u, 1u, dctx_func_800637D0},
-    {0x80063938u, 0x80063938u, 201u, 1u, dctx_func_800637D0},
-    {0x80063964u, 0x00000000u, 202u, 1u, dctx_func_80063964},
-    {0x800639A4u, 0x00000000u, 203u, 1u, dctx_func_800639A4},
-    {0x800639F4u, 0x00000000u, 204u, 1u, dctx_func_800639F4},
-    {0x80063A48u, 0x00000000u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A4Cu, 0x80063A4Cu, 205u, 1u, dctx_func_80063A48},
-    {0x80063A58u, 0x80063A58u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A68u, 0x80063A68u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A70u, 0x80063A70u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A78u, 0x80063A78u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A80u, 0x80063A80u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A8Cu, 0x80063A8Cu, 205u, 1u, dctx_func_80063A48},
-    {0x80063A94u, 0x80063A94u, 205u, 1u, dctx_func_80063A48},
-    {0x80063A9Cu, 0x80063A9Cu, 205u, 1u, dctx_func_80063A48},
-    {0x80063AA4u, 0x00000000u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B14u, 0x80063B14u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B20u, 0x80063B20u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B28u, 0x80063B28u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B34u, 0x80063B34u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B44u, 0x80063B44u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B50u, 0x80063B50u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063B54u, 0x80063B54u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063C70u, 0x80063C70u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063C80u, 0x80063C80u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063C8Cu, 0x80063C8Cu, 206u, 1u, dctx_func_80063AA4},
-    {0x80063CA0u, 0x80063CA0u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063CA8u, 0x80063CA8u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063CB0u, 0x80063CB0u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063CE4u, 0x80063CE4u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063CF0u, 0x80063CF0u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063D34u, 0x80063D34u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063D98u, 0x80063D98u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063DA8u, 0x80063DA8u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063DB0u, 0x80063DB0u, 206u, 1u, dctx_func_80063AA4},
-    {0x80063DBCu, 0x00000000u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DD0u, 0x80063DD0u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DD8u, 0x80063DD8u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DE0u, 0x80063DE0u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DE4u, 0x80063DE4u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DE8u, 0x80063DE8u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DF4u, 0x80063DF4u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063DFCu, 0x80063DFCu, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E04u, 0x80063E04u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E08u, 0x80063E08u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E0Cu, 0x80063E0Cu, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E18u, 0x80063E18u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E20u, 0x80063E20u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E28u, 0x80063E28u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E30u, 0x80063E30u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E3Cu, 0x80063E3Cu, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E44u, 0x80063E44u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E4Cu, 0x80063E4Cu, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E54u, 0x80063E54u, 207u, 1u, dctx_func_80063DBC},
-    {0x80063E5Cu, 0x00000000u, 208u, 1u, dctx_func_80063E5C},
-    {0x80063E64u, 0x00000000u, 209u, 1u, dctx_func_80063E64},
-    {0x80063E84u, 0x00000000u, 210u, 1u, dctx_func_80063E84},
-    {0x80063E94u, 0x80063E94u, 210u, 1u, dctx_func_80063E84},
-    {0x80063ED0u, 0x00000000u, 211u, 1u, dctx_func_80063ED0},
-    {0x80063ED8u, 0x80063ED8u, 211u, 1u, dctx_func_80063ED0},
-    {0x8006401Cu, 0x8006401Cu, 211u, 1u, dctx_func_80063ED0},
-    {0x80064024u, 0x80064024u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064040u, 0x80064040u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064048u, 0x80064048u, 211u, 1u, dctx_func_80063ED0},
-    {0x8006405Cu, 0x8006405Cu, 211u, 1u, dctx_func_80063ED0},
-    {0x80064068u, 0x80064068u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064074u, 0x80064074u, 211u, 1u, dctx_func_80063ED0},
-    {0x8006407Cu, 0x8006407Cu, 211u, 1u, dctx_func_80063ED0},
-    {0x80064084u, 0x80064084u, 211u, 1u, dctx_func_80063ED0},
-    {0x8006408Cu, 0x8006408Cu, 211u, 1u, dctx_func_80063ED0},
-    {0x80064098u, 0x80064098u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640A4u, 0x800640A4u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640B0u, 0x800640B0u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640B8u, 0x800640B8u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640C4u, 0x800640C4u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640D0u, 0x800640D0u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640DCu, 0x800640DCu, 211u, 1u, dctx_func_80063ED0},
-    {0x800640E8u, 0x800640E8u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640ECu, 0x800640ECu, 211u, 1u, dctx_func_80063ED0},
-    {0x800640F4u, 0x800640F4u, 211u, 1u, dctx_func_80063ED0},
-    {0x800640FCu, 0x800640FCu, 211u, 1u, dctx_func_80063ED0},
-    {0x80064108u, 0x80064108u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064128u, 0x80064128u, 211u, 1u, dctx_func_80063ED0},
-    {0x8006412Cu, 0x8006412Cu, 211u, 1u, dctx_func_80063ED0},
-    {0x80064134u, 0x80064134u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064138u, 0x80064138u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064144u, 0x80064144u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064148u, 0x80064148u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064178u, 0x80064178u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064184u, 0x80064184u, 211u, 1u, dctx_func_80063ED0},
-    {0x800641B4u, 0x800641B4u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064208u, 0x80064208u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064220u, 0x80064220u, 211u, 1u, dctx_func_80063ED0},
-    {0x80064248u, 0x00000000u, 212u, 1u, dctx_func_80064248},
-    {0x80064260u, 0x00000000u, 213u, 1u, dctx_func_80064260},
-    {0x800642CCu, 0x00000000u, 214u, 1u, dctx_func_800642CC},
-    {0x800642E8u, 0x00000000u, 215u, 1u, dctx_func_800642E8},
-    {0x800642F4u, 0x800642F4u, 215u, 1u, dctx_func_800642E8},
-    {0x80064334u, 0x80064334u, 215u, 1u, dctx_func_800642E8},
-    {0x80064368u, 0x80064368u, 215u, 1u, dctx_func_800642E8},
-    {0x800643F0u, 0x800643F0u, 215u, 1u, dctx_func_800642E8},
-    {0x800643FCu, 0x800643FCu, 215u, 1u, dctx_func_800642E8},
-    {0x80064434u, 0x80064434u, 215u, 1u, dctx_func_800642E8},
-    {0x8006447Cu, 0x8006447Cu, 215u, 1u, dctx_func_800642E8},
-    {0x80064484u, 0x80064484u, 215u, 1u, dctx_func_800642E8},
-    {0x80064490u, 0x80064490u, 215u, 1u, dctx_func_800642E8},
-    {0x800644BCu, 0x00000000u, 216u, 1u, dctx_func_800644BC},
-    {0x800644FCu, 0x00000000u, 217u, 1u, dctx_func_800644FC},
-    {0x8006454Cu, 0x00000000u, 218u, 1u, dctx_func_8006454C},
-    {0x800645A0u, 0x00000000u, 219u, 1u, dctx_func_800645A0},
-    {0x800645A4u, 0x800645A4u, 219u, 1u, dctx_func_800645A0},
-    {0x800645B0u, 0x800645B0u, 219u, 1u, dctx_func_800645A0},
-    {0x800645C0u, 0x800645C0u, 219u, 1u, dctx_func_800645A0},
-    {0x800645C8u, 0x800645C8u, 219u, 1u, dctx_func_800645A0},
-    {0x800645D0u, 0x800645D0u, 219u, 1u, dctx_func_800645A0},
-    {0x800645D8u, 0x800645D8u, 219u, 1u, dctx_func_800645A0},
-    {0x800645E4u, 0x800645E4u, 219u, 1u, dctx_func_800645A0},
-    {0x800645ECu, 0x800645ECu, 219u, 1u, dctx_func_800645A0},
-    {0x800645F4u, 0x800645F4u, 219u, 1u, dctx_func_800645A0},
-    {0x800645FCu, 0x00000000u, 220u, 1u, dctx_func_800645FC},
-    {0x80064688u, 0x80064688u, 220u, 1u, dctx_func_800645FC},
-    {0x80064694u, 0x80064694u, 220u, 1u, dctx_func_800645FC},
-    {0x8006469Cu, 0x8006469Cu, 220u, 1u, dctx_func_800645FC},
-    {0x800646A8u, 0x800646A8u, 220u, 1u, dctx_func_800645FC},
-    {0x800646B8u, 0x800646B8u, 220u, 1u, dctx_func_800645FC},
-    {0x800646C4u, 0x800646C4u, 220u, 1u, dctx_func_800645FC},
-    {0x800646C8u, 0x800646C8u, 220u, 1u, dctx_func_800645FC},
-    {0x80064848u, 0x80064848u, 220u, 1u, dctx_func_800645FC},
-    {0x80064858u, 0x80064858u, 220u, 1u, dctx_func_800645FC},
-    {0x80064864u, 0x80064864u, 220u, 1u, dctx_func_800645FC},
-    {0x80064878u, 0x80064878u, 220u, 1u, dctx_func_800645FC},
-    {0x80064880u, 0x80064880u, 220u, 1u, dctx_func_800645FC},
-    {0x80064888u, 0x80064888u, 220u, 1u, dctx_func_800645FC},
-    {0x800648BCu, 0x800648BCu, 220u, 1u, dctx_func_800645FC},
-    {0x800648C8u, 0x800648C8u, 220u, 1u, dctx_func_800645FC},
-    {0x8006490Cu, 0x8006490Cu, 220u, 1u, dctx_func_800645FC},
-    {0x80064988u, 0x80064988u, 220u, 1u, dctx_func_800645FC},
-    {0x80064998u, 0x80064998u, 220u, 1u, dctx_func_800645FC},
-    {0x800649A0u, 0x800649A0u, 220u, 1u, dctx_func_800645FC},
-    {0x800649C0u, 0x00000000u, 221u, 1u, dctx_func_800649C0},
-    {0x800649D4u, 0x800649D4u, 221u, 1u, dctx_func_800649C0},
-    {0x800649DCu, 0x800649DCu, 221u, 1u, dctx_func_800649C0},
-    {0x800649E4u, 0x800649E4u, 221u, 1u, dctx_func_800649C0},
-    {0x800649E8u, 0x800649E8u, 221u, 1u, dctx_func_800649C0},
-    {0x800649ECu, 0x800649ECu, 221u, 1u, dctx_func_800649C0},
-    {0x800649F8u, 0x800649F8u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A00u, 0x80064A00u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A08u, 0x80064A08u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A0Cu, 0x80064A0Cu, 221u, 1u, dctx_func_800649C0},
-    {0x80064A10u, 0x80064A10u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A1Cu, 0x80064A1Cu, 221u, 1u, dctx_func_800649C0},
-    {0x80064A24u, 0x80064A24u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A2Cu, 0x80064A2Cu, 221u, 1u, dctx_func_800649C0},
-    {0x80064A34u, 0x80064A34u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A40u, 0x80064A40u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A48u, 0x80064A48u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A50u, 0x80064A50u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A58u, 0x80064A58u, 221u, 1u, dctx_func_800649C0},
-    {0x80064A60u, 0x00000000u, 222u, 1u, dctx_func_80064A60},
-    {0x80064A68u, 0x00000000u, 223u, 1u, dctx_func_80064A68},
-    {0x80064A88u, 0x00000000u, 224u, 1u, dctx_func_80064A88},
-    {0x80064A98u, 0x80064A98u, 224u, 1u, dctx_func_80064A88},
-    {0x80064AD4u, 0x00000000u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064ADCu, 0x80064ADCu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C20u, 0x80064C20u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C28u, 0x80064C28u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C44u, 0x80064C44u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C4Cu, 0x80064C4Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C60u, 0x80064C60u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C6Cu, 0x80064C6Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C78u, 0x80064C78u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C80u, 0x80064C80u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C88u, 0x80064C88u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C90u, 0x80064C90u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064C9Cu, 0x80064C9Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CA8u, 0x80064CA8u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CB4u, 0x80064CB4u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CBCu, 0x80064CBCu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CC8u, 0x80064CC8u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CD4u, 0x80064CD4u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CE0u, 0x80064CE0u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CECu, 0x80064CECu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CF0u, 0x80064CF0u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064CF8u, 0x80064CF8u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D00u, 0x80064D00u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D0Cu, 0x80064D0Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D2Cu, 0x80064D2Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D30u, 0x80064D30u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D38u, 0x80064D38u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D3Cu, 0x80064D3Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D48u, 0x80064D48u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D7Cu, 0x80064D7Cu, 225u, 1u, dctx_func_80064AD4},
-    {0x80064D88u, 0x80064D88u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064DD4u, 0x80064DD4u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064E58u, 0x80064E58u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064E70u, 0x80064E70u, 225u, 1u, dctx_func_80064AD4},
-    {0x80064ED0u, 0x00000000u, 226u, 1u, dctx_func_80064ED0},
-    {0x80064F14u, 0x00000000u, 227u, 1u, dctx_func_80064F14},
-    {0x80064FB4u, 0x00000000u, 228u, 1u, dctx_func_80064FB4},
-    {0x80064FD0u, 0x00000000u, 229u, 1u, dctx_func_80064FD0},
-    {0x80064FDCu, 0x80064FDCu, 229u, 1u, dctx_func_80064FD0},
-    {0x8006501Cu, 0x8006501Cu, 229u, 1u, dctx_func_80064FD0},
-    {0x80065050u, 0x80065050u, 229u, 1u, dctx_func_80064FD0},
-    {0x800650D8u, 0x800650D8u, 229u, 1u, dctx_func_80064FD0},
-    {0x800650E4u, 0x800650E4u, 229u, 1u, dctx_func_80064FD0},
-    {0x8006511Cu, 0x8006511Cu, 229u, 1u, dctx_func_80064FD0},
-    {0x80065164u, 0x80065164u, 229u, 1u, dctx_func_80064FD0},
-    {0x8006516Cu, 0x8006516Cu, 229u, 1u, dctx_func_80064FD0},
-    {0x80065178u, 0x80065178u, 229u, 1u, dctx_func_80064FD0},
-    {0x800651A4u, 0x00000000u, 230u, 1u, dctx_func_800651A4},
-    {0x800651E4u, 0x00000000u, 231u, 1u, dctx_func_800651E4},
-    {0x80065234u, 0x00000000u, 232u, 1u, dctx_func_80065234},
-    {0x80065288u, 0x00000000u, 233u, 1u, dctx_func_80065288},
-    {0x8006528Cu, 0x8006528Cu, 233u, 1u, dctx_func_80065288},
-    {0x80065298u, 0x80065298u, 233u, 1u, dctx_func_80065288},
-    {0x800652A8u, 0x800652A8u, 233u, 1u, dctx_func_80065288},
-    {0x800652B0u, 0x800652B0u, 233u, 1u, dctx_func_80065288},
-    {0x800652B8u, 0x800652B8u, 233u, 1u, dctx_func_80065288},
-    {0x800652C0u, 0x800652C0u, 233u, 1u, dctx_func_80065288},
-    {0x800652CCu, 0x800652CCu, 233u, 1u, dctx_func_80065288},
-    {0x800652D4u, 0x800652D4u, 233u, 1u, dctx_func_80065288},
-    {0x800652DCu, 0x800652DCu, 233u, 1u, dctx_func_80065288},
-    {0x800652E4u, 0x00000000u, 234u, 1u, dctx_func_800652E4},
-    {0x80065364u, 0x80065364u, 234u, 1u, dctx_func_800652E4},
-    {0x80065370u, 0x80065370u, 234u, 1u, dctx_func_800652E4},
-    {0x80065378u, 0x80065378u, 234u, 1u, dctx_func_800652E4},
-    {0x80065384u, 0x80065384u, 234u, 1u, dctx_func_800652E4},
-    {0x80065394u, 0x80065394u, 234u, 1u, dctx_func_800652E4},
-    {0x800653A0u, 0x800653A0u, 234u, 1u, dctx_func_800652E4},
-    {0x800653A4u, 0x800653A4u, 234u, 1u, dctx_func_800652E4},
-    {0x80065524u, 0x80065524u, 234u, 1u, dctx_func_800652E4},
-    {0x80065534u, 0x80065534u, 234u, 1u, dctx_func_800652E4},
-    {0x80065540u, 0x80065540u, 234u, 1u, dctx_func_800652E4},
-    {0x80065554u, 0x80065554u, 234u, 1u, dctx_func_800652E4},
-    {0x8006555Cu, 0x8006555Cu, 234u, 1u, dctx_func_800652E4},
-    {0x80065564u, 0x80065564u, 234u, 1u, dctx_func_800652E4},
-    {0x80065598u, 0x80065598u, 234u, 1u, dctx_func_800652E4},
-    {0x800655A4u, 0x800655A4u, 234u, 1u, dctx_func_800652E4},
-    {0x800655E8u, 0x800655E8u, 234u, 1u, dctx_func_800652E4},
-    {0x80065664u, 0x80065664u, 234u, 1u, dctx_func_800652E4},
-    {0x80065674u, 0x80065674u, 234u, 1u, dctx_func_800652E4},
-    {0x8006567Cu, 0x8006567Cu, 234u, 1u, dctx_func_800652E4},
-    {0x8006569Cu, 0x00000000u, 235u, 1u, dctx_func_8006569C},
-    {0x800656B0u, 0x800656B0u, 235u, 1u, dctx_func_8006569C},
-    {0x800656B8u, 0x800656B8u, 235u, 1u, dctx_func_8006569C},
-    {0x800656C0u, 0x800656C0u, 235u, 1u, dctx_func_8006569C},
-    {0x800656C4u, 0x800656C4u, 235u, 1u, dctx_func_8006569C},
-    {0x800656C8u, 0x800656C8u, 235u, 1u, dctx_func_8006569C},
-    {0x800656D4u, 0x800656D4u, 235u, 1u, dctx_func_8006569C},
-    {0x800656DCu, 0x800656DCu, 235u, 1u, dctx_func_8006569C},
-    {0x800656E4u, 0x800656E4u, 235u, 1u, dctx_func_8006569C},
-    {0x800656E8u, 0x800656E8u, 235u, 1u, dctx_func_8006569C},
-    {0x800656ECu, 0x800656ECu, 235u, 1u, dctx_func_8006569C},
-    {0x800656F8u, 0x800656F8u, 235u, 1u, dctx_func_8006569C},
-    {0x80065700u, 0x80065700u, 235u, 1u, dctx_func_8006569C},
-    {0x80065708u, 0x80065708u, 235u, 1u, dctx_func_8006569C},
-    {0x80065710u, 0x80065710u, 235u, 1u, dctx_func_8006569C},
-    {0x8006571Cu, 0x8006571Cu, 235u, 1u, dctx_func_8006569C},
-    {0x80065724u, 0x80065724u, 235u, 1u, dctx_func_8006569C},
-    {0x8006572Cu, 0x8006572Cu, 235u, 1u, dctx_func_8006569C},
-    {0x80065734u, 0x80065734u, 235u, 1u, dctx_func_8006569C},
-    {0x8006573Cu, 0x00000000u, 236u, 1u, dctx_func_8006573C},
-    {0x80065744u, 0x00000000u, 237u, 1u, dctx_func_80065744},
-    {0x80065764u, 0x00000000u, 238u, 1u, dctx_func_80065764},
-    {0x80065774u, 0x80065774u, 238u, 1u, dctx_func_80065764},
-    {0x800657B0u, 0x00000000u, 239u, 1u, dctx_func_800657B0},
-    {0x800657B8u, 0x800657B8u, 239u, 1u, dctx_func_800657B0},
-    {0x800658FCu, 0x800658FCu, 239u, 1u, dctx_func_800657B0},
-    {0x80065904u, 0x80065904u, 239u, 1u, dctx_func_800657B0},
-    {0x80065920u, 0x80065920u, 239u, 1u, dctx_func_800657B0},
-    {0x80065928u, 0x80065928u, 239u, 1u, dctx_func_800657B0},
-    {0x8006593Cu, 0x8006593Cu, 239u, 1u, dctx_func_800657B0},
-    {0x80065948u, 0x80065948u, 239u, 1u, dctx_func_800657B0},
-    {0x80065954u, 0x80065954u, 239u, 1u, dctx_func_800657B0},
-    {0x8006595Cu, 0x8006595Cu, 239u, 1u, dctx_func_800657B0},
-    {0x80065964u, 0x80065964u, 239u, 1u, dctx_func_800657B0},
-    {0x8006596Cu, 0x8006596Cu, 239u, 1u, dctx_func_800657B0},
-    {0x80065978u, 0x80065978u, 239u, 1u, dctx_func_800657B0},
-    {0x80065984u, 0x80065984u, 239u, 1u, dctx_func_800657B0},
-    {0x80065990u, 0x80065990u, 239u, 1u, dctx_func_800657B0},
-    {0x80065998u, 0x80065998u, 239u, 1u, dctx_func_800657B0},
-    {0x800659A4u, 0x800659A4u, 239u, 1u, dctx_func_800657B0},
-    {0x800659B0u, 0x800659B0u, 239u, 1u, dctx_func_800657B0},
-    {0x800659BCu, 0x800659BCu, 239u, 1u, dctx_func_800657B0},
-    {0x800659C8u, 0x800659C8u, 239u, 1u, dctx_func_800657B0},
-    {0x800659CCu, 0x800659CCu, 239u, 1u, dctx_func_800657B0},
-    {0x800659D4u, 0x800659D4u, 239u, 1u, dctx_func_800657B0},
-    {0x800659DCu, 0x800659DCu, 239u, 1u, dctx_func_800657B0},
-    {0x800659E4u, 0x800659E4u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A04u, 0x80065A04u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A08u, 0x80065A08u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A10u, 0x80065A10u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A14u, 0x80065A14u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A20u, 0x80065A20u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A24u, 0x80065A24u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A54u, 0x80065A54u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A60u, 0x80065A60u, 239u, 1u, dctx_func_800657B0},
-    {0x80065A94u, 0x80065A94u, 239u, 1u, dctx_func_800657B0},
-    {0x80065AA0u, 0x80065AA0u, 239u, 1u, dctx_func_800657B0},
-    {0x80065AC4u, 0x00000000u, 240u, 1u, dctx_func_80065AC4},
-    {0x80065ADCu, 0x00000000u, 241u, 1u, dctx_func_80065ADC},
-    {0x80065B38u, 0x00000000u, 242u, 1u, dctx_func_80065B38},
-    {0x80065B54u, 0x00000000u, 243u, 1u, dctx_func_80065B54},
-    {0x80065B60u, 0x80065B60u, 243u, 1u, dctx_func_80065B54},
-    {0x80065BA0u, 0x80065BA0u, 243u, 1u, dctx_func_80065B54},
-    {0x80065BCCu, 0x80065BCCu, 243u, 1u, dctx_func_80065B54},
-    {0x80065C28u, 0x80065C28u, 243u, 1u, dctx_func_80065B54},
-    {0x80065C60u, 0x80065C60u, 243u, 1u, dctx_func_80065B54},
-    {0x80065CA8u, 0x80065CA8u, 243u, 1u, dctx_func_80065B54},
-    {0x80065CB0u, 0x80065CB0u, 243u, 1u, dctx_func_80065B54},
-    {0x80065CBCu, 0x80065CBCu, 243u, 1u, dctx_func_80065B54},
-    {0x80065CE8u, 0x00000000u, 244u, 1u, dctx_func_80065CE8},
-    {0x80065D28u, 0x00000000u, 245u, 1u, dctx_func_80065D28},
-    {0x80065D78u, 0x00000000u, 246u, 1u, dctx_func_80065D78},
-    {0x80065DCCu, 0x00000000u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065DD0u, 0x80065DD0u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065DDCu, 0x80065DDCu, 247u, 1u, dctx_func_80065DCC},
-    {0x80065DECu, 0x80065DECu, 247u, 1u, dctx_func_80065DCC},
-    {0x80065DF4u, 0x80065DF4u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065DFCu, 0x80065DFCu, 247u, 1u, dctx_func_80065DCC},
-    {0x80065E04u, 0x80065E04u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065E10u, 0x80065E10u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065E18u, 0x80065E18u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065E20u, 0x80065E20u, 247u, 1u, dctx_func_80065DCC},
-    {0x80065E28u, 0x00000000u, 248u, 1u, dctx_func_80065E28},
-    {0x80065E98u, 0x80065E98u, 248u, 1u, dctx_func_80065E28},
-    {0x80065EA4u, 0x80065EA4u, 248u, 1u, dctx_func_80065E28},
-    {0x80065EACu, 0x80065EACu, 248u, 1u, dctx_func_80065E28},
-    {0x80065EB8u, 0x80065EB8u, 248u, 1u, dctx_func_80065E28},
-    {0x80065EC8u, 0x80065EC8u, 248u, 1u, dctx_func_80065E28},
-    {0x80065ED4u, 0x80065ED4u, 248u, 1u, dctx_func_80065E28},
-    {0x80065ED8u, 0x80065ED8u, 248u, 1u, dctx_func_80065E28},
-    {0x80065FF4u, 0x80065FF4u, 248u, 1u, dctx_func_80065E28},
-    {0x80066004u, 0x80066004u, 248u, 1u, dctx_func_80065E28},
-    {0x80066010u, 0x80066010u, 248u, 1u, dctx_func_80065E28},
-    {0x80066024u, 0x80066024u, 248u, 1u, dctx_func_80065E28},
-    {0x8006602Cu, 0x8006602Cu, 248u, 1u, dctx_func_80065E28},
-    {0x80066034u, 0x80066034u, 248u, 1u, dctx_func_80065E28},
-    {0x80066068u, 0x80066068u, 248u, 1u, dctx_func_80065E28},
-    {0x80066074u, 0x80066074u, 248u, 1u, dctx_func_80065E28},
-    {0x800660B8u, 0x800660B8u, 248u, 1u, dctx_func_80065E28},
-    {0x8006611Cu, 0x8006611Cu, 248u, 1u, dctx_func_80065E28},
-    {0x8006612Cu, 0x8006612Cu, 248u, 1u, dctx_func_80065E28},
-    {0x80066134u, 0x80066134u, 248u, 1u, dctx_func_80065E28},
-    {0x80066154u, 0x00000000u, 249u, 1u, dctx_func_80066154},
-    {0x80066168u, 0x80066168u, 249u, 1u, dctx_func_80066154},
-    {0x80066170u, 0x80066170u, 249u, 1u, dctx_func_80066154},
-    {0x80066178u, 0x80066178u, 249u, 1u, dctx_func_80066154},
-    {0x8006617Cu, 0x8006617Cu, 249u, 1u, dctx_func_80066154},
-    {0x80066180u, 0x80066180u, 249u, 1u, dctx_func_80066154},
-    {0x8006618Cu, 0x8006618Cu, 249u, 1u, dctx_func_80066154},
-    {0x80066194u, 0x80066194u, 249u, 1u, dctx_func_80066154},
-    {0x8006619Cu, 0x8006619Cu, 249u, 1u, dctx_func_80066154},
-    {0x800661A0u, 0x800661A0u, 249u, 1u, dctx_func_80066154},
-    {0x800661A4u, 0x800661A4u, 249u, 1u, dctx_func_80066154},
-    {0x800661B0u, 0x800661B0u, 249u, 1u, dctx_func_80066154},
-    {0x800661B8u, 0x800661B8u, 249u, 1u, dctx_func_80066154},
-    {0x800661C0u, 0x800661C0u, 249u, 1u, dctx_func_80066154},
-    {0x800661C8u, 0x800661C8u, 249u, 1u, dctx_func_80066154},
-    {0x800661D4u, 0x800661D4u, 249u, 1u, dctx_func_80066154},
-    {0x800661DCu, 0x800661DCu, 249u, 1u, dctx_func_80066154},
-    {0x800661E4u, 0x800661E4u, 249u, 1u, dctx_func_80066154},
-    {0x800661ECu, 0x800661ECu, 249u, 1u, dctx_func_80066154},
-    {0x800661F4u, 0x00000000u, 250u, 1u, dctx_func_800661F4},
-    {0x800661FCu, 0x00000000u, 251u, 1u, dctx_func_800661FC},
-    {0x8006621Cu, 0x00000000u, 252u, 1u, dctx_func_8006621C},
-    {0x8006622Cu, 0x8006622Cu, 252u, 1u, dctx_func_8006621C},
-    {0x80066268u, 0x00000000u, 253u, 1u, dctx_func_80066268},
-    {0x80066270u, 0x80066270u, 253u, 1u, dctx_func_80066268},
-    {0x800663B4u, 0x800663B4u, 253u, 1u, dctx_func_80066268},
-    {0x800663BCu, 0x800663BCu, 253u, 1u, dctx_func_80066268},
-    {0x800663D8u, 0x800663D8u, 253u, 1u, dctx_func_80066268},
-    {0x800663E0u, 0x800663E0u, 253u, 1u, dctx_func_80066268},
-    {0x800663F4u, 0x800663F4u, 253u, 1u, dctx_func_80066268},
-    {0x80066400u, 0x80066400u, 253u, 1u, dctx_func_80066268},
-    {0x8006640Cu, 0x8006640Cu, 253u, 1u, dctx_func_80066268},
-    {0x80066414u, 0x80066414u, 253u, 1u, dctx_func_80066268},
-    {0x8006641Cu, 0x8006641Cu, 253u, 1u, dctx_func_80066268},
-    {0x80066424u, 0x80066424u, 253u, 1u, dctx_func_80066268},
-    {0x80066430u, 0x80066430u, 253u, 1u, dctx_func_80066268},
-    {0x8006643Cu, 0x8006643Cu, 253u, 1u, dctx_func_80066268},
-    {0x80066448u, 0x80066448u, 253u, 1u, dctx_func_80066268},
-    {0x80066450u, 0x80066450u, 253u, 1u, dctx_func_80066268},
-    {0x8006645Cu, 0x8006645Cu, 253u, 1u, dctx_func_80066268},
-    {0x80066468u, 0x80066468u, 253u, 1u, dctx_func_80066268},
-    {0x80066474u, 0x80066474u, 253u, 1u, dctx_func_80066268},
-    {0x80066480u, 0x80066480u, 253u, 1u, dctx_func_80066268},
-    {0x80066484u, 0x80066484u, 253u, 1u, dctx_func_80066268},
-    {0x8006648Cu, 0x8006648Cu, 253u, 1u, dctx_func_80066268},
-    {0x80066494u, 0x80066494u, 253u, 1u, dctx_func_80066268},
-    {0x8006649Cu, 0x8006649Cu, 253u, 1u, dctx_func_80066268},
-    {0x800664BCu, 0x800664BCu, 253u, 1u, dctx_func_80066268},
-    {0x800664C0u, 0x800664C0u, 253u, 1u, dctx_func_80066268},
-    {0x800664C8u, 0x800664C8u, 253u, 1u, dctx_func_80066268},
-    {0x800664CCu, 0x800664CCu, 253u, 1u, dctx_func_80066268},
-    {0x800664D8u, 0x800664D8u, 253u, 1u, dctx_func_80066268},
-    {0x800664DCu, 0x800664DCu, 253u, 1u, dctx_func_80066268},
-    {0x80066510u, 0x80066510u, 253u, 1u, dctx_func_80066268},
-    {0x8006651Cu, 0x8006651Cu, 253u, 1u, dctx_func_80066268},
-    {0x80066568u, 0x80066568u, 253u, 1u, dctx_func_80066268},
-    {0x80066574u, 0x80066574u, 253u, 1u, dctx_func_80066268},
-    {0x800665C4u, 0x00000000u, 254u, 1u, dctx_func_800665C4},
-    {0x80066608u, 0x00000000u, 255u, 1u, dctx_func_80066608},
-    {0x80066694u, 0x00000000u, 256u, 1u, dctx_func_80066694},
-    {0x800666B0u, 0x00000000u, 257u, 1u, dctx_func_800666B0},
-    {0x800666BCu, 0x800666BCu, 257u, 1u, dctx_func_800666B0},
-    {0x800666FCu, 0x800666FCu, 257u, 1u, dctx_func_800666B0},
-    {0x80066728u, 0x80066728u, 257u, 1u, dctx_func_800666B0},
-    {0x80066784u, 0x80066784u, 257u, 1u, dctx_func_800666B0},
-    {0x800667BCu, 0x800667BCu, 257u, 1u, dctx_func_800666B0},
-    {0x80066804u, 0x80066804u, 257u, 1u, dctx_func_800666B0},
-    {0x8006680Cu, 0x8006680Cu, 257u, 1u, dctx_func_800666B0},
-    {0x80066818u, 0x80066818u, 257u, 1u, dctx_func_800666B0},
-    {0x80066844u, 0x00000000u, 258u, 1u, dctx_func_80066844},
-    {0x80066884u, 0x00000000u, 259u, 1u, dctx_func_80066884},
-    {0x800668D4u, 0x00000000u, 260u, 1u, dctx_func_800668D4},
-    {0x80066928u, 0x00000000u, 261u, 1u, dctx_func_80066928},
-    {0x8006692Cu, 0x8006692Cu, 261u, 1u, dctx_func_80066928},
-    {0x80066938u, 0x80066938u, 261u, 1u, dctx_func_80066928},
-    {0x80066948u, 0x80066948u, 261u, 1u, dctx_func_80066928},
-    {0x80066950u, 0x80066950u, 261u, 1u, dctx_func_80066928},
-    {0x80066958u, 0x80066958u, 261u, 1u, dctx_func_80066928},
-    {0x80066960u, 0x80066960u, 261u, 1u, dctx_func_80066928},
-    {0x8006696Cu, 0x8006696Cu, 261u, 1u, dctx_func_80066928},
-    {0x80066974u, 0x80066974u, 261u, 1u, dctx_func_80066928},
-    {0x8006697Cu, 0x8006697Cu, 261u, 1u, dctx_func_80066928},
-    {0x80066984u, 0x00000000u, 262u, 1u, dctx_func_80066984},
-    {0x800669F4u, 0x800669F4u, 262u, 1u, dctx_func_80066984},
-    {0x80066A00u, 0x80066A00u, 262u, 1u, dctx_func_80066984},
-    {0x80066A08u, 0x80066A08u, 262u, 1u, dctx_func_80066984},
-    {0x80066A14u, 0x80066A14u, 262u, 1u, dctx_func_80066984},
-    {0x80066A24u, 0x80066A24u, 262u, 1u, dctx_func_80066984},
-    {0x80066A30u, 0x80066A30u, 262u, 1u, dctx_func_80066984},
-    {0x80066A34u, 0x80066A34u, 262u, 1u, dctx_func_80066984},
-    {0x80066B50u, 0x80066B50u, 262u, 1u, dctx_func_80066984},
-    {0x80066B60u, 0x80066B60u, 262u, 1u, dctx_func_80066984},
-    {0x80066B6Cu, 0x80066B6Cu, 262u, 1u, dctx_func_80066984},
-    {0x80066B80u, 0x80066B80u, 262u, 1u, dctx_func_80066984},
-    {0x80066B88u, 0x80066B88u, 262u, 1u, dctx_func_80066984},
-    {0x80066B90u, 0x80066B90u, 262u, 1u, dctx_func_80066984},
-    {0x80066BC4u, 0x80066BC4u, 262u, 1u, dctx_func_80066984},
-    {0x80066BD0u, 0x80066BD0u, 262u, 1u, dctx_func_80066984},
-    {0x80066C14u, 0x80066C14u, 262u, 1u, dctx_func_80066984},
-    {0x80066C78u, 0x80066C78u, 262u, 1u, dctx_func_80066984},
-    {0x80066C88u, 0x80066C88u, 262u, 1u, dctx_func_80066984},
-    {0x80066C90u, 0x80066C90u, 262u, 1u, dctx_func_80066984},
-    {0x80066CB0u, 0x00000000u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CC4u, 0x80066CC4u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CCCu, 0x80066CCCu, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CD4u, 0x80066CD4u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CD8u, 0x80066CD8u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CDCu, 0x80066CDCu, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CE8u, 0x80066CE8u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CF0u, 0x80066CF0u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CF8u, 0x80066CF8u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066CFCu, 0x80066CFCu, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D00u, 0x80066D00u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D0Cu, 0x80066D0Cu, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D14u, 0x80066D14u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D1Cu, 0x80066D1Cu, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D24u, 0x80066D24u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D30u, 0x80066D30u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D38u, 0x80066D38u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D40u, 0x80066D40u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D48u, 0x80066D48u, 263u, 1u, dctx_func_80066CB0},
-    {0x80066D50u, 0x00000000u, 264u, 1u, dctx_func_80066D50},
-    {0x80066D58u, 0x00000000u, 265u, 1u, dctx_func_80066D58},
-    {0x80066E60u, 0x80066E60u, 265u, 1u, dctx_func_80066D58},
-    {0x80066E70u, 0x80066E70u, 265u, 1u, dctx_func_80066D58},
-    {0x80066EA8u, 0x80066EA8u, 265u, 1u, dctx_func_80066D58},
-    {0x80066EB0u, 0x80066EB0u, 265u, 1u, dctx_func_80066D58},
-    {0x80066ED8u, 0x80066ED8u, 265u, 1u, dctx_func_80066D58},
-    {0x80066EF8u, 0x80066EF8u, 265u, 1u, dctx_func_80066D58},
-    {0x80066F08u, 0x80066F08u, 265u, 1u, dctx_func_80066D58},
-    {0x80066F2Cu, 0x80066F2Cu, 265u, 1u, dctx_func_80066D58},
-    {0x80066F9Cu, 0x80066F9Cu, 265u, 1u, dctx_func_80066D58},
-    {0x80066FE0u, 0x80066FE0u, 265u, 1u, dctx_func_80066D58},
-    {0x80066FECu, 0x80066FECu, 265u, 1u, dctx_func_80066D58},
-    {0x80066FF8u, 0x80066FF8u, 265u, 1u, dctx_func_80066D58},
-    {0x80067008u, 0x80067008u, 265u, 1u, dctx_func_80066D58},
-    {0x80067050u, 0x80067050u, 265u, 1u, dctx_func_80066D58},
-    {0x80067084u, 0x80067084u, 265u, 1u, dctx_func_80066D58},
-    {0x800670D8u, 0x800670D8u, 265u, 1u, dctx_func_80066D58},
-    {0x80067174u, 0x00000000u, 266u, 1u, dctx_func_80067174},
-    {0x80067198u, 0x80067198u, 266u, 1u, dctx_func_80067174},
-    {0x800671A0u, 0x800671A0u, 266u, 1u, dctx_func_80067174},
-    {0x800671A8u, 0x800671A8u, 266u, 1u, dctx_func_80067174},
-    {0x800671ACu, 0x800671ACu, 266u, 1u, dctx_func_80067174},
-    {0x800671B0u, 0x800671B0u, 266u, 1u, dctx_func_80067174},
-    {0x800671BCu, 0x800671BCu, 266u, 1u, dctx_func_80067174},
-    {0x800671C4u, 0x800671C4u, 266u, 1u, dctx_func_80067174},
-    {0x800671CCu, 0x800671CCu, 266u, 1u, dctx_func_80067174},
-    {0x800671D0u, 0x800671D0u, 266u, 1u, dctx_func_80067174},
-    {0x800671D4u, 0x800671D4u, 266u, 1u, dctx_func_80067174},
-    {0x800671F0u, 0x800671F0u, 266u, 1u, dctx_func_80067174},
-    {0x800671F8u, 0x800671F8u, 266u, 1u, dctx_func_80067174},
-    {0x80067200u, 0x80067200u, 266u, 1u, dctx_func_80067174},
-    {0x80067208u, 0x80067208u, 266u, 1u, dctx_func_80067174},
-    {0x80067214u, 0x80067214u, 266u, 1u, dctx_func_80067174},
-    {0x8006721Cu, 0x8006721Cu, 266u, 1u, dctx_func_80067174},
-    {0x80067224u, 0x80067224u, 266u, 1u, dctx_func_80067174},
-    {0x8006722Cu, 0x8006722Cu, 266u, 1u, dctx_func_80067174},
-    {0x80067234u, 0x00000000u, 267u, 1u, dctx_func_80067234},
-    {0x8006723Cu, 0x00000000u, 268u, 1u, dctx_func_8006723C},
-    {0x8006725Cu, 0x00000000u, 269u, 1u, dctx_func_8006725C},
-    {0x8006726Cu, 0x8006726Cu, 269u, 1u, dctx_func_8006725C},
-    {0x800672A8u, 0x00000000u, 270u, 1u, dctx_func_800672A8},
-    {0x800672B0u, 0x800672B0u, 270u, 1u, dctx_func_800672A8},
-    {0x80067388u, 0x80067388u, 270u, 1u, dctx_func_800672A8},
-    {0x800673A4u, 0x800673A4u, 270u, 1u, dctx_func_800672A8},
-    {0x800673BCu, 0x800673BCu, 270u, 1u, dctx_func_800672A8},
-    {0x800673DCu, 0x800673DCu, 270u, 1u, dctx_func_800672A8},
-    {0x800673FCu, 0x800673FCu, 270u, 1u, dctx_func_800672A8},
-    {0x8006740Cu, 0x8006740Cu, 270u, 1u, dctx_func_800672A8},
-    {0x80067414u, 0x80067414u, 270u, 1u, dctx_func_800672A8},
-    {0x80067428u, 0x80067428u, 270u, 1u, dctx_func_800672A8},
-    {0x80067434u, 0x80067434u, 270u, 1u, dctx_func_800672A8},
-    {0x8006743Cu, 0x8006743Cu, 270u, 1u, dctx_func_800672A8},
-    {0x80067444u, 0x80067444u, 270u, 1u, dctx_func_800672A8},
-    {0x8006744Cu, 0x8006744Cu, 270u, 1u, dctx_func_800672A8},
-    {0x80067458u, 0x80067458u, 270u, 1u, dctx_func_800672A8},
-    {0x80067464u, 0x80067464u, 270u, 1u, dctx_func_800672A8},
-    {0x80067470u, 0x80067470u, 270u, 1u, dctx_func_800672A8},
-    {0x80067478u, 0x80067478u, 270u, 1u, dctx_func_800672A8},
-    {0x80067484u, 0x80067484u, 270u, 1u, dctx_func_800672A8},
-    {0x80067490u, 0x80067490u, 270u, 1u, dctx_func_800672A8},
-    {0x8006749Cu, 0x8006749Cu, 270u, 1u, dctx_func_800672A8},
-    {0x800674A8u, 0x800674A8u, 270u, 1u, dctx_func_800672A8},
-    {0x800674ACu, 0x800674ACu, 270u, 1u, dctx_func_800672A8},
-    {0x800674B4u, 0x800674B4u, 270u, 1u, dctx_func_800672A8},
-    {0x800674BCu, 0x800674BCu, 270u, 1u, dctx_func_800672A8},
-    {0x800674C4u, 0x800674C4u, 270u, 1u, dctx_func_800672A8},
-    {0x800674D0u, 0x800674D0u, 270u, 1u, dctx_func_800672A8},
-    {0x800674D4u, 0x800674D4u, 270u, 1u, dctx_func_800672A8},
-    {0x800674D8u, 0x800674D8u, 270u, 1u, dctx_func_800672A8},
-    {0x800674DCu, 0x800674DCu, 270u, 1u, dctx_func_800672A8},
-    {0x80067500u, 0x80067500u, 270u, 1u, dctx_func_800672A8},
-    {0x8006750Cu, 0x8006750Cu, 270u, 1u, dctx_func_800672A8},
-    {0x80067534u, 0x80067534u, 270u, 1u, dctx_func_800672A8},
-    {0x8006757Cu, 0x8006757Cu, 270u, 1u, dctx_func_800672A8},
-    {0x80067584u, 0x80067584u, 270u, 1u, dctx_func_800672A8},
-    {0x800675B4u, 0x00000000u, 271u, 1u, dctx_func_800675B4},
-    {0x800675CCu, 0x00000000u, 272u, 1u, dctx_func_800675CC},
-    {0x80067620u, 0x00000000u, 273u, 1u, dctx_func_80067620},
-    {0x8006763Cu, 0x00000000u, 274u, 1u, dctx_func_8006763C},
-    {0x80067658u, 0x80067658u, 274u, 1u, dctx_func_8006763C},
-    {0x800678C8u, 0x800678C8u, 274u, 1u, dctx_func_8006763C},
-    {0x800678D4u, 0x800678D4u, 274u, 1u, dctx_func_8006763C},
-    {0x800678E8u, 0x800678E8u, 274u, 1u, dctx_func_8006763C},
-    {0x800678F0u, 0x800678F0u, 274u, 1u, dctx_func_8006763C},
-    {0x800678F8u, 0x800678F8u, 274u, 1u, dctx_func_8006763C},
-    {0x80067900u, 0x80067900u, 274u, 1u, dctx_func_8006763C},
-    {0x80067918u, 0x80067918u, 274u, 1u, dctx_func_8006763C},
-    {0x80067924u, 0x80067924u, 274u, 1u, dctx_func_8006763C},
-    {0x8006793Cu, 0x8006793Cu, 274u, 1u, dctx_func_8006763C},
-    {0x80067974u, 0x80067974u, 274u, 1u, dctx_func_8006763C},
-    {0x80067980u, 0x80067980u, 274u, 1u, dctx_func_8006763C},
-    {0x80067994u, 0x80067994u, 274u, 1u, dctx_func_8006763C},
-    {0x800679A8u, 0x800679A8u, 274u, 1u, dctx_func_8006763C},
-    {0x800679B0u, 0x800679B0u, 274u, 1u, dctx_func_8006763C},
-    {0x800679B8u, 0x800679B8u, 274u, 1u, dctx_func_8006763C},
-    {0x800679D0u, 0x800679D0u, 274u, 1u, dctx_func_8006763C},
-    {0x800679DCu, 0x800679DCu, 274u, 1u, dctx_func_8006763C},
-    {0x800679F4u, 0x800679F4u, 274u, 1u, dctx_func_8006763C},
-    {0x80067A2Cu, 0x80067A2Cu, 274u, 1u, dctx_func_8006763C},
-    {0x80067A38u, 0x80067A38u, 274u, 1u, dctx_func_8006763C},
-    {0x80067A4Cu, 0x80067A4Cu, 274u, 1u, dctx_func_8006763C},
-    {0x80067A60u, 0x80067A60u, 274u, 1u, dctx_func_8006763C},
-    {0x80067A68u, 0x80067A68u, 274u, 1u, dctx_func_8006763C},
-    {0x80067A70u, 0x80067A70u, 274u, 1u, dctx_func_8006763C},
-    {0x80067A88u, 0x80067A88u, 274u, 1u, dctx_func_8006763C},
-    {0x80067A94u, 0x80067A94u, 274u, 1u, dctx_func_8006763C},
-    {0x80067AACu, 0x80067AACu, 274u, 1u, dctx_func_8006763C},
-    {0x80067AE4u, 0x80067AE4u, 274u, 1u, dctx_func_8006763C},
-    {0x80067AF0u, 0x80067AF0u, 274u, 1u, dctx_func_8006763C},
-    {0x80067B04u, 0x80067B04u, 274u, 1u, dctx_func_8006763C},
-    {0x80067B18u, 0x80067B18u, 274u, 1u, dctx_func_8006763C},
-    {0x80067B38u, 0x00000000u, 275u, 1u, dctx_func_80067B38},
-    {0x80067BCCu, 0x00000000u, 276u, 1u, dctx_func_80067BCC},
-    {0x80067C1Cu, 0x00000000u, 277u, 1u, dctx_func_80067C1C},
-    {0x80067C70u, 0x00000000u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CA8u, 0x80067CA8u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CACu, 0x80067CACu, 278u, 1u, dctx_func_80067C70},
-    {0x80067CB4u, 0x80067CB4u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CC0u, 0x80067CC0u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CC8u, 0x80067CC8u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CD4u, 0x80067CD4u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CD8u, 0x80067CD8u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CDCu, 0x80067CDCu, 278u, 1u, dctx_func_80067C70},
-    {0x80067CE4u, 0x80067CE4u, 278u, 1u, dctx_func_80067C70},
-    {0x80067CECu, 0x80067CECu, 278u, 1u, dctx_func_80067C70},
-    {0x80067CFCu, 0x80067CFCu, 278u, 1u, dctx_func_80067C70},
-    {0x80067D0Cu, 0x80067D0Cu, 278u, 1u, dctx_func_80067C70},
-    {0x80067D30u, 0x00000000u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D44u, 0x80067D44u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D4Cu, 0x80067D4Cu, 279u, 1u, dctx_func_80067D30},
-    {0x80067D50u, 0x80067D50u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D54u, 0x80067D54u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D60u, 0x80067D60u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D68u, 0x80067D68u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D6Cu, 0x80067D6Cu, 279u, 1u, dctx_func_80067D30},
-    {0x80067D70u, 0x80067D70u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D7Cu, 0x80067D7Cu, 279u, 1u, dctx_func_80067D30},
-    {0x80067D84u, 0x80067D84u, 279u, 1u, dctx_func_80067D30},
-    {0x80067D8Cu, 0x80067D8Cu, 279u, 1u, dctx_func_80067D30},
-    {0x80067D98u, 0x80067D98u, 279u, 1u, dctx_func_80067D30},
-    {0x80067DA0u, 0x80067DA0u, 279u, 1u, dctx_func_80067D30},
-    {0x80067DA8u, 0x80067DA8u, 279u, 1u, dctx_func_80067D30},
-    {0x80067DB0u, 0x00000000u, 280u, 1u, dctx_func_80067DB0},
-    {0x80067DB8u, 0x00000000u, 281u, 1u, dctx_func_80067DB8},
-    {0x80067DD8u, 0x00000000u, 282u, 1u, dctx_func_80067DD8},
-    {0x80067DE8u, 0x80067DE8u, 282u, 1u, dctx_func_80067DD8},
-    {0x80067E24u, 0x00000000u, 283u, 1u, dctx_func_80067E24},
-    {0x80067E2Cu, 0x80067E2Cu, 283u, 1u, dctx_func_80067E24},
-    {0x80067F04u, 0x80067F04u, 283u, 1u, dctx_func_80067E24},
-    {0x80067F20u, 0x80067F20u, 283u, 1u, dctx_func_80067E24},
-    {0x80067F38u, 0x80067F38u, 283u, 1u, dctx_func_80067E24},
-    {0x80067F58u, 0x80067F58u, 283u, 1u, dctx_func_80067E24},
-    {0x80067F78u, 0x80067F78u, 283u, 1u, dctx_func_80067E24},
-    {0x80067F88u, 0x80067F88u, 283u, 1u, dctx_func_80067E24},
-    {0x80067F90u, 0x80067F90u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FA4u, 0x80067FA4u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FB0u, 0x80067FB0u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FB8u, 0x80067FB8u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FC0u, 0x80067FC0u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FC8u, 0x80067FC8u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FD4u, 0x80067FD4u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FE0u, 0x80067FE0u, 283u, 1u, dctx_func_80067E24},
-    {0x80067FECu, 0x80067FECu, 283u, 1u, dctx_func_80067E24},
-    {0x80067FF4u, 0x80067FF4u, 283u, 1u, dctx_func_80067E24},
-    {0x80068000u, 0x80068000u, 283u, 1u, dctx_func_80067E24},
-    {0x8006800Cu, 0x8006800Cu, 283u, 1u, dctx_func_80067E24},
-    {0x80068018u, 0x80068018u, 283u, 1u, dctx_func_80067E24},
-    {0x80068024u, 0x80068024u, 283u, 1u, dctx_func_80067E24},
-    {0x80068028u, 0x80068028u, 283u, 1u, dctx_func_80067E24},
-    {0x80068030u, 0x80068030u, 283u, 1u, dctx_func_80067E24},
-    {0x80068038u, 0x80068038u, 283u, 1u, dctx_func_80067E24},
-    {0x80068040u, 0x80068040u, 283u, 1u, dctx_func_80067E24},
-    {0x8006804Cu, 0x8006804Cu, 283u, 1u, dctx_func_80067E24},
-    {0x80068050u, 0x80068050u, 283u, 1u, dctx_func_80067E24},
-    {0x80068054u, 0x80068054u, 283u, 1u, dctx_func_80067E24},
-    {0x80068058u, 0x80068058u, 283u, 1u, dctx_func_80067E24},
-    {0x8006807Cu, 0x8006807Cu, 283u, 1u, dctx_func_80067E24},
-    {0x80068088u, 0x80068088u, 283u, 1u, dctx_func_80067E24},
-    {0x800680CCu, 0x800680CCu, 283u, 1u, dctx_func_80067E24},
-    {0x80068144u, 0x80068144u, 283u, 1u, dctx_func_80067E24},
-    {0x8006814Cu, 0x8006814Cu, 283u, 1u, dctx_func_80067E24},
-    {0x800681A8u, 0x00000000u, 284u, 1u, dctx_func_800681A8},
-    {0x800681ECu, 0x00000000u, 285u, 1u, dctx_func_800681EC},
-    {0x80068274u, 0x00000000u, 286u, 1u, dctx_func_80068274},
-    {0x80068290u, 0x00000000u, 287u, 1u, dctx_func_80068290},
-    {0x800682ACu, 0x800682ACu, 287u, 1u, dctx_func_80068290},
-    {0x8006851Cu, 0x8006851Cu, 287u, 1u, dctx_func_80068290},
-    {0x80068528u, 0x80068528u, 287u, 1u, dctx_func_80068290},
-    {0x8006853Cu, 0x8006853Cu, 287u, 1u, dctx_func_80068290},
-    {0x80068544u, 0x80068544u, 287u, 1u, dctx_func_80068290},
-    {0x8006854Cu, 0x8006854Cu, 287u, 1u, dctx_func_80068290},
-    {0x80068554u, 0x80068554u, 287u, 1u, dctx_func_80068290},
-    {0x8006856Cu, 0x8006856Cu, 287u, 1u, dctx_func_80068290},
-    {0x80068578u, 0x80068578u, 287u, 1u, dctx_func_80068290},
-    {0x80068590u, 0x80068590u, 287u, 1u, dctx_func_80068290},
-    {0x800685C8u, 0x800685C8u, 287u, 1u, dctx_func_80068290},
-    {0x800685D4u, 0x800685D4u, 287u, 1u, dctx_func_80068290},
-    {0x800685E8u, 0x800685E8u, 287u, 1u, dctx_func_80068290},
-    {0x800685FCu, 0x800685FCu, 287u, 1u, dctx_func_80068290},
-    {0x80068604u, 0x80068604u, 287u, 1u, dctx_func_80068290},
-    {0x8006860Cu, 0x8006860Cu, 287u, 1u, dctx_func_80068290},
-    {0x80068624u, 0x80068624u, 287u, 1u, dctx_func_80068290},
-    {0x80068630u, 0x80068630u, 287u, 1u, dctx_func_80068290},
-    {0x80068648u, 0x80068648u, 287u, 1u, dctx_func_80068290},
-    {0x80068680u, 0x80068680u, 287u, 1u, dctx_func_80068290},
-    {0x8006868Cu, 0x8006868Cu, 287u, 1u, dctx_func_80068290},
-    {0x800686A0u, 0x800686A0u, 287u, 1u, dctx_func_80068290},
-    {0x800686B4u, 0x800686B4u, 287u, 1u, dctx_func_80068290},
-    {0x800686BCu, 0x800686BCu, 287u, 1u, dctx_func_80068290},
-    {0x800686C4u, 0x800686C4u, 287u, 1u, dctx_func_80068290},
-    {0x800686DCu, 0x800686DCu, 287u, 1u, dctx_func_80068290},
-    {0x800686E8u, 0x800686E8u, 287u, 1u, dctx_func_80068290},
-    {0x80068700u, 0x80068700u, 287u, 1u, dctx_func_80068290},
-    {0x80068738u, 0x80068738u, 287u, 1u, dctx_func_80068290},
-    {0x80068744u, 0x80068744u, 287u, 1u, dctx_func_80068290},
-    {0x80068758u, 0x80068758u, 287u, 1u, dctx_func_80068290},
-    {0x8006876Cu, 0x8006876Cu, 287u, 1u, dctx_func_80068290},
-    {0x8006878Cu, 0x00000000u, 288u, 1u, dctx_func_8006878C},
-    {0x80068820u, 0x00000000u, 289u, 1u, dctx_func_80068820},
-    {0x80068870u, 0x00000000u, 290u, 1u, dctx_func_80068870},
-    {0x800688C4u, 0x00000000u, 291u, 1u, dctx_func_800688C4},
-    {0x800688FCu, 0x800688FCu, 291u, 1u, dctx_func_800688C4},
-    {0x80068900u, 0x80068900u, 291u, 1u, dctx_func_800688C4},
-    {0x80068908u, 0x80068908u, 291u, 1u, dctx_func_800688C4},
-    {0x80068914u, 0x80068914u, 291u, 1u, dctx_func_800688C4},
-    {0x8006891Cu, 0x8006891Cu, 291u, 1u, dctx_func_800688C4},
-    {0x80068928u, 0x80068928u, 291u, 1u, dctx_func_800688C4},
-    {0x8006892Cu, 0x8006892Cu, 291u, 1u, dctx_func_800688C4},
-    {0x80068930u, 0x80068930u, 291u, 1u, dctx_func_800688C4},
-    {0x80068938u, 0x80068938u, 291u, 1u, dctx_func_800688C4},
-    {0x80068940u, 0x80068940u, 291u, 1u, dctx_func_800688C4},
-    {0x80068950u, 0x80068950u, 291u, 1u, dctx_func_800688C4},
-    {0x80068960u, 0x80068960u, 291u, 1u, dctx_func_800688C4},
-    {0x80068984u, 0x00000000u, 292u, 1u, dctx_func_80068984},
-    {0x80068998u, 0x80068998u, 292u, 1u, dctx_func_80068984},
-    {0x800689A0u, 0x800689A0u, 292u, 1u, dctx_func_80068984},
-    {0x800689A4u, 0x800689A4u, 292u, 1u, dctx_func_80068984},
-    {0x800689A8u, 0x800689A8u, 292u, 1u, dctx_func_80068984},
-    {0x800689B4u, 0x800689B4u, 292u, 1u, dctx_func_80068984},
-    {0x800689BCu, 0x800689BCu, 292u, 1u, dctx_func_80068984},
-    {0x800689C0u, 0x800689C0u, 292u, 1u, dctx_func_80068984},
-    {0x800689C4u, 0x800689C4u, 292u, 1u, dctx_func_80068984},
-    {0x800689D0u, 0x800689D0u, 292u, 1u, dctx_func_80068984},
-    {0x800689D8u, 0x800689D8u, 292u, 1u, dctx_func_80068984},
-    {0x800689E0u, 0x800689E0u, 292u, 1u, dctx_func_80068984},
-    {0x800689ECu, 0x800689ECu, 292u, 1u, dctx_func_80068984},
-    {0x800689F4u, 0x800689F4u, 292u, 1u, dctx_func_80068984},
-    {0x800689FCu, 0x800689FCu, 292u, 1u, dctx_func_80068984},
-    {0x80068A04u, 0x00000000u, 293u, 1u, dctx_func_80068A04},
-    {0x80068A0Cu, 0x00000000u, 294u, 1u, dctx_func_80068A0C},
-    {0x80068A14u, 0x00000000u, 295u, 1u, dctx_func_80068A14},
-    {0x80068A24u, 0x80068A24u, 295u, 1u, dctx_func_80068A14},
-    {0x80068A60u, 0x80068A60u, 295u, 1u, dctx_func_80068A14},
-    {0x80068A6Cu, 0x00000000u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068A74u, 0x80068A74u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068BB4u, 0x80068BB4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068BBCu, 0x80068BBCu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068BD8u, 0x80068BD8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068BE0u, 0x80068BE0u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068BF4u, 0x80068BF4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C00u, 0x80068C00u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C0Cu, 0x80068C0Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C14u, 0x80068C14u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C1Cu, 0x80068C1Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C80u, 0x80068C80u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C8Cu, 0x80068C8Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068C98u, 0x80068C98u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068CA4u, 0x80068CA4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068CA8u, 0x80068CA8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068CB0u, 0x80068CB0u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068CB8u, 0x80068CB8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068D4Cu, 0x80068D4Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068D84u, 0x80068D84u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068D88u, 0x80068D88u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068D90u, 0x80068D90u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068D94u, 0x80068D94u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068DB8u, 0x80068DB8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E1Cu, 0x80068E1Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E34u, 0x80068E34u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E3Cu, 0x80068E3Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E74u, 0x80068E74u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E7Cu, 0x80068E7Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E84u, 0x80068E84u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E88u, 0x80068E88u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E8Cu, 0x80068E8Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E94u, 0x80068E94u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068E9Cu, 0x80068E9Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EA4u, 0x80068EA4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EA8u, 0x80068EA8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EACu, 0x80068EACu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EB4u, 0x80068EB4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EBCu, 0x80068EBCu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EC4u, 0x80068EC4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EC8u, 0x80068EC8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068ECCu, 0x80068ECCu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068ED4u, 0x80068ED4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EDCu, 0x80068EDCu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EE4u, 0x80068EE4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EE8u, 0x80068EE8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EECu, 0x80068EECu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068EF4u, 0x80068EF4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F08u, 0x80068F08u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F1Cu, 0x80068F1Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F30u, 0x80068F30u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F48u, 0x80068F48u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F50u, 0x80068F50u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F60u, 0x80068F60u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F64u, 0x80068F64u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F70u, 0x80068F70u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F74u, 0x80068F74u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068F84u, 0x80068F84u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068FD0u, 0x80068FD0u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068FDCu, 0x80068FDCu, 296u, 1u, dctx_func_80068A6C},
-    {0x80068FE8u, 0x80068FE8u, 296u, 1u, dctx_func_80068A6C},
-    {0x80068FF4u, 0x80068FF4u, 296u, 1u, dctx_func_80068A6C},
-    {0x80069000u, 0x80069000u, 296u, 1u, dctx_func_80068A6C},
-    {0x80069004u, 0x80069004u, 296u, 1u, dctx_func_80068A6C},
-    {0x8006900Cu, 0x8006900Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80069014u, 0x80069014u, 296u, 1u, dctx_func_80068A6C},
-    {0x8006901Cu, 0x8006901Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x8006903Cu, 0x8006903Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80069040u, 0x80069040u, 296u, 1u, dctx_func_80068A6C},
-    {0x80069048u, 0x80069048u, 296u, 1u, dctx_func_80068A6C},
-    {0x8006904Cu, 0x8006904Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80069058u, 0x80069058u, 296u, 1u, dctx_func_80068A6C},
-    {0x8006905Cu, 0x8006905Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x80069070u, 0x80069070u, 296u, 1u, dctx_func_80068A6C},
-    {0x80069084u, 0x80069084u, 296u, 1u, dctx_func_80068A6C},
-    {0x8006908Cu, 0x8006908Cu, 296u, 1u, dctx_func_80068A6C},
-    {0x800690B0u, 0x00000000u, 297u, 1u, dctx_func_800690B0},
-    {0x800690C8u, 0x00000000u, 298u, 1u, dctx_func_800690C8},
-    {0x800690D4u, 0x800690D4u, 298u, 1u, dctx_func_800690C8},
-    {0x80069148u, 0x80069148u, 298u, 1u, dctx_func_800690C8},
-    {0x80069194u, 0x00000000u, 299u, 1u, dctx_func_80069194},
-    {0x800691B0u, 0x00000000u, 300u, 1u, dctx_func_800691B0},
-    {0x800691BCu, 0x800691BCu, 300u, 1u, dctx_func_800691B0},
-    {0x800691FCu, 0x800691FCu, 300u, 1u, dctx_func_800691B0},
-    {0x80069228u, 0x80069228u, 300u, 1u, dctx_func_800691B0},
-    {0x80069284u, 0x80069284u, 300u, 1u, dctx_func_800691B0},
-    {0x80069290u, 0x80069290u, 300u, 1u, dctx_func_800691B0},
-    {0x800692E0u, 0x800692E0u, 300u, 1u, dctx_func_800691B0},
-    {0x80069328u, 0x80069328u, 300u, 1u, dctx_func_800691B0},
-    {0x80069338u, 0x80069338u, 300u, 1u, dctx_func_800691B0},
-    {0x80069348u, 0x80069348u, 300u, 1u, dctx_func_800691B0},
-    {0x80069354u, 0x80069354u, 300u, 1u, dctx_func_800691B0},
-    {0x80069398u, 0x80069398u, 300u, 1u, dctx_func_800691B0},
-    {0x800693D0u, 0x800693D0u, 300u, 1u, dctx_func_800691B0},
-    {0x80069418u, 0x80069418u, 300u, 1u, dctx_func_800691B0},
-    {0x80069420u, 0x80069420u, 300u, 1u, dctx_func_800691B0},
-    {0x8006942Cu, 0x8006942Cu, 300u, 1u, dctx_func_800691B0},
-    {0x80069458u, 0x00000000u, 301u, 1u, dctx_func_80069458},
-    {0x800694C8u, 0x800694C8u, 301u, 1u, dctx_func_80069458},
-    {0x800694CCu, 0x800694CCu, 301u, 1u, dctx_func_80069458},
-    {0x800695E8u, 0x800695E8u, 301u, 1u, dctx_func_80069458},
-    {0x800695F0u, 0x800695F0u, 301u, 1u, dctx_func_80069458},
-    {0x80069614u, 0x80069614u, 301u, 1u, dctx_func_80069458},
-    {0x8006961Cu, 0x8006961Cu, 301u, 1u, dctx_func_80069458},
-    {0x80069628u, 0x80069628u, 301u, 1u, dctx_func_80069458},
-    {0x800696BCu, 0x800696BCu, 301u, 1u, dctx_func_80069458},
-    {0x800696FCu, 0x800696FCu, 301u, 1u, dctx_func_80069458},
-    {0x8006970Cu, 0x8006970Cu, 301u, 1u, dctx_func_80069458},
-    {0x80069714u, 0x80069714u, 301u, 1u, dctx_func_80069458},
-    {0x80069720u, 0x00000000u, 302u, 1u, dctx_func_80069720},
-    {0x80069734u, 0x80069734u, 302u, 1u, dctx_func_80069720},
-    {0x8006973Cu, 0x8006973Cu, 302u, 1u, dctx_func_80069720},
-    {0x80069744u, 0x80069744u, 302u, 1u, dctx_func_80069720},
-    {0x80069748u, 0x80069748u, 302u, 1u, dctx_func_80069720},
-    {0x8006974Cu, 0x8006974Cu, 302u, 1u, dctx_func_80069720},
-    {0x80069758u, 0x80069758u, 302u, 1u, dctx_func_80069720},
-    {0x80069760u, 0x80069760u, 302u, 1u, dctx_func_80069720},
-    {0x80069768u, 0x80069768u, 302u, 1u, dctx_func_80069720},
-    {0x8006976Cu, 0x8006976Cu, 302u, 1u, dctx_func_80069720},
-    {0x80069770u, 0x80069770u, 302u, 1u, dctx_func_80069720},
-    {0x8006977Cu, 0x8006977Cu, 302u, 1u, dctx_func_80069720},
-    {0x80069784u, 0x80069784u, 302u, 1u, dctx_func_80069720},
-    {0x8006978Cu, 0x8006978Cu, 302u, 1u, dctx_func_80069720},
-    {0x80069794u, 0x80069794u, 302u, 1u, dctx_func_80069720},
-    {0x800697A0u, 0x800697A0u, 302u, 1u, dctx_func_80069720},
-    {0x800697A8u, 0x800697A8u, 302u, 1u, dctx_func_80069720},
-    {0x800697B0u, 0x800697B0u, 302u, 1u, dctx_func_80069720},
-    {0x800697B8u, 0x800697B8u, 302u, 1u, dctx_func_80069720},
-    {0x800697C0u, 0x00000000u, 303u, 1u, dctx_func_800697C0},
-    {0x800697C8u, 0x00000000u, 304u, 1u, dctx_func_800697C8},
-    {0x800697E0u, 0x800697E0u, 304u, 1u, dctx_func_800697C8},
-    {0x800697E8u, 0x800697E8u, 304u, 1u, dctx_func_800697C8},
-    {0x800697F0u, 0x800697F0u, 304u, 1u, dctx_func_800697C8},
-    {0x800697F8u, 0x800697F8u, 304u, 1u, dctx_func_800697C8},
-    {0x80069800u, 0x80069800u, 304u, 1u, dctx_func_800697C8},
-    {0x80069808u, 0x80069808u, 304u, 1u, dctx_func_800697C8},
-    {0x80069810u, 0x80069810u, 304u, 1u, dctx_func_800697C8},
-    {0x80069870u, 0x80069870u, 304u, 1u, dctx_func_800697C8},
-    {0x800698A4u, 0x800698A4u, 304u, 1u, dctx_func_800697C8},
-    {0x800698B8u, 0x800698B8u, 304u, 1u, dctx_func_800697C8},
-    {0x800698BCu, 0x800698BCu, 304u, 1u, dctx_func_800697C8},
-    {0x800698CCu, 0x800698CCu, 304u, 1u, dctx_func_800697C8},
-    {0x800698D0u, 0x800698D0u, 304u, 1u, dctx_func_800697C8},
-    {0x800698E8u, 0x800698E8u, 304u, 1u, dctx_func_800697C8},
-    {0x800698F0u, 0x800698F0u, 304u, 1u, dctx_func_800697C8},
-    {0x800698F8u, 0x800698F8u, 304u, 1u, dctx_func_800697C8},
-    {0x80069904u, 0x80069904u, 304u, 1u, dctx_func_800697C8},
-    {0x80069908u, 0x80069908u, 304u, 1u, dctx_func_800697C8},
-    {0x80069914u, 0x80069914u, 304u, 1u, dctx_func_800697C8},
-    {0x80069918u, 0x80069918u, 304u, 1u, dctx_func_800697C8},
-    {0x8006992Cu, 0x8006992Cu, 304u, 1u, dctx_func_800697C8},
-    {0x80069930u, 0x80069930u, 304u, 1u, dctx_func_800697C8},
-    {0x80069954u, 0x00000000u, 305u, 1u, dctx_func_80069954},
-    {0x8006995Cu, 0x00000000u, 306u, 1u, dctx_func_8006995C},
-    {0x8006996Cu, 0x8006996Cu, 306u, 1u, dctx_func_8006995C},
-    {0x800699A8u, 0x800699A8u, 306u, 1u, dctx_func_8006995C},
-    {0x800699B4u, 0x00000000u, 307u, 1u, dctx_func_800699B4},
-    {0x800699BCu, 0x800699BCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069AFCu, 0x80069AFCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069B04u, 0x80069B04u, 307u, 1u, dctx_func_800699B4},
-    {0x80069B20u, 0x80069B20u, 307u, 1u, dctx_func_800699B4},
-    {0x80069B28u, 0x80069B28u, 307u, 1u, dctx_func_800699B4},
-    {0x80069B3Cu, 0x80069B3Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069B48u, 0x80069B48u, 307u, 1u, dctx_func_800699B4},
-    {0x80069B54u, 0x80069B54u, 307u, 1u, dctx_func_800699B4},
-    {0x80069B5Cu, 0x80069B5Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069B64u, 0x80069B64u, 307u, 1u, dctx_func_800699B4},
-    {0x80069BC8u, 0x80069BC8u, 307u, 1u, dctx_func_800699B4},
-    {0x80069BD4u, 0x80069BD4u, 307u, 1u, dctx_func_800699B4},
-    {0x80069BE0u, 0x80069BE0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069BECu, 0x80069BECu, 307u, 1u, dctx_func_800699B4},
-    {0x80069BF0u, 0x80069BF0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069BF8u, 0x80069BF8u, 307u, 1u, dctx_func_800699B4},
-    {0x80069C00u, 0x80069C00u, 307u, 1u, dctx_func_800699B4},
-    {0x80069C94u, 0x80069C94u, 307u, 1u, dctx_func_800699B4},
-    {0x80069CCCu, 0x80069CCCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069CD0u, 0x80069CD0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069CD8u, 0x80069CD8u, 307u, 1u, dctx_func_800699B4},
-    {0x80069CDCu, 0x80069CDCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069D00u, 0x80069D00u, 307u, 1u, dctx_func_800699B4},
-    {0x80069D64u, 0x80069D64u, 307u, 1u, dctx_func_800699B4},
-    {0x80069D7Cu, 0x80069D7Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069D84u, 0x80069D84u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DBCu, 0x80069DBCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069DC4u, 0x80069DC4u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DCCu, 0x80069DCCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069DD0u, 0x80069DD0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DD4u, 0x80069DD4u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DDCu, 0x80069DDCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069DE4u, 0x80069DE4u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DECu, 0x80069DECu, 307u, 1u, dctx_func_800699B4},
-    {0x80069DF0u, 0x80069DF0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DF4u, 0x80069DF4u, 307u, 1u, dctx_func_800699B4},
-    {0x80069DFCu, 0x80069DFCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069E04u, 0x80069E04u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E0Cu, 0x80069E0Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069E10u, 0x80069E10u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E14u, 0x80069E14u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E1Cu, 0x80069E1Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069E24u, 0x80069E24u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E2Cu, 0x80069E2Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069E30u, 0x80069E30u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E34u, 0x80069E34u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E3Cu, 0x80069E3Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069E50u, 0x80069E50u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E64u, 0x80069E64u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E78u, 0x80069E78u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E90u, 0x80069E90u, 307u, 1u, dctx_func_800699B4},
-    {0x80069E98u, 0x80069E98u, 307u, 1u, dctx_func_800699B4},
-    {0x80069EA8u, 0x80069EA8u, 307u, 1u, dctx_func_800699B4},
-    {0x80069EACu, 0x80069EACu, 307u, 1u, dctx_func_800699B4},
-    {0x80069EB8u, 0x80069EB8u, 307u, 1u, dctx_func_800699B4},
-    {0x80069EBCu, 0x80069EBCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069ECCu, 0x80069ECCu, 307u, 1u, dctx_func_800699B4},
-    {0x80069F18u, 0x80069F18u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F24u, 0x80069F24u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F30u, 0x80069F30u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F3Cu, 0x80069F3Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069F48u, 0x80069F48u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F4Cu, 0x80069F4Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069F54u, 0x80069F54u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F5Cu, 0x80069F5Cu, 307u, 1u, dctx_func_800699B4},
-    {0x80069F64u, 0x80069F64u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F84u, 0x80069F84u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F88u, 0x80069F88u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F90u, 0x80069F90u, 307u, 1u, dctx_func_800699B4},
-    {0x80069F94u, 0x80069F94u, 307u, 1u, dctx_func_800699B4},
-    {0x80069FA0u, 0x80069FA0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069FA4u, 0x80069FA4u, 307u, 1u, dctx_func_800699B4},
-    {0x80069FB8u, 0x80069FB8u, 307u, 1u, dctx_func_800699B4},
-    {0x80069FD0u, 0x80069FD0u, 307u, 1u, dctx_func_800699B4},
-    {0x80069FD8u, 0x80069FD8u, 307u, 1u, dctx_func_800699B4},
-    {0x8006A028u, 0x00000000u, 308u, 1u, dctx_func_8006A028},
-    {0x8006A06Cu, 0x00000000u, 309u, 1u, dctx_func_8006A06C},
-    {0x8006A078u, 0x8006A078u, 309u, 1u, dctx_func_8006A06C},
-    {0x8006A11Cu, 0x8006A11Cu, 309u, 1u, dctx_func_8006A06C},
-    {0x8006A168u, 0x00000000u, 310u, 1u, dctx_func_8006A168},
-    {0x8006A184u, 0x00000000u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A190u, 0x8006A190u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A1D0u, 0x8006A1D0u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A1FCu, 0x8006A1FCu, 311u, 1u, dctx_func_8006A184},
-    {0x8006A258u, 0x8006A258u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A264u, 0x8006A264u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A2B4u, 0x8006A2B4u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A2FCu, 0x8006A2FCu, 311u, 1u, dctx_func_8006A184},
-    {0x8006A30Cu, 0x8006A30Cu, 311u, 1u, dctx_func_8006A184},
-    {0x8006A31Cu, 0x8006A31Cu, 311u, 1u, dctx_func_8006A184},
-    {0x8006A328u, 0x8006A328u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A36Cu, 0x8006A36Cu, 311u, 1u, dctx_func_8006A184},
-    {0x8006A3A4u, 0x8006A3A4u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A3ECu, 0x8006A3ECu, 311u, 1u, dctx_func_8006A184},
-    {0x8006A3F4u, 0x8006A3F4u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A400u, 0x8006A400u, 311u, 1u, dctx_func_8006A184},
-    {0x8006A42Cu, 0x00000000u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A49Cu, 0x8006A49Cu, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A4A0u, 0x8006A4A0u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A5BCu, 0x8006A5BCu, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A5C4u, 0x8006A5C4u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A5E8u, 0x8006A5E8u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A5F0u, 0x8006A5F0u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A5FCu, 0x8006A5FCu, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A690u, 0x8006A690u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A6D0u, 0x8006A6D0u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A6E0u, 0x8006A6E0u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A6E8u, 0x8006A6E8u, 312u, 1u, dctx_func_8006A42C},
-    {0x8006A6F4u, 0x00000000u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A708u, 0x8006A708u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A710u, 0x8006A710u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A718u, 0x8006A718u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A71Cu, 0x8006A71Cu, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A720u, 0x8006A720u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A72Cu, 0x8006A72Cu, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A734u, 0x8006A734u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A73Cu, 0x8006A73Cu, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A740u, 0x8006A740u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A744u, 0x8006A744u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A750u, 0x8006A750u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A758u, 0x8006A758u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A760u, 0x8006A760u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A768u, 0x8006A768u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A774u, 0x8006A774u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A77Cu, 0x8006A77Cu, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A784u, 0x8006A784u, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A78Cu, 0x8006A78Cu, 313u, 1u, dctx_func_8006A6F4},
-    {0x8006A794u, 0x00000000u, 314u, 1u, dctx_func_8006A794},
-    {0x8006A79Cu, 0x00000000u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7B4u, 0x8006A7B4u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7BCu, 0x8006A7BCu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7C4u, 0x8006A7C4u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7CCu, 0x8006A7CCu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7D4u, 0x8006A7D4u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7DCu, 0x8006A7DCu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A7E4u, 0x8006A7E4u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A844u, 0x8006A844u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A878u, 0x8006A878u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A88Cu, 0x8006A88Cu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A890u, 0x8006A890u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8A0u, 0x8006A8A0u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8A4u, 0x8006A8A4u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8BCu, 0x8006A8BCu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8C4u, 0x8006A8C4u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8CCu, 0x8006A8CCu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8D8u, 0x8006A8D8u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8DCu, 0x8006A8DCu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8E8u, 0x8006A8E8u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A8ECu, 0x8006A8ECu, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A900u, 0x8006A900u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A904u, 0x8006A904u, 315u, 1u, dctx_func_8006A79C},
-    {0x8006A928u, 0x00000000u, 316u, 1u, dctx_func_8006A928},
-    {0x8006A930u, 0x8006A930u, 316u, 1u, dctx_func_8006A928},
-    {0x8006A940u, 0x8006A940u, 316u, 1u, dctx_func_8006A928},
-    {0x8006A97Cu, 0x8006A97Cu, 316u, 1u, dctx_func_8006A928},
-    {0x8006A984u, 0x8006A984u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AAC8u, 0x8006AAC8u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AAD0u, 0x8006AAD0u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AAFCu, 0x8006AAFCu, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB04u, 0x8006AB04u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB18u, 0x8006AB18u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB24u, 0x8006AB24u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB30u, 0x8006AB30u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB38u, 0x8006AB38u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB40u, 0x8006AB40u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB48u, 0x8006AB48u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB54u, 0x8006AB54u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB60u, 0x8006AB60u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB6Cu, 0x8006AB6Cu, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB74u, 0x8006AB74u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB80u, 0x8006AB80u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB8Cu, 0x8006AB8Cu, 316u, 1u, dctx_func_8006A928},
-    {0x8006AB98u, 0x8006AB98u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABA4u, 0x8006ABA4u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABA8u, 0x8006ABA8u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABB0u, 0x8006ABB0u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABB8u, 0x8006ABB8u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABC0u, 0x8006ABC0u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABE0u, 0x8006ABE0u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABE4u, 0x8006ABE4u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABECu, 0x8006ABECu, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABF0u, 0x8006ABF0u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ABFCu, 0x8006ABFCu, 316u, 1u, dctx_func_8006A928},
-    {0x8006AC00u, 0x8006AC00u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AC2Cu, 0x8006AC2Cu, 316u, 1u, dctx_func_8006A928},
-    {0x8006AC34u, 0x8006AC34u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AC68u, 0x8006AC68u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AC70u, 0x8006AC70u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ACC4u, 0x8006ACC4u, 316u, 1u, dctx_func_8006A928},
-    {0x8006ACDCu, 0x8006ACDCu, 316u, 1u, dctx_func_8006A928},
-    {0x8006AD38u, 0x8006AD38u, 316u, 1u, dctx_func_8006A928},
-    {0x8006AD54u, 0x00000000u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AD60u, 0x8006AD60u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006ADA0u, 0x8006ADA0u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006ADCCu, 0x8006ADCCu, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AE28u, 0x8006AE28u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AE60u, 0x8006AE60u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AEA8u, 0x8006AEA8u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AEB0u, 0x8006AEB0u, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AEBCu, 0x8006AEBCu, 317u, 1u, dctx_func_8006AD54},
-    {0x8006AEE8u, 0x00000000u, 318u, 1u, dctx_func_8006AEE8},
-    {0x8006AF28u, 0x00000000u, 319u, 1u, dctx_func_8006AF28},
-    {0x8006AF78u, 0x00000000u, 320u, 1u, dctx_func_8006AF78},
-    {0x8006AFCCu, 0x00000000u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006AFD0u, 0x8006AFD0u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006AFDCu, 0x8006AFDCu, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006AFECu, 0x8006AFECu, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006AFF4u, 0x8006AFF4u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006AFFCu, 0x8006AFFCu, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006B004u, 0x8006B004u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006B010u, 0x8006B010u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006B018u, 0x8006B018u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006B020u, 0x8006B020u, 321u, 1u, dctx_func_8006AFCC},
-    {0x8006B028u, 0x00000000u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B09Cu, 0x8006B09Cu, 322u, 1u, dctx_func_8006B028},
-    {0x8006B0A8u, 0x8006B0A8u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B0B0u, 0x8006B0B0u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B0BCu, 0x8006B0BCu, 322u, 1u, dctx_func_8006B028},
-    {0x8006B0CCu, 0x8006B0CCu, 322u, 1u, dctx_func_8006B028},
-    {0x8006B0D8u, 0x8006B0D8u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B0DCu, 0x8006B0DCu, 322u, 1u, dctx_func_8006B028},
-    {0x8006B1F8u, 0x8006B1F8u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B208u, 0x8006B208u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B214u, 0x8006B214u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B228u, 0x8006B228u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B230u, 0x8006B230u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B238u, 0x8006B238u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B26Cu, 0x8006B26Cu, 322u, 1u, dctx_func_8006B028},
-    {0x8006B278u, 0x8006B278u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B2BCu, 0x8006B2BCu, 322u, 1u, dctx_func_8006B028},
-    {0x8006B320u, 0x8006B320u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B330u, 0x8006B330u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B338u, 0x8006B338u, 322u, 1u, dctx_func_8006B028},
-    {0x8006B344u, 0x00000000u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B358u, 0x8006B358u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B360u, 0x8006B360u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B368u, 0x8006B368u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B36Cu, 0x8006B36Cu, 323u, 1u, dctx_func_8006B344},
-    {0x8006B370u, 0x8006B370u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B37Cu, 0x8006B37Cu, 323u, 1u, dctx_func_8006B344},
-    {0x8006B384u, 0x8006B384u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B38Cu, 0x8006B38Cu, 323u, 1u, dctx_func_8006B344},
-    {0x8006B390u, 0x8006B390u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B394u, 0x8006B394u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3A0u, 0x8006B3A0u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3A8u, 0x8006B3A8u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3B0u, 0x8006B3B0u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3B8u, 0x8006B3B8u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3C4u, 0x8006B3C4u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3CCu, 0x8006B3CCu, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3D4u, 0x8006B3D4u, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3DCu, 0x8006B3DCu, 323u, 1u, dctx_func_8006B344},
-    {0x8006B3E4u, 0x00000000u, 324u, 1u, dctx_func_8006B3E4},
-    {0x8006B3ECu, 0x00000000u, 325u, 1u, dctx_func_8006B3EC},
-    {0x8006B3F4u, 0x00000000u, 326u, 1u, dctx_func_8006B3F4},
-    {0x8006B404u, 0x8006B404u, 326u, 1u, dctx_func_8006B3F4},
-    {0x8006B440u, 0x00000000u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B448u, 0x8006B448u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B58Cu, 0x8006B58Cu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B594u, 0x8006B594u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B5C0u, 0x8006B5C0u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B5C8u, 0x8006B5C8u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B5DCu, 0x8006B5DCu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B5E8u, 0x8006B5E8u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B5F4u, 0x8006B5F4u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B5FCu, 0x8006B5FCu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B604u, 0x8006B604u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B60Cu, 0x8006B60Cu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B618u, 0x8006B618u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B624u, 0x8006B624u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B630u, 0x8006B630u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B638u, 0x8006B638u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B644u, 0x8006B644u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B650u, 0x8006B650u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B65Cu, 0x8006B65Cu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B668u, 0x8006B668u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B66Cu, 0x8006B66Cu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B674u, 0x8006B674u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B67Cu, 0x8006B67Cu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B684u, 0x8006B684u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6A4u, 0x8006B6A4u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6A8u, 0x8006B6A8u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6B0u, 0x8006B6B0u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6B4u, 0x8006B6B4u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6C0u, 0x8006B6C0u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6C4u, 0x8006B6C4u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6F4u, 0x8006B6F4u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B6FCu, 0x8006B6FCu, 327u, 1u, dctx_func_8006B440},
-    {0x8006B748u, 0x8006B748u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B750u, 0x8006B750u, 327u, 1u, dctx_func_8006B440},
-    {0x8006B7D4u, 0x00000000u, 328u, 1u, dctx_func_8006B7D4},
-    {0x8006B818u, 0x00000000u, 329u, 1u, dctx_func_8006B818},
-    {0x8006B8A4u, 0x00000000u, 330u, 1u, dctx_func_8006B8A4},
-    {0x8006B8C0u, 0x00000000u, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006B8CCu, 0x8006B8CCu, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006B90Cu, 0x8006B90Cu, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006B938u, 0x8006B938u, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006B994u, 0x8006B994u, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006B9CCu, 0x8006B9CCu, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006BA14u, 0x8006BA14u, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006BA1Cu, 0x8006BA1Cu, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006BA28u, 0x8006BA28u, 331u, 1u, dctx_func_8006B8C0},
-    {0x8006BA54u, 0x00000000u, 332u, 1u, dctx_func_8006BA54},
-    {0x8006BA94u, 0x00000000u, 333u, 1u, dctx_func_8006BA94},
-    {0x8006BAE4u, 0x00000000u, 334u, 1u, dctx_func_8006BAE4},
-    {0x8006BB38u, 0x00000000u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB3Cu, 0x8006BB3Cu, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB48u, 0x8006BB48u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB58u, 0x8006BB58u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB60u, 0x8006BB60u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB68u, 0x8006BB68u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB70u, 0x8006BB70u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB7Cu, 0x8006BB7Cu, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB84u, 0x8006BB84u, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB8Cu, 0x8006BB8Cu, 335u, 1u, dctx_func_8006BB38},
-    {0x8006BB94u, 0x00000000u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC04u, 0x8006BC04u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC10u, 0x8006BC10u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC18u, 0x8006BC18u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC24u, 0x8006BC24u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC34u, 0x8006BC34u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC40u, 0x8006BC40u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BC44u, 0x8006BC44u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BD60u, 0x8006BD60u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BD70u, 0x8006BD70u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BD7Cu, 0x8006BD7Cu, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BD90u, 0x8006BD90u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BD98u, 0x8006BD98u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BDA0u, 0x8006BDA0u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BDD4u, 0x8006BDD4u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BDE0u, 0x8006BDE0u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BE24u, 0x8006BE24u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BE88u, 0x8006BE88u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BE98u, 0x8006BE98u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BEA0u, 0x8006BEA0u, 336u, 1u, dctx_func_8006BB94},
-    {0x8006BEACu, 0x00000000u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEC0u, 0x8006BEC0u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEC8u, 0x8006BEC8u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BED0u, 0x8006BED0u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BED4u, 0x8006BED4u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BED8u, 0x8006BED8u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEE4u, 0x8006BEE4u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEECu, 0x8006BEECu, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEF4u, 0x8006BEF4u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEF8u, 0x8006BEF8u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BEFCu, 0x8006BEFCu, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF08u, 0x8006BF08u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF10u, 0x8006BF10u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF18u, 0x8006BF18u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF20u, 0x8006BF20u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF2Cu, 0x8006BF2Cu, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF34u, 0x8006BF34u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF3Cu, 0x8006BF3Cu, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF44u, 0x8006BF44u, 337u, 1u, dctx_func_8006BEAC},
-    {0x8006BF4Cu, 0x00000000u, 338u, 1u, dctx_func_8006BF4C},
-    {0x8006BF54u, 0x00000000u, 339u, 1u, dctx_func_8006BF54},
-    {0x8006BF5Cu, 0x00000000u, 340u, 1u, dctx_func_8006BF5C},
-    {0x8006BF6Cu, 0x8006BF6Cu, 340u, 1u, dctx_func_8006BF5C},
-    {0x8006BFA8u, 0x00000000u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006BFB0u, 0x8006BFB0u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C100u, 0x8006C100u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C108u, 0x8006C108u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C124u, 0x8006C124u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C12Cu, 0x8006C12Cu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C140u, 0x8006C140u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C14Cu, 0x8006C14Cu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C158u, 0x8006C158u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C160u, 0x8006C160u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C168u, 0x8006C168u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C170u, 0x8006C170u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C17Cu, 0x8006C17Cu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C188u, 0x8006C188u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C194u, 0x8006C194u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C19Cu, 0x8006C19Cu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1A8u, 0x8006C1A8u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1B4u, 0x8006C1B4u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1C0u, 0x8006C1C0u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1CCu, 0x8006C1CCu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1D0u, 0x8006C1D0u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1D8u, 0x8006C1D8u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1E0u, 0x8006C1E0u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C1E8u, 0x8006C1E8u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C208u, 0x8006C208u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C20Cu, 0x8006C20Cu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C214u, 0x8006C214u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C218u, 0x8006C218u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C224u, 0x8006C224u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C228u, 0x8006C228u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C250u, 0x8006C250u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C270u, 0x8006C270u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C29Cu, 0x8006C29Cu, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C2F4u, 0x8006C2F4u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C328u, 0x8006C328u, 341u, 1u, dctx_func_8006BFA8},
-    {0x8006C350u, 0x00000000u, 342u, 1u, dctx_func_8006C350},
-    {0x8006C368u, 0x00000000u, 343u, 1u, dctx_func_8006C368},
-    {0x8006C3D8u, 0x00000000u, 344u, 1u, dctx_func_8006C3D8},
-    {0x8006C3F4u, 0x00000000u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C400u, 0x8006C400u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C440u, 0x8006C440u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C474u, 0x8006C474u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C4FCu, 0x8006C4FCu, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C508u, 0x8006C508u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C540u, 0x8006C540u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C588u, 0x8006C588u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C590u, 0x8006C590u, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C59Cu, 0x8006C59Cu, 345u, 1u, dctx_func_8006C3F4},
-    {0x8006C5C8u, 0x00000000u, 346u, 1u, dctx_func_8006C5C8},
-    {0x8006C608u, 0x00000000u, 347u, 1u, dctx_func_8006C608},
-    {0x8006C658u, 0x00000000u, 348u, 1u, dctx_func_8006C658},
-    {0x8006C6ACu, 0x00000000u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6B0u, 0x8006C6B0u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6BCu, 0x8006C6BCu, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6CCu, 0x8006C6CCu, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6D4u, 0x8006C6D4u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6DCu, 0x8006C6DCu, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6E4u, 0x8006C6E4u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6F0u, 0x8006C6F0u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C6F8u, 0x8006C6F8u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C700u, 0x8006C700u, 349u, 1u, dctx_func_8006C6AC},
-    {0x8006C708u, 0x00000000u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C7D8u, 0x8006C7D8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C7E4u, 0x8006C7E4u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C7ECu, 0x8006C7ECu, 350u, 1u, dctx_func_8006C708},
-    {0x8006C7F8u, 0x8006C7F8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C808u, 0x8006C808u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C814u, 0x8006C814u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C818u, 0x8006C818u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C998u, 0x8006C998u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C9A8u, 0x8006C9A8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C9B4u, 0x8006C9B4u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C9C8u, 0x8006C9C8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C9D0u, 0x8006C9D0u, 350u, 1u, dctx_func_8006C708},
-    {0x8006C9D8u, 0x8006C9D8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006CA0Cu, 0x8006CA0Cu, 350u, 1u, dctx_func_8006C708},
-    {0x8006CA18u, 0x8006CA18u, 350u, 1u, dctx_func_8006C708},
-    {0x8006CA5Cu, 0x8006CA5Cu, 350u, 1u, dctx_func_8006C708},
-    {0x8006CAD8u, 0x8006CAD8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006CAE8u, 0x8006CAE8u, 350u, 1u, dctx_func_8006C708},
-    {0x8006CAF0u, 0x8006CAF0u, 350u, 1u, dctx_func_8006C708},
-    {0x8006CAFCu, 0x00000000u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB10u, 0x8006CB10u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB18u, 0x8006CB18u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB20u, 0x8006CB20u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB24u, 0x8006CB24u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB28u, 0x8006CB28u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB34u, 0x8006CB34u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB3Cu, 0x8006CB3Cu, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB44u, 0x8006CB44u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB48u, 0x8006CB48u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB4Cu, 0x8006CB4Cu, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB58u, 0x8006CB58u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB60u, 0x8006CB60u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB68u, 0x8006CB68u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB70u, 0x8006CB70u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB7Cu, 0x8006CB7Cu, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB84u, 0x8006CB84u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB8Cu, 0x8006CB8Cu, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB94u, 0x8006CB94u, 351u, 1u, dctx_func_8006CAFC},
-    {0x8006CB9Cu, 0x00000000u, 352u, 1u, dctx_func_8006CB9C},
-    {0x8006CBA4u, 0x00000000u, 353u, 1u, dctx_func_8006CBA4},
-    {0x8006CBACu, 0x00000000u, 354u, 1u, dctx_func_8006CBAC},
-    {0x8006CBBCu, 0x8006CBBCu, 354u, 1u, dctx_func_8006CBAC},
-    {0x8006CBF8u, 0x00000000u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CC00u, 0x8006CC00u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CD50u, 0x8006CD50u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CD58u, 0x8006CD58u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CD74u, 0x8006CD74u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CD7Cu, 0x8006CD7Cu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CD90u, 0x8006CD90u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CD9Cu, 0x8006CD9Cu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDA8u, 0x8006CDA8u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDB0u, 0x8006CDB0u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDB8u, 0x8006CDB8u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDC0u, 0x8006CDC0u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDCCu, 0x8006CDCCu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDD8u, 0x8006CDD8u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDE4u, 0x8006CDE4u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDECu, 0x8006CDECu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CDF8u, 0x8006CDF8u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE04u, 0x8006CE04u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE10u, 0x8006CE10u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE1Cu, 0x8006CE1Cu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE20u, 0x8006CE20u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE28u, 0x8006CE28u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE30u, 0x8006CE30u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE38u, 0x8006CE38u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE58u, 0x8006CE58u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE5Cu, 0x8006CE5Cu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE64u, 0x8006CE64u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE68u, 0x8006CE68u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE74u, 0x8006CE74u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CE78u, 0x8006CE78u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CEA0u, 0x8006CEA0u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CEC0u, 0x8006CEC0u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CF08u, 0x8006CF08u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CF8Cu, 0x8006CF8Cu, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006CFC0u, 0x8006CFC0u, 355u, 1u, dctx_func_8006CBF8},
-    {0x8006D044u, 0x00000000u, 356u, 1u, dctx_func_8006D044},
-    {0x8006D088u, 0x00000000u, 357u, 1u, dctx_func_8006D088},
-    {0x8006D12Cu, 0x00000000u, 358u, 1u, dctx_func_8006D12C},
-    {0x8006D148u, 0x00000000u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D154u, 0x8006D154u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D194u, 0x8006D194u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D1C8u, 0x8006D1C8u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D250u, 0x8006D250u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D25Cu, 0x8006D25Cu, 359u, 1u, dctx_func_8006D148},
-    {0x8006D294u, 0x8006D294u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D2DCu, 0x8006D2DCu, 359u, 1u, dctx_func_8006D148},
-    {0x8006D2E4u, 0x8006D2E4u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D2F0u, 0x8006D2F0u, 359u, 1u, dctx_func_8006D148},
-    {0x8006D31Cu, 0x00000000u, 360u, 1u, dctx_func_8006D31C},
-    {0x8006D35Cu, 0x00000000u, 361u, 1u, dctx_func_8006D35C},
-    {0x8006D3ACu, 0x00000000u, 362u, 1u, dctx_func_8006D3AC},
-    {0x8006D400u, 0x00000000u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D404u, 0x8006D404u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D410u, 0x8006D410u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D420u, 0x8006D420u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D428u, 0x8006D428u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D430u, 0x8006D430u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D438u, 0x8006D438u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D444u, 0x8006D444u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D44Cu, 0x8006D44Cu, 363u, 1u, dctx_func_8006D400},
-    {0x8006D454u, 0x8006D454u, 363u, 1u, dctx_func_8006D400},
-    {0x8006D45Cu, 0x00000000u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D4FCu, 0x8006D4FCu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D508u, 0x8006D508u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D510u, 0x8006D510u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D51Cu, 0x8006D51Cu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D52Cu, 0x8006D52Cu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D538u, 0x8006D538u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D53Cu, 0x8006D53Cu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D6BCu, 0x8006D6BCu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D6CCu, 0x8006D6CCu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D6D8u, 0x8006D6D8u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D6ECu, 0x8006D6ECu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D6F4u, 0x8006D6F4u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D6FCu, 0x8006D6FCu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D730u, 0x8006D730u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D73Cu, 0x8006D73Cu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D780u, 0x8006D780u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D7FCu, 0x8006D7FCu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D80Cu, 0x8006D80Cu, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D814u, 0x8006D814u, 364u, 1u, dctx_func_8006D45C},
-    {0x8006D820u, 0x00000000u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D834u, 0x8006D834u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D83Cu, 0x8006D83Cu, 365u, 1u, dctx_func_8006D820},
-    {0x8006D844u, 0x8006D844u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D848u, 0x8006D848u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D84Cu, 0x8006D84Cu, 365u, 1u, dctx_func_8006D820},
-    {0x8006D858u, 0x8006D858u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D860u, 0x8006D860u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D868u, 0x8006D868u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D86Cu, 0x8006D86Cu, 365u, 1u, dctx_func_8006D820},
-    {0x8006D870u, 0x8006D870u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D87Cu, 0x8006D87Cu, 365u, 1u, dctx_func_8006D820},
-    {0x8006D884u, 0x8006D884u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D88Cu, 0x8006D88Cu, 365u, 1u, dctx_func_8006D820},
-    {0x8006D894u, 0x8006D894u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D8A0u, 0x8006D8A0u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D8A8u, 0x8006D8A8u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D8B0u, 0x8006D8B0u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D8B8u, 0x8006D8B8u, 365u, 1u, dctx_func_8006D820},
-    {0x8006D8C0u, 0x00000000u, 366u, 1u, dctx_func_8006D8C0},
-    {0x8006DE30u, 0x00000000u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DEACu, 0x8006DEACu, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DEC4u, 0x8006DEC4u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DED8u, 0x8006DED8u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DEECu, 0x8006DEECu, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DEF4u, 0x8006DEF4u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DF64u, 0x8006DF64u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DF70u, 0x8006DF70u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006DF80u, 0x8006DF80u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E0A0u, 0x8006E0A0u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E1F8u, 0x8006E1F8u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E210u, 0x8006E210u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E240u, 0x8006E240u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E248u, 0x8006E248u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E260u, 0x8006E260u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E264u, 0x8006E264u, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E31Cu, 0x8006E31Cu, 367u, 1u, dctx_func_8006DE30},
-    {0x8006E354u, 0x00000000u, 368u, 1u, dctx_func_8006E354},
-    {0x8006E374u, 0x8006E374u, 368u, 1u, dctx_func_8006E354},
-    {0x8006E380u, 0x8006E380u, 368u, 1u, dctx_func_8006E354},
-    {0x8006E3C0u, 0x00000000u, 369u, 1u, dctx_func_8006E3C0},
-    {0x8006E3E0u, 0x8006E3E0u, 369u, 1u, dctx_func_8006E3C0},
-    {0x8006E3ECu, 0x8006E3ECu, 369u, 1u, dctx_func_8006E3C0},
-    {0x8006E42Cu, 0x00000000u, 370u, 1u, dctx_func_8006E42C},
-    {0x8006E44Cu, 0x8006E44Cu, 370u, 1u, dctx_func_8006E42C},
-    {0x8006E458u, 0x8006E458u, 370u, 1u, dctx_func_8006E42C},
-    {0x8006E498u, 0x00000000u, 371u, 1u, dctx_func_8006E498},
-    {0x8006E4D0u, 0x00000000u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E4F8u, 0x8006E4F8u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E50Cu, 0x8006E50Cu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E51Cu, 0x8006E51Cu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E52Cu, 0x8006E52Cu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E538u, 0x8006E538u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E548u, 0x8006E548u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E554u, 0x8006E554u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E560u, 0x8006E560u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E56Cu, 0x8006E56Cu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E57Cu, 0x8006E57Cu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E588u, 0x8006E588u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E594u, 0x8006E594u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E5A0u, 0x8006E5A0u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E5BCu, 0x8006E5BCu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E5D0u, 0x8006E5D0u, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E5DCu, 0x8006E5DCu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E60Cu, 0x8006E60Cu, 372u, 1u, dctx_func_8006E4D0},
-    {0x8006E624u, 0x00000000u, 373u, 1u, dctx_func_8006E624},
-    {0x8006E644u, 0x8006E644u, 373u, 1u, dctx_func_8006E624},
-    {0x8006E650u, 0x8006E650u, 373u, 1u, dctx_func_8006E624},
-    {0x8006E660u, 0x8006E660u, 373u, 1u, dctx_func_8006E624},
-    {0x8006E66Cu, 0x8006E66Cu, 373u, 1u, dctx_func_8006E624},
-    {0x8006E67Cu, 0x8006E67Cu, 373u, 1u, dctx_func_8006E624},
-    {0x8006E68Cu, 0x00000000u, 374u, 1u, dctx_func_8006E68C},
-    {0x8006E694u, 0x8006E694u, 374u, 1u, dctx_func_8006E68C},
-    {0x8006E69Cu, 0x8006E69Cu, 374u, 1u, dctx_func_8006E68C},
-    {0x8006E6A4u, 0x8006E6A4u, 374u, 1u, dctx_func_8006E68C},
-    {0x8006E6ACu, 0x00000000u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6B4u, 0x8006E6B4u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6BCu, 0x8006E6BCu, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6C4u, 0x8006E6C4u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6D0u, 0x8006E6D0u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6D4u, 0x8006E6D4u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6E0u, 0x8006E6E0u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6E8u, 0x8006E6E8u, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E6ECu, 0x8006E6ECu, 375u, 1u, dctx_func_8006E6AC},
-    {0x8006E710u, 0x00000000u, 376u, 1u, dctx_func_8006E710},
-    {0x8006E720u, 0x8006E720u, 376u, 1u, dctx_func_8006E710},
-    {0x8006E724u, 0x8006E724u, 376u, 1u, dctx_func_8006E710},
-    {0x8006E730u, 0x8006E730u, 376u, 1u, dctx_func_8006E710},
-    {0x8006E738u, 0x8006E738u, 376u, 1u, dctx_func_8006E710},
-    {0x8006E73Cu, 0x8006E73Cu, 376u, 1u, dctx_func_8006E710},
-    {0x8006E754u, 0x00000000u, 377u, 1u, dctx_func_8006E754},
-    {0x8006E75Cu, 0x00000000u, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E76Cu, 0x8006E76Cu, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E77Cu, 0x8006E77Cu, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E780u, 0x8006E780u, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E78Cu, 0x8006E78Cu, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E794u, 0x8006E794u, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E798u, 0x8006E798u, 378u, 1u, dctx_func_8006E75C},
-    {0x8006E7B8u, 0x00000000u, 379u, 1u, dctx_func_8006E7B8},
-    {0x8006E7C8u, 0x8006E7C8u, 379u, 1u, dctx_func_8006E7B8},
-    {0x8006E7CCu, 0x8006E7CCu, 379u, 1u, dctx_func_8006E7B8},
-    {0x8006E7D8u, 0x8006E7D8u, 379u, 1u, dctx_func_8006E7B8},
-    {0x8006E7E0u, 0x8006E7E0u, 379u, 1u, dctx_func_8006E7B8},
-    {0x8006E7E4u, 0x8006E7E4u, 379u, 1u, dctx_func_8006E7B8},
-    {0x8006E804u, 0x00000000u, 380u, 1u, dctx_func_8006E804},
-    {0x8006E80Cu, 0x8006E80Cu, 380u, 1u, dctx_func_8006E804},
-    {0x8006E818u, 0x8006E818u, 380u, 1u, dctx_func_8006E804},
-    {0x8006E828u, 0x8006E828u, 380u, 1u, dctx_func_8006E804},
-    {0x8006E82Cu, 0x8006E82Cu, 380u, 1u, dctx_func_8006E804},
-    {0x8006E838u, 0x8006E838u, 380u, 1u, dctx_func_8006E804},
-    {0x8006E840u, 0x8006E840u, 380u, 1u, dctx_func_8006E804},
-    {0x8006E844u, 0x8006E844u, 380u, 1u, dctx_func_8006E804},
-    {0x8006E864u, 0x00000000u, 381u, 1u, dctx_func_8006E864},
-    {0x8006E874u, 0x8006E874u, 381u, 1u, dctx_func_8006E864},
-    {0x8006E878u, 0x8006E878u, 381u, 1u, dctx_func_8006E864},
-    {0x8006E884u, 0x8006E884u, 381u, 1u, dctx_func_8006E864},
-    {0x8006E88Cu, 0x8006E88Cu, 381u, 1u, dctx_func_8006E864},
-    {0x8006E890u, 0x8006E890u, 381u, 1u, dctx_func_8006E864},
-    {0x8006E8B4u, 0x00000000u, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E8C4u, 0x8006E8C4u, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E8D4u, 0x8006E8D4u, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E8D8u, 0x8006E8D8u, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E8E4u, 0x8006E8E4u, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E8ECu, 0x8006E8ECu, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E8F0u, 0x8006E8F0u, 382u, 1u, dctx_func_8006E8B4},
-    {0x8006E910u, 0x00000000u, 383u, 1u, dctx_func_8006E910},
-    {0x8006E920u, 0x8006E920u, 383u, 1u, dctx_func_8006E910},
-    {0x8006E924u, 0x8006E924u, 383u, 1u, dctx_func_8006E910},
-    {0x8006E930u, 0x8006E930u, 383u, 1u, dctx_func_8006E910},
-    {0x8006E938u, 0x8006E938u, 383u, 1u, dctx_func_8006E910},
-    {0x8006E93Cu, 0x8006E93Cu, 383u, 1u, dctx_func_8006E910},
-    {0x8006EB58u, 0x00000000u, 384u, 1u, dctx_func_8006EB58},
-    {0x8006EB7Cu, 0x8006EB7Cu, 384u, 1u, dctx_func_8006EB58},
-    {0x8006EBA0u, 0x8006EBA0u, 384u, 1u, dctx_func_8006EB58},
-    {0x8006EBA4u, 0x8006EBA4u, 384u, 1u, dctx_func_8006EB58},
-    {0x8006EBB8u, 0x8006EBB8u, 384u, 1u, dctx_func_8006EB58},
-    {0x8006EBCCu, 0x8006EBCCu, 384u, 1u, dctx_func_8006EB58},
-    {0x8006EC08u, 0x8006EC08u, 384u, 1u, dctx_func_8006EB58},
-    {0x8006ECF8u, 0x00000000u, 385u, 1u, dctx_func_8006ECF8},
-    {0x8006ED0Cu, 0x00000000u, 386u, 1u, dctx_func_8006ED0C},
-    {0x8006ED34u, 0x8006ED34u, 386u, 1u, dctx_func_8006ED0C},
-    {0x8006ED3Cu, 0x8006ED3Cu, 386u, 1u, dctx_func_8006ED0C},
-    {0x8006ED88u, 0x8006ED88u, 386u, 1u, dctx_func_8006ED0C},
-    {0x8006EDC0u, 0x8006EDC0u, 386u, 1u, dctx_func_8006ED0C},
-    {0x8006EDD4u, 0x8006EDD4u, 386u, 1u, dctx_func_8006ED0C},
-    {0x8006EDECu, 0x00000000u, 387u, 1u, dctx_func_8006EDEC},
-    {0x8006EE50u, 0x8006EE50u, 387u, 1u, dctx_func_8006EDEC},
-    {0x8006EF20u, 0x8006EF20u, 387u, 1u, dctx_func_8006EDEC},
-    {0x8006EF48u, 0x8006EF48u, 387u, 1u, dctx_func_8006EDEC},
-    {0x8006EF68u, 0x8006EF68u, 387u, 1u, dctx_func_8006EDEC},
-    {0x8006EF74u, 0x8006EF74u, 387u, 1u, dctx_func_8006EDEC},
-    {0x8006EF88u, 0x00000000u, 388u, 1u, dctx_func_8006EF88},
-    {0x8006EF9Cu, 0x8006EF9Cu, 388u, 1u, dctx_func_8006EF88},
-    {0x8006EFA4u, 0x8006EFA4u, 388u, 1u, dctx_func_8006EF88},
-    {0x8006EFB0u, 0x8006EFB0u, 388u, 1u, dctx_func_8006EF88},
-    {0x8006EFD0u, 0x8006EFD0u, 388u, 1u, dctx_func_8006EF88},
-    {0x8006EFF0u, 0x8006EFF0u, 388u, 1u, dctx_func_8006EF88},
-    {0x8006EFFCu, 0x8006EFFCu, 388u, 1u, dctx_func_8006EF88},
-    {0x8006F00Cu, 0x00000000u, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F024u, 0x8006F024u, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F02Cu, 0x8006F02Cu, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F034u, 0x8006F034u, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F040u, 0x8006F040u, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F048u, 0x8006F048u, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F060u, 0x8006F060u, 389u, 1u, dctx_func_8006F00C},
-    {0x8006F0C8u, 0x00000000u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F0F4u, 0x8006F0F4u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F0FCu, 0x8006F0FCu, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F114u, 0x8006F114u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F118u, 0x8006F118u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F120u, 0x8006F120u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F128u, 0x8006F128u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F140u, 0x8006F140u, 390u, 1u, dctx_func_8006F0C8},
-    {0x8006F160u, 0x00000000u, 391u, 1u, dctx_func_8006F160},
-    {0x8006F1C0u, 0x8006F1C0u, 391u, 1u, dctx_func_8006F160},
-    {0x8006F1E0u, 0x8006F1E0u, 391u, 1u, dctx_func_8006F160},
-    {0x8006F1E8u, 0x8006F1E8u, 391u, 1u, dctx_func_8006F160},
-    {0x8006F1FCu, 0x00000000u, 392u, 1u, dctx_func_8006F1FC},
-    {0x8006F238u, 0x8006F238u, 392u, 1u, dctx_func_8006F1FC},
-    {0x8006F250u, 0x8006F250u, 392u, 1u, dctx_func_8006F1FC},
-    {0x8006F258u, 0x8006F258u, 392u, 1u, dctx_func_8006F1FC},
-    {0x8006F264u, 0x8006F264u, 392u, 1u, dctx_func_8006F1FC},
-    {0x8006F294u, 0x8006F294u, 392u, 1u, dctx_func_8006F1FC},
-    {0x8006F2B0u, 0x00000000u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F314u, 0x8006F314u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F330u, 0x8006F330u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F360u, 0x8006F360u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F36Cu, 0x8006F36Cu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F3A0u, 0x8006F3A0u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F3ACu, 0x8006F3ACu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F3DCu, 0x8006F3DCu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F3E4u, 0x8006F3E4u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F3F8u, 0x8006F3F8u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F3FCu, 0x8006F3FCu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F418u, 0x8006F418u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F41Cu, 0x8006F41Cu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F434u, 0x8006F434u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F438u, 0x8006F438u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F43Cu, 0x8006F43Cu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F448u, 0x8006F448u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F454u, 0x8006F454u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F460u, 0x8006F460u, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F46Cu, 0x8006F46Cu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F47Cu, 0x8006F47Cu, 393u, 1u, dctx_func_8006F2B0},
-    {0x8006F4ACu, 0x00000000u, 394u, 1u, dctx_func_8006F4AC},
-    {0x8006F4C4u, 0x8006F4C4u, 394u, 1u, dctx_func_8006F4AC},
-    {0x8006F4F0u, 0x8006F4F0u, 394u, 1u, dctx_func_8006F4AC},
-    {0x8006F500u, 0x8006F500u, 394u, 1u, dctx_func_8006F4AC},
-    {0x8006F510u, 0x00000000u, 395u, 1u, dctx_func_8006F510},
-    {0x8006F52Cu, 0x8006F52Cu, 395u, 1u, dctx_func_8006F510},
-    {0x8006F534u, 0x8006F534u, 395u, 1u, dctx_func_8006F510},
-    {0x8006F554u, 0x8006F554u, 395u, 1u, dctx_func_8006F510},
-    {0x8006F55Cu, 0x8006F55Cu, 395u, 1u, dctx_func_8006F510},
-    {0x8006F570u, 0x8006F570u, 395u, 1u, dctx_func_8006F510},
-    {0x8006F574u, 0x8006F574u, 395u, 1u, dctx_func_8006F510},
-    {0x8006F584u, 0x00000000u, 396u, 1u, dctx_func_8006F584},
-    {0x8006F59Cu, 0x8006F59Cu, 396u, 1u, dctx_func_8006F584},
-    {0x8006F5A0u, 0x8006F5A0u, 396u, 1u, dctx_func_8006F584},
-    {0x8006F5ACu, 0x00000000u, 397u, 1u, dctx_func_8006F5AC},
-    {0x8006F5C8u, 0x8006F5C8u, 397u, 1u, dctx_func_8006F5AC},
-    {0x8006F5D8u, 0x8006F5D8u, 397u, 1u, dctx_func_8006F5AC},
-    {0x800704E8u, 0x00000000u, 398u, 1u, dctx_func_800704E8},
-    {0x80070788u, 0x00000000u, 399u, 1u, dctx_func_80070788},
-    {0x800707B8u, 0x800707B8u, 399u, 1u, dctx_func_80070788},
-    {0x800707CCu, 0x800707CCu, 399u, 1u, dctx_func_80070788},
-    {0x800707DCu, 0x800707DCu, 399u, 1u, dctx_func_80070788},
-    {0x800707ECu, 0x800707ECu, 399u, 1u, dctx_func_80070788},
-    {0x800707FCu, 0x800707FCu, 399u, 1u, dctx_func_80070788},
-    {0x80070804u, 0x80070804u, 399u, 1u, dctx_func_80070788},
-    {0x800708A8u, 0x800708A8u, 399u, 1u, dctx_func_80070788},
-    {0x800708C0u, 0x800708C0u, 399u, 1u, dctx_func_80070788},
-    {0x800708D8u, 0x800708D8u, 399u, 1u, dctx_func_80070788},
-    {0x800708ECu, 0x800708ECu, 399u, 1u, dctx_func_80070788},
-    {0x800708F8u, 0x800708F8u, 399u, 1u, dctx_func_80070788},
-    {0x80070904u, 0x80070904u, 399u, 1u, dctx_func_80070788},
-    {0x8007094Cu, 0x8007094Cu, 399u, 1u, dctx_func_80070788},
-    {0x80070970u, 0x00000000u, 400u, 1u, dctx_func_80070970},
-    {0x800709DCu, 0x00000000u, 401u, 1u, dctx_func_800709DC},
-    {0x800709FCu, 0x800709FCu, 401u, 1u, dctx_func_800709DC},
-    {0x80070A40u, 0x80070A40u, 401u, 1u, dctx_func_800709DC},
-    {0x80070A58u, 0x00000000u, 402u, 1u, dctx_func_80070A58},
-    {0x80070A6Cu, 0x80070A6Cu, 402u, 1u, dctx_func_80070A58},
-    {0x80070A78u, 0x80070A78u, 402u, 1u, dctx_func_80070A58},
-    {0x80070A8Cu, 0x80070A8Cu, 402u, 1u, dctx_func_80070A58},
-    {0x80070A9Cu, 0x80070A9Cu, 402u, 1u, dctx_func_80070A58},
-    {0x80070AB0u, 0x80070AB0u, 402u, 1u, dctx_func_80070A58},
-    {0x80070AB8u, 0x80070AB8u, 402u, 1u, dctx_func_80070A58},
-    {0x80070ACCu, 0x80070ACCu, 402u, 1u, dctx_func_80070A58},
-    {0x80070AD0u, 0x80070AD0u, 402u, 1u, dctx_func_80070A58},
-    {0x80070AD8u, 0x80070AD8u, 402u, 1u, dctx_func_80070A58},
-    {0x80070AE0u, 0x80070AE0u, 402u, 1u, dctx_func_80070A58},
-    {0x80070AECu, 0x80070AECu, 402u, 1u, dctx_func_80070A58},
-    {0x80070AF8u, 0x80070AF8u, 402u, 1u, dctx_func_80070A58},
-    {0x80070B00u, 0x80070B00u, 402u, 1u, dctx_func_80070A58},
-    {0x80070B08u, 0x80070B08u, 402u, 1u, dctx_func_80070A58},
-    {0x80070B10u, 0x80070B10u, 402u, 1u, dctx_func_80070A58},
-    {0x80070B18u, 0x80070B18u, 402u, 1u, dctx_func_80070A58},
-    {0x80070B20u, 0x80070B20u, 402u, 1u, dctx_func_80070A58},
-    {0x80070C58u, 0x00000000u, 403u, 1u, dctx_func_80070C58},
-    {0x80070C84u, 0x80070C84u, 403u, 1u, dctx_func_80070C58},
-    {0x80070C8Cu, 0x80070C8Cu, 403u, 1u, dctx_func_80070C58},
-    {0x80070CB0u, 0x80070CB0u, 403u, 1u, dctx_func_80070C58},
-    {0x80070CB4u, 0x80070CB4u, 403u, 1u, dctx_func_80070C58},
-    {0x80070CBCu, 0x80070CBCu, 403u, 1u, dctx_func_80070C58},
-    {0x80070CC4u, 0x80070CC4u, 403u, 1u, dctx_func_80070C58},
-    {0x80070CC8u, 0x80070CC8u, 403u, 1u, dctx_func_80070C58},
-    {0x80070CD0u, 0x80070CD0u, 403u, 1u, dctx_func_80070C58},
-    {0x80070D84u, 0x80070D84u, 403u, 1u, dctx_func_80070C58},
-    {0x80070D9Cu, 0x80070D9Cu, 403u, 1u, dctx_func_80070C58},
-    {0x80070DD8u, 0x80070DD8u, 403u, 1u, dctx_func_80070C58},
-    {0x80070DE0u, 0x80070DE0u, 403u, 1u, dctx_func_80070C58},
-    {0x80070DF0u, 0x00000000u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070E10u, 0x80070E10u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070E20u, 0x80070E20u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070E2Cu, 0x80070E2Cu, 404u, 1u, dctx_func_80070DF0},
-    {0x80070E38u, 0x80070E38u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070E44u, 0x80070E44u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070E5Cu, 0x80070E5Cu, 404u, 1u, dctx_func_80070DF0},
-    {0x80070EA0u, 0x80070EA0u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070EACu, 0x80070EACu, 404u, 1u, dctx_func_80070DF0},
-    {0x80070EB4u, 0x80070EB4u, 404u, 1u, dctx_func_80070DF0},
-    {0x80070EC8u, 0x00000000u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070F10u, 0x80070F10u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070F64u, 0x80070F64u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070F70u, 0x80070F70u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070F88u, 0x80070F88u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FB4u, 0x80070FB4u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FC0u, 0x80070FC0u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FCCu, 0x80070FCCu, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FD4u, 0x80070FD4u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FE0u, 0x80070FE0u, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FECu, 0x80070FECu, 405u, 1u, dctx_func_80070EC8},
-    {0x80070FF4u, 0x80070FF4u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071000u, 0x80071000u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007100Cu, 0x8007100Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x8007101Cu, 0x8007101Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071058u, 0x80071058u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071060u, 0x80071060u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071084u, 0x80071084u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007108Cu, 0x8007108Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x800710C8u, 0x800710C8u, 405u, 1u, dctx_func_80070EC8},
-    {0x800710D8u, 0x800710D8u, 405u, 1u, dctx_func_80070EC8},
-    {0x800710E0u, 0x800710E0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800710F4u, 0x800710F4u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071104u, 0x80071104u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071108u, 0x80071108u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071120u, 0x80071120u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071130u, 0x80071130u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007113Cu, 0x8007113Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x8007114Cu, 0x8007114Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071150u, 0x80071150u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071160u, 0x80071160u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071170u, 0x80071170u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071180u, 0x80071180u, 405u, 1u, dctx_func_80070EC8},
-    {0x800711A0u, 0x800711A0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800711C0u, 0x800711C0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800711FCu, 0x800711FCu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071200u, 0x80071200u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007120Cu, 0x8007120Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071214u, 0x80071214u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071218u, 0x80071218u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071230u, 0x80071230u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071240u, 0x80071240u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071264u, 0x80071264u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071274u, 0x80071274u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071294u, 0x80071294u, 405u, 1u, dctx_func_80070EC8},
-    {0x800712B4u, 0x800712B4u, 405u, 1u, dctx_func_80070EC8},
-    {0x800712F0u, 0x800712F0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800712F4u, 0x800712F4u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071300u, 0x80071300u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071308u, 0x80071308u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007130Cu, 0x8007130Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071324u, 0x80071324u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071334u, 0x80071334u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071358u, 0x80071358u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071368u, 0x80071368u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071370u, 0x80071370u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071384u, 0x80071384u, 405u, 1u, dctx_func_80070EC8},
-    {0x800713A8u, 0x800713A8u, 405u, 1u, dctx_func_80070EC8},
-    {0x800713B0u, 0x800713B0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800713B4u, 0x800713B4u, 405u, 1u, dctx_func_80070EC8},
-    {0x800713C0u, 0x800713C0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800713E4u, 0x800713E4u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071400u, 0x80071400u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071414u, 0x80071414u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007143Cu, 0x8007143Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071458u, 0x80071458u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007146Cu, 0x8007146Cu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071494u, 0x80071494u, 405u, 1u, dctx_func_80070EC8},
-    {0x800714B0u, 0x800714B0u, 405u, 1u, dctx_func_80070EC8},
-    {0x800714C4u, 0x800714C4u, 405u, 1u, dctx_func_80070EC8},
-    {0x800714C8u, 0x800714C8u, 405u, 1u, dctx_func_80070EC8},
-    {0x800714E8u, 0x800714E8u, 405u, 1u, dctx_func_80070EC8},
-    {0x800714F4u, 0x800714F4u, 405u, 1u, dctx_func_80070EC8},
-    {0x800714FCu, 0x800714FCu, 405u, 1u, dctx_func_80070EC8},
-    {0x80071508u, 0x80071508u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071540u, 0x80071540u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071548u, 0x80071548u, 405u, 1u, dctx_func_80070EC8},
-    {0x800715C8u, 0x800715C8u, 405u, 1u, dctx_func_80070EC8},
-    {0x800715D8u, 0x800715D8u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071604u, 0x80071604u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071618u, 0x80071618u, 405u, 1u, dctx_func_80070EC8},
-    {0x80071630u, 0x80071630u, 405u, 1u, dctx_func_80070EC8},
-    {0x8007166Cu, 0x00000000u, 406u, 1u, dctx_func_8007166C},
-    {0x8007168Cu, 0x8007168Cu, 406u, 1u, dctx_func_8007166C},
-    {0x8007169Cu, 0x8007169Cu, 406u, 1u, dctx_func_8007166C},
-    {0x800716C4u, 0x800716C4u, 406u, 1u, dctx_func_8007166C},
-    {0x800716CCu, 0x800716CCu, 406u, 1u, dctx_func_8007166C},
-    {0x80071704u, 0x00000000u, 407u, 1u, dctx_func_80071704},
-    {0x80071720u, 0x80071720u, 407u, 1u, dctx_func_80071704},
-    {0x80071730u, 0x80071730u, 407u, 1u, dctx_func_80071704},
-    {0x80071C64u, 0x00000000u, 408u, 1u, dctx_func_80071C64},
-    {0x80071CB4u, 0x80071CB4u, 408u, 1u, dctx_func_80071C64},
-    {0x80071CBCu, 0x80071CBCu, 408u, 1u, dctx_func_80071C64},
-    {0x80071D48u, 0x80071D48u, 408u, 1u, dctx_func_80071C64},
-    {0x80071D68u, 0x80071D68u, 408u, 1u, dctx_func_80071C64},
-    {0x80071D70u, 0x80071D70u, 408u, 1u, dctx_func_80071C64},
-    {0x80071D74u, 0x80071D74u, 408u, 1u, dctx_func_80071C64},
-    {0x80071DFCu, 0x80071DFCu, 408u, 1u, dctx_func_80071C64},
-    {0x80071E30u, 0x80071E30u, 408u, 1u, dctx_func_80071C64},
-    {0x80071E4Cu, 0x80071E4Cu, 408u, 1u, dctx_func_80071C64},
-    {0x80071E80u, 0x00000000u, 409u, 1u, dctx_func_80071E80},
-    {0x80071ED0u, 0x80071ED0u, 409u, 1u, dctx_func_80071E80},
-    {0x80071ED8u, 0x80071ED8u, 409u, 1u, dctx_func_80071E80},
-    {0x80071F98u, 0x80071F98u, 409u, 1u, dctx_func_80071E80},
-    {0x80071FB8u, 0x80071FB8u, 409u, 1u, dctx_func_80071E80},
-    {0x80071FC0u, 0x80071FC0u, 409u, 1u, dctx_func_80071E80},
-    {0x80071FC4u, 0x80071FC4u, 409u, 1u, dctx_func_80071E80},
-    {0x8007206Cu, 0x8007206Cu, 409u, 1u, dctx_func_80071E80},
-    {0x800720A0u, 0x800720A0u, 409u, 1u, dctx_func_80071E80},
-    {0x800720BCu, 0x800720BCu, 409u, 1u, dctx_func_80071E80},
-    {0x80074AD8u, 0x00000000u, 410u, 1u, dctx_func_80074AD8},
-    {0x80074B18u, 0x80074B18u, 410u, 1u, dctx_func_80074AD8},
-    {0x80074B38u, 0x80074B38u, 410u, 1u, dctx_func_80074AD8},
-    {0x80074B40u, 0x00000000u, 411u, 1u, dctx_func_80074B40},
-    {0x80074B60u, 0x80074B60u, 411u, 1u, dctx_func_80074B40},
-    {0x80074B70u, 0x80074B70u, 411u, 1u, dctx_func_80074B40},
-    {0x80074BA8u, 0x80074BA8u, 411u, 1u, dctx_func_80074B40},
-    {0x80074BF4u, 0x80074BF4u, 411u, 1u, dctx_func_80074B40},
-    {0x80074C10u, 0x00000000u, 412u, 1u, dctx_func_80074C10},
-    {0x80074C30u, 0x80074C30u, 412u, 1u, dctx_func_80074C10},
-    {0x80074C40u, 0x80074C40u, 412u, 1u, dctx_func_80074C10},
-    {0x80074C74u, 0x80074C74u, 412u, 1u, dctx_func_80074C10},
-    {0x80074C88u, 0x80074C88u, 412u, 1u, dctx_func_80074C10},
-    {0x80074C8Cu, 0x80074C8Cu, 412u, 1u, dctx_func_80074C10},
-    {0x80074CF8u, 0x80074CF8u, 412u, 1u, dctx_func_80074C10},
-    {0x80074CFCu, 0x80074CFCu, 412u, 1u, dctx_func_80074C10},
-    {0x80074D08u, 0x80074D08u, 412u, 1u, dctx_func_80074C10},
-    {0x80074D10u, 0x80074D10u, 412u, 1u, dctx_func_80074C10},
-    {0x80074D14u, 0x80074D14u, 412u, 1u, dctx_func_80074C10},
-    {0x80074D70u, 0x00000000u, 413u, 1u, dctx_func_80074D70},
-    {0x80074D78u, 0x00000000u, 414u, 1u, dctx_func_80074D78},
-    {0x80074DA4u, 0x80074DA4u, 414u, 1u, dctx_func_80074D78},
-    {0x80074DD8u, 0x00000000u, 415u, 1u, dctx_func_80074DD8},
-    {0x80074DE0u, 0x00000000u, 416u, 1u, dctx_func_80074DE0},
-    {0x80074E00u, 0x00000000u, 417u, 1u, dctx_func_80074E00},
-    {0x80074E08u, 0x00000000u, 418u, 1u, dctx_func_80074E08},
-    {0x80074E28u, 0x80074E28u, 418u, 1u, dctx_func_80074E08},
-    {0x80074E84u, 0x80074E84u, 418u, 1u, dctx_func_80074E08},
-    {0x80074E8Cu, 0x80074E8Cu, 418u, 1u, dctx_func_80074E08},
-    {0x80074E94u, 0x80074E94u, 418u, 1u, dctx_func_80074E08},
-    {0x80074EC4u, 0x80074EC4u, 418u, 1u, dctx_func_80074E08},
-    {0x80074F28u, 0x80074F28u, 418u, 1u, dctx_func_80074E08},
-    {0x80074F30u, 0x80074F30u, 418u, 1u, dctx_func_80074E08},
-    {0x80074F54u, 0x80074F54u, 418u, 1u, dctx_func_80074E08},
-    {0x80074FB8u, 0x80074FB8u, 418u, 1u, dctx_func_80074E08},
-    {0x80074FBCu, 0x80074FBCu, 418u, 1u, dctx_func_80074E08},
-    {0x80074FD8u, 0x80074FD8u, 418u, 1u, dctx_func_80074E08},
-    {0x80074FE0u, 0x80074FE0u, 418u, 1u, dctx_func_80074E08},
-    {0x80074FF8u, 0x80074FF8u, 418u, 1u, dctx_func_80074E08},
-    {0x80075000u, 0x80075000u, 418u, 1u, dctx_func_80074E08},
-    {0x80075010u, 0x80075010u, 418u, 1u, dctx_func_80074E08},
-    {0x80075018u, 0x80075018u, 418u, 1u, dctx_func_80074E08},
-    {0x8007503Cu, 0x8007503Cu, 418u, 1u, dctx_func_80074E08},
-    {0x80075068u, 0x80075068u, 418u, 1u, dctx_func_80074E08},
-    {0x80075090u, 0x80075090u, 418u, 1u, dctx_func_80074E08},
-    {0x800750B8u, 0x800750B8u, 418u, 1u, dctx_func_80074E08},
-    {0x800750D4u, 0x800750D4u, 418u, 1u, dctx_func_80074E08},
-    {0x800750E8u, 0x800750E8u, 418u, 1u, dctx_func_80074E08},
-    {0x800750FCu, 0x800750FCu, 418u, 1u, dctx_func_80074E08},
-    {0x80075118u, 0x80075118u, 418u, 1u, dctx_func_80074E08},
-    {0x8007512Cu, 0x8007512Cu, 418u, 1u, dctx_func_80074E08},
-    {0x80075140u, 0x80075140u, 418u, 1u, dctx_func_80074E08},
-    {0x80075154u, 0x80075154u, 418u, 1u, dctx_func_80074E08},
-    {0x80075164u, 0x80075164u, 418u, 1u, dctx_func_80074E08},
-    {0x80075168u, 0x80075168u, 418u, 1u, dctx_func_80074E08},
-    {0x8007516Cu, 0x8007516Cu, 418u, 1u, dctx_func_80074E08},
-    {0x8007518Cu, 0x8007518Cu, 418u, 1u, dctx_func_80074E08},
-    {0x800751A4u, 0x800751A4u, 418u, 1u, dctx_func_80074E08},
-    {0x800751B4u, 0x800751B4u, 418u, 1u, dctx_func_80074E08},
-    {0x800751CCu, 0x00000000u, 419u, 1u, dctx_func_800751CC},
-    {0x800751ECu, 0x800751ECu, 419u, 1u, dctx_func_800751CC},
-    {0x800751F4u, 0x800751F4u, 419u, 1u, dctx_func_800751CC},
-    {0x800751FCu, 0x800751FCu, 419u, 1u, dctx_func_800751CC},
-    {0x80075204u, 0x80075204u, 419u, 1u, dctx_func_800751CC},
-    {0x80075210u, 0x80075210u, 419u, 1u, dctx_func_800751CC},
-    {0x80075218u, 0x80075218u, 419u, 1u, dctx_func_800751CC},
-    {0x80075294u, 0x80075294u, 419u, 1u, dctx_func_800751CC},
-    {0x8007529Cu, 0x8007529Cu, 419u, 1u, dctx_func_800751CC},
-    {0x800752A8u, 0x800752A8u, 419u, 1u, dctx_func_800751CC},
-    {0x800752ACu, 0x800752ACu, 419u, 1u, dctx_func_800751CC},
-    {0x800752D4u, 0x800752D4u, 419u, 1u, dctx_func_800751CC},
-    {0x80075330u, 0x80075330u, 419u, 1u, dctx_func_800751CC},
-    {0x80075334u, 0x80075334u, 419u, 1u, dctx_func_800751CC},
-    {0x80075360u, 0x80075360u, 419u, 1u, dctx_func_800751CC},
-    {0x80075374u, 0x80075374u, 419u, 1u, dctx_func_800751CC},
-    {0x8007537Cu, 0x8007537Cu, 419u, 1u, dctx_func_800751CC},
-    {0x8007538Cu, 0x8007538Cu, 419u, 1u, dctx_func_800751CC},
-    {0x80075394u, 0x80075394u, 419u, 1u, dctx_func_800751CC},
-    {0x800753A8u, 0x800753A8u, 419u, 1u, dctx_func_800751CC},
-    {0x800753CCu, 0x800753CCu, 419u, 1u, dctx_func_800751CC},
-    {0x800753FCu, 0x800753FCu, 419u, 1u, dctx_func_800751CC},
-    {0x80075400u, 0x80075400u, 419u, 1u, dctx_func_800751CC},
-    {0x80075468u, 0x80075468u, 419u, 1u, dctx_func_800751CC},
-    {0x8007548Cu, 0x8007548Cu, 419u, 1u, dctx_func_800751CC},
-    {0x80075490u, 0x80075490u, 419u, 1u, dctx_func_800751CC},
-    {0x800754ECu, 0x800754ECu, 419u, 1u, dctx_func_800751CC},
-    {0x800754FCu, 0x800754FCu, 419u, 1u, dctx_func_800751CC},
-    {0x80075570u, 0x80075570u, 419u, 1u, dctx_func_800751CC},
-    {0x80075578u, 0x80075578u, 419u, 1u, dctx_func_800751CC},
-    {0x80075588u, 0x80075588u, 419u, 1u, dctx_func_800751CC},
-    {0x80075594u, 0x00000000u, 420u, 1u, dctx_func_80075594},
-    {0x8007563Cu, 0x00000000u, 421u, 1u, dctx_func_8007563C},
-    {0x800756C4u, 0x800756C4u, 421u, 1u, dctx_func_8007563C},
-    {0x800756E8u, 0x800756E8u, 421u, 1u, dctx_func_8007563C},
-    {0x80075704u, 0x80075704u, 421u, 1u, dctx_func_8007563C},
-    {0x80075734u, 0x80075734u, 421u, 1u, dctx_func_8007563C},
-    {0x80075744u, 0x80075744u, 421u, 1u, dctx_func_8007563C},
-    {0x80075758u, 0x80075758u, 421u, 1u, dctx_func_8007563C},
-    {0x80075778u, 0x80075778u, 421u, 1u, dctx_func_8007563C},
-    {0x80075780u, 0x80075780u, 421u, 1u, dctx_func_8007563C},
-    {0x800757BCu, 0x800757BCu, 421u, 1u, dctx_func_8007563C},
-    {0x800757DCu, 0x800757DCu, 421u, 1u, dctx_func_8007563C},
-    {0x800757F4u, 0x800757F4u, 421u, 1u, dctx_func_8007563C},
-    {0x80075830u, 0x80075830u, 421u, 1u, dctx_func_8007563C},
-    {0x80075840u, 0x80075840u, 421u, 1u, dctx_func_8007563C},
-    {0x80075854u, 0x80075854u, 421u, 1u, dctx_func_8007563C},
-    {0x80075874u, 0x80075874u, 421u, 1u, dctx_func_8007563C},
-    {0x8007587Cu, 0x8007587Cu, 421u, 1u, dctx_func_8007563C},
-    {0x80075880u, 0x80075880u, 421u, 1u, dctx_func_8007563C},
-    {0x80075888u, 0x80075888u, 421u, 1u, dctx_func_8007563C},
-    {0x800758A8u, 0x800758A8u, 421u, 1u, dctx_func_8007563C},
-    {0x800758C4u, 0x800758C4u, 421u, 1u, dctx_func_8007563C},
-    {0x800758C8u, 0x800758C8u, 421u, 1u, dctx_func_8007563C},
-    {0x800758ECu, 0x800758ECu, 421u, 1u, dctx_func_8007563C},
-    {0x80075908u, 0x80075908u, 421u, 1u, dctx_func_8007563C},
-    {0x80075938u, 0x80075938u, 421u, 1u, dctx_func_8007563C},
-    {0x80075998u, 0x80075998u, 421u, 1u, dctx_func_8007563C},
-    {0x800759ACu, 0x800759ACu, 421u, 1u, dctx_func_8007563C},
-    {0x800759B4u, 0x800759B4u, 421u, 1u, dctx_func_8007563C},
-    {0x800759B8u, 0x800759B8u, 421u, 1u, dctx_func_8007563C},
-    {0x80075A38u, 0x80075A38u, 421u, 1u, dctx_func_8007563C},
-    {0x80075A60u, 0x80075A60u, 421u, 1u, dctx_func_8007563C},
-    {0x80075A68u, 0x80075A68u, 421u, 1u, dctx_func_8007563C},
-    {0x80075A88u, 0x80075A88u, 421u, 1u, dctx_func_8007563C},
-    {0x80075A98u, 0x80075A98u, 421u, 1u, dctx_func_8007563C},
-    {0x80075A9Cu, 0x80075A9Cu, 421u, 1u, dctx_func_8007563C},
-    {0x80075AA4u, 0x80075AA4u, 421u, 1u, dctx_func_8007563C},
-    {0x80075AA8u, 0x80075AA8u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B18u, 0x80075B18u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B28u, 0x80075B28u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B34u, 0x80075B34u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B3Cu, 0x80075B3Cu, 421u, 1u, dctx_func_8007563C},
-    {0x80075B40u, 0x80075B40u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B54u, 0x80075B54u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B58u, 0x80075B58u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B70u, 0x80075B70u, 421u, 1u, dctx_func_8007563C},
-    {0x80075B94u, 0x80075B94u, 421u, 1u, dctx_func_8007563C},
-    {0x80075BC0u, 0x80075BC0u, 421u, 1u, dctx_func_8007563C},
-    {0x80075C04u, 0x80075C04u, 421u, 1u, dctx_func_8007563C},
-    {0x80075C70u, 0x80075C70u, 421u, 1u, dctx_func_8007563C},
-    {0x80075C84u, 0x80075C84u, 421u, 1u, dctx_func_8007563C},
-    {0x80075C8Cu, 0x80075C8Cu, 421u, 1u, dctx_func_8007563C},
-    {0x80075C98u, 0x80075C98u, 421u, 1u, dctx_func_8007563C},
-    {0x80075CACu, 0x80075CACu, 421u, 1u, dctx_func_8007563C},
-    {0x80075CB4u, 0x80075CB4u, 421u, 1u, dctx_func_8007563C},
-    {0x80075CB8u, 0x80075CB8u, 421u, 1u, dctx_func_8007563C},
-    {0x80075CD0u, 0x80075CD0u, 421u, 1u, dctx_func_8007563C},
-    {0x80075CF4u, 0x80075CF4u, 421u, 1u, dctx_func_8007563C},
-    {0x80075D20u, 0x80075D20u, 421u, 1u, dctx_func_8007563C},
-    {0x80075D4Cu, 0x80075D4Cu, 421u, 1u, dctx_func_8007563C},
-    {0x80075D58u, 0x80075D58u, 421u, 1u, dctx_func_8007563C},
-    {0x80075D60u, 0x80075D60u, 421u, 1u, dctx_func_8007563C},
-    {0x80075D80u, 0x80075D80u, 421u, 1u, dctx_func_8007563C},
-    {0x80075DC0u, 0x80075DC0u, 421u, 1u, dctx_func_8007563C},
-    {0x80075DCCu, 0x80075DCCu, 421u, 1u, dctx_func_8007563C},
-    {0x80075DD4u, 0x00000000u, 422u, 1u, dctx_func_80075DD4},
-    {0x80075DD8u, 0x00000000u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E0Cu, 0x80075E0Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E18u, 0x80075E18u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E1Cu, 0x80075E1Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E24u, 0x80075E24u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E2Cu, 0x80075E2Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E38u, 0x80075E38u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E3Cu, 0x80075E3Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E40u, 0x80075E40u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E44u, 0x80075E44u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075E88u, 0x80075E88u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075ED4u, 0x80075ED4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075F00u, 0x80075F00u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075F0Cu, 0x80075F0Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80075F10u, 0x80075F10u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075F34u, 0x80075F34u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075F38u, 0x80075F38u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075FA8u, 0x80075FA8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075FC8u, 0x80075FC8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80075FCCu, 0x80075FCCu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076004u, 0x80076004u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076024u, 0x80076024u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076028u, 0x80076028u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076068u, 0x80076068u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076070u, 0x80076070u, 423u, 1u, dctx_func_80075DD8},
-    {0x800760F4u, 0x800760F4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800760F8u, 0x800760F8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076110u, 0x80076110u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076154u, 0x80076154u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076158u, 0x80076158u, 423u, 1u, dctx_func_80075DD8},
-    {0x800761A0u, 0x800761A0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800761A4u, 0x800761A4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076230u, 0x80076230u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076244u, 0x80076244u, 423u, 1u, dctx_func_80075DD8},
-    {0x800762C4u, 0x800762C4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800762C8u, 0x800762C8u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007631Cu, 0x8007631Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076320u, 0x80076320u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076380u, 0x80076380u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076384u, 0x80076384u, 423u, 1u, dctx_func_80075DD8},
-    {0x800763B4u, 0x800763B4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800763D8u, 0x800763D8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800763E0u, 0x800763E0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800763F0u, 0x800763F0u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076404u, 0x80076404u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076450u, 0x80076450u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076454u, 0x80076454u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076524u, 0x80076524u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076530u, 0x80076530u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765A4u, 0x800765A4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765B4u, 0x800765B4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765C8u, 0x800765C8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765D0u, 0x800765D0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765D8u, 0x800765D8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765DCu, 0x800765DCu, 423u, 1u, dctx_func_80075DD8},
-    {0x800765E8u, 0x800765E8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765F0u, 0x800765F0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800765F4u, 0x800765F4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076600u, 0x80076600u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076610u, 0x80076610u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076618u, 0x80076618u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076620u, 0x80076620u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076628u, 0x80076628u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007662Cu, 0x8007662Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076638u, 0x80076638u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076640u, 0x80076640u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076644u, 0x80076644u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076650u, 0x80076650u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076658u, 0x80076658u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076660u, 0x80076660u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076668u, 0x80076668u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076674u, 0x80076674u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007667Cu, 0x8007667Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076680u, 0x80076680u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076690u, 0x80076690u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076698u, 0x80076698u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007669Cu, 0x8007669Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x800766A4u, 0x800766A4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766ACu, 0x800766ACu, 423u, 1u, dctx_func_80075DD8},
-    {0x800766B4u, 0x800766B4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766C0u, 0x800766C0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766C4u, 0x800766C4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766D0u, 0x800766D0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766D8u, 0x800766D8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766DCu, 0x800766DCu, 423u, 1u, dctx_func_80075DD8},
-    {0x800766E4u, 0x800766E4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800766E8u, 0x800766E8u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007670Cu, 0x8007670Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x800769D0u, 0x800769D0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800769ECu, 0x800769ECu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076A0Cu, 0x80076A0Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076A6Cu, 0x80076A6Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076A94u, 0x80076A94u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076AA8u, 0x80076AA8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076AE8u, 0x80076AE8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076B90u, 0x80076B90u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076B9Cu, 0x80076B9Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076BA4u, 0x80076BA4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076BE8u, 0x80076BE8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076BF4u, 0x80076BF4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076C14u, 0x80076C14u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076C60u, 0x80076C60u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076C6Cu, 0x80076C6Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076C8Cu, 0x80076C8Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076CD8u, 0x80076CD8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076CE4u, 0x80076CE4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076D04u, 0x80076D04u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076D50u, 0x80076D50u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076D7Cu, 0x80076D7Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076F3Cu, 0x80076F3Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076F58u, 0x80076F58u, 423u, 1u, dctx_func_80075DD8},
-    {0x80076F7Cu, 0x80076F7Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80076FDCu, 0x80076FDCu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077008u, 0x80077008u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007701Cu, 0x8007701Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077148u, 0x80077148u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007715Cu, 0x8007715Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x8007719Cu, 0x8007719Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077204u, 0x80077204u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007720Cu, 0x8007720Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077260u, 0x80077260u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007727Cu, 0x8007727Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x800772A4u, 0x800772A4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800772B4u, 0x800772B4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800772D4u, 0x800772D4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800772E0u, 0x800772E0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800772E8u, 0x800772E8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800772F0u, 0x800772F0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800772F4u, 0x800772F4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077304u, 0x80077304u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077308u, 0x80077308u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077324u, 0x80077324u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077338u, 0x80077338u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077354u, 0x80077354u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077360u, 0x80077360u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077368u, 0x80077368u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077370u, 0x80077370u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077374u, 0x80077374u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077384u, 0x80077384u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077398u, 0x80077398u, 423u, 1u, dctx_func_80075DD8},
-    {0x800773A0u, 0x800773A0u, 423u, 1u, dctx_func_80075DD8},
-    {0x800773D8u, 0x800773D8u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007745Cu, 0x8007745Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077464u, 0x80077464u, 423u, 1u, dctx_func_80075DD8},
-    {0x800774E8u, 0x800774E8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800774ECu, 0x800774ECu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077518u, 0x80077518u, 423u, 1u, dctx_func_80075DD8},
-    {0x800775B4u, 0x800775B4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800775FCu, 0x800775FCu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077604u, 0x80077604u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007760Cu, 0x8007760Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x800776B4u, 0x800776B4u, 423u, 1u, dctx_func_80075DD8},
-    {0x800776B8u, 0x800776B8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800776C8u, 0x800776C8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800776E8u, 0x800776E8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077724u, 0x80077724u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077730u, 0x80077730u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077734u, 0x80077734u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077768u, 0x80077768u, 423u, 1u, dctx_func_80075DD8},
-    {0x800777ECu, 0x800777ECu, 423u, 1u, dctx_func_80075DD8},
-    {0x800777F4u, 0x800777F4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077874u, 0x80077874u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077878u, 0x80077878u, 423u, 1u, dctx_func_80075DD8},
-    {0x8007797Cu, 0x8007797Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x800779B8u, 0x800779B8u, 423u, 1u, dctx_func_80075DD8},
-    {0x800779C4u, 0x800779C4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077A00u, 0x80077A00u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077A58u, 0x80077A58u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077A60u, 0x80077A60u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077AE0u, 0x80077AE0u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077AE4u, 0x80077AE4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077AF8u, 0x80077AF8u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077B1Cu, 0x80077B1Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077B20u, 0x80077B20u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077B2Cu, 0x80077B2Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077B34u, 0x80077B34u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077B38u, 0x80077B38u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077B3Cu, 0x80077B3Cu, 423u, 1u, dctx_func_80075DD8},
-    {0x80077C18u, 0x80077C18u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077C58u, 0x80077C58u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077CC4u, 0x80077CC4u, 423u, 1u, dctx_func_80075DD8},
-    {0x80077CCCu, 0x00000000u, 424u, 1u, dctx_func_80077CCC},
-    {0x80077CD0u, 0x00000000u, 425u, 1u, dctx_func_80077CD0},
-    {0x80077CD4u, 0x00000000u, 426u, 1u, dctx_func_80077CD4},
-    {0x80077CF0u, 0x00000000u, 427u, 1u, dctx_func_80077CF0},
-    {0x80077D20u, 0x00000000u, 428u, 1u, dctx_func_80077D20},
-    {0x80077D58u, 0x80077D58u, 428u, 1u, dctx_func_80077D20},
-    {0x80077D68u, 0x80077D68u, 428u, 1u, dctx_func_80077D20},
-    {0x80077D74u, 0x80077D74u, 428u, 1u, dctx_func_80077D20},
-    {0x80077DD0u, 0x80077DD0u, 428u, 1u, dctx_func_80077D20},
-    {0x80077E00u, 0x80077E00u, 428u, 1u, dctx_func_80077D20},
-    {0x80077E0Cu, 0x80077E0Cu, 428u, 1u, dctx_func_80077D20},
-    {0x80077E18u, 0x80077E18u, 428u, 1u, dctx_func_80077D20},
-    {0x80077E20u, 0x80077E20u, 428u, 1u, dctx_func_80077D20},
-    {0x80077E30u, 0x80077E30u, 428u, 1u, dctx_func_80077D20},
-    {0x80077E3Cu, 0x80077E3Cu, 428u, 1u, dctx_func_80077D20},
-    {0x80077E98u, 0x00000000u, 429u, 1u, dctx_func_80077E98},
-    {0x80077F58u, 0x80077F58u, 429u, 1u, dctx_func_80077E98},
-    {0x80077F64u, 0x80077F64u, 429u, 1u, dctx_func_80077E98},
-    {0x80077F70u, 0x80077F70u, 429u, 1u, dctx_func_80077E98},
-    {0x80077F74u, 0x80077F74u, 429u, 1u, dctx_func_80077E98},
-    {0x800854E0u, 0x00000000u, 430u, 1u, dctx_func_800854E0},
-    {0x80085540u, 0x80085540u, 430u, 1u, dctx_func_800854E0},
-    {0x80085548u, 0x80085548u, 430u, 1u, dctx_func_800854E0},
-    {0x80085564u, 0x80085564u, 430u, 1u, dctx_func_800854E0},
-    {0x8008556Cu, 0x8008556Cu, 430u, 1u, dctx_func_800854E0},
-    {0x80085598u, 0x80085598u, 430u, 1u, dctx_func_800854E0},
-    {0x800855A8u, 0x800855A8u, 430u, 1u, dctx_func_800854E0},
-    {0x800855B4u, 0x800855B4u, 430u, 1u, dctx_func_800854E0},
-    {0x800855C0u, 0x800855C0u, 430u, 1u, dctx_func_800854E0},
-    {0x800855C4u, 0x800855C4u, 430u, 1u, dctx_func_800854E0},
-    {0x800855D0u, 0x800855D0u, 430u, 1u, dctx_func_800854E0},
-    {0x800855D8u, 0x800855D8u, 430u, 1u, dctx_func_800854E0},
-    {0x800855DCu, 0x800855DCu, 430u, 1u, dctx_func_800854E0},
-    {0x800855E8u, 0x800855E8u, 430u, 1u, dctx_func_800854E0},
-    {0x800855F8u, 0x800855F8u, 430u, 1u, dctx_func_800854E0},
-    {0x800855FCu, 0x800855FCu, 430u, 1u, dctx_func_800854E0},
-    {0x80085608u, 0x80085608u, 430u, 1u, dctx_func_800854E0},
-    {0x80085610u, 0x80085610u, 430u, 1u, dctx_func_800854E0},
-    {0x80085614u, 0x80085614u, 430u, 1u, dctx_func_800854E0},
-    {0x80085624u, 0x80085624u, 430u, 1u, dctx_func_800854E0},
-    {0x80085628u, 0x80085628u, 430u, 1u, dctx_func_800854E0},
-    {0x800856E0u, 0x800856E0u, 430u, 1u, dctx_func_800854E0},
-    {0x800856E8u, 0x800856E8u, 430u, 1u, dctx_func_800854E0},
-    {0x80085700u, 0x80085700u, 430u, 1u, dctx_func_800854E0},
-    {0x80085710u, 0x80085710u, 430u, 1u, dctx_func_800854E0},
-    {0x800857B8u, 0x800857B8u, 430u, 1u, dctx_func_800854E0},
-    {0x800857C8u, 0x800857C8u, 430u, 1u, dctx_func_800854E0},
-    {0x800857D0u, 0x800857D0u, 430u, 1u, dctx_func_800854E0},
-    {0x800857D8u, 0x800857D8u, 430u, 1u, dctx_func_800854E0},
-    {0x800857E0u, 0x800857E0u, 430u, 1u, dctx_func_800854E0},
-    {0x800857ECu, 0x800857ECu, 430u, 1u, dctx_func_800854E0},
-    {0x800857F8u, 0x00000000u, 431u, 1u, dctx_func_800857F8},
-    {0x80085980u, 0x00000000u, 432u, 1u, dctx_func_80085980},
-    {0x800859E4u, 0x800859E4u, 432u, 1u, dctx_func_80085980},
-    {0x800859ECu, 0x800859ECu, 432u, 1u, dctx_func_80085980},
-    {0x80085A04u, 0x80085A04u, 432u, 1u, dctx_func_80085980},
-    {0x80085A14u, 0x00000000u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A1Cu, 0x80085A1Cu, 433u, 1u, dctx_func_80085A14},
-    {0x80085A48u, 0x80085A48u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A58u, 0x80085A58u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A64u, 0x80085A64u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A70u, 0x80085A70u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A74u, 0x80085A74u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A80u, 0x80085A80u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A88u, 0x80085A88u, 433u, 1u, dctx_func_80085A14},
-    {0x80085A8Cu, 0x80085A8Cu, 433u, 1u, dctx_func_80085A14},
-    {0x80085A98u, 0x80085A98u, 433u, 1u, dctx_func_80085A14},
-    {0x80085AA8u, 0x80085AA8u, 433u, 1u, dctx_func_80085A14},
-    {0x80085AACu, 0x80085AACu, 433u, 1u, dctx_func_80085A14},
-    {0x80085AB8u, 0x80085AB8u, 433u, 1u, dctx_func_80085A14},
-    {0x80085AC0u, 0x80085AC0u, 433u, 1u, dctx_func_80085A14},
-    {0x80085AC4u, 0x80085AC4u, 433u, 1u, dctx_func_80085A14},
-    {0x80085AD4u, 0x80085AD4u, 433u, 1u, dctx_func_80085A14},
-    {0x80085AD8u, 0x80085AD8u, 433u, 1u, dctx_func_80085A14},
-    {0x80085B8Cu, 0x00000000u, 434u, 1u, dctx_func_80085B8C},
-    {0x80085B9Cu, 0x00000000u, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C54u, 0x80085C54u, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C64u, 0x80085C64u, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C6Cu, 0x80085C6Cu, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C74u, 0x80085C74u, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C7Cu, 0x80085C7Cu, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C88u, 0x80085C88u, 435u, 1u, dctx_func_80085B9C},
-    {0x80085C98u, 0x00000000u, 436u, 1u, dctx_func_80085C98},
-    {0x80085CC8u, 0x00000000u, 437u, 1u, dctx_func_80085CC8},
-    {0x80085CE4u, 0x80085CE4u, 437u, 1u, dctx_func_80085CC8},
-    {0x80085CECu, 0x80085CECu, 437u, 1u, dctx_func_80085CC8},
-    {0x80085D04u, 0x80085D04u, 437u, 1u, dctx_func_80085CC8},
-    {0x80085D10u, 0x80085D10u, 437u, 1u, dctx_func_80085CC8},
-    {0x80085D20u, 0x80085D20u, 437u, 1u, dctx_func_80085CC8},
-    {0x80085D2Cu, 0x80085D2Cu, 437u, 1u, dctx_func_80085CC8},
-    {0x80086DC0u, 0x00000000u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086DF4u, 0x80086DF4u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086E08u, 0x80086E08u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086E18u, 0x80086E18u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086E40u, 0x80086E40u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086E58u, 0x80086E58u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086E60u, 0x80086E60u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086E9Cu, 0x80086E9Cu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086EC4u, 0x80086EC4u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086ECCu, 0x80086ECCu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086EECu, 0x80086EECu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F00u, 0x80086F00u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F08u, 0x80086F08u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F2Cu, 0x80086F2Cu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F30u, 0x80086F30u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F34u, 0x80086F34u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F48u, 0x80086F48u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F58u, 0x80086F58u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F60u, 0x80086F60u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F68u, 0x80086F68u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F80u, 0x80086F80u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F88u, 0x80086F88u, 438u, 1u, dctx_func_80086DC0},
-    {0x80086F9Cu, 0x80086F9Cu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086FACu, 0x80086FACu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086FDCu, 0x80086FDCu, 438u, 1u, dctx_func_80086DC0},
-    {0x80086FF0u, 0x80086FF0u, 438u, 1u, dctx_func_80086DC0},
-    {0x80087048u, 0x80087048u, 438u, 1u, dctx_func_80086DC0},
-    {0x80087050u, 0x00000000u, 439u, 1u, dctx_func_80087050},
-    {0x800870A0u, 0x800870A0u, 439u, 1u, dctx_func_80087050},
-    {0x800870C8u, 0x800870C8u, 439u, 1u, dctx_func_80087050},
-    {0x800870E4u, 0x800870E4u, 439u, 1u, dctx_func_80087050},
-    {0x80087114u, 0x80087114u, 439u, 1u, dctx_func_80087050},
-    {0x80087140u, 0x80087140u, 439u, 1u, dctx_func_80087050},
-    {0x800871E8u, 0x800871E8u, 439u, 1u, dctx_func_80087050},
-    {0x800871ECu, 0x800871ECu, 439u, 1u, dctx_func_80087050},
-    {0x800887E4u, 0x00000000u, 440u, 1u, dctx_func_800887E4},
-    {0x8008883Cu, 0x8008883Cu, 440u, 1u, dctx_func_800887E4},
-    {0x8008884Cu, 0x00000000u, 441u, 1u, dctx_func_8008884C},
-    {0x80088864u, 0x80088864u, 441u, 1u, dctx_func_8008884C},
-    {0x80088868u, 0x80088868u, 441u, 1u, dctx_func_8008884C},
-    {0x80088890u, 0x80088890u, 441u, 1u, dctx_func_8008884C},
-    {0x800888A8u, 0x800888A8u, 441u, 1u, dctx_func_8008884C},
-    {0x800888ACu, 0x800888ACu, 441u, 1u, dctx_func_8008884C},
-    {0x800888B4u, 0x800888B4u, 441u, 1u, dctx_func_8008884C},
-    {0x800888F8u, 0x800888F8u, 441u, 1u, dctx_func_8008884C},
-    {0x80088900u, 0x80088900u, 441u, 1u, dctx_func_8008884C},
-    {0x80088944u, 0x80088944u, 441u, 1u, dctx_func_8008884C},
-    {0x8008894Cu, 0x8008894Cu, 441u, 1u, dctx_func_8008884C},
-    {0x80088964u, 0x80088964u, 441u, 1u, dctx_func_8008884C},
-    {0x80088970u, 0x00000000u, 442u, 1u, dctx_func_80088970},
-    {0x80088A60u, 0x80088A60u, 442u, 1u, dctx_func_80088970},
-    {0x80088AC0u, 0x80088AC0u, 442u, 1u, dctx_func_80088970},
-    {0x80088AD4u, 0x80088AD4u, 442u, 1u, dctx_func_80088970},
-    {0x80088B00u, 0x80088B00u, 442u, 1u, dctx_func_80088970},
-    {0x80088B34u, 0x80088B34u, 442u, 1u, dctx_func_80088970},
-    {0x80088B4Cu, 0x80088B4Cu, 442u, 1u, dctx_func_80088970},
-    {0x80088B74u, 0x80088B74u, 442u, 1u, dctx_func_80088970},
-    {0x80088BA4u, 0x80088BA4u, 442u, 1u, dctx_func_80088970},
-    {0x80088BBCu, 0x80088BBCu, 442u, 1u, dctx_func_80088970},
-    {0x80088BE4u, 0x80088BE4u, 442u, 1u, dctx_func_80088970},
-    {0x80088C14u, 0x80088C14u, 442u, 1u, dctx_func_80088970},
-    {0x80088C28u, 0x80088C28u, 442u, 1u, dctx_func_80088970},
-    {0x80088C30u, 0x80088C30u, 442u, 1u, dctx_func_80088970},
-    {0x80088C38u, 0x80088C38u, 442u, 1u, dctx_func_80088970},
-    {0x80088C3Cu, 0x80088C3Cu, 442u, 1u, dctx_func_80088970},
-    {0x80088C54u, 0x80088C54u, 442u, 1u, dctx_func_80088970},
-    {0x80088CA8u, 0x80088CA8u, 442u, 1u, dctx_func_80088970},
-    {0x80088CC0u, 0x80088CC0u, 442u, 1u, dctx_func_80088970},
-    {0x80088D08u, 0x80088D08u, 442u, 1u, dctx_func_80088970},
-    {0x80088D14u, 0x80088D14u, 442u, 1u, dctx_func_80088970},
-    {0x80088D20u, 0x80088D20u, 442u, 1u, dctx_func_80088970},
-    {0x80088D58u, 0x80088D58u, 442u, 1u, dctx_func_80088970},
-    {0x80088D60u, 0x80088D60u, 442u, 1u, dctx_func_80088970},
-    {0x80088D7Cu, 0x80088D7Cu, 442u, 1u, dctx_func_80088970},
-    {0x80088DB4u, 0x80088DB4u, 442u, 1u, dctx_func_80088970},
-    {0x80088DD4u, 0x80088DD4u, 442u, 1u, dctx_func_80088970},
-    {0x80088E68u, 0x80088E68u, 442u, 1u, dctx_func_80088970},
-    {0x80088E94u, 0x80088E94u, 442u, 1u, dctx_func_80088970},
-    {0x80088EC4u, 0x80088EC4u, 442u, 1u, dctx_func_80088970},
-    {0x80088EF0u, 0x00000000u, 443u, 1u, dctx_func_80088EF0},
-    {0x80088EFCu, 0x80088EFCu, 443u, 1u, dctx_func_80088EF0},
-    {0x80088F0Cu, 0x80088F0Cu, 443u, 1u, dctx_func_80088EF0},
-    {0x80088F10u, 0x80088F10u, 443u, 1u, dctx_func_80088EF0},
-    {0x80088F80u, 0x00000000u, 444u, 1u, dctx_func_80088F80},
-    {0x80088F9Cu, 0x80088F9Cu, 444u, 1u, dctx_func_80088F80},
-    {0x80088FA8u, 0x80088FA8u, 444u, 1u, dctx_func_80088F80},
-    {0x80088FB8u, 0x80088FB8u, 444u, 1u, dctx_func_80088F80},
-    {0x80088FC0u, 0x00000000u, 445u, 1u, dctx_func_80088FC0},
-    {0x80088FE4u, 0x00000000u, 446u, 1u, dctx_func_80088FE4},
-    {0x80089050u, 0x00000000u, 447u, 1u, dctx_func_80089050},
-    {0x80089108u, 0x00000000u, 448u, 1u, dctx_func_80089108},
-    {0x80089130u, 0x80089130u, 448u, 1u, dctx_func_80089108},
-    {0x80089190u, 0x80089190u, 448u, 1u, dctx_func_80089108},
-    {0x8008919Cu, 0x00000000u, 449u, 1u, dctx_func_8008919C},
-    {0x800891A4u, 0x800891A4u, 449u, 1u, dctx_func_8008919C},
-    {0x800891D0u, 0x800891D0u, 449u, 1u, dctx_func_8008919C},
-    {0x80089204u, 0x80089204u, 449u, 1u, dctx_func_8008919C},
-    {0x8008921Cu, 0x8008921Cu, 449u, 1u, dctx_func_8008919C},
-    {0x80089244u, 0x80089244u, 449u, 1u, dctx_func_8008919C},
-    {0x80089274u, 0x80089274u, 449u, 1u, dctx_func_8008919C},
-    {0x8008928Cu, 0x8008928Cu, 449u, 1u, dctx_func_8008919C},
-    {0x80089298u, 0x00000000u, 450u, 1u, dctx_func_80089298},
-    {0x800892B4u, 0x00000000u, 451u, 1u, dctx_func_800892B4},
-    {0x800892E4u, 0x00000000u, 452u, 1u, dctx_func_800892E4},
-    {0x800892F8u, 0x800892F8u, 452u, 1u, dctx_func_800892E4},
-    {0x80089300u, 0x80089300u, 452u, 1u, dctx_func_800892E4},
-    {0x80089308u, 0x80089308u, 452u, 1u, dctx_func_800892E4},
-    {0x8008930Cu, 0x8008930Cu, 452u, 1u, dctx_func_800892E4},
-    {0x80089324u, 0x80089324u, 452u, 1u, dctx_func_800892E4},
-    {0x8008934Cu, 0x00000000u, 453u, 1u, dctx_func_8008934C},
-    {0x80089378u, 0x00000000u, 454u, 1u, dctx_func_80089378},
-    {0x800893C8u, 0x00000000u, 455u, 1u, dctx_func_800893C8},
-    {0x80089404u, 0x80089404u, 455u, 1u, dctx_func_800893C8},
-    {0x80089410u, 0x80089410u, 455u, 1u, dctx_func_800893C8},
-    {0x8008941Cu, 0x8008941Cu, 455u, 1u, dctx_func_800893C8},
-    {0x80089434u, 0x80089434u, 455u, 1u, dctx_func_800893C8},
-    {0x80089464u, 0x80089464u, 455u, 1u, dctx_func_800893C8},
-    {0x8008946Cu, 0x00000000u, 456u, 1u, dctx_func_8008946C},
-    {0x80089498u, 0x00000000u, 457u, 1u, dctx_func_80089498},
-    {0x800894F0u, 0x00000000u, 458u, 1u, dctx_func_800894F0},
-    {0x8008A740u, 0x00000000u, 459u, 1u, dctx_func_8008A740},
-    {0x8008A754u, 0x8008A754u, 459u, 1u, dctx_func_8008A740},
-    {0x8008A774u, 0x8008A774u, 459u, 1u, dctx_func_8008A740},
-    {0x8008A790u, 0x8008A790u, 459u, 1u, dctx_func_8008A740},
-    {0x8008A798u, 0x8008A798u, 459u, 1u, dctx_func_8008A740},
-    {0x8008A7F8u, 0x8008A7F8u, 459u, 1u, dctx_func_8008A740},
-    {0x8008B330u, 0x00000000u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B354u, 0x8008B354u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B374u, 0x8008B374u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B390u, 0x8008B390u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3A0u, 0x8008B3A0u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3ACu, 0x8008B3ACu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3B4u, 0x8008B3B4u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3CCu, 0x8008B3CCu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3D4u, 0x8008B3D4u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3DCu, 0x8008B3DCu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3E0u, 0x8008B3E0u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B3E8u, 0x8008B3E8u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B40Cu, 0x8008B40Cu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B41Cu, 0x8008B41Cu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B43Cu, 0x8008B43Cu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B454u, 0x8008B454u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B46Cu, 0x8008B46Cu, 460u, 1u, dctx_func_8008B330},
-    {0x8008B490u, 0x8008B490u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B494u, 0x8008B494u, 460u, 1u, dctx_func_8008B330},
-    {0x8008B4A8u, 0x00000000u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B4CCu, 0x8008B4CCu, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B4D0u, 0x8008B4D0u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B4F0u, 0x8008B4F0u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B4FCu, 0x8008B4FCu, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B504u, 0x8008B504u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B510u, 0x8008B510u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B518u, 0x8008B518u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B530u, 0x8008B530u, 461u, 1u, dctx_func_8008B4A8},
-    {0x8008B5A0u, 0x00000000u, 462u, 1u, dctx_func_8008B5A0},
-    {0x8008B5C0u, 0x8008B5C0u, 462u, 1u, dctx_func_8008B5A0},
-    {0x8008B6BCu, 0x00000000u, 463u, 1u, dctx_func_8008B6BC},
-    {0x80090600u, 0x00000000u, 464u, 1u, dctx_func_80090600},
-    {0x8009060Cu, 0x8009060Cu, 464u, 1u, dctx_func_80090600},
-    {0x80090614u, 0x80090614u, 464u, 1u, dctx_func_80090600},
-    {0x8009061Cu, 0x8009061Cu, 464u, 1u, dctx_func_80090600},
-    {0x80090628u, 0x80090628u, 464u, 1u, dctx_func_80090600},
-    {0x8009062Cu, 0x8009062Cu, 464u, 1u, dctx_func_80090600},
-    {0x8009063Cu, 0x00000000u, 465u, 1u, dctx_func_8009063C},
-    {0x80090648u, 0x80090648u, 465u, 1u, dctx_func_8009063C},
-    {0x80090650u, 0x80090650u, 465u, 1u, dctx_func_8009063C},
-    {0x80090664u, 0x80090664u, 465u, 1u, dctx_func_8009063C},
-    {0x80090684u, 0x80090684u, 465u, 1u, dctx_func_8009063C},
-    {0x80090690u, 0x80090690u, 465u, 1u, dctx_func_8009063C},
-    {0x800906B0u, 0x800906B0u, 465u, 1u, dctx_func_8009063C},
-    {0x800906C4u, 0x800906C4u, 465u, 1u, dctx_func_8009063C},
-    {0x800906D0u, 0x00000000u, 466u, 1u, dctx_func_800906D0},
-    {0x800906D8u, 0x800906D8u, 466u, 1u, dctx_func_800906D0},
-    {0x800906DCu, 0x800906DCu, 466u, 1u, dctx_func_800906D0},
-    {0x800906ECu, 0x800906ECu, 466u, 1u, dctx_func_800906D0},
-    {0x800906F4u, 0x800906F4u, 466u, 1u, dctx_func_800906D0},
-    {0x80090710u, 0x80090710u, 466u, 1u, dctx_func_800906D0},
-    {0x80090728u, 0x80090728u, 466u, 1u, dctx_func_800906D0},
-    {0x80090734u, 0x80090734u, 466u, 1u, dctx_func_800906D0},
-    {0x8009074Cu, 0x8009074Cu, 466u, 1u, dctx_func_800906D0},
-    {0x80090768u, 0x80090768u, 466u, 1u, dctx_func_800906D0},
-    {0x80090770u, 0x00000000u, 467u, 1u, dctx_func_80090770},
-    {0x8009078Cu, 0x8009078Cu, 467u, 1u, dctx_func_80090770},
-    {0x80090790u, 0x80090790u, 467u, 1u, dctx_func_80090770},
-    {0x8009079Cu, 0x8009079Cu, 467u, 1u, dctx_func_80090770},
-    {0x800907A4u, 0x800907A4u, 467u, 1u, dctx_func_80090770},
-    {0x800907A8u, 0x800907A8u, 467u, 1u, dctx_func_80090770},
-    {0x800907ACu, 0x00000000u, 468u, 1u, dctx_func_800907AC},
-    {0x800907BCu, 0x800907BCu, 468u, 1u, dctx_func_800907AC},
-    {0x800907C4u, 0x800907C4u, 468u, 1u, dctx_func_800907AC},
-    {0x800907E0u, 0x00000000u, 469u, 1u, dctx_func_800907E0},
-    {0x80090810u, 0x80090810u, 469u, 1u, dctx_func_800907E0},
-    {0x80090818u, 0x80090818u, 469u, 1u, dctx_func_800907E0},
-    {0x80090828u, 0x80090828u, 469u, 1u, dctx_func_800907E0},
-    {0x80090850u, 0x80090850u, 469u, 1u, dctx_func_800907E0},
-    {0x8009087Cu, 0x8009087Cu, 469u, 1u, dctx_func_800907E0},
-    {0x8009088Cu, 0x8009088Cu, 469u, 1u, dctx_func_800907E0},
-    {0x800908ACu, 0x800908ACu, 469u, 1u, dctx_func_800907E0},
-    {0x800908C4u, 0x800908C4u, 469u, 1u, dctx_func_800907E0},
-    {0x800908E4u, 0x800908E4u, 469u, 1u, dctx_func_800907E0},
-    {0x800908FCu, 0x800908FCu, 469u, 1u, dctx_func_800907E0},
-    {0x80090910u, 0x80090910u, 469u, 1u, dctx_func_800907E0},
-    {0x80090914u, 0x80090914u, 469u, 1u, dctx_func_800907E0},
-    {0x80090928u, 0x80090928u, 469u, 1u, dctx_func_800907E0},
-    {0x80090934u, 0x00000000u, 470u, 1u, dctx_func_80090934},
-    {0x8009094Cu, 0x8009094Cu, 470u, 1u, dctx_func_80090934},
-    {0x80090954u, 0x80090954u, 470u, 1u, dctx_func_80090934},
-    {0x8009095Cu, 0x8009095Cu, 470u, 1u, dctx_func_80090934},
-    {0x8009096Cu, 0x8009096Cu, 470u, 1u, dctx_func_80090934},
-    {0x80090978u, 0x80090978u, 470u, 1u, dctx_func_80090934},
-    {0x8009098Cu, 0x8009098Cu, 470u, 1u, dctx_func_80090934},
-    {0x80090998u, 0x80090998u, 470u, 1u, dctx_func_80090934},
-    {0x800909A0u, 0x800909A0u, 470u, 1u, dctx_func_80090934},
-    {0x800909ACu, 0x800909ACu, 470u, 1u, dctx_func_80090934},
-    {0x800909B4u, 0x800909B4u, 470u, 1u, dctx_func_80090934},
-    {0x800909B8u, 0x800909B8u, 470u, 1u, dctx_func_80090934},
-    {0x80090A60u, 0x00000000u, 471u, 1u, dctx_func_80090A60},
-    {0x80090A7Cu, 0x80090A7Cu, 471u, 1u, dctx_func_80090A60},
-    {0x80090AA0u, 0x80090AA0u, 471u, 1u, dctx_func_80090A60},
-    {0x80090AA8u, 0x80090AA8u, 471u, 1u, dctx_func_80090A60},
-    {0x80090AACu, 0x80090AACu, 471u, 1u, dctx_func_80090A60},
-    {0x80090AB4u, 0x80090AB4u, 471u, 1u, dctx_func_80090A60},
-    {0x80090ADCu, 0x00000000u, 472u, 1u, dctx_func_80090ADC},
-    {0x80090AF0u, 0x00000000u, 473u, 1u, dctx_func_80090AF0},
-    {0x80090CF0u, 0x00000000u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D2Cu, 0x80090D2Cu, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D44u, 0x80090D44u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D4Cu, 0x80090D4Cu, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D54u, 0x80090D54u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D6Cu, 0x80090D6Cu, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D74u, 0x80090D74u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D7Cu, 0x80090D7Cu, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D94u, 0x80090D94u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090D9Cu, 0x80090D9Cu, 474u, 1u, dctx_func_80090CF0},
-    {0x80090DD8u, 0x80090DD8u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090DE8u, 0x80090DE8u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090DECu, 0x80090DECu, 474u, 1u, dctx_func_80090CF0},
-    {0x80090DF4u, 0x80090DF4u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090E04u, 0x80090E04u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090E08u, 0x80090E08u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090E10u, 0x80090E10u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090E20u, 0x80090E20u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090E24u, 0x80090E24u, 474u, 1u, dctx_func_80090CF0},
-    {0x80090E50u, 0x00000000u, 475u, 1u, dctx_func_80090E50},
-    {0x80090E80u, 0x00000000u, 476u, 1u, dctx_func_80090E80},
-    {0x80090F90u, 0x00000000u, 477u, 1u, dctx_func_80090F90},
-    {0x80090FD4u, 0x00000000u, 478u, 1u, dctx_func_80090FD4},
-    {0x800910A0u, 0x00000000u, 479u, 1u, dctx_func_800910A0},
-    {0x800910F0u, 0x00000000u, 480u, 1u, dctx_func_800910F0},
-    {0x80091150u, 0x00000000u, 481u, 1u, dctx_func_80091150},
-    {0x80091290u, 0x00000000u, 482u, 1u, dctx_func_80091290},
-    {0x800912A8u, 0x00000000u, 483u, 1u, dctx_func_800912A8},
-    {0x800912C0u, 0x00000000u, 484u, 1u, dctx_func_800912C0},
-    {0x800912F0u, 0x00000000u, 485u, 1u, dctx_func_800912F0},
-    {0x80091320u, 0x00000000u, 486u, 1u, dctx_func_80091320},
-    {0x80091438u, 0x00000000u, 487u, 1u, dctx_func_80091438},
-    {0x80091444u, 0x00000000u, 488u, 1u, dctx_func_80091444},
-    {0x80091450u, 0x00000000u, 489u, 1u, dctx_func_80091450},
-    {0x80091470u, 0x00000000u, 490u, 1u, dctx_func_80091470},
-    {0x80091490u, 0x00000000u, 491u, 1u, dctx_func_80091490},
-    {0x800914B0u, 0x00000000u, 492u, 1u, dctx_func_800914B0},
-    {0x800914E4u, 0x00000000u, 493u, 1u, dctx_func_800914E4},
-    {0x80091894u, 0x00000000u, 494u, 1u, dctx_func_80091894},
-    {0x800918E0u, 0x00000000u, 495u, 1u, dctx_func_800918E0},
-    {0x80091940u, 0x00000000u, 496u, 1u, dctx_func_80091940},
-    {0x800919A0u, 0x00000000u, 497u, 1u, dctx_func_800919A0},
-    {0x80091A20u, 0x00000000u, 498u, 1u, dctx_func_80091A20},
-    {0x80091A30u, 0x80091A30u, 498u, 1u, dctx_func_80091A20},
-    {0x80091A3Cu, 0x80091A3Cu, 498u, 1u, dctx_func_80091A20},
-    {0x80091A64u, 0x80091A64u, 498u, 1u, dctx_func_80091A20},
-    {0x80091A84u, 0x80091A84u, 498u, 1u, dctx_func_80091A20},
-    {0x80091A94u, 0x80091A94u, 498u, 1u, dctx_func_80091A20},
-    {0x80091AA0u, 0x80091AA0u, 498u, 1u, dctx_func_80091A20},
-    {0x80091AC8u, 0x80091AC8u, 498u, 1u, dctx_func_80091A20},
-    {0x80091AECu, 0x80091AECu, 498u, 1u, dctx_func_80091A20},
-    {0x80091B14u, 0x80091B14u, 498u, 1u, dctx_func_80091A20},
-    {0x80091B2Cu, 0x80091B2Cu, 498u, 1u, dctx_func_80091A20},
-    {0x80091B54u, 0x80091B54u, 498u, 1u, dctx_func_80091A20},
-    {0x80091B80u, 0x80091B80u, 498u, 1u, dctx_func_80091A20},
-    {0x80091CB0u, 0x00000000u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091CC0u, 0x80091CC0u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091CCCu, 0x80091CCCu, 499u, 1u, dctx_func_80091CB0},
-    {0x80091CF4u, 0x80091CF4u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091D18u, 0x80091D18u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091D28u, 0x80091D28u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091D34u, 0x80091D34u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091D5Cu, 0x80091D5Cu, 499u, 1u, dctx_func_80091CB0},
-    {0x80091D7Cu, 0x80091D7Cu, 499u, 1u, dctx_func_80091CB0},
-    {0x80091DA4u, 0x80091DA4u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091DBCu, 0x80091DBCu, 499u, 1u, dctx_func_80091CB0},
-    {0x80091DE4u, 0x80091DE4u, 499u, 1u, dctx_func_80091CB0},
-    {0x80091E10u, 0x80091E10u, 499u, 1u, dctx_func_80091CB0},
-    {0x80092510u, 0x00000000u, 500u, 1u, dctx_func_80092510},
-    {0x80092520u, 0x80092520u, 500u, 1u, dctx_func_80092510},
-    {0x8009252Cu, 0x8009252Cu, 500u, 1u, dctx_func_80092510},
-    {0x80092554u, 0x80092554u, 500u, 1u, dctx_func_80092510},
-    {0x80092574u, 0x80092574u, 500u, 1u, dctx_func_80092510},
-    {0x800926B0u, 0x00000000u, 501u, 1u, dctx_func_800926B0},
-    {0x800926BCu, 0x800926BCu, 501u, 1u, dctx_func_800926B0},
-    {0x800926C4u, 0x800926C4u, 501u, 1u, dctx_func_800926B0},
-    {0x800926CCu, 0x800926CCu, 501u, 1u, dctx_func_800926B0},
-    {0x800926D4u, 0x800926D4u, 501u, 1u, dctx_func_800926B0},
-    {0x800926DCu, 0x800926DCu, 501u, 1u, dctx_func_800926B0},
-    {0x800926E4u, 0x800926E4u, 501u, 1u, dctx_func_800926B0},
-    {0x800926E8u, 0x800926E8u, 501u, 1u, dctx_func_800926B0},
-    {0x800926F0u, 0x800926F0u, 501u, 1u, dctx_func_800926B0},
-    {0x800926FCu, 0x800926FCu, 501u, 1u, dctx_func_800926B0},
-    {0x80092708u, 0x80092708u, 501u, 1u, dctx_func_800926B0},
-    {0x8009270Cu, 0x8009270Cu, 501u, 1u, dctx_func_800926B0},
-    {0x80092718u, 0x80092718u, 501u, 1u, dctx_func_800926B0},
-    {0x80092720u, 0x80092720u, 501u, 1u, dctx_func_800926B0},
-    {0x80092724u, 0x80092724u, 501u, 1u, dctx_func_800926B0},
-    {0x80092730u, 0x80092730u, 501u, 1u, dctx_func_800926B0},
-    {0x80092740u, 0x80092740u, 501u, 1u, dctx_func_800926B0},
-    {0x80092744u, 0x80092744u, 501u, 1u, dctx_func_800926B0},
-    {0x80092750u, 0x80092750u, 501u, 1u, dctx_func_800926B0},
-    {0x80092758u, 0x80092758u, 501u, 1u, dctx_func_800926B0},
-    {0x8009275Cu, 0x8009275Cu, 501u, 1u, dctx_func_800926B0},
-    {0x80092764u, 0x80092764u, 501u, 1u, dctx_func_800926B0},
-    {0x80092778u, 0x80092778u, 501u, 1u, dctx_func_800926B0},
-    {0x80092784u, 0x80092784u, 501u, 1u, dctx_func_800926B0},
-    {0x80092790u, 0x80092790u, 501u, 1u, dctx_func_800926B0},
-    {0x80092794u, 0x80092794u, 501u, 1u, dctx_func_800926B0},
-    {0x800927A0u, 0x800927A0u, 501u, 1u, dctx_func_800926B0},
-    {0x800927A8u, 0x800927A8u, 501u, 1u, dctx_func_800926B0},
-    {0x800927ACu, 0x800927ACu, 501u, 1u, dctx_func_800926B0},
-    {0x800927B8u, 0x800927B8u, 501u, 1u, dctx_func_800926B0},
-    {0x800927C8u, 0x800927C8u, 501u, 1u, dctx_func_800926B0},
-    {0x800927CCu, 0x800927CCu, 501u, 1u, dctx_func_800926B0},
-    {0x800927D8u, 0x800927D8u, 501u, 1u, dctx_func_800926B0},
-    {0x800927E0u, 0x800927E0u, 501u, 1u, dctx_func_800926B0},
-    {0x800927E4u, 0x800927E4u, 501u, 1u, dctx_func_800926B0},
-    {0x800927ECu, 0x800927ECu, 501u, 1u, dctx_func_800926B0},
-    {0x80092800u, 0x80092800u, 501u, 1u, dctx_func_800926B0},
-    {0x80092808u, 0x80092808u, 501u, 1u, dctx_func_800926B0},
-    {0x8009280Cu, 0x8009280Cu, 501u, 1u, dctx_func_800926B0},
-    {0x80092814u, 0x80092814u, 501u, 1u, dctx_func_800926B0},
-    {0x8009281Cu, 0x8009281Cu, 501u, 1u, dctx_func_800926B0},
-    {0x80093418u, 0x00000000u, 502u, 1u, dctx_func_80093418},
-    {0x80093440u, 0x80093440u, 502u, 1u, dctx_func_80093418},
-    {0x80093460u, 0x80093460u, 502u, 1u, dctx_func_80093418},
-    {0x8009347Cu, 0x8009347Cu, 502u, 1u, dctx_func_80093418},
-    {0x80093520u, 0x00000000u, 503u, 1u, dctx_func_80093520},
-    {0x80093540u, 0x80093540u, 503u, 1u, dctx_func_80093520},
-    {0x8009355Cu, 0x8009355Cu, 503u, 1u, dctx_func_80093520},
-    {0x80093580u, 0x80093580u, 503u, 1u, dctx_func_80093520},
-    {0x80093590u, 0x00000000u, 504u, 1u, dctx_func_80093590},
-    {0x800935C0u, 0x800935C0u, 504u, 1u, dctx_func_80093590},
-    {0x800935DCu, 0x800935DCu, 504u, 1u, dctx_func_80093590},
-    {0x800935ECu, 0x800935ECu, 504u, 1u, dctx_func_80093590},
-    {0x80093624u, 0x80093624u, 504u, 1u, dctx_func_80093590},
-    {0x80093634u, 0x80093634u, 504u, 1u, dctx_func_80093590},
-    {0x80093CF0u, 0x00000000u, 505u, 1u, dctx_func_80093CF0},
-    {0x80093D20u, 0x80093D20u, 505u, 1u, dctx_func_80093CF0},
-    {0x80093D58u, 0x80093D58u, 505u, 1u, dctx_func_80093CF0},
-    {0x80093DD8u, 0x00000000u, 506u, 1u, dctx_func_80093DD8},
-    {0x80093DE4u, 0x80093DE4u, 506u, 1u, dctx_func_80093DD8},
-    {0x80093DF0u, 0x80093DF0u, 506u, 1u, dctx_func_80093DD8},
-    {0x80093DF4u, 0x80093DF4u, 506u, 1u, dctx_func_80093DD8},
-    {0x80093E00u, 0x00000000u, 507u, 1u, dctx_func_80093E00},
-    {0x80093E30u, 0x80093E30u, 507u, 1u, dctx_func_80093E00},
-    {0x80093E3Cu, 0x80093E3Cu, 507u, 1u, dctx_func_80093E00},
-    {0x8009404Cu, 0x00000000u, 508u, 1u, dctx_func_8009404C},
-    {0x8009406Cu, 0x00000000u, 509u, 1u, dctx_func_8009406C},
-    {0x80094074u, 0x80094074u, 509u, 1u, dctx_func_8009406C},
-    {0x800940ACu, 0x800940ACu, 509u, 1u, dctx_func_8009406C},
-    {0x800940C0u, 0x00000000u, 510u, 1u, dctx_func_800940C0},
-    {0x800940D8u, 0x800940D8u, 510u, 1u, dctx_func_800940C0},
-    {0x800940E4u, 0x800940E4u, 510u, 1u, dctx_func_800940C0},
-    {0x80094100u, 0x80094100u, 510u, 1u, dctx_func_800940C0},
-    {0x80094118u, 0x00000000u, 511u, 1u, dctx_func_80094118},
-    {0x80094140u, 0x80094140u, 511u, 1u, dctx_func_80094118},
-    {0x8009415Cu, 0x00000000u, 512u, 1u, dctx_func_8009415C},
-    {0x80094164u, 0x80094164u, 512u, 1u, dctx_func_8009415C},
-    {0x80094168u, 0x00000000u, 513u, 1u, dctx_func_80094168},
-    {0x80094170u, 0x00000000u, 514u, 1u, dctx_func_80094170},
-    {0x80094178u, 0x80094178u, 514u, 1u, dctx_func_80094170},
-    {0x8009419Cu, 0x8009419Cu, 514u, 1u, dctx_func_80094170},
-    {0x800941A4u, 0x800941A4u, 514u, 1u, dctx_func_80094170},
-    {0x800941A8u, 0x800941A8u, 514u, 1u, dctx_func_80094170},
-    {0x800941BCu, 0x800941BCu, 514u, 1u, dctx_func_80094170},
-    {0x800941D0u, 0x800941D0u, 514u, 1u, dctx_func_80094170},
-    {0x80094248u, 0x80094248u, 514u, 1u, dctx_func_80094170},
-    {0x800942A0u, 0x00000000u, 515u, 1u, dctx_func_800942A0},
-    {0x800942BCu, 0x00000000u, 516u, 1u, dctx_func_800942BC},
-    {0x800942C4u, 0x800942C4u, 516u, 1u, dctx_func_800942BC},
-    {0x800942C8u, 0x800942C8u, 516u, 1u, dctx_func_800942BC},
-    {0x800942D0u, 0x800942D0u, 516u, 1u, dctx_func_800942BC},
-    {0x800942D4u, 0x800942D4u, 516u, 1u, dctx_func_800942BC},
-    {0x800942DCu, 0x00000000u, 517u, 1u, dctx_func_800942DC},
-    {0x800942ECu, 0x800942ECu, 517u, 1u, dctx_func_800942DC},
-    {0x80094310u, 0x80094310u, 517u, 1u, dctx_func_800942DC},
-    {0x80094314u, 0x80094314u, 517u, 1u, dctx_func_800942DC},
-    {0x80094328u, 0x80094328u, 517u, 1u, dctx_func_800942DC},
-    {0x8009434Cu, 0x8009434Cu, 517u, 1u, dctx_func_800942DC},
-    {0x80094354u, 0x80094354u, 517u, 1u, dctx_func_800942DC},
-    {0x80094358u, 0x80094358u, 517u, 1u, dctx_func_800942DC},
-    {0x8009435Cu, 0x8009435Cu, 517u, 1u, dctx_func_800942DC},
-    {0x80094374u, 0x00000000u, 518u, 1u, dctx_func_80094374},
-    {0x80094384u, 0x80094384u, 518u, 1u, dctx_func_80094374},
-    {0x800943A8u, 0x800943A8u, 518u, 1u, dctx_func_80094374},
-    {0x800943ACu, 0x800943ACu, 518u, 1u, dctx_func_80094374},
-    {0x800943C0u, 0x800943C0u, 518u, 1u, dctx_func_80094374},
-    {0x800943E4u, 0x800943E4u, 518u, 1u, dctx_func_80094374},
-    {0x800943ECu, 0x800943ECu, 518u, 1u, dctx_func_80094374},
-    {0x800943F0u, 0x800943F0u, 518u, 1u, dctx_func_80094374},
-    {0x800943F4u, 0x800943F4u, 518u, 1u, dctx_func_80094374},
-    {0x8009440Cu, 0x00000000u, 519u, 1u, dctx_func_8009440C},
-    {0x80094428u, 0x00000000u, 520u, 1u, dctx_func_80094428},
-    {0x80094430u, 0x80094430u, 520u, 1u, dctx_func_80094428},
-    {0x80094438u, 0x80094438u, 520u, 1u, dctx_func_80094428},
-    {0x800944A0u, 0x800944A0u, 520u, 1u, dctx_func_80094428},
-    {0x800944A8u, 0x00000000u, 521u, 1u, dctx_func_800944A8},
-    {0x800944C0u, 0x00000000u, 522u, 1u, dctx_func_800944C0},
-    {0x80094538u, 0x80094538u, 522u, 1u, dctx_func_800944C0},
-    {0x80094558u, 0x80094558u, 522u, 1u, dctx_func_800944C0},
-    {0x8009455Cu, 0x8009455Cu, 522u, 1u, dctx_func_800944C0},
-    {0x80094564u, 0x80094564u, 522u, 1u, dctx_func_800944C0},
-    {0x8009456Cu, 0x8009456Cu, 522u, 1u, dctx_func_800944C0},
-    {0x8009458Cu, 0x8009458Cu, 522u, 1u, dctx_func_800944C0},
-    {0x800945A0u, 0x00000000u, 523u, 1u, dctx_func_800945A0},
-    {0x800945C8u, 0x800945C8u, 523u, 1u, dctx_func_800945A0},
-    {0x800945ECu, 0x800945ECu, 523u, 1u, dctx_func_800945A0},
-    {0x800945F4u, 0x800945F4u, 523u, 1u, dctx_func_800945A0},
-    {0x800945F8u, 0x800945F8u, 523u, 1u, dctx_func_800945A0},
-    {0x80094608u, 0x80094608u, 523u, 1u, dctx_func_800945A0},
-    {0x8009462Cu, 0x8009462Cu, 523u, 1u, dctx_func_800945A0},
-    {0x80094634u, 0x80094634u, 523u, 1u, dctx_func_800945A0},
-    {0x80094638u, 0x80094638u, 523u, 1u, dctx_func_800945A0},
-    {0x8009464Cu, 0x8009464Cu, 523u, 1u, dctx_func_800945A0},
-    {0x80094660u, 0x80094660u, 523u, 1u, dctx_func_800945A0},
-    {0x80094708u, 0x80094708u, 523u, 1u, dctx_func_800945A0},
-    {0x80094718u, 0x80094718u, 523u, 1u, dctx_func_800945A0},
-    {0x8009472Cu, 0x8009472Cu, 523u, 1u, dctx_func_800945A0},
-    {0x80094738u, 0x80094738u, 523u, 1u, dctx_func_800945A0},
-    {0x800947A8u, 0x800947A8u, 523u, 1u, dctx_func_800945A0},
-    {0x800947B4u, 0x800947B4u, 523u, 1u, dctx_func_800945A0},
-    {0x800947D0u, 0x00000000u, 524u, 1u, dctx_func_800947D0},
-    {0x800947FCu, 0x800947FCu, 524u, 1u, dctx_func_800947D0},
-    {0x8009480Cu, 0x8009480Cu, 524u, 1u, dctx_func_800947D0},
-    {0x8009482Cu, 0x8009482Cu, 524u, 1u, dctx_func_800947D0},
-    {0x80094834u, 0x80094834u, 524u, 1u, dctx_func_800947D0},
-    {0x80094838u, 0x80094838u, 524u, 1u, dctx_func_800947D0},
-    {0x80094848u, 0x80094848u, 524u, 1u, dctx_func_800947D0},
-    {0x80094868u, 0x80094868u, 524u, 1u, dctx_func_800947D0},
-    {0x80094870u, 0x80094870u, 524u, 1u, dctx_func_800947D0},
-    {0x80094874u, 0x80094874u, 524u, 1u, dctx_func_800947D0},
-    {0x80094878u, 0x80094878u, 524u, 1u, dctx_func_800947D0},
-    {0x800948A4u, 0x800948A4u, 524u, 1u, dctx_func_800947D0},
-    {0x800948ACu, 0x800948ACu, 524u, 1u, dctx_func_800947D0},
-    {0x800948D8u, 0x800948D8u, 524u, 1u, dctx_func_800947D0},
-    {0x800948DCu, 0x800948DCu, 524u, 1u, dctx_func_800947D0},
-    {0x800948E4u, 0x800948E4u, 524u, 1u, dctx_func_800947D0},
-    {0x800948ECu, 0x800948ECu, 524u, 1u, dctx_func_800947D0},
-    {0x8009490Cu, 0x8009490Cu, 524u, 1u, dctx_func_800947D0},
-    {0x8009493Cu, 0x8009493Cu, 524u, 1u, dctx_func_800947D0},
-    {0x80094940u, 0x80094940u, 524u, 1u, dctx_func_800947D0},
-    {0x80094978u, 0x80094978u, 524u, 1u, dctx_func_800947D0},
-    {0x8009497Cu, 0x8009497Cu, 524u, 1u, dctx_func_800947D0},
-    {0x80094998u, 0x80094998u, 524u, 1u, dctx_func_800947D0},
-    {0x800949A0u, 0x800949A0u, 524u, 1u, dctx_func_800947D0},
-    {0x800949E4u, 0x800949E4u, 524u, 1u, dctx_func_800947D0},
-    {0x800949E8u, 0x800949E8u, 524u, 1u, dctx_func_800947D0},
-    {0x80094A0Cu, 0x00000000u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A34u, 0x80094A34u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A44u, 0x80094A44u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A60u, 0x80094A60u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A68u, 0x80094A68u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A6Cu, 0x80094A6Cu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A7Cu, 0x80094A7Cu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094A9Cu, 0x80094A9Cu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094AA4u, 0x80094AA4u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094AA8u, 0x80094AA8u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094AACu, 0x80094AACu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094AD8u, 0x80094AD8u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094AE0u, 0x80094AE0u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094B0Cu, 0x80094B0Cu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094B10u, 0x80094B10u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094B18u, 0x80094B18u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094B20u, 0x80094B20u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094B40u, 0x80094B40u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094BB8u, 0x80094BB8u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094BBCu, 0x80094BBCu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094BC4u, 0x80094BC4u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094BCCu, 0x80094BCCu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094BECu, 0x80094BECu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094BFCu, 0x80094BFCu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094C1Cu, 0x80094C1Cu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094C24u, 0x80094C24u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094C68u, 0x80094C68u, 525u, 1u, dctx_func_80094A0C},
-    {0x80094C6Cu, 0x80094C6Cu, 525u, 1u, dctx_func_80094A0C},
-    {0x80094C8Cu, 0x00000000u, 526u, 1u, dctx_func_80094C8C},
-    {0x80094CB0u, 0x00000000u, 527u, 1u, dctx_func_80094CB0},
-    {0x80094CC4u, 0x00000000u, 528u, 1u, dctx_func_80094CC4},
-    {0x80094CDCu, 0x80094CDCu, 528u, 1u, dctx_func_80094CC4},
-    {0x80094CE0u, 0x80094CE0u, 528u, 1u, dctx_func_80094CC4},
-    {0x80094CFCu, 0x80094CFCu, 528u, 1u, dctx_func_80094CC4},
-    {0x80094D04u, 0x00000000u, 529u, 1u, dctx_func_80094D04},
-    {0x80094D4Cu, 0x00000000u, 530u, 1u, dctx_func_80094D4C},
-    {0x80094D7Cu, 0x00000000u, 531u, 1u, dctx_func_80094D7C},
-    {0x80094D90u, 0x80094D90u, 531u, 1u, dctx_func_80094D7C},
-    {0x80094DA0u, 0x00000000u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094DCCu, 0x80094DCCu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094DD4u, 0x80094DD4u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094DDCu, 0x80094DDCu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094DE4u, 0x80094DE4u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094DECu, 0x80094DECu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E0Cu, 0x80094E0Cu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E14u, 0x80094E14u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E34u, 0x80094E34u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E50u, 0x80094E50u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E70u, 0x80094E70u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E80u, 0x80094E80u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094E8Cu, 0x80094E8Cu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EA0u, 0x80094EA0u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EACu, 0x80094EACu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EBCu, 0x80094EBCu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EC4u, 0x80094EC4u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094ED4u, 0x80094ED4u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EDCu, 0x80094EDCu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EECu, 0x80094EECu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EF4u, 0x80094EF4u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094EF8u, 0x80094EF8u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094F08u, 0x80094F08u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094F3Cu, 0x80094F3Cu, 532u, 1u, dctx_func_80094DA0},
-    {0x80094F80u, 0x80094F80u, 532u, 1u, dctx_func_80094DA0},
-    {0x80094F94u, 0x00000000u, 533u, 1u, dctx_func_80094F94},
-    {0x80094FA4u, 0x00000000u, 534u, 1u, dctx_func_80094FA4},
-    {0x80094FD0u, 0x00000000u, 535u, 1u, dctx_func_80094FD0},
-    {0x80094FE0u, 0x00000000u, 536u, 1u, dctx_func_80094FE0},
-    {0x80095010u, 0x80095010u, 536u, 1u, dctx_func_80094FE0},
-    {0x80095018u, 0x80095018u, 536u, 1u, dctx_func_80094FE0},
-    {0x80095034u, 0x00000000u, 537u, 1u, dctx_func_80095034},
-    {0x80095050u, 0x00000000u, 538u, 1u, dctx_func_80095050},
-    {0x8009507Cu, 0x8009507Cu, 538u, 1u, dctx_func_80095050},
-    {0x80095084u, 0x80095084u, 538u, 1u, dctx_func_80095050},
-    {0x800950A0u, 0x800950A0u, 538u, 1u, dctx_func_80095050},
-    {0x800950C0u, 0x800950C0u, 538u, 1u, dctx_func_80095050},
-    {0x800950C8u, 0x00000000u, 539u, 1u, dctx_func_800950C8},
-    {0x800950E8u, 0x800950E8u, 539u, 1u, dctx_func_800950C8},
-    {0x800950FCu, 0x800950FCu, 539u, 1u, dctx_func_800950C8},
-    {0x80095104u, 0x00000000u, 540u, 1u, dctx_func_80095104},
-    {0x80095124u, 0x80095124u, 540u, 1u, dctx_func_80095104},
-    {0x80095138u, 0x80095138u, 540u, 1u, dctx_func_80095104},
-    {0x800951A8u, 0x800951A8u, 540u, 1u, dctx_func_80095104},
-    {0x800951E0u, 0x800951E0u, 540u, 1u, dctx_func_80095104},
-    {0x800951E4u, 0x00000000u, 541u, 1u, dctx_func_800951E4},
-    {0x80095200u, 0x00000000u, 542u, 1u, dctx_func_80095200},
-    {0x80095208u, 0x00000000u, 543u, 1u, dctx_func_80095208},
-    {0x80095210u, 0x80095210u, 543u, 1u, dctx_func_80095208},
-    {0x80095220u, 0x00000000u, 544u, 1u, dctx_func_80095220},
-    {0x8009522Cu, 0x8009522Cu, 544u, 1u, dctx_func_80095220},
-    {0x8009524Cu, 0x8009524Cu, 544u, 1u, dctx_func_80095220},
-    {0x80095264u, 0x80095264u, 544u, 1u, dctx_func_80095220},
-    {0x80095274u, 0x80095274u, 544u, 1u, dctx_func_80095220},
-    {0x80095280u, 0x80095280u, 544u, 1u, dctx_func_80095220},
-    {0x8009529Cu, 0x00000000u, 545u, 1u, dctx_func_8009529C},
-    {0x800952B0u, 0x00000000u, 546u, 1u, dctx_func_800952B0},
-    {0x800952C8u, 0x800952C8u, 546u, 1u, dctx_func_800952B0},
-    {0x800952F8u, 0x800952F8u, 546u, 1u, dctx_func_800952B0},
-    {0x80095300u, 0x80095300u, 546u, 1u, dctx_func_800952B0},
-    {0x80095308u, 0x80095308u, 546u, 1u, dctx_func_800952B0},
-    {0x80095310u, 0x80095310u, 546u, 1u, dctx_func_800952B0},
-    {0x80095318u, 0x80095318u, 546u, 1u, dctx_func_800952B0},
-    {0x80095320u, 0x80095320u, 546u, 1u, dctx_func_800952B0},
-    {0x80095364u, 0x80095364u, 546u, 1u, dctx_func_800952B0},
-    {0x80095378u, 0x80095378u, 546u, 1u, dctx_func_800952B0},
-    {0x80095380u, 0x80095380u, 546u, 1u, dctx_func_800952B0},
-    {0x800953CCu, 0x800953CCu, 546u, 1u, dctx_func_800952B0},
-    {0x800953DCu, 0x800953DCu, 546u, 1u, dctx_func_800952B0},
-    {0x800953E8u, 0x800953E8u, 546u, 1u, dctx_func_800952B0},
-    {0x800953F0u, 0x800953F0u, 546u, 1u, dctx_func_800952B0},
-    {0x80095400u, 0x00000000u, 547u, 1u, dctx_func_80095400},
-    {0x80095410u, 0x80095410u, 547u, 1u, dctx_func_80095400},
-    {0x80095418u, 0x80095418u, 547u, 1u, dctx_func_80095400},
-    {0x80095420u, 0x80095420u, 547u, 1u, dctx_func_80095400},
-    {0x80095428u, 0x80095428u, 547u, 1u, dctx_func_80095400},
-    {0x80095430u, 0x80095430u, 547u, 1u, dctx_func_80095400},
-    {0x80095438u, 0x80095438u, 547u, 1u, dctx_func_80095400},
-    {0x80095454u, 0x80095454u, 547u, 1u, dctx_func_80095400},
-    {0x8009545Cu, 0x8009545Cu, 547u, 1u, dctx_func_80095400},
-    {0x80095464u, 0x80095464u, 547u, 1u, dctx_func_80095400},
-    {0x8009546Cu, 0x8009546Cu, 547u, 1u, dctx_func_80095400},
-    {0x8009548Cu, 0x8009548Cu, 547u, 1u, dctx_func_80095400},
-    {0x800954ACu, 0x800954ACu, 547u, 1u, dctx_func_80095400},
-    {0x800954B4u, 0x800954B4u, 547u, 1u, dctx_func_80095400},
-    {0x800954D8u, 0x800954D8u, 547u, 1u, dctx_func_80095400},
-    {0x800954E0u, 0x800954E0u, 547u, 1u, dctx_func_80095400},
-    {0x80095500u, 0x80095500u, 547u, 1u, dctx_func_80095400},
-    {0x80095520u, 0x80095520u, 547u, 1u, dctx_func_80095400},
-    {0x80095528u, 0x80095528u, 547u, 1u, dctx_func_80095400},
-    {0x8009552Cu, 0x8009552Cu, 547u, 1u, dctx_func_80095400},
-    {0x8009553Cu, 0x00000000u, 548u, 1u, dctx_func_8009553C},
-    {0x8009554Cu, 0x8009554Cu, 548u, 1u, dctx_func_8009553C},
-    {0x80095570u, 0x00000000u, 549u, 1u, dctx_func_80095570},
-    {0x80095580u, 0x80095580u, 549u, 1u, dctx_func_80095570},
-    {0x80095598u, 0x80095598u, 549u, 1u, dctx_func_80095570},
-    {0x800955C4u, 0x800955C4u, 549u, 1u, dctx_func_80095570},
-    {0x80095614u, 0x80095614u, 549u, 1u, dctx_func_80095570},
-    {0x8009561Cu, 0x8009561Cu, 549u, 1u, dctx_func_80095570},
-    {0x80095698u, 0x80095698u, 549u, 1u, dctx_func_80095570},
-    {0x800956A0u, 0x800956A0u, 549u, 1u, dctx_func_80095570},
-    {0x800956A4u, 0x800956A4u, 549u, 1u, dctx_func_80095570},
-    {0x800956B4u, 0x00000000u, 550u, 1u, dctx_func_800956B4},
-    {0x800956ECu, 0x800956ECu, 550u, 1u, dctx_func_800956B4},
-    {0x80095724u, 0x80095724u, 550u, 1u, dctx_func_800956B4},
-    {0x80095730u, 0x80095730u, 550u, 1u, dctx_func_800956B4},
-    {0x80095748u, 0x80095748u, 550u, 1u, dctx_func_800956B4},
-    {0x8009574Cu, 0x8009574Cu, 550u, 1u, dctx_func_800956B4},
-    {0x80095B94u, 0x00000000u, 551u, 1u, dctx_func_80095B94},
-    {0x80095B9Cu, 0x80095B9Cu, 551u, 1u, dctx_func_80095B94},
-    {0x80095BA0u, 0x80095BA0u, 551u, 1u, dctx_func_80095B94},
-    {0x80095BB0u, 0x80095BB0u, 551u, 1u, dctx_func_80095B94},
-    {0x80095C20u, 0x00000000u, 552u, 1u, dctx_func_80095C20},
-    {0x80095C60u, 0x00000000u, 553u, 1u, dctx_func_80095C60},
-    {0x80095CA0u, 0x00000000u, 554u, 1u, dctx_func_80095CA0},
-    {0x80095CD0u, 0x00000000u, 555u, 1u, dctx_func_80095CD0},
-    {0x80095CD8u, 0x80095CD8u, 555u, 1u, dctx_func_80095CD0},
-    {0x80095CE4u, 0x80095CE4u, 555u, 1u, dctx_func_80095CD0},
-    {0x80095CF0u, 0x80095CF0u, 555u, 1u, dctx_func_80095CD0},
-    {0x80095D00u, 0x00000000u, 556u, 1u, dctx_func_80095D00},
-    {0x80095D08u, 0x80095D08u, 556u, 1u, dctx_func_80095D00},
-    {0x80095D14u, 0x80095D14u, 556u, 1u, dctx_func_80095D00},
-    {0x80095D20u, 0x80095D20u, 556u, 1u, dctx_func_80095D00},
-    {0x80095D30u, 0x00000000u, 557u, 1u, dctx_func_80095D30},
-    {0x80095D70u, 0x00000000u, 558u, 1u, dctx_func_80095D70},
-    {0x80095D90u, 0x00000000u, 559u, 1u, dctx_func_80095D90},
-    {0x800965B8u, 0x00000000u, 560u, 1u, dctx_func_800965B8},
-    {0x800965C4u, 0x800965C4u, 560u, 1u, dctx_func_800965B8},
-    {0x800965D0u, 0x00000000u, 561u, 1u, dctx_func_800965D0},
-    {0x800965DCu, 0x800965DCu, 561u, 1u, dctx_func_800965D0},
-    {0x800965E0u, 0x00000000u, 562u, 1u, dctx_func_800965E0},
-    {0x800965ECu, 0x800965ECu, 562u, 1u, dctx_func_800965E0},
-    {0x800965F0u, 0x00000000u, 563u, 1u, dctx_func_800965F0},
-    {0x800965FCu, 0x800965FCu, 563u, 1u, dctx_func_800965F0},
-    {0x80096600u, 0x00000000u, 564u, 1u, dctx_func_80096600},
-    {0x8009660Cu, 0x8009660Cu, 564u, 1u, dctx_func_80096600},
-    {0x80096610u, 0x00000000u, 565u, 1u, dctx_func_80096610},
-    {0x8009661Cu, 0x8009661Cu, 565u, 1u, dctx_func_80096610},
-    {0x80096620u, 0x00000000u, 566u, 1u, dctx_func_80096620},
-    {0x8009662Cu, 0x8009662Cu, 566u, 1u, dctx_func_80096620},
-    {0x80096630u, 0x00000000u, 567u, 1u, dctx_func_80096630},
-    {0x8009663Cu, 0x8009663Cu, 567u, 1u, dctx_func_80096630},
-    {0x80096640u, 0x00000000u, 568u, 1u, dctx_func_80096640},
-    {0x8009664Cu, 0x8009664Cu, 568u, 1u, dctx_func_80096640},
-    {0x80096650u, 0x00000000u, 569u, 1u, dctx_func_80096650},
-    {0x8009665Cu, 0x8009665Cu, 569u, 1u, dctx_func_80096650},
-    {0x80096660u, 0x00000000u, 570u, 1u, dctx_func_80096660},
-    {0x8009666Cu, 0x00000000u, 571u, 1u, dctx_func_8009666C},
-    {0x800966B4u, 0x800966B4u, 571u, 1u, dctx_func_8009666C},
-    {0x800966C8u, 0x800966C8u, 572u, 1u, dctx_func_80096924},
-    {0x800966D0u, 0x800966D0u, 572u, 1u, dctx_func_80096924},
-    {0x800966F4u, 0x800966F4u, 572u, 1u, dctx_func_80096924},
-    {0x80096714u, 0x80096714u, 572u, 1u, dctx_func_80096924},
-    {0x80096728u, 0x80096728u, 572u, 1u, dctx_func_80096924},
-    {0x80096730u, 0x80096730u, 572u, 1u, dctx_func_80096924},
-    {0x80096744u, 0x80096744u, 572u, 1u, dctx_func_80096924},
-    {0x8009674Cu, 0x8009674Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096754u, 0x80096754u, 572u, 1u, dctx_func_80096924},
-    {0x8009675Cu, 0x8009675Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096770u, 0x80096770u, 572u, 1u, dctx_func_80096924},
-    {0x80096778u, 0x80096778u, 572u, 1u, dctx_func_80096924},
-    {0x8009678Cu, 0x8009678Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096794u, 0x80096794u, 572u, 1u, dctx_func_80096924},
-    {0x800967B0u, 0x800967B0u, 572u, 1u, dctx_func_80096924},
-    {0x800967C4u, 0x800967C4u, 572u, 1u, dctx_func_80096924},
-    {0x800967D8u, 0x800967D8u, 572u, 1u, dctx_func_80096924},
-    {0x80096814u, 0x80096814u, 572u, 1u, dctx_func_80096924},
-    {0x80096820u, 0x80096820u, 572u, 1u, dctx_func_80096924},
-    {0x80096828u, 0x80096828u, 572u, 1u, dctx_func_80096924},
-    {0x80096848u, 0x80096848u, 572u, 1u, dctx_func_80096924},
-    {0x80096874u, 0x80096874u, 572u, 1u, dctx_func_80096924},
-    {0x800968B0u, 0x800968B0u, 572u, 1u, dctx_func_80096924},
-    {0x800968BCu, 0x800968BCu, 572u, 1u, dctx_func_80096924},
-    {0x800968CCu, 0x800968CCu, 572u, 1u, dctx_func_80096924},
-    {0x800968DCu, 0x800968DCu, 572u, 1u, dctx_func_80096924},
-    {0x800968F0u, 0x800968F0u, 572u, 1u, dctx_func_80096924},
-    {0x800968FCu, 0x800968FCu, 572u, 1u, dctx_func_80096924},
-    {0x80096900u, 0x80096900u, 572u, 1u, dctx_func_80096924},
-    {0x8009690Cu, 0x8009690Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096924u, 0x00000000u, 572u, 1u, dctx_func_80096924},
-    {0x80096948u, 0x80096948u, 572u, 1u, dctx_func_80096924},
-    {0x80096994u, 0x80096994u, 572u, 1u, dctx_func_80096924},
-    {0x80096998u, 0x80096998u, 572u, 1u, dctx_func_80096924},
-    {0x800969A0u, 0x800969A0u, 572u, 1u, dctx_func_80096924},
-    {0x800969ACu, 0x800969ACu, 572u, 1u, dctx_func_80096924},
-    {0x800969B8u, 0x800969B8u, 572u, 1u, dctx_func_80096924},
-    {0x800969ECu, 0x800969ECu, 572u, 1u, dctx_func_80096924},
-    {0x800969F0u, 0x800969F0u, 572u, 1u, dctx_func_80096924},
-    {0x800969F4u, 0x800969F4u, 572u, 1u, dctx_func_80096924},
-    {0x80096A0Cu, 0x80096A0Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096A18u, 0x80096A18u, 572u, 1u, dctx_func_80096924},
-    {0x80096A2Cu, 0x80096A2Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096A34u, 0x80096A34u, 572u, 1u, dctx_func_80096924},
-    {0x80096A44u, 0x80096A44u, 572u, 1u, dctx_func_80096924},
-    {0x80096A48u, 0x80096A48u, 572u, 1u, dctx_func_80096924},
-    {0x80096A50u, 0x80096A50u, 572u, 1u, dctx_func_80096924},
-    {0x80096A58u, 0x80096A58u, 572u, 1u, dctx_func_80096924},
-    {0x80096A8Cu, 0x80096A8Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096AA0u, 0x80096AA0u, 572u, 1u, dctx_func_80096924},
-    {0x80096AA4u, 0x80096AA4u, 572u, 1u, dctx_func_80096924},
-    {0x80096ABCu, 0x80096ABCu, 572u, 1u, dctx_func_80096924},
-    {0x80096AC0u, 0x80096AC0u, 572u, 1u, dctx_func_80096924},
-    {0x80096AD0u, 0x80096AD0u, 572u, 1u, dctx_func_80096924},
-    {0x80096B0Cu, 0x80096B0Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096B10u, 0x80096B10u, 572u, 1u, dctx_func_80096924},
-    {0x80096B1Cu, 0x80096B1Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096B28u, 0x80096B28u, 572u, 1u, dctx_func_80096924},
-    {0x80096B34u, 0x80096B34u, 572u, 1u, dctx_func_80096924},
-    {0x80096B44u, 0x80096B44u, 572u, 1u, dctx_func_80096924},
-    {0x80096B48u, 0x80096B48u, 572u, 1u, dctx_func_80096924},
-    {0x80096B50u, 0x80096B50u, 572u, 1u, dctx_func_80096924},
-    {0x80096B6Cu, 0x80096B6Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096B84u, 0x80096B84u, 572u, 1u, dctx_func_80096924},
-    {0x80096B8Cu, 0x80096B8Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096B9Cu, 0x80096B9Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096BA8u, 0x80096BA8u, 572u, 1u, dctx_func_80096924},
-    {0x80096BBCu, 0x80096BBCu, 572u, 1u, dctx_func_80096924},
-    {0x80096BC0u, 0x80096BC0u, 572u, 1u, dctx_func_80096924},
-    {0x80096BD8u, 0x80096BD8u, 572u, 1u, dctx_func_80096924},
-    {0x80096C08u, 0x80096C08u, 572u, 1u, dctx_func_80096924},
-    {0x80096C34u, 0x80096C34u, 572u, 1u, dctx_func_80096924},
-    {0x80096C38u, 0x80096C38u, 572u, 1u, dctx_func_80096924},
-    {0x80096C44u, 0x80096C44u, 572u, 1u, dctx_func_80096924},
-    {0x80096C50u, 0x80096C50u, 572u, 1u, dctx_func_80096924},
-    {0x80096C60u, 0x80096C60u, 572u, 1u, dctx_func_80096924},
-    {0x80096C68u, 0x80096C68u, 572u, 1u, dctx_func_80096924},
-    {0x80096C78u, 0x80096C78u, 572u, 1u, dctx_func_80096924},
-    {0x80096C7Cu, 0x80096C7Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096C84u, 0x80096C84u, 572u, 1u, dctx_func_80096924},
-    {0x80096CA4u, 0x80096CA4u, 572u, 1u, dctx_func_80096924},
-    {0x80096CB8u, 0x80096CB8u, 572u, 1u, dctx_func_80096924},
-    {0x80096CBCu, 0x80096CBCu, 572u, 1u, dctx_func_80096924},
-    {0x80096CD4u, 0x80096CD4u, 572u, 1u, dctx_func_80096924},
-    {0x80096CD8u, 0x80096CD8u, 572u, 1u, dctx_func_80096924},
-    {0x80096CF0u, 0x80096CF0u, 572u, 1u, dctx_func_80096924},
-    {0x80096D4Cu, 0x80096D4Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096D5Cu, 0x80096D5Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096D70u, 0x80096D70u, 572u, 1u, dctx_func_80096924},
-    {0x80096D78u, 0x80096D78u, 572u, 1u, dctx_func_80096924},
-    {0x80096D84u, 0x80096D84u, 572u, 1u, dctx_func_80096924},
-    {0x80096D8Cu, 0x80096D8Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096D94u, 0x80096D94u, 572u, 1u, dctx_func_80096924},
-    {0x80096DA0u, 0x80096DA0u, 572u, 1u, dctx_func_80096924},
-    {0x80096DA8u, 0x80096DA8u, 572u, 1u, dctx_func_80096924},
-    {0x80096DD8u, 0x80096DD8u, 572u, 1u, dctx_func_80096924},
-    {0x80096DE0u, 0x80096DE0u, 572u, 1u, dctx_func_80096924},
-    {0x80096DF4u, 0x80096DF4u, 572u, 1u, dctx_func_80096924},
-    {0x80096E00u, 0x80096E00u, 572u, 1u, dctx_func_80096924},
-    {0x80096E14u, 0x80096E14u, 572u, 1u, dctx_func_80096924},
-    {0x80096E28u, 0x80096E28u, 572u, 1u, dctx_func_80096924},
-    {0x80096E4Cu, 0x80096E4Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096E50u, 0x80096E50u, 572u, 1u, dctx_func_80096924},
-    {0x80096E54u, 0x80096E54u, 572u, 1u, dctx_func_80096924},
-    {0x80096E5Cu, 0x80096E5Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096E70u, 0x80096E70u, 572u, 1u, dctx_func_80096924},
-    {0x80096E8Cu, 0x80096E8Cu, 572u, 1u, dctx_func_80096924},
-    {0x80096EACu, 0x80096EACu, 572u, 1u, dctx_func_80096924},
-    {0x80096EF0u, 0x00000000u, 573u, 1u, dctx_func_80096EF0},
-    {0x80096EFCu, 0x80096EFCu, 573u, 1u, dctx_func_80096EF0},
-    {0x80096F00u, 0x00000000u, 574u, 1u, dctx_func_80096F00},
-    {0x80096F0Cu, 0x80096F0Cu, 574u, 1u, dctx_func_80096F00},
-    {0x80096F10u, 0x00000000u, 575u, 1u, dctx_func_80096F10},
-    {0x80096F20u, 0x80096F20u, 575u, 1u, dctx_func_80096F10},
-    {0x80096F28u, 0x80096F28u, 575u, 1u, dctx_func_80096F10},
-    {0x80096F44u, 0x80096F44u, 575u, 1u, dctx_func_80096F10},
-    {0x80096F4Cu, 0x80096F4Cu, 575u, 1u, dctx_func_80096F10},
-    {0x80096F54u, 0x80096F54u, 575u, 1u, dctx_func_80096F10},
-    {0x80096F70u, 0x80096F70u, 575u, 1u, dctx_func_80096F10},
-    {0x80096F74u, 0x80096F74u, 575u, 1u, dctx_func_80096F10},
-    {0x80097160u, 0x00000000u, 576u, 1u, dctx_func_80097160},
-    {0x80097170u, 0x00000000u, 577u, 1u, dctx_func_80097170},
-    {0x8009717Cu, 0x8009717Cu, 577u, 1u, dctx_func_80097170},
-    {0x80097180u, 0x00000000u, 578u, 1u, dctx_func_80097180},
-    {0x80097190u, 0x80097190u, 578u, 1u, dctx_func_80097180},
-    {0x80097198u, 0x80097198u, 578u, 1u, dctx_func_80097180},
-    {0x800971BCu, 0x800971BCu, 578u, 1u, dctx_func_80097180},
-    {0x800971C4u, 0x800971C4u, 578u, 1u, dctx_func_80097180},
-    {0x800971C8u, 0x800971C8u, 578u, 1u, dctx_func_80097180},
-    {0x800971D0u, 0x800971D0u, 578u, 1u, dctx_func_80097180},
-    {0x800971D8u, 0x800971D8u, 578u, 1u, dctx_func_80097180},
-    {0x800971E4u, 0x800971E4u, 578u, 1u, dctx_func_80097180},
-    {0x800971F0u, 0x800971F0u, 578u, 1u, dctx_func_80097180},
-    {0x800971F4u, 0x800971F4u, 578u, 1u, dctx_func_80097180},
-    {0x800971FCu, 0x800971FCu, 578u, 1u, dctx_func_80097180},
-    {0x80097200u, 0x80097200u, 578u, 1u, dctx_func_80097180},
-    {0x80097214u, 0x80097214u, 578u, 1u, dctx_func_80097180},
+    {0x80034444u, 0x00000000u, 87u, 1u, dctx_func_80034444},
+    {0x80034484u, 0x80034484u, 87u, 1u, dctx_func_80034444},
+    {0x80034494u, 0x80034494u, 87u, 1u, dctx_func_80034444},
+    {0x800344F0u, 0x800344F0u, 87u, 1u, dctx_func_80034444},
+    {0x800344FCu, 0x800344FCu, 87u, 1u, dctx_func_80034444},
+    {0x80034520u, 0x80034520u, 87u, 1u, dctx_func_80034444},
+    {0x8003454Cu, 0x8003454Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034550u, 0x80034550u, 87u, 1u, dctx_func_80034444},
+    {0x80034564u, 0x80034564u, 87u, 1u, dctx_func_80034444},
+    {0x80034574u, 0x80034574u, 87u, 1u, dctx_func_80034444},
+    {0x800345A0u, 0x800345A0u, 87u, 1u, dctx_func_80034444},
+    {0x800345A8u, 0x800345A8u, 87u, 1u, dctx_func_80034444},
+    {0x800345B0u, 0x800345B0u, 87u, 1u, dctx_func_80034444},
+    {0x800345B8u, 0x800345B8u, 87u, 1u, dctx_func_80034444},
+    {0x800345C0u, 0x800345C0u, 87u, 1u, dctx_func_80034444},
+    {0x800345C4u, 0x800345C4u, 87u, 1u, dctx_func_80034444},
+    {0x800345D8u, 0x800345D8u, 87u, 1u, dctx_func_80034444},
+    {0x800345E0u, 0x800345E0u, 87u, 1u, dctx_func_80034444},
+    {0x80034640u, 0x80034640u, 87u, 1u, dctx_func_80034444},
+    {0x80034648u, 0x80034648u, 87u, 1u, dctx_func_80034444},
+    {0x80034658u, 0x80034658u, 87u, 1u, dctx_func_80034444},
+    {0x80034664u, 0x80034664u, 87u, 1u, dctx_func_80034444},
+    {0x800346A0u, 0x800346A0u, 87u, 1u, dctx_func_80034444},
+    {0x800346C0u, 0x800346C0u, 87u, 1u, dctx_func_80034444},
+    {0x8003473Cu, 0x8003473Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034744u, 0x80034744u, 87u, 1u, dctx_func_80034444},
+    {0x8003474Cu, 0x8003474Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034754u, 0x80034754u, 87u, 1u, dctx_func_80034444},
+    {0x8003475Cu, 0x8003475Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034768u, 0x80034768u, 87u, 1u, dctx_func_80034444},
+    {0x800347ACu, 0x800347ACu, 87u, 1u, dctx_func_80034444},
+    {0x800347CCu, 0x800347CCu, 87u, 1u, dctx_func_80034444},
+    {0x800347D4u, 0x800347D4u, 87u, 1u, dctx_func_80034444},
+    {0x800347DCu, 0x800347DCu, 87u, 1u, dctx_func_80034444},
+    {0x8003482Cu, 0x8003482Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034834u, 0x80034834u, 87u, 1u, dctx_func_80034444},
+    {0x8003484Cu, 0x8003484Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034880u, 0x80034880u, 87u, 1u, dctx_func_80034444},
+    {0x80034890u, 0x80034890u, 87u, 1u, dctx_func_80034444},
+    {0x80034898u, 0x80034898u, 87u, 1u, dctx_func_80034444},
+    {0x800348E4u, 0x800348E4u, 87u, 1u, dctx_func_80034444},
+    {0x800348ECu, 0x800348ECu, 87u, 1u, dctx_func_80034444},
+    {0x800348F4u, 0x800348F4u, 87u, 1u, dctx_func_80034444},
+    {0x80034900u, 0x80034900u, 87u, 1u, dctx_func_80034444},
+    {0x80034914u, 0x80034914u, 87u, 1u, dctx_func_80034444},
+    {0x80034930u, 0x80034930u, 87u, 1u, dctx_func_80034444},
+    {0x80034938u, 0x80034938u, 87u, 1u, dctx_func_80034444},
+    {0x80034988u, 0x80034988u, 87u, 1u, dctx_func_80034444},
+    {0x80034998u, 0x80034998u, 87u, 1u, dctx_func_80034444},
+    {0x800349A0u, 0x800349A0u, 87u, 1u, dctx_func_80034444},
+    {0x800349A8u, 0x800349A8u, 87u, 1u, dctx_func_80034444},
+    {0x800349C8u, 0x800349C8u, 87u, 1u, dctx_func_80034444},
+    {0x800349CCu, 0x800349CCu, 87u, 1u, dctx_func_80034444},
+    {0x800349F8u, 0x800349F8u, 87u, 1u, dctx_func_80034444},
+    {0x80034A08u, 0x80034A08u, 87u, 1u, dctx_func_80034444},
+    {0x80034A50u, 0x80034A50u, 87u, 1u, dctx_func_80034444},
+    {0x80034A78u, 0x80034A78u, 87u, 1u, dctx_func_80034444},
+    {0x80034A88u, 0x80034A88u, 87u, 1u, dctx_func_80034444},
+    {0x80034AA4u, 0x80034AA4u, 87u, 1u, dctx_func_80034444},
+    {0x80034AACu, 0x80034AACu, 87u, 1u, dctx_func_80034444},
+    {0x80034AE0u, 0x80034AE0u, 87u, 1u, dctx_func_80034444},
+    {0x80034B1Cu, 0x80034B1Cu, 87u, 1u, dctx_func_80034444},
+    {0x80034B20u, 0x80034B20u, 87u, 1u, dctx_func_80034444},
+    {0x800374F8u, 0x00000000u, 88u, 1u, dctx_func_800374F8},
+    {0x80037510u, 0x80037510u, 88u, 1u, dctx_func_800374F8},
+    {0x8003751Cu, 0x8003751Cu, 88u, 1u, dctx_func_800374F8},
+    {0x80037528u, 0x80037528u, 88u, 1u, dctx_func_800374F8},
+    {0x80037538u, 0x80037538u, 88u, 1u, dctx_func_800374F8},
+    {0x8003754Cu, 0x8003754Cu, 88u, 1u, dctx_func_800374F8},
+    {0x80037554u, 0x80037554u, 88u, 1u, dctx_func_800374F8},
+    {0x800399B4u, 0x00000000u, 89u, 1u, dctx_func_800399B4},
+    {0x800399C8u, 0x800399C8u, 89u, 1u, dctx_func_800399B4},
+    {0x80039C04u, 0x00000000u, 90u, 1u, dctx_func_80039C04},
+    {0x80039C24u, 0x80039C24u, 90u, 1u, dctx_func_80039C04},
+    {0x80039C38u, 0x80039C38u, 90u, 1u, dctx_func_80039C04},
+    {0x80039C6Cu, 0x80039C6Cu, 90u, 1u, dctx_func_80039C04},
+    {0x80039C78u, 0x80039C78u, 90u, 1u, dctx_func_80039C04},
+    {0x80039C80u, 0x80039C80u, 90u, 1u, dctx_func_80039C04},
+    {0x80039C94u, 0x80039C94u, 90u, 1u, dctx_func_80039C04},
+    {0x80039CA0u, 0x80039CA0u, 90u, 1u, dctx_func_80039C04},
+    {0x80039CB0u, 0x80039CB0u, 90u, 1u, dctx_func_80039C04},
+    {0x8003C4B4u, 0x00000000u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C4E4u, 0x8003C4E4u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C4F8u, 0x8003C4F8u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C500u, 0x8003C500u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C524u, 0x8003C524u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C534u, 0x8003C534u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C544u, 0x8003C544u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C54Cu, 0x8003C54Cu, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C550u, 0x8003C550u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C580u, 0x8003C580u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C590u, 0x8003C590u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C594u, 0x8003C594u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5A8u, 0x8003C5A8u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5B4u, 0x8003C5B4u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5BCu, 0x8003C5BCu, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5C4u, 0x8003C5C4u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5C8u, 0x8003C5C8u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5CCu, 0x8003C5CCu, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C5D0u, 0x8003C5D0u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C604u, 0x8003C604u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C624u, 0x8003C624u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C62Cu, 0x8003C62Cu, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C640u, 0x8003C640u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C644u, 0x8003C644u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C658u, 0x8003C658u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C670u, 0x8003C670u, 91u, 1u, dctx_func_8003C4B4},
+    {0x8003C71Cu, 0x8003C71Cu, 91u, 1u, dctx_func_8003C4B4},
+    {0x8004BA24u, 0x00000000u, 92u, 1u, dctx_func_8004BA24},
+    {0x8004C8BCu, 0x00000000u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004C8E8u, 0x8004C8E8u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004C91Cu, 0x8004C91Cu, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004C92Cu, 0x8004C92Cu, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004C98Cu, 0x8004C98Cu, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004C998u, 0x8004C998u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004C9A8u, 0x8004C9A8u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004CA24u, 0x8004CA24u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004CA28u, 0x8004CA28u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004CA38u, 0x8004CA38u, 93u, 1u, dctx_func_8004C8BC},
+    {0x8004CBACu, 0x00000000u, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CBC8u, 0x8004CBC8u, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CBE8u, 0x8004CBE8u, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CBF8u, 0x8004CBF8u, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CC08u, 0x8004CC08u, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CC0Cu, 0x8004CC0Cu, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CC1Cu, 0x8004CC1Cu, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CC30u, 0x8004CC30u, 94u, 1u, dctx_func_8004CBAC},
+    {0x8004CC40u, 0x00000000u, 95u, 1u, dctx_func_8004CC40},
+    {0x8004F20Cu, 0x00000000u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F244u, 0x8004F244u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F254u, 0x8004F254u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F260u, 0x8004F260u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F26Cu, 0x8004F26Cu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F278u, 0x8004F278u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F27Cu, 0x8004F27Cu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F31Cu, 0x8004F31Cu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F344u, 0x8004F344u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F364u, 0x8004F364u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F368u, 0x8004F368u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F380u, 0x8004F380u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F384u, 0x8004F384u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3A0u, 0x8004F3A0u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3A4u, 0x8004F3A4u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3BCu, 0x8004F3BCu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3C0u, 0x8004F3C0u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3D0u, 0x8004F3D0u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3E4u, 0x8004F3E4u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F3E8u, 0x8004F3E8u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F434u, 0x8004F434u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F454u, 0x8004F454u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F45Cu, 0x8004F45Cu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F47Cu, 0x8004F47Cu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F480u, 0x8004F480u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F4CCu, 0x8004F4CCu, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F4F8u, 0x8004F4F8u, 96u, 1u, dctx_func_8004F20C},
+    {0x8004F520u, 0x00000000u, 97u, 1u, dctx_func_8004F520},
+    {0x8004F544u, 0x8004F544u, 97u, 1u, dctx_func_8004F520},
+    {0x8004F5E0u, 0x00000000u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F5F8u, 0x8004F5F8u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F614u, 0x8004F614u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F62Cu, 0x8004F62Cu, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F634u, 0x8004F634u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F64Cu, 0x8004F64Cu, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F654u, 0x8004F654u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F65Cu, 0x8004F65Cu, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F678u, 0x8004F678u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F688u, 0x8004F688u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F68Cu, 0x8004F68Cu, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F6A0u, 0x8004F6A0u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F6A4u, 0x8004F6A4u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F6B0u, 0x8004F6B0u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F6C0u, 0x8004F6C0u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F6D0u, 0x8004F6D0u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F6F4u, 0x8004F6F4u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F714u, 0x8004F714u, 98u, 1u, dctx_func_8004F5E0},
+    {0x8004F718u, 0x8004F718u, 98u, 1u, dctx_func_8004F5E0},
+    {0x80051840u, 0x00000000u, 99u, 1u, dctx_func_80051840},
+    {0x80051B00u, 0x00000000u, 100u, 1u, dctx_func_80051B00},
+    {0x80051BBCu, 0x80051BBCu, 100u, 1u, dctx_func_80051B00},
+    {0x80051BC4u, 0x80051BC4u, 100u, 1u, dctx_func_80051B00},
+    {0x80051BCCu, 0x80051BCCu, 100u, 1u, dctx_func_80051B00},
+    {0x80051BD4u, 0x80051BD4u, 100u, 1u, dctx_func_80051B00},
+    {0x80051BD8u, 0x80051BD8u, 100u, 1u, dctx_func_80051B00},
+    {0x800551FCu, 0x00000000u, 101u, 1u, dctx_func_800551FC},
+    {0x80055204u, 0x80055204u, 101u, 1u, dctx_func_800551FC},
+    {0x80055220u, 0x80055220u, 101u, 1u, dctx_func_800551FC},
+    {0x8005523Cu, 0x8005523Cu, 101u, 1u, dctx_func_800551FC},
+    {0x80055264u, 0x80055264u, 101u, 1u, dctx_func_800551FC},
+    {0x8005526Cu, 0x8005526Cu, 101u, 1u, dctx_func_800551FC},
+    {0x80055270u, 0x80055270u, 101u, 1u, dctx_func_800551FC},
+    {0x80055274u, 0x80055274u, 101u, 1u, dctx_func_800551FC},
+    {0x8005527Cu, 0x8005527Cu, 101u, 1u, dctx_func_800551FC},
+    {0x80055284u, 0x80055284u, 101u, 1u, dctx_func_800551FC},
+    {0x8005528Cu, 0x8005528Cu, 101u, 1u, dctx_func_800551FC},
+    {0x800552A0u, 0x800552A0u, 101u, 1u, dctx_func_800551FC},
+    {0x800552A4u, 0x800552A4u, 101u, 1u, dctx_func_800551FC},
+    {0x800552ACu, 0x00000000u, 102u, 1u, dctx_func_800552AC},
+    {0x800552B4u, 0x800552B4u, 102u, 1u, dctx_func_800552AC},
+    {0x800552B8u, 0x800552B8u, 102u, 1u, dctx_func_800552AC},
+    {0x800552E0u, 0x800552E0u, 102u, 1u, dctx_func_800552AC},
+    {0x800552E8u, 0x800552E8u, 102u, 1u, dctx_func_800552AC},
+    {0x800552ECu, 0x800552ECu, 102u, 1u, dctx_func_800552AC},
+    {0x800552F8u, 0x800552F8u, 102u, 1u, dctx_func_800552AC},
+    {0x80055300u, 0x80055300u, 102u, 1u, dctx_func_800552AC},
+    {0x80055320u, 0x80055320u, 102u, 1u, dctx_func_800552AC},
+    {0x80055328u, 0x80055328u, 102u, 1u, dctx_func_800552AC},
+    {0x80055330u, 0x00000000u, 103u, 1u, dctx_func_80055330},
+    {0x8005533Cu, 0x8005533Cu, 103u, 1u, dctx_func_80055330},
+    {0x80055340u, 0x00000000u, 104u, 1u, dctx_func_80055340},
+    {0x80055348u, 0x00000000u, 105u, 1u, dctx_func_80055348},
+    {0x80055374u, 0x80055374u, 105u, 1u, dctx_func_80055348},
+    {0x80055380u, 0x80055380u, 105u, 1u, dctx_func_80055348},
+    {0x80055398u, 0x80055398u, 105u, 1u, dctx_func_80055348},
+    {0x800553A8u, 0x00000000u, 106u, 1u, dctx_func_800553A8},
+    {0x800553D4u, 0x800553D4u, 106u, 1u, dctx_func_800553A8},
+    {0x800553E0u, 0x800553E0u, 106u, 1u, dctx_func_800553A8},
+    {0x800553F8u, 0x800553F8u, 106u, 1u, dctx_func_800553A8},
+    {0x80055408u, 0x00000000u, 107u, 1u, dctx_func_80055408},
+    {0x80055434u, 0x80055434u, 107u, 1u, dctx_func_80055408},
+    {0x80055440u, 0x80055440u, 107u, 1u, dctx_func_80055408},
+    {0x80055458u, 0x80055458u, 107u, 1u, dctx_func_80055408},
+    {0x80055468u, 0x00000000u, 108u, 1u, dctx_func_80055468},
+    {0x80055494u, 0x80055494u, 108u, 1u, dctx_func_80055468},
+    {0x800554A0u, 0x800554A0u, 108u, 1u, dctx_func_80055468},
+    {0x800554B8u, 0x800554B8u, 108u, 1u, dctx_func_80055468},
+    {0x800554C8u, 0x00000000u, 109u, 1u, dctx_func_800554C8},
+    {0x800554E4u, 0x800554E4u, 109u, 1u, dctx_func_800554C8},
+    {0x800554E8u, 0x800554E8u, 109u, 1u, dctx_func_800554C8},
+    {0x80055510u, 0x80055510u, 109u, 1u, dctx_func_800554C8},
+    {0x80055518u, 0x80055518u, 109u, 1u, dctx_func_800554C8},
+    {0x8005551Cu, 0x8005551Cu, 109u, 1u, dctx_func_800554C8},
+    {0x80055528u, 0x80055528u, 109u, 1u, dctx_func_800554C8},
+    {0x80055530u, 0x80055530u, 109u, 1u, dctx_func_800554C8},
+    {0x80055538u, 0x80055538u, 109u, 1u, dctx_func_800554C8},
+    {0x8005554Cu, 0x8005554Cu, 109u, 1u, dctx_func_800554C8},
+    {0x80055550u, 0x80055550u, 109u, 1u, dctx_func_800554C8},
+    {0x80055558u, 0x00000000u, 110u, 1u, dctx_func_80055558},
+    {0x80055570u, 0x80055570u, 110u, 1u, dctx_func_80055558},
+    {0x80055590u, 0x00000000u, 111u, 1u, dctx_func_80055590},
+    {0x80055598u, 0x80055598u, 111u, 1u, dctx_func_80055590},
+    {0x800555A0u, 0x00000000u, 112u, 1u, dctx_func_800555A0},
+    {0x800555A8u, 0x800555A8u, 111u, 1u, dctx_func_80055590},
+    {0x800555B0u, 0x00000000u, 113u, 1u, dctx_func_800555B0},
+    {0x800555B8u, 0x800555B8u, 111u, 1u, dctx_func_80055590},
+    {0x800555C0u, 0x00000000u, 114u, 1u, dctx_func_800555C0},
+    {0x800555C8u, 0x800555C8u, 111u, 1u, dctx_func_80055590},
+    {0x800555D0u, 0x00000000u, 115u, 1u, dctx_func_800555D0},
+    {0x800555D8u, 0x800555D8u, 111u, 1u, dctx_func_80055590},
+    {0x800555E0u, 0x00000000u, 116u, 1u, dctx_func_800555E0},
+    {0x800555E8u, 0x800555E8u, 111u, 1u, dctx_func_80055590},
+    {0x800555F0u, 0x00000000u, 117u, 1u, dctx_func_800555F0},
+    {0x800555F8u, 0x800555F8u, 111u, 1u, dctx_func_80055590},
+    {0x80055654u, 0x00000000u, 118u, 1u, dctx_func_80055654},
+    {0x80055660u, 0x00000000u, 119u, 1u, dctx_func_80055660},
+    {0x800556C0u, 0x800556C0u, 119u, 1u, dctx_func_80055660},
+    {0x800556E8u, 0x800556E8u, 119u, 1u, dctx_func_80055660},
+    {0x800556ECu, 0x800556ECu, 119u, 1u, dctx_func_80055660},
+    {0x80055700u, 0x80055700u, 119u, 1u, dctx_func_80055660},
+    {0x8005570Cu, 0x8005570Cu, 119u, 1u, dctx_func_80055660},
+    {0x80055718u, 0x80055718u, 119u, 1u, dctx_func_80055660},
+    {0x80055874u, 0x80055874u, 119u, 1u, dctx_func_80055660},
+    {0x800558B8u, 0x800558B8u, 119u, 1u, dctx_func_80055660},
+    {0x800558E8u, 0x00000000u, 120u, 1u, dctx_func_800558E8},
+    {0x8005590Cu, 0x8005590Cu, 120u, 1u, dctx_func_800558E8},
+    {0x80055968u, 0x00000000u, 121u, 1u, dctx_func_80055968},
+    {0x80055988u, 0x80055988u, 121u, 1u, dctx_func_80055968},
+    {0x800559ACu, 0x800559ACu, 121u, 1u, dctx_func_80055968},
+    {0x800559BCu, 0x00000000u, 122u, 1u, dctx_func_800559BC},
+    {0x800559D4u, 0x800559D4u, 122u, 1u, dctx_func_800559BC},
+    {0x800559F0u, 0x800559F0u, 122u, 1u, dctx_func_800559BC},
+    {0x800559F8u, 0x800559F8u, 122u, 1u, dctx_func_800559BC},
+    {0x80059E24u, 0x00000000u, 123u, 1u, dctx_func_80059E24},
+    {0x80059E48u, 0x80059E48u, 123u, 1u, dctx_func_80059E24},
+    {0x80059E50u, 0x80059E50u, 123u, 1u, dctx_func_80059E24},
+    {0x80059E54u, 0x80059E54u, 123u, 1u, dctx_func_80059E24},
+    {0x8005F3F4u, 0x00000000u, 124u, 1u, dctx_func_8005F3F4},
+    {0x8005F43Cu, 0x8005F43Cu, 124u, 1u, dctx_func_8005F3F4},
+    {0x8005F444u, 0x8005F444u, 124u, 1u, dctx_func_8005F3F4},
+    {0x8005F44Cu, 0x8005F44Cu, 124u, 1u, dctx_func_8005F3F4},
+    {0x8005F460u, 0x8005F460u, 124u, 1u, dctx_func_8005F3F4},
+    {0x8005F524u, 0x00000000u, 125u, 1u, dctx_func_8005F524},
+    {0x8005F564u, 0x00000000u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F5C8u, 0x8005F5C8u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F5D4u, 0x8005F5D4u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F5D8u, 0x8005F5D8u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F5DCu, 0x8005F5DCu, 126u, 1u, dctx_func_8005F564},
+    {0x8005F5E0u, 0x8005F5E0u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F5E4u, 0x8005F5E4u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F628u, 0x8005F628u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F630u, 0x8005F630u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F638u, 0x8005F638u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F63Cu, 0x8005F63Cu, 126u, 1u, dctx_func_8005F564},
+    {0x8005F640u, 0x8005F640u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F648u, 0x8005F648u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F650u, 0x8005F650u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F658u, 0x8005F658u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F65Cu, 0x8005F65Cu, 126u, 1u, dctx_func_8005F564},
+    {0x8005F660u, 0x8005F660u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F680u, 0x8005F680u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F688u, 0x8005F688u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F690u, 0x8005F690u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F694u, 0x8005F694u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F698u, 0x8005F698u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6A0u, 0x8005F6A0u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6A8u, 0x8005F6A8u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6B0u, 0x8005F6B0u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6B4u, 0x8005F6B4u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6B8u, 0x8005F6B8u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6C8u, 0x8005F6C8u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6D8u, 0x8005F6D8u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6E4u, 0x8005F6E4u, 126u, 1u, dctx_func_8005F564},
+    {0x8005F6F4u, 0x00000000u, 127u, 1u, dctx_func_8005F6F4},
+    {0x8005F748u, 0x8005F748u, 127u, 1u, dctx_func_8005F6F4},
+    {0x8005F758u, 0x00000000u, 128u, 1u, dctx_func_8005F758},
+    {0x8005F7D8u, 0x8005F7D8u, 128u, 1u, dctx_func_8005F758},
+    {0x8005F7E8u, 0x00000000u, 129u, 1u, dctx_func_8005F7E8},
+    {0x8005F860u, 0x8005F860u, 129u, 1u, dctx_func_8005F7E8},
+    {0x8005F8B0u, 0x8005F8B0u, 129u, 1u, dctx_func_8005F7E8},
+    {0x8005F944u, 0x8005F944u, 129u, 1u, dctx_func_8005F7E8},
+    {0x8005F954u, 0x8005F954u, 129u, 1u, dctx_func_8005F7E8},
+    {0x8005F964u, 0x00000000u, 130u, 1u, dctx_func_8005F964},
+    {0x8005F9E0u, 0x8005F9E0u, 130u, 1u, dctx_func_8005F964},
+    {0x8005FA70u, 0x8005FA70u, 130u, 1u, dctx_func_8005F964},
+    {0x8005FB30u, 0x8005FB30u, 130u, 1u, dctx_func_8005F964},
+    {0x8005FB40u, 0x8005FB40u, 130u, 1u, dctx_func_8005F964},
+    {0x8005FB50u, 0x00000000u, 131u, 1u, dctx_func_8005FB50},
+    {0x8005FBA8u, 0x8005FBA8u, 131u, 1u, dctx_func_8005FB50},
+    {0x8005FBB8u, 0x00000000u, 132u, 1u, dctx_func_8005FBB8},
+    {0x8005FC34u, 0x8005FC34u, 132u, 1u, dctx_func_8005FBB8},
+    {0x8005FC44u, 0x00000000u, 133u, 1u, dctx_func_8005FC44},
+    {0x8005FCBCu, 0x8005FCBCu, 133u, 1u, dctx_func_8005FC44},
+    {0x8005FD0Cu, 0x8005FD0Cu, 133u, 1u, dctx_func_8005FC44},
+    {0x8005FDA8u, 0x8005FDA8u, 133u, 1u, dctx_func_8005FC44},
+    {0x8005FDB8u, 0x8005FDB8u, 133u, 1u, dctx_func_8005FC44},
+    {0x8005FDC8u, 0x00000000u, 134u, 1u, dctx_func_8005FDC8},
+    {0x8005FE44u, 0x8005FE44u, 134u, 1u, dctx_func_8005FDC8},
+    {0x8005FEB8u, 0x8005FEB8u, 134u, 1u, dctx_func_8005FDC8},
+    {0x8005FF78u, 0x8005FF78u, 134u, 1u, dctx_func_8005FDC8},
+    {0x8005FF88u, 0x8005FF88u, 134u, 1u, dctx_func_8005FDC8},
+    {0x8005FFF0u, 0x00000000u, 135u, 1u, dctx_func_8005FFF0},
+    {0x8005FFFCu, 0x8005FFFCu, 135u, 1u, dctx_func_8005FFF0},
+    {0x80060004u, 0x80060004u, 135u, 1u, dctx_func_8005FFF0},
+    {0x80060024u, 0x80060024u, 135u, 1u, dctx_func_8005FFF0},
+    {0x80060038u, 0x80060038u, 135u, 1u, dctx_func_8005FFF0},
+    {0x80060048u, 0x00000000u, 136u, 1u, dctx_func_80060048},
+    {0x80060078u, 0x80060078u, 136u, 1u, dctx_func_80060048},
+    {0x800600D0u, 0x800600D0u, 136u, 1u, dctx_func_80060048},
+    {0x800600F8u, 0x800600F8u, 136u, 1u, dctx_func_80060048},
+    {0x80060170u, 0x80060170u, 136u, 1u, dctx_func_80060048},
+    {0x80060178u, 0x00000000u, 137u, 1u, dctx_func_80060178},
+    {0x80060188u, 0x00000000u, 138u, 1u, dctx_func_80060188},
+    {0x800601E4u, 0x800601E4u, 138u, 1u, dctx_func_80060188},
+    {0x800601F4u, 0x00000000u, 139u, 1u, dctx_func_800601F4},
+    {0x80060204u, 0x00000000u, 140u, 1u, dctx_func_80060204},
+    {0x8006028Cu, 0x8006028Cu, 140u, 1u, dctx_func_80060204},
+    {0x8006029Cu, 0x00000000u, 141u, 1u, dctx_func_8006029C},
+    {0x800602A8u, 0x00000000u, 142u, 1u, dctx_func_800602A8},
+    {0x8006031Cu, 0x8006031Cu, 142u, 1u, dctx_func_800602A8},
+    {0x8006039Cu, 0x00000000u, 143u, 1u, dctx_func_8006039C},
+    {0x800603A8u, 0x800603A8u, 143u, 1u, dctx_func_8006039C},
+    {0x800603FCu, 0x800603FCu, 143u, 1u, dctx_func_8006039C},
+    {0x80060574u, 0x80060574u, 143u, 1u, dctx_func_8006039C},
+    {0x800606F4u, 0x800606F4u, 143u, 1u, dctx_func_8006039C},
+    {0x800606F8u, 0x800606F8u, 143u, 1u, dctx_func_8006039C},
+    {0x80060700u, 0x80060700u, 143u, 1u, dctx_func_8006039C},
+    {0x8006071Cu, 0x8006071Cu, 143u, 1u, dctx_func_8006039C},
+    {0x80060720u, 0x80060720u, 143u, 1u, dctx_func_8006039C},
+    {0x80060724u, 0x80060724u, 143u, 1u, dctx_func_8006039C},
+    {0x80060728u, 0x80060728u, 143u, 1u, dctx_func_8006039C},
+    {0x80060748u, 0x80060748u, 143u, 1u, dctx_func_8006039C},
+    {0x80060750u, 0x80060750u, 143u, 1u, dctx_func_8006039C},
+    {0x80060758u, 0x80060758u, 143u, 1u, dctx_func_8006039C},
+    {0x8006075Cu, 0x8006075Cu, 143u, 1u, dctx_func_8006039C},
+    {0x80060760u, 0x80060760u, 143u, 1u, dctx_func_8006039C},
+    {0x80060768u, 0x80060768u, 143u, 1u, dctx_func_8006039C},
+    {0x80060770u, 0x80060770u, 143u, 1u, dctx_func_8006039C},
+    {0x80060778u, 0x80060778u, 143u, 1u, dctx_func_8006039C},
+    {0x8006077Cu, 0x8006077Cu, 143u, 1u, dctx_func_8006039C},
+    {0x80060780u, 0x80060780u, 143u, 1u, dctx_func_8006039C},
+    {0x800607A0u, 0x800607A0u, 143u, 1u, dctx_func_8006039C},
+    {0x800607A8u, 0x800607A8u, 143u, 1u, dctx_func_8006039C},
+    {0x800607B0u, 0x800607B0u, 143u, 1u, dctx_func_8006039C},
+    {0x800607B4u, 0x800607B4u, 143u, 1u, dctx_func_8006039C},
+    {0x800607B8u, 0x800607B8u, 143u, 1u, dctx_func_8006039C},
+    {0x800607C0u, 0x800607C0u, 143u, 1u, dctx_func_8006039C},
+    {0x800607C8u, 0x800607C8u, 143u, 1u, dctx_func_8006039C},
+    {0x800607D0u, 0x800607D0u, 143u, 1u, dctx_func_8006039C},
+    {0x800607D4u, 0x800607D4u, 143u, 1u, dctx_func_8006039C},
+    {0x800607D8u, 0x800607D8u, 143u, 1u, dctx_func_8006039C},
+    {0x80060818u, 0x80060818u, 143u, 1u, dctx_func_8006039C},
+    {0x80060824u, 0x80060824u, 143u, 1u, dctx_func_8006039C},
+    {0x8006082Cu, 0x8006082Cu, 143u, 1u, dctx_func_8006039C},
+    {0x8006084Cu, 0x00000000u, 144u, 1u, dctx_func_8006084C},
+    {0x800608BCu, 0x00000000u, 145u, 1u, dctx_func_800608BC},
+    {0x800608D0u, 0x00000000u, 146u, 1u, dctx_func_800608D0},
+    {0x80060948u, 0x80060948u, 146u, 1u, dctx_func_800608D0},
+    {0x80060958u, 0x00000000u, 147u, 1u, dctx_func_80060958},
+    {0x80060968u, 0x00000000u, 148u, 1u, dctx_func_80060968},
+    {0x80060970u, 0x00000000u, 149u, 1u, dctx_func_80060970},
+    {0x800609CCu, 0x800609CCu, 149u, 1u, dctx_func_80060970},
+    {0x800609D8u, 0x800609D8u, 149u, 1u, dctx_func_80060970},
+    {0x800609DCu, 0x800609DCu, 149u, 1u, dctx_func_80060970},
+    {0x800609E0u, 0x800609E0u, 149u, 1u, dctx_func_80060970},
+    {0x800609E4u, 0x800609E4u, 149u, 1u, dctx_func_80060970},
+    {0x800609E8u, 0x800609E8u, 149u, 1u, dctx_func_80060970},
+    {0x80060A30u, 0x80060A30u, 149u, 1u, dctx_func_80060970},
+    {0x80060A38u, 0x80060A38u, 149u, 1u, dctx_func_80060970},
+    {0x80060A40u, 0x80060A40u, 149u, 1u, dctx_func_80060970},
+    {0x80060A44u, 0x80060A44u, 149u, 1u, dctx_func_80060970},
+    {0x80060A48u, 0x80060A48u, 149u, 1u, dctx_func_80060970},
+    {0x80060A50u, 0x80060A50u, 149u, 1u, dctx_func_80060970},
+    {0x80060A58u, 0x80060A58u, 149u, 1u, dctx_func_80060970},
+    {0x80060A60u, 0x80060A60u, 149u, 1u, dctx_func_80060970},
+    {0x80060A64u, 0x80060A64u, 149u, 1u, dctx_func_80060970},
+    {0x80060A68u, 0x80060A68u, 149u, 1u, dctx_func_80060970},
+    {0x80060A88u, 0x80060A88u, 149u, 1u, dctx_func_80060970},
+    {0x80060A90u, 0x80060A90u, 149u, 1u, dctx_func_80060970},
+    {0x80060A98u, 0x80060A98u, 149u, 1u, dctx_func_80060970},
+    {0x80060A9Cu, 0x80060A9Cu, 149u, 1u, dctx_func_80060970},
+    {0x80060AA0u, 0x80060AA0u, 149u, 1u, dctx_func_80060970},
+    {0x80060AA8u, 0x80060AA8u, 149u, 1u, dctx_func_80060970},
+    {0x80060AB0u, 0x80060AB0u, 149u, 1u, dctx_func_80060970},
+    {0x80060AB8u, 0x80060AB8u, 149u, 1u, dctx_func_80060970},
+    {0x80060ABCu, 0x80060ABCu, 149u, 1u, dctx_func_80060970},
+    {0x80060AC0u, 0x80060AC0u, 149u, 1u, dctx_func_80060970},
+    {0x80060AD0u, 0x80060AD0u, 149u, 1u, dctx_func_80060970},
+    {0x80060AE0u, 0x80060AE0u, 149u, 1u, dctx_func_80060970},
+    {0x80060AECu, 0x80060AECu, 149u, 1u, dctx_func_80060970},
+    {0x80060AFCu, 0x00000000u, 150u, 1u, dctx_func_80060AFC},
+    {0x80060BA0u, 0x80060BA0u, 150u, 1u, dctx_func_80060AFC},
+    {0x80060BB0u, 0x00000000u, 151u, 1u, dctx_func_80060BB0},
+    {0x80060BB8u, 0x00000000u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060BC8u, 0x80060BC8u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C30u, 0x80060C30u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C3Cu, 0x80060C3Cu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C40u, 0x80060C40u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C44u, 0x80060C44u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C48u, 0x80060C48u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C4Cu, 0x80060C4Cu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C94u, 0x80060C94u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060C9Cu, 0x80060C9Cu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CA4u, 0x80060CA4u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CA8u, 0x80060CA8u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CACu, 0x80060CACu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CB4u, 0x80060CB4u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CBCu, 0x80060CBCu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CC4u, 0x80060CC4u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CC8u, 0x80060CC8u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CCCu, 0x80060CCCu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CECu, 0x80060CECu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CF4u, 0x80060CF4u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060CFCu, 0x80060CFCu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D00u, 0x80060D00u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D04u, 0x80060D04u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D0Cu, 0x80060D0Cu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D14u, 0x80060D14u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D1Cu, 0x80060D1Cu, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D20u, 0x80060D20u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D24u, 0x80060D24u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D34u, 0x80060D34u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D74u, 0x80060D74u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D78u, 0x80060D78u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D80u, 0x80060D80u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060D84u, 0x80060D84u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060DE4u, 0x80060DE4u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060E14u, 0x80060E14u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060E20u, 0x80060E20u, 152u, 1u, dctx_func_80060BB8},
+    {0x80060E34u, 0x00000000u, 153u, 1u, dctx_func_80060E34},
+    {0x80060E58u, 0x00000000u, 154u, 1u, dctx_func_80060E58},
+    {0x80060EDCu, 0x80060EDCu, 154u, 1u, dctx_func_80060E58},
+    {0x80060F00u, 0x80060F00u, 154u, 1u, dctx_func_80060E58},
+    {0x80060F94u, 0x00000000u, 155u, 1u, dctx_func_80060F94},
+    {0x80060FE4u, 0x80060FE4u, 155u, 1u, dctx_func_80060F94},
+    {0x80061000u, 0x80061000u, 155u, 1u, dctx_func_80060F94},
+    {0x80061018u, 0x80061018u, 155u, 1u, dctx_func_80060F94},
+    {0x80061028u, 0x00000000u, 156u, 1u, dctx_func_80061028},
+    {0x80061078u, 0x00000000u, 157u, 1u, dctx_func_80061078},
+    {0x80061080u, 0x00000000u, 158u, 1u, dctx_func_80061080},
+    {0x80061090u, 0x80061090u, 158u, 1u, dctx_func_80061080},
+    {0x800610CCu, 0x00000000u, 159u, 1u, dctx_func_800610CC},
+    {0x800610D4u, 0x800610D4u, 159u, 1u, dctx_func_800610CC},
+    {0x80061218u, 0x80061218u, 159u, 1u, dctx_func_800610CC},
+    {0x80061220u, 0x80061220u, 159u, 1u, dctx_func_800610CC},
+    {0x8006123Cu, 0x8006123Cu, 159u, 1u, dctx_func_800610CC},
+    {0x80061244u, 0x80061244u, 159u, 1u, dctx_func_800610CC},
+    {0x80061258u, 0x80061258u, 159u, 1u, dctx_func_800610CC},
+    {0x80061264u, 0x80061264u, 159u, 1u, dctx_func_800610CC},
+    {0x80061270u, 0x80061270u, 159u, 1u, dctx_func_800610CC},
+    {0x80061278u, 0x80061278u, 159u, 1u, dctx_func_800610CC},
+    {0x80061280u, 0x80061280u, 159u, 1u, dctx_func_800610CC},
+    {0x80061288u, 0x80061288u, 159u, 1u, dctx_func_800610CC},
+    {0x80061294u, 0x80061294u, 159u, 1u, dctx_func_800610CC},
+    {0x800612A0u, 0x800612A0u, 159u, 1u, dctx_func_800610CC},
+    {0x800612ACu, 0x800612ACu, 159u, 1u, dctx_func_800610CC},
+    {0x800612B4u, 0x800612B4u, 159u, 1u, dctx_func_800610CC},
+    {0x800612C0u, 0x800612C0u, 159u, 1u, dctx_func_800610CC},
+    {0x800612CCu, 0x800612CCu, 159u, 1u, dctx_func_800610CC},
+    {0x800612D8u, 0x800612D8u, 159u, 1u, dctx_func_800610CC},
+    {0x800612E4u, 0x800612E4u, 159u, 1u, dctx_func_800610CC},
+    {0x800612E8u, 0x800612E8u, 159u, 1u, dctx_func_800610CC},
+    {0x800612F0u, 0x800612F0u, 159u, 1u, dctx_func_800610CC},
+    {0x800612F8u, 0x800612F8u, 159u, 1u, dctx_func_800610CC},
+    {0x80061304u, 0x80061304u, 159u, 1u, dctx_func_800610CC},
+    {0x80061324u, 0x80061324u, 159u, 1u, dctx_func_800610CC},
+    {0x80061328u, 0x80061328u, 159u, 1u, dctx_func_800610CC},
+    {0x80061330u, 0x80061330u, 159u, 1u, dctx_func_800610CC},
+    {0x80061334u, 0x80061334u, 159u, 1u, dctx_func_800610CC},
+    {0x80061340u, 0x80061340u, 159u, 1u, dctx_func_800610CC},
+    {0x80061344u, 0x80061344u, 159u, 1u, dctx_func_800610CC},
+    {0x8006136Cu, 0x8006136Cu, 159u, 1u, dctx_func_800610CC},
+    {0x80061374u, 0x80061374u, 159u, 1u, dctx_func_800610CC},
+    {0x800613A4u, 0x800613A4u, 159u, 1u, dctx_func_800610CC},
+    {0x80061400u, 0x80061400u, 159u, 1u, dctx_func_800610CC},
+    {0x80061408u, 0x80061408u, 159u, 1u, dctx_func_800610CC},
+    {0x8006142Cu, 0x00000000u, 160u, 1u, dctx_func_8006142C},
+    {0x80061444u, 0x00000000u, 161u, 1u, dctx_func_80061444},
+    {0x800614B8u, 0x00000000u, 162u, 1u, dctx_func_800614B8},
+    {0x800614D4u, 0x00000000u, 163u, 1u, dctx_func_800614D4},
+    {0x800614E0u, 0x800614E0u, 163u, 1u, dctx_func_800614D4},
+    {0x80061520u, 0x80061520u, 163u, 1u, dctx_func_800614D4},
+    {0x80061554u, 0x80061554u, 163u, 1u, dctx_func_800614D4},
+    {0x800615DCu, 0x800615DCu, 163u, 1u, dctx_func_800614D4},
+    {0x800615E8u, 0x800615E8u, 163u, 1u, dctx_func_800614D4},
+    {0x80061620u, 0x80061620u, 163u, 1u, dctx_func_800614D4},
+    {0x80061668u, 0x80061668u, 163u, 1u, dctx_func_800614D4},
+    {0x80061670u, 0x80061670u, 163u, 1u, dctx_func_800614D4},
+    {0x8006167Cu, 0x8006167Cu, 163u, 1u, dctx_func_800614D4},
+    {0x800616A8u, 0x00000000u, 164u, 1u, dctx_func_800616A8},
+    {0x800616E8u, 0x00000000u, 165u, 1u, dctx_func_800616E8},
+    {0x80061738u, 0x00000000u, 166u, 1u, dctx_func_80061738},
+    {0x8006178Cu, 0x00000000u, 167u, 1u, dctx_func_8006178C},
+    {0x80061790u, 0x80061790u, 167u, 1u, dctx_func_8006178C},
+    {0x8006179Cu, 0x8006179Cu, 167u, 1u, dctx_func_8006178C},
+    {0x800617ACu, 0x800617ACu, 167u, 1u, dctx_func_8006178C},
+    {0x800617B4u, 0x800617B4u, 167u, 1u, dctx_func_8006178C},
+    {0x800617BCu, 0x800617BCu, 167u, 1u, dctx_func_8006178C},
+    {0x800617C4u, 0x800617C4u, 167u, 1u, dctx_func_8006178C},
+    {0x800617D0u, 0x800617D0u, 167u, 1u, dctx_func_8006178C},
+    {0x800617D8u, 0x800617D8u, 167u, 1u, dctx_func_8006178C},
+    {0x800617E0u, 0x800617E0u, 167u, 1u, dctx_func_8006178C},
+    {0x800617E8u, 0x00000000u, 168u, 1u, dctx_func_800617E8},
+    {0x80061868u, 0x80061868u, 168u, 1u, dctx_func_800617E8},
+    {0x80061874u, 0x80061874u, 168u, 1u, dctx_func_800617E8},
+    {0x8006187Cu, 0x8006187Cu, 168u, 1u, dctx_func_800617E8},
+    {0x80061888u, 0x80061888u, 168u, 1u, dctx_func_800617E8},
+    {0x80061898u, 0x80061898u, 168u, 1u, dctx_func_800617E8},
+    {0x800618A4u, 0x800618A4u, 168u, 1u, dctx_func_800617E8},
+    {0x800618A8u, 0x800618A8u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A28u, 0x80061A28u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A38u, 0x80061A38u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A44u, 0x80061A44u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A58u, 0x80061A58u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A60u, 0x80061A60u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A68u, 0x80061A68u, 168u, 1u, dctx_func_800617E8},
+    {0x80061A9Cu, 0x80061A9Cu, 168u, 1u, dctx_func_800617E8},
+    {0x80061AA8u, 0x80061AA8u, 168u, 1u, dctx_func_800617E8},
+    {0x80061AECu, 0x80061AECu, 168u, 1u, dctx_func_800617E8},
+    {0x80061B68u, 0x80061B68u, 168u, 1u, dctx_func_800617E8},
+    {0x80061B78u, 0x80061B78u, 168u, 1u, dctx_func_800617E8},
+    {0x80061B80u, 0x80061B80u, 168u, 1u, dctx_func_800617E8},
+    {0x80061B8Cu, 0x00000000u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BA0u, 0x80061BA0u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BA8u, 0x80061BA8u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BB0u, 0x80061BB0u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BB4u, 0x80061BB4u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BB8u, 0x80061BB8u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BC4u, 0x80061BC4u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BCCu, 0x80061BCCu, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BD4u, 0x80061BD4u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BD8u, 0x80061BD8u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BDCu, 0x80061BDCu, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BE8u, 0x80061BE8u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BF0u, 0x80061BF0u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061BF8u, 0x80061BF8u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061C00u, 0x80061C00u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061C0Cu, 0x80061C0Cu, 169u, 1u, dctx_func_80061B8C},
+    {0x80061C14u, 0x80061C14u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061C1Cu, 0x80061C1Cu, 169u, 1u, dctx_func_80061B8C},
+    {0x80061C24u, 0x80061C24u, 169u, 1u, dctx_func_80061B8C},
+    {0x80061C2Cu, 0x00000000u, 170u, 1u, dctx_func_80061C2C},
+    {0x80061C34u, 0x00000000u, 171u, 1u, dctx_func_80061C34},
+    {0x80061C3Cu, 0x00000000u, 172u, 1u, dctx_func_80061C3C},
+    {0x80061C4Cu, 0x80061C4Cu, 172u, 1u, dctx_func_80061C3C},
+    {0x80061C88u, 0x00000000u, 173u, 1u, dctx_func_80061C88},
+    {0x80061C90u, 0x80061C90u, 173u, 1u, dctx_func_80061C88},
+    {0x80061DD4u, 0x80061DD4u, 173u, 1u, dctx_func_80061C88},
+    {0x80061DDCu, 0x80061DDCu, 173u, 1u, dctx_func_80061C88},
+    {0x80061DF8u, 0x80061DF8u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E00u, 0x80061E00u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E14u, 0x80061E14u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E20u, 0x80061E20u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E2Cu, 0x80061E2Cu, 173u, 1u, dctx_func_80061C88},
+    {0x80061E34u, 0x80061E34u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E3Cu, 0x80061E3Cu, 173u, 1u, dctx_func_80061C88},
+    {0x80061E44u, 0x80061E44u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E50u, 0x80061E50u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E5Cu, 0x80061E5Cu, 173u, 1u, dctx_func_80061C88},
+    {0x80061E68u, 0x80061E68u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E70u, 0x80061E70u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E7Cu, 0x80061E7Cu, 173u, 1u, dctx_func_80061C88},
+    {0x80061E88u, 0x80061E88u, 173u, 1u, dctx_func_80061C88},
+    {0x80061E94u, 0x80061E94u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EA0u, 0x80061EA0u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EA4u, 0x80061EA4u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EACu, 0x80061EACu, 173u, 1u, dctx_func_80061C88},
+    {0x80061EB4u, 0x80061EB4u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EC0u, 0x80061EC0u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EE0u, 0x80061EE0u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EE4u, 0x80061EE4u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EECu, 0x80061EECu, 173u, 1u, dctx_func_80061C88},
+    {0x80061EF0u, 0x80061EF0u, 173u, 1u, dctx_func_80061C88},
+    {0x80061EFCu, 0x80061EFCu, 173u, 1u, dctx_func_80061C88},
+    {0x80061F00u, 0x80061F00u, 173u, 1u, dctx_func_80061C88},
+    {0x80061F28u, 0x80061F28u, 173u, 1u, dctx_func_80061C88},
+    {0x80061F30u, 0x80061F30u, 173u, 1u, dctx_func_80061C88},
+    {0x80061F7Cu, 0x80061F7Cu, 173u, 1u, dctx_func_80061C88},
+    {0x80062008u, 0x80062008u, 173u, 1u, dctx_func_80061C88},
+    {0x80062010u, 0x80062010u, 173u, 1u, dctx_func_80061C88},
+    {0x80062060u, 0x00000000u, 174u, 1u, dctx_func_80062060},
+    {0x800620A4u, 0x00000000u, 175u, 1u, dctx_func_800620A4},
+    {0x8006214Cu, 0x00000000u, 176u, 1u, dctx_func_8006214C},
+    {0x80062168u, 0x00000000u, 177u, 1u, dctx_func_80062168},
+    {0x80062174u, 0x80062174u, 177u, 1u, dctx_func_80062168},
+    {0x800621B4u, 0x800621B4u, 177u, 1u, dctx_func_80062168},
+    {0x800621E8u, 0x800621E8u, 177u, 1u, dctx_func_80062168},
+    {0x80062270u, 0x80062270u, 177u, 1u, dctx_func_80062168},
+    {0x8006227Cu, 0x8006227Cu, 177u, 1u, dctx_func_80062168},
+    {0x800622B4u, 0x800622B4u, 177u, 1u, dctx_func_80062168},
+    {0x800622FCu, 0x800622FCu, 177u, 1u, dctx_func_80062168},
+    {0x80062304u, 0x80062304u, 177u, 1u, dctx_func_80062168},
+    {0x80062310u, 0x80062310u, 177u, 1u, dctx_func_80062168},
+    {0x8006233Cu, 0x00000000u, 178u, 1u, dctx_func_8006233C},
+    {0x8006237Cu, 0x00000000u, 179u, 1u, dctx_func_8006237C},
+    {0x800623CCu, 0x00000000u, 180u, 1u, dctx_func_800623CC},
+    {0x80062420u, 0x00000000u, 181u, 1u, dctx_func_80062420},
+    {0x80062424u, 0x80062424u, 181u, 1u, dctx_func_80062420},
+    {0x80062430u, 0x80062430u, 181u, 1u, dctx_func_80062420},
+    {0x80062440u, 0x80062440u, 181u, 1u, dctx_func_80062420},
+    {0x80062448u, 0x80062448u, 181u, 1u, dctx_func_80062420},
+    {0x80062450u, 0x80062450u, 181u, 1u, dctx_func_80062420},
+    {0x80062458u, 0x80062458u, 181u, 1u, dctx_func_80062420},
+    {0x80062464u, 0x80062464u, 181u, 1u, dctx_func_80062420},
+    {0x8006246Cu, 0x8006246Cu, 181u, 1u, dctx_func_80062420},
+    {0x80062474u, 0x80062474u, 181u, 1u, dctx_func_80062420},
+    {0x8006247Cu, 0x00000000u, 182u, 1u, dctx_func_8006247C},
+    {0x800624FCu, 0x800624FCu, 182u, 1u, dctx_func_8006247C},
+    {0x80062508u, 0x80062508u, 182u, 1u, dctx_func_8006247C},
+    {0x80062510u, 0x80062510u, 182u, 1u, dctx_func_8006247C},
+    {0x8006251Cu, 0x8006251Cu, 182u, 1u, dctx_func_8006247C},
+    {0x8006252Cu, 0x8006252Cu, 182u, 1u, dctx_func_8006247C},
+    {0x80062538u, 0x80062538u, 182u, 1u, dctx_func_8006247C},
+    {0x8006253Cu, 0x8006253Cu, 182u, 1u, dctx_func_8006247C},
+    {0x800626BCu, 0x800626BCu, 182u, 1u, dctx_func_8006247C},
+    {0x800626CCu, 0x800626CCu, 182u, 1u, dctx_func_8006247C},
+    {0x800626D8u, 0x800626D8u, 182u, 1u, dctx_func_8006247C},
+    {0x800626ECu, 0x800626ECu, 182u, 1u, dctx_func_8006247C},
+    {0x800626F4u, 0x800626F4u, 182u, 1u, dctx_func_8006247C},
+    {0x800626FCu, 0x800626FCu, 182u, 1u, dctx_func_8006247C},
+    {0x80062730u, 0x80062730u, 182u, 1u, dctx_func_8006247C},
+    {0x8006273Cu, 0x8006273Cu, 182u, 1u, dctx_func_8006247C},
+    {0x80062780u, 0x80062780u, 182u, 1u, dctx_func_8006247C},
+    {0x800627FCu, 0x800627FCu, 182u, 1u, dctx_func_8006247C},
+    {0x8006280Cu, 0x8006280Cu, 182u, 1u, dctx_func_8006247C},
+    {0x80062814u, 0x80062814u, 182u, 1u, dctx_func_8006247C},
+    {0x80062820u, 0x00000000u, 183u, 1u, dctx_func_80062820},
+    {0x80062834u, 0x80062834u, 183u, 1u, dctx_func_80062820},
+    {0x8006283Cu, 0x8006283Cu, 183u, 1u, dctx_func_80062820},
+    {0x80062844u, 0x80062844u, 183u, 1u, dctx_func_80062820},
+    {0x80062848u, 0x80062848u, 183u, 1u, dctx_func_80062820},
+    {0x8006284Cu, 0x8006284Cu, 183u, 1u, dctx_func_80062820},
+    {0x80062858u, 0x80062858u, 183u, 1u, dctx_func_80062820},
+    {0x80062860u, 0x80062860u, 183u, 1u, dctx_func_80062820},
+    {0x80062868u, 0x80062868u, 183u, 1u, dctx_func_80062820},
+    {0x8006286Cu, 0x8006286Cu, 183u, 1u, dctx_func_80062820},
+    {0x80062870u, 0x80062870u, 183u, 1u, dctx_func_80062820},
+    {0x8006287Cu, 0x8006287Cu, 183u, 1u, dctx_func_80062820},
+    {0x80062884u, 0x80062884u, 183u, 1u, dctx_func_80062820},
+    {0x8006288Cu, 0x8006288Cu, 183u, 1u, dctx_func_80062820},
+    {0x80062894u, 0x80062894u, 183u, 1u, dctx_func_80062820},
+    {0x800628A0u, 0x800628A0u, 183u, 1u, dctx_func_80062820},
+    {0x800628A8u, 0x800628A8u, 183u, 1u, dctx_func_80062820},
+    {0x800628B0u, 0x800628B0u, 183u, 1u, dctx_func_80062820},
+    {0x800628B8u, 0x800628B8u, 183u, 1u, dctx_func_80062820},
+    {0x800628C0u, 0x00000000u, 184u, 1u, dctx_func_800628C0},
+    {0x800628C8u, 0x00000000u, 185u, 1u, dctx_func_800628C8},
+    {0x800628D0u, 0x00000000u, 186u, 1u, dctx_func_800628D0},
+    {0x800628E0u, 0x800628E0u, 186u, 1u, dctx_func_800628D0},
+    {0x8006291Cu, 0x00000000u, 187u, 1u, dctx_func_8006291C},
+    {0x80062924u, 0x80062924u, 187u, 1u, dctx_func_8006291C},
+    {0x80062A68u, 0x80062A68u, 187u, 1u, dctx_func_8006291C},
+    {0x80062A70u, 0x80062A70u, 187u, 1u, dctx_func_8006291C},
+    {0x80062A8Cu, 0x80062A8Cu, 187u, 1u, dctx_func_8006291C},
+    {0x80062A94u, 0x80062A94u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AA8u, 0x80062AA8u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AB4u, 0x80062AB4u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AC0u, 0x80062AC0u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AC8u, 0x80062AC8u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AD0u, 0x80062AD0u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AD8u, 0x80062AD8u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AE4u, 0x80062AE4u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AF0u, 0x80062AF0u, 187u, 1u, dctx_func_8006291C},
+    {0x80062AFCu, 0x80062AFCu, 187u, 1u, dctx_func_8006291C},
+    {0x80062B04u, 0x80062B04u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B10u, 0x80062B10u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B1Cu, 0x80062B1Cu, 187u, 1u, dctx_func_8006291C},
+    {0x80062B28u, 0x80062B28u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B34u, 0x80062B34u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B38u, 0x80062B38u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B40u, 0x80062B40u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B48u, 0x80062B48u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B50u, 0x80062B50u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B70u, 0x80062B70u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B74u, 0x80062B74u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B7Cu, 0x80062B7Cu, 187u, 1u, dctx_func_8006291C},
+    {0x80062B80u, 0x80062B80u, 187u, 1u, dctx_func_8006291C},
+    {0x80062B8Cu, 0x80062B8Cu, 187u, 1u, dctx_func_8006291C},
+    {0x80062B90u, 0x80062B90u, 187u, 1u, dctx_func_8006291C},
+    {0x80062BB8u, 0x80062BB8u, 187u, 1u, dctx_func_8006291C},
+    {0x80062BC0u, 0x80062BC0u, 187u, 1u, dctx_func_8006291C},
+    {0x80062BF4u, 0x80062BF4u, 187u, 1u, dctx_func_8006291C},
+    {0x80062BFCu, 0x80062BFCu, 187u, 1u, dctx_func_8006291C},
+    {0x80062C20u, 0x00000000u, 188u, 1u, dctx_func_80062C20},
+    {0x80062C38u, 0x00000000u, 189u, 1u, dctx_func_80062C38},
+    {0x80062C94u, 0x00000000u, 190u, 1u, dctx_func_80062C94},
+    {0x80062CB0u, 0x00000000u, 191u, 1u, dctx_func_80062CB0},
+    {0x80062CBCu, 0x80062CBCu, 191u, 1u, dctx_func_80062CB0},
+    {0x80062CFCu, 0x80062CFCu, 191u, 1u, dctx_func_80062CB0},
+    {0x80062D28u, 0x80062D28u, 191u, 1u, dctx_func_80062CB0},
+    {0x80062D84u, 0x80062D84u, 191u, 1u, dctx_func_80062CB0},
+    {0x80062DBCu, 0x80062DBCu, 191u, 1u, dctx_func_80062CB0},
+    {0x80062E04u, 0x80062E04u, 191u, 1u, dctx_func_80062CB0},
+    {0x80062E0Cu, 0x80062E0Cu, 191u, 1u, dctx_func_80062CB0},
+    {0x80062E18u, 0x80062E18u, 191u, 1u, dctx_func_80062CB0},
+    {0x80062E44u, 0x00000000u, 192u, 1u, dctx_func_80062E44},
+    {0x80062E84u, 0x00000000u, 193u, 1u, dctx_func_80062E84},
+    {0x80062ED4u, 0x00000000u, 194u, 1u, dctx_func_80062ED4},
+    {0x80062F28u, 0x00000000u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F2Cu, 0x80062F2Cu, 195u, 1u, dctx_func_80062F28},
+    {0x80062F38u, 0x80062F38u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F48u, 0x80062F48u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F50u, 0x80062F50u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F58u, 0x80062F58u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F60u, 0x80062F60u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F6Cu, 0x80062F6Cu, 195u, 1u, dctx_func_80062F28},
+    {0x80062F74u, 0x80062F74u, 195u, 1u, dctx_func_80062F28},
+    {0x80062F7Cu, 0x80062F7Cu, 195u, 1u, dctx_func_80062F28},
+    {0x80062F84u, 0x00000000u, 196u, 1u, dctx_func_80062F84},
+    {0x80062FF4u, 0x80062FF4u, 196u, 1u, dctx_func_80062F84},
+    {0x80063000u, 0x80063000u, 196u, 1u, dctx_func_80062F84},
+    {0x80063008u, 0x80063008u, 196u, 1u, dctx_func_80062F84},
+    {0x80063014u, 0x80063014u, 196u, 1u, dctx_func_80062F84},
+    {0x80063024u, 0x80063024u, 196u, 1u, dctx_func_80062F84},
+    {0x80063030u, 0x80063030u, 196u, 1u, dctx_func_80062F84},
+    {0x80063034u, 0x80063034u, 196u, 1u, dctx_func_80062F84},
+    {0x80063150u, 0x80063150u, 196u, 1u, dctx_func_80062F84},
+    {0x80063160u, 0x80063160u, 196u, 1u, dctx_func_80062F84},
+    {0x8006316Cu, 0x8006316Cu, 196u, 1u, dctx_func_80062F84},
+    {0x80063180u, 0x80063180u, 196u, 1u, dctx_func_80062F84},
+    {0x80063188u, 0x80063188u, 196u, 1u, dctx_func_80062F84},
+    {0x80063190u, 0x80063190u, 196u, 1u, dctx_func_80062F84},
+    {0x800631C4u, 0x800631C4u, 196u, 1u, dctx_func_80062F84},
+    {0x800631D0u, 0x800631D0u, 196u, 1u, dctx_func_80062F84},
+    {0x80063214u, 0x80063214u, 196u, 1u, dctx_func_80062F84},
+    {0x80063278u, 0x80063278u, 196u, 1u, dctx_func_80062F84},
+    {0x80063288u, 0x80063288u, 196u, 1u, dctx_func_80062F84},
+    {0x80063290u, 0x80063290u, 196u, 1u, dctx_func_80062F84},
+    {0x8006329Cu, 0x00000000u, 197u, 1u, dctx_func_8006329C},
+    {0x800632B0u, 0x800632B0u, 197u, 1u, dctx_func_8006329C},
+    {0x800632B8u, 0x800632B8u, 197u, 1u, dctx_func_8006329C},
+    {0x800632C0u, 0x800632C0u, 197u, 1u, dctx_func_8006329C},
+    {0x800632C4u, 0x800632C4u, 197u, 1u, dctx_func_8006329C},
+    {0x800632C8u, 0x800632C8u, 197u, 1u, dctx_func_8006329C},
+    {0x800632D4u, 0x800632D4u, 197u, 1u, dctx_func_8006329C},
+    {0x800632DCu, 0x800632DCu, 197u, 1u, dctx_func_8006329C},
+    {0x800632E4u, 0x800632E4u, 197u, 1u, dctx_func_8006329C},
+    {0x800632E8u, 0x800632E8u, 197u, 1u, dctx_func_8006329C},
+    {0x800632ECu, 0x800632ECu, 197u, 1u, dctx_func_8006329C},
+    {0x800632F8u, 0x800632F8u, 197u, 1u, dctx_func_8006329C},
+    {0x80063300u, 0x80063300u, 197u, 1u, dctx_func_8006329C},
+    {0x80063308u, 0x80063308u, 197u, 1u, dctx_func_8006329C},
+    {0x80063310u, 0x80063310u, 197u, 1u, dctx_func_8006329C},
+    {0x8006331Cu, 0x8006331Cu, 197u, 1u, dctx_func_8006329C},
+    {0x80063324u, 0x80063324u, 197u, 1u, dctx_func_8006329C},
+    {0x8006332Cu, 0x8006332Cu, 197u, 1u, dctx_func_8006329C},
+    {0x80063334u, 0x80063334u, 197u, 1u, dctx_func_8006329C},
+    {0x8006333Cu, 0x00000000u, 198u, 1u, dctx_func_8006333C},
+    {0x80063344u, 0x00000000u, 199u, 1u, dctx_func_80063344},
+    {0x8006334Cu, 0x00000000u, 200u, 1u, dctx_func_8006334C},
+    {0x8006335Cu, 0x8006335Cu, 200u, 1u, dctx_func_8006334C},
+    {0x80063398u, 0x00000000u, 201u, 1u, dctx_func_80063398},
+    {0x800633A0u, 0x800633A0u, 201u, 1u, dctx_func_80063398},
+    {0x800634E4u, 0x800634E4u, 201u, 1u, dctx_func_80063398},
+    {0x800634ECu, 0x800634ECu, 201u, 1u, dctx_func_80063398},
+    {0x80063508u, 0x80063508u, 201u, 1u, dctx_func_80063398},
+    {0x80063510u, 0x80063510u, 201u, 1u, dctx_func_80063398},
+    {0x80063524u, 0x80063524u, 201u, 1u, dctx_func_80063398},
+    {0x80063530u, 0x80063530u, 201u, 1u, dctx_func_80063398},
+    {0x8006353Cu, 0x8006353Cu, 201u, 1u, dctx_func_80063398},
+    {0x80063544u, 0x80063544u, 201u, 1u, dctx_func_80063398},
+    {0x8006354Cu, 0x8006354Cu, 201u, 1u, dctx_func_80063398},
+    {0x80063554u, 0x80063554u, 201u, 1u, dctx_func_80063398},
+    {0x80063560u, 0x80063560u, 201u, 1u, dctx_func_80063398},
+    {0x8006356Cu, 0x8006356Cu, 201u, 1u, dctx_func_80063398},
+    {0x80063578u, 0x80063578u, 201u, 1u, dctx_func_80063398},
+    {0x80063580u, 0x80063580u, 201u, 1u, dctx_func_80063398},
+    {0x8006358Cu, 0x8006358Cu, 201u, 1u, dctx_func_80063398},
+    {0x80063598u, 0x80063598u, 201u, 1u, dctx_func_80063398},
+    {0x800635A4u, 0x800635A4u, 201u, 1u, dctx_func_80063398},
+    {0x800635B0u, 0x800635B0u, 201u, 1u, dctx_func_80063398},
+    {0x800635B4u, 0x800635B4u, 201u, 1u, dctx_func_80063398},
+    {0x800635BCu, 0x800635BCu, 201u, 1u, dctx_func_80063398},
+    {0x800635C4u, 0x800635C4u, 201u, 1u, dctx_func_80063398},
+    {0x800635CCu, 0x800635CCu, 201u, 1u, dctx_func_80063398},
+    {0x800635ECu, 0x800635ECu, 201u, 1u, dctx_func_80063398},
+    {0x800635F0u, 0x800635F0u, 201u, 1u, dctx_func_80063398},
+    {0x800635F8u, 0x800635F8u, 201u, 1u, dctx_func_80063398},
+    {0x800635FCu, 0x800635FCu, 201u, 1u, dctx_func_80063398},
+    {0x80063608u, 0x80063608u, 201u, 1u, dctx_func_80063398},
+    {0x8006360Cu, 0x8006360Cu, 201u, 1u, dctx_func_80063398},
+    {0x80063638u, 0x80063638u, 201u, 1u, dctx_func_80063398},
+    {0x80063640u, 0x80063640u, 201u, 1u, dctx_func_80063398},
+    {0x8006368Cu, 0x8006368Cu, 201u, 1u, dctx_func_80063398},
+    {0x80063694u, 0x80063694u, 201u, 1u, dctx_func_80063398},
+    {0x800636E4u, 0x00000000u, 202u, 1u, dctx_func_800636E4},
+    {0x80063728u, 0x00000000u, 203u, 1u, dctx_func_80063728},
+    {0x800637B4u, 0x00000000u, 204u, 1u, dctx_func_800637B4},
+    {0x800637D0u, 0x00000000u, 205u, 1u, dctx_func_800637D0},
+    {0x800637DCu, 0x800637DCu, 205u, 1u, dctx_func_800637D0},
+    {0x8006381Cu, 0x8006381Cu, 205u, 1u, dctx_func_800637D0},
+    {0x80063848u, 0x80063848u, 205u, 1u, dctx_func_800637D0},
+    {0x800638A4u, 0x800638A4u, 205u, 1u, dctx_func_800637D0},
+    {0x800638DCu, 0x800638DCu, 205u, 1u, dctx_func_800637D0},
+    {0x80063924u, 0x80063924u, 205u, 1u, dctx_func_800637D0},
+    {0x8006392Cu, 0x8006392Cu, 205u, 1u, dctx_func_800637D0},
+    {0x80063938u, 0x80063938u, 205u, 1u, dctx_func_800637D0},
+    {0x80063964u, 0x00000000u, 206u, 1u, dctx_func_80063964},
+    {0x800639A4u, 0x00000000u, 207u, 1u, dctx_func_800639A4},
+    {0x800639F4u, 0x00000000u, 208u, 1u, dctx_func_800639F4},
+    {0x80063A48u, 0x00000000u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A4Cu, 0x80063A4Cu, 209u, 1u, dctx_func_80063A48},
+    {0x80063A58u, 0x80063A58u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A68u, 0x80063A68u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A70u, 0x80063A70u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A78u, 0x80063A78u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A80u, 0x80063A80u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A8Cu, 0x80063A8Cu, 209u, 1u, dctx_func_80063A48},
+    {0x80063A94u, 0x80063A94u, 209u, 1u, dctx_func_80063A48},
+    {0x80063A9Cu, 0x80063A9Cu, 209u, 1u, dctx_func_80063A48},
+    {0x80063AA4u, 0x00000000u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B14u, 0x80063B14u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B20u, 0x80063B20u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B28u, 0x80063B28u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B34u, 0x80063B34u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B44u, 0x80063B44u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B50u, 0x80063B50u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063B54u, 0x80063B54u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063C70u, 0x80063C70u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063C80u, 0x80063C80u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063C8Cu, 0x80063C8Cu, 210u, 1u, dctx_func_80063AA4},
+    {0x80063CA0u, 0x80063CA0u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063CA8u, 0x80063CA8u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063CB0u, 0x80063CB0u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063CE4u, 0x80063CE4u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063CF0u, 0x80063CF0u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063D34u, 0x80063D34u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063D98u, 0x80063D98u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063DA8u, 0x80063DA8u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063DB0u, 0x80063DB0u, 210u, 1u, dctx_func_80063AA4},
+    {0x80063DBCu, 0x00000000u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DD0u, 0x80063DD0u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DD8u, 0x80063DD8u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DE0u, 0x80063DE0u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DE4u, 0x80063DE4u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DE8u, 0x80063DE8u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DF4u, 0x80063DF4u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063DFCu, 0x80063DFCu, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E04u, 0x80063E04u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E08u, 0x80063E08u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E0Cu, 0x80063E0Cu, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E18u, 0x80063E18u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E20u, 0x80063E20u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E28u, 0x80063E28u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E30u, 0x80063E30u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E3Cu, 0x80063E3Cu, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E44u, 0x80063E44u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E4Cu, 0x80063E4Cu, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E54u, 0x80063E54u, 211u, 1u, dctx_func_80063DBC},
+    {0x80063E5Cu, 0x00000000u, 212u, 1u, dctx_func_80063E5C},
+    {0x80063E64u, 0x00000000u, 213u, 1u, dctx_func_80063E64},
+    {0x80063E84u, 0x00000000u, 214u, 1u, dctx_func_80063E84},
+    {0x80063E94u, 0x80063E94u, 214u, 1u, dctx_func_80063E84},
+    {0x80063ED0u, 0x00000000u, 215u, 1u, dctx_func_80063ED0},
+    {0x80063ED8u, 0x80063ED8u, 215u, 1u, dctx_func_80063ED0},
+    {0x8006401Cu, 0x8006401Cu, 215u, 1u, dctx_func_80063ED0},
+    {0x80064024u, 0x80064024u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064040u, 0x80064040u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064048u, 0x80064048u, 215u, 1u, dctx_func_80063ED0},
+    {0x8006405Cu, 0x8006405Cu, 215u, 1u, dctx_func_80063ED0},
+    {0x80064068u, 0x80064068u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064074u, 0x80064074u, 215u, 1u, dctx_func_80063ED0},
+    {0x8006407Cu, 0x8006407Cu, 215u, 1u, dctx_func_80063ED0},
+    {0x80064084u, 0x80064084u, 215u, 1u, dctx_func_80063ED0},
+    {0x8006408Cu, 0x8006408Cu, 215u, 1u, dctx_func_80063ED0},
+    {0x80064098u, 0x80064098u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640A4u, 0x800640A4u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640B0u, 0x800640B0u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640B8u, 0x800640B8u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640C4u, 0x800640C4u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640D0u, 0x800640D0u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640DCu, 0x800640DCu, 215u, 1u, dctx_func_80063ED0},
+    {0x800640E8u, 0x800640E8u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640ECu, 0x800640ECu, 215u, 1u, dctx_func_80063ED0},
+    {0x800640F4u, 0x800640F4u, 215u, 1u, dctx_func_80063ED0},
+    {0x800640FCu, 0x800640FCu, 215u, 1u, dctx_func_80063ED0},
+    {0x80064108u, 0x80064108u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064128u, 0x80064128u, 215u, 1u, dctx_func_80063ED0},
+    {0x8006412Cu, 0x8006412Cu, 215u, 1u, dctx_func_80063ED0},
+    {0x80064134u, 0x80064134u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064138u, 0x80064138u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064144u, 0x80064144u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064148u, 0x80064148u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064178u, 0x80064178u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064184u, 0x80064184u, 215u, 1u, dctx_func_80063ED0},
+    {0x800641B4u, 0x800641B4u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064208u, 0x80064208u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064220u, 0x80064220u, 215u, 1u, dctx_func_80063ED0},
+    {0x80064248u, 0x00000000u, 216u, 1u, dctx_func_80064248},
+    {0x80064260u, 0x00000000u, 217u, 1u, dctx_func_80064260},
+    {0x800642CCu, 0x00000000u, 218u, 1u, dctx_func_800642CC},
+    {0x800642E8u, 0x00000000u, 219u, 1u, dctx_func_800642E8},
+    {0x800642F4u, 0x800642F4u, 219u, 1u, dctx_func_800642E8},
+    {0x80064334u, 0x80064334u, 219u, 1u, dctx_func_800642E8},
+    {0x80064368u, 0x80064368u, 219u, 1u, dctx_func_800642E8},
+    {0x800643F0u, 0x800643F0u, 219u, 1u, dctx_func_800642E8},
+    {0x800643FCu, 0x800643FCu, 219u, 1u, dctx_func_800642E8},
+    {0x80064434u, 0x80064434u, 219u, 1u, dctx_func_800642E8},
+    {0x8006447Cu, 0x8006447Cu, 219u, 1u, dctx_func_800642E8},
+    {0x80064484u, 0x80064484u, 219u, 1u, dctx_func_800642E8},
+    {0x80064490u, 0x80064490u, 219u, 1u, dctx_func_800642E8},
+    {0x800644BCu, 0x00000000u, 220u, 1u, dctx_func_800644BC},
+    {0x800644FCu, 0x00000000u, 221u, 1u, dctx_func_800644FC},
+    {0x8006454Cu, 0x00000000u, 222u, 1u, dctx_func_8006454C},
+    {0x800645A0u, 0x00000000u, 223u, 1u, dctx_func_800645A0},
+    {0x800645A4u, 0x800645A4u, 223u, 1u, dctx_func_800645A0},
+    {0x800645B0u, 0x800645B0u, 223u, 1u, dctx_func_800645A0},
+    {0x800645C0u, 0x800645C0u, 223u, 1u, dctx_func_800645A0},
+    {0x800645C8u, 0x800645C8u, 223u, 1u, dctx_func_800645A0},
+    {0x800645D0u, 0x800645D0u, 223u, 1u, dctx_func_800645A0},
+    {0x800645D8u, 0x800645D8u, 223u, 1u, dctx_func_800645A0},
+    {0x800645E4u, 0x800645E4u, 223u, 1u, dctx_func_800645A0},
+    {0x800645ECu, 0x800645ECu, 223u, 1u, dctx_func_800645A0},
+    {0x800645F4u, 0x800645F4u, 223u, 1u, dctx_func_800645A0},
+    {0x800645FCu, 0x00000000u, 224u, 1u, dctx_func_800645FC},
+    {0x80064688u, 0x80064688u, 224u, 1u, dctx_func_800645FC},
+    {0x80064694u, 0x80064694u, 224u, 1u, dctx_func_800645FC},
+    {0x8006469Cu, 0x8006469Cu, 224u, 1u, dctx_func_800645FC},
+    {0x800646A8u, 0x800646A8u, 224u, 1u, dctx_func_800645FC},
+    {0x800646B8u, 0x800646B8u, 224u, 1u, dctx_func_800645FC},
+    {0x800646C4u, 0x800646C4u, 224u, 1u, dctx_func_800645FC},
+    {0x800646C8u, 0x800646C8u, 224u, 1u, dctx_func_800645FC},
+    {0x80064848u, 0x80064848u, 224u, 1u, dctx_func_800645FC},
+    {0x80064858u, 0x80064858u, 224u, 1u, dctx_func_800645FC},
+    {0x80064864u, 0x80064864u, 224u, 1u, dctx_func_800645FC},
+    {0x80064878u, 0x80064878u, 224u, 1u, dctx_func_800645FC},
+    {0x80064880u, 0x80064880u, 224u, 1u, dctx_func_800645FC},
+    {0x80064888u, 0x80064888u, 224u, 1u, dctx_func_800645FC},
+    {0x800648BCu, 0x800648BCu, 224u, 1u, dctx_func_800645FC},
+    {0x800648C8u, 0x800648C8u, 224u, 1u, dctx_func_800645FC},
+    {0x8006490Cu, 0x8006490Cu, 224u, 1u, dctx_func_800645FC},
+    {0x80064988u, 0x80064988u, 224u, 1u, dctx_func_800645FC},
+    {0x80064998u, 0x80064998u, 224u, 1u, dctx_func_800645FC},
+    {0x800649A0u, 0x800649A0u, 224u, 1u, dctx_func_800645FC},
+    {0x800649C0u, 0x00000000u, 225u, 1u, dctx_func_800649C0},
+    {0x800649D4u, 0x800649D4u, 225u, 1u, dctx_func_800649C0},
+    {0x800649DCu, 0x800649DCu, 225u, 1u, dctx_func_800649C0},
+    {0x800649E4u, 0x800649E4u, 225u, 1u, dctx_func_800649C0},
+    {0x800649E8u, 0x800649E8u, 225u, 1u, dctx_func_800649C0},
+    {0x800649ECu, 0x800649ECu, 225u, 1u, dctx_func_800649C0},
+    {0x800649F8u, 0x800649F8u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A00u, 0x80064A00u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A08u, 0x80064A08u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A0Cu, 0x80064A0Cu, 225u, 1u, dctx_func_800649C0},
+    {0x80064A10u, 0x80064A10u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A1Cu, 0x80064A1Cu, 225u, 1u, dctx_func_800649C0},
+    {0x80064A24u, 0x80064A24u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A2Cu, 0x80064A2Cu, 225u, 1u, dctx_func_800649C0},
+    {0x80064A34u, 0x80064A34u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A40u, 0x80064A40u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A48u, 0x80064A48u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A50u, 0x80064A50u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A58u, 0x80064A58u, 225u, 1u, dctx_func_800649C0},
+    {0x80064A60u, 0x00000000u, 226u, 1u, dctx_func_80064A60},
+    {0x80064A68u, 0x00000000u, 227u, 1u, dctx_func_80064A68},
+    {0x80064A88u, 0x00000000u, 228u, 1u, dctx_func_80064A88},
+    {0x80064A98u, 0x80064A98u, 228u, 1u, dctx_func_80064A88},
+    {0x80064AD4u, 0x00000000u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064ADCu, 0x80064ADCu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C20u, 0x80064C20u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C28u, 0x80064C28u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C44u, 0x80064C44u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C4Cu, 0x80064C4Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C60u, 0x80064C60u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C6Cu, 0x80064C6Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C78u, 0x80064C78u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C80u, 0x80064C80u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C88u, 0x80064C88u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C90u, 0x80064C90u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064C9Cu, 0x80064C9Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CA8u, 0x80064CA8u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CB4u, 0x80064CB4u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CBCu, 0x80064CBCu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CC8u, 0x80064CC8u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CD4u, 0x80064CD4u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CE0u, 0x80064CE0u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CECu, 0x80064CECu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CF0u, 0x80064CF0u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064CF8u, 0x80064CF8u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D00u, 0x80064D00u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D0Cu, 0x80064D0Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D2Cu, 0x80064D2Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D30u, 0x80064D30u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D38u, 0x80064D38u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D3Cu, 0x80064D3Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D48u, 0x80064D48u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D7Cu, 0x80064D7Cu, 229u, 1u, dctx_func_80064AD4},
+    {0x80064D88u, 0x80064D88u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064DD4u, 0x80064DD4u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064E58u, 0x80064E58u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064E70u, 0x80064E70u, 229u, 1u, dctx_func_80064AD4},
+    {0x80064ED0u, 0x00000000u, 230u, 1u, dctx_func_80064ED0},
+    {0x80064F14u, 0x00000000u, 231u, 1u, dctx_func_80064F14},
+    {0x80064FB4u, 0x00000000u, 232u, 1u, dctx_func_80064FB4},
+    {0x80064FD0u, 0x00000000u, 233u, 1u, dctx_func_80064FD0},
+    {0x80064FDCu, 0x80064FDCu, 233u, 1u, dctx_func_80064FD0},
+    {0x8006501Cu, 0x8006501Cu, 233u, 1u, dctx_func_80064FD0},
+    {0x80065050u, 0x80065050u, 233u, 1u, dctx_func_80064FD0},
+    {0x800650D8u, 0x800650D8u, 233u, 1u, dctx_func_80064FD0},
+    {0x800650E4u, 0x800650E4u, 233u, 1u, dctx_func_80064FD0},
+    {0x8006511Cu, 0x8006511Cu, 233u, 1u, dctx_func_80064FD0},
+    {0x80065164u, 0x80065164u, 233u, 1u, dctx_func_80064FD0},
+    {0x8006516Cu, 0x8006516Cu, 233u, 1u, dctx_func_80064FD0},
+    {0x80065178u, 0x80065178u, 233u, 1u, dctx_func_80064FD0},
+    {0x800651A4u, 0x00000000u, 234u, 1u, dctx_func_800651A4},
+    {0x800651E4u, 0x00000000u, 235u, 1u, dctx_func_800651E4},
+    {0x80065234u, 0x00000000u, 236u, 1u, dctx_func_80065234},
+    {0x80065288u, 0x00000000u, 237u, 1u, dctx_func_80065288},
+    {0x8006528Cu, 0x8006528Cu, 237u, 1u, dctx_func_80065288},
+    {0x80065298u, 0x80065298u, 237u, 1u, dctx_func_80065288},
+    {0x800652A8u, 0x800652A8u, 237u, 1u, dctx_func_80065288},
+    {0x800652B0u, 0x800652B0u, 237u, 1u, dctx_func_80065288},
+    {0x800652B8u, 0x800652B8u, 237u, 1u, dctx_func_80065288},
+    {0x800652C0u, 0x800652C0u, 237u, 1u, dctx_func_80065288},
+    {0x800652CCu, 0x800652CCu, 237u, 1u, dctx_func_80065288},
+    {0x800652D4u, 0x800652D4u, 237u, 1u, dctx_func_80065288},
+    {0x800652DCu, 0x800652DCu, 237u, 1u, dctx_func_80065288},
+    {0x800652E4u, 0x00000000u, 238u, 1u, dctx_func_800652E4},
+    {0x80065364u, 0x80065364u, 238u, 1u, dctx_func_800652E4},
+    {0x80065370u, 0x80065370u, 238u, 1u, dctx_func_800652E4},
+    {0x80065378u, 0x80065378u, 238u, 1u, dctx_func_800652E4},
+    {0x80065384u, 0x80065384u, 238u, 1u, dctx_func_800652E4},
+    {0x80065394u, 0x80065394u, 238u, 1u, dctx_func_800652E4},
+    {0x800653A0u, 0x800653A0u, 238u, 1u, dctx_func_800652E4},
+    {0x800653A4u, 0x800653A4u, 238u, 1u, dctx_func_800652E4},
+    {0x80065524u, 0x80065524u, 238u, 1u, dctx_func_800652E4},
+    {0x80065534u, 0x80065534u, 238u, 1u, dctx_func_800652E4},
+    {0x80065540u, 0x80065540u, 238u, 1u, dctx_func_800652E4},
+    {0x80065554u, 0x80065554u, 238u, 1u, dctx_func_800652E4},
+    {0x8006555Cu, 0x8006555Cu, 238u, 1u, dctx_func_800652E4},
+    {0x80065564u, 0x80065564u, 238u, 1u, dctx_func_800652E4},
+    {0x80065598u, 0x80065598u, 238u, 1u, dctx_func_800652E4},
+    {0x800655A4u, 0x800655A4u, 238u, 1u, dctx_func_800652E4},
+    {0x800655E8u, 0x800655E8u, 238u, 1u, dctx_func_800652E4},
+    {0x80065664u, 0x80065664u, 238u, 1u, dctx_func_800652E4},
+    {0x80065674u, 0x80065674u, 238u, 1u, dctx_func_800652E4},
+    {0x8006567Cu, 0x8006567Cu, 238u, 1u, dctx_func_800652E4},
+    {0x8006569Cu, 0x00000000u, 239u, 1u, dctx_func_8006569C},
+    {0x800656B0u, 0x800656B0u, 239u, 1u, dctx_func_8006569C},
+    {0x800656B8u, 0x800656B8u, 239u, 1u, dctx_func_8006569C},
+    {0x800656C0u, 0x800656C0u, 239u, 1u, dctx_func_8006569C},
+    {0x800656C4u, 0x800656C4u, 239u, 1u, dctx_func_8006569C},
+    {0x800656C8u, 0x800656C8u, 239u, 1u, dctx_func_8006569C},
+    {0x800656D4u, 0x800656D4u, 239u, 1u, dctx_func_8006569C},
+    {0x800656DCu, 0x800656DCu, 239u, 1u, dctx_func_8006569C},
+    {0x800656E4u, 0x800656E4u, 239u, 1u, dctx_func_8006569C},
+    {0x800656E8u, 0x800656E8u, 239u, 1u, dctx_func_8006569C},
+    {0x800656ECu, 0x800656ECu, 239u, 1u, dctx_func_8006569C},
+    {0x800656F8u, 0x800656F8u, 239u, 1u, dctx_func_8006569C},
+    {0x80065700u, 0x80065700u, 239u, 1u, dctx_func_8006569C},
+    {0x80065708u, 0x80065708u, 239u, 1u, dctx_func_8006569C},
+    {0x80065710u, 0x80065710u, 239u, 1u, dctx_func_8006569C},
+    {0x8006571Cu, 0x8006571Cu, 239u, 1u, dctx_func_8006569C},
+    {0x80065724u, 0x80065724u, 239u, 1u, dctx_func_8006569C},
+    {0x8006572Cu, 0x8006572Cu, 239u, 1u, dctx_func_8006569C},
+    {0x80065734u, 0x80065734u, 239u, 1u, dctx_func_8006569C},
+    {0x8006573Cu, 0x00000000u, 240u, 1u, dctx_func_8006573C},
+    {0x80065744u, 0x00000000u, 241u, 1u, dctx_func_80065744},
+    {0x80065764u, 0x00000000u, 242u, 1u, dctx_func_80065764},
+    {0x80065774u, 0x80065774u, 242u, 1u, dctx_func_80065764},
+    {0x800657B0u, 0x00000000u, 243u, 1u, dctx_func_800657B0},
+    {0x800657B8u, 0x800657B8u, 243u, 1u, dctx_func_800657B0},
+    {0x800658FCu, 0x800658FCu, 243u, 1u, dctx_func_800657B0},
+    {0x80065904u, 0x80065904u, 243u, 1u, dctx_func_800657B0},
+    {0x80065920u, 0x80065920u, 243u, 1u, dctx_func_800657B0},
+    {0x80065928u, 0x80065928u, 243u, 1u, dctx_func_800657B0},
+    {0x8006593Cu, 0x8006593Cu, 243u, 1u, dctx_func_800657B0},
+    {0x80065948u, 0x80065948u, 243u, 1u, dctx_func_800657B0},
+    {0x80065954u, 0x80065954u, 243u, 1u, dctx_func_800657B0},
+    {0x8006595Cu, 0x8006595Cu, 243u, 1u, dctx_func_800657B0},
+    {0x80065964u, 0x80065964u, 243u, 1u, dctx_func_800657B0},
+    {0x8006596Cu, 0x8006596Cu, 243u, 1u, dctx_func_800657B0},
+    {0x80065978u, 0x80065978u, 243u, 1u, dctx_func_800657B0},
+    {0x80065984u, 0x80065984u, 243u, 1u, dctx_func_800657B0},
+    {0x80065990u, 0x80065990u, 243u, 1u, dctx_func_800657B0},
+    {0x80065998u, 0x80065998u, 243u, 1u, dctx_func_800657B0},
+    {0x800659A4u, 0x800659A4u, 243u, 1u, dctx_func_800657B0},
+    {0x800659B0u, 0x800659B0u, 243u, 1u, dctx_func_800657B0},
+    {0x800659BCu, 0x800659BCu, 243u, 1u, dctx_func_800657B0},
+    {0x800659C8u, 0x800659C8u, 243u, 1u, dctx_func_800657B0},
+    {0x800659CCu, 0x800659CCu, 243u, 1u, dctx_func_800657B0},
+    {0x800659D4u, 0x800659D4u, 243u, 1u, dctx_func_800657B0},
+    {0x800659DCu, 0x800659DCu, 243u, 1u, dctx_func_800657B0},
+    {0x800659E4u, 0x800659E4u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A04u, 0x80065A04u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A08u, 0x80065A08u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A10u, 0x80065A10u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A14u, 0x80065A14u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A20u, 0x80065A20u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A24u, 0x80065A24u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A54u, 0x80065A54u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A60u, 0x80065A60u, 243u, 1u, dctx_func_800657B0},
+    {0x80065A94u, 0x80065A94u, 243u, 1u, dctx_func_800657B0},
+    {0x80065AA0u, 0x80065AA0u, 243u, 1u, dctx_func_800657B0},
+    {0x80065AC4u, 0x00000000u, 244u, 1u, dctx_func_80065AC4},
+    {0x80065ADCu, 0x00000000u, 245u, 1u, dctx_func_80065ADC},
+    {0x80065B38u, 0x00000000u, 246u, 1u, dctx_func_80065B38},
+    {0x80065B54u, 0x00000000u, 247u, 1u, dctx_func_80065B54},
+    {0x80065B60u, 0x80065B60u, 247u, 1u, dctx_func_80065B54},
+    {0x80065BA0u, 0x80065BA0u, 247u, 1u, dctx_func_80065B54},
+    {0x80065BCCu, 0x80065BCCu, 247u, 1u, dctx_func_80065B54},
+    {0x80065C28u, 0x80065C28u, 247u, 1u, dctx_func_80065B54},
+    {0x80065C60u, 0x80065C60u, 247u, 1u, dctx_func_80065B54},
+    {0x80065CA8u, 0x80065CA8u, 247u, 1u, dctx_func_80065B54},
+    {0x80065CB0u, 0x80065CB0u, 247u, 1u, dctx_func_80065B54},
+    {0x80065CBCu, 0x80065CBCu, 247u, 1u, dctx_func_80065B54},
+    {0x80065CE8u, 0x00000000u, 248u, 1u, dctx_func_80065CE8},
+    {0x80065D28u, 0x00000000u, 249u, 1u, dctx_func_80065D28},
+    {0x80065D78u, 0x00000000u, 250u, 1u, dctx_func_80065D78},
+    {0x80065DCCu, 0x00000000u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065DD0u, 0x80065DD0u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065DDCu, 0x80065DDCu, 251u, 1u, dctx_func_80065DCC},
+    {0x80065DECu, 0x80065DECu, 251u, 1u, dctx_func_80065DCC},
+    {0x80065DF4u, 0x80065DF4u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065DFCu, 0x80065DFCu, 251u, 1u, dctx_func_80065DCC},
+    {0x80065E04u, 0x80065E04u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065E10u, 0x80065E10u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065E18u, 0x80065E18u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065E20u, 0x80065E20u, 251u, 1u, dctx_func_80065DCC},
+    {0x80065E28u, 0x00000000u, 252u, 1u, dctx_func_80065E28},
+    {0x80065E98u, 0x80065E98u, 252u, 1u, dctx_func_80065E28},
+    {0x80065EA4u, 0x80065EA4u, 252u, 1u, dctx_func_80065E28},
+    {0x80065EACu, 0x80065EACu, 252u, 1u, dctx_func_80065E28},
+    {0x80065EB8u, 0x80065EB8u, 252u, 1u, dctx_func_80065E28},
+    {0x80065EC8u, 0x80065EC8u, 252u, 1u, dctx_func_80065E28},
+    {0x80065ED4u, 0x80065ED4u, 252u, 1u, dctx_func_80065E28},
+    {0x80065ED8u, 0x80065ED8u, 252u, 1u, dctx_func_80065E28},
+    {0x80065FF4u, 0x80065FF4u, 252u, 1u, dctx_func_80065E28},
+    {0x80066004u, 0x80066004u, 252u, 1u, dctx_func_80065E28},
+    {0x80066010u, 0x80066010u, 252u, 1u, dctx_func_80065E28},
+    {0x80066024u, 0x80066024u, 252u, 1u, dctx_func_80065E28},
+    {0x8006602Cu, 0x8006602Cu, 252u, 1u, dctx_func_80065E28},
+    {0x80066034u, 0x80066034u, 252u, 1u, dctx_func_80065E28},
+    {0x80066068u, 0x80066068u, 252u, 1u, dctx_func_80065E28},
+    {0x80066074u, 0x80066074u, 252u, 1u, dctx_func_80065E28},
+    {0x800660B8u, 0x800660B8u, 252u, 1u, dctx_func_80065E28},
+    {0x8006611Cu, 0x8006611Cu, 252u, 1u, dctx_func_80065E28},
+    {0x8006612Cu, 0x8006612Cu, 252u, 1u, dctx_func_80065E28},
+    {0x80066134u, 0x80066134u, 252u, 1u, dctx_func_80065E28},
+    {0x80066154u, 0x00000000u, 253u, 1u, dctx_func_80066154},
+    {0x80066168u, 0x80066168u, 253u, 1u, dctx_func_80066154},
+    {0x80066170u, 0x80066170u, 253u, 1u, dctx_func_80066154},
+    {0x80066178u, 0x80066178u, 253u, 1u, dctx_func_80066154},
+    {0x8006617Cu, 0x8006617Cu, 253u, 1u, dctx_func_80066154},
+    {0x80066180u, 0x80066180u, 253u, 1u, dctx_func_80066154},
+    {0x8006618Cu, 0x8006618Cu, 253u, 1u, dctx_func_80066154},
+    {0x80066194u, 0x80066194u, 253u, 1u, dctx_func_80066154},
+    {0x8006619Cu, 0x8006619Cu, 253u, 1u, dctx_func_80066154},
+    {0x800661A0u, 0x800661A0u, 253u, 1u, dctx_func_80066154},
+    {0x800661A4u, 0x800661A4u, 253u, 1u, dctx_func_80066154},
+    {0x800661B0u, 0x800661B0u, 253u, 1u, dctx_func_80066154},
+    {0x800661B8u, 0x800661B8u, 253u, 1u, dctx_func_80066154},
+    {0x800661C0u, 0x800661C0u, 253u, 1u, dctx_func_80066154},
+    {0x800661C8u, 0x800661C8u, 253u, 1u, dctx_func_80066154},
+    {0x800661D4u, 0x800661D4u, 253u, 1u, dctx_func_80066154},
+    {0x800661DCu, 0x800661DCu, 253u, 1u, dctx_func_80066154},
+    {0x800661E4u, 0x800661E4u, 253u, 1u, dctx_func_80066154},
+    {0x800661ECu, 0x800661ECu, 253u, 1u, dctx_func_80066154},
+    {0x800661F4u, 0x00000000u, 254u, 1u, dctx_func_800661F4},
+    {0x800661FCu, 0x00000000u, 255u, 1u, dctx_func_800661FC},
+    {0x8006621Cu, 0x00000000u, 256u, 1u, dctx_func_8006621C},
+    {0x8006622Cu, 0x8006622Cu, 256u, 1u, dctx_func_8006621C},
+    {0x80066268u, 0x00000000u, 257u, 1u, dctx_func_80066268},
+    {0x80066270u, 0x80066270u, 257u, 1u, dctx_func_80066268},
+    {0x800663B4u, 0x800663B4u, 257u, 1u, dctx_func_80066268},
+    {0x800663BCu, 0x800663BCu, 257u, 1u, dctx_func_80066268},
+    {0x800663D8u, 0x800663D8u, 257u, 1u, dctx_func_80066268},
+    {0x800663E0u, 0x800663E0u, 257u, 1u, dctx_func_80066268},
+    {0x800663F4u, 0x800663F4u, 257u, 1u, dctx_func_80066268},
+    {0x80066400u, 0x80066400u, 257u, 1u, dctx_func_80066268},
+    {0x8006640Cu, 0x8006640Cu, 257u, 1u, dctx_func_80066268},
+    {0x80066414u, 0x80066414u, 257u, 1u, dctx_func_80066268},
+    {0x8006641Cu, 0x8006641Cu, 257u, 1u, dctx_func_80066268},
+    {0x80066424u, 0x80066424u, 257u, 1u, dctx_func_80066268},
+    {0x80066430u, 0x80066430u, 257u, 1u, dctx_func_80066268},
+    {0x8006643Cu, 0x8006643Cu, 257u, 1u, dctx_func_80066268},
+    {0x80066448u, 0x80066448u, 257u, 1u, dctx_func_80066268},
+    {0x80066450u, 0x80066450u, 257u, 1u, dctx_func_80066268},
+    {0x8006645Cu, 0x8006645Cu, 257u, 1u, dctx_func_80066268},
+    {0x80066468u, 0x80066468u, 257u, 1u, dctx_func_80066268},
+    {0x80066474u, 0x80066474u, 257u, 1u, dctx_func_80066268},
+    {0x80066480u, 0x80066480u, 257u, 1u, dctx_func_80066268},
+    {0x80066484u, 0x80066484u, 257u, 1u, dctx_func_80066268},
+    {0x8006648Cu, 0x8006648Cu, 257u, 1u, dctx_func_80066268},
+    {0x80066494u, 0x80066494u, 257u, 1u, dctx_func_80066268},
+    {0x8006649Cu, 0x8006649Cu, 257u, 1u, dctx_func_80066268},
+    {0x800664BCu, 0x800664BCu, 257u, 1u, dctx_func_80066268},
+    {0x800664C0u, 0x800664C0u, 257u, 1u, dctx_func_80066268},
+    {0x800664C8u, 0x800664C8u, 257u, 1u, dctx_func_80066268},
+    {0x800664CCu, 0x800664CCu, 257u, 1u, dctx_func_80066268},
+    {0x800664D8u, 0x800664D8u, 257u, 1u, dctx_func_80066268},
+    {0x800664DCu, 0x800664DCu, 257u, 1u, dctx_func_80066268},
+    {0x80066510u, 0x80066510u, 257u, 1u, dctx_func_80066268},
+    {0x8006651Cu, 0x8006651Cu, 257u, 1u, dctx_func_80066268},
+    {0x80066568u, 0x80066568u, 257u, 1u, dctx_func_80066268},
+    {0x80066574u, 0x80066574u, 257u, 1u, dctx_func_80066268},
+    {0x800665C4u, 0x00000000u, 258u, 1u, dctx_func_800665C4},
+    {0x80066608u, 0x00000000u, 259u, 1u, dctx_func_80066608},
+    {0x80066694u, 0x00000000u, 260u, 1u, dctx_func_80066694},
+    {0x800666B0u, 0x00000000u, 261u, 1u, dctx_func_800666B0},
+    {0x800666BCu, 0x800666BCu, 261u, 1u, dctx_func_800666B0},
+    {0x800666FCu, 0x800666FCu, 261u, 1u, dctx_func_800666B0},
+    {0x80066728u, 0x80066728u, 261u, 1u, dctx_func_800666B0},
+    {0x80066784u, 0x80066784u, 261u, 1u, dctx_func_800666B0},
+    {0x800667BCu, 0x800667BCu, 261u, 1u, dctx_func_800666B0},
+    {0x80066804u, 0x80066804u, 261u, 1u, dctx_func_800666B0},
+    {0x8006680Cu, 0x8006680Cu, 261u, 1u, dctx_func_800666B0},
+    {0x80066818u, 0x80066818u, 261u, 1u, dctx_func_800666B0},
+    {0x80066844u, 0x00000000u, 262u, 1u, dctx_func_80066844},
+    {0x80066884u, 0x00000000u, 263u, 1u, dctx_func_80066884},
+    {0x800668D4u, 0x00000000u, 264u, 1u, dctx_func_800668D4},
+    {0x80066928u, 0x00000000u, 265u, 1u, dctx_func_80066928},
+    {0x8006692Cu, 0x8006692Cu, 265u, 1u, dctx_func_80066928},
+    {0x80066938u, 0x80066938u, 265u, 1u, dctx_func_80066928},
+    {0x80066948u, 0x80066948u, 265u, 1u, dctx_func_80066928},
+    {0x80066950u, 0x80066950u, 265u, 1u, dctx_func_80066928},
+    {0x80066958u, 0x80066958u, 265u, 1u, dctx_func_80066928},
+    {0x80066960u, 0x80066960u, 265u, 1u, dctx_func_80066928},
+    {0x8006696Cu, 0x8006696Cu, 265u, 1u, dctx_func_80066928},
+    {0x80066974u, 0x80066974u, 265u, 1u, dctx_func_80066928},
+    {0x8006697Cu, 0x8006697Cu, 265u, 1u, dctx_func_80066928},
+    {0x80066984u, 0x00000000u, 266u, 1u, dctx_func_80066984},
+    {0x800669F4u, 0x800669F4u, 266u, 1u, dctx_func_80066984},
+    {0x80066A00u, 0x80066A00u, 266u, 1u, dctx_func_80066984},
+    {0x80066A08u, 0x80066A08u, 266u, 1u, dctx_func_80066984},
+    {0x80066A14u, 0x80066A14u, 266u, 1u, dctx_func_80066984},
+    {0x80066A24u, 0x80066A24u, 266u, 1u, dctx_func_80066984},
+    {0x80066A30u, 0x80066A30u, 266u, 1u, dctx_func_80066984},
+    {0x80066A34u, 0x80066A34u, 266u, 1u, dctx_func_80066984},
+    {0x80066B50u, 0x80066B50u, 266u, 1u, dctx_func_80066984},
+    {0x80066B60u, 0x80066B60u, 266u, 1u, dctx_func_80066984},
+    {0x80066B6Cu, 0x80066B6Cu, 266u, 1u, dctx_func_80066984},
+    {0x80066B80u, 0x80066B80u, 266u, 1u, dctx_func_80066984},
+    {0x80066B88u, 0x80066B88u, 266u, 1u, dctx_func_80066984},
+    {0x80066B90u, 0x80066B90u, 266u, 1u, dctx_func_80066984},
+    {0x80066BC4u, 0x80066BC4u, 266u, 1u, dctx_func_80066984},
+    {0x80066BD0u, 0x80066BD0u, 266u, 1u, dctx_func_80066984},
+    {0x80066C14u, 0x80066C14u, 266u, 1u, dctx_func_80066984},
+    {0x80066C78u, 0x80066C78u, 266u, 1u, dctx_func_80066984},
+    {0x80066C88u, 0x80066C88u, 266u, 1u, dctx_func_80066984},
+    {0x80066C90u, 0x80066C90u, 266u, 1u, dctx_func_80066984},
+    {0x80066CB0u, 0x00000000u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CC4u, 0x80066CC4u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CCCu, 0x80066CCCu, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CD4u, 0x80066CD4u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CD8u, 0x80066CD8u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CDCu, 0x80066CDCu, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CE8u, 0x80066CE8u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CF0u, 0x80066CF0u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CF8u, 0x80066CF8u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066CFCu, 0x80066CFCu, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D00u, 0x80066D00u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D0Cu, 0x80066D0Cu, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D14u, 0x80066D14u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D1Cu, 0x80066D1Cu, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D24u, 0x80066D24u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D30u, 0x80066D30u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D38u, 0x80066D38u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D40u, 0x80066D40u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D48u, 0x80066D48u, 267u, 1u, dctx_func_80066CB0},
+    {0x80066D50u, 0x00000000u, 268u, 1u, dctx_func_80066D50},
+    {0x80066D58u, 0x00000000u, 269u, 1u, dctx_func_80066D58},
+    {0x80066E60u, 0x80066E60u, 269u, 1u, dctx_func_80066D58},
+    {0x80066E70u, 0x80066E70u, 269u, 1u, dctx_func_80066D58},
+    {0x80066EA8u, 0x80066EA8u, 269u, 1u, dctx_func_80066D58},
+    {0x80066EB0u, 0x80066EB0u, 269u, 1u, dctx_func_80066D58},
+    {0x80066ED8u, 0x80066ED8u, 269u, 1u, dctx_func_80066D58},
+    {0x80066EF8u, 0x80066EF8u, 269u, 1u, dctx_func_80066D58},
+    {0x80066F08u, 0x80066F08u, 269u, 1u, dctx_func_80066D58},
+    {0x80066F2Cu, 0x80066F2Cu, 269u, 1u, dctx_func_80066D58},
+    {0x80066F9Cu, 0x80066F9Cu, 269u, 1u, dctx_func_80066D58},
+    {0x80066FE0u, 0x80066FE0u, 269u, 1u, dctx_func_80066D58},
+    {0x80066FECu, 0x80066FECu, 269u, 1u, dctx_func_80066D58},
+    {0x80066FF8u, 0x80066FF8u, 269u, 1u, dctx_func_80066D58},
+    {0x80067008u, 0x80067008u, 269u, 1u, dctx_func_80066D58},
+    {0x80067050u, 0x80067050u, 269u, 1u, dctx_func_80066D58},
+    {0x80067084u, 0x80067084u, 269u, 1u, dctx_func_80066D58},
+    {0x800670D8u, 0x800670D8u, 269u, 1u, dctx_func_80066D58},
+    {0x80067174u, 0x00000000u, 270u, 1u, dctx_func_80067174},
+    {0x80067198u, 0x80067198u, 270u, 1u, dctx_func_80067174},
+    {0x800671A0u, 0x800671A0u, 270u, 1u, dctx_func_80067174},
+    {0x800671A8u, 0x800671A8u, 270u, 1u, dctx_func_80067174},
+    {0x800671ACu, 0x800671ACu, 270u, 1u, dctx_func_80067174},
+    {0x800671B0u, 0x800671B0u, 270u, 1u, dctx_func_80067174},
+    {0x800671BCu, 0x800671BCu, 270u, 1u, dctx_func_80067174},
+    {0x800671C4u, 0x800671C4u, 270u, 1u, dctx_func_80067174},
+    {0x800671CCu, 0x800671CCu, 270u, 1u, dctx_func_80067174},
+    {0x800671D0u, 0x800671D0u, 270u, 1u, dctx_func_80067174},
+    {0x800671D4u, 0x800671D4u, 270u, 1u, dctx_func_80067174},
+    {0x800671F0u, 0x800671F0u, 270u, 1u, dctx_func_80067174},
+    {0x800671F8u, 0x800671F8u, 270u, 1u, dctx_func_80067174},
+    {0x80067200u, 0x80067200u, 270u, 1u, dctx_func_80067174},
+    {0x80067208u, 0x80067208u, 270u, 1u, dctx_func_80067174},
+    {0x80067214u, 0x80067214u, 270u, 1u, dctx_func_80067174},
+    {0x8006721Cu, 0x8006721Cu, 270u, 1u, dctx_func_80067174},
+    {0x80067224u, 0x80067224u, 270u, 1u, dctx_func_80067174},
+    {0x8006722Cu, 0x8006722Cu, 270u, 1u, dctx_func_80067174},
+    {0x80067234u, 0x00000000u, 271u, 1u, dctx_func_80067234},
+    {0x8006723Cu, 0x00000000u, 272u, 1u, dctx_func_8006723C},
+    {0x8006725Cu, 0x00000000u, 273u, 1u, dctx_func_8006725C},
+    {0x8006726Cu, 0x8006726Cu, 273u, 1u, dctx_func_8006725C},
+    {0x800672A8u, 0x00000000u, 274u, 1u, dctx_func_800672A8},
+    {0x800672B0u, 0x800672B0u, 274u, 1u, dctx_func_800672A8},
+    {0x80067388u, 0x80067388u, 274u, 1u, dctx_func_800672A8},
+    {0x800673A4u, 0x800673A4u, 274u, 1u, dctx_func_800672A8},
+    {0x800673BCu, 0x800673BCu, 274u, 1u, dctx_func_800672A8},
+    {0x800673DCu, 0x800673DCu, 274u, 1u, dctx_func_800672A8},
+    {0x800673FCu, 0x800673FCu, 274u, 1u, dctx_func_800672A8},
+    {0x8006740Cu, 0x8006740Cu, 274u, 1u, dctx_func_800672A8},
+    {0x80067414u, 0x80067414u, 274u, 1u, dctx_func_800672A8},
+    {0x80067428u, 0x80067428u, 274u, 1u, dctx_func_800672A8},
+    {0x80067434u, 0x80067434u, 274u, 1u, dctx_func_800672A8},
+    {0x8006743Cu, 0x8006743Cu, 274u, 1u, dctx_func_800672A8},
+    {0x80067444u, 0x80067444u, 274u, 1u, dctx_func_800672A8},
+    {0x8006744Cu, 0x8006744Cu, 274u, 1u, dctx_func_800672A8},
+    {0x80067458u, 0x80067458u, 274u, 1u, dctx_func_800672A8},
+    {0x80067464u, 0x80067464u, 274u, 1u, dctx_func_800672A8},
+    {0x80067470u, 0x80067470u, 274u, 1u, dctx_func_800672A8},
+    {0x80067478u, 0x80067478u, 274u, 1u, dctx_func_800672A8},
+    {0x80067484u, 0x80067484u, 274u, 1u, dctx_func_800672A8},
+    {0x80067490u, 0x80067490u, 274u, 1u, dctx_func_800672A8},
+    {0x8006749Cu, 0x8006749Cu, 274u, 1u, dctx_func_800672A8},
+    {0x800674A8u, 0x800674A8u, 274u, 1u, dctx_func_800672A8},
+    {0x800674ACu, 0x800674ACu, 274u, 1u, dctx_func_800672A8},
+    {0x800674B4u, 0x800674B4u, 274u, 1u, dctx_func_800672A8},
+    {0x800674BCu, 0x800674BCu, 274u, 1u, dctx_func_800672A8},
+    {0x800674C4u, 0x800674C4u, 274u, 1u, dctx_func_800672A8},
+    {0x800674D0u, 0x800674D0u, 274u, 1u, dctx_func_800672A8},
+    {0x800674D4u, 0x800674D4u, 274u, 1u, dctx_func_800672A8},
+    {0x800674D8u, 0x800674D8u, 274u, 1u, dctx_func_800672A8},
+    {0x800674DCu, 0x800674DCu, 274u, 1u, dctx_func_800672A8},
+    {0x80067500u, 0x80067500u, 274u, 1u, dctx_func_800672A8},
+    {0x8006750Cu, 0x8006750Cu, 274u, 1u, dctx_func_800672A8},
+    {0x80067534u, 0x80067534u, 274u, 1u, dctx_func_800672A8},
+    {0x8006757Cu, 0x8006757Cu, 274u, 1u, dctx_func_800672A8},
+    {0x80067584u, 0x80067584u, 274u, 1u, dctx_func_800672A8},
+    {0x800675B4u, 0x00000000u, 275u, 1u, dctx_func_800675B4},
+    {0x800675CCu, 0x00000000u, 276u, 1u, dctx_func_800675CC},
+    {0x80067620u, 0x00000000u, 277u, 1u, dctx_func_80067620},
+    {0x8006763Cu, 0x00000000u, 278u, 1u, dctx_func_8006763C},
+    {0x80067658u, 0x80067658u, 278u, 1u, dctx_func_8006763C},
+    {0x800678C8u, 0x800678C8u, 278u, 1u, dctx_func_8006763C},
+    {0x800678D4u, 0x800678D4u, 278u, 1u, dctx_func_8006763C},
+    {0x800678E8u, 0x800678E8u, 278u, 1u, dctx_func_8006763C},
+    {0x800678F0u, 0x800678F0u, 278u, 1u, dctx_func_8006763C},
+    {0x800678F8u, 0x800678F8u, 278u, 1u, dctx_func_8006763C},
+    {0x80067900u, 0x80067900u, 278u, 1u, dctx_func_8006763C},
+    {0x80067918u, 0x80067918u, 278u, 1u, dctx_func_8006763C},
+    {0x80067924u, 0x80067924u, 278u, 1u, dctx_func_8006763C},
+    {0x8006793Cu, 0x8006793Cu, 278u, 1u, dctx_func_8006763C},
+    {0x80067974u, 0x80067974u, 278u, 1u, dctx_func_8006763C},
+    {0x80067980u, 0x80067980u, 278u, 1u, dctx_func_8006763C},
+    {0x80067994u, 0x80067994u, 278u, 1u, dctx_func_8006763C},
+    {0x800679A8u, 0x800679A8u, 278u, 1u, dctx_func_8006763C},
+    {0x800679B0u, 0x800679B0u, 278u, 1u, dctx_func_8006763C},
+    {0x800679B8u, 0x800679B8u, 278u, 1u, dctx_func_8006763C},
+    {0x800679D0u, 0x800679D0u, 278u, 1u, dctx_func_8006763C},
+    {0x800679DCu, 0x800679DCu, 278u, 1u, dctx_func_8006763C},
+    {0x800679F4u, 0x800679F4u, 278u, 1u, dctx_func_8006763C},
+    {0x80067A2Cu, 0x80067A2Cu, 278u, 1u, dctx_func_8006763C},
+    {0x80067A38u, 0x80067A38u, 278u, 1u, dctx_func_8006763C},
+    {0x80067A4Cu, 0x80067A4Cu, 278u, 1u, dctx_func_8006763C},
+    {0x80067A60u, 0x80067A60u, 278u, 1u, dctx_func_8006763C},
+    {0x80067A68u, 0x80067A68u, 278u, 1u, dctx_func_8006763C},
+    {0x80067A70u, 0x80067A70u, 278u, 1u, dctx_func_8006763C},
+    {0x80067A88u, 0x80067A88u, 278u, 1u, dctx_func_8006763C},
+    {0x80067A94u, 0x80067A94u, 278u, 1u, dctx_func_8006763C},
+    {0x80067AACu, 0x80067AACu, 278u, 1u, dctx_func_8006763C},
+    {0x80067AE4u, 0x80067AE4u, 278u, 1u, dctx_func_8006763C},
+    {0x80067AF0u, 0x80067AF0u, 278u, 1u, dctx_func_8006763C},
+    {0x80067B04u, 0x80067B04u, 278u, 1u, dctx_func_8006763C},
+    {0x80067B18u, 0x80067B18u, 278u, 1u, dctx_func_8006763C},
+    {0x80067B38u, 0x00000000u, 279u, 1u, dctx_func_80067B38},
+    {0x80067BCCu, 0x00000000u, 280u, 1u, dctx_func_80067BCC},
+    {0x80067C1Cu, 0x00000000u, 281u, 1u, dctx_func_80067C1C},
+    {0x80067C70u, 0x00000000u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CA8u, 0x80067CA8u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CACu, 0x80067CACu, 282u, 1u, dctx_func_80067C70},
+    {0x80067CB4u, 0x80067CB4u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CC0u, 0x80067CC0u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CC8u, 0x80067CC8u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CD4u, 0x80067CD4u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CD8u, 0x80067CD8u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CDCu, 0x80067CDCu, 282u, 1u, dctx_func_80067C70},
+    {0x80067CE4u, 0x80067CE4u, 282u, 1u, dctx_func_80067C70},
+    {0x80067CECu, 0x80067CECu, 282u, 1u, dctx_func_80067C70},
+    {0x80067CFCu, 0x80067CFCu, 282u, 1u, dctx_func_80067C70},
+    {0x80067D0Cu, 0x80067D0Cu, 282u, 1u, dctx_func_80067C70},
+    {0x80067D30u, 0x00000000u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D44u, 0x80067D44u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D4Cu, 0x80067D4Cu, 283u, 1u, dctx_func_80067D30},
+    {0x80067D50u, 0x80067D50u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D54u, 0x80067D54u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D60u, 0x80067D60u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D68u, 0x80067D68u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D6Cu, 0x80067D6Cu, 283u, 1u, dctx_func_80067D30},
+    {0x80067D70u, 0x80067D70u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D7Cu, 0x80067D7Cu, 283u, 1u, dctx_func_80067D30},
+    {0x80067D84u, 0x80067D84u, 283u, 1u, dctx_func_80067D30},
+    {0x80067D8Cu, 0x80067D8Cu, 283u, 1u, dctx_func_80067D30},
+    {0x80067D98u, 0x80067D98u, 283u, 1u, dctx_func_80067D30},
+    {0x80067DA0u, 0x80067DA0u, 283u, 1u, dctx_func_80067D30},
+    {0x80067DA8u, 0x80067DA8u, 283u, 1u, dctx_func_80067D30},
+    {0x80067DB0u, 0x00000000u, 284u, 1u, dctx_func_80067DB0},
+    {0x80067DB8u, 0x00000000u, 285u, 1u, dctx_func_80067DB8},
+    {0x80067DD8u, 0x00000000u, 286u, 1u, dctx_func_80067DD8},
+    {0x80067DE8u, 0x80067DE8u, 286u, 1u, dctx_func_80067DD8},
+    {0x80067E24u, 0x00000000u, 287u, 1u, dctx_func_80067E24},
+    {0x80067E2Cu, 0x80067E2Cu, 287u, 1u, dctx_func_80067E24},
+    {0x80067F04u, 0x80067F04u, 287u, 1u, dctx_func_80067E24},
+    {0x80067F20u, 0x80067F20u, 287u, 1u, dctx_func_80067E24},
+    {0x80067F38u, 0x80067F38u, 287u, 1u, dctx_func_80067E24},
+    {0x80067F58u, 0x80067F58u, 287u, 1u, dctx_func_80067E24},
+    {0x80067F78u, 0x80067F78u, 287u, 1u, dctx_func_80067E24},
+    {0x80067F88u, 0x80067F88u, 287u, 1u, dctx_func_80067E24},
+    {0x80067F90u, 0x80067F90u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FA4u, 0x80067FA4u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FB0u, 0x80067FB0u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FB8u, 0x80067FB8u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FC0u, 0x80067FC0u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FC8u, 0x80067FC8u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FD4u, 0x80067FD4u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FE0u, 0x80067FE0u, 287u, 1u, dctx_func_80067E24},
+    {0x80067FECu, 0x80067FECu, 287u, 1u, dctx_func_80067E24},
+    {0x80067FF4u, 0x80067FF4u, 287u, 1u, dctx_func_80067E24},
+    {0x80068000u, 0x80068000u, 287u, 1u, dctx_func_80067E24},
+    {0x8006800Cu, 0x8006800Cu, 287u, 1u, dctx_func_80067E24},
+    {0x80068018u, 0x80068018u, 287u, 1u, dctx_func_80067E24},
+    {0x80068024u, 0x80068024u, 287u, 1u, dctx_func_80067E24},
+    {0x80068028u, 0x80068028u, 287u, 1u, dctx_func_80067E24},
+    {0x80068030u, 0x80068030u, 287u, 1u, dctx_func_80067E24},
+    {0x80068038u, 0x80068038u, 287u, 1u, dctx_func_80067E24},
+    {0x80068040u, 0x80068040u, 287u, 1u, dctx_func_80067E24},
+    {0x8006804Cu, 0x8006804Cu, 287u, 1u, dctx_func_80067E24},
+    {0x80068050u, 0x80068050u, 287u, 1u, dctx_func_80067E24},
+    {0x80068054u, 0x80068054u, 287u, 1u, dctx_func_80067E24},
+    {0x80068058u, 0x80068058u, 287u, 1u, dctx_func_80067E24},
+    {0x8006807Cu, 0x8006807Cu, 287u, 1u, dctx_func_80067E24},
+    {0x80068088u, 0x80068088u, 287u, 1u, dctx_func_80067E24},
+    {0x800680CCu, 0x800680CCu, 287u, 1u, dctx_func_80067E24},
+    {0x80068144u, 0x80068144u, 287u, 1u, dctx_func_80067E24},
+    {0x8006814Cu, 0x8006814Cu, 287u, 1u, dctx_func_80067E24},
+    {0x800681A8u, 0x00000000u, 288u, 1u, dctx_func_800681A8},
+    {0x800681ECu, 0x00000000u, 289u, 1u, dctx_func_800681EC},
+    {0x80068274u, 0x00000000u, 290u, 1u, dctx_func_80068274},
+    {0x80068290u, 0x00000000u, 291u, 1u, dctx_func_80068290},
+    {0x800682ACu, 0x800682ACu, 291u, 1u, dctx_func_80068290},
+    {0x8006851Cu, 0x8006851Cu, 291u, 1u, dctx_func_80068290},
+    {0x80068528u, 0x80068528u, 291u, 1u, dctx_func_80068290},
+    {0x8006853Cu, 0x8006853Cu, 291u, 1u, dctx_func_80068290},
+    {0x80068544u, 0x80068544u, 291u, 1u, dctx_func_80068290},
+    {0x8006854Cu, 0x8006854Cu, 291u, 1u, dctx_func_80068290},
+    {0x80068554u, 0x80068554u, 291u, 1u, dctx_func_80068290},
+    {0x8006856Cu, 0x8006856Cu, 291u, 1u, dctx_func_80068290},
+    {0x80068578u, 0x80068578u, 291u, 1u, dctx_func_80068290},
+    {0x80068590u, 0x80068590u, 291u, 1u, dctx_func_80068290},
+    {0x800685C8u, 0x800685C8u, 291u, 1u, dctx_func_80068290},
+    {0x800685D4u, 0x800685D4u, 291u, 1u, dctx_func_80068290},
+    {0x800685E8u, 0x800685E8u, 291u, 1u, dctx_func_80068290},
+    {0x800685FCu, 0x800685FCu, 291u, 1u, dctx_func_80068290},
+    {0x80068604u, 0x80068604u, 291u, 1u, dctx_func_80068290},
+    {0x8006860Cu, 0x8006860Cu, 291u, 1u, dctx_func_80068290},
+    {0x80068624u, 0x80068624u, 291u, 1u, dctx_func_80068290},
+    {0x80068630u, 0x80068630u, 291u, 1u, dctx_func_80068290},
+    {0x80068648u, 0x80068648u, 291u, 1u, dctx_func_80068290},
+    {0x80068680u, 0x80068680u, 291u, 1u, dctx_func_80068290},
+    {0x8006868Cu, 0x8006868Cu, 291u, 1u, dctx_func_80068290},
+    {0x800686A0u, 0x800686A0u, 291u, 1u, dctx_func_80068290},
+    {0x800686B4u, 0x800686B4u, 291u, 1u, dctx_func_80068290},
+    {0x800686BCu, 0x800686BCu, 291u, 1u, dctx_func_80068290},
+    {0x800686C4u, 0x800686C4u, 291u, 1u, dctx_func_80068290},
+    {0x800686DCu, 0x800686DCu, 291u, 1u, dctx_func_80068290},
+    {0x800686E8u, 0x800686E8u, 291u, 1u, dctx_func_80068290},
+    {0x80068700u, 0x80068700u, 291u, 1u, dctx_func_80068290},
+    {0x80068738u, 0x80068738u, 291u, 1u, dctx_func_80068290},
+    {0x80068744u, 0x80068744u, 291u, 1u, dctx_func_80068290},
+    {0x80068758u, 0x80068758u, 291u, 1u, dctx_func_80068290},
+    {0x8006876Cu, 0x8006876Cu, 291u, 1u, dctx_func_80068290},
+    {0x8006878Cu, 0x00000000u, 292u, 1u, dctx_func_8006878C},
+    {0x80068820u, 0x00000000u, 293u, 1u, dctx_func_80068820},
+    {0x80068870u, 0x00000000u, 294u, 1u, dctx_func_80068870},
+    {0x800688C4u, 0x00000000u, 295u, 1u, dctx_func_800688C4},
+    {0x800688FCu, 0x800688FCu, 295u, 1u, dctx_func_800688C4},
+    {0x80068900u, 0x80068900u, 295u, 1u, dctx_func_800688C4},
+    {0x80068908u, 0x80068908u, 295u, 1u, dctx_func_800688C4},
+    {0x80068914u, 0x80068914u, 295u, 1u, dctx_func_800688C4},
+    {0x8006891Cu, 0x8006891Cu, 295u, 1u, dctx_func_800688C4},
+    {0x80068928u, 0x80068928u, 295u, 1u, dctx_func_800688C4},
+    {0x8006892Cu, 0x8006892Cu, 295u, 1u, dctx_func_800688C4},
+    {0x80068930u, 0x80068930u, 295u, 1u, dctx_func_800688C4},
+    {0x80068938u, 0x80068938u, 295u, 1u, dctx_func_800688C4},
+    {0x80068940u, 0x80068940u, 295u, 1u, dctx_func_800688C4},
+    {0x80068950u, 0x80068950u, 295u, 1u, dctx_func_800688C4},
+    {0x80068960u, 0x80068960u, 295u, 1u, dctx_func_800688C4},
+    {0x80068984u, 0x00000000u, 296u, 1u, dctx_func_80068984},
+    {0x80068998u, 0x80068998u, 296u, 1u, dctx_func_80068984},
+    {0x800689A0u, 0x800689A0u, 296u, 1u, dctx_func_80068984},
+    {0x800689A4u, 0x800689A4u, 296u, 1u, dctx_func_80068984},
+    {0x800689A8u, 0x800689A8u, 296u, 1u, dctx_func_80068984},
+    {0x800689B4u, 0x800689B4u, 296u, 1u, dctx_func_80068984},
+    {0x800689BCu, 0x800689BCu, 296u, 1u, dctx_func_80068984},
+    {0x800689C0u, 0x800689C0u, 296u, 1u, dctx_func_80068984},
+    {0x800689C4u, 0x800689C4u, 296u, 1u, dctx_func_80068984},
+    {0x800689D0u, 0x800689D0u, 296u, 1u, dctx_func_80068984},
+    {0x800689D8u, 0x800689D8u, 296u, 1u, dctx_func_80068984},
+    {0x800689E0u, 0x800689E0u, 296u, 1u, dctx_func_80068984},
+    {0x800689ECu, 0x800689ECu, 296u, 1u, dctx_func_80068984},
+    {0x800689F4u, 0x800689F4u, 296u, 1u, dctx_func_80068984},
+    {0x800689FCu, 0x800689FCu, 296u, 1u, dctx_func_80068984},
+    {0x80068A04u, 0x00000000u, 297u, 1u, dctx_func_80068A04},
+    {0x80068A0Cu, 0x00000000u, 298u, 1u, dctx_func_80068A0C},
+    {0x80068A14u, 0x00000000u, 299u, 1u, dctx_func_80068A14},
+    {0x80068A24u, 0x80068A24u, 299u, 1u, dctx_func_80068A14},
+    {0x80068A60u, 0x80068A60u, 299u, 1u, dctx_func_80068A14},
+    {0x80068A6Cu, 0x00000000u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068A74u, 0x80068A74u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068BB4u, 0x80068BB4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068BBCu, 0x80068BBCu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068BD8u, 0x80068BD8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068BE0u, 0x80068BE0u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068BF4u, 0x80068BF4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C00u, 0x80068C00u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C0Cu, 0x80068C0Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C14u, 0x80068C14u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C1Cu, 0x80068C1Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C80u, 0x80068C80u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C8Cu, 0x80068C8Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068C98u, 0x80068C98u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068CA4u, 0x80068CA4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068CA8u, 0x80068CA8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068CB0u, 0x80068CB0u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068CB8u, 0x80068CB8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068D4Cu, 0x80068D4Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068D84u, 0x80068D84u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068D88u, 0x80068D88u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068D90u, 0x80068D90u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068D94u, 0x80068D94u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068DB8u, 0x80068DB8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E1Cu, 0x80068E1Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E34u, 0x80068E34u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E3Cu, 0x80068E3Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E74u, 0x80068E74u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E7Cu, 0x80068E7Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E84u, 0x80068E84u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E88u, 0x80068E88u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E8Cu, 0x80068E8Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E94u, 0x80068E94u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068E9Cu, 0x80068E9Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EA4u, 0x80068EA4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EA8u, 0x80068EA8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EACu, 0x80068EACu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EB4u, 0x80068EB4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EBCu, 0x80068EBCu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EC4u, 0x80068EC4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EC8u, 0x80068EC8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068ECCu, 0x80068ECCu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068ED4u, 0x80068ED4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EDCu, 0x80068EDCu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EE4u, 0x80068EE4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EE8u, 0x80068EE8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EECu, 0x80068EECu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068EF4u, 0x80068EF4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F08u, 0x80068F08u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F1Cu, 0x80068F1Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F30u, 0x80068F30u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F48u, 0x80068F48u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F50u, 0x80068F50u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F60u, 0x80068F60u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F64u, 0x80068F64u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F70u, 0x80068F70u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F74u, 0x80068F74u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068F84u, 0x80068F84u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068FD0u, 0x80068FD0u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068FDCu, 0x80068FDCu, 300u, 1u, dctx_func_80068A6C},
+    {0x80068FE8u, 0x80068FE8u, 300u, 1u, dctx_func_80068A6C},
+    {0x80068FF4u, 0x80068FF4u, 300u, 1u, dctx_func_80068A6C},
+    {0x80069000u, 0x80069000u, 300u, 1u, dctx_func_80068A6C},
+    {0x80069004u, 0x80069004u, 300u, 1u, dctx_func_80068A6C},
+    {0x8006900Cu, 0x8006900Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80069014u, 0x80069014u, 300u, 1u, dctx_func_80068A6C},
+    {0x8006901Cu, 0x8006901Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x8006903Cu, 0x8006903Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80069040u, 0x80069040u, 300u, 1u, dctx_func_80068A6C},
+    {0x80069048u, 0x80069048u, 300u, 1u, dctx_func_80068A6C},
+    {0x8006904Cu, 0x8006904Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80069058u, 0x80069058u, 300u, 1u, dctx_func_80068A6C},
+    {0x8006905Cu, 0x8006905Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x80069070u, 0x80069070u, 300u, 1u, dctx_func_80068A6C},
+    {0x80069084u, 0x80069084u, 300u, 1u, dctx_func_80068A6C},
+    {0x8006908Cu, 0x8006908Cu, 300u, 1u, dctx_func_80068A6C},
+    {0x800690B0u, 0x00000000u, 301u, 1u, dctx_func_800690B0},
+    {0x800690C8u, 0x00000000u, 302u, 1u, dctx_func_800690C8},
+    {0x800690D4u, 0x800690D4u, 302u, 1u, dctx_func_800690C8},
+    {0x80069148u, 0x80069148u, 302u, 1u, dctx_func_800690C8},
+    {0x80069194u, 0x00000000u, 303u, 1u, dctx_func_80069194},
+    {0x800691B0u, 0x00000000u, 304u, 1u, dctx_func_800691B0},
+    {0x800691BCu, 0x800691BCu, 304u, 1u, dctx_func_800691B0},
+    {0x800691FCu, 0x800691FCu, 304u, 1u, dctx_func_800691B0},
+    {0x80069228u, 0x80069228u, 304u, 1u, dctx_func_800691B0},
+    {0x80069284u, 0x80069284u, 304u, 1u, dctx_func_800691B0},
+    {0x80069290u, 0x80069290u, 304u, 1u, dctx_func_800691B0},
+    {0x800692E0u, 0x800692E0u, 304u, 1u, dctx_func_800691B0},
+    {0x80069328u, 0x80069328u, 304u, 1u, dctx_func_800691B0},
+    {0x80069338u, 0x80069338u, 304u, 1u, dctx_func_800691B0},
+    {0x80069348u, 0x80069348u, 304u, 1u, dctx_func_800691B0},
+    {0x80069354u, 0x80069354u, 304u, 1u, dctx_func_800691B0},
+    {0x80069398u, 0x80069398u, 304u, 1u, dctx_func_800691B0},
+    {0x800693D0u, 0x800693D0u, 304u, 1u, dctx_func_800691B0},
+    {0x80069418u, 0x80069418u, 304u, 1u, dctx_func_800691B0},
+    {0x80069420u, 0x80069420u, 304u, 1u, dctx_func_800691B0},
+    {0x8006942Cu, 0x8006942Cu, 304u, 1u, dctx_func_800691B0},
+    {0x80069458u, 0x00000000u, 305u, 1u, dctx_func_80069458},
+    {0x800694C8u, 0x800694C8u, 305u, 1u, dctx_func_80069458},
+    {0x800694CCu, 0x800694CCu, 305u, 1u, dctx_func_80069458},
+    {0x800695E8u, 0x800695E8u, 305u, 1u, dctx_func_80069458},
+    {0x800695F0u, 0x800695F0u, 305u, 1u, dctx_func_80069458},
+    {0x80069614u, 0x80069614u, 305u, 1u, dctx_func_80069458},
+    {0x8006961Cu, 0x8006961Cu, 305u, 1u, dctx_func_80069458},
+    {0x80069628u, 0x80069628u, 305u, 1u, dctx_func_80069458},
+    {0x800696BCu, 0x800696BCu, 305u, 1u, dctx_func_80069458},
+    {0x800696FCu, 0x800696FCu, 305u, 1u, dctx_func_80069458},
+    {0x8006970Cu, 0x8006970Cu, 305u, 1u, dctx_func_80069458},
+    {0x80069714u, 0x80069714u, 305u, 1u, dctx_func_80069458},
+    {0x80069720u, 0x00000000u, 306u, 1u, dctx_func_80069720},
+    {0x80069734u, 0x80069734u, 306u, 1u, dctx_func_80069720},
+    {0x8006973Cu, 0x8006973Cu, 306u, 1u, dctx_func_80069720},
+    {0x80069744u, 0x80069744u, 306u, 1u, dctx_func_80069720},
+    {0x80069748u, 0x80069748u, 306u, 1u, dctx_func_80069720},
+    {0x8006974Cu, 0x8006974Cu, 306u, 1u, dctx_func_80069720},
+    {0x80069758u, 0x80069758u, 306u, 1u, dctx_func_80069720},
+    {0x80069760u, 0x80069760u, 306u, 1u, dctx_func_80069720},
+    {0x80069768u, 0x80069768u, 306u, 1u, dctx_func_80069720},
+    {0x8006976Cu, 0x8006976Cu, 306u, 1u, dctx_func_80069720},
+    {0x80069770u, 0x80069770u, 306u, 1u, dctx_func_80069720},
+    {0x8006977Cu, 0x8006977Cu, 306u, 1u, dctx_func_80069720},
+    {0x80069784u, 0x80069784u, 306u, 1u, dctx_func_80069720},
+    {0x8006978Cu, 0x8006978Cu, 306u, 1u, dctx_func_80069720},
+    {0x80069794u, 0x80069794u, 306u, 1u, dctx_func_80069720},
+    {0x800697A0u, 0x800697A0u, 306u, 1u, dctx_func_80069720},
+    {0x800697A8u, 0x800697A8u, 306u, 1u, dctx_func_80069720},
+    {0x800697B0u, 0x800697B0u, 306u, 1u, dctx_func_80069720},
+    {0x800697B8u, 0x800697B8u, 306u, 1u, dctx_func_80069720},
+    {0x800697C0u, 0x00000000u, 307u, 1u, dctx_func_800697C0},
+    {0x800697C8u, 0x00000000u, 308u, 1u, dctx_func_800697C8},
+    {0x800697E0u, 0x800697E0u, 308u, 1u, dctx_func_800697C8},
+    {0x800697E8u, 0x800697E8u, 308u, 1u, dctx_func_800697C8},
+    {0x800697F0u, 0x800697F0u, 308u, 1u, dctx_func_800697C8},
+    {0x800697F8u, 0x800697F8u, 308u, 1u, dctx_func_800697C8},
+    {0x80069800u, 0x80069800u, 308u, 1u, dctx_func_800697C8},
+    {0x80069808u, 0x80069808u, 308u, 1u, dctx_func_800697C8},
+    {0x80069810u, 0x80069810u, 308u, 1u, dctx_func_800697C8},
+    {0x80069870u, 0x80069870u, 308u, 1u, dctx_func_800697C8},
+    {0x800698A4u, 0x800698A4u, 308u, 1u, dctx_func_800697C8},
+    {0x800698B8u, 0x800698B8u, 308u, 1u, dctx_func_800697C8},
+    {0x800698BCu, 0x800698BCu, 308u, 1u, dctx_func_800697C8},
+    {0x800698CCu, 0x800698CCu, 308u, 1u, dctx_func_800697C8},
+    {0x800698D0u, 0x800698D0u, 308u, 1u, dctx_func_800697C8},
+    {0x800698E8u, 0x800698E8u, 308u, 1u, dctx_func_800697C8},
+    {0x800698F0u, 0x800698F0u, 308u, 1u, dctx_func_800697C8},
+    {0x800698F8u, 0x800698F8u, 308u, 1u, dctx_func_800697C8},
+    {0x80069904u, 0x80069904u, 308u, 1u, dctx_func_800697C8},
+    {0x80069908u, 0x80069908u, 308u, 1u, dctx_func_800697C8},
+    {0x80069914u, 0x80069914u, 308u, 1u, dctx_func_800697C8},
+    {0x80069918u, 0x80069918u, 308u, 1u, dctx_func_800697C8},
+    {0x8006992Cu, 0x8006992Cu, 308u, 1u, dctx_func_800697C8},
+    {0x80069930u, 0x80069930u, 308u, 1u, dctx_func_800697C8},
+    {0x80069954u, 0x00000000u, 309u, 1u, dctx_func_80069954},
+    {0x8006995Cu, 0x00000000u, 310u, 1u, dctx_func_8006995C},
+    {0x8006996Cu, 0x8006996Cu, 310u, 1u, dctx_func_8006995C},
+    {0x800699A8u, 0x800699A8u, 310u, 1u, dctx_func_8006995C},
+    {0x800699B4u, 0x00000000u, 311u, 1u, dctx_func_800699B4},
+    {0x800699BCu, 0x800699BCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069AFCu, 0x80069AFCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069B04u, 0x80069B04u, 311u, 1u, dctx_func_800699B4},
+    {0x80069B20u, 0x80069B20u, 311u, 1u, dctx_func_800699B4},
+    {0x80069B28u, 0x80069B28u, 311u, 1u, dctx_func_800699B4},
+    {0x80069B3Cu, 0x80069B3Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069B48u, 0x80069B48u, 311u, 1u, dctx_func_800699B4},
+    {0x80069B54u, 0x80069B54u, 311u, 1u, dctx_func_800699B4},
+    {0x80069B5Cu, 0x80069B5Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069B64u, 0x80069B64u, 311u, 1u, dctx_func_800699B4},
+    {0x80069BC8u, 0x80069BC8u, 311u, 1u, dctx_func_800699B4},
+    {0x80069BD4u, 0x80069BD4u, 311u, 1u, dctx_func_800699B4},
+    {0x80069BE0u, 0x80069BE0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069BECu, 0x80069BECu, 311u, 1u, dctx_func_800699B4},
+    {0x80069BF0u, 0x80069BF0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069BF8u, 0x80069BF8u, 311u, 1u, dctx_func_800699B4},
+    {0x80069C00u, 0x80069C00u, 311u, 1u, dctx_func_800699B4},
+    {0x80069C94u, 0x80069C94u, 311u, 1u, dctx_func_800699B4},
+    {0x80069CCCu, 0x80069CCCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069CD0u, 0x80069CD0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069CD8u, 0x80069CD8u, 311u, 1u, dctx_func_800699B4},
+    {0x80069CDCu, 0x80069CDCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069D00u, 0x80069D00u, 311u, 1u, dctx_func_800699B4},
+    {0x80069D64u, 0x80069D64u, 311u, 1u, dctx_func_800699B4},
+    {0x80069D7Cu, 0x80069D7Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069D84u, 0x80069D84u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DBCu, 0x80069DBCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069DC4u, 0x80069DC4u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DCCu, 0x80069DCCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069DD0u, 0x80069DD0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DD4u, 0x80069DD4u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DDCu, 0x80069DDCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069DE4u, 0x80069DE4u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DECu, 0x80069DECu, 311u, 1u, dctx_func_800699B4},
+    {0x80069DF0u, 0x80069DF0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DF4u, 0x80069DF4u, 311u, 1u, dctx_func_800699B4},
+    {0x80069DFCu, 0x80069DFCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069E04u, 0x80069E04u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E0Cu, 0x80069E0Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069E10u, 0x80069E10u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E14u, 0x80069E14u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E1Cu, 0x80069E1Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069E24u, 0x80069E24u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E2Cu, 0x80069E2Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069E30u, 0x80069E30u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E34u, 0x80069E34u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E3Cu, 0x80069E3Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069E50u, 0x80069E50u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E64u, 0x80069E64u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E78u, 0x80069E78u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E90u, 0x80069E90u, 311u, 1u, dctx_func_800699B4},
+    {0x80069E98u, 0x80069E98u, 311u, 1u, dctx_func_800699B4},
+    {0x80069EA8u, 0x80069EA8u, 311u, 1u, dctx_func_800699B4},
+    {0x80069EACu, 0x80069EACu, 311u, 1u, dctx_func_800699B4},
+    {0x80069EB8u, 0x80069EB8u, 311u, 1u, dctx_func_800699B4},
+    {0x80069EBCu, 0x80069EBCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069ECCu, 0x80069ECCu, 311u, 1u, dctx_func_800699B4},
+    {0x80069F18u, 0x80069F18u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F24u, 0x80069F24u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F30u, 0x80069F30u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F3Cu, 0x80069F3Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069F48u, 0x80069F48u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F4Cu, 0x80069F4Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069F54u, 0x80069F54u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F5Cu, 0x80069F5Cu, 311u, 1u, dctx_func_800699B4},
+    {0x80069F64u, 0x80069F64u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F84u, 0x80069F84u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F88u, 0x80069F88u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F90u, 0x80069F90u, 311u, 1u, dctx_func_800699B4},
+    {0x80069F94u, 0x80069F94u, 311u, 1u, dctx_func_800699B4},
+    {0x80069FA0u, 0x80069FA0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069FA4u, 0x80069FA4u, 311u, 1u, dctx_func_800699B4},
+    {0x80069FB8u, 0x80069FB8u, 311u, 1u, dctx_func_800699B4},
+    {0x80069FD0u, 0x80069FD0u, 311u, 1u, dctx_func_800699B4},
+    {0x80069FD8u, 0x80069FD8u, 311u, 1u, dctx_func_800699B4},
+    {0x8006A028u, 0x00000000u, 312u, 1u, dctx_func_8006A028},
+    {0x8006A06Cu, 0x00000000u, 313u, 1u, dctx_func_8006A06C},
+    {0x8006A078u, 0x8006A078u, 313u, 1u, dctx_func_8006A06C},
+    {0x8006A11Cu, 0x8006A11Cu, 313u, 1u, dctx_func_8006A06C},
+    {0x8006A168u, 0x00000000u, 314u, 1u, dctx_func_8006A168},
+    {0x8006A184u, 0x00000000u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A190u, 0x8006A190u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A1D0u, 0x8006A1D0u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A1FCu, 0x8006A1FCu, 315u, 1u, dctx_func_8006A184},
+    {0x8006A258u, 0x8006A258u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A264u, 0x8006A264u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A2B4u, 0x8006A2B4u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A2FCu, 0x8006A2FCu, 315u, 1u, dctx_func_8006A184},
+    {0x8006A30Cu, 0x8006A30Cu, 315u, 1u, dctx_func_8006A184},
+    {0x8006A31Cu, 0x8006A31Cu, 315u, 1u, dctx_func_8006A184},
+    {0x8006A328u, 0x8006A328u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A36Cu, 0x8006A36Cu, 315u, 1u, dctx_func_8006A184},
+    {0x8006A3A4u, 0x8006A3A4u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A3ECu, 0x8006A3ECu, 315u, 1u, dctx_func_8006A184},
+    {0x8006A3F4u, 0x8006A3F4u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A400u, 0x8006A400u, 315u, 1u, dctx_func_8006A184},
+    {0x8006A42Cu, 0x00000000u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A49Cu, 0x8006A49Cu, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A4A0u, 0x8006A4A0u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A5BCu, 0x8006A5BCu, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A5C4u, 0x8006A5C4u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A5E8u, 0x8006A5E8u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A5F0u, 0x8006A5F0u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A5FCu, 0x8006A5FCu, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A690u, 0x8006A690u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A6D0u, 0x8006A6D0u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A6E0u, 0x8006A6E0u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A6E8u, 0x8006A6E8u, 316u, 1u, dctx_func_8006A42C},
+    {0x8006A6F4u, 0x00000000u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A708u, 0x8006A708u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A710u, 0x8006A710u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A718u, 0x8006A718u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A71Cu, 0x8006A71Cu, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A720u, 0x8006A720u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A72Cu, 0x8006A72Cu, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A734u, 0x8006A734u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A73Cu, 0x8006A73Cu, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A740u, 0x8006A740u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A744u, 0x8006A744u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A750u, 0x8006A750u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A758u, 0x8006A758u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A760u, 0x8006A760u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A768u, 0x8006A768u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A774u, 0x8006A774u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A77Cu, 0x8006A77Cu, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A784u, 0x8006A784u, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A78Cu, 0x8006A78Cu, 317u, 1u, dctx_func_8006A6F4},
+    {0x8006A794u, 0x00000000u, 318u, 1u, dctx_func_8006A794},
+    {0x8006A79Cu, 0x00000000u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7B4u, 0x8006A7B4u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7BCu, 0x8006A7BCu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7C4u, 0x8006A7C4u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7CCu, 0x8006A7CCu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7D4u, 0x8006A7D4u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7DCu, 0x8006A7DCu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A7E4u, 0x8006A7E4u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A844u, 0x8006A844u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A878u, 0x8006A878u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A88Cu, 0x8006A88Cu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A890u, 0x8006A890u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8A0u, 0x8006A8A0u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8A4u, 0x8006A8A4u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8BCu, 0x8006A8BCu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8C4u, 0x8006A8C4u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8CCu, 0x8006A8CCu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8D8u, 0x8006A8D8u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8DCu, 0x8006A8DCu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8E8u, 0x8006A8E8u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A8ECu, 0x8006A8ECu, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A900u, 0x8006A900u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A904u, 0x8006A904u, 319u, 1u, dctx_func_8006A79C},
+    {0x8006A928u, 0x00000000u, 320u, 1u, dctx_func_8006A928},
+    {0x8006A930u, 0x8006A930u, 320u, 1u, dctx_func_8006A928},
+    {0x8006A940u, 0x8006A940u, 320u, 1u, dctx_func_8006A928},
+    {0x8006A97Cu, 0x8006A97Cu, 320u, 1u, dctx_func_8006A928},
+    {0x8006A984u, 0x8006A984u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AAC8u, 0x8006AAC8u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AAD0u, 0x8006AAD0u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AAFCu, 0x8006AAFCu, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB04u, 0x8006AB04u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB18u, 0x8006AB18u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB24u, 0x8006AB24u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB30u, 0x8006AB30u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB38u, 0x8006AB38u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB40u, 0x8006AB40u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB48u, 0x8006AB48u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB54u, 0x8006AB54u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB60u, 0x8006AB60u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB6Cu, 0x8006AB6Cu, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB74u, 0x8006AB74u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB80u, 0x8006AB80u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB8Cu, 0x8006AB8Cu, 320u, 1u, dctx_func_8006A928},
+    {0x8006AB98u, 0x8006AB98u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABA4u, 0x8006ABA4u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABA8u, 0x8006ABA8u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABB0u, 0x8006ABB0u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABB8u, 0x8006ABB8u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABC0u, 0x8006ABC0u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABE0u, 0x8006ABE0u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABE4u, 0x8006ABE4u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABECu, 0x8006ABECu, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABF0u, 0x8006ABF0u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ABFCu, 0x8006ABFCu, 320u, 1u, dctx_func_8006A928},
+    {0x8006AC00u, 0x8006AC00u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AC2Cu, 0x8006AC2Cu, 320u, 1u, dctx_func_8006A928},
+    {0x8006AC34u, 0x8006AC34u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AC68u, 0x8006AC68u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AC70u, 0x8006AC70u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ACC4u, 0x8006ACC4u, 320u, 1u, dctx_func_8006A928},
+    {0x8006ACDCu, 0x8006ACDCu, 320u, 1u, dctx_func_8006A928},
+    {0x8006AD38u, 0x8006AD38u, 320u, 1u, dctx_func_8006A928},
+    {0x8006AD54u, 0x00000000u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AD60u, 0x8006AD60u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006ADA0u, 0x8006ADA0u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006ADCCu, 0x8006ADCCu, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AE28u, 0x8006AE28u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AE60u, 0x8006AE60u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AEA8u, 0x8006AEA8u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AEB0u, 0x8006AEB0u, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AEBCu, 0x8006AEBCu, 321u, 1u, dctx_func_8006AD54},
+    {0x8006AEE8u, 0x00000000u, 322u, 1u, dctx_func_8006AEE8},
+    {0x8006AF28u, 0x00000000u, 323u, 1u, dctx_func_8006AF28},
+    {0x8006AF78u, 0x00000000u, 324u, 1u, dctx_func_8006AF78},
+    {0x8006AFCCu, 0x00000000u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006AFD0u, 0x8006AFD0u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006AFDCu, 0x8006AFDCu, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006AFECu, 0x8006AFECu, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006AFF4u, 0x8006AFF4u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006AFFCu, 0x8006AFFCu, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006B004u, 0x8006B004u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006B010u, 0x8006B010u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006B018u, 0x8006B018u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006B020u, 0x8006B020u, 325u, 1u, dctx_func_8006AFCC},
+    {0x8006B028u, 0x00000000u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B09Cu, 0x8006B09Cu, 326u, 1u, dctx_func_8006B028},
+    {0x8006B0A8u, 0x8006B0A8u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B0B0u, 0x8006B0B0u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B0BCu, 0x8006B0BCu, 326u, 1u, dctx_func_8006B028},
+    {0x8006B0CCu, 0x8006B0CCu, 326u, 1u, dctx_func_8006B028},
+    {0x8006B0D8u, 0x8006B0D8u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B0DCu, 0x8006B0DCu, 326u, 1u, dctx_func_8006B028},
+    {0x8006B1F8u, 0x8006B1F8u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B208u, 0x8006B208u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B214u, 0x8006B214u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B228u, 0x8006B228u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B230u, 0x8006B230u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B238u, 0x8006B238u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B26Cu, 0x8006B26Cu, 326u, 1u, dctx_func_8006B028},
+    {0x8006B278u, 0x8006B278u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B2BCu, 0x8006B2BCu, 326u, 1u, dctx_func_8006B028},
+    {0x8006B320u, 0x8006B320u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B330u, 0x8006B330u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B338u, 0x8006B338u, 326u, 1u, dctx_func_8006B028},
+    {0x8006B344u, 0x00000000u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B358u, 0x8006B358u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B360u, 0x8006B360u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B368u, 0x8006B368u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B36Cu, 0x8006B36Cu, 327u, 1u, dctx_func_8006B344},
+    {0x8006B370u, 0x8006B370u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B37Cu, 0x8006B37Cu, 327u, 1u, dctx_func_8006B344},
+    {0x8006B384u, 0x8006B384u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B38Cu, 0x8006B38Cu, 327u, 1u, dctx_func_8006B344},
+    {0x8006B390u, 0x8006B390u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B394u, 0x8006B394u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3A0u, 0x8006B3A0u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3A8u, 0x8006B3A8u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3B0u, 0x8006B3B0u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3B8u, 0x8006B3B8u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3C4u, 0x8006B3C4u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3CCu, 0x8006B3CCu, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3D4u, 0x8006B3D4u, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3DCu, 0x8006B3DCu, 327u, 1u, dctx_func_8006B344},
+    {0x8006B3E4u, 0x00000000u, 328u, 1u, dctx_func_8006B3E4},
+    {0x8006B3ECu, 0x00000000u, 329u, 1u, dctx_func_8006B3EC},
+    {0x8006B3F4u, 0x00000000u, 330u, 1u, dctx_func_8006B3F4},
+    {0x8006B404u, 0x8006B404u, 330u, 1u, dctx_func_8006B3F4},
+    {0x8006B440u, 0x00000000u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B448u, 0x8006B448u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B58Cu, 0x8006B58Cu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B594u, 0x8006B594u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B5C0u, 0x8006B5C0u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B5C8u, 0x8006B5C8u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B5DCu, 0x8006B5DCu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B5E8u, 0x8006B5E8u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B5F4u, 0x8006B5F4u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B5FCu, 0x8006B5FCu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B604u, 0x8006B604u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B60Cu, 0x8006B60Cu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B618u, 0x8006B618u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B624u, 0x8006B624u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B630u, 0x8006B630u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B638u, 0x8006B638u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B644u, 0x8006B644u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B650u, 0x8006B650u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B65Cu, 0x8006B65Cu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B668u, 0x8006B668u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B66Cu, 0x8006B66Cu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B674u, 0x8006B674u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B67Cu, 0x8006B67Cu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B684u, 0x8006B684u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6A4u, 0x8006B6A4u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6A8u, 0x8006B6A8u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6B0u, 0x8006B6B0u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6B4u, 0x8006B6B4u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6C0u, 0x8006B6C0u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6C4u, 0x8006B6C4u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6F4u, 0x8006B6F4u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B6FCu, 0x8006B6FCu, 331u, 1u, dctx_func_8006B440},
+    {0x8006B748u, 0x8006B748u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B750u, 0x8006B750u, 331u, 1u, dctx_func_8006B440},
+    {0x8006B7D4u, 0x00000000u, 332u, 1u, dctx_func_8006B7D4},
+    {0x8006B818u, 0x00000000u, 333u, 1u, dctx_func_8006B818},
+    {0x8006B8A4u, 0x00000000u, 334u, 1u, dctx_func_8006B8A4},
+    {0x8006B8C0u, 0x00000000u, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006B8CCu, 0x8006B8CCu, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006B90Cu, 0x8006B90Cu, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006B938u, 0x8006B938u, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006B994u, 0x8006B994u, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006B9CCu, 0x8006B9CCu, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006BA14u, 0x8006BA14u, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006BA1Cu, 0x8006BA1Cu, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006BA28u, 0x8006BA28u, 335u, 1u, dctx_func_8006B8C0},
+    {0x8006BA54u, 0x00000000u, 336u, 1u, dctx_func_8006BA54},
+    {0x8006BA94u, 0x00000000u, 337u, 1u, dctx_func_8006BA94},
+    {0x8006BAE4u, 0x00000000u, 338u, 1u, dctx_func_8006BAE4},
+    {0x8006BB38u, 0x00000000u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB3Cu, 0x8006BB3Cu, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB48u, 0x8006BB48u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB58u, 0x8006BB58u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB60u, 0x8006BB60u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB68u, 0x8006BB68u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB70u, 0x8006BB70u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB7Cu, 0x8006BB7Cu, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB84u, 0x8006BB84u, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB8Cu, 0x8006BB8Cu, 339u, 1u, dctx_func_8006BB38},
+    {0x8006BB94u, 0x00000000u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC04u, 0x8006BC04u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC10u, 0x8006BC10u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC18u, 0x8006BC18u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC24u, 0x8006BC24u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC34u, 0x8006BC34u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC40u, 0x8006BC40u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BC44u, 0x8006BC44u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BD60u, 0x8006BD60u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BD70u, 0x8006BD70u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BD7Cu, 0x8006BD7Cu, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BD90u, 0x8006BD90u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BD98u, 0x8006BD98u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BDA0u, 0x8006BDA0u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BDD4u, 0x8006BDD4u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BDE0u, 0x8006BDE0u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BE24u, 0x8006BE24u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BE88u, 0x8006BE88u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BE98u, 0x8006BE98u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BEA0u, 0x8006BEA0u, 340u, 1u, dctx_func_8006BB94},
+    {0x8006BEACu, 0x00000000u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEC0u, 0x8006BEC0u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEC8u, 0x8006BEC8u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BED0u, 0x8006BED0u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BED4u, 0x8006BED4u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BED8u, 0x8006BED8u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEE4u, 0x8006BEE4u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEECu, 0x8006BEECu, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEF4u, 0x8006BEF4u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEF8u, 0x8006BEF8u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BEFCu, 0x8006BEFCu, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF08u, 0x8006BF08u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF10u, 0x8006BF10u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF18u, 0x8006BF18u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF20u, 0x8006BF20u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF2Cu, 0x8006BF2Cu, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF34u, 0x8006BF34u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF3Cu, 0x8006BF3Cu, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF44u, 0x8006BF44u, 341u, 1u, dctx_func_8006BEAC},
+    {0x8006BF4Cu, 0x00000000u, 342u, 1u, dctx_func_8006BF4C},
+    {0x8006BF54u, 0x00000000u, 343u, 1u, dctx_func_8006BF54},
+    {0x8006BF5Cu, 0x00000000u, 344u, 1u, dctx_func_8006BF5C},
+    {0x8006BF6Cu, 0x8006BF6Cu, 344u, 1u, dctx_func_8006BF5C},
+    {0x8006BFA8u, 0x00000000u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006BFB0u, 0x8006BFB0u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C100u, 0x8006C100u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C108u, 0x8006C108u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C124u, 0x8006C124u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C12Cu, 0x8006C12Cu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C140u, 0x8006C140u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C14Cu, 0x8006C14Cu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C158u, 0x8006C158u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C160u, 0x8006C160u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C168u, 0x8006C168u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C170u, 0x8006C170u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C17Cu, 0x8006C17Cu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C188u, 0x8006C188u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C194u, 0x8006C194u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C19Cu, 0x8006C19Cu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1A8u, 0x8006C1A8u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1B4u, 0x8006C1B4u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1C0u, 0x8006C1C0u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1CCu, 0x8006C1CCu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1D0u, 0x8006C1D0u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1D8u, 0x8006C1D8u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1E0u, 0x8006C1E0u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C1E8u, 0x8006C1E8u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C208u, 0x8006C208u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C20Cu, 0x8006C20Cu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C214u, 0x8006C214u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C218u, 0x8006C218u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C224u, 0x8006C224u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C228u, 0x8006C228u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C250u, 0x8006C250u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C270u, 0x8006C270u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C29Cu, 0x8006C29Cu, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C2F4u, 0x8006C2F4u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C328u, 0x8006C328u, 345u, 1u, dctx_func_8006BFA8},
+    {0x8006C350u, 0x00000000u, 346u, 1u, dctx_func_8006C350},
+    {0x8006C368u, 0x00000000u, 347u, 1u, dctx_func_8006C368},
+    {0x8006C3D8u, 0x00000000u, 348u, 1u, dctx_func_8006C3D8},
+    {0x8006C3F4u, 0x00000000u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C400u, 0x8006C400u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C440u, 0x8006C440u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C474u, 0x8006C474u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C4FCu, 0x8006C4FCu, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C508u, 0x8006C508u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C540u, 0x8006C540u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C588u, 0x8006C588u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C590u, 0x8006C590u, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C59Cu, 0x8006C59Cu, 349u, 1u, dctx_func_8006C3F4},
+    {0x8006C5C8u, 0x00000000u, 350u, 1u, dctx_func_8006C5C8},
+    {0x8006C608u, 0x00000000u, 351u, 1u, dctx_func_8006C608},
+    {0x8006C658u, 0x00000000u, 352u, 1u, dctx_func_8006C658},
+    {0x8006C6ACu, 0x00000000u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6B0u, 0x8006C6B0u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6BCu, 0x8006C6BCu, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6CCu, 0x8006C6CCu, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6D4u, 0x8006C6D4u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6DCu, 0x8006C6DCu, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6E4u, 0x8006C6E4u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6F0u, 0x8006C6F0u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C6F8u, 0x8006C6F8u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C700u, 0x8006C700u, 353u, 1u, dctx_func_8006C6AC},
+    {0x8006C708u, 0x00000000u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C7D8u, 0x8006C7D8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C7E4u, 0x8006C7E4u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C7ECu, 0x8006C7ECu, 354u, 1u, dctx_func_8006C708},
+    {0x8006C7F8u, 0x8006C7F8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C808u, 0x8006C808u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C814u, 0x8006C814u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C818u, 0x8006C818u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C998u, 0x8006C998u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C9A8u, 0x8006C9A8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C9B4u, 0x8006C9B4u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C9C8u, 0x8006C9C8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C9D0u, 0x8006C9D0u, 354u, 1u, dctx_func_8006C708},
+    {0x8006C9D8u, 0x8006C9D8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006CA0Cu, 0x8006CA0Cu, 354u, 1u, dctx_func_8006C708},
+    {0x8006CA18u, 0x8006CA18u, 354u, 1u, dctx_func_8006C708},
+    {0x8006CA5Cu, 0x8006CA5Cu, 354u, 1u, dctx_func_8006C708},
+    {0x8006CAD8u, 0x8006CAD8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006CAE8u, 0x8006CAE8u, 354u, 1u, dctx_func_8006C708},
+    {0x8006CAF0u, 0x8006CAF0u, 354u, 1u, dctx_func_8006C708},
+    {0x8006CAFCu, 0x00000000u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB10u, 0x8006CB10u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB18u, 0x8006CB18u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB20u, 0x8006CB20u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB24u, 0x8006CB24u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB28u, 0x8006CB28u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB34u, 0x8006CB34u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB3Cu, 0x8006CB3Cu, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB44u, 0x8006CB44u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB48u, 0x8006CB48u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB4Cu, 0x8006CB4Cu, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB58u, 0x8006CB58u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB60u, 0x8006CB60u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB68u, 0x8006CB68u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB70u, 0x8006CB70u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB7Cu, 0x8006CB7Cu, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB84u, 0x8006CB84u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB8Cu, 0x8006CB8Cu, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB94u, 0x8006CB94u, 355u, 1u, dctx_func_8006CAFC},
+    {0x8006CB9Cu, 0x00000000u, 356u, 1u, dctx_func_8006CB9C},
+    {0x8006CBA4u, 0x00000000u, 357u, 1u, dctx_func_8006CBA4},
+    {0x8006CBACu, 0x00000000u, 358u, 1u, dctx_func_8006CBAC},
+    {0x8006CBBCu, 0x8006CBBCu, 358u, 1u, dctx_func_8006CBAC},
+    {0x8006CBF8u, 0x00000000u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CC00u, 0x8006CC00u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CD50u, 0x8006CD50u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CD58u, 0x8006CD58u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CD74u, 0x8006CD74u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CD7Cu, 0x8006CD7Cu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CD90u, 0x8006CD90u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CD9Cu, 0x8006CD9Cu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDA8u, 0x8006CDA8u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDB0u, 0x8006CDB0u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDB8u, 0x8006CDB8u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDC0u, 0x8006CDC0u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDCCu, 0x8006CDCCu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDD8u, 0x8006CDD8u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDE4u, 0x8006CDE4u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDECu, 0x8006CDECu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CDF8u, 0x8006CDF8u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE04u, 0x8006CE04u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE10u, 0x8006CE10u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE1Cu, 0x8006CE1Cu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE20u, 0x8006CE20u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE28u, 0x8006CE28u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE30u, 0x8006CE30u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE38u, 0x8006CE38u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE58u, 0x8006CE58u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE5Cu, 0x8006CE5Cu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE64u, 0x8006CE64u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE68u, 0x8006CE68u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE74u, 0x8006CE74u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CE78u, 0x8006CE78u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CEA0u, 0x8006CEA0u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CEC0u, 0x8006CEC0u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CF08u, 0x8006CF08u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CF8Cu, 0x8006CF8Cu, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006CFC0u, 0x8006CFC0u, 359u, 1u, dctx_func_8006CBF8},
+    {0x8006D044u, 0x00000000u, 360u, 1u, dctx_func_8006D044},
+    {0x8006D088u, 0x00000000u, 361u, 1u, dctx_func_8006D088},
+    {0x8006D12Cu, 0x00000000u, 362u, 1u, dctx_func_8006D12C},
+    {0x8006D148u, 0x00000000u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D154u, 0x8006D154u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D194u, 0x8006D194u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D1C8u, 0x8006D1C8u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D250u, 0x8006D250u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D25Cu, 0x8006D25Cu, 363u, 1u, dctx_func_8006D148},
+    {0x8006D294u, 0x8006D294u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D2DCu, 0x8006D2DCu, 363u, 1u, dctx_func_8006D148},
+    {0x8006D2E4u, 0x8006D2E4u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D2F0u, 0x8006D2F0u, 363u, 1u, dctx_func_8006D148},
+    {0x8006D31Cu, 0x00000000u, 364u, 1u, dctx_func_8006D31C},
+    {0x8006D35Cu, 0x00000000u, 365u, 1u, dctx_func_8006D35C},
+    {0x8006D3ACu, 0x00000000u, 366u, 1u, dctx_func_8006D3AC},
+    {0x8006D400u, 0x00000000u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D404u, 0x8006D404u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D410u, 0x8006D410u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D420u, 0x8006D420u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D428u, 0x8006D428u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D430u, 0x8006D430u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D438u, 0x8006D438u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D444u, 0x8006D444u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D44Cu, 0x8006D44Cu, 367u, 1u, dctx_func_8006D400},
+    {0x8006D454u, 0x8006D454u, 367u, 1u, dctx_func_8006D400},
+    {0x8006D45Cu, 0x00000000u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D4FCu, 0x8006D4FCu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D508u, 0x8006D508u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D510u, 0x8006D510u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D51Cu, 0x8006D51Cu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D52Cu, 0x8006D52Cu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D538u, 0x8006D538u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D53Cu, 0x8006D53Cu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D6BCu, 0x8006D6BCu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D6CCu, 0x8006D6CCu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D6D8u, 0x8006D6D8u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D6ECu, 0x8006D6ECu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D6F4u, 0x8006D6F4u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D6FCu, 0x8006D6FCu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D730u, 0x8006D730u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D73Cu, 0x8006D73Cu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D780u, 0x8006D780u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D7FCu, 0x8006D7FCu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D80Cu, 0x8006D80Cu, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D814u, 0x8006D814u, 368u, 1u, dctx_func_8006D45C},
+    {0x8006D820u, 0x00000000u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D834u, 0x8006D834u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D83Cu, 0x8006D83Cu, 369u, 1u, dctx_func_8006D820},
+    {0x8006D844u, 0x8006D844u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D848u, 0x8006D848u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D84Cu, 0x8006D84Cu, 369u, 1u, dctx_func_8006D820},
+    {0x8006D858u, 0x8006D858u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D860u, 0x8006D860u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D868u, 0x8006D868u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D86Cu, 0x8006D86Cu, 369u, 1u, dctx_func_8006D820},
+    {0x8006D870u, 0x8006D870u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D87Cu, 0x8006D87Cu, 369u, 1u, dctx_func_8006D820},
+    {0x8006D884u, 0x8006D884u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D88Cu, 0x8006D88Cu, 369u, 1u, dctx_func_8006D820},
+    {0x8006D894u, 0x8006D894u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D8A0u, 0x8006D8A0u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D8A8u, 0x8006D8A8u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D8B0u, 0x8006D8B0u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D8B8u, 0x8006D8B8u, 369u, 1u, dctx_func_8006D820},
+    {0x8006D8C0u, 0x00000000u, 370u, 1u, dctx_func_8006D8C0},
+    {0x8006DE30u, 0x00000000u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DEACu, 0x8006DEACu, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DEC4u, 0x8006DEC4u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DED8u, 0x8006DED8u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DEECu, 0x8006DEECu, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DEF4u, 0x8006DEF4u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DF64u, 0x8006DF64u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DF70u, 0x8006DF70u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006DF80u, 0x8006DF80u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E0A0u, 0x8006E0A0u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E1F8u, 0x8006E1F8u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E210u, 0x8006E210u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E240u, 0x8006E240u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E248u, 0x8006E248u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E260u, 0x8006E260u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E264u, 0x8006E264u, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E31Cu, 0x8006E31Cu, 371u, 1u, dctx_func_8006DE30},
+    {0x8006E354u, 0x00000000u, 372u, 1u, dctx_func_8006E354},
+    {0x8006E374u, 0x8006E374u, 372u, 1u, dctx_func_8006E354},
+    {0x8006E380u, 0x8006E380u, 372u, 1u, dctx_func_8006E354},
+    {0x8006E3C0u, 0x00000000u, 373u, 1u, dctx_func_8006E3C0},
+    {0x8006E3E0u, 0x8006E3E0u, 373u, 1u, dctx_func_8006E3C0},
+    {0x8006E3ECu, 0x8006E3ECu, 373u, 1u, dctx_func_8006E3C0},
+    {0x8006E42Cu, 0x00000000u, 374u, 1u, dctx_func_8006E42C},
+    {0x8006E44Cu, 0x8006E44Cu, 374u, 1u, dctx_func_8006E42C},
+    {0x8006E458u, 0x8006E458u, 374u, 1u, dctx_func_8006E42C},
+    {0x8006E498u, 0x00000000u, 375u, 1u, dctx_func_8006E498},
+    {0x8006E4D0u, 0x00000000u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E4F8u, 0x8006E4F8u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E50Cu, 0x8006E50Cu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E51Cu, 0x8006E51Cu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E52Cu, 0x8006E52Cu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E538u, 0x8006E538u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E548u, 0x8006E548u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E554u, 0x8006E554u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E560u, 0x8006E560u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E56Cu, 0x8006E56Cu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E57Cu, 0x8006E57Cu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E588u, 0x8006E588u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E594u, 0x8006E594u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E5A0u, 0x8006E5A0u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E5BCu, 0x8006E5BCu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E5D0u, 0x8006E5D0u, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E5DCu, 0x8006E5DCu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E60Cu, 0x8006E60Cu, 376u, 1u, dctx_func_8006E4D0},
+    {0x8006E624u, 0x00000000u, 377u, 1u, dctx_func_8006E624},
+    {0x8006E644u, 0x8006E644u, 377u, 1u, dctx_func_8006E624},
+    {0x8006E650u, 0x8006E650u, 377u, 1u, dctx_func_8006E624},
+    {0x8006E660u, 0x8006E660u, 377u, 1u, dctx_func_8006E624},
+    {0x8006E66Cu, 0x8006E66Cu, 377u, 1u, dctx_func_8006E624},
+    {0x8006E67Cu, 0x8006E67Cu, 377u, 1u, dctx_func_8006E624},
+    {0x8006E68Cu, 0x00000000u, 378u, 1u, dctx_func_8006E68C},
+    {0x8006E694u, 0x8006E694u, 378u, 1u, dctx_func_8006E68C},
+    {0x8006E69Cu, 0x8006E69Cu, 378u, 1u, dctx_func_8006E68C},
+    {0x8006E6A4u, 0x8006E6A4u, 378u, 1u, dctx_func_8006E68C},
+    {0x8006E6ACu, 0x00000000u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6B4u, 0x8006E6B4u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6BCu, 0x8006E6BCu, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6C4u, 0x8006E6C4u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6D0u, 0x8006E6D0u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6D4u, 0x8006E6D4u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6E0u, 0x8006E6E0u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6E8u, 0x8006E6E8u, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E6ECu, 0x8006E6ECu, 379u, 1u, dctx_func_8006E6AC},
+    {0x8006E710u, 0x00000000u, 380u, 1u, dctx_func_8006E710},
+    {0x8006E720u, 0x8006E720u, 380u, 1u, dctx_func_8006E710},
+    {0x8006E724u, 0x8006E724u, 380u, 1u, dctx_func_8006E710},
+    {0x8006E730u, 0x8006E730u, 380u, 1u, dctx_func_8006E710},
+    {0x8006E738u, 0x8006E738u, 380u, 1u, dctx_func_8006E710},
+    {0x8006E73Cu, 0x8006E73Cu, 380u, 1u, dctx_func_8006E710},
+    {0x8006E754u, 0x00000000u, 381u, 1u, dctx_func_8006E754},
+    {0x8006E75Cu, 0x00000000u, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E76Cu, 0x8006E76Cu, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E77Cu, 0x8006E77Cu, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E780u, 0x8006E780u, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E78Cu, 0x8006E78Cu, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E794u, 0x8006E794u, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E798u, 0x8006E798u, 382u, 1u, dctx_func_8006E75C},
+    {0x8006E7B8u, 0x00000000u, 383u, 1u, dctx_func_8006E7B8},
+    {0x8006E7C8u, 0x8006E7C8u, 383u, 1u, dctx_func_8006E7B8},
+    {0x8006E7CCu, 0x8006E7CCu, 383u, 1u, dctx_func_8006E7B8},
+    {0x8006E7D8u, 0x8006E7D8u, 383u, 1u, dctx_func_8006E7B8},
+    {0x8006E7E0u, 0x8006E7E0u, 383u, 1u, dctx_func_8006E7B8},
+    {0x8006E7E4u, 0x8006E7E4u, 383u, 1u, dctx_func_8006E7B8},
+    {0x8006E804u, 0x00000000u, 384u, 1u, dctx_func_8006E804},
+    {0x8006E80Cu, 0x8006E80Cu, 384u, 1u, dctx_func_8006E804},
+    {0x8006E818u, 0x8006E818u, 384u, 1u, dctx_func_8006E804},
+    {0x8006E828u, 0x8006E828u, 384u, 1u, dctx_func_8006E804},
+    {0x8006E82Cu, 0x8006E82Cu, 384u, 1u, dctx_func_8006E804},
+    {0x8006E838u, 0x8006E838u, 384u, 1u, dctx_func_8006E804},
+    {0x8006E840u, 0x8006E840u, 384u, 1u, dctx_func_8006E804},
+    {0x8006E844u, 0x8006E844u, 384u, 1u, dctx_func_8006E804},
+    {0x8006E864u, 0x00000000u, 385u, 1u, dctx_func_8006E864},
+    {0x8006E874u, 0x8006E874u, 385u, 1u, dctx_func_8006E864},
+    {0x8006E878u, 0x8006E878u, 385u, 1u, dctx_func_8006E864},
+    {0x8006E884u, 0x8006E884u, 385u, 1u, dctx_func_8006E864},
+    {0x8006E88Cu, 0x8006E88Cu, 385u, 1u, dctx_func_8006E864},
+    {0x8006E890u, 0x8006E890u, 385u, 1u, dctx_func_8006E864},
+    {0x8006E8B4u, 0x00000000u, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E8C4u, 0x8006E8C4u, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E8D4u, 0x8006E8D4u, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E8D8u, 0x8006E8D8u, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E8E4u, 0x8006E8E4u, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E8ECu, 0x8006E8ECu, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E8F0u, 0x8006E8F0u, 386u, 1u, dctx_func_8006E8B4},
+    {0x8006E910u, 0x00000000u, 387u, 1u, dctx_func_8006E910},
+    {0x8006E920u, 0x8006E920u, 387u, 1u, dctx_func_8006E910},
+    {0x8006E924u, 0x8006E924u, 387u, 1u, dctx_func_8006E910},
+    {0x8006E930u, 0x8006E930u, 387u, 1u, dctx_func_8006E910},
+    {0x8006E938u, 0x8006E938u, 387u, 1u, dctx_func_8006E910},
+    {0x8006E93Cu, 0x8006E93Cu, 387u, 1u, dctx_func_8006E910},
+    {0x8006EB58u, 0x00000000u, 388u, 1u, dctx_func_8006EB58},
+    {0x8006EB7Cu, 0x8006EB7Cu, 388u, 1u, dctx_func_8006EB58},
+    {0x8006EBA0u, 0x8006EBA0u, 388u, 1u, dctx_func_8006EB58},
+    {0x8006EBA4u, 0x8006EBA4u, 388u, 1u, dctx_func_8006EB58},
+    {0x8006EBB8u, 0x8006EBB8u, 388u, 1u, dctx_func_8006EB58},
+    {0x8006EBCCu, 0x8006EBCCu, 388u, 1u, dctx_func_8006EB58},
+    {0x8006EC08u, 0x8006EC08u, 388u, 1u, dctx_func_8006EB58},
+    {0x8006ECF8u, 0x00000000u, 389u, 1u, dctx_func_8006ECF8},
+    {0x8006ED0Cu, 0x00000000u, 390u, 1u, dctx_func_8006ED0C},
+    {0x8006ED34u, 0x8006ED34u, 390u, 1u, dctx_func_8006ED0C},
+    {0x8006ED3Cu, 0x8006ED3Cu, 390u, 1u, dctx_func_8006ED0C},
+    {0x8006ED88u, 0x8006ED88u, 390u, 1u, dctx_func_8006ED0C},
+    {0x8006EDC0u, 0x8006EDC0u, 390u, 1u, dctx_func_8006ED0C},
+    {0x8006EDD4u, 0x8006EDD4u, 390u, 1u, dctx_func_8006ED0C},
+    {0x8006EDECu, 0x00000000u, 391u, 1u, dctx_func_8006EDEC},
+    {0x8006EE50u, 0x8006EE50u, 391u, 1u, dctx_func_8006EDEC},
+    {0x8006EF20u, 0x8006EF20u, 391u, 1u, dctx_func_8006EDEC},
+    {0x8006EF48u, 0x8006EF48u, 391u, 1u, dctx_func_8006EDEC},
+    {0x8006EF68u, 0x8006EF68u, 391u, 1u, dctx_func_8006EDEC},
+    {0x8006EF74u, 0x8006EF74u, 391u, 1u, dctx_func_8006EDEC},
+    {0x8006EF88u, 0x00000000u, 392u, 1u, dctx_func_8006EF88},
+    {0x8006EF9Cu, 0x8006EF9Cu, 392u, 1u, dctx_func_8006EF88},
+    {0x8006EFA4u, 0x8006EFA4u, 392u, 1u, dctx_func_8006EF88},
+    {0x8006EFB0u, 0x8006EFB0u, 392u, 1u, dctx_func_8006EF88},
+    {0x8006EFD0u, 0x8006EFD0u, 392u, 1u, dctx_func_8006EF88},
+    {0x8006EFF0u, 0x8006EFF0u, 392u, 1u, dctx_func_8006EF88},
+    {0x8006EFFCu, 0x8006EFFCu, 392u, 1u, dctx_func_8006EF88},
+    {0x8006F00Cu, 0x00000000u, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F024u, 0x8006F024u, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F02Cu, 0x8006F02Cu, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F034u, 0x8006F034u, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F040u, 0x8006F040u, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F048u, 0x8006F048u, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F060u, 0x8006F060u, 393u, 1u, dctx_func_8006F00C},
+    {0x8006F0C8u, 0x00000000u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F0F4u, 0x8006F0F4u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F0FCu, 0x8006F0FCu, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F114u, 0x8006F114u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F118u, 0x8006F118u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F120u, 0x8006F120u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F128u, 0x8006F128u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F140u, 0x8006F140u, 394u, 1u, dctx_func_8006F0C8},
+    {0x8006F160u, 0x00000000u, 395u, 1u, dctx_func_8006F160},
+    {0x8006F1C0u, 0x8006F1C0u, 395u, 1u, dctx_func_8006F160},
+    {0x8006F1E0u, 0x8006F1E0u, 395u, 1u, dctx_func_8006F160},
+    {0x8006F1E8u, 0x8006F1E8u, 395u, 1u, dctx_func_8006F160},
+    {0x8006F1FCu, 0x00000000u, 396u, 1u, dctx_func_8006F1FC},
+    {0x8006F238u, 0x8006F238u, 396u, 1u, dctx_func_8006F1FC},
+    {0x8006F250u, 0x8006F250u, 396u, 1u, dctx_func_8006F1FC},
+    {0x8006F258u, 0x8006F258u, 396u, 1u, dctx_func_8006F1FC},
+    {0x8006F264u, 0x8006F264u, 396u, 1u, dctx_func_8006F1FC},
+    {0x8006F294u, 0x8006F294u, 396u, 1u, dctx_func_8006F1FC},
+    {0x8006F2B0u, 0x00000000u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F314u, 0x8006F314u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F330u, 0x8006F330u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F360u, 0x8006F360u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F36Cu, 0x8006F36Cu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F3A0u, 0x8006F3A0u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F3ACu, 0x8006F3ACu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F3DCu, 0x8006F3DCu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F3E4u, 0x8006F3E4u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F3F8u, 0x8006F3F8u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F3FCu, 0x8006F3FCu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F418u, 0x8006F418u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F41Cu, 0x8006F41Cu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F434u, 0x8006F434u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F438u, 0x8006F438u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F43Cu, 0x8006F43Cu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F448u, 0x8006F448u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F454u, 0x8006F454u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F460u, 0x8006F460u, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F46Cu, 0x8006F46Cu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F47Cu, 0x8006F47Cu, 397u, 1u, dctx_func_8006F2B0},
+    {0x8006F4ACu, 0x00000000u, 398u, 1u, dctx_func_8006F4AC},
+    {0x8006F4C4u, 0x8006F4C4u, 398u, 1u, dctx_func_8006F4AC},
+    {0x8006F4F0u, 0x8006F4F0u, 398u, 1u, dctx_func_8006F4AC},
+    {0x8006F500u, 0x8006F500u, 398u, 1u, dctx_func_8006F4AC},
+    {0x8006F510u, 0x00000000u, 399u, 1u, dctx_func_8006F510},
+    {0x8006F52Cu, 0x8006F52Cu, 399u, 1u, dctx_func_8006F510},
+    {0x8006F534u, 0x8006F534u, 399u, 1u, dctx_func_8006F510},
+    {0x8006F554u, 0x8006F554u, 399u, 1u, dctx_func_8006F510},
+    {0x8006F55Cu, 0x8006F55Cu, 399u, 1u, dctx_func_8006F510},
+    {0x8006F570u, 0x8006F570u, 399u, 1u, dctx_func_8006F510},
+    {0x8006F574u, 0x8006F574u, 399u, 1u, dctx_func_8006F510},
+    {0x8006F584u, 0x00000000u, 400u, 1u, dctx_func_8006F584},
+    {0x8006F59Cu, 0x8006F59Cu, 400u, 1u, dctx_func_8006F584},
+    {0x8006F5A0u, 0x8006F5A0u, 400u, 1u, dctx_func_8006F584},
+    {0x8006F5ACu, 0x00000000u, 401u, 1u, dctx_func_8006F5AC},
+    {0x8006F5C8u, 0x8006F5C8u, 401u, 1u, dctx_func_8006F5AC},
+    {0x8006F5D8u, 0x8006F5D8u, 401u, 1u, dctx_func_8006F5AC},
+    {0x800704E8u, 0x00000000u, 402u, 1u, dctx_func_800704E8},
+    {0x80070788u, 0x00000000u, 403u, 1u, dctx_func_80070788},
+    {0x800707B8u, 0x800707B8u, 403u, 1u, dctx_func_80070788},
+    {0x800707CCu, 0x800707CCu, 403u, 1u, dctx_func_80070788},
+    {0x800707DCu, 0x800707DCu, 403u, 1u, dctx_func_80070788},
+    {0x800707ECu, 0x800707ECu, 403u, 1u, dctx_func_80070788},
+    {0x800707FCu, 0x800707FCu, 403u, 1u, dctx_func_80070788},
+    {0x80070804u, 0x80070804u, 403u, 1u, dctx_func_80070788},
+    {0x800708A8u, 0x800708A8u, 403u, 1u, dctx_func_80070788},
+    {0x800708C0u, 0x800708C0u, 403u, 1u, dctx_func_80070788},
+    {0x800708D8u, 0x800708D8u, 403u, 1u, dctx_func_80070788},
+    {0x800708ECu, 0x800708ECu, 403u, 1u, dctx_func_80070788},
+    {0x800708F8u, 0x800708F8u, 403u, 1u, dctx_func_80070788},
+    {0x80070904u, 0x80070904u, 403u, 1u, dctx_func_80070788},
+    {0x8007094Cu, 0x8007094Cu, 403u, 1u, dctx_func_80070788},
+    {0x80070970u, 0x00000000u, 404u, 1u, dctx_func_80070970},
+    {0x800709DCu, 0x00000000u, 405u, 1u, dctx_func_800709DC},
+    {0x800709FCu, 0x800709FCu, 405u, 1u, dctx_func_800709DC},
+    {0x80070A40u, 0x80070A40u, 405u, 1u, dctx_func_800709DC},
+    {0x80070A58u, 0x00000000u, 406u, 1u, dctx_func_80070A58},
+    {0x80070A6Cu, 0x80070A6Cu, 406u, 1u, dctx_func_80070A58},
+    {0x80070A78u, 0x80070A78u, 406u, 1u, dctx_func_80070A58},
+    {0x80070A8Cu, 0x80070A8Cu, 406u, 1u, dctx_func_80070A58},
+    {0x80070A9Cu, 0x80070A9Cu, 406u, 1u, dctx_func_80070A58},
+    {0x80070AB0u, 0x80070AB0u, 406u, 1u, dctx_func_80070A58},
+    {0x80070AB8u, 0x80070AB8u, 406u, 1u, dctx_func_80070A58},
+    {0x80070ACCu, 0x80070ACCu, 406u, 1u, dctx_func_80070A58},
+    {0x80070AD0u, 0x80070AD0u, 406u, 1u, dctx_func_80070A58},
+    {0x80070AD8u, 0x80070AD8u, 406u, 1u, dctx_func_80070A58},
+    {0x80070AE0u, 0x80070AE0u, 406u, 1u, dctx_func_80070A58},
+    {0x80070AECu, 0x80070AECu, 406u, 1u, dctx_func_80070A58},
+    {0x80070AF8u, 0x80070AF8u, 406u, 1u, dctx_func_80070A58},
+    {0x80070B00u, 0x80070B00u, 406u, 1u, dctx_func_80070A58},
+    {0x80070B08u, 0x80070B08u, 406u, 1u, dctx_func_80070A58},
+    {0x80070B10u, 0x80070B10u, 406u, 1u, dctx_func_80070A58},
+    {0x80070B18u, 0x80070B18u, 406u, 1u, dctx_func_80070A58},
+    {0x80070B20u, 0x80070B20u, 406u, 1u, dctx_func_80070A58},
+    {0x80070C58u, 0x00000000u, 407u, 1u, dctx_func_80070C58},
+    {0x80070C84u, 0x80070C84u, 407u, 1u, dctx_func_80070C58},
+    {0x80070C8Cu, 0x80070C8Cu, 407u, 1u, dctx_func_80070C58},
+    {0x80070CB0u, 0x80070CB0u, 407u, 1u, dctx_func_80070C58},
+    {0x80070CB4u, 0x80070CB4u, 407u, 1u, dctx_func_80070C58},
+    {0x80070CBCu, 0x80070CBCu, 407u, 1u, dctx_func_80070C58},
+    {0x80070CC4u, 0x80070CC4u, 407u, 1u, dctx_func_80070C58},
+    {0x80070CC8u, 0x80070CC8u, 407u, 1u, dctx_func_80070C58},
+    {0x80070CD0u, 0x80070CD0u, 407u, 1u, dctx_func_80070C58},
+    {0x80070D84u, 0x80070D84u, 407u, 1u, dctx_func_80070C58},
+    {0x80070D9Cu, 0x80070D9Cu, 407u, 1u, dctx_func_80070C58},
+    {0x80070DD8u, 0x80070DD8u, 407u, 1u, dctx_func_80070C58},
+    {0x80070DE0u, 0x80070DE0u, 407u, 1u, dctx_func_80070C58},
+    {0x80070DF0u, 0x00000000u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070E10u, 0x80070E10u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070E20u, 0x80070E20u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070E2Cu, 0x80070E2Cu, 408u, 1u, dctx_func_80070DF0},
+    {0x80070E38u, 0x80070E38u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070E44u, 0x80070E44u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070E5Cu, 0x80070E5Cu, 408u, 1u, dctx_func_80070DF0},
+    {0x80070EA0u, 0x80070EA0u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070EACu, 0x80070EACu, 408u, 1u, dctx_func_80070DF0},
+    {0x80070EB4u, 0x80070EB4u, 408u, 1u, dctx_func_80070DF0},
+    {0x80070EC8u, 0x00000000u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070F10u, 0x80070F10u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070F64u, 0x80070F64u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070F70u, 0x80070F70u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070F88u, 0x80070F88u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FB4u, 0x80070FB4u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FC0u, 0x80070FC0u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FCCu, 0x80070FCCu, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FD4u, 0x80070FD4u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FE0u, 0x80070FE0u, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FECu, 0x80070FECu, 409u, 1u, dctx_func_80070EC8},
+    {0x80070FF4u, 0x80070FF4u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071000u, 0x80071000u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007100Cu, 0x8007100Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x8007101Cu, 0x8007101Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071058u, 0x80071058u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071060u, 0x80071060u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071084u, 0x80071084u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007108Cu, 0x8007108Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x800710C8u, 0x800710C8u, 409u, 1u, dctx_func_80070EC8},
+    {0x800710D8u, 0x800710D8u, 409u, 1u, dctx_func_80070EC8},
+    {0x800710E0u, 0x800710E0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800710F4u, 0x800710F4u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071104u, 0x80071104u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071108u, 0x80071108u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071120u, 0x80071120u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071130u, 0x80071130u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007113Cu, 0x8007113Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x8007114Cu, 0x8007114Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071150u, 0x80071150u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071160u, 0x80071160u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071170u, 0x80071170u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071180u, 0x80071180u, 409u, 1u, dctx_func_80070EC8},
+    {0x800711A0u, 0x800711A0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800711C0u, 0x800711C0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800711FCu, 0x800711FCu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071200u, 0x80071200u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007120Cu, 0x8007120Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071214u, 0x80071214u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071218u, 0x80071218u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071230u, 0x80071230u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071240u, 0x80071240u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071264u, 0x80071264u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071274u, 0x80071274u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071294u, 0x80071294u, 409u, 1u, dctx_func_80070EC8},
+    {0x800712B4u, 0x800712B4u, 409u, 1u, dctx_func_80070EC8},
+    {0x800712F0u, 0x800712F0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800712F4u, 0x800712F4u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071300u, 0x80071300u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071308u, 0x80071308u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007130Cu, 0x8007130Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071324u, 0x80071324u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071334u, 0x80071334u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071358u, 0x80071358u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071368u, 0x80071368u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071370u, 0x80071370u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071384u, 0x80071384u, 409u, 1u, dctx_func_80070EC8},
+    {0x800713A8u, 0x800713A8u, 409u, 1u, dctx_func_80070EC8},
+    {0x800713B0u, 0x800713B0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800713B4u, 0x800713B4u, 409u, 1u, dctx_func_80070EC8},
+    {0x800713C0u, 0x800713C0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800713E4u, 0x800713E4u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071400u, 0x80071400u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071414u, 0x80071414u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007143Cu, 0x8007143Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071458u, 0x80071458u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007146Cu, 0x8007146Cu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071494u, 0x80071494u, 409u, 1u, dctx_func_80070EC8},
+    {0x800714B0u, 0x800714B0u, 409u, 1u, dctx_func_80070EC8},
+    {0x800714C4u, 0x800714C4u, 409u, 1u, dctx_func_80070EC8},
+    {0x800714C8u, 0x800714C8u, 409u, 1u, dctx_func_80070EC8},
+    {0x800714E8u, 0x800714E8u, 409u, 1u, dctx_func_80070EC8},
+    {0x800714F4u, 0x800714F4u, 409u, 1u, dctx_func_80070EC8},
+    {0x800714FCu, 0x800714FCu, 409u, 1u, dctx_func_80070EC8},
+    {0x80071508u, 0x80071508u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071540u, 0x80071540u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071548u, 0x80071548u, 409u, 1u, dctx_func_80070EC8},
+    {0x800715C8u, 0x800715C8u, 409u, 1u, dctx_func_80070EC8},
+    {0x800715D8u, 0x800715D8u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071604u, 0x80071604u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071618u, 0x80071618u, 409u, 1u, dctx_func_80070EC8},
+    {0x80071630u, 0x80071630u, 409u, 1u, dctx_func_80070EC8},
+    {0x8007166Cu, 0x00000000u, 410u, 1u, dctx_func_8007166C},
+    {0x8007168Cu, 0x8007168Cu, 410u, 1u, dctx_func_8007166C},
+    {0x8007169Cu, 0x8007169Cu, 410u, 1u, dctx_func_8007166C},
+    {0x800716C4u, 0x800716C4u, 410u, 1u, dctx_func_8007166C},
+    {0x800716CCu, 0x800716CCu, 410u, 1u, dctx_func_8007166C},
+    {0x80071704u, 0x00000000u, 411u, 1u, dctx_func_80071704},
+    {0x80071720u, 0x80071720u, 411u, 1u, dctx_func_80071704},
+    {0x80071730u, 0x80071730u, 411u, 1u, dctx_func_80071704},
+    {0x80071C64u, 0x00000000u, 412u, 1u, dctx_func_80071C64},
+    {0x80071CB4u, 0x80071CB4u, 412u, 1u, dctx_func_80071C64},
+    {0x80071CBCu, 0x80071CBCu, 412u, 1u, dctx_func_80071C64},
+    {0x80071D48u, 0x80071D48u, 412u, 1u, dctx_func_80071C64},
+    {0x80071D68u, 0x80071D68u, 412u, 1u, dctx_func_80071C64},
+    {0x80071D70u, 0x80071D70u, 412u, 1u, dctx_func_80071C64},
+    {0x80071D74u, 0x80071D74u, 412u, 1u, dctx_func_80071C64},
+    {0x80071DFCu, 0x80071DFCu, 412u, 1u, dctx_func_80071C64},
+    {0x80071E30u, 0x80071E30u, 412u, 1u, dctx_func_80071C64},
+    {0x80071E4Cu, 0x80071E4Cu, 412u, 1u, dctx_func_80071C64},
+    {0x80071E80u, 0x00000000u, 413u, 1u, dctx_func_80071E80},
+    {0x80071ED0u, 0x80071ED0u, 413u, 1u, dctx_func_80071E80},
+    {0x80071ED8u, 0x80071ED8u, 413u, 1u, dctx_func_80071E80},
+    {0x80071F98u, 0x80071F98u, 413u, 1u, dctx_func_80071E80},
+    {0x80071FB8u, 0x80071FB8u, 413u, 1u, dctx_func_80071E80},
+    {0x80071FC0u, 0x80071FC0u, 413u, 1u, dctx_func_80071E80},
+    {0x80071FC4u, 0x80071FC4u, 413u, 1u, dctx_func_80071E80},
+    {0x8007206Cu, 0x8007206Cu, 413u, 1u, dctx_func_80071E80},
+    {0x800720A0u, 0x800720A0u, 413u, 1u, dctx_func_80071E80},
+    {0x800720BCu, 0x800720BCu, 413u, 1u, dctx_func_80071E80},
+    {0x80074AD8u, 0x00000000u, 414u, 1u, dctx_func_80074AD8},
+    {0x80074B18u, 0x80074B18u, 414u, 1u, dctx_func_80074AD8},
+    {0x80074B38u, 0x80074B38u, 414u, 1u, dctx_func_80074AD8},
+    {0x80074B40u, 0x00000000u, 415u, 1u, dctx_func_80074B40},
+    {0x80074B60u, 0x80074B60u, 415u, 1u, dctx_func_80074B40},
+    {0x80074B70u, 0x80074B70u, 415u, 1u, dctx_func_80074B40},
+    {0x80074BA8u, 0x80074BA8u, 415u, 1u, dctx_func_80074B40},
+    {0x80074BF4u, 0x80074BF4u, 415u, 1u, dctx_func_80074B40},
+    {0x80074C10u, 0x00000000u, 416u, 1u, dctx_func_80074C10},
+    {0x80074C30u, 0x80074C30u, 416u, 1u, dctx_func_80074C10},
+    {0x80074C40u, 0x80074C40u, 416u, 1u, dctx_func_80074C10},
+    {0x80074C74u, 0x80074C74u, 416u, 1u, dctx_func_80074C10},
+    {0x80074C88u, 0x80074C88u, 416u, 1u, dctx_func_80074C10},
+    {0x80074C8Cu, 0x80074C8Cu, 416u, 1u, dctx_func_80074C10},
+    {0x80074CF8u, 0x80074CF8u, 416u, 1u, dctx_func_80074C10},
+    {0x80074CFCu, 0x80074CFCu, 416u, 1u, dctx_func_80074C10},
+    {0x80074D08u, 0x80074D08u, 416u, 1u, dctx_func_80074C10},
+    {0x80074D10u, 0x80074D10u, 416u, 1u, dctx_func_80074C10},
+    {0x80074D14u, 0x80074D14u, 416u, 1u, dctx_func_80074C10},
+    {0x80074D70u, 0x00000000u, 417u, 1u, dctx_func_80074D70},
+    {0x80074D78u, 0x00000000u, 418u, 1u, dctx_func_80074D78},
+    {0x80074DA4u, 0x80074DA4u, 418u, 1u, dctx_func_80074D78},
+    {0x80074DD8u, 0x00000000u, 419u, 1u, dctx_func_80074DD8},
+    {0x80074DE0u, 0x00000000u, 420u, 1u, dctx_func_80074DE0},
+    {0x80074E00u, 0x00000000u, 421u, 1u, dctx_func_80074E00},
+    {0x80074E08u, 0x00000000u, 422u, 1u, dctx_func_80074E08},
+    {0x80074E28u, 0x80074E28u, 422u, 1u, dctx_func_80074E08},
+    {0x80074E84u, 0x80074E84u, 422u, 1u, dctx_func_80074E08},
+    {0x80074E8Cu, 0x80074E8Cu, 422u, 1u, dctx_func_80074E08},
+    {0x80074E94u, 0x80074E94u, 422u, 1u, dctx_func_80074E08},
+    {0x80074EC4u, 0x80074EC4u, 422u, 1u, dctx_func_80074E08},
+    {0x80074F28u, 0x80074F28u, 422u, 1u, dctx_func_80074E08},
+    {0x80074F30u, 0x80074F30u, 422u, 1u, dctx_func_80074E08},
+    {0x80074F54u, 0x80074F54u, 422u, 1u, dctx_func_80074E08},
+    {0x80074FB8u, 0x80074FB8u, 422u, 1u, dctx_func_80074E08},
+    {0x80074FBCu, 0x80074FBCu, 422u, 1u, dctx_func_80074E08},
+    {0x80074FD8u, 0x80074FD8u, 422u, 1u, dctx_func_80074E08},
+    {0x80074FE0u, 0x80074FE0u, 422u, 1u, dctx_func_80074E08},
+    {0x80074FF8u, 0x80074FF8u, 422u, 1u, dctx_func_80074E08},
+    {0x80075000u, 0x80075000u, 422u, 1u, dctx_func_80074E08},
+    {0x80075010u, 0x80075010u, 422u, 1u, dctx_func_80074E08},
+    {0x80075018u, 0x80075018u, 422u, 1u, dctx_func_80074E08},
+    {0x8007503Cu, 0x8007503Cu, 422u, 1u, dctx_func_80074E08},
+    {0x80075044u, 0x00000000u, 423u, 1u, dctx_func_80075044},
+    {0x80075068u, 0x80075068u, 422u, 1u, dctx_func_80074E08},
+    {0x80075070u, 0x00000000u, 424u, 1u, dctx_func_80075070},
+    {0x80075090u, 0x80075090u, 422u, 1u, dctx_func_80074E08},
+    {0x80075098u, 0x00000000u, 425u, 1u, dctx_func_80075098},
+    {0x800750B8u, 0x800750B8u, 422u, 1u, dctx_func_80074E08},
+    {0x800750C0u, 0x00000000u, 426u, 1u, dctx_func_800750C0},
+    {0x800750D4u, 0x800750D4u, 422u, 1u, dctx_func_80074E08},
+    {0x800750E8u, 0x800750E8u, 422u, 1u, dctx_func_80074E08},
+    {0x800750FCu, 0x800750FCu, 422u, 1u, dctx_func_80074E08},
+    {0x80075118u, 0x80075118u, 422u, 1u, dctx_func_80074E08},
+    {0x8007512Cu, 0x8007512Cu, 422u, 1u, dctx_func_80074E08},
+    {0x80075140u, 0x80075140u, 422u, 1u, dctx_func_80074E08},
+    {0x80075154u, 0x80075154u, 422u, 1u, dctx_func_80074E08},
+    {0x80075164u, 0x80075164u, 422u, 1u, dctx_func_80074E08},
+    {0x80075168u, 0x80075168u, 422u, 1u, dctx_func_80074E08},
+    {0x8007516Cu, 0x8007516Cu, 422u, 1u, dctx_func_80074E08},
+    {0x8007518Cu, 0x8007518Cu, 422u, 1u, dctx_func_80074E08},
+    {0x800751A4u, 0x800751A4u, 422u, 1u, dctx_func_80074E08},
+    {0x800751B4u, 0x800751B4u, 422u, 1u, dctx_func_80074E08},
+    {0x800751C8u, 0x00000000u, 427u, 1u, dctx_func_800751C8},
+    {0x800751CCu, 0x00000000u, 428u, 1u, dctx_func_800751CC},
+    {0x800751ECu, 0x800751ECu, 428u, 1u, dctx_func_800751CC},
+    {0x800751F4u, 0x800751F4u, 428u, 1u, dctx_func_800751CC},
+    {0x800751FCu, 0x800751FCu, 428u, 1u, dctx_func_800751CC},
+    {0x80075204u, 0x80075204u, 428u, 1u, dctx_func_800751CC},
+    {0x80075210u, 0x80075210u, 428u, 1u, dctx_func_800751CC},
+    {0x80075218u, 0x80075218u, 428u, 1u, dctx_func_800751CC},
+    {0x80075294u, 0x80075294u, 428u, 1u, dctx_func_800751CC},
+    {0x8007529Cu, 0x8007529Cu, 428u, 1u, dctx_func_800751CC},
+    {0x800752A8u, 0x800752A8u, 428u, 1u, dctx_func_800751CC},
+    {0x800752ACu, 0x800752ACu, 428u, 1u, dctx_func_800751CC},
+    {0x800752D4u, 0x800752D4u, 428u, 1u, dctx_func_800751CC},
+    {0x800752F0u, 0x00000000u, 429u, 1u, dctx_func_800752F0},
+    {0x80075330u, 0x80075330u, 428u, 1u, dctx_func_800751CC},
+    {0x80075334u, 0x80075334u, 428u, 1u, dctx_func_800751CC},
+    {0x80075360u, 0x80075360u, 428u, 1u, dctx_func_800751CC},
+    {0x80075374u, 0x80075374u, 428u, 1u, dctx_func_800751CC},
+    {0x8007537Cu, 0x8007537Cu, 428u, 1u, dctx_func_800751CC},
+    {0x8007538Cu, 0x8007538Cu, 428u, 1u, dctx_func_800751CC},
+    {0x80075394u, 0x80075394u, 428u, 1u, dctx_func_800751CC},
+    {0x800753A8u, 0x800753A8u, 428u, 1u, dctx_func_800751CC},
+    {0x800753CCu, 0x800753CCu, 428u, 1u, dctx_func_800751CC},
+    {0x800753FCu, 0x800753FCu, 428u, 1u, dctx_func_800751CC},
+    {0x80075400u, 0x80075400u, 428u, 1u, dctx_func_800751CC},
+    {0x80075468u, 0x80075468u, 428u, 1u, dctx_func_800751CC},
+    {0x8007548Cu, 0x8007548Cu, 428u, 1u, dctx_func_800751CC},
+    {0x80075490u, 0x80075490u, 428u, 1u, dctx_func_800751CC},
+    {0x800754ECu, 0x800754ECu, 428u, 1u, dctx_func_800751CC},
+    {0x800754FCu, 0x800754FCu, 428u, 1u, dctx_func_800751CC},
+    {0x80075530u, 0x00000000u, 430u, 1u, dctx_func_80075530},
+    {0x80075554u, 0x00000000u, 431u, 1u, dctx_func_80075554},
+    {0x80075570u, 0x80075570u, 428u, 1u, dctx_func_800751CC},
+    {0x80075578u, 0x80075578u, 428u, 1u, dctx_func_800751CC},
+    {0x80075588u, 0x80075588u, 428u, 1u, dctx_func_800751CC},
+    {0x80075594u, 0x00000000u, 432u, 1u, dctx_func_80075594},
+    {0x8007559Cu, 0x00000000u, 433u, 1u, dctx_func_8007559C},
+    {0x800755BCu, 0x800755BCu, 433u, 1u, dctx_func_8007559C},
+    {0x800755CCu, 0x800755CCu, 433u, 1u, dctx_func_8007559C},
+    {0x800755F0u, 0x800755F0u, 433u, 1u, dctx_func_8007559C},
+    {0x800755F8u, 0x00000000u, 434u, 1u, dctx_func_800755F8},
+    {0x80075600u, 0x00000000u, 435u, 1u, dctx_func_80075600},
+    {0x80075610u, 0x80075610u, 435u, 1u, dctx_func_80075600},
+    {0x80075618u, 0x00000000u, 436u, 1u, dctx_func_80075618},
+    {0x8007561Cu, 0x00000000u, 437u, 1u, dctx_func_8007561C},
+    {0x80075624u, 0x00000000u, 438u, 1u, dctx_func_80075624},
+    {0x80075634u, 0x80075634u, 438u, 1u, dctx_func_80075624},
+    {0x8007563Cu, 0x00000000u, 439u, 1u, dctx_func_8007563C},
+    {0x800756C4u, 0x800756C4u, 439u, 1u, dctx_func_8007563C},
+    {0x800756E8u, 0x800756E8u, 439u, 1u, dctx_func_8007563C},
+    {0x80075704u, 0x80075704u, 439u, 1u, dctx_func_8007563C},
+    {0x80075734u, 0x80075734u, 439u, 1u, dctx_func_8007563C},
+    {0x80075744u, 0x80075744u, 439u, 1u, dctx_func_8007563C},
+    {0x80075758u, 0x80075758u, 439u, 1u, dctx_func_8007563C},
+    {0x80075778u, 0x80075778u, 439u, 1u, dctx_func_8007563C},
+    {0x80075780u, 0x80075780u, 439u, 1u, dctx_func_8007563C},
+    {0x80075788u, 0x00000000u, 440u, 1u, dctx_func_80075788},
+    {0x800757BCu, 0x800757BCu, 439u, 1u, dctx_func_8007563C},
+    {0x800757DCu, 0x800757DCu, 439u, 1u, dctx_func_8007563C},
+    {0x800757F4u, 0x800757F4u, 439u, 1u, dctx_func_8007563C},
+    {0x800757FCu, 0x00000000u, 441u, 1u, dctx_func_800757FC},
+    {0x80075830u, 0x80075830u, 439u, 1u, dctx_func_8007563C},
+    {0x80075840u, 0x80075840u, 439u, 1u, dctx_func_8007563C},
+    {0x80075854u, 0x80075854u, 439u, 1u, dctx_func_8007563C},
+    {0x80075874u, 0x80075874u, 439u, 1u, dctx_func_8007563C},
+    {0x8007587Cu, 0x8007587Cu, 439u, 1u, dctx_func_8007563C},
+    {0x80075880u, 0x80075880u, 439u, 1u, dctx_func_8007563C},
+    {0x80075888u, 0x80075888u, 439u, 1u, dctx_func_8007563C},
+    {0x800758A8u, 0x800758A8u, 439u, 1u, dctx_func_8007563C},
+    {0x800758C4u, 0x800758C4u, 439u, 1u, dctx_func_8007563C},
+    {0x800758C8u, 0x800758C8u, 439u, 1u, dctx_func_8007563C},
+    {0x800758ECu, 0x800758ECu, 439u, 1u, dctx_func_8007563C},
+    {0x800758F4u, 0x00000000u, 442u, 1u, dctx_func_800758F4},
+    {0x80075908u, 0x80075908u, 439u, 1u, dctx_func_8007563C},
+    {0x80075938u, 0x80075938u, 439u, 1u, dctx_func_8007563C},
+    {0x80075998u, 0x80075998u, 439u, 1u, dctx_func_8007563C},
+    {0x800759ACu, 0x800759ACu, 439u, 1u, dctx_func_8007563C},
+    {0x800759B4u, 0x800759B4u, 439u, 1u, dctx_func_8007563C},
+    {0x800759B8u, 0x800759B8u, 439u, 1u, dctx_func_8007563C},
+    {0x80075A38u, 0x80075A38u, 439u, 1u, dctx_func_8007563C},
+    {0x80075A60u, 0x80075A60u, 439u, 1u, dctx_func_8007563C},
+    {0x80075A68u, 0x80075A68u, 439u, 1u, dctx_func_8007563C},
+    {0x80075A88u, 0x80075A88u, 439u, 1u, dctx_func_8007563C},
+    {0x80075A98u, 0x80075A98u, 439u, 1u, dctx_func_8007563C},
+    {0x80075A9Cu, 0x80075A9Cu, 439u, 1u, dctx_func_8007563C},
+    {0x80075AA4u, 0x80075AA4u, 439u, 1u, dctx_func_8007563C},
+    {0x80075AA8u, 0x80075AA8u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B18u, 0x80075B18u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B28u, 0x80075B28u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B34u, 0x80075B34u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B3Cu, 0x80075B3Cu, 439u, 1u, dctx_func_8007563C},
+    {0x80075B40u, 0x80075B40u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B54u, 0x80075B54u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B58u, 0x80075B58u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B70u, 0x80075B70u, 439u, 1u, dctx_func_8007563C},
+    {0x80075B94u, 0x80075B94u, 439u, 1u, dctx_func_8007563C},
+    {0x80075BC0u, 0x80075BC0u, 439u, 1u, dctx_func_8007563C},
+    {0x80075BF0u, 0x00000000u, 443u, 1u, dctx_func_80075BF0},
+    {0x80075C04u, 0x80075C04u, 439u, 1u, dctx_func_8007563C},
+    {0x80075C70u, 0x80075C70u, 439u, 1u, dctx_func_8007563C},
+    {0x80075C84u, 0x80075C84u, 439u, 1u, dctx_func_8007563C},
+    {0x80075C8Cu, 0x80075C8Cu, 439u, 1u, dctx_func_8007563C},
+    {0x80075C98u, 0x80075C98u, 439u, 1u, dctx_func_8007563C},
+    {0x80075CACu, 0x80075CACu, 439u, 1u, dctx_func_8007563C},
+    {0x80075CB4u, 0x80075CB4u, 439u, 1u, dctx_func_8007563C},
+    {0x80075CB8u, 0x80075CB8u, 439u, 1u, dctx_func_8007563C},
+    {0x80075CD0u, 0x80075CD0u, 439u, 1u, dctx_func_8007563C},
+    {0x80075CF4u, 0x80075CF4u, 439u, 1u, dctx_func_8007563C},
+    {0x80075D20u, 0x80075D20u, 439u, 1u, dctx_func_8007563C},
+    {0x80075D4Cu, 0x80075D4Cu, 439u, 1u, dctx_func_8007563C},
+    {0x80075D58u, 0x80075D58u, 439u, 1u, dctx_func_8007563C},
+    {0x80075D60u, 0x80075D60u, 439u, 1u, dctx_func_8007563C},
+    {0x80075D80u, 0x80075D80u, 439u, 1u, dctx_func_8007563C},
+    {0x80075DB0u, 0x00000000u, 444u, 1u, dctx_func_80075DB0},
+    {0x80075DC0u, 0x80075DC0u, 439u, 1u, dctx_func_8007563C},
+    {0x80075DCCu, 0x80075DCCu, 439u, 1u, dctx_func_8007563C},
+    {0x80075DD4u, 0x00000000u, 445u, 1u, dctx_func_80075DD4},
+    {0x80075DD8u, 0x00000000u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E0Cu, 0x80075E0Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E18u, 0x80075E18u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E1Cu, 0x80075E1Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E24u, 0x80075E24u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E2Cu, 0x80075E2Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E38u, 0x80075E38u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E3Cu, 0x80075E3Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E40u, 0x80075E40u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E44u, 0x80075E44u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075E88u, 0x80075E88u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075ED4u, 0x80075ED4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075EF0u, 0x00000000u, 447u, 1u, dctx_func_80075EF0},
+    {0x80075F00u, 0x80075F00u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075F0Cu, 0x80075F0Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80075F10u, 0x80075F10u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075F34u, 0x80075F34u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075F38u, 0x80075F38u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075FA8u, 0x80075FA8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075FC8u, 0x80075FC8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80075FCCu, 0x80075FCCu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076004u, 0x80076004u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076024u, 0x80076024u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076028u, 0x80076028u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076068u, 0x80076068u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076070u, 0x80076070u, 446u, 1u, dctx_func_80075DD8},
+    {0x800760F4u, 0x800760F4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800760F8u, 0x800760F8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076110u, 0x80076110u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076154u, 0x80076154u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076158u, 0x80076158u, 446u, 1u, dctx_func_80075DD8},
+    {0x800761A0u, 0x800761A0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800761A4u, 0x800761A4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076230u, 0x80076230u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076244u, 0x80076244u, 446u, 1u, dctx_func_80075DD8},
+    {0x800762C4u, 0x800762C4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800762C8u, 0x800762C8u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007631Cu, 0x8007631Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076320u, 0x80076320u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076380u, 0x80076380u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076384u, 0x80076384u, 446u, 1u, dctx_func_80075DD8},
+    {0x800763B4u, 0x800763B4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800763D8u, 0x800763D8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800763E0u, 0x800763E0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800763F0u, 0x800763F0u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076404u, 0x80076404u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076450u, 0x80076450u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076454u, 0x80076454u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076524u, 0x80076524u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076530u, 0x80076530u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076538u, 0x00000000u, 448u, 1u, dctx_func_80076538},
+    {0x800765A4u, 0x800765A4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765B4u, 0x800765B4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765C8u, 0x800765C8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765D0u, 0x800765D0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765D8u, 0x800765D8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765DCu, 0x800765DCu, 446u, 1u, dctx_func_80075DD8},
+    {0x800765E8u, 0x800765E8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765F0u, 0x800765F0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800765F4u, 0x800765F4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076600u, 0x80076600u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076610u, 0x80076610u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076618u, 0x80076618u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076620u, 0x80076620u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076628u, 0x80076628u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007662Cu, 0x8007662Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076638u, 0x80076638u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076640u, 0x80076640u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076644u, 0x80076644u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076650u, 0x80076650u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076658u, 0x80076658u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076660u, 0x80076660u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076668u, 0x80076668u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076674u, 0x80076674u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007667Cu, 0x8007667Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076680u, 0x80076680u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076690u, 0x80076690u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076698u, 0x80076698u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007669Cu, 0x8007669Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x800766A4u, 0x800766A4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766ACu, 0x800766ACu, 446u, 1u, dctx_func_80075DD8},
+    {0x800766B4u, 0x800766B4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766C0u, 0x800766C0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766C4u, 0x800766C4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766D0u, 0x800766D0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766D8u, 0x800766D8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766DCu, 0x800766DCu, 446u, 1u, dctx_func_80075DD8},
+    {0x800766E4u, 0x800766E4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800766E8u, 0x800766E8u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007670Cu, 0x8007670Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x800769D0u, 0x800769D0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800769ECu, 0x800769ECu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076A0Cu, 0x80076A0Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076A6Cu, 0x80076A6Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076A94u, 0x80076A94u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076AA8u, 0x80076AA8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076AE8u, 0x80076AE8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076B90u, 0x80076B90u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076B9Cu, 0x80076B9Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076BA4u, 0x80076BA4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076BACu, 0x00000000u, 449u, 1u, dctx_func_80076BAC},
+    {0x80076BE8u, 0x80076BE8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076BF4u, 0x80076BF4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076C14u, 0x80076C14u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076C60u, 0x80076C60u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076C6Cu, 0x80076C6Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076C8Cu, 0x80076C8Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076CD8u, 0x80076CD8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076CE4u, 0x80076CE4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076D04u, 0x80076D04u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076D50u, 0x80076D50u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076D7Cu, 0x80076D7Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076F3Cu, 0x80076F3Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076F58u, 0x80076F58u, 446u, 1u, dctx_func_80075DD8},
+    {0x80076F7Cu, 0x80076F7Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80076FDCu, 0x80076FDCu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077008u, 0x80077008u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007701Cu, 0x8007701Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077148u, 0x80077148u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007715Cu, 0x8007715Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x8007719Cu, 0x8007719Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077204u, 0x80077204u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007720Cu, 0x8007720Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077214u, 0x00000000u, 450u, 1u, dctx_func_80077214},
+    {0x80077260u, 0x80077260u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007727Cu, 0x8007727Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x800772A4u, 0x800772A4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800772B4u, 0x800772B4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800772D4u, 0x800772D4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800772E0u, 0x800772E0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800772E8u, 0x800772E8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800772F0u, 0x800772F0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800772F4u, 0x800772F4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077304u, 0x80077304u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077308u, 0x80077308u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077324u, 0x80077324u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077338u, 0x80077338u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077354u, 0x80077354u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077360u, 0x80077360u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077368u, 0x80077368u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077370u, 0x80077370u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077374u, 0x80077374u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077384u, 0x80077384u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077398u, 0x80077398u, 446u, 1u, dctx_func_80075DD8},
+    {0x800773A0u, 0x800773A0u, 446u, 1u, dctx_func_80075DD8},
+    {0x800773D8u, 0x800773D8u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007745Cu, 0x8007745Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077464u, 0x80077464u, 446u, 1u, dctx_func_80075DD8},
+    {0x800774E8u, 0x800774E8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800774ECu, 0x800774ECu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077518u, 0x80077518u, 446u, 1u, dctx_func_80075DD8},
+    {0x800775B4u, 0x800775B4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800775FCu, 0x800775FCu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077604u, 0x80077604u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007760Cu, 0x8007760Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x800776B4u, 0x800776B4u, 446u, 1u, dctx_func_80075DD8},
+    {0x800776B8u, 0x800776B8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800776C8u, 0x800776C8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800776E8u, 0x800776E8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077724u, 0x80077724u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077730u, 0x80077730u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077734u, 0x80077734u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077768u, 0x80077768u, 446u, 1u, dctx_func_80075DD8},
+    {0x800777ECu, 0x800777ECu, 446u, 1u, dctx_func_80075DD8},
+    {0x800777F4u, 0x800777F4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077874u, 0x80077874u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077878u, 0x80077878u, 446u, 1u, dctx_func_80075DD8},
+    {0x8007797Cu, 0x8007797Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x800779B8u, 0x800779B8u, 446u, 1u, dctx_func_80075DD8},
+    {0x800779C4u, 0x800779C4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077A00u, 0x80077A00u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077A58u, 0x80077A58u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077A60u, 0x80077A60u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077AE0u, 0x80077AE0u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077AE4u, 0x80077AE4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077AF8u, 0x80077AF8u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077B1Cu, 0x80077B1Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077B20u, 0x80077B20u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077B2Cu, 0x80077B2Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077B34u, 0x80077B34u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077B38u, 0x80077B38u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077B3Cu, 0x80077B3Cu, 446u, 1u, dctx_func_80075DD8},
+    {0x80077C18u, 0x80077C18u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077C58u, 0x80077C58u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077CC4u, 0x80077CC4u, 446u, 1u, dctx_func_80075DD8},
+    {0x80077CCCu, 0x00000000u, 451u, 1u, dctx_func_80077CCC},
+    {0x80077CD0u, 0x00000000u, 452u, 1u, dctx_func_80077CD0},
+    {0x80077CD4u, 0x00000000u, 453u, 1u, dctx_func_80077CD4},
+    {0x80077CF0u, 0x00000000u, 454u, 1u, dctx_func_80077CF0},
+    {0x80077D20u, 0x00000000u, 455u, 1u, dctx_func_80077D20},
+    {0x80077D58u, 0x80077D58u, 455u, 1u, dctx_func_80077D20},
+    {0x80077D68u, 0x80077D68u, 455u, 1u, dctx_func_80077D20},
+    {0x80077D74u, 0x80077D74u, 455u, 1u, dctx_func_80077D20},
+    {0x80077DD0u, 0x80077DD0u, 455u, 1u, dctx_func_80077D20},
+    {0x80077E00u, 0x80077E00u, 455u, 1u, dctx_func_80077D20},
+    {0x80077E0Cu, 0x80077E0Cu, 455u, 1u, dctx_func_80077D20},
+    {0x80077E18u, 0x80077E18u, 455u, 1u, dctx_func_80077D20},
+    {0x80077E20u, 0x80077E20u, 455u, 1u, dctx_func_80077D20},
+    {0x80077E30u, 0x80077E30u, 455u, 1u, dctx_func_80077D20},
+    {0x80077E3Cu, 0x80077E3Cu, 455u, 1u, dctx_func_80077D20},
+    {0x80077E98u, 0x00000000u, 456u, 1u, dctx_func_80077E98},
+    {0x80077F58u, 0x80077F58u, 456u, 1u, dctx_func_80077E98},
+    {0x80077F64u, 0x80077F64u, 456u, 1u, dctx_func_80077E98},
+    {0x80077F70u, 0x80077F70u, 456u, 1u, dctx_func_80077E98},
+    {0x80077F74u, 0x80077F74u, 456u, 1u, dctx_func_80077E98},
+    {0x800854E0u, 0x00000000u, 457u, 1u, dctx_func_800854E0},
+    {0x80085540u, 0x80085540u, 457u, 1u, dctx_func_800854E0},
+    {0x80085548u, 0x80085548u, 457u, 1u, dctx_func_800854E0},
+    {0x80085564u, 0x80085564u, 457u, 1u, dctx_func_800854E0},
+    {0x8008556Cu, 0x8008556Cu, 457u, 1u, dctx_func_800854E0},
+    {0x80085598u, 0x80085598u, 457u, 1u, dctx_func_800854E0},
+    {0x800855A8u, 0x800855A8u, 457u, 1u, dctx_func_800854E0},
+    {0x800855B4u, 0x800855B4u, 457u, 1u, dctx_func_800854E0},
+    {0x800855C0u, 0x800855C0u, 457u, 1u, dctx_func_800854E0},
+    {0x800855C4u, 0x800855C4u, 457u, 1u, dctx_func_800854E0},
+    {0x800855D0u, 0x800855D0u, 457u, 1u, dctx_func_800854E0},
+    {0x800855D8u, 0x800855D8u, 457u, 1u, dctx_func_800854E0},
+    {0x800855DCu, 0x800855DCu, 457u, 1u, dctx_func_800854E0},
+    {0x800855E8u, 0x800855E8u, 457u, 1u, dctx_func_800854E0},
+    {0x800855F8u, 0x800855F8u, 457u, 1u, dctx_func_800854E0},
+    {0x800855FCu, 0x800855FCu, 457u, 1u, dctx_func_800854E0},
+    {0x80085608u, 0x80085608u, 457u, 1u, dctx_func_800854E0},
+    {0x80085610u, 0x80085610u, 457u, 1u, dctx_func_800854E0},
+    {0x80085614u, 0x80085614u, 457u, 1u, dctx_func_800854E0},
+    {0x80085624u, 0x80085624u, 457u, 1u, dctx_func_800854E0},
+    {0x80085628u, 0x80085628u, 457u, 1u, dctx_func_800854E0},
+    {0x800856E0u, 0x800856E0u, 457u, 1u, dctx_func_800854E0},
+    {0x800856E8u, 0x800856E8u, 457u, 1u, dctx_func_800854E0},
+    {0x80085700u, 0x80085700u, 457u, 1u, dctx_func_800854E0},
+    {0x80085710u, 0x80085710u, 457u, 1u, dctx_func_800854E0},
+    {0x800857B8u, 0x800857B8u, 457u, 1u, dctx_func_800854E0},
+    {0x800857C8u, 0x800857C8u, 457u, 1u, dctx_func_800854E0},
+    {0x800857D0u, 0x800857D0u, 457u, 1u, dctx_func_800854E0},
+    {0x800857D8u, 0x800857D8u, 457u, 1u, dctx_func_800854E0},
+    {0x800857E0u, 0x800857E0u, 457u, 1u, dctx_func_800854E0},
+    {0x800857ECu, 0x800857ECu, 457u, 1u, dctx_func_800854E0},
+    {0x800857F8u, 0x00000000u, 458u, 1u, dctx_func_800857F8},
+    {0x80085980u, 0x00000000u, 459u, 1u, dctx_func_80085980},
+    {0x800859E4u, 0x800859E4u, 459u, 1u, dctx_func_80085980},
+    {0x800859ECu, 0x800859ECu, 459u, 1u, dctx_func_80085980},
+    {0x80085A04u, 0x80085A04u, 459u, 1u, dctx_func_80085980},
+    {0x80085A14u, 0x00000000u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A1Cu, 0x80085A1Cu, 460u, 1u, dctx_func_80085A14},
+    {0x80085A48u, 0x80085A48u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A58u, 0x80085A58u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A64u, 0x80085A64u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A70u, 0x80085A70u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A74u, 0x80085A74u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A80u, 0x80085A80u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A88u, 0x80085A88u, 460u, 1u, dctx_func_80085A14},
+    {0x80085A8Cu, 0x80085A8Cu, 460u, 1u, dctx_func_80085A14},
+    {0x80085A98u, 0x80085A98u, 460u, 1u, dctx_func_80085A14},
+    {0x80085AA8u, 0x80085AA8u, 460u, 1u, dctx_func_80085A14},
+    {0x80085AACu, 0x80085AACu, 460u, 1u, dctx_func_80085A14},
+    {0x80085AB8u, 0x80085AB8u, 460u, 1u, dctx_func_80085A14},
+    {0x80085AC0u, 0x80085AC0u, 460u, 1u, dctx_func_80085A14},
+    {0x80085AC4u, 0x80085AC4u, 460u, 1u, dctx_func_80085A14},
+    {0x80085AD4u, 0x80085AD4u, 460u, 1u, dctx_func_80085A14},
+    {0x80085AD8u, 0x80085AD8u, 460u, 1u, dctx_func_80085A14},
+    {0x80085B8Cu, 0x00000000u, 461u, 1u, dctx_func_80085B8C},
+    {0x80085B9Cu, 0x00000000u, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C54u, 0x80085C54u, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C64u, 0x80085C64u, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C6Cu, 0x80085C6Cu, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C74u, 0x80085C74u, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C7Cu, 0x80085C7Cu, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C88u, 0x80085C88u, 462u, 1u, dctx_func_80085B9C},
+    {0x80085C98u, 0x00000000u, 463u, 1u, dctx_func_80085C98},
+    {0x80085CC8u, 0x00000000u, 464u, 1u, dctx_func_80085CC8},
+    {0x80085CE4u, 0x80085CE4u, 464u, 1u, dctx_func_80085CC8},
+    {0x80085CECu, 0x80085CECu, 464u, 1u, dctx_func_80085CC8},
+    {0x80085D04u, 0x80085D04u, 464u, 1u, dctx_func_80085CC8},
+    {0x80085D10u, 0x80085D10u, 464u, 1u, dctx_func_80085CC8},
+    {0x80085D20u, 0x80085D20u, 464u, 1u, dctx_func_80085CC8},
+    {0x80085D2Cu, 0x80085D2Cu, 464u, 1u, dctx_func_80085CC8},
+    {0x80086DC0u, 0x00000000u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086DF4u, 0x80086DF4u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086E08u, 0x80086E08u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086E18u, 0x80086E18u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086E40u, 0x80086E40u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086E58u, 0x80086E58u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086E60u, 0x80086E60u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086E9Cu, 0x80086E9Cu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086EC4u, 0x80086EC4u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086ECCu, 0x80086ECCu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086EECu, 0x80086EECu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F00u, 0x80086F00u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F08u, 0x80086F08u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F2Cu, 0x80086F2Cu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F30u, 0x80086F30u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F34u, 0x80086F34u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F48u, 0x80086F48u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F58u, 0x80086F58u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F60u, 0x80086F60u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F68u, 0x80086F68u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F80u, 0x80086F80u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F88u, 0x80086F88u, 465u, 1u, dctx_func_80086DC0},
+    {0x80086F9Cu, 0x80086F9Cu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086FACu, 0x80086FACu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086FDCu, 0x80086FDCu, 465u, 1u, dctx_func_80086DC0},
+    {0x80086FF0u, 0x80086FF0u, 465u, 1u, dctx_func_80086DC0},
+    {0x80087048u, 0x80087048u, 465u, 1u, dctx_func_80086DC0},
+    {0x80087050u, 0x00000000u, 466u, 1u, dctx_func_80087050},
+    {0x800870A0u, 0x800870A0u, 466u, 1u, dctx_func_80087050},
+    {0x800870C8u, 0x800870C8u, 466u, 1u, dctx_func_80087050},
+    {0x800870E4u, 0x800870E4u, 466u, 1u, dctx_func_80087050},
+    {0x80087114u, 0x80087114u, 466u, 1u, dctx_func_80087050},
+    {0x80087140u, 0x80087140u, 466u, 1u, dctx_func_80087050},
+    {0x800871E8u, 0x800871E8u, 466u, 1u, dctx_func_80087050},
+    {0x800871ECu, 0x800871ECu, 466u, 1u, dctx_func_80087050},
+    {0x800887E4u, 0x00000000u, 467u, 1u, dctx_func_800887E4},
+    {0x8008883Cu, 0x8008883Cu, 467u, 1u, dctx_func_800887E4},
+    {0x8008884Cu, 0x00000000u, 468u, 1u, dctx_func_8008884C},
+    {0x80088864u, 0x80088864u, 468u, 1u, dctx_func_8008884C},
+    {0x80088868u, 0x80088868u, 468u, 1u, dctx_func_8008884C},
+    {0x80088890u, 0x80088890u, 468u, 1u, dctx_func_8008884C},
+    {0x800888A8u, 0x800888A8u, 468u, 1u, dctx_func_8008884C},
+    {0x800888ACu, 0x800888ACu, 468u, 1u, dctx_func_8008884C},
+    {0x800888B4u, 0x800888B4u, 468u, 1u, dctx_func_8008884C},
+    {0x800888F8u, 0x800888F8u, 468u, 1u, dctx_func_8008884C},
+    {0x80088900u, 0x80088900u, 468u, 1u, dctx_func_8008884C},
+    {0x80088944u, 0x80088944u, 468u, 1u, dctx_func_8008884C},
+    {0x8008894Cu, 0x8008894Cu, 468u, 1u, dctx_func_8008884C},
+    {0x80088964u, 0x80088964u, 468u, 1u, dctx_func_8008884C},
+    {0x80088970u, 0x00000000u, 469u, 1u, dctx_func_80088970},
+    {0x80088A60u, 0x80088A60u, 469u, 1u, dctx_func_80088970},
+    {0x80088AC0u, 0x80088AC0u, 469u, 1u, dctx_func_80088970},
+    {0x80088AD4u, 0x80088AD4u, 469u, 1u, dctx_func_80088970},
+    {0x80088B00u, 0x80088B00u, 469u, 1u, dctx_func_80088970},
+    {0x80088B34u, 0x80088B34u, 469u, 1u, dctx_func_80088970},
+    {0x80088B4Cu, 0x80088B4Cu, 469u, 1u, dctx_func_80088970},
+    {0x80088B74u, 0x80088B74u, 469u, 1u, dctx_func_80088970},
+    {0x80088BA4u, 0x80088BA4u, 469u, 1u, dctx_func_80088970},
+    {0x80088BBCu, 0x80088BBCu, 469u, 1u, dctx_func_80088970},
+    {0x80088BE4u, 0x80088BE4u, 469u, 1u, dctx_func_80088970},
+    {0x80088C14u, 0x80088C14u, 469u, 1u, dctx_func_80088970},
+    {0x80088C28u, 0x80088C28u, 469u, 1u, dctx_func_80088970},
+    {0x80088C30u, 0x80088C30u, 469u, 1u, dctx_func_80088970},
+    {0x80088C38u, 0x80088C38u, 469u, 1u, dctx_func_80088970},
+    {0x80088C3Cu, 0x80088C3Cu, 469u, 1u, dctx_func_80088970},
+    {0x80088C54u, 0x80088C54u, 469u, 1u, dctx_func_80088970},
+    {0x80088CA8u, 0x80088CA8u, 469u, 1u, dctx_func_80088970},
+    {0x80088CC0u, 0x80088CC0u, 469u, 1u, dctx_func_80088970},
+    {0x80088D08u, 0x80088D08u, 469u, 1u, dctx_func_80088970},
+    {0x80088D14u, 0x80088D14u, 469u, 1u, dctx_func_80088970},
+    {0x80088D20u, 0x80088D20u, 469u, 1u, dctx_func_80088970},
+    {0x80088D58u, 0x80088D58u, 469u, 1u, dctx_func_80088970},
+    {0x80088D60u, 0x80088D60u, 469u, 1u, dctx_func_80088970},
+    {0x80088D7Cu, 0x80088D7Cu, 469u, 1u, dctx_func_80088970},
+    {0x80088DB4u, 0x80088DB4u, 469u, 1u, dctx_func_80088970},
+    {0x80088DD4u, 0x80088DD4u, 469u, 1u, dctx_func_80088970},
+    {0x80088E68u, 0x80088E68u, 469u, 1u, dctx_func_80088970},
+    {0x80088E94u, 0x80088E94u, 469u, 1u, dctx_func_80088970},
+    {0x80088EC4u, 0x80088EC4u, 469u, 1u, dctx_func_80088970},
+    {0x80088EF0u, 0x00000000u, 470u, 1u, dctx_func_80088EF0},
+    {0x80088EFCu, 0x80088EFCu, 470u, 1u, dctx_func_80088EF0},
+    {0x80088F0Cu, 0x80088F0Cu, 470u, 1u, dctx_func_80088EF0},
+    {0x80088F10u, 0x80088F10u, 470u, 1u, dctx_func_80088EF0},
+    {0x80088F80u, 0x00000000u, 471u, 1u, dctx_func_80088F80},
+    {0x80088F9Cu, 0x80088F9Cu, 471u, 1u, dctx_func_80088F80},
+    {0x80088FA8u, 0x80088FA8u, 471u, 1u, dctx_func_80088F80},
+    {0x80088FB8u, 0x80088FB8u, 471u, 1u, dctx_func_80088F80},
+    {0x80088FC0u, 0x00000000u, 472u, 1u, dctx_func_80088FC0},
+    {0x80088FE4u, 0x00000000u, 473u, 1u, dctx_func_80088FE4},
+    {0x80089050u, 0x00000000u, 474u, 1u, dctx_func_80089050},
+    {0x80089108u, 0x00000000u, 475u, 1u, dctx_func_80089108},
+    {0x80089130u, 0x80089130u, 475u, 1u, dctx_func_80089108},
+    {0x80089190u, 0x80089190u, 475u, 1u, dctx_func_80089108},
+    {0x8008919Cu, 0x00000000u, 476u, 1u, dctx_func_8008919C},
+    {0x800891A4u, 0x800891A4u, 476u, 1u, dctx_func_8008919C},
+    {0x800891D0u, 0x800891D0u, 476u, 1u, dctx_func_8008919C},
+    {0x80089204u, 0x80089204u, 476u, 1u, dctx_func_8008919C},
+    {0x8008921Cu, 0x8008921Cu, 476u, 1u, dctx_func_8008919C},
+    {0x80089244u, 0x80089244u, 476u, 1u, dctx_func_8008919C},
+    {0x80089274u, 0x80089274u, 476u, 1u, dctx_func_8008919C},
+    {0x8008928Cu, 0x8008928Cu, 476u, 1u, dctx_func_8008919C},
+    {0x80089298u, 0x00000000u, 477u, 1u, dctx_func_80089298},
+    {0x800892B4u, 0x00000000u, 478u, 1u, dctx_func_800892B4},
+    {0x800892E4u, 0x00000000u, 479u, 1u, dctx_func_800892E4},
+    {0x800892F8u, 0x800892F8u, 479u, 1u, dctx_func_800892E4},
+    {0x80089300u, 0x80089300u, 479u, 1u, dctx_func_800892E4},
+    {0x80089308u, 0x80089308u, 479u, 1u, dctx_func_800892E4},
+    {0x8008930Cu, 0x8008930Cu, 479u, 1u, dctx_func_800892E4},
+    {0x80089324u, 0x80089324u, 479u, 1u, dctx_func_800892E4},
+    {0x8008934Cu, 0x00000000u, 480u, 1u, dctx_func_8008934C},
+    {0x80089378u, 0x00000000u, 481u, 1u, dctx_func_80089378},
+    {0x800893C8u, 0x00000000u, 482u, 1u, dctx_func_800893C8},
+    {0x80089404u, 0x80089404u, 482u, 1u, dctx_func_800893C8},
+    {0x80089410u, 0x80089410u, 482u, 1u, dctx_func_800893C8},
+    {0x8008941Cu, 0x8008941Cu, 482u, 1u, dctx_func_800893C8},
+    {0x80089434u, 0x80089434u, 482u, 1u, dctx_func_800893C8},
+    {0x80089464u, 0x80089464u, 482u, 1u, dctx_func_800893C8},
+    {0x8008946Cu, 0x00000000u, 483u, 1u, dctx_func_8008946C},
+    {0x80089498u, 0x00000000u, 484u, 1u, dctx_func_80089498},
+    {0x800894F0u, 0x00000000u, 485u, 1u, dctx_func_800894F0},
+    {0x8008A740u, 0x00000000u, 486u, 1u, dctx_func_8008A740},
+    {0x8008A754u, 0x8008A754u, 486u, 1u, dctx_func_8008A740},
+    {0x8008A774u, 0x8008A774u, 486u, 1u, dctx_func_8008A740},
+    {0x8008A790u, 0x8008A790u, 486u, 1u, dctx_func_8008A740},
+    {0x8008A798u, 0x8008A798u, 486u, 1u, dctx_func_8008A740},
+    {0x8008A7F8u, 0x8008A7F8u, 486u, 1u, dctx_func_8008A740},
+    {0x8008B330u, 0x00000000u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B354u, 0x8008B354u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B374u, 0x8008B374u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B390u, 0x8008B390u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3A0u, 0x8008B3A0u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3ACu, 0x8008B3ACu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3B4u, 0x8008B3B4u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3CCu, 0x8008B3CCu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3D4u, 0x8008B3D4u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3DCu, 0x8008B3DCu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3E0u, 0x8008B3E0u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B3E8u, 0x8008B3E8u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B40Cu, 0x8008B40Cu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B41Cu, 0x8008B41Cu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B43Cu, 0x8008B43Cu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B454u, 0x8008B454u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B46Cu, 0x8008B46Cu, 487u, 1u, dctx_func_8008B330},
+    {0x8008B490u, 0x8008B490u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B494u, 0x8008B494u, 487u, 1u, dctx_func_8008B330},
+    {0x8008B4A8u, 0x00000000u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B4CCu, 0x8008B4CCu, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B4D0u, 0x8008B4D0u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B4F0u, 0x8008B4F0u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B4FCu, 0x8008B4FCu, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B504u, 0x8008B504u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B510u, 0x8008B510u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B518u, 0x8008B518u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B530u, 0x8008B530u, 488u, 1u, dctx_func_8008B4A8},
+    {0x8008B5A0u, 0x00000000u, 489u, 1u, dctx_func_8008B5A0},
+    {0x8008B5C0u, 0x8008B5C0u, 489u, 1u, dctx_func_8008B5A0},
+    {0x8008B6BCu, 0x00000000u, 490u, 1u, dctx_func_8008B6BC},
+    {0x80090600u, 0x00000000u, 491u, 1u, dctx_func_80090600},
+    {0x8009060Cu, 0x8009060Cu, 491u, 1u, dctx_func_80090600},
+    {0x80090614u, 0x80090614u, 491u, 1u, dctx_func_80090600},
+    {0x8009061Cu, 0x8009061Cu, 491u, 1u, dctx_func_80090600},
+    {0x80090628u, 0x80090628u, 491u, 1u, dctx_func_80090600},
+    {0x8009062Cu, 0x8009062Cu, 491u, 1u, dctx_func_80090600},
+    {0x8009063Cu, 0x00000000u, 492u, 1u, dctx_func_8009063C},
+    {0x80090648u, 0x80090648u, 492u, 1u, dctx_func_8009063C},
+    {0x80090650u, 0x80090650u, 492u, 1u, dctx_func_8009063C},
+    {0x80090664u, 0x80090664u, 492u, 1u, dctx_func_8009063C},
+    {0x80090684u, 0x80090684u, 492u, 1u, dctx_func_8009063C},
+    {0x80090690u, 0x80090690u, 492u, 1u, dctx_func_8009063C},
+    {0x800906B0u, 0x800906B0u, 492u, 1u, dctx_func_8009063C},
+    {0x800906C4u, 0x800906C4u, 492u, 1u, dctx_func_8009063C},
+    {0x800906D0u, 0x00000000u, 493u, 1u, dctx_func_800906D0},
+    {0x800906D8u, 0x800906D8u, 493u, 1u, dctx_func_800906D0},
+    {0x800906DCu, 0x800906DCu, 493u, 1u, dctx_func_800906D0},
+    {0x800906ECu, 0x800906ECu, 493u, 1u, dctx_func_800906D0},
+    {0x800906F4u, 0x800906F4u, 493u, 1u, dctx_func_800906D0},
+    {0x80090710u, 0x80090710u, 493u, 1u, dctx_func_800906D0},
+    {0x80090728u, 0x80090728u, 493u, 1u, dctx_func_800906D0},
+    {0x80090734u, 0x80090734u, 493u, 1u, dctx_func_800906D0},
+    {0x8009074Cu, 0x8009074Cu, 493u, 1u, dctx_func_800906D0},
+    {0x80090768u, 0x80090768u, 493u, 1u, dctx_func_800906D0},
+    {0x80090770u, 0x00000000u, 494u, 1u, dctx_func_80090770},
+    {0x8009078Cu, 0x8009078Cu, 494u, 1u, dctx_func_80090770},
+    {0x80090790u, 0x80090790u, 494u, 1u, dctx_func_80090770},
+    {0x8009079Cu, 0x8009079Cu, 494u, 1u, dctx_func_80090770},
+    {0x800907A4u, 0x800907A4u, 494u, 1u, dctx_func_80090770},
+    {0x800907A8u, 0x800907A8u, 494u, 1u, dctx_func_80090770},
+    {0x800907ACu, 0x00000000u, 495u, 1u, dctx_func_800907AC},
+    {0x800907BCu, 0x800907BCu, 495u, 1u, dctx_func_800907AC},
+    {0x800907C4u, 0x800907C4u, 495u, 1u, dctx_func_800907AC},
+    {0x800907E0u, 0x00000000u, 496u, 1u, dctx_func_800907E0},
+    {0x80090810u, 0x80090810u, 496u, 1u, dctx_func_800907E0},
+    {0x80090818u, 0x80090818u, 496u, 1u, dctx_func_800907E0},
+    {0x80090828u, 0x80090828u, 496u, 1u, dctx_func_800907E0},
+    {0x80090850u, 0x80090850u, 496u, 1u, dctx_func_800907E0},
+    {0x8009087Cu, 0x8009087Cu, 496u, 1u, dctx_func_800907E0},
+    {0x8009088Cu, 0x8009088Cu, 496u, 1u, dctx_func_800907E0},
+    {0x800908ACu, 0x800908ACu, 496u, 1u, dctx_func_800907E0},
+    {0x800908C4u, 0x800908C4u, 496u, 1u, dctx_func_800907E0},
+    {0x800908E4u, 0x800908E4u, 496u, 1u, dctx_func_800907E0},
+    {0x800908FCu, 0x800908FCu, 496u, 1u, dctx_func_800907E0},
+    {0x80090910u, 0x80090910u, 496u, 1u, dctx_func_800907E0},
+    {0x80090914u, 0x80090914u, 496u, 1u, dctx_func_800907E0},
+    {0x80090928u, 0x80090928u, 496u, 1u, dctx_func_800907E0},
+    {0x80090934u, 0x00000000u, 497u, 1u, dctx_func_80090934},
+    {0x8009094Cu, 0x8009094Cu, 497u, 1u, dctx_func_80090934},
+    {0x80090954u, 0x80090954u, 497u, 1u, dctx_func_80090934},
+    {0x8009095Cu, 0x8009095Cu, 497u, 1u, dctx_func_80090934},
+    {0x8009096Cu, 0x8009096Cu, 497u, 1u, dctx_func_80090934},
+    {0x80090978u, 0x80090978u, 497u, 1u, dctx_func_80090934},
+    {0x8009098Cu, 0x8009098Cu, 497u, 1u, dctx_func_80090934},
+    {0x80090998u, 0x80090998u, 497u, 1u, dctx_func_80090934},
+    {0x800909A0u, 0x800909A0u, 497u, 1u, dctx_func_80090934},
+    {0x800909ACu, 0x800909ACu, 497u, 1u, dctx_func_80090934},
+    {0x800909B4u, 0x800909B4u, 497u, 1u, dctx_func_80090934},
+    {0x800909B8u, 0x800909B8u, 497u, 1u, dctx_func_80090934},
+    {0x80090A60u, 0x00000000u, 498u, 1u, dctx_func_80090A60},
+    {0x80090A7Cu, 0x80090A7Cu, 498u, 1u, dctx_func_80090A60},
+    {0x80090AA0u, 0x80090AA0u, 498u, 1u, dctx_func_80090A60},
+    {0x80090AA8u, 0x80090AA8u, 498u, 1u, dctx_func_80090A60},
+    {0x80090AACu, 0x80090AACu, 498u, 1u, dctx_func_80090A60},
+    {0x80090AB4u, 0x80090AB4u, 498u, 1u, dctx_func_80090A60},
+    {0x80090ADCu, 0x00000000u, 499u, 1u, dctx_func_80090ADC},
+    {0x80090AF0u, 0x00000000u, 500u, 1u, dctx_func_80090AF0},
+    {0x80090CF0u, 0x00000000u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D2Cu, 0x80090D2Cu, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D44u, 0x80090D44u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D4Cu, 0x80090D4Cu, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D54u, 0x80090D54u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D6Cu, 0x80090D6Cu, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D74u, 0x80090D74u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D7Cu, 0x80090D7Cu, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D94u, 0x80090D94u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090D9Cu, 0x80090D9Cu, 501u, 1u, dctx_func_80090CF0},
+    {0x80090DD8u, 0x80090DD8u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090DE8u, 0x80090DE8u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090DECu, 0x80090DECu, 501u, 1u, dctx_func_80090CF0},
+    {0x80090DF4u, 0x80090DF4u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090E04u, 0x80090E04u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090E08u, 0x80090E08u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090E10u, 0x80090E10u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090E20u, 0x80090E20u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090E24u, 0x80090E24u, 501u, 1u, dctx_func_80090CF0},
+    {0x80090E50u, 0x00000000u, 502u, 1u, dctx_func_80090E50},
+    {0x80090E80u, 0x00000000u, 503u, 1u, dctx_func_80090E80},
+    {0x80090F90u, 0x00000000u, 504u, 1u, dctx_func_80090F90},
+    {0x80090FD4u, 0x00000000u, 505u, 1u, dctx_func_80090FD4},
+    {0x800910A0u, 0x00000000u, 506u, 1u, dctx_func_800910A0},
+    {0x800910F0u, 0x00000000u, 507u, 1u, dctx_func_800910F0},
+    {0x80091150u, 0x00000000u, 508u, 1u, dctx_func_80091150},
+    {0x80091290u, 0x00000000u, 509u, 1u, dctx_func_80091290},
+    {0x800912A8u, 0x00000000u, 510u, 1u, dctx_func_800912A8},
+    {0x800912C0u, 0x00000000u, 511u, 1u, dctx_func_800912C0},
+    {0x800912F0u, 0x00000000u, 512u, 1u, dctx_func_800912F0},
+    {0x80091320u, 0x00000000u, 513u, 1u, dctx_func_80091320},
+    {0x80091438u, 0x00000000u, 514u, 1u, dctx_func_80091438},
+    {0x80091444u, 0x00000000u, 515u, 1u, dctx_func_80091444},
+    {0x80091450u, 0x00000000u, 516u, 1u, dctx_func_80091450},
+    {0x80091470u, 0x00000000u, 517u, 1u, dctx_func_80091470},
+    {0x80091490u, 0x00000000u, 518u, 1u, dctx_func_80091490},
+    {0x800914B0u, 0x00000000u, 519u, 1u, dctx_func_800914B0},
+    {0x800914E4u, 0x00000000u, 520u, 1u, dctx_func_800914E4},
+    {0x80091894u, 0x00000000u, 521u, 1u, dctx_func_80091894},
+    {0x800918E0u, 0x00000000u, 522u, 1u, dctx_func_800918E0},
+    {0x80091940u, 0x00000000u, 523u, 1u, dctx_func_80091940},
+    {0x800919A0u, 0x00000000u, 524u, 1u, dctx_func_800919A0},
+    {0x80091A20u, 0x00000000u, 525u, 1u, dctx_func_80091A20},
+    {0x80091A30u, 0x80091A30u, 525u, 1u, dctx_func_80091A20},
+    {0x80091A3Cu, 0x80091A3Cu, 525u, 1u, dctx_func_80091A20},
+    {0x80091A64u, 0x80091A64u, 525u, 1u, dctx_func_80091A20},
+    {0x80091A84u, 0x80091A84u, 525u, 1u, dctx_func_80091A20},
+    {0x80091A94u, 0x80091A94u, 525u, 1u, dctx_func_80091A20},
+    {0x80091AA0u, 0x80091AA0u, 525u, 1u, dctx_func_80091A20},
+    {0x80091AC8u, 0x80091AC8u, 525u, 1u, dctx_func_80091A20},
+    {0x80091AECu, 0x80091AECu, 525u, 1u, dctx_func_80091A20},
+    {0x80091B14u, 0x80091B14u, 525u, 1u, dctx_func_80091A20},
+    {0x80091B2Cu, 0x80091B2Cu, 525u, 1u, dctx_func_80091A20},
+    {0x80091B54u, 0x80091B54u, 525u, 1u, dctx_func_80091A20},
+    {0x80091B80u, 0x80091B80u, 525u, 1u, dctx_func_80091A20},
+    {0x80091CB0u, 0x00000000u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091CC0u, 0x80091CC0u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091CCCu, 0x80091CCCu, 526u, 1u, dctx_func_80091CB0},
+    {0x80091CF4u, 0x80091CF4u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091D18u, 0x80091D18u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091D28u, 0x80091D28u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091D34u, 0x80091D34u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091D5Cu, 0x80091D5Cu, 526u, 1u, dctx_func_80091CB0},
+    {0x80091D7Cu, 0x80091D7Cu, 526u, 1u, dctx_func_80091CB0},
+    {0x80091DA4u, 0x80091DA4u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091DBCu, 0x80091DBCu, 526u, 1u, dctx_func_80091CB0},
+    {0x80091DE4u, 0x80091DE4u, 526u, 1u, dctx_func_80091CB0},
+    {0x80091E10u, 0x80091E10u, 526u, 1u, dctx_func_80091CB0},
+    {0x80092510u, 0x00000000u, 527u, 1u, dctx_func_80092510},
+    {0x80092520u, 0x80092520u, 527u, 1u, dctx_func_80092510},
+    {0x8009252Cu, 0x8009252Cu, 527u, 1u, dctx_func_80092510},
+    {0x80092554u, 0x80092554u, 527u, 1u, dctx_func_80092510},
+    {0x80092574u, 0x80092574u, 527u, 1u, dctx_func_80092510},
+    {0x800926B0u, 0x00000000u, 528u, 1u, dctx_func_800926B0},
+    {0x800926BCu, 0x800926BCu, 528u, 1u, dctx_func_800926B0},
+    {0x800926C4u, 0x800926C4u, 528u, 1u, dctx_func_800926B0},
+    {0x800926CCu, 0x800926CCu, 528u, 1u, dctx_func_800926B0},
+    {0x800926D4u, 0x800926D4u, 528u, 1u, dctx_func_800926B0},
+    {0x800926DCu, 0x800926DCu, 528u, 1u, dctx_func_800926B0},
+    {0x800926E4u, 0x800926E4u, 528u, 1u, dctx_func_800926B0},
+    {0x800926E8u, 0x800926E8u, 528u, 1u, dctx_func_800926B0},
+    {0x800926F0u, 0x800926F0u, 528u, 1u, dctx_func_800926B0},
+    {0x800926FCu, 0x800926FCu, 528u, 1u, dctx_func_800926B0},
+    {0x80092708u, 0x80092708u, 528u, 1u, dctx_func_800926B0},
+    {0x8009270Cu, 0x8009270Cu, 528u, 1u, dctx_func_800926B0},
+    {0x80092718u, 0x80092718u, 528u, 1u, dctx_func_800926B0},
+    {0x80092720u, 0x80092720u, 528u, 1u, dctx_func_800926B0},
+    {0x80092724u, 0x80092724u, 528u, 1u, dctx_func_800926B0},
+    {0x80092730u, 0x80092730u, 528u, 1u, dctx_func_800926B0},
+    {0x80092740u, 0x80092740u, 528u, 1u, dctx_func_800926B0},
+    {0x80092744u, 0x80092744u, 528u, 1u, dctx_func_800926B0},
+    {0x80092750u, 0x80092750u, 528u, 1u, dctx_func_800926B0},
+    {0x80092758u, 0x80092758u, 528u, 1u, dctx_func_800926B0},
+    {0x8009275Cu, 0x8009275Cu, 528u, 1u, dctx_func_800926B0},
+    {0x80092764u, 0x80092764u, 528u, 1u, dctx_func_800926B0},
+    {0x80092778u, 0x80092778u, 528u, 1u, dctx_func_800926B0},
+    {0x80092784u, 0x80092784u, 528u, 1u, dctx_func_800926B0},
+    {0x80092790u, 0x80092790u, 528u, 1u, dctx_func_800926B0},
+    {0x80092794u, 0x80092794u, 528u, 1u, dctx_func_800926B0},
+    {0x800927A0u, 0x800927A0u, 528u, 1u, dctx_func_800926B0},
+    {0x800927A8u, 0x800927A8u, 528u, 1u, dctx_func_800926B0},
+    {0x800927ACu, 0x800927ACu, 528u, 1u, dctx_func_800926B0},
+    {0x800927B8u, 0x800927B8u, 528u, 1u, dctx_func_800926B0},
+    {0x800927C8u, 0x800927C8u, 528u, 1u, dctx_func_800926B0},
+    {0x800927CCu, 0x800927CCu, 528u, 1u, dctx_func_800926B0},
+    {0x800927D8u, 0x800927D8u, 528u, 1u, dctx_func_800926B0},
+    {0x800927E0u, 0x800927E0u, 528u, 1u, dctx_func_800926B0},
+    {0x800927E4u, 0x800927E4u, 528u, 1u, dctx_func_800926B0},
+    {0x800927ECu, 0x800927ECu, 528u, 1u, dctx_func_800926B0},
+    {0x80092800u, 0x80092800u, 528u, 1u, dctx_func_800926B0},
+    {0x80092808u, 0x80092808u, 528u, 1u, dctx_func_800926B0},
+    {0x8009280Cu, 0x8009280Cu, 528u, 1u, dctx_func_800926B0},
+    {0x80092814u, 0x80092814u, 528u, 1u, dctx_func_800926B0},
+    {0x8009281Cu, 0x8009281Cu, 528u, 1u, dctx_func_800926B0},
+    {0x80093418u, 0x00000000u, 529u, 1u, dctx_func_80093418},
+    {0x80093440u, 0x80093440u, 529u, 1u, dctx_func_80093418},
+    {0x80093460u, 0x80093460u, 529u, 1u, dctx_func_80093418},
+    {0x8009347Cu, 0x8009347Cu, 529u, 1u, dctx_func_80093418},
+    {0x80093520u, 0x00000000u, 530u, 1u, dctx_func_80093520},
+    {0x80093540u, 0x80093540u, 530u, 1u, dctx_func_80093520},
+    {0x8009355Cu, 0x8009355Cu, 530u, 1u, dctx_func_80093520},
+    {0x80093580u, 0x80093580u, 530u, 1u, dctx_func_80093520},
+    {0x80093590u, 0x00000000u, 531u, 1u, dctx_func_80093590},
+    {0x800935C0u, 0x800935C0u, 531u, 1u, dctx_func_80093590},
+    {0x800935DCu, 0x800935DCu, 531u, 1u, dctx_func_80093590},
+    {0x800935ECu, 0x800935ECu, 531u, 1u, dctx_func_80093590},
+    {0x80093624u, 0x80093624u, 531u, 1u, dctx_func_80093590},
+    {0x80093634u, 0x80093634u, 531u, 1u, dctx_func_80093590},
+    {0x80093CF0u, 0x00000000u, 532u, 1u, dctx_func_80093CF0},
+    {0x80093D20u, 0x80093D20u, 532u, 1u, dctx_func_80093CF0},
+    {0x80093D58u, 0x80093D58u, 532u, 1u, dctx_func_80093CF0},
+    {0x80093DD8u, 0x00000000u, 533u, 1u, dctx_func_80093DD8},
+    {0x80093DE4u, 0x80093DE4u, 533u, 1u, dctx_func_80093DD8},
+    {0x80093DF0u, 0x80093DF0u, 533u, 1u, dctx_func_80093DD8},
+    {0x80093DF4u, 0x80093DF4u, 533u, 1u, dctx_func_80093DD8},
+    {0x80093E00u, 0x00000000u, 534u, 1u, dctx_func_80093E00},
+    {0x80093E30u, 0x80093E30u, 534u, 1u, dctx_func_80093E00},
+    {0x80093E3Cu, 0x80093E3Cu, 534u, 1u, dctx_func_80093E00},
+    {0x8009404Cu, 0x00000000u, 535u, 1u, dctx_func_8009404C},
+    {0x8009406Cu, 0x00000000u, 536u, 1u, dctx_func_8009406C},
+    {0x80094074u, 0x80094074u, 536u, 1u, dctx_func_8009406C},
+    {0x800940ACu, 0x800940ACu, 536u, 1u, dctx_func_8009406C},
+    {0x800940C0u, 0x00000000u, 537u, 1u, dctx_func_800940C0},
+    {0x800940D8u, 0x800940D8u, 537u, 1u, dctx_func_800940C0},
+    {0x800940E4u, 0x800940E4u, 537u, 1u, dctx_func_800940C0},
+    {0x80094100u, 0x80094100u, 537u, 1u, dctx_func_800940C0},
+    {0x80094118u, 0x00000000u, 538u, 1u, dctx_func_80094118},
+    {0x80094140u, 0x80094140u, 538u, 1u, dctx_func_80094118},
+    {0x8009415Cu, 0x00000000u, 539u, 1u, dctx_func_8009415C},
+    {0x80094164u, 0x80094164u, 539u, 1u, dctx_func_8009415C},
+    {0x80094168u, 0x00000000u, 540u, 1u, dctx_func_80094168},
+    {0x80094170u, 0x00000000u, 541u, 1u, dctx_func_80094170},
+    {0x80094178u, 0x80094178u, 541u, 1u, dctx_func_80094170},
+    {0x8009419Cu, 0x8009419Cu, 541u, 1u, dctx_func_80094170},
+    {0x800941A4u, 0x800941A4u, 541u, 1u, dctx_func_80094170},
+    {0x800941A8u, 0x800941A8u, 541u, 1u, dctx_func_80094170},
+    {0x800941BCu, 0x800941BCu, 541u, 1u, dctx_func_80094170},
+    {0x800941D0u, 0x800941D0u, 541u, 1u, dctx_func_80094170},
+    {0x80094248u, 0x80094248u, 541u, 1u, dctx_func_80094170},
+    {0x800942A0u, 0x00000000u, 542u, 1u, dctx_func_800942A0},
+    {0x800942BCu, 0x00000000u, 543u, 1u, dctx_func_800942BC},
+    {0x800942C4u, 0x800942C4u, 543u, 1u, dctx_func_800942BC},
+    {0x800942C8u, 0x800942C8u, 543u, 1u, dctx_func_800942BC},
+    {0x800942D0u, 0x800942D0u, 543u, 1u, dctx_func_800942BC},
+    {0x800942D4u, 0x800942D4u, 543u, 1u, dctx_func_800942BC},
+    {0x800942DCu, 0x00000000u, 544u, 1u, dctx_func_800942DC},
+    {0x800942ECu, 0x800942ECu, 544u, 1u, dctx_func_800942DC},
+    {0x80094310u, 0x80094310u, 544u, 1u, dctx_func_800942DC},
+    {0x80094314u, 0x80094314u, 544u, 1u, dctx_func_800942DC},
+    {0x80094328u, 0x80094328u, 544u, 1u, dctx_func_800942DC},
+    {0x8009434Cu, 0x8009434Cu, 544u, 1u, dctx_func_800942DC},
+    {0x80094354u, 0x80094354u, 544u, 1u, dctx_func_800942DC},
+    {0x80094358u, 0x80094358u, 544u, 1u, dctx_func_800942DC},
+    {0x8009435Cu, 0x8009435Cu, 544u, 1u, dctx_func_800942DC},
+    {0x80094374u, 0x00000000u, 545u, 1u, dctx_func_80094374},
+    {0x80094384u, 0x80094384u, 545u, 1u, dctx_func_80094374},
+    {0x800943A8u, 0x800943A8u, 545u, 1u, dctx_func_80094374},
+    {0x800943ACu, 0x800943ACu, 545u, 1u, dctx_func_80094374},
+    {0x800943C0u, 0x800943C0u, 545u, 1u, dctx_func_80094374},
+    {0x800943E4u, 0x800943E4u, 545u, 1u, dctx_func_80094374},
+    {0x800943ECu, 0x800943ECu, 545u, 1u, dctx_func_80094374},
+    {0x800943F0u, 0x800943F0u, 545u, 1u, dctx_func_80094374},
+    {0x800943F4u, 0x800943F4u, 545u, 1u, dctx_func_80094374},
+    {0x8009440Cu, 0x00000000u, 546u, 1u, dctx_func_8009440C},
+    {0x80094428u, 0x00000000u, 547u, 1u, dctx_func_80094428},
+    {0x80094430u, 0x80094430u, 547u, 1u, dctx_func_80094428},
+    {0x80094438u, 0x80094438u, 547u, 1u, dctx_func_80094428},
+    {0x800944A0u, 0x800944A0u, 547u, 1u, dctx_func_80094428},
+    {0x800944A8u, 0x00000000u, 548u, 1u, dctx_func_800944A8},
+    {0x800944C0u, 0x00000000u, 549u, 1u, dctx_func_800944C0},
+    {0x80094538u, 0x80094538u, 549u, 1u, dctx_func_800944C0},
+    {0x80094558u, 0x80094558u, 549u, 1u, dctx_func_800944C0},
+    {0x8009455Cu, 0x8009455Cu, 549u, 1u, dctx_func_800944C0},
+    {0x80094564u, 0x80094564u, 549u, 1u, dctx_func_800944C0},
+    {0x8009456Cu, 0x8009456Cu, 549u, 1u, dctx_func_800944C0},
+    {0x8009458Cu, 0x8009458Cu, 549u, 1u, dctx_func_800944C0},
+    {0x800945A0u, 0x00000000u, 550u, 1u, dctx_func_800945A0},
+    {0x800945C8u, 0x800945C8u, 550u, 1u, dctx_func_800945A0},
+    {0x800945ECu, 0x800945ECu, 550u, 1u, dctx_func_800945A0},
+    {0x800945F4u, 0x800945F4u, 550u, 1u, dctx_func_800945A0},
+    {0x800945F8u, 0x800945F8u, 550u, 1u, dctx_func_800945A0},
+    {0x80094608u, 0x80094608u, 550u, 1u, dctx_func_800945A0},
+    {0x8009462Cu, 0x8009462Cu, 550u, 1u, dctx_func_800945A0},
+    {0x80094634u, 0x80094634u, 550u, 1u, dctx_func_800945A0},
+    {0x80094638u, 0x80094638u, 550u, 1u, dctx_func_800945A0},
+    {0x8009464Cu, 0x8009464Cu, 550u, 1u, dctx_func_800945A0},
+    {0x80094660u, 0x80094660u, 550u, 1u, dctx_func_800945A0},
+    {0x80094708u, 0x80094708u, 550u, 1u, dctx_func_800945A0},
+    {0x80094718u, 0x80094718u, 550u, 1u, dctx_func_800945A0},
+    {0x8009472Cu, 0x8009472Cu, 550u, 1u, dctx_func_800945A0},
+    {0x80094738u, 0x80094738u, 550u, 1u, dctx_func_800945A0},
+    {0x800947A8u, 0x800947A8u, 550u, 1u, dctx_func_800945A0},
+    {0x800947B4u, 0x800947B4u, 550u, 1u, dctx_func_800945A0},
+    {0x800947D0u, 0x00000000u, 551u, 1u, dctx_func_800947D0},
+    {0x800947FCu, 0x800947FCu, 551u, 1u, dctx_func_800947D0},
+    {0x8009480Cu, 0x8009480Cu, 551u, 1u, dctx_func_800947D0},
+    {0x8009482Cu, 0x8009482Cu, 551u, 1u, dctx_func_800947D0},
+    {0x80094834u, 0x80094834u, 551u, 1u, dctx_func_800947D0},
+    {0x80094838u, 0x80094838u, 551u, 1u, dctx_func_800947D0},
+    {0x80094848u, 0x80094848u, 551u, 1u, dctx_func_800947D0},
+    {0x80094868u, 0x80094868u, 551u, 1u, dctx_func_800947D0},
+    {0x80094870u, 0x80094870u, 551u, 1u, dctx_func_800947D0},
+    {0x80094874u, 0x80094874u, 551u, 1u, dctx_func_800947D0},
+    {0x80094878u, 0x80094878u, 551u, 1u, dctx_func_800947D0},
+    {0x800948A4u, 0x800948A4u, 551u, 1u, dctx_func_800947D0},
+    {0x800948ACu, 0x800948ACu, 551u, 1u, dctx_func_800947D0},
+    {0x800948D8u, 0x800948D8u, 551u, 1u, dctx_func_800947D0},
+    {0x800948DCu, 0x800948DCu, 551u, 1u, dctx_func_800947D0},
+    {0x800948E4u, 0x800948E4u, 551u, 1u, dctx_func_800947D0},
+    {0x800948ECu, 0x800948ECu, 551u, 1u, dctx_func_800947D0},
+    {0x8009490Cu, 0x8009490Cu, 551u, 1u, dctx_func_800947D0},
+    {0x8009493Cu, 0x8009493Cu, 551u, 1u, dctx_func_800947D0},
+    {0x80094940u, 0x80094940u, 551u, 1u, dctx_func_800947D0},
+    {0x80094978u, 0x80094978u, 551u, 1u, dctx_func_800947D0},
+    {0x8009497Cu, 0x8009497Cu, 551u, 1u, dctx_func_800947D0},
+    {0x80094998u, 0x80094998u, 551u, 1u, dctx_func_800947D0},
+    {0x800949A0u, 0x800949A0u, 551u, 1u, dctx_func_800947D0},
+    {0x800949E4u, 0x800949E4u, 551u, 1u, dctx_func_800947D0},
+    {0x800949E8u, 0x800949E8u, 551u, 1u, dctx_func_800947D0},
+    {0x80094A0Cu, 0x00000000u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A34u, 0x80094A34u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A44u, 0x80094A44u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A60u, 0x80094A60u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A68u, 0x80094A68u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A6Cu, 0x80094A6Cu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A7Cu, 0x80094A7Cu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094A9Cu, 0x80094A9Cu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094AA4u, 0x80094AA4u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094AA8u, 0x80094AA8u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094AACu, 0x80094AACu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094AD8u, 0x80094AD8u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094AE0u, 0x80094AE0u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094B0Cu, 0x80094B0Cu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094B10u, 0x80094B10u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094B18u, 0x80094B18u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094B20u, 0x80094B20u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094B40u, 0x80094B40u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094BB8u, 0x80094BB8u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094BBCu, 0x80094BBCu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094BC4u, 0x80094BC4u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094BCCu, 0x80094BCCu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094BECu, 0x80094BECu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094BFCu, 0x80094BFCu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094C1Cu, 0x80094C1Cu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094C24u, 0x80094C24u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094C68u, 0x80094C68u, 552u, 1u, dctx_func_80094A0C},
+    {0x80094C6Cu, 0x80094C6Cu, 552u, 1u, dctx_func_80094A0C},
+    {0x80094C8Cu, 0x00000000u, 553u, 1u, dctx_func_80094C8C},
+    {0x80094CB0u, 0x00000000u, 554u, 1u, dctx_func_80094CB0},
+    {0x80094CC4u, 0x00000000u, 555u, 1u, dctx_func_80094CC4},
+    {0x80094CDCu, 0x80094CDCu, 555u, 1u, dctx_func_80094CC4},
+    {0x80094CE0u, 0x80094CE0u, 555u, 1u, dctx_func_80094CC4},
+    {0x80094CFCu, 0x80094CFCu, 555u, 1u, dctx_func_80094CC4},
+    {0x80094D04u, 0x00000000u, 556u, 1u, dctx_func_80094D04},
+    {0x80094D4Cu, 0x00000000u, 557u, 1u, dctx_func_80094D4C},
+    {0x80094D7Cu, 0x00000000u, 558u, 1u, dctx_func_80094D7C},
+    {0x80094D90u, 0x80094D90u, 558u, 1u, dctx_func_80094D7C},
+    {0x80094DA0u, 0x00000000u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094DCCu, 0x80094DCCu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094DD4u, 0x80094DD4u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094DDCu, 0x80094DDCu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094DE4u, 0x80094DE4u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094DECu, 0x80094DECu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E0Cu, 0x80094E0Cu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E14u, 0x80094E14u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E34u, 0x80094E34u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E50u, 0x80094E50u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E70u, 0x80094E70u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E80u, 0x80094E80u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094E8Cu, 0x80094E8Cu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EA0u, 0x80094EA0u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EACu, 0x80094EACu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EBCu, 0x80094EBCu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EC4u, 0x80094EC4u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094ED4u, 0x80094ED4u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EDCu, 0x80094EDCu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EECu, 0x80094EECu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EF4u, 0x80094EF4u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094EF8u, 0x80094EF8u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094F08u, 0x80094F08u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094F3Cu, 0x80094F3Cu, 559u, 1u, dctx_func_80094DA0},
+    {0x80094F80u, 0x80094F80u, 559u, 1u, dctx_func_80094DA0},
+    {0x80094F94u, 0x00000000u, 560u, 1u, dctx_func_80094F94},
+    {0x80094FA4u, 0x00000000u, 561u, 1u, dctx_func_80094FA4},
+    {0x80094FD0u, 0x00000000u, 562u, 1u, dctx_func_80094FD0},
+    {0x80094FE0u, 0x00000000u, 563u, 1u, dctx_func_80094FE0},
+    {0x80095010u, 0x80095010u, 563u, 1u, dctx_func_80094FE0},
+    {0x80095018u, 0x80095018u, 563u, 1u, dctx_func_80094FE0},
+    {0x80095034u, 0x00000000u, 564u, 1u, dctx_func_80095034},
+    {0x80095050u, 0x00000000u, 565u, 1u, dctx_func_80095050},
+    {0x8009507Cu, 0x8009507Cu, 565u, 1u, dctx_func_80095050},
+    {0x80095084u, 0x80095084u, 565u, 1u, dctx_func_80095050},
+    {0x800950A0u, 0x800950A0u, 565u, 1u, dctx_func_80095050},
+    {0x800950C0u, 0x800950C0u, 565u, 1u, dctx_func_80095050},
+    {0x800950C8u, 0x00000000u, 566u, 1u, dctx_func_800950C8},
+    {0x800950E8u, 0x800950E8u, 566u, 1u, dctx_func_800950C8},
+    {0x800950FCu, 0x800950FCu, 566u, 1u, dctx_func_800950C8},
+    {0x80095104u, 0x00000000u, 567u, 1u, dctx_func_80095104},
+    {0x80095124u, 0x80095124u, 567u, 1u, dctx_func_80095104},
+    {0x80095138u, 0x80095138u, 567u, 1u, dctx_func_80095104},
+    {0x800951A8u, 0x800951A8u, 567u, 1u, dctx_func_80095104},
+    {0x800951E0u, 0x800951E0u, 567u, 1u, dctx_func_80095104},
+    {0x800951E4u, 0x00000000u, 568u, 1u, dctx_func_800951E4},
+    {0x80095200u, 0x00000000u, 569u, 1u, dctx_func_80095200},
+    {0x80095208u, 0x00000000u, 570u, 1u, dctx_func_80095208},
+    {0x80095210u, 0x80095210u, 570u, 1u, dctx_func_80095208},
+    {0x80095220u, 0x00000000u, 571u, 1u, dctx_func_80095220},
+    {0x8009522Cu, 0x8009522Cu, 571u, 1u, dctx_func_80095220},
+    {0x8009524Cu, 0x8009524Cu, 571u, 1u, dctx_func_80095220},
+    {0x80095264u, 0x80095264u, 571u, 1u, dctx_func_80095220},
+    {0x80095274u, 0x80095274u, 571u, 1u, dctx_func_80095220},
+    {0x80095280u, 0x80095280u, 571u, 1u, dctx_func_80095220},
+    {0x8009529Cu, 0x00000000u, 572u, 1u, dctx_func_8009529C},
+    {0x800952B0u, 0x00000000u, 573u, 1u, dctx_func_800952B0},
+    {0x800952C8u, 0x800952C8u, 573u, 1u, dctx_func_800952B0},
+    {0x800952F8u, 0x800952F8u, 573u, 1u, dctx_func_800952B0},
+    {0x80095300u, 0x80095300u, 573u, 1u, dctx_func_800952B0},
+    {0x80095308u, 0x80095308u, 573u, 1u, dctx_func_800952B0},
+    {0x80095310u, 0x80095310u, 573u, 1u, dctx_func_800952B0},
+    {0x80095318u, 0x80095318u, 573u, 1u, dctx_func_800952B0},
+    {0x80095320u, 0x80095320u, 573u, 1u, dctx_func_800952B0},
+    {0x80095364u, 0x80095364u, 573u, 1u, dctx_func_800952B0},
+    {0x80095378u, 0x80095378u, 573u, 1u, dctx_func_800952B0},
+    {0x80095380u, 0x80095380u, 573u, 1u, dctx_func_800952B0},
+    {0x800953CCu, 0x800953CCu, 573u, 1u, dctx_func_800952B0},
+    {0x800953DCu, 0x800953DCu, 573u, 1u, dctx_func_800952B0},
+    {0x800953E8u, 0x800953E8u, 573u, 1u, dctx_func_800952B0},
+    {0x800953F0u, 0x800953F0u, 573u, 1u, dctx_func_800952B0},
+    {0x80095400u, 0x00000000u, 574u, 1u, dctx_func_80095400},
+    {0x80095410u, 0x80095410u, 574u, 1u, dctx_func_80095400},
+    {0x80095418u, 0x80095418u, 574u, 1u, dctx_func_80095400},
+    {0x80095420u, 0x80095420u, 574u, 1u, dctx_func_80095400},
+    {0x80095428u, 0x80095428u, 574u, 1u, dctx_func_80095400},
+    {0x80095430u, 0x80095430u, 574u, 1u, dctx_func_80095400},
+    {0x80095438u, 0x80095438u, 574u, 1u, dctx_func_80095400},
+    {0x80095454u, 0x80095454u, 574u, 1u, dctx_func_80095400},
+    {0x8009545Cu, 0x8009545Cu, 574u, 1u, dctx_func_80095400},
+    {0x80095464u, 0x80095464u, 574u, 1u, dctx_func_80095400},
+    {0x8009546Cu, 0x8009546Cu, 574u, 1u, dctx_func_80095400},
+    {0x8009548Cu, 0x8009548Cu, 574u, 1u, dctx_func_80095400},
+    {0x800954ACu, 0x800954ACu, 574u, 1u, dctx_func_80095400},
+    {0x800954B4u, 0x800954B4u, 574u, 1u, dctx_func_80095400},
+    {0x800954D8u, 0x800954D8u, 574u, 1u, dctx_func_80095400},
+    {0x800954E0u, 0x800954E0u, 574u, 1u, dctx_func_80095400},
+    {0x80095500u, 0x80095500u, 574u, 1u, dctx_func_80095400},
+    {0x80095520u, 0x80095520u, 574u, 1u, dctx_func_80095400},
+    {0x80095528u, 0x80095528u, 574u, 1u, dctx_func_80095400},
+    {0x8009552Cu, 0x8009552Cu, 574u, 1u, dctx_func_80095400},
+    {0x8009553Cu, 0x00000000u, 575u, 1u, dctx_func_8009553C},
+    {0x8009554Cu, 0x8009554Cu, 575u, 1u, dctx_func_8009553C},
+    {0x80095570u, 0x00000000u, 576u, 1u, dctx_func_80095570},
+    {0x80095580u, 0x80095580u, 576u, 1u, dctx_func_80095570},
+    {0x80095598u, 0x80095598u, 576u, 1u, dctx_func_80095570},
+    {0x800955C4u, 0x800955C4u, 576u, 1u, dctx_func_80095570},
+    {0x80095614u, 0x80095614u, 576u, 1u, dctx_func_80095570},
+    {0x8009561Cu, 0x8009561Cu, 576u, 1u, dctx_func_80095570},
+    {0x80095698u, 0x80095698u, 576u, 1u, dctx_func_80095570},
+    {0x800956A0u, 0x800956A0u, 576u, 1u, dctx_func_80095570},
+    {0x800956A4u, 0x800956A4u, 576u, 1u, dctx_func_80095570},
+    {0x800956B4u, 0x00000000u, 577u, 1u, dctx_func_800956B4},
+    {0x800956ECu, 0x800956ECu, 577u, 1u, dctx_func_800956B4},
+    {0x80095724u, 0x80095724u, 577u, 1u, dctx_func_800956B4},
+    {0x80095730u, 0x80095730u, 577u, 1u, dctx_func_800956B4},
+    {0x80095748u, 0x80095748u, 577u, 1u, dctx_func_800956B4},
+    {0x8009574Cu, 0x8009574Cu, 577u, 1u, dctx_func_800956B4},
+    {0x80095B94u, 0x00000000u, 578u, 1u, dctx_func_80095B94},
+    {0x80095B9Cu, 0x80095B9Cu, 578u, 1u, dctx_func_80095B94},
+    {0x80095BA0u, 0x80095BA0u, 578u, 1u, dctx_func_80095B94},
+    {0x80095BB0u, 0x80095BB0u, 578u, 1u, dctx_func_80095B94},
+    {0x80095C20u, 0x00000000u, 579u, 1u, dctx_func_80095C20},
+    {0x80095C60u, 0x00000000u, 580u, 1u, dctx_func_80095C60},
+    {0x80095CA0u, 0x00000000u, 581u, 1u, dctx_func_80095CA0},
+    {0x80095CD0u, 0x00000000u, 582u, 1u, dctx_func_80095CD0},
+    {0x80095CD8u, 0x80095CD8u, 582u, 1u, dctx_func_80095CD0},
+    {0x80095CE4u, 0x80095CE4u, 582u, 1u, dctx_func_80095CD0},
+    {0x80095CF0u, 0x80095CF0u, 582u, 1u, dctx_func_80095CD0},
+    {0x80095D00u, 0x00000000u, 583u, 1u, dctx_func_80095D00},
+    {0x80095D08u, 0x80095D08u, 583u, 1u, dctx_func_80095D00},
+    {0x80095D14u, 0x80095D14u, 583u, 1u, dctx_func_80095D00},
+    {0x80095D20u, 0x80095D20u, 583u, 1u, dctx_func_80095D00},
+    {0x80095D30u, 0x00000000u, 584u, 1u, dctx_func_80095D30},
+    {0x80095D70u, 0x00000000u, 585u, 1u, dctx_func_80095D70},
+    {0x80095D90u, 0x00000000u, 586u, 1u, dctx_func_80095D90},
+    {0x800965B8u, 0x00000000u, 587u, 1u, dctx_func_800965B8},
+    {0x800965C4u, 0x800965C4u, 587u, 1u, dctx_func_800965B8},
+    {0x800965D0u, 0x00000000u, 588u, 1u, dctx_func_800965D0},
+    {0x800965DCu, 0x800965DCu, 588u, 1u, dctx_func_800965D0},
+    {0x800965E0u, 0x00000000u, 589u, 1u, dctx_func_800965E0},
+    {0x800965ECu, 0x800965ECu, 589u, 1u, dctx_func_800965E0},
+    {0x800965F0u, 0x00000000u, 590u, 1u, dctx_func_800965F0},
+    {0x800965FCu, 0x800965FCu, 590u, 1u, dctx_func_800965F0},
+    {0x80096600u, 0x00000000u, 591u, 1u, dctx_func_80096600},
+    {0x8009660Cu, 0x8009660Cu, 591u, 1u, dctx_func_80096600},
+    {0x80096610u, 0x00000000u, 592u, 1u, dctx_func_80096610},
+    {0x8009661Cu, 0x8009661Cu, 592u, 1u, dctx_func_80096610},
+    {0x80096620u, 0x00000000u, 593u, 1u, dctx_func_80096620},
+    {0x8009662Cu, 0x8009662Cu, 593u, 1u, dctx_func_80096620},
+    {0x80096630u, 0x00000000u, 594u, 1u, dctx_func_80096630},
+    {0x8009663Cu, 0x8009663Cu, 594u, 1u, dctx_func_80096630},
+    {0x80096640u, 0x00000000u, 595u, 1u, dctx_func_80096640},
+    {0x8009664Cu, 0x8009664Cu, 595u, 1u, dctx_func_80096640},
+    {0x80096650u, 0x00000000u, 596u, 1u, dctx_func_80096650},
+    {0x8009665Cu, 0x8009665Cu, 596u, 1u, dctx_func_80096650},
+    {0x80096660u, 0x00000000u, 597u, 1u, dctx_func_80096660},
+    {0x8009666Cu, 0x00000000u, 598u, 1u, dctx_func_8009666C},
+    {0x800966B4u, 0x800966B4u, 598u, 1u, dctx_func_8009666C},
+    {0x800966C8u, 0x800966C8u, 599u, 1u, dctx_func_80096924},
+    {0x800966D0u, 0x800966D0u, 599u, 1u, dctx_func_80096924},
+    {0x800966F4u, 0x800966F4u, 599u, 1u, dctx_func_80096924},
+    {0x80096714u, 0x80096714u, 599u, 1u, dctx_func_80096924},
+    {0x80096728u, 0x80096728u, 599u, 1u, dctx_func_80096924},
+    {0x80096730u, 0x80096730u, 599u, 1u, dctx_func_80096924},
+    {0x80096744u, 0x80096744u, 599u, 1u, dctx_func_80096924},
+    {0x8009674Cu, 0x8009674Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096754u, 0x80096754u, 599u, 1u, dctx_func_80096924},
+    {0x8009675Cu, 0x8009675Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096770u, 0x80096770u, 599u, 1u, dctx_func_80096924},
+    {0x80096778u, 0x80096778u, 599u, 1u, dctx_func_80096924},
+    {0x8009678Cu, 0x8009678Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096794u, 0x80096794u, 599u, 1u, dctx_func_80096924},
+    {0x800967B0u, 0x800967B0u, 599u, 1u, dctx_func_80096924},
+    {0x800967C4u, 0x800967C4u, 599u, 1u, dctx_func_80096924},
+    {0x800967D8u, 0x800967D8u, 599u, 1u, dctx_func_80096924},
+    {0x80096814u, 0x80096814u, 599u, 1u, dctx_func_80096924},
+    {0x80096820u, 0x80096820u, 599u, 1u, dctx_func_80096924},
+    {0x80096828u, 0x80096828u, 599u, 1u, dctx_func_80096924},
+    {0x80096848u, 0x80096848u, 599u, 1u, dctx_func_80096924},
+    {0x80096874u, 0x80096874u, 599u, 1u, dctx_func_80096924},
+    {0x800968B0u, 0x800968B0u, 599u, 1u, dctx_func_80096924},
+    {0x800968BCu, 0x800968BCu, 599u, 1u, dctx_func_80096924},
+    {0x800968CCu, 0x800968CCu, 599u, 1u, dctx_func_80096924},
+    {0x800968DCu, 0x800968DCu, 599u, 1u, dctx_func_80096924},
+    {0x800968F0u, 0x800968F0u, 599u, 1u, dctx_func_80096924},
+    {0x800968FCu, 0x800968FCu, 599u, 1u, dctx_func_80096924},
+    {0x80096900u, 0x80096900u, 599u, 1u, dctx_func_80096924},
+    {0x8009690Cu, 0x8009690Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096924u, 0x00000000u, 599u, 1u, dctx_func_80096924},
+    {0x80096930u, 0x00000000u, 600u, 1u, dctx_func_80096930},
+    {0x8009693Cu, 0x00000000u, 601u, 1u, dctx_func_8009693C},
+    {0x80096948u, 0x80096948u, 599u, 1u, dctx_func_80096924},
+    {0x80096968u, 0x00000000u, 602u, 1u, dctx_func_80096968},
+    {0x80096994u, 0x80096994u, 599u, 1u, dctx_func_80096924},
+    {0x80096998u, 0x80096998u, 599u, 1u, dctx_func_80096924},
+    {0x800969A0u, 0x800969A0u, 599u, 1u, dctx_func_80096924},
+    {0x800969ACu, 0x800969ACu, 599u, 1u, dctx_func_80096924},
+    {0x800969B8u, 0x800969B8u, 599u, 1u, dctx_func_80096924},
+    {0x800969C0u, 0x00000000u, 603u, 1u, dctx_func_800969C0},
+    {0x800969ECu, 0x800969ECu, 599u, 1u, dctx_func_80096924},
+    {0x800969F0u, 0x800969F0u, 599u, 1u, dctx_func_80096924},
+    {0x800969F4u, 0x800969F4u, 599u, 1u, dctx_func_80096924},
+    {0x80096A0Cu, 0x80096A0Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096A18u, 0x80096A18u, 599u, 1u, dctx_func_80096924},
+    {0x80096A2Cu, 0x80096A2Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096A34u, 0x80096A34u, 599u, 1u, dctx_func_80096924},
+    {0x80096A44u, 0x80096A44u, 599u, 1u, dctx_func_80096924},
+    {0x80096A48u, 0x80096A48u, 599u, 1u, dctx_func_80096924},
+    {0x80096A50u, 0x80096A50u, 599u, 1u, dctx_func_80096924},
+    {0x80096A58u, 0x80096A58u, 599u, 1u, dctx_func_80096924},
+    {0x80096A8Cu, 0x80096A8Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096AA0u, 0x80096AA0u, 599u, 1u, dctx_func_80096924},
+    {0x80096AA4u, 0x80096AA4u, 599u, 1u, dctx_func_80096924},
+    {0x80096ABCu, 0x80096ABCu, 599u, 1u, dctx_func_80096924},
+    {0x80096AC0u, 0x80096AC0u, 599u, 1u, dctx_func_80096924},
+    {0x80096AD0u, 0x80096AD0u, 599u, 1u, dctx_func_80096924},
+    {0x80096AE0u, 0x00000000u, 604u, 1u, dctx_func_80096AE0},
+    {0x80096B0Cu, 0x80096B0Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096B10u, 0x80096B10u, 599u, 1u, dctx_func_80096924},
+    {0x80096B1Cu, 0x80096B1Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096B28u, 0x80096B28u, 599u, 1u, dctx_func_80096924},
+    {0x80096B34u, 0x80096B34u, 599u, 1u, dctx_func_80096924},
+    {0x80096B44u, 0x80096B44u, 599u, 1u, dctx_func_80096924},
+    {0x80096B48u, 0x80096B48u, 599u, 1u, dctx_func_80096924},
+    {0x80096B50u, 0x80096B50u, 599u, 1u, dctx_func_80096924},
+    {0x80096B6Cu, 0x80096B6Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096B84u, 0x80096B84u, 599u, 1u, dctx_func_80096924},
+    {0x80096B8Cu, 0x80096B8Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096B9Cu, 0x80096B9Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096BA8u, 0x80096BA8u, 599u, 1u, dctx_func_80096924},
+    {0x80096BBCu, 0x80096BBCu, 599u, 1u, dctx_func_80096924},
+    {0x80096BC0u, 0x80096BC0u, 599u, 1u, dctx_func_80096924},
+    {0x80096BD8u, 0x80096BD8u, 599u, 1u, dctx_func_80096924},
+    {0x80096BE0u, 0x00000000u, 605u, 1u, dctx_func_80096BE0},
+    {0x80096BF4u, 0x00000000u, 606u, 1u, dctx_func_80096BF4},
+    {0x80096C00u, 0x00000000u, 607u, 1u, dctx_func_80096C00},
+    {0x80096C08u, 0x80096C08u, 599u, 1u, dctx_func_80096924},
+    {0x80096C34u, 0x80096C34u, 599u, 1u, dctx_func_80096924},
+    {0x80096C38u, 0x80096C38u, 599u, 1u, dctx_func_80096924},
+    {0x80096C44u, 0x80096C44u, 599u, 1u, dctx_func_80096924},
+    {0x80096C50u, 0x80096C50u, 599u, 1u, dctx_func_80096924},
+    {0x80096C60u, 0x80096C60u, 599u, 1u, dctx_func_80096924},
+    {0x80096C68u, 0x80096C68u, 599u, 1u, dctx_func_80096924},
+    {0x80096C78u, 0x80096C78u, 599u, 1u, dctx_func_80096924},
+    {0x80096C7Cu, 0x80096C7Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096C84u, 0x80096C84u, 599u, 1u, dctx_func_80096924},
+    {0x80096CA4u, 0x80096CA4u, 599u, 1u, dctx_func_80096924},
+    {0x80096CB8u, 0x80096CB8u, 599u, 1u, dctx_func_80096924},
+    {0x80096CBCu, 0x80096CBCu, 599u, 1u, dctx_func_80096924},
+    {0x80096CD4u, 0x80096CD4u, 599u, 1u, dctx_func_80096924},
+    {0x80096CD8u, 0x80096CD8u, 599u, 1u, dctx_func_80096924},
+    {0x80096CF0u, 0x80096CF0u, 599u, 1u, dctx_func_80096924},
+    {0x80096D08u, 0x00000000u, 608u, 1u, dctx_func_80096D08},
+    {0x80096D28u, 0x00000000u, 609u, 1u, dctx_func_80096D28},
+    {0x80096D4Cu, 0x80096D4Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096D5Cu, 0x80096D5Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096D70u, 0x80096D70u, 599u, 1u, dctx_func_80096924},
+    {0x80096D78u, 0x80096D78u, 599u, 1u, dctx_func_80096924},
+    {0x80096D84u, 0x80096D84u, 599u, 1u, dctx_func_80096924},
+    {0x80096D8Cu, 0x80096D8Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096D94u, 0x80096D94u, 599u, 1u, dctx_func_80096924},
+    {0x80096DA0u, 0x80096DA0u, 599u, 1u, dctx_func_80096924},
+    {0x80096DA8u, 0x80096DA8u, 599u, 1u, dctx_func_80096924},
+    {0x80096DB4u, 0x00000000u, 610u, 1u, dctx_func_80096DB4},
+    {0x80096DD8u, 0x80096DD8u, 599u, 1u, dctx_func_80096924},
+    {0x80096DE0u, 0x80096DE0u, 599u, 1u, dctx_func_80096924},
+    {0x80096DE8u, 0x00000000u, 611u, 1u, dctx_func_80096DE8},
+    {0x80096DF4u, 0x80096DF4u, 599u, 1u, dctx_func_80096924},
+    {0x80096E00u, 0x80096E00u, 599u, 1u, dctx_func_80096924},
+    {0x80096E14u, 0x80096E14u, 599u, 1u, dctx_func_80096924},
+    {0x80096E28u, 0x80096E28u, 599u, 1u, dctx_func_80096924},
+    {0x80096E4Cu, 0x80096E4Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096E50u, 0x80096E50u, 599u, 1u, dctx_func_80096924},
+    {0x80096E54u, 0x80096E54u, 599u, 1u, dctx_func_80096924},
+    {0x80096E5Cu, 0x80096E5Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096E70u, 0x80096E70u, 599u, 1u, dctx_func_80096924},
+    {0x80096E8Cu, 0x80096E8Cu, 599u, 1u, dctx_func_80096924},
+    {0x80096EACu, 0x80096EACu, 599u, 1u, dctx_func_80096924},
+    {0x80096EF0u, 0x00000000u, 612u, 1u, dctx_func_80096EF0},
+    {0x80096EFCu, 0x80096EFCu, 612u, 1u, dctx_func_80096EF0},
+    {0x80096F00u, 0x00000000u, 613u, 1u, dctx_func_80096F00},
+    {0x80096F0Cu, 0x80096F0Cu, 613u, 1u, dctx_func_80096F00},
+    {0x80096F10u, 0x00000000u, 614u, 1u, dctx_func_80096F10},
+    {0x80096F20u, 0x80096F20u, 614u, 1u, dctx_func_80096F10},
+    {0x80096F28u, 0x80096F28u, 614u, 1u, dctx_func_80096F10},
+    {0x80096F44u, 0x80096F44u, 614u, 1u, dctx_func_80096F10},
+    {0x80096F4Cu, 0x80096F4Cu, 614u, 1u, dctx_func_80096F10},
+    {0x80096F54u, 0x80096F54u, 614u, 1u, dctx_func_80096F10},
+    {0x80096F70u, 0x80096F70u, 614u, 1u, dctx_func_80096F10},
+    {0x80096F74u, 0x80096F74u, 614u, 1u, dctx_func_80096F10},
+    {0x80097160u, 0x00000000u, 615u, 1u, dctx_func_80097160},
+    {0x80097170u, 0x00000000u, 616u, 1u, dctx_func_80097170},
+    {0x8009717Cu, 0x8009717Cu, 616u, 1u, dctx_func_80097170},
+    {0x80097180u, 0x00000000u, 617u, 1u, dctx_func_80097180},
+    {0x80097190u, 0x80097190u, 617u, 1u, dctx_func_80097180},
+    {0x80097198u, 0x80097198u, 617u, 1u, dctx_func_80097180},
+    {0x800971BCu, 0x800971BCu, 617u, 1u, dctx_func_80097180},
+    {0x800971C4u, 0x800971C4u, 617u, 1u, dctx_func_80097180},
+    {0x800971C8u, 0x800971C8u, 617u, 1u, dctx_func_80097180},
+    {0x800971D0u, 0x800971D0u, 617u, 1u, dctx_func_80097180},
+    {0x800971D8u, 0x800971D8u, 617u, 1u, dctx_func_80097180},
+    {0x800971E4u, 0x800971E4u, 617u, 1u, dctx_func_80097180},
+    {0x800971F0u, 0x800971F0u, 617u, 1u, dctx_func_80097180},
+    {0x800971F4u, 0x800971F4u, 617u, 1u, dctx_func_80097180},
+    {0x800971FCu, 0x800971FCu, 617u, 1u, dctx_func_80097180},
+    {0x80097200u, 0x80097200u, 617u, 1u, dctx_func_80097180},
+    {0x80097214u, 0x80097214u, 617u, 1u, dctx_func_80097180},
 };
 
-static const uint32_t k_dctx_roots[] = { 0x8006F00Cu, 0x80061078u, 0x80061C34u, 0x800628C8u, 0x80063344u, 0x80063E64u, 0x80064A68u, 0x80065744u, 0x800661FCu, 0x80066D58u, 0x8006723Cu, 0x80067DB8u, 0x80061028u, 0x8006BF54u, 0x8006CBA4u, 0x8006A928u, 0x8006B3ECu, 0x80068A0Cu, 0x80069954u, 0x8005FB50u, 0x8005FBB8u, 0x8005FC44u, 0x8005FDC8u, 0x8005F6F4u, 0x8005F758u, 0x8005F7E8u, 0x8005F964u, 0x80060178u, 0x800601F4u, 0x8006029Cu, 0x80060E34u, 0x800608BCu, 0x80060958u, 0x80060BB0u, 0x80060EDCu, 0x80055590u, 0x800555A0u, 0x800555B0u, 0x800555C0u, 0x800555D0u, 0x800555E0u, 0x800555F0u, 0x80014A84u, 0x80020074u, 0x800207D4u, 0x80021774u, 0x80021C38u, 0x80022340u, 0x8002C194u, 0x8002DC00u, 0x8003C4B4u, 0x8004C8BCu, 0x8004CBACu, 0x8004CC40u, 0x800558E8u, 0x80055968u, 0x800559BCu, 0x80059E24u, 0x80090600u, 0x800914B0u, 0x80096660u, 0x8006F2B0u, 0x80034444u, 0x80039C04u, 0x8002BEA4u, 0x8002C0F8u, 0x800212E0u, 0x80021134u, 0x80021614u, 0x80021960u, 0x80021A20u, 0x80021DDCu, 0x80022048u, 0x80021BA4u, 0x80020A98u, 0x8006E4D0u, 0x8002E554u, 0x8002258Cu, 0x80074AD8u, 0x800374F8u, 0x80070A58u, 0x80093418u, 0x80093520u, 0x80093590u, 0x80094D7Cu, 0x80094DA0u, 0x800945A0u, 0x80094C8Cu, 0x80094CC4u, 0x80094D04u, 0x80094A0Cu, 0x800947D0u, 0x80095050u, 0x80094CB0u, 0x800944C0u, 0x80094D4Cu, 0x800952B0u, 0x800944A8u, 0x80095400u };
+static const uint32_t k_dctx_roots[] = { 0x8006F00Cu, 0x80061078u, 0x80061C34u, 0x800628C8u, 0x80063344u, 0x80063E64u, 0x80064A68u, 0x80065744u, 0x800661FCu, 0x80066D58u, 0x8006723Cu, 0x80067DB8u, 0x80061028u, 0x8006BF54u, 0x8006CBA4u, 0x8006A928u, 0x8006B3ECu, 0x80068A0Cu, 0x80069954u, 0x8005FB50u, 0x8005FBB8u, 0x8005FC44u, 0x8005FDC8u, 0x8005F6F4u, 0x8005F758u, 0x8005F7E8u, 0x8005F964u, 0x80060178u, 0x800601F4u, 0x8006029Cu, 0x80060E34u, 0x800608BCu, 0x80060958u, 0x80060BB0u, 0x80060EDCu, 0x80060AFCu, 0x8007559Cu, 0x80055590u, 0x800555A0u, 0x800555B0u, 0x800555C0u, 0x800555D0u, 0x800555E0u, 0x800555F0u, 0x80014A84u, 0x80020074u, 0x800207D4u, 0x80021774u, 0x80021C38u, 0x80022340u, 0x8002C194u, 0x8002DC00u, 0x8003C4B4u, 0x8004C8BCu, 0x8004CBACu, 0x8004CC40u, 0x800558E8u, 0x80055968u, 0x800559BCu, 0x80059E24u, 0x80090600u, 0x800914B0u, 0x80096660u, 0x8006F2B0u, 0x80034444u, 0x80039C04u, 0x8002BEA4u, 0x8002C0F8u, 0x800212E0u, 0x80021134u, 0x80021614u, 0x80021960u, 0x80021A20u, 0x80021DDCu, 0x80022048u, 0x80021BA4u, 0x80020A98u, 0x8006E4D0u, 0x8002E554u, 0x8002258Cu, 0x80074AD8u, 0x800374F8u, 0x80070A58u, 0x80093418u, 0x80093520u, 0x80093590u, 0x80094D7Cu, 0x80094DA0u, 0x800945A0u, 0x80094C8Cu, 0x80094CC4u, 0x80094D04u, 0x80094A0Cu, 0x800947D0u, 0x80095050u, 0x80094CB0u, 0x800944C0u, 0x80094D4Cu, 0x800952B0u, 0x800944A8u, 0x80095400u };
 
 static const PsxDctxTable k_dctx_table = {
     "SLUS_007.97",
-    k_dctx_rows, 4966u,
-    k_dctx_ranges, 579u,
-    k_dctx_roots, 99u,
+    k_dctx_rows, 5011u,
+    k_dctx_ranges, 618u,
+    k_dctx_roots, 101u,
 };
 
 static void psx_dctx_register_game(void) {
