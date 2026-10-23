@@ -209,6 +209,13 @@ incomplete whole-race coverage. The test input uses the post-sampling frame
 hook because ordinary controller transforms intentionally skip headless and
 TCP-injected input. Windows build and three relevant CTests passed.
 
+A further default-mod Time Attack check (`ta-default-v8-short-20261023`),
+using the same build-matched state and warm-title load, matches its first
+252 stock/isolated ticks and all 504 shared input polls. Both have zero
+dispatch misses; neither reached the goal. Each post-load sample was 12 s;
+warm-title setup made the isolated run 32.6 s wall time, so shorten the next
+sample to keep the owner's 30 s total bound.
+
 ### Worker side-effect contract
 
 The gate models **real-frame** drawing: sound and RNG calls occur on main
