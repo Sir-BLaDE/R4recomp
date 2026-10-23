@@ -241,6 +241,15 @@ if(R4_BUILD_TESTS AND BUILD_TESTING)
         add_test(NAME r4_link_netplay_setup COMMAND r4-link-netplay-tests)
     endif()
     # Pure widescreen helpers, no game data needed.
+    if(NOT MSVC)
+        find_package(Threads REQUIRED)
+        add_executable(r4-draw-ws-tests tests/test_r4_draw_ws.c)
+        target_compile_options(r4-draw-ws-tests PRIVATE -O2)
+        target_include_directories(r4-draw-ws-tests PRIVATE
+            "${PSXRECOMP_ROOT}/runtime/include" "${CMAKE_CURRENT_SOURCE_DIR}/src/mods")
+        target_link_libraries(r4-draw-ws-tests PRIVATE Threads::Threads)
+        add_test(NAME r4_draw_ws COMMAND r4-draw-ws-tests)
+    endif()
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_r4_widescreen.c")
         add_executable(r4-widescreen-tests
             "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_r4_widescreen.c")
