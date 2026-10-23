@@ -4,8 +4,9 @@
 Proves, over a whole race, that every race draw call can run against a private
 copy of guest RAM / scratchpad / GTE registers without changing the game: a
 run with the draw isolated (mode iso) must log the same per-tick state and
-frame hashes, and the same guest-write fingerprints, as a stock run (mode
-base) from the same race savestate and the same frame-exact input.
+frame hashes as a stock run (mode base) from the same race savestate and
+frame-exact input. Nested stock calls also require guest-write fingerprint
+equality; isolated calls can differ in dead stack writes.
 
   python tools/draw_iso_gate.py prepare --build build --out RUNS --port 5341
       boot headless + turbo, walk the menus into a Grand Prix race (the
@@ -68,9 +69,11 @@ def runtime_hash(build):
 
 
 def set_mod_state(build, defaults=False):
-    subprocess.check_call([sys.executable, os.path.join(HERE, "mod_state.py"), os.path.join(ROOT, build),
-                           "--defaults" if defaults else "--stock", "--enable",
-                           "r4.debug.draw-isolation/draw-isolation"])
+    argv = [sys.executable, os.path.join(HERE, "mod_state.py"), os.path.join(ROOT, build)]
+    if defaults:
+        subprocess.check_call(argv + ["--defaults"])
+    subprocess.check_call(argv + ([] if defaults else ["--stock"]) + [
+        "--enable", "r4.debug.draw-isolation/draw-isolation"])
 
 
 def launch(build, port, workdir, env_extra):

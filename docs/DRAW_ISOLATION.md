@@ -140,7 +140,7 @@ diverges in frame output, RAM and scratchpad at tick 2799. Diagnosis is
 in progress; no whole-race gate has passed. The exact tick dump identifies
 the BIOS random seed at `0x80008548` (OpenBIOS `0xBFC060E4`, load at
 `0xBFC060E8`), particle counter `0x800F4E30`, and particle `0x8010B800`.
-The next test routes `rand()` stub `0x80096640` and the HUD cue through main.
+The current test routes `rand()` stub `0x80096640` and the HUD cue through main.
 The framework suspend/resume test checks separate RAM/GTE,
 main writes visible on resume, and an IRQ inside the main call staying main.
 Race verification is pending; this does not yet authorize worker execution.
@@ -163,18 +163,13 @@ as the existing render-pass transaction does by restoring RAM. It must not
 replay sound or advance main RNG. The synchronous gate hooks are not an API
 for a worker to mutate the main machine concurrently.
 
-1. Find the reader of `0x8010FFE8/F8` (wtrace on `0x10FFE0-0x110000` in base and
-   iso, then `R4_DRAW_ISO_SKIP`/`PUBLIC` ablation) and confirm it is the
-   objects draw's SE calls; classify, then make those calls a main-side replay
-   and rerun.
-2. Repeat until `iso` matches `base` over a whole race: route to the time-limit
-   end (`route_steps`: 24 drive cycles then let go), `--frames 40000`, plus the
-   goal/replay modes; then mode 1 (Time Attack), split screen (mode 3), the
-   attract demo and the after-goal replay (needs entry hooks for
-   `0x800914B0`, `0x80014A84`, `0x800558E8`, `0x80020074`, the demo text calls).
-3. Rerun with the default mods (widescreen, max detail, PGXP) on: their hooks
-   on the same functions run twice under `nest`/`iso` unless ordered first.
-4. Teach `compare` to accept unequal run lengths once both cover the race end,
-   and judge fingerprints only for `nest` (they carry stack garbage under `iso`).
-5. Then specify the worker handoff (per-call-point state, frame output, sound
-   replay, cycle charge) and wire `gate` into CI-free local verification.
+1. Finish the whole-race stock/nested/isolated comparison with sound and RNG
+   dependencies on main. The current run has passed the earlier tick 2799
+   failure; a partial match does not pass the gate.
+2. Cover Time Attack (mode 1), split screen (mode 3), attract demo and
+   after-goal replay. Demo/replay need entry hooks for `0x800914B0`,
+   `0x80014A84`, `0x800558E8`, `0x80020074` and demo text calls.
+3. Repeat with default mods (widescreen, max detail, PGXP) and verify hook
+   composition with both nested and isolated runs.
+4. Specify the worker handoff: per-call-point state, frame output, main-side
+   dependencies and cycle charge, then wire local gate verification.

@@ -7,12 +7,21 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import draw_iso_gate as gate
 
 
 class GateComparison(unittest.TestCase):
+    def test_defaults_then_developer_gate(self):
+        with patch.object(gate.subprocess, "check_call") as call:
+            gate.set_mod_state("build", defaults=True)
+        self.assertEqual(call.call_count, 2)
+        self.assertEqual(call.call_args_list[0].args[0][-1], "--defaults")
+        self.assertEqual(call.call_args_list[1].args[0][-2:], [
+            "--enable", "r4.debug.draw-isolation/draw-isolation"])
+
     def test_wrapped_ring_alignment(self):
         with tempfile.TemporaryDirectory() as tmp:
             Path(tmp, "fingerprint.json").write_text(json.dumps(
