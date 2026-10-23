@@ -25,7 +25,13 @@ its last three seconds, no reversed deadlines or duplicate provenance,
 exactly in `analysis/worker-pixels-v13` (7668x4320, 19,669 command receipts,
 four contexts). The per-frame GPU-readback trace is diagnostic only: its long
 15-second run slowed the game, so it is not a throughput benchmark.
-All 31 PC project tests and 28/28 Mac tests available without the disc pass.
+The worker milestone passed 31 PC and 28 Mac project tests available without
+the disc. After merging the developer-only isolation gate (R4 PR #65), the
+integrated branch builds and passes 32/32 PC and 29/29 Mac tests. A fresh
+boot-to-race state for that merged executable is still needed; the 28-second
+headless turbo attempt reached Grand Prix selection but not the race, so no
+merged-build race result is claimed. The installed 60 Hz build predates that
+developer-only merge.
 Framework fork `r4/main` is pushed at `688380ef`; its OpenBIOS emitter stamp
 passes on both machines. R4 now points at that fork commit; game regeneration
 changed no generated files. `analysis/worker-pinned-v78` measured 900 distinct
@@ -77,8 +83,10 @@ References and sequence: `docs/CODEX_PLAN.md`.
 
 ## Blockers
 
-- Delivery: development install is current; R4 PR #69 remains draft while
-  real-frame isolation and higher-rate throughput are unfinished. No release
+- Delivery: the installed worker milestone is verified; the newer merged
+  gate/worker branch passes PC/Mac tests but lacks a fresh race fixture. R4
+  PR #69 remains draft while real-frame isolation and higher-rate throughput
+  are unfinished. No release
   or tag without owner approval/version.
 - Gate: stock Grand Prix isolation passed 18,101 ticks, but Time Attack,
   split screen, attract/replay and default mods remain unverified. The

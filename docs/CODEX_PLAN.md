@@ -34,7 +34,10 @@ Presenter-owned capture avoids desktop interference. A visible 15-second race
 check achieved 901 distinct ordered frames with the debug display-history
 readback disabled. Corrected higher-rate checks show 90 Hz near target but
 100/120/144 Hz still below target; four workers beat both smaller and larger
-pools at 144 Hz on this eight-core PC. Details: `docs/HANDOFF.md`.
+pools at 144 Hz on this eight-core PC. The developer-only isolation gate is
+merged (PR #65) and integrated on this branch; the integrated code passes
+32/32 PC and 29/29 Mac tests. It still needs a fresh race fixture before its
+worker/gate composition can be measured. Details: `docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
 |---|---|---|
