@@ -663,3 +663,21 @@ vaddr_base  = "0x80010000"
 # Address normalization: KSEG masking only (game loads contiguously, no remaps).
 [audit.normalize]
 kseg_mask = "0x1FFFFFFF"
+
+# Lean draw-context clones (psxrecomp docs/THREADED_CONTEXTS.md): the race
+# draw path a draw pass replays on its own thread. The course renderer and its
+# callees, plus the libgpu entry points every pass calls (ClearOTagR,
+# DrawOTag, PutDrawEnv). Their static callee closure is cloned into
+# generated/SLUS_007.97_draw.c; the main-context code is unchanged.
+[threaded_draw]
+roots = [
+    "0x8006F00C",   # course renderer
+    "0x80093418",   # ClearOTagR
+    "0x80093520",   # DrawOTag
+    "0x80093590",   # PutDrawEnv
+    # libgpu device table (*0x800ABC70 = 0x800ABC30): the queue and transfer
+    # functions DrawOTag / ClearOTagR / PutDrawEnv reach through jalr.
+    "0x80094D7C", "0x80094DA0", "0x800945A0", "0x80094C8C", "0x80094CC4",
+    "0x80094D04", "0x80094A0C", "0x800947D0", "0x80095050", "0x80094CB0",
+    "0x800944C0", "0x80094D4C", "0x800952B0", "0x800944A8", "0x80095400",
+]
