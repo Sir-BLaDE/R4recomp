@@ -467,6 +467,18 @@ PSX_MOD_CONSTRUCTOR(r4_register_widescreen)
 }
 
 #ifdef R4_THREADED_DRAW
+int r4_ws_draw_register_entries(PsxCtxEntryHook callback, void *user) {
+    int n = 0;
+    for (int i = 0; i < R4_HUD_PRODUCER_COUNT; ++i)
+        n += r4_draw_mods_register_one(r4_hud_producers[i].fn, callback, user);
+    for (size_t i = 0; i < R4_WS_CLOSER_COUNT; ++i)
+        n += r4_draw_mods_register_one(r4_hud_closers[i], callback, user);
+    n += r4_draw_mods_register_one(R4_CLEAR_OTAG_FN, callback, user);
+    n += r4_draw_mods_register_one(R4_DRAW_OTAG_FN, callback, user);
+    n += r4_draw_mods_register_one(R4_PVS_OCTANT_FN, callback, user);
+    n += r4_draw_mods_register_one(R4_PVS_MERGE_FN, callback, user);
+    return n == R4_WS_HOOK_COUNT;
+}
 R4WsDrawState *r4_ws_draw_capture(void) {
     R4WsDrawState *p = calloc(1, sizeof *p);
     if (!p) return NULL;

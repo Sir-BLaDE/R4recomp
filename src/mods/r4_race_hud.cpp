@@ -812,6 +812,11 @@ int hud_command(const char *args, char *reply, int cap) {
 }
 
 }  // namespace
+/* Until their filter/view metadata is captured per draw job, use the existing
+ * serial redraw path for these optional visual packages. */
+extern "C" int r4_optional_draw_hooks_active(void) {
+    return s_enabled.load(std::memory_order_relaxed) || r4_car_effects_active();
+}
 
 static void r4_race_hud_activate(void) {
     s_enabled.store(true, std::memory_order_relaxed);

@@ -3,10 +3,12 @@
 #undef PSX_MOD_CONSTRUCTOR
 #define PSX_MOD_CONSTRUCTOR(name) static void name(void)
 #include "../src/mods/r4_widescreen_plugin.c"
+#undef NDEBUG
 #include <assert.h>
 #include <pthread.h>
 static uint8_t main_ram[0x200000];
 static int margin = 100, tag_calls;
+int r4_draw_mods_register_one(uint32_t a,PsxCtxEntryHook h,void *u) { (void)a;(void)h;(void)u;return 1; }
 uint32_t psx_mod_read_word(uint32_t a) { uint32_t v; memcpy(&v, main_ram + (a & 0x1ffffc), 4); return v; }
 uint16_t psx_mod_read_half(uint32_t a) { return psx_mod_read_word(a & ~3u) >> ((a & 2u)*8u); }
 void psx_mod_write_word(uint32_t a, uint32_t v) { memcpy(main_ram+(a&0x1ffffc), &v,4); }

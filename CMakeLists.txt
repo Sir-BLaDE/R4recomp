@@ -249,6 +249,18 @@ if(R4_BUILD_TESTS AND BUILD_TESTING)
             "${PSXRECOMP_ROOT}/runtime/include" "${CMAKE_CURRENT_SOURCE_DIR}/src/mods")
         target_link_libraries(r4-draw-ws-tests PRIVATE Threads::Threads)
         add_test(NAME r4_draw_ws COMMAND r4-draw-ws-tests)
+        add_executable(r4-draw-md-tests tests/test_r4_draw_md.c)
+        target_compile_options(r4-draw-md-tests PRIVATE -O2)
+        target_include_directories(r4-draw-md-tests PRIVATE
+            "${PSXRECOMP_ROOT}/runtime/include" "${CMAKE_CURRENT_SOURCE_DIR}/src/mods")
+        target_link_libraries(r4-draw-md-tests PRIVATE Threads::Threads m)
+        add_test(NAME r4_draw_md COMMAND r4-draw-md-tests)
+        add_executable(r4-draw-camera-tests tests/test_r4_draw_camera.c)
+        target_compile_options(r4-draw-camera-tests PRIVATE -O2)
+        target_include_directories(r4-draw-camera-tests PRIVATE
+            "${PSXRECOMP_ROOT}/runtime/include" "${CMAKE_CURRENT_SOURCE_DIR}/src/mods")
+        target_link_libraries(r4-draw-camera-tests PRIVATE Threads::Threads m)
+        add_test(NAME r4_draw_camera COMMAND r4-draw-camera-tests)
     endif()
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_r4_widescreen.c")
         add_executable(r4-widescreen-tests
