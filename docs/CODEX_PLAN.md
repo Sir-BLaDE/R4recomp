@@ -17,27 +17,23 @@ work; they do not change that requested default.
 
 ## Where things stand (2026-10-23)
 
-The extra-frame worker milestone is locally installed as a development build.
-At default 60 FPS, four private draw contexts preserve the working mod's exact
-interpolation sequence, with eight bounded presenter slots and dynamic
-resolution starting at its 1200-line floor. `analysis/worker-cadence-v42`
-measured 902 presents/15.031 s (60.0/s), no interval over 25 ms during the
-sample, no timed refusal, and zero worker faults or dispatch misses. The
-readback trace `analysis/worker-trace-v39.csv` confirmed 180 changed images
-in three seconds with ordered, unique provenance; full-frame equality is in
-`analysis/worker-pixels-v13`. PC project tests: 31/31; Mac: 28/28 available
-without the disc. Fork `r4/main` is pushed at `688380ef`, game C regeneration
-is unchanged. The pinned build passed 900 distinct presents in 15 seconds;
-the installed binary passed a five-second check. The Windows render-thread
-priority change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`.
-Presenter-owned capture avoids desktop interference. A visible 15-second race
-check achieved 901 distinct ordered frames with the debug display-history
-readback disabled. Corrected higher-rate checks show 90 Hz near target but
-100/120/144 Hz still below target; four workers beat both smaller and larger
-pools at 144 Hz on this eight-core PC. The developer-only isolation gate is
-merged (PR #65) and integrated on this branch; the integrated code passes
-32/32 PC and 29/29 Mac tests. It still needs a fresh race fixture before its
-worker/gate composition can be measured. Details: `docs/HANDOFF.md`.
+The extra-frame worker milestone and developer-only isolation gate are
+merged to R4 master (PRs #69 and #65). The fork pin is `688380ef` and the
+master development build is installed. Four private contexts preserve the
+working 60 FPS mod's exact interpolation order while main logic stays at
+30 Hz. Eight bounded presenter slots and the 1200-line dynamic floor start
+are active. A fresh master-build race state is `analysis/merged-prep-v99`;
+`analysis/worker-master-visible-v100` measured 900 distinct ordered frames
+in 15 seconds with no gap over 25 ms, refused presentation, late render job
+or dispatch miss. PC tests pass 32/32; Mac tests available without the disc
+pass 29/29. Full-frame equality is in `analysis/worker-pixels-v13`.
+
+Performance probes disable the debug display ring (`PSX_DISPLAY_RING=0`),
+which otherwise reads full VRAM each game frame. Corrected short checks
+show 90 Hz near target and 100/120/144 Hz below target; four workers beat
+2/3/6/8 at 144 Hz on this eight-core PC. Real-frame draw remains on main
+until private contexts can preserve guest timing and call-point side effects.
+Details and receipt paths: `docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
 |---|---|---|
@@ -72,10 +68,10 @@ block proving parallel intermediate frames.
   is still being investigated.
 - Output: rational timestamps, bounded workers, ordered presentation and
   private render transactions pass the short 60 Hz race checks. Measure higher
-  requested rates after the fork/pin lands; never alter the 30 Hz logic clock.
+  requested rates after renderer throughput improves; never alter the 30 Hz logic clock.
 - Fork: `r4/main` is verified and pushed; the pinned R4 build passes PC/Mac
-  tests and is installed. Optimize render throughput and finish isolation
-  before landing draft R4 PR #69.
+  tests and is installed (PRs #65/#69 merged). Optimize render throughput
+  and timed real-frame handoff before offloading main draw.
 
 Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
 notes: `docs/THREADED_CONTEXTS.md`, `docs/RENDER_PASSES.md`, `docs/HOST_THREADING.md`
@@ -113,8 +109,8 @@ milestones.
   and input/logic timing remain independently paced.
 - **Track draw decomposition and host throughput:** split independent course
   work while preserving packet/primitive ordering; measure granularity and
-  merge cost. Pursue the host-threading ring-record and display-info cache
-  improvements alongside the pool and scheduler.
+  merge cost. The display-info cache is already in the fork; pursue ring-record
+  reductions only where profiles justify them.
 
 ## Shared verification and delivery
 
