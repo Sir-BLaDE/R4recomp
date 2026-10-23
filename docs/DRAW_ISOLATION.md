@@ -222,6 +222,34 @@ as the existing render-pass transaction does by restoring RAM. It must not
 replay sound or advance main RNG. The synchronous gate hooks are not an API
 for a worker to mutate the main machine concurrently.
 
+### Timed real-frame execution (design, not implemented)
+
+Keep the lean draw translation unit for in-between frames. A real-frame
+variant must retain the existing instruction timing and observation sites:
+`recompiler/src/draw_ctx_emitter.h` currently removes
+`PSX_ENABLE_BLOCK_CYCLES`, and `runtime/include/psx_dctx_codegen.h` replaces
+interrupt checks. Merely summing basic-block costs would omit load pipeline
+state (`read_absorb`/`read_fudge`), I-cache tags, multiply/divide and GTE
+deadlines, and guest-cycle-scale fractional carry.
+
+The implementation path is to factor those existing cost routines around
+context-owned timing/cache state, preserving the current main-context path.
+At a device-service deadline or existing interrupt observation point, the
+worker pauses with its native call stack intact. Main publishes the pending
+charges and services devices/IRQs, then returns the new deadline and shared
+state changes before the worker continues. Sound/RNG requests first flush
+their pending timing. Main-side writes must overwrite the corresponding
+private bytes without losing other draw-owned state or PGXP precision.
+Use the generic call gate as transport; it does not itself synchronize guest
+state or charge cycles. This first version keeps main waiting and proves
+ordering before attempting overlap with later logic.
+
+Verification must compare per-observation guest clocks, IRQ delivery PCs,
+timing/cache state and merged frame output against the original timed root.
+An estimated delay or a lump charge at root return cannot satisfy this
+contract. Real-frame replacement remains disabled; the intermediate-frame
+worker pipeline is independent of this design.
+
 1. Resolve default-mod A/A restore reproducibility.
 2. Finish Time Attack (mode 1), split screen (mode 3), attract demo and
    after-goal replay verification with the expanded hooks.
