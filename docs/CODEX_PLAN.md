@@ -19,7 +19,7 @@ work; they do not change that requested default.
 
 The extra-frame worker milestone and developer-only isolation gate are
 merged to R4 master (PRs #69 and #65). The fork pin in this branch is
-`0421f31e`; the prior master development build remains installed. Four private contexts preserve the
+`0421f31e` (R4 PR #75), and its development build is installed. Four private contexts preserve the
 working 60 FPS mod's exact interpolation order while main logic stays at
 30 Hz. Eight bounded presenter slots and the 1200-line dynamic floor start
 are active. A fresh master-build race state is `analysis/merged-prep-v99`;
