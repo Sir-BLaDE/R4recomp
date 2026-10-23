@@ -6,6 +6,12 @@
 #include "cpu_state.h"
 #include "mod_plugins.h"
 #include "r4_interp.h"
+#ifdef R4_THREADED_DRAW
+#include "psx_exec_ctx.h"
+static int private_next, private_running, private_calls, private_fault;
+static PsxExecCtx private_ctx;
+static uint8_t private_ram[2u * 1024u * 1024u];
+#endif
 
 static int failures;
 #define CHECK(c, m) do { if (!(c)) { fprintf(stderr, "FAIL: %s\n", m); failures++; } } while (0)
@@ -15,6 +21,9 @@ static uint8_t s_ram[2u * 1024u * 1024u];
 static uint8_t s_spad[1024];
 
 static uint8_t *at(uint32_t a) {
+#ifdef R4_THREADED_DRAW
+    CHECK(!private_running, "private draw never accesses live guest memory");
+#endif
     if ((a & 0xFFFFFC00u) == 0x1F800000u) return &s_spad[a & 0x3FFu];
     return &s_ram[a & 0x1FFFFFu];
 }
@@ -23,6 +32,25 @@ uint16_t psx_mod_read_half(uint32_t a) { uint16_t v; memcpy(&v, at(a), 2); retur
 uint32_t psx_mod_read_word(uint32_t a) { uint32_t v; memcpy(&v, at(a), 4); return v; }
 void psx_mod_write_half(uint32_t a, uint16_t v) { memcpy(at(a), &v, 2); }
 void psx_mod_write_word(uint32_t a, uint32_t v) { memcpy(at(a), &v, 4); }
+#ifdef R4_THREADED_DRAW
+static uint8_t *private_at(PsxExecCtx *x, uint32_t a) {
+    return (a & 0xFFFFFC00u) == 0x1F800000u ? x->scratch + (a & 1023u)
+                                          : x->ram + (a & x->ram_mask);
+}
+uint32_t psx_ctx_read32(PsxExecCtx *x, uint32_t a) {
+    uint32_t v; memcpy(&v, private_at(x, a & ~3u), 4); return v;
+}
+void psx_ctx_write32(PsxExecCtx *x, uint32_t a, uint32_t v) {
+    memcpy(private_at(x, a & ~3u), &v, 4);
+}
+PsxCtxStatus psx_ctx_call(PsxExecCtx *x, uint32_t fn, const uint32_t *args,
+                        int nargs, uint32_t stop, uint32_t *ret) {
+    (void)fn; (void)args; (void)nargs; (void)stop; (void)ret;
+    CHECK(private_running && x == &private_ctx, "draw dispatch uses its private CPU");
+    private_calls++;
+    return private_fault ? PSX_CTX_FAULT_MISS : PSX_CTX_OK;
+}
+#endif
 
 /* ---- hooks: psxrecomp's registry contract ------------------------------ */
 /* One hook per (plugin id, address), segment bits ignored; a repeat returns 0
@@ -89,6 +117,25 @@ int psx_mod_render_pass(CPUState *cpu, const PSXModRenderPass *pass,
     volatile int ok = 0;
     if (s_refuse_passes) return 0;
     s_passes++;
+#ifdef R4_THREADED_DRAW
+    if (private_next) {
+        private_next = 0;
+        memset(&private_ctx, 0, sizeof private_ctx);
+        memcpy(private_ram, s_ram, sizeof s_ram);
+        memcpy(private_ctx.scratch, s_spad, sizeof s_spad);
+        private_ctx.ram = private_ram;
+        private_ctx.ram_mask = sizeof private_ram - 1u;
+        private_ctx.cpu = *cpu;
+        private_ctx.cpu.ctx = &private_ctx;
+        private_running = 1;
+        ok = fn(&private_ctx.cpu, user, pass->alpha_q16);
+        private_running = 0;
+        CHECK(memcmp(private_ram, s_ram, sizeof s_ram) != 0,
+              "private draw writes its own packet buffer");
+        CHECK(memcmp(&ck, cpu, sizeof ck) == 0, "private draw preserves main CPU");
+        return ok;
+    }
+#endif
     memcpy(s_ram_ck, s_ram, sizeof s_ram);
     memcpy(s_spad_ck, s_spad, sizeof s_spad);
     if (setjmp(s_watchdog) == 0) {
@@ -103,6 +150,9 @@ int psx_mod_render_pass(CPUState *cpu, const PSXModRenderPass *pass,
 }
 
 void psx_dispatch_call(CPUState *cpu, uint32_t addr, uint32_t ra) {
+#ifdef R4_THREADED_DRAW
+    CHECK(!private_running, "private draw never dispatches main code");
+#endif
     (void)cpu; (void)ra;
     if (!s_in_fn) return;
     s_calls_in_pass++;
@@ -282,6 +332,21 @@ int main(void) {
         CHECK(local_draws == 1, "failed base local draw cannot generate frames");
     }
 
+#ifdef R4_THREADED_DRAW
+    /* An asynchronous executor supplies its own CPU and memory. Test both a
+     * complete sequence and an early context fault, then resume main draws. */
+    r4_interp_activate(1);
+    tick(&cpu);
+    private_next = 1;
+    tick(&cpu);
+    CHECK(private_calls > 10, "private context executes the draw sequence");
+    private_calls = 0;
+    private_fault = private_next = 1;
+    tick(&cpu);
+    CHECK(private_calls == 1, "context fault stops further guest calls");
+    private_fault = 0;
+    tick(&cpu);
+#endif
     /* Disabled feature: hooks do nothing. */
     {
         int plans = s_plans, calls = s_blend_calls;

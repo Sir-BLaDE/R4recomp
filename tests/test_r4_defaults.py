@@ -84,10 +84,10 @@ def test_manifests():
     fr = manifest('r4.enhancement.frame-rate')
     check(feature(fr, 'frame-rate').get('default_enabled') is True,
           'frame rate: draw-only interpolation is on by default')
-    check(option_default(fr, 'frame-rate', 'rate') == '30',
-          'frame rate: 30 FPS by default until 60 holds steadily on screen (60 is a setting)')
-    check(set(option_values(fr, 'frame-rate', 'rate')) == {'60', '30'},
-          'frame rate: 60 FPS, or 30 FPS for the original frames')
+    check(option_default(fr, 'frame-rate', 'rate') == '60',
+          'frame rate: 60 FPS presentation by default, independent of 30 Hz logic')
+    check(set(option_values(fr, 'frame-rate', 'rate')) == {'30', '60', '90', '100', '120', '144'},
+          'frame rate: requested presentation rates and original 30 FPS')
     check(not any(o['id'] in ('method', 'blend') for o in fr.get('option', [])),
           'frame rate: no crossfade or image-warp option')
 
@@ -129,6 +129,8 @@ def test_game_toml():
           'game.toml: dynamic resolution has a floor ("native", "display" or a preset)')
     check(floor == '1080p',
           'game.toml: dynamic resolution never drops below 1080p (owner, 2026-10-22)')
+    check(video.get('dynamic_resolution_start_min') is True,
+          'game.toml: begin at the 1080p floor, then raise quality when output has headroom')
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
@@ -136,6 +138,8 @@ def test_game_toml():
           'game.toml: no dynamic_resolution_priority (not in the render-thread stack)')
     for k in ('render_thread', 'present_thread'):
         check(video.get(k) is True, f'game.toml: {k} on by default')
+    check(video.get('present_thread_slots') == 8,
+          'game.toml: eight bounded presenter slots for 60 Hz output')
     check(video.get('frame_generation') is False,
           'game.toml: Smooth motion (frame_generation) off: removed from R4')
     check(video.get('pgxp_depth_buffer') is True and

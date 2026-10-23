@@ -46,6 +46,12 @@
 #include "mod_plugins.h"
 #include "r4_interp_fields.h"
 #include "r4_interp_math.h"
+#ifdef R4_THREADED_DRAW
+#include "psx_exec_ctx.h"
+/* Set only for the duration of a worker's draw. Main-thread hooks continue
+ * to use the live machine; workers must never reach those accessors. */
+static _Thread_local PsxExecCtx *draw_context;
+#endif
 
 #define R4_FR_PLUGIN "r4.framerate"
 
@@ -100,7 +106,7 @@ typedef struct R4Capture {
 /* Values of the tick being interpolated: prev (n-1), cur (n), and the
  * per-group snap decisions. */
 typedef struct R4Blend {
-    const R4Capture *prev, *cur;
+    R4Capture prev, cur; /* owned: a queued draw must not read a later tick */
     uint8_t car_snap[R4_MAX_CARS];
     uint8_t car_prev_index[R4_MAX_CARS];
     uint8_t cam_snap;
@@ -136,10 +142,34 @@ static struct {
     int valid, captured;
 } L;
 
-static uint32_t rd32(uint32_t a) { return psx_mod_read_word(a); }
-static uint16_t rd16(uint32_t a) { return psx_mod_read_half(a); }
-static void wr32(uint32_t a, uint32_t v) { psx_mod_write_word(a, v); }
-static void wr16(uint32_t a, uint16_t v) { psx_mod_write_half(a, v); }
+static uint32_t rd32(uint32_t a) {
+#ifdef R4_THREADED_DRAW
+    if (draw_context) return psx_ctx_read32(draw_context, a);
+#endif
+    return psx_mod_read_word(a);
+}
+static uint16_t rd16(uint32_t a) {
+#ifdef R4_THREADED_DRAW
+    if (draw_context) return (uint16_t)(rd32(a & ~3u) >> ((a & 2u) * 8u));
+#endif
+    return psx_mod_read_half(a);
+}
+static void wr32(uint32_t a, uint32_t v) {
+#ifdef R4_THREADED_DRAW
+    if (draw_context) { psx_ctx_write32(draw_context, a, v); return; }
+#endif
+    psx_mod_write_word(a, v);
+}
+static void wr16(uint32_t a, uint16_t v) {
+#ifdef R4_THREADED_DRAW
+    if (draw_context) {
+        unsigned shift = (a & 2u) * 8u;
+        wr32(a & ~3u, (rd32(a & ~3u) & ~(0xFFFFu << shift)) | ((uint32_t)v << shift));
+        return;
+    }
+#endif
+    psx_mod_write_half(a, v);
+}
 
 static uint32_t r4_handler(void) {
     uint32_t major = rd16(R4_STATE_MAJOR), minor = rd16(R4_STATE_MINOR);
@@ -199,7 +229,7 @@ static void r4_capture(CPUState *cpu, R4Capture *c) {
 /* Group snaps: a car, the camera (+ zoom), or one 2P camera shows tick n
  * whole when any of its values jumped (crash, respawn, camera cut). */
 static void r4_decide_snaps(R4Blend *b) {
-    const R4Capture *p = b->prev, *c = b->cur;
+    const R4Capture *p = &b->prev, *c = &b->cur;
     for (unsigned k = 0; k < R4_MAX_CARS; k++) {
         unsigned prev = 0;
         while (prev < R4_MAX_CARS && p->car_ptr[prev] != c->car_ptr[k]) prev++;
@@ -246,26 +276,26 @@ static int32_t blend_value(const R4InterpField *f, int32_t prev, int32_t cur,
 /* Write the in-between state into guest RAM (restored by the framework). */
 static void r4_apply(const R4Blend *b, uint32_t a) {
     for (unsigned k = 0; k < R4_MAX_CARS; k++) {
-        if (!b->cur->car_ptr[k] || b->car_snap[k]) continue;
+        if (!b->cur.car_ptr[k] || b->car_snap[k]) continue;
         for (unsigned f = 0; f < R4_INTERP_CAR_FIELD_COUNT; f++) {
             const R4InterpField *fd = &R4_INTERP_CAR_FIELDS[f];
-            field_write(b->cur->car_ptr[k], fd,
-                        blend_value(fd, b->prev->car[b->car_prev_index[k]][f],
-                                    b->cur->car[k][f], 0, a));
+            field_write(b->cur.car_ptr[k], fd,
+                        blend_value(fd, b->prev.car[b->car_prev_index[k]][f],
+                                    b->cur.car[k][f], 0, a));
         }
     }
     if (b->mode != R4_MODE_SPLIT && !b->cam_snap) {
         for (unsigned f = 0; f < R4_INTERP_CAMERA_FIELD_COUNT; f++) {
             const R4InterpField *fd = &R4_INTERP_CAMERA_FIELDS[f];
             field_write(R4_INTERP_CAMERA_BASE, fd,
-                        blend_value(fd, b->prev->cam[f], b->cur->cam[f], 0, a));
+                        blend_value(fd, b->prev.cam[f], b->cur.cam[f], 0, a));
         }
     }
 }
 
 static int32_t r4_blend_h(const R4Blend *b, uint32_t a) {
-    if (b->cam_snap) return b->cur->gte_h;
-    return r4_lerp(b->prev->gte_h, b->cur->gte_h - b->prev->gte_h, a);
+    if (b->cam_snap) return b->cur.gte_h;
+    return r4_lerp(b->prev.gte_h, b->cur.gte_h - b->prev.gte_h, a);
 }
 
 /* ---- guest calls ------------------------------------------------------ */
@@ -288,6 +318,15 @@ static uint32_t r4_call4(R4Call *c, uint32_t fn, uint32_t a0, uint32_t a1,
     cpu->gpr[4] = a0; cpu->gpr[5] = a1; cpu->gpr[6] = a2; cpu->gpr[7] = a3;
     cpu->gpr[29] = c->sp;
     cpu->gpr[31] = R4_RA_NESTED;
+#ifdef R4_THREADED_DRAW
+    if (cpu->ctx) {
+        uint32_t args[4] = {a0, a1, a2, a3};
+        if (psx_ctx_call(cpu->ctx, fn, args, 4, R4_RA_NESTED, NULL) != PSX_CTX_OK) {
+            c->broken = 1;
+            return 0;
+        }
+    } else
+#endif
     psx_dispatch_call(cpu, fn, R4_RA_NESTED);
     if (cpu->gpr[29] != c->sp) {
         /* The callee did not return through its own frame: stop drawing and
@@ -395,14 +434,14 @@ static void seq_split(R4Call *cc, const R4Blend *b, uint32_t buf, uint32_t a) {
             const R4InterpField *fa = &R4_INTERP_2P_ANGLE_FIELDS[f];
             const R4InterpField *fp = &R4_INTERP_2P_POS_FIELDS[f];
             wr32(0x1F800018u + 4u * f,
-                 (uint32_t)blend_value(fa, b->prev->cam2p_ang[i][f],
-                                       b->cur->cam2p_ang[i][f], b->cam2p_snap[i], a));
+                 (uint32_t)blend_value(fa, b->prev.cam2p_ang[i][f],
+                                       b->cur.cam2p_ang[i][f], b->cam2p_snap[i], a));
             wr32(0x1F800008u + 4u * f,
-                 (uint32_t)blend_value(fp, b->prev->cam2p_pos[i][f],
-                                       b->cur->cam2p_pos[i][f], b->cam2p_snap[i], a));
+                 (uint32_t)blend_value(fp, b->prev.cam2p_pos[i][f],
+                                       b->cur.cam2p_pos[i][f], b->cam2p_snap[i], a));
         }
-        wr32(0x1F800024u, b->cur->cam2p_ang_w3[i]);
-        wr32(0x1F800014u, b->cur->cam2p_pos_w3[i]);
+        wr32(0x1F800024u, b->cur.cam2p_ang_w3[i]);
+        wr32(0x1F800014u, b->cur.cam2p_pos_w3[i]);
         CALL1(0x8006F2B0u, i + 2u);                  /* VP2 top / VP3 bottom */
         CALL0(0x8006E4D0u);
         CALL1(0x8002E554u, i + 2u);
@@ -508,6 +547,11 @@ static int r4_pass(struct CPUState *cpu, void *user, uint32_t alpha_q16) {
     call.cpu = cpu;
     call.sp = (cpu->gpr[29] - 0x100u) & ~7u;
     call.broken = 0;
+#ifdef R4_THREADED_DRAW
+    PsxExecCtx *previous_context = draw_context;
+    draw_context = cpu->ctx;
+    if (!draw_context)
+#endif
     R.in_pass = 1;
 
     /* Select the dead buffer everywhere the draw code looks for it. */
@@ -531,11 +575,20 @@ static int r4_pass(struct CPUState *cpu, void *user, uint32_t alpha_q16) {
     CALL1(R4_PUT_DRAW_ENV, buf);
     CALL1(R4_DRAW_OTAG, buf + 0xB6Cu);
     if (rd32(R4_OT2_ENABLED)) CALL1(R4_DRAW_OTAG, buf + 0x166Cu);
+#ifdef R4_THREADED_DRAW
+    if (!draw_context) R.in_pass = 0;
+    draw_context = previous_context;
+#else
     R.in_pass = 0;
+#endif
     return !call.broken;
 }
 
 /* ---- hooks ------------------------------------------------------------ */
+#ifdef R4_ASYNC_DRAW
+#include "r4_interp_workers.h"
+#include "r4_interp_verify.h"
+#endif
 
 static void r4_loop_head(CPUState *cpu, uint32_t address) {
     (void)address;
@@ -570,11 +623,21 @@ static void r4_pass_point(CPUState *cpu, uint32_t address) {
         cpu->gpr[4] != 0u)
         return;
     R.pre_valid = 0;
-    if (!pre_valid) { R.prev_valid = 0; return; }
+    if (!pre_valid) {
+#ifdef R4_ASYNC_DRAW
+        r4_workers_reset();
+#endif
+        R.prev_valid = 0; return;
+    }
 
     handler = r4_handler();
     mode = handler == R.pre_handler ? r4_mode_of(handler) : R4_MODE_NONE;
-    if (!r4_gates(mode)) { R.prev_valid = 0; return; }
+    if (!r4_gates(mode)) {
+#ifdef R4_ASYNC_DRAW
+        r4_workers_reset();
+#endif
+        R.prev_valid = 0; return;
+    }
 
     tick = rd32(R4_TICK);
     demo_tick = rd32(R4_DEMO_TICK);
@@ -584,15 +647,17 @@ static void r4_pass_point(CPUState *cpu, uint32_t address) {
     continuous = R.prev_valid && R.prev_mode == mode &&
                  (mode == R4_MODE_DEMO ? demo_tick == R.prev_demo_tick + 1u
                                        : tick == R.prev_tick + 1u);
-    n = continuous ? psx_mod_render_pass_plan(2u, 1u, alphas, R4_MAX_PASSES) : 0;
+#ifdef R4_ASYNC_DRAW
+    if (!continuous) r4_workers_reset();
+#endif
     {
-        if (n) {
+        if (continuous) {
             uint32_t b = rd32(R4_FRAME_COUNTER) & 1u;
             uint32_t disp = R4_BUF_BASE + b * R4_BUF_STRIDE + 0x5Cu;
             PSXModRenderPass pass;
             memset(&blend, 0, sizeof blend);
-            blend.prev = &R.prev;
-            blend.cur = &R.cur;
+            blend.prev = R.prev;
+            blend.cur = R.cur;
             blend.mode = mode;
             blend.bp = b ^ 1u;
             blend.pre_fade_out = R.pre_fade_out;
@@ -605,12 +670,19 @@ static void r4_pass_point(CPUState *cpu, uint32_t address) {
             pass.y = rd16(disp + 2u);
             pass.w = rd16(disp + 4u);
             pass.h = rd16(disp + 6u);
+#ifdef R4_ASYNC_DRAW
+            if (!r4_verify_draw(cpu, &blend, &pass) &&
+                !r4_workers_submit(cpu, &blend, &pass))
+#endif
+            {
+            n = psx_mod_render_pass_plan(2u, 1u, alphas, R4_MAX_PASSES);
             for (uint32_t i = 0; i < n; i++) {
                 pass.alpha_q16 = alphas[i];
                 (void)psx_mod_render_pass(cpu, &pass, r4_pass, &blend);
                 /* r4_pass clears this itself only when it returns; a pass
                  * the framework's watchdog rolls back leaves by longjmp. */
                 R.in_pass = 0;
+            }
             }
 
         }
@@ -631,6 +703,9 @@ int r4_interp_register_hooks(void) {
 }
 
 void r4_interp_activate(int enabled) {
+#ifdef R4_ASYNC_DRAW
+    r4_workers_reset();
+#endif
     memset(&R, 0, sizeof R);
     memset(&L, 0, sizeof L);
     R.enabled = enabled;
@@ -665,7 +740,7 @@ static int local_pass(CPUState *cpu, void *user, uint32_t alpha) {
      * restored by the base local draw's transaction. */
     for (unsigned f = 0; f < R4_INTERP_CAMERA_FIELD_COUNT; f++)
         field_write(R4_INTERP_CAMERA_BASE, &R4_INTERP_CAMERA_FIELDS[f],
-                    p->blend.cur->cam[f]);
+                    p->blend.cur.cam[f]);
     r4_apply(&p->blend, alpha);
     return p->draw(cpu, p->user, alpha);
 }
@@ -682,8 +757,8 @@ void r4_interp_local_end(CPUState *cpu, const PSXModRenderPass *rect,
         uint32_t n = psx_mod_render_pass_plan(2u, 1u, alphas, R4_MAX_PASSES);
         R4LocalPass p;
         memset(&p, 0, sizeof p);
-        p.blend.prev = &L.prev;
-        p.blend.cur = &L.cur;
+        p.blend.prev = L.prev;
+        p.blend.cur = L.cur;
         p.draw = draw;
         p.user = user;
         r4_decide_snaps(&p.blend);

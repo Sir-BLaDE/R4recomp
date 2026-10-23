@@ -11,17 +11,39 @@ frames per tick or one core per rate.
 
 A possible 60 Hz simulation mode is a separate, unproven option. It is not
 required for this work and must never be coupled to the rendering FPS setting.
-The current code defaults to 30 FPS; the owner target is 60 FPS by default.
+The development branch offers all requested rates, with 60 FPS by default.
 Performance measurements validate the implementation and expose unfinished
 work; they do not change that requested default.
 
 ## Where things stand (2026-10-23)
 
+The extra-frame worker milestone is locally installed as a development build.
+At default 60 FPS, four private draw contexts preserve the working mod's exact
+interpolation sequence, with eight bounded presenter slots and dynamic
+resolution starting at its 1200-line floor. `analysis/worker-cadence-v42`
+measured 902 presents/15.031 s (60.0/s), no interval over 25 ms during the
+sample, no timed refusal, and zero worker faults or dispatch misses. The
+readback trace `analysis/worker-trace-v39.csv` confirmed 180 changed images
+in three seconds with ordered, unique provenance; full-frame equality is in
+`analysis/worker-pixels-v13`. PC project tests: 31/31; Mac: 28/28 available
+without the disc. Fork `r4/main` is pushed at `688380ef`, game C regeneration
+is unchanged. The pinned build passed 900 distinct presents in 15 seconds;
+the installed binary passed a five-second check. The Windows render-thread
+priority change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`.
+Presenter-owned capture avoids desktop interference. A visible 15-second race
+check achieved 901 distinct ordered frames with the debug display-history
+readback disabled. Corrected higher-rate checks show 90 Hz near target but
+100/120/144 Hz still below target; four workers beat both smaller and larger
+pools at 144 Hz on this eight-core PC. The developer-only isolation gate is
+merged (PR #65) and integrated on this branch; the integrated code passes
+32/32 PC and 29/29 Mac tests. It still needs a fresh race fixture before its
+worker/gate composition can be measured. Details: `docs/HANDOFF.md`.
+
 | Stage | Thread today | State |
 |---|---|---|
 | Game logic (recompiled native code) | main | stays on main; it is one sequential program |
 | Real-frame draw (track, cars, HUD) | main | target: draw workers; gated on isolation |
-| Timestamped interpolated frames | main, queued passes (#54) | target: bounded shared draw-worker pool |
+| Timestamped interpolated frames | four draw workers | 60 Hz milestone installed; 90 Hz near target, 100/120/144 below target |
 | Track renderer inside one frame (0x8006F00C) | main | target: decompose ordered track work across workers |
 | GPU command parsing (DrawOTag) | main | stays on main: reads state the game keeps changing (docs/HOST_THREADING.md) |
 | Seam strips | render thread | already off main; order-dependent, stays serial |
@@ -36,23 +58,28 @@ not measurements of the planned integrated pipeline.
 
 ## Work in flight
 
-1. **Threaded contexts + lean draw clones**: fork branch
-   `feat/threaded-contexts` (head 27ea6673), `docs/THREADED_CONTEXTS.md` on the
-   branch. Per-context RAM/scratchpad/GTE/PGXP, GPU writes captured per
-   context, `[threaded_draw]` roots in `game.toml` generate
-   `generated/<stem>_draw.c` without cycle/icache/IRQ/debug code (PGXP kept).
-   Main code unchanged. Debug command `ctx_draw` runs a call sequence serially
-   and on N threads and compares. Works up to the first BIOS call
-   (0xA0 from 0x80096620). R4 `game.toml` diff:
-   `C:\Users\Shokunin\dev\r4-ctx-work\r4-game-toml.diff`.
-2. **Draw-isolation gate**: fork branch `feat/draw-isolation-gate`, R4 draft
-   PR #65, `docs/DRAW_ISOLATION.md`. Runs the race draw on a private copy and
-   compares state/fingerprints tick by tick against stock. Identical for 130
-   ticks, then diverges in sound state `0x8010FFE8/F8` (likely sound-effect
-   calls 0x8004F520 / 0x80051B00 inside the objects draw 0x80074AD8).
-3. **Host threading follow-ups**: fork `feat/host-threading`,
-   `docs/HOST_THREADING.md`: on-screen count not yet run; one ring command per
-   triangle instead of about 6; cache `gpu_get_display_info`.
+The first integration reuses `r4_interp.c`'s working 60 FPS draw sequence and
+interpolation fields unchanged. Private contexts execute that recipe; main
+admits its captured output without waiting. The serial implementation remains
+the correctness reference. Real-frame offload and track decomposition do not
+block proving parallel intermediate frames.
+
+- Contexts: OpenBIOS qualification, immutable GTE/PGXP snapshots, the full
+  default draw recipe, four-worker receipts and full-frame pixel equality pass.
+- Isolation: stock Grand Prix whole-race comparison passes 18,101 ticks;
+  other modes and default enhancements remain. Default base/base restore
+  exposes SIO sampling nondeterminism before isolation is enabled; the cause
+  is still being investigated.
+- Output: rational timestamps, bounded workers, ordered presentation and
+  private render transactions pass the short 60 Hz race checks. Measure higher
+  requested rates after the fork/pin lands; never alter the 30 Hz logic clock.
+- Fork: `r4/main` is verified and pushed; the pinned R4 build passes PC/Mac
+  tests and is installed. Optimize render throughput and finish isolation
+  before landing draft R4 PR #69.
+
+Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
+notes: `docs/THREADED_CONTEXTS.md`, `docs/RENDER_PASSES.md`, `docs/HOST_THREADING.md`
+in their respective branches.
 
 ## Integrated workstreams
 
@@ -91,9 +118,16 @@ milestones.
 
 ## Shared verification and delivery
 
+Owner update (2026-10-23): bound performance samples to 15 seconds and automated
+runs to 30 seconds. Reuse build-compatible race savestates and skip intros.
+Brief visible race checks provide owner feedback. Do not let exhaustive race
+comparisons block completing the core worker, threading and overhead work;
+report coverage limits explicitly.
+
 Verify Grand Prix, Time Attack, split screen, attract demo and after-goal
 replay, both baseline and default mods. Require zero dispatch misses, whole-
-race isolation identity, four concurrent contexts equal to serial, emitter
+race identity where already recorded, bounded isolation checks for remaining
+modes, four concurrent contexts equal to serial, emitter
 checks, `fp_identity`, and unchanged main-context behavior/performance.
 Measure lean/full draw time, snapshot cost, worker latency, render/present
 throughput and on-screen distinct frames/cadence under background load at
@@ -107,23 +141,19 @@ desired default. Keep fork deltas and pin history current, land coherent
 verified changes, and rebuild/reinstall at milestones. Release/tag/publish
 still needs the owner's go and version.
 
-## Worker integration audit references
+## Worker integration references
 
-- `src/mods/r4_interp.c:r4_pass_point` is the existing VSync capture point;
-  its blend points into mutable `R.prev/R.cur`. Copy values into each job and
-  replace global memory helpers and `R.in_pass` with context-local execution.
-- Context branch `runtime/src/gte.cpp:s_render_pose` and FOV/widescreen
-  globals need snapshot ownership. `runtime/include/pgxp_ctx.h` currently
-  omits RAM shadows; `psx_ctx_precise_vertex` queries final shadow state.
-  Preserve precision for preexisting and reused packet addresses at capture.
-- Context-safe hooks must retain behavior from `r4_widescreen_plugin.c`,
-  `r4_max_detail_plugin.c`, `r4_camera_look_plugin.c`,
-  `r4_hide_rear_view_mirror.c` and `r4_race_hud.cpp` under `src/mods/`.
-- Framework `runtime/src/render_pass.c` owns singleton checkpoint/plan state;
-  its current API cannot run on workers. `runtime/src/gpu_gl_renderer.c`
-  queues `RTH_PASS_BEGIN/END`, but asynchronous results need explicit
-  generation/deadline ownership. `PsxCtxGpuWord` alone does not carry all
-  parser inputs; `runtime/src/gpu.c` also reads RAM and host packet metadata.
+- `src/mods/r4_interp_workers.h`: owned interpolation values, snapshot lifetime,
+  bounded workers, immutable GPU/PGXP receipts and generation retirement.
+- `src/mods/r4_draw_mods.c`: private adapters for default enhancement hooks;
+  unsupported optional hooks retain serial fallback.
+- `src/mods/r4_interp_verify.h`: exact original draw versus private serial/four
+  workers; full-resolution GPU replay pixel check remains under verification.
+- Framework `docs/THREADED_CONTEXTS.md`: private precision state, geometry-cache
+  index and track partition constraints. Real-frame replacement also needs
+  faithful cycle/IRQ accounting and ordered main-thread sound/RNG calls.
+- Framework `runtime/src/render_pass.c` and `gpu_gl_renderer.c`: main-thread
+  command admission, immutable texture sources, timed presentation and drops.
 
 ## Rules that bit us
 

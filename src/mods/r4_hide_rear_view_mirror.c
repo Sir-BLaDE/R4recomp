@@ -9,6 +9,7 @@
 
 static int s_enabled;
 static int s_hook_registered;
+int r4_hide_mirror_draw_enabled(void) { return s_enabled; }
 
 static void r4_hide_rear_mirror_entry(CPUState *cpu, uint32_t address)
 {

@@ -53,6 +53,116 @@ static int s_hooks_registered;
          psx_mod_register_function_entry_plugin(PLUGIN_ID, (address), (callback)))
 #define R4_MD_HOOK_COUNT 15
 
+#ifdef R4_THREADED_DRAW
+#include "psx_exec_ctx.h"
+#include "r4_draw_mods.h"
+#endif
+#define R4_MD_BOUNDS_CACHE 4096u
+typedef struct {
+int s_enabled;
+int s_trace;
+R4MdOptions s_opt;
+int s_clamp_available;
+int s_car_restore_logged;
+int s_sections_override;   /* R4_MD_SECTIONS: developer A/B */
+int s_ahead_override, s_behind_override;   /* R4_MD_AHEAD/BEHIND */
+int s_far_xform_off;                                    /* R4_MD_FAR_XFORM=0 */
+struct {
+    int valid;
+    uint32_t section, octant, yaw;
+} s_pvs;
+R4MdGovernor s_gov;
+struct {
+    int started, measured, last_oct;
+    uint64_t start;
+    uint32_t heap_pm;   /* highest primitive-heap use this frame, permille */
+} s_frame;
+struct {
+    int valid;
+    uint32_t out;           /* a0 of 0x8006F160: SVECTOR, then VECTOR, MATRIX */
+    int32_t d[3];           /* the true object - camera delta */
+} s_xf;
+struct {
+    int valid;
+    uint32_t built;   /* the mirror list's count before the limit */
+} s_mirror;
+int s_env_wrote;   /* the reflection page holds this plugin's write */
+struct {
+    uint32_t prev[R4_PVS_LIST_MAX], nprev;
+    uint32_t pops, pop_min, hist[6];
+} s_pop;
+struct {
+    uint32_t frames, course_calls, heap_max, heap_limit_hits;
+    uint32_t ot1_max, ot2_max, pvs_frames, pvs_before_max, pvs_after_max, pvs_added;
+    uint32_t nsec;
+    uint32_t env_calls, env_writes, env_offs, mirror_lists, mirror_now_max, mirror_after_max;
+    uint32_t xf_calls, xf_fixed, xf_culled, dir_fwd, dir_back, car_far;
+    uint32_t gov_frames, busy_max_pm, level_min, level_max;
+    uint32_t per_min, per_max;   /* frame-start to frame-start, guest cycles */
+    int32_t level_sum;
+} s_stat;
+struct {
+    uint32_t block;
+    R4MdBounds b;
+} s_bounds[R4_MD_BOUNDS_CACHE];
+struct {
+    double camx, camz, fx, fz, slope;
+    uint32_t kept, dropped;
+} s_cone;
+int s_frame_has_course;   /* a main course draw ran this frame */
+uint64_t s_pace_anchor;  /* guest-cycle-scale pacing: the VBlank edge the frame started after */
+int s_pace_active;        /* the spin was held this frame */
+struct {
+    int valid;
+    uint32_t addr;
+    int16_t saved[3];
+} s_car;
+int s_far_cars_override;
+R4MdRandGuard s_rand;
+int s_car_past_stock;   /* this lookup's car is past the stock cull distance */
+int s_rand_guard_off;   /* R4_MD_RAND_GUARD=0: A/B */
+int s_big_heap;          /* expanded heap in use (8 MB RAM live) */
+int s_big_heap_allowed;  /* R4_MD_BIG_HEAP=0 turns it off for A/B */
+} R4MdState;
+static R4MdState s_main = {.s_sections_override=-1, .s_ahead_override=-1,
+    .s_behind_override=-1, .s_far_cars_override=-1};
+#ifdef R4_THREADED_DRAW
+struct R4MdDrawState { R4MdState state; PsxExecCtx *ctx; int margin, ram8; };
+static _Thread_local R4MdDrawState *s_private;
+static R4MdState *md_state(void) { return s_private ? &s_private->state : &s_main; }
+#else
+static R4MdState *md_state(void) { return &s_main; }
+#endif
+#define s_enabled (md_state()->s_enabled)
+#define s_trace (md_state()->s_trace)
+#define s_opt (md_state()->s_opt)
+#define s_clamp_available (md_state()->s_clamp_available)
+#define s_car_restore_logged (md_state()->s_car_restore_logged)
+#define s_sections_override (md_state()->s_sections_override)
+#define s_ahead_override (md_state()->s_ahead_override)
+#define s_behind_override (md_state()->s_behind_override)
+#define s_far_xform_off (md_state()->s_far_xform_off)
+#define s_pvs (md_state()->s_pvs)
+#define s_gov (md_state()->s_gov)
+#define s_frame (md_state()->s_frame)
+#define s_xf (md_state()->s_xf)
+#define s_mirror (md_state()->s_mirror)
+#define s_env_wrote (md_state()->s_env_wrote)
+#define s_pop (md_state()->s_pop)
+#define s_stat (md_state()->s_stat)
+#define s_bounds (md_state()->s_bounds)
+#define s_cone (md_state()->s_cone)
+#define s_frame_has_course (md_state()->s_frame_has_course)
+#define s_pace_anchor (md_state()->s_pace_anchor)
+#define s_pace_active (md_state()->s_pace_active)
+#define s_car (md_state()->s_car)
+#define s_far_cars_override (md_state()->s_far_cars_override)
+#define s_rand (md_state()->s_rand)
+#define s_car_past_stock (md_state()->s_car_past_stock)
+#define s_rand_guard_off (md_state()->s_rand_guard_off)
+#define s_big_heap (md_state()->s_big_heap)
+#define s_big_heap_allowed (md_state()->s_big_heap_allowed)
+
 /* ---- guest layout (US) ------------------------------------------------- */
 #define R4_DRAW_OTAG_FN     0x80093520u   /* trace only */
 #define R4_HEAP_PTR_ADDR    0x1F800000u
@@ -65,55 +175,64 @@ static int s_hooks_registered;
 #define R4_BUF_HEAP         0x1670u
 #define R4_BUF_HEAP_END     0x22688u
 
-static int s_enabled;
-static int s_trace;
-static R4MdOptions s_opt;
-static int s_clamp_available;
-static int s_car_restore_logged;
-static int s_sections_override = -1;   /* R4_MD_SECTIONS: developer A/B */
-static int s_ahead_override = -1, s_behind_override = -1;   /* R4_MD_AHEAD/BEHIND */
-static int s_far_xform_off;                                    /* R4_MD_FAR_XFORM=0 */
-static struct {
-    int valid;
-    uint32_t section, octant, yaw;
-} s_pvs;
+
+
+
+
+
+
+
+
+
 /* Maximum's budget governor (r4_md_gov_update). */
-static R4MdGovernor s_gov;
-static struct {
-    int started, measured, last_oct;
-    uint64_t start;
-    uint32_t heap_pm;   /* highest primitive-heap use this frame, permille */
-} s_frame;
-static struct {
-    int valid;
-    uint32_t out;           /* a0 of 0x8006F160: SVECTOR, then VECTOR, MATRIX */
-    int32_t d[3];           /* the true object - camera delta */
-} s_xf;
-static struct {
-    int valid;
-    uint32_t built;   /* the mirror list's count before the limit */
-} s_mirror;
-static int s_env_wrote;   /* the reflection page holds this plugin's write */
+
+
+
+
+
 /* R4_MD_TRACE=2: pop-in census. The main view's final list of the previous
  * frame; a block that joins it and has a vertex in view is a pop, and its
  * nearest in-view vertex distance (world >> 8) is recorded. */
-static struct {
-    uint32_t prev[R4_PVS_LIST_MAX], nprev;
-    uint32_t pops, pop_min, hist[6];
-} s_pop;
-static struct {
-    uint32_t frames, course_calls, heap_max, heap_limit_hits;
-    uint32_t ot1_max, ot2_max, pvs_frames, pvs_before_max, pvs_after_max, pvs_added;
-    uint32_t nsec;
-    uint32_t env_calls, env_writes, env_offs, mirror_lists, mirror_now_max, mirror_after_max;
-    uint32_t xf_calls, xf_fixed, xf_culled, dir_fwd, dir_back, car_far;
-    uint32_t gov_frames, busy_max_pm, level_min, level_max;
-    uint32_t per_min, per_max;   /* frame-start to frame-start, guest cycles */
-    int32_t level_sum;
-} s_stat;
 
-static uint32_t rd32(uint32_t a) { return psx_mod_read_word(a); }
-static uint16_t rd16(uint32_t a) { return psx_mod_read_half(a); }
+
+
+static uint32_t rd32(uint32_t a) {
+#ifdef R4_THREADED_DRAW
+    if (s_private) return psx_ctx_read32(s_private->ctx, a);
+#endif
+    return psx_mod_read_word(a);
+}
+static uint16_t rd16(uint32_t a) {
+#ifdef R4_THREADED_DRAW
+    if (s_private) return (uint16_t)(rd32(a & ~3u) >> ((a & 2u) * 8u));
+#endif
+    return psx_mod_read_half(a);
+}
+static void wr32(uint32_t a, uint32_t v) {
+#ifdef R4_THREADED_DRAW
+    if (s_private) { psx_ctx_write32(s_private->ctx, a, v); return; }
+#endif
+    psx_mod_write_word(a, v);
+}
+static void wr16(uint32_t a, uint16_t v) {
+#ifdef R4_THREADED_DRAW
+    if (s_private) { unsigned shift=(a & 2u)*8u;
+        wr32(a & ~3u, (rd32(a & ~3u) & ~(65535u << shift)) | ((uint32_t)v << shift)); return; }
+#endif
+    psx_mod_write_half(a, v);
+}
+static int md_margin(void) {
+#ifdef R4_THREADED_DRAW
+    if (s_private) return s_private->margin;
+#endif
+    return psx_mod_widescreen_x_margin();
+}
+static int md_ram8(void) {
+#ifdef R4_THREADED_DRAW
+    if (s_private) return s_private->ram8;
+#endif
+    return psx_ram_8mb_active();
+}
 
 /* ---- course renderer entry --------------------------------------------- */
 
@@ -126,9 +245,9 @@ static void r4_md_course(CPUState *cpu, uint32_t address)
     (void)address;
     if (!s_enabled) return;
     if (s_opt.course_full)
-        psx_mod_write_half(R4_MD_COURSE_FAR_ADDR, (uint16_t)R4_MD_COURSE_FAR_FULL);
+        wr16(R4_MD_COURSE_FAR_ADDR, (uint16_t)R4_MD_COURSE_FAR_FULL);
     if (s_opt.split_same)
-        psx_mod_write_half(R4_MD_COURSE_2P_ADDR, 0u);
+        wr16(R4_MD_COURSE_2P_ADDR, 0u);
     if (s_trace) s_stat.course_calls++;
 }
 
@@ -148,15 +267,8 @@ static void r4_md_pvs_octant(CPUState *cpu, uint32_t address)
 
 /* Block bounds, cached per block address and checked against the block's
  * kind words (a new course or a save state rebuilds them). */
-#define R4_MD_BOUNDS_CACHE 4096u
-static struct {
-    uint32_t block;
-    R4MdBounds b;
-} s_bounds[R4_MD_BOUNDS_CACHE];
-static struct {
-    double camx, camz, fx, fz, slope;
-    uint32_t kept, dropped;
-} s_cone;
+
+
 
 static int r4_md_keep_block(void *ctx, uint32_t block)
 {
@@ -187,10 +299,10 @@ static int r4_md_keep_block(void *ctx, uint32_t block)
     return r4_md_block_visible(&b, s_cone.camx, s_cone.camz, s_cone.fx, s_cone.fz, s_cone.slope);
 }
 
-static int s_frame_has_course;   /* a main course draw ran this frame */
+
 #define R4_MD_PACE_LEAD_CYCLES 2048u  /* ~60 us: VSync(0) covers the rest */
-static uint64_t s_pace_anchor;  /* guest-cycle-scale pacing: the VBlank edge the frame started after */
-static int s_pace_active;        /* the spin was held this frame */
+
+
 static void r4_md_pvs_merge_body(void);
 static void r4_md_pop_census(uint32_t yaw);
 static void r4_md_pvs_merge(CPUState *cpu, uint32_t address)
@@ -209,7 +321,7 @@ static void r4_md_pvs_merge_body(void)
 {
     /* With the widescreen package live this also covers the wide octants of
      * the neighbouring sections; its own hook adds the camera section's. */
-    int oct_reach = r4_pvs_octant_reach(psx_mod_widescreen_x_margin());
+    int oct_reach = r4_pvs_octant_reach(md_margin());
     if (oct_reach != s_frame.last_oct) {   /* the view changed width */
         s_frame.last_oct = oct_reach;
         r4_md_gov_reset(&s_gov, r4_md_gov_start_level(oct_reach));
@@ -240,8 +352,8 @@ static void r4_md_pvs_merge_body(void)
     s_cone.fz = cos(t);
     s_cone.camx = (double)(int32_t)rd32(R4_MD_CAMERA_POS_ADDR) / 4.0;
     s_cone.camz = (double)(int32_t)rd32(R4_MD_CAMERA_POS_ADDR + 8u) / 4.0;
-    s_cone.slope = r4_md_view_slope(psx_mod_widescreen_x_margin());
-    R4PvsMerge m = r4_pvs_merge_dir(rd32, rd16, psx_mod_write_word, s_pvs.section,
+    s_cone.slope = r4_md_view_slope(md_margin());
+    R4PvsMerge m = r4_pvs_merge_dir(rd32, rd16, wr32, s_pvs.section,
                                     s_pvs.octant, nsec, dir, ahead, behind, oct_reach,
                                     r4_md_keep_block, 0);
     if (s_trace && m.ok) {
@@ -299,8 +411,8 @@ static void r4_md_xf_set_trans(CPUState *cpu, uint32_t address)
         if (s_trace) s_stat.xf_culled++;
     }
     for (unsigned i = 0; i < 3u; i++) {
-        psx_mod_write_word(s_xf.out + R4_MD_XF_VECTOR_OFF + 4u * i, (uint32_t)t[i]);
-        psx_mod_write_word(s_xf.out + R4_MD_XF_MATRIX_OFF + 0x14u + 4u * i, (uint32_t)t[i]);
+        wr32(s_xf.out + R4_MD_XF_VECTOR_OFF + 4u * i, (uint32_t)t[i]);
+        wr32(s_xf.out + R4_MD_XF_MATRIX_OFF + 0x14u + 4u * i, (uint32_t)t[i]);
     }
     if (s_trace) s_stat.xf_fixed++;
 }
@@ -343,7 +455,7 @@ static void r4_md_pop_census(uint32_t yaw)
     if (n > R4_PVS_LIST_MAX) return;
     double t = (double)(yaw & 0xFFFu) * (6.283185307179586 / 4096.0);
     double fx = sin(t), fz = cos(t);
-    int margin = psx_mod_widescreen_x_margin();
+    int margin = md_margin();
     int k256 = 320 + (margin > 0 ? margin * 2 : 0);   /* 4:3 about +/-51 deg, wider with margin */
     uint32_t cur[R4_PVS_LIST_MAX];
     for (uint32_t i = 0; i < n; i++) cur[i] = rd32(R4_PVS_LIST_ADDR + 4u + 4u * i);
@@ -365,23 +477,19 @@ static void r4_md_pop_census(uint32_t yaw)
 
 /* ---- far cars ------------------------------------------------------------------ */
 
-static struct {
-    int valid;
-    uint32_t addr;
-    int16_t saved[3];
-} s_car;
+
 
 static void r4_md_car_restore(void)
 {
     if (!s_car.valid) return;
     for (unsigned i = 0; i < 3u; i++)
-        psx_mod_write_half(s_car.addr + 2u * i, (uint16_t)s_car.saved[i]);
+        wr16(s_car.addr + 2u * i, (uint16_t)s_car.saved[i]);
     s_car.valid = 0;
 }
 
 /* Far cars at this moment: Extended always (no sections to pay for), Maximum
  * from governor level 1 (R4_MD_FAR_CARS=0/1 overrides for A/B runs). */
-static int s_far_cars_override = -1;
+
 static int r4_md_far_cars_now(void)
 {
     if (s_far_cars_override >= 0) return s_far_cars_override;
@@ -390,14 +498,14 @@ static int r4_md_far_cars_now(void)
 }
 
 /* The BIOS random seed guard (r4_md_rand_guard_call). */
-static R4MdRandGuard s_rand;
-static int s_car_past_stock;   /* this lookup's car is past the stock cull distance */
-static int s_rand_guard_off;   /* R4_MD_RAND_GUARD=0: A/B */
+
+
+
 
 static void r4_md_rand_end(void)
 {
     uint32_t seed;
-    if (r4_md_rand_guard_end(&s_rand, &seed)) psx_mod_write_word(R4_MD_RAND_SEED_ADDR, seed);
+    if (r4_md_rand_guard_end(&s_rand, &seed)) wr32(R4_MD_RAND_SEED_ADDR, seed);
 }
 
 static void r4_md_rand(CPUState *cpu, uint32_t address)
@@ -406,7 +514,7 @@ static void r4_md_rand(CPUState *cpu, uint32_t address)
     if (!s_enabled) return;
     uint32_t seed;
     if (r4_md_rand_guard_call(&s_rand, cpu->gpr[31], rd32(R4_MD_RAND_SEED_ADDR), &seed))
-        psx_mod_write_word(R4_MD_RAND_SEED_ADDR, seed);
+        wr32(R4_MD_RAND_SEED_ADDR, seed);
 }
 
 /* 0x8002DC00(car, row): raise the row for this lookup (r4_md_car_row_far). */
@@ -431,7 +539,7 @@ static void r4_md_car_draw(CPUState *cpu, uint32_t address)
                                     (int32_t)rd32(R4_MD_CAMERA_X_ADDR),
                                     (int32_t)rd32(R4_MD_CAMERA_Z_ADDR)) >= cur[2];
     for (unsigned i = 0; i < 3u; i++)
-        if (out[i] != cur[i]) psx_mod_write_half(a + 2u * i, (uint16_t)out[i]);
+        if (out[i] != cur[i]) wr16(a + 2u * i, (uint16_t)out[i]);
 }
 
 /* 0x80015F60 from 0x8002DC00, after its last row read: put the row back. */
@@ -569,14 +677,14 @@ static void r4_md_env(CPUState *cpu, uint32_t address)
     if ((int32_t)page >= 0 && !s_env_wrote) return;   /* the game's own page */
     int live = rd32(R4_RACE_PHASE_ADDR) >= 1u && r4_in_race(rd32, rd16);
     if (!live || (int32_t)page < 0) s_env_wrote = 0;  /* the game set it since */
-    int wide = psx_mod_widescreen_x_margin() > 0;
+    int wide = md_margin() > 0;
     int act = r4_md_reflections_action(s_opt, live, wide, page, s_env_wrote);
     if (act == R4_MD_ENV_WRITE_ON) {
-        psx_mod_write_word(R4_MD_ENV_TPAGE_ADDR, R4_MD_ENV_TPAGE_RACE);
+        wr32(R4_MD_ENV_TPAGE_ADDR, R4_MD_ENV_TPAGE_RACE);
         s_env_wrote = 1;
         if (s_trace) s_stat.env_writes++;
     } else if (act == R4_MD_ENV_WRITE_OFF) {
-        psx_mod_write_word(R4_MD_ENV_TPAGE_ADDR, 0xFFFFFFFFu);
+        wr32(R4_MD_ENV_TPAGE_ADDR, 0xFFFFFFFFu);
         s_env_wrote = 0;
         if (s_trace) s_stat.env_offs++;
     }
@@ -606,7 +714,7 @@ static void r4_md_mirror_list(CPUState *cpu, uint32_t address)
     if (cpu->gpr[31] != R4_MD_MIRROR_LIST_RA) return;
     uint32_t now = rd32(R4_MD_LIST_ADDR);
     uint32_t want = r4_md_mirror_count(s_opt, s_mirror.built, now);
-    if (want != now) psx_mod_write_word(R4_MD_LIST_ADDR, want);
+    if (want != now) wr32(R4_MD_LIST_ADDR, want);
     if (s_trace) {
         s_stat.mirror_lists++;
         if (now > s_stat.mirror_now_max) s_stat.mirror_now_max = now;
@@ -631,7 +739,7 @@ static void r4_md_vblank(void)
         int16_t cur[3] = { (int16_t)rd16(a), (int16_t)rd16(a + 2u), (int16_t)rd16(a + 4u) };
         if (!r4_md_car_row_restore(s_opt, r, cur)) continue;
         for (unsigned i = 0; i < 3u; i++)
-            psx_mod_write_half(a + 2u * i, (uint16_t)r4_md_car_lod_stock[r][i]);
+            wr16(a + 2u * i, (uint16_t)r4_md_car_lod_stock[r][i]);
         restored = 1;
     }
     if (restored && !s_car_restore_logged) {
@@ -654,8 +762,8 @@ static void r4_md_vblank(void)
 #define R4_MD_CLEAR_OTAG_HEAP_RA 0x8001E764u
 #define R4_MD_BIG_HEAP_BASE      0x80200000u
 #define R4_MD_BIG_HEAP_SIZE      0x00100000u
-static int s_big_heap;          /* expanded heap in use (8 MB RAM live) */
-static int s_big_heap_allowed;  /* R4_MD_BIG_HEAP=0 turns it off for A/B */
+
+
 
 static uint32_t r4_md_heap_cap(void)
 {
@@ -681,12 +789,12 @@ static void r4_md_clear_otag(CPUState *cpu, uint32_t address)
 {
     (void)address;
     if (!s_enabled || cpu->gpr[31] != R4_MD_CLEAR_OTAG_HEAP_RA) return;
-    s_big_heap = s_big_heap_allowed && psx_ram_8mb_active();
+    s_big_heap = s_big_heap_allowed && md_ram8();
     if (!s_big_heap) return;
     uint32_t heap = rd32(R4_HEAP_PTR_ADDR);
     uint32_t buf = heap - R4_BUF_HEAP;
     if (buf != R4_BUF0 && buf != R4_BUF0 + R4_BUF_STRIDE) return;
-    psx_mod_write_word(R4_HEAP_PTR_ADDR,
+    wr32(R4_HEAP_PTR_ADDR,
                        R4_MD_BIG_HEAP_BASE + (buf == R4_BUF0 ? 0u : R4_MD_BIG_HEAP_SIZE));
 }
 
@@ -861,7 +969,7 @@ static void r4_max_detail_activate(void)
                     "mirror=%d clamp=%d big_heap=%d\n",
             (int)s_opt.draw, s_opt.course_full, s_opt.cars_full, s_opt.split_same,
             s_opt.reflections, s_opt.mirror_full, psx_mod_draw_distance_clamp_enabled(),
-            s_big_heap_allowed && psx_ram_8mb_active());
+            s_big_heap_allowed && md_ram8());
     fflush(stdout);
 }
 
@@ -886,3 +994,43 @@ PSX_MOD_CONSTRUCTOR(r4_register_max_detail)
     (void)psx_mod_register_activation_plugin(PLUGIN_ID, r4_max_detail_activate);
     (void)psx_mod_register_vblank_plugin(PLUGIN_ID, r4_md_vblank);
 }
+
+#ifdef R4_THREADED_DRAW
+/* Logic tick pacing/governor hooks stay on main; a redraw starts with their
+ * captured decisions and does not advance the guest clock. */
+static const struct { uint32_t address; PSXModFunctionEntryCallback call; } draw_hooks[] = {
+    {R4_MD_COURSE_DISPATCH_FN, r4_md_course},
+    {R4_PVS_OCTANT_FN, r4_md_pvs_octant}, {R4_PVS_MERGE_FN, r4_md_pvs_merge},
+    {R4_DRAW_OTAG_FN, r4_md_draw_otag}, {R4_MD_CLEAR_OTAG_FN, r4_md_clear_otag},
+    {R4_MD_ENV_RENDER_FN, r4_md_env}, {R4_MD_MIRROR_LIMIT_FN, r4_md_mirror_limit},
+    {R4_MD_MIRROR_LIST_FN, r4_md_mirror_list}, {R4_MD_XF_FN, r4_md_xf_entry},
+    {R4_MD_XF_SETTRANS_FN, r4_md_xf_set_trans}, {R4_MD_CAR_DRAW_FN, r4_md_car_draw},
+    {R4_MD_CAR_AFTER_LOD_FN, r4_md_car_after_lod}, {R4_MD_RAND_STUB, r4_md_rand},
+};
+int r4_md_draw_register_entries(PsxCtxEntryHook callback, void *user) {
+    int n = 0;
+    for (size_t i=0;i<sizeof draw_hooks/sizeof draw_hooks[0];++i)
+        n += r4_draw_mods_register_one(draw_hooks[i].address,callback,user);
+    return n == sizeof draw_hooks/sizeof draw_hooks[0];
+}
+R4MdDrawState *r4_md_draw_capture(void) {
+    R4MdDrawState *p = calloc(1,sizeof *p);
+    if (!p) return NULL;
+    p->state = s_main;
+    p->margin = psx_mod_widescreen_x_margin();
+    p->ram8 = psx_ram_8mb_active();
+    R4MdDrawState *prior = s_private;
+    s_private = p; s_trace = 0; s_private = prior;
+    return p;
+}
+int r4_md_draw_entry(R4MdDrawState *p, CPUState *cpu, uint32_t address) {
+    if (!p || !cpu || !cpu->ctx) return 0;
+    R4MdDrawState *prior = s_private;
+    s_private = p; p->ctx = cpu->ctx;
+    for (size_t i=0;i<sizeof draw_hooks/sizeof draw_hooks[0];++i)
+        if (address == draw_hooks[i].address) draw_hooks[i].call(cpu,address);
+    s_private = prior;
+    return 1;
+}
+void r4_md_draw_destroy(R4MdDrawState *p) { free(p); }
+#endif
