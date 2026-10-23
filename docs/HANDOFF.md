@@ -33,7 +33,9 @@ zero >25 ms sample gaps, worker lateness, refusals and dispatch misses;
 `worker-prio-on-v50` delivered 905/15.063 s (60.1/s) with two gaps. An earlier
 run fell to 43.7/s while the render/GPU path was delayed. The 60 Hz cadence
 therefore still needs a reliable loaded-host check before refreshing the dev
-install. The brief visible race samples showed a moving car, not a wall stop.
+install. Runtime screenshots show the moving race, but automated desktop
+capture records the visible SDL window as black even with the previously
+installed build; owner visual confirmation is pending.
 
 Next: close the loaded-host output gaps, update the dev install, land the R4
 PR, then tackle real-frame draw offload behind the isolation gate. Short checks
@@ -58,6 +60,9 @@ References and sequence: `docs/CODEX_PLAN.md`.
 
 - Pin: obtain a stable build-matched race check and refresh the dev install;
   then land the R4 PR. No release or tag without owner approval/version.
+- Visible check: desktop capture of both the current and previously installed
+  SDL window is black while the runtime's own screenshots contain the race.
+  Confirm what the owner saw before treating on-screen cadence as proven.
 - Gate: stock Grand Prix isolation passed 18,101 ticks, but Time Attack,
   split screen, attract/replay and default mods remain unverified. The
   default-mod base/base restore differs at its first SIO sample; see

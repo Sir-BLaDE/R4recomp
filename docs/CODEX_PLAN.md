@@ -31,6 +31,9 @@ is unchanged, and the pinned-build cadence check/PR remain. Host-load samples
 range from 43.7 to 60.2 presents/s; the newest Windows render-thread priority
 change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`. Details:
 `docs/HANDOFF.md`.
+The automated desktop capture currently returns black for both this build and
+the earlier installed build, although runtime screenshots contain the moving
+race; owner visual confirmation of actual on-screen cadence is pending.
 
 | Stage | Thread today | State |
 |---|---|---|
