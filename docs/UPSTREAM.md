@@ -13,3 +13,4 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | Host HUD layer (yacineolivier-maker) | PR head | #710 | open |
 | Postfx depth / history / live uniforms (yacineolivier-maker) | PR head | #716 | open |
 | Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | split per review |
+| PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
