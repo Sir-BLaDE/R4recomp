@@ -36,14 +36,16 @@ checkpointing also fixes an independently proven transaction defect.
 OpenBIOS A0/2F private execution is fixed (`8f931e66`); moving-race v10 runs
 15 seconds with zero main dispatch misses and worker failures. The prior
 visible v7 sample measured 29.1 distinct frames/s, not accepted for installation.
-Output-grid lookahead, generation lifetime and resource invalidation fixes
-are in progress. No worker milestone installation has occurred.
+Output-grid lookahead and generation lifetime fixes are integrated locally.
+No worker milestone installation has occurred.
 Temporal display ownership and timestamp sorting fixed two ordering defects;
 actual presenter-pixel tests found and fixed inherited GL raster state. The
-current 4-slot hidden 15-second probe (`analysis/worker-four-v21`) presents
-486 images (32.4/s), zero worker faults/misses, but rejects 154 images after
-HD texture metadata invalidation and 141 for presenter capacity. It does not
-meet the 60 FPS acceptance target. Desktop/GDI capture sampled the wrong
+current 4-slot hidden 15-second probe (`analysis/worker-grid-v25`) presents
+401 images (26.7/s), zero worker faults/misses, and only four expired main
+deadlines after exact-grid skipping. HD resource invalidations reached zero;
+the remaining generated-copy guard rejects valid work (932 GPU commands) and
+render-thread deadlines still miss. It does not meet the 60 FPS target.
+Desktop/GDI capture sampled the wrong
 surface and its distinct-frame numbers are invalid for recent probes.
 
 Active checkouts (no new worktrees): root R4 `feat/threaded-rendering`, framework

@@ -241,8 +241,12 @@ static int r4_workers_submit(CPUState *cpu, const R4Blend *blend, const PSXModRe
     duration += workers.window_remainder;
     workers.window_remainder = duration % 33868800u;
     duration /= 33868800u;
-    if (!workers.next_window || now > workers.next_window + 2u * duration)
-        workers.next_window = now + duration;
+    if (!workers.next_window) workers.next_window = now + duration;
+    else if (workers.next_window < now) {
+        /* Drop elapsed windows without shifting the existing output grid. */
+        uint64_t skipped = (now - workers.next_window) / duration + 1u;
+        workers.next_window += skipped * duration;
+    }
     uint64_t begin = workers.next_window;
     int64_t lead = (int64_t)begin - (int64_t)now;
     if (!workers.submitted || lead < workers.lead_min_ns) workers.lead_min_ns = lead;
