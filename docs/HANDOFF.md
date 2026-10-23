@@ -2,6 +2,22 @@
 
 ## Current work (2026-10-23)
 
+Release-candidate boundary (owner, 2026-10-23): the installed 60 FPS
+extra-frame worker path is complete for this milestone. Main runs game logic
+at 30 Hz; four private workers prepare additional frames in the working mod's
+order. The owner saw the race and reported no shaking or out-of-order frames.
+The 60 FPS short race, ordered-frame, bloom, seam-identity, project-test and
+zero-dispatch-miss checks below passed. This is a development installation,
+not a new release; release, tag and publication still require the owner's go
+and version number.
+
+Real-frame draw offload and sustained 90/100/120/144 FPS are follow-up work,
+not blockers for this candidate. Those rates are selectable, but short probes
+do not establish target throughput above 60. The isolation gate is sufficient
+for the installed extra-frame path; whole-race equality for every mode and
+default-mod combination remains unverified. The timed real-frame, presenter
+composition and HUD handoff branches below are local checkpoints only.
+
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
 `990ffb00` (queued-frame postfx provenance; R4 PR #77). The development build is installed at
@@ -48,7 +64,7 @@ build ran it 181 times in three seconds (about 0.57 ms/pass) and retained
 misses. Windows and Mac hidden GL fixtures passed 151 checks each. The fix is
 pinned and installed as a development build.
 
-Next: complete real-frame draw offload only after private execution preserves
+Follow-up: complete real-frame draw offload only after private execution preserves
 guest timing, IRQ/device service, mod hooks and call-point effects. The gate's
 sound/RNG handoff is already synchronous on main; PRs #71/#72 reject false
 passes. The local generic timed-context topic (`C:/Users/Shokunin/dev/psx-real-timing`,
@@ -71,7 +87,10 @@ ordering mismatches; postfx composition still runs on the render thread.
 The companion generic HUD prepare/replay API and R4 packet adapter are in
 `C:/Users/Shokunin/dev/psx-hud-handoff` and
 `C:/Users/Shokunin/dev/r4-hud-handoff`, with pixel parity still unverified.
-These local branches are checkpoints, not installed or merged. Keep
+The presenter offload checkpoint `6916530a` passed 126 ordered-preparation
+checks, but generated pixel parity did not pass; it remains disabled. The HUD
+handoff builds, but exact HUD pixel parity is unverified. These local branches
+are checkpoints, not installed or merged. Keep
 performance samples to 15 seconds and automated checks to 30 seconds. No
 release, tag or publish without the owner's go and version.
 References and sequence: `docs/CODEX_PLAN.md`.
