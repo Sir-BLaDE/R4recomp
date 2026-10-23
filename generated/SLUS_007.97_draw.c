@@ -10013,6 +10013,7 @@ void dctx_func_80014A84(CPUState* cpu)
     psx_cyc_bb_defer_begin();
 #endif
     debug_server_log_call_entry(0x80014A84u);
+    if (psx_mod_function_entry(cpu, 0x80014A84u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80014A84, Size: 12 bytes, Blocks: 1 */
 
 block_80014A84: PSX_DCTX_TICK();
@@ -60221,6 +60222,7 @@ void dctx_func_80020074(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80020074u);
+    if (psx_mod_function_entry(cpu, 0x80020074u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80020074, Size: 280 bytes, Blocks: 10 */
 
 block_80020074: PSX_DCTX_TICK();
@@ -107842,6 +107844,7 @@ void dctx_func_8004C8BC(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x8004C8BCu);
+    if (psx_mod_function_entry(cpu, 0x8004C8BCu)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x8004C8BC, Size: 408 bytes, Blocks: 10 */
 
 block_8004C8BC: PSX_DCTX_TICK();
@@ -108905,6 +108908,7 @@ void dctx_func_8004CBAC(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x8004CBACu);
+    if (psx_mod_function_entry(cpu, 0x8004CBACu)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x8004CBAC, Size: 148 bytes, Blocks: 8 */
 
 block_8004CBAC: PSX_DCTX_TICK();
@@ -109359,6 +109363,7 @@ void dctx_func_8004CC40(CPUState* cpu)
     psx_cyc_bb_defer_begin();
 #endif
     debug_server_log_call_entry(0x8004CC40u);
+    if (psx_mod_function_entry(cpu, 0x8004CC40u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x8004CC40, Size: 112 bytes, Blocks: 1 */
 
 block_8004CC40: PSX_DCTX_TICK();
@@ -111859,6 +111864,7 @@ void dctx_func_8004F520(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x8004F520u);
+    if (psx_mod_function_entry(cpu, 0x8004F520u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x8004F520, Size: 52 bytes, Blocks: 2 */
 
 block_8004F520: PSX_DCTX_TICK();
@@ -112035,6 +112041,7 @@ void dctx_func_8004F5E0(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x8004F5E0u);
+    if (psx_mod_function_entry(cpu, 0x8004F5E0u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x8004F5E0, Size: 320 bytes, Blocks: 19 */
 
 block_8004F5E0: PSX_DCTX_TICK();
@@ -113069,6 +113076,7 @@ void dctx_func_80051840(CPUState* cpu)
     psx_cyc_bb_defer_begin();
 #endif
     debug_server_log_call_entry(0x80051840u);
+    if (psx_mod_function_entry(cpu, 0x80051840u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80051840, Size: 28 bytes, Blocks: 1 */
 
 block_80051840: PSX_DCTX_TICK();
@@ -113166,6 +113174,7 @@ void dctx_func_80051B00(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80051B00u);
+    if (psx_mod_function_entry(cpu, 0x80051B00u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80051B00, Size: 232 bytes, Blocks: 6 */
 
 block_80051B00: PSX_DCTX_TICK();
@@ -119328,6 +119337,7 @@ void dctx_func_800558E8(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x800558E8u);
+    if (psx_mod_function_entry(cpu, 0x800558E8u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x800558E8, Size: 128 bytes, Blocks: 2 */
 
 block_800558E8: PSX_DCTX_TICK();
@@ -120118,6 +120128,7 @@ void dctx_func_80059E24(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80059E24u);
+    if (psx_mod_function_entry(cpu, 0x80059E24u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80059E24, Size: 268 bytes, Blocks: 4 */
 
 block_80059E24: PSX_DCTX_TICK();
@@ -411099,6 +411110,7 @@ void dctx_func_80090600(CPUState* cpu)
         }
     }
     debug_server_log_call_entry(0x80090600u);
+    if (psx_mod_function_entry(cpu, 0x80090600u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80090600, Size: 60 bytes, Blocks: 6 */
 
 block_80090600: PSX_DCTX_TICK();
@@ -420203,6 +420215,7 @@ void dctx_func_800914B0(CPUState* cpu)
     psx_cyc_bb_defer_begin();
 #endif
     debug_server_log_call_entry(0x800914B0u);
+    if (psx_mod_function_entry(cpu, 0x800914B0u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x800914B0, Size: 12 bytes, Blocks: 1 */
 
 block_800914B0: PSX_DCTX_TICK();
@@ -448423,6 +448436,7 @@ void dctx_func_80096660(CPUState* cpu)
     psx_cyc_bb_defer_begin();
 #endif
     debug_server_log_call_entry(0x80096660u);
+    if (psx_mod_function_entry(cpu, 0x80096660u)) return;  /* trusted opt-in game-mod hook */
     /* Address: 0x80096660, Size: 12 bytes, Blocks: 1 */
 
 block_80096660: PSX_DCTX_TICK();
