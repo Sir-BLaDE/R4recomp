@@ -4,9 +4,9 @@
 
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
-`0421f31e` (queued-pass seam preparation, fork PR #2). The prior development build is installed at
-`C:\Users\Shokunin\Games\R4`; replaced program files are backed up at
-`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1345`. Settings, saves and
+`0421f31e` (queued-pass seam preparation, fork PR #2; R4 PR #75). The development build is installed at
+`C:\Users\Shokunin\Games\R4`; the previous executable is backed up at
+`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1422`. Settings, saves and
 bindings were preserved. This is not a release or tag.
 
 The game still simulates at 30 Hz on main. Four private contexts prepare the
@@ -36,8 +36,8 @@ five-second 144 Hz A/B on the shared PC; distinct output rose from 66.8 to
 96.8/s, still below target. A three-second 60 Hz comparison matched 113,120
 triangle seam results bitwise, with zero mismatches or dispatch misses. The
 owner saw no shaking or frame-order issue in the visible race. The R4 pin
-build and a three-second slot-2 probe passed with zero misses; install of this
-new pin remains pending. Postfx/driver presentation, live VRAM packing and
+build, 32/32 Windows and 29/29 available Mac project tests, and a
+three-second slot-2 probe passed with zero misses. Postfx/driver presentation, live VRAM packing and
 texture work dominate the remaining render cost. Earlier post-effect
 capability and viewport caching showed no measurable gain and remain local.
 
