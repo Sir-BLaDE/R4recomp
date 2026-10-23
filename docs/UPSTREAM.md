@@ -18,6 +18,7 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
 | Lazy seam normals (pure optimization of the fork's seam snapping) | `fix/pgxp-snap-lazy-normals` | none yet (depends on seam snapping) | in `r4/main` via fork PR #1 (`c8641551`) |
 | Queued-pass seam preparation on a persistent worker (depends on seam snapping and queued passes) | `feat/pgxp-seam-batch-prep` | none yet | in `r4/main` via fork PR #2 (`0421f31e`); ordered fallback remains serial when late |
+| Queued-interpolation postfx source mask/depth provenance | `feat/queued-postfx-provenance` | none yet | in `r4/main` (`990ffb00`); restores configured bloom on generated frames |
 | Host threading: cached GL blend/stencil state, batched render-thread ring, disc read-ahead worker (docs/HOST_THREADING.md) | `feat/host-threading` | none yet | in `r4/main` (`ba0a839e`) |
 | Threaded draw contexts, lean clones, OpenBIOS qualification and bounded worker pool | `feat/threaded-contexts` | none yet | in `r4/main`; private draw verified at 60 Hz |
 | Draw-isolation gate (debug only) | `feat/draw-isolation-gate` | none yet | in `r4/main` via `6f8b4621`; R4 PR #65 merged |

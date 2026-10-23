@@ -19,7 +19,7 @@ work; they do not change that requested default.
 
 The extra-frame worker milestone and developer-only isolation gate are
 merged to R4 master (PRs #69 and #65). The fork pin in this branch is
-`0421f31e` (R4 PR #75), and its development build is installed. Four private contexts preserve the
+`990ffb00` (queued-frame bloom provenance; prior pin R4 PR #75), and its development build is pending installation. Four private contexts preserve the
 working 60 FPS mod's exact interpolation order while main logic stays at
 30 Hz. Eight bounded presenter slots and the 1200-line dynamic floor start
 are active. A fresh master-build race state is `analysis/merged-prep-v99`;
@@ -39,6 +39,8 @@ the owner saw no shaking or wrong frame order. A five-second 144 Hz A/B
 measured 96.8 versus 66.8 distinct frames/s under shared load, still below
 the 120/144 targets. Details and
 receipt paths: `docs/HANDOFF.md`.
+The latest fork correction carries real-frame mask/depth provenance into queued
+postfx; a short 60 Hz race keeps ordered output while configured bloom runs.
 
 | Stage | Thread today | State |
 |---|---|---|
