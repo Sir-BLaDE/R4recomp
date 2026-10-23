@@ -1,5 +1,5 @@
 /* Presentation-only US R4 draw replay. Guest pacing remains stock.
- * Rate option: "60" (default) redraws an in-between frame per game tick;
+ * Rate options: 60 (default), 90, 100, 120 and 144 schedule extra race draws;
  * "30" leaves the original frames alone (no passes, stock presenter). */
 #include <string.h>
 

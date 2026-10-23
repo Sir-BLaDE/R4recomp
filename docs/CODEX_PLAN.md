@@ -11,7 +11,7 @@ frames per tick or one core per rate.
 
 A possible 60 Hz simulation mode is a separate, unproven option. It is not
 required for this work and must never be coupled to the rendering FPS setting.
-The current code defaults to 30 FPS; the owner target is 60 FPS by default.
+The development branch offers all requested rates, with 60 FPS by default.
 Performance measurements validate the implementation and expose unfinished
 work; they do not change that requested default.
 
@@ -36,23 +36,27 @@ not measurements of the planned integrated pipeline.
 
 ## Work in flight
 
-1. **Threaded contexts + lean draw clones**: fork branch
-   `feat/threaded-contexts` (head 27ea6673), `docs/THREADED_CONTEXTS.md` on the
-   branch. Per-context RAM/scratchpad/GTE/PGXP, GPU writes captured per
-   context, `[threaded_draw]` roots in `game.toml` generate
-   `generated/<stem>_draw.c` without cycle/icache/IRQ/debug code (PGXP kept).
-   Main code unchanged. Debug command `ctx_draw` runs a call sequence serially
-   and on N threads and compares. Works up to the first BIOS call
-   (0xA0 from 0x80096620). R4 `game.toml` diff:
-   `C:\Users\Shokunin\dev\r4-ctx-work\r4-game-toml.diff`.
-2. **Draw-isolation gate**: fork branch `feat/draw-isolation-gate`, R4 draft
-   PR #65, `docs/DRAW_ISOLATION.md`. Runs the race draw on a private copy and
-   compares state/fingerprints tick by tick against stock. Identical for 130
-   ticks, then diverges in sound state `0x8010FFE8/F8` (likely sound-effect
-   calls 0x8004F520 / 0x80051B00 inside the objects draw 0x80074AD8).
-3. **Host threading follow-ups**: fork `feat/host-threading`,
-   `docs/HOST_THREADING.md`: on-screen count not yet run; one ring command per
-   triangle instead of about 6; cache `gpu_get_display_info`.
+The first integration reuses `r4_interp.c`'s working 60 FPS draw sequence and
+interpolation fields unchanged. Private contexts execute that recipe; main
+admits its captured output without waiting. The serial implementation remains
+the correctness reference. Real-frame offload and track decomposition do not
+block proving parallel intermediate frames.
+
+- Contexts: qualified OpenBIOS memcpy/memset and immutable GTE/PGXP snapshots
+  pass PC/Mac tests. Completing indirect targets and per-job enhancement hooks.
+- Isolation: stock Grand Prix whole-race comparison passes 18,101 ticks;
+  other modes and default enhancements remain. Default base/base restore
+  exposes SIO sampling nondeterminism before isolation is enabled; the cause
+  is still being investigated.
+- Output: rational timestamp planning, bounded workers, nonblocking render
+  transaction admission and exact-deadline presentation pass component tests.
+  Ordered packet provenance and actual R4 integration remain in progress.
+- Baseline identity: two 12,000-frame runs agree exactly with zero misses.
+  Integrated game performance and screen-frame counts are not yet measured.
+
+Current receipts and checkout ownership: `docs/HANDOFF.md`; framework topic
+notes: `docs/THREADED_CONTEXTS.md`, `docs/RENDER_PASSES.md`, `docs/HOST_THREADING.md`
+in their respective branches.
 
 ## Integrated workstreams
 

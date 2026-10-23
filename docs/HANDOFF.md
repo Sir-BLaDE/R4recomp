@@ -16,17 +16,33 @@ snapping (#63), host threading (#64; render thread 95% -> 38% busy at 18x).
 
 In progress: integrated threaded rendering. Main runs the base 30 Hz game
 simulation; rendering/presentation target selectable 60 (default), 90, 100,
-120 and 144 FPS through timestamped snapshot interpolation. Current code
-still defaults to 30 FPS. A possible 60 Hz simulation option is separate,
+120 and 144 FPS through timestamped snapshot interpolation. The development branch now offers all requested rates and defaults to 60 FPS. A possible 60 Hz simulation option is separate,
 unproven and not required. Isolation, contexts, immutable mod/PGXP inputs,
 worker pool, scheduling/pacing, track decomposition and host throughput
 share the verification plan.
-Plan and Codex prompt: `docs/CODEX_PLAN.md`. Branches:
-- `feat/threaded-contexts` (fork): per-thread draw contexts + lean draw
-  clones; stops at the first BIOS call. Its `docs/THREADED_CONTEXTS.md`.
-- `feat/draw-isolation-gate` (fork) + R4 draft PR #65: which draw writes feed
-  logic; first finding: sound state `0x8010FFE8/F8`. R4 `docs/DRAW_ISOLATION.md` (PR #65).
-- `feat/host-threading` next steps: its `docs/HOST_THREADING.md`.
+First integration target: execute the working 60 FPS mod's existing draw
+sequence on private workers, then schedule the same sequence at 60/90/100/120/144
+output timestamps. Keep its serial path as the reference and fallback.
+Original-frame offload and track decomposition follow this proof in parallel.
+Plan: `docs/CODEX_PLAN.md`.
+
+Active checkouts (no new worktrees): root R4 `feat/threaded-rendering`, framework
+local `int/threaded-rendering` (never a landing source); `r4-ctx`/`psx-ctx` for
+contexts and private mod hooks; `r4-iso` for isolation; `psx-hostthr` for output
+scheduling/replay. Topic commits remain separate from local integration.
+
+Verified checkpoints:
+- Baseline A/A: 12,000 frame fingerprints exactly equal, zero misses;
+  local receipts `analysis/perf-baseline/base-{a,b}.json`.
+- Stock Grand Prix isolation: 18,101 ticks through TIMEOVER match base/nested/
+  isolated; zero misses. Nested also matches 32,767 shared frame fingerprints.
+  Receipt: `C:/Users/Shokunin/dev/r4-iso-runs/sound-rng-v4-20261023`.
+- Private BIOS memcpy/memset versus recompiled OpenBIOS, four-context GTE/PGXP,
+  worker ownership/expiry and R4 private access fixtures pass PC and Mac.
+- Timestamp planner, nonblocking render transactions and exact-deadline hidden
+  GL presentation pass PC and Mac. These are component checks, not measured
+  game FPS. Framework topics document their receipts.
+
 
 ## Owner decisions
 
@@ -45,9 +61,12 @@ Plan and Codex prompt: `docs/CODEX_PLAN.md`. Branches:
 
 ## Blockers
 
-- Rendering integration: context snapshots still need immutable GTE/config,
-  mod-hook and PGXP packet ownership; queued passes need asynchronous
-  generation/deadline tokens. Audit references: `docs/CODEX_PLAN.md`.
+- Integration: full draw target closure, default enhancement hook snapshots,
+  ordered GPU/PGXP metadata, and worker result admission are still being wired.
+  No integrated distinct-frame or visual acceptance yet.
+- Gate: remaining modes unverified. Default-mod base/base restore is not yet
+  deterministic at the first SIO sample; disabling batching did not resolve it.
+  A separate isolated draw difference at tick 118 is under investigation.
 - Release: owner picks the version and gives the go.
 - Online battle keeps its experimental switch until psxrecomp reserves link memory per netplay session.
 

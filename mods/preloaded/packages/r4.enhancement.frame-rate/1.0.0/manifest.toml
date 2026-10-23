@@ -14,7 +14,7 @@ game_id = "SLUS-00797"
 [[feature]]
 id = "frame-rate"
 name = "Race frame rate"
-description = "60 FPS races: interpolate car and camera positions between game ticks. Extra frames redraw geometry; logic, input and audio keep their original 30 Hz cadence. 30 FPS shows the original frames only."
+description = "Choose 60, 90, 100, 120 or 144 FPS. Interpolate car and camera positions between game ticks. Extra frames redraw geometry; logic, input and audio keep their original 30 Hz cadence. 30 FPS shows the original frames only."
 group = "Display"
 default_enabled = true
 
@@ -24,7 +24,7 @@ id = "rate"
 label = "Presentation rate"
 group = "Display"
 type = "choice"
-default = "30"
+default = "60"
 
 [[option.choice]]
 value = "60"
@@ -33,6 +33,22 @@ label = "60 FPS"
 [[option.choice]]
 value = "30"
 label = "30 FPS (original)"
+
+[[option.choice]]
+value = "90"
+label = "90 FPS"
+
+[[option.choice]]
+value = "100"
+label = "100 FPS"
+
+[[option.choice]]
+value = "120"
+label = "120 FPS"
+
+[[option.choice]]
+value = "144"
+label = "144 FPS"
 
 [[plugin]]
 feature = "frame-rate"
