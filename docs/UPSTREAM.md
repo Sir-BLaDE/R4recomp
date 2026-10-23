@@ -14,3 +14,4 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | Postfx depth / history / live uniforms (yacineolivier-maker) | PR head | #716 | open |
 | Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | split per review |
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
+| Host threading: cached GL blend/stencil state, batched render-thread ring, disc read-ahead worker (docs/HOST_THREADING.md) | `feat/host-threading` | none yet | in `r4/main` (`ba0a839e`) |
