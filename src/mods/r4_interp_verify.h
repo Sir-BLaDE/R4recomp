@@ -101,6 +101,17 @@ static int r4_verify_replay(CPUState *cpu, void *user, uint32_t alpha) {
     if (r->complete && !r4_verify_image(&r->image)) r->complete = 0;
     return 0; /* restore the same initial VRAM after capturing the replay */
 }
+static void r4_verify_crop(const R4VerifyImage *image, size_t first, const char *path) {
+    uint32_t x=(uint32_t)(first%image->width), y=(uint32_t)(first/image->width);
+    x=x>128?x-128:0; y=y>128?y-128:0;
+    uint32_t w=image->width-x, h=image->height-y;
+    if(w>1024) w=1024; if(h>1024) h=1024;
+    FILE *f=fopen(path,"wb"); if(!f) return;
+    fprintf(f,"P6\n# source crop %u %u\n%u %u\n255\n",x,y,w,h);
+    for(uint32_t row=0;row<h;row++) for(uint32_t col=0;col<w;col++)
+        fwrite(image->rgba+((size_t)(y+row)*image->width+x+col)*4,1,3,f);
+    fclose(f);
+}
 static int r4_verify_pixels(const R4VerifyImage *a, const R4VerifyImage *b, const char *label) {
     if (!a->bytes || a->bytes != b->bytes || a->width != b->width ||
         a->height != b->height || a->wide != b->wide) {
@@ -110,6 +121,7 @@ static int r4_verify_pixels(const R4VerifyImage *a, const R4VerifyImage *b, cons
     }
     uint64_t ah = 1469598103934665603ull, bh = ah;
     size_t different = 0, first = SIZE_MAX;
+    uint32_t minx=a->width,miny=a->height,maxx=0,maxy=0;
     for (size_t i = 0; i < a->bytes; ++i) {
         ah = (ah ^ a->rgba[i]) * 1099511628211ull;
         bh = (bh ^ b->rgba[i]) * 1099511628211ull;
@@ -117,11 +129,19 @@ static int r4_verify_pixels(const R4VerifyImage *a, const R4VerifyImage *b, cons
     for (size_t i = 0; i < a->bytes; i += 4) {
         if (!memcmp(a->rgba + i, b->rgba + i, 4)) continue;
         if (first == SIZE_MAX) first = i / 4;
+        uint32_t x=(uint32_t)((i/4)%a->width), y=(uint32_t)((i/4)/a->width);
+        if(x<minx)minx=x; if(y<miny)miny=y; if(x>maxx)maxx=x; if(y>maxy)maxy=y;
         ++different;
     }
     fprintf(stderr, "R4 exact pixels %s: %s %ux%u wide=%d different=%zu first=%zu hash=%016llX/%016llX\n",
             label, different ? "FAIL" : "PASS", a->width, a->height, a->wide, different, first,
             (unsigned long long)ah, (unsigned long long)bh);
+    if(different) {
+        fprintf(stderr,"R4 exact pixel bounds %s: %u,%u..%u,%u\n",label,minx,miny,maxx,maxy);
+        const char *prefix=!strcmp(label,"full/full")?"full-full":"full-private";
+        char path[80]; snprintf(path,sizeof path,"%s-reference.ppm",prefix); r4_verify_crop(a,first,path);
+        snprintf(path,sizeof path,"%s-candidate.ppm",prefix); r4_verify_crop(b,first,path);
+    }
     return different == 0;
 }
 static int r4_verify_equal(const PsxCtxGpuWord *expected, size_t count,
