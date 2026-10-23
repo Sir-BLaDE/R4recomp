@@ -18,8 +18,8 @@ work; they do not change that requested default.
 ## Where things stand (2026-10-23)
 
 The extra-frame worker milestone and developer-only isolation gate are
-merged to R4 master (PRs #69 and #65). The fork pin is `c8641551` and the
-master development build is installed. Four private contexts preserve the
+merged to R4 master (PRs #69 and #65). The fork pin in this branch is
+`0421f31e`; the prior master development build remains installed. Four private contexts preserve the
 working 60 FPS mod's exact interpolation order while main logic stays at
 30 Hz. Eight bounded presenter slots and the 1200-line dynamic floor start
 are active. A fresh master-build race state is `analysis/merged-prep-v99`;
@@ -33,9 +33,11 @@ which otherwise reads full VRAM each game frame. Corrected short checks
 show 90 Hz near target and 100/120/144 Hz below target; four workers beat
 2/3/6/8 at 144 Hz on this eight-core PC. Real-frame draw remains on main
 until private contexts can preserve guest timing and call-point side effects.
-The new pin passed a short exact-draw check and a ten-second visible run with
-60 distinct frames in each steady second. It reduces seam work about 6% per
-triangle, but does not close the 100/120/144 throughput gap. Details and
+The new pin prepares queued-pass seam gaps on a persistent worker. A short
+60 Hz comparison matched 113,120 triangle results bitwise, with zero misses;
+the owner saw no shaking or wrong frame order. A five-second 144 Hz A/B
+measured 96.8 versus 66.8 distinct frames/s under shared load, still below
+the 120/144 targets. Details and
 receipt paths: `docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
@@ -45,6 +47,7 @@ receipt paths: `docs/HANDOFF.md`.
 | Timestamped interpolated frames | four draw workers | 60 Hz milestone installed; 90 Hz near target, 100/120/144 below target |
 | Track renderer inside one frame (0x8006F00C) | main | target: decompose ordered track work across workers |
 | GPU command parsing (DrawOTag) | main | stays on main: reads state the game keeps changing (docs/HOST_THREADING.md) |
+| PGXP seam gap preparation | persistent prep worker, serial fallback | fork PR #2; ordered immutable stream, 60 Hz bitwise match; 144 Hz still below target |
 | Seam strips | render thread | already off main; order-dependent, stays serial |
 | GL rendering / present | render + present threads | done; GL state cache (#64) cut render thread 95% -> 38% |
 | Disc reads | read-ahead worker (#64) | done |
@@ -113,9 +116,9 @@ milestones.
 - **Track draw decomposition and host throughput:** split independent course
   work while preserving packet/primitive ordering; measure granularity and
   merge cost. The display-info cache and triangle/setup record grouping are
-  already in the fork. The remaining upper-rate cost is ordered seam and
-  packet work on the render owner; prepare it from immutable geometry with
-  pixel-equality checks before moving it.
+  already in the fork. Seam gap preparation now uses immutable geometry and
+  an ordered render commit. Postfx/driver presentation and live VRAM packing
+  and texture work remain on the render owner; profile before further splits.
 
 ## Shared verification and delivery
 
