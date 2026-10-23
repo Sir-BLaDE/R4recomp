@@ -4,7 +4,7 @@
 
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
-`c8641551` (lazy seam normals, fork PR #1; R4 PR #73). The development build from master is installed at
+`0421f31e` (queued-pass seam preparation, fork PR #2). The prior development build is installed at
 `C:\Users\Shokunin\Games\R4`; replaced program files are backed up at
 `C:\Users\Shokunin\Games\R4-dev-backup-20261023-1345`. Settings, saves and
 bindings were preserved. This is not a release or tag.
@@ -31,10 +31,15 @@ three seconds), but 100/120/144 fell short (289/330/358). Four workers beat
 2/3/6/8 at 144 Hz on this eight-core PC; the render thread is the limit.
 The HD invalidation indexing experiment (`perf/hd-invalidation-index`) remains
 unmerged because it did not show a reliable end-to-end gain.
-The lazy-normal change cut seam time about 6% per triangle but only about
-1–2% of total render time. Render-side seam and packet processing remains the
-upper-rate bottleneck; post-effect capability and viewport caching also showed
-no measurable end-to-end gain and remain local only.
+The queued-pass seam worker cut render replay from 6.96 to 4.11 ms in a
+five-second 144 Hz A/B on the shared PC; distinct output rose from 66.8 to
+96.8/s, still below target. A three-second 60 Hz comparison matched 113,120
+triangle seam results bitwise, with zero mismatches or dispatch misses. The
+owner saw no shaking or frame-order issue in the visible race. The R4 pin
+build and a three-second slot-2 probe passed with zero misses; install of this
+new pin remains pending. Postfx/driver presentation, live VRAM packing and
+texture work dominate the remaining render cost. Earlier post-effect
+capability and viewport caching showed no measurable gain and remain local.
 
 Next: move real-frame draw off main only after private execution preserves
 guest timing, IRQ/device service and call-point side effects. The gate's
