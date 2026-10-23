@@ -41,6 +41,15 @@ the 120/144 targets. Details and
 receipt paths: `docs/HANDOFF.md`.
 The latest fork correction carries real-frame mask/depth provenance into queued
 postfx; a short 60 Hz race keeps ordered output while configured bloom runs.
+The timed real-frame worker remains a local diagnostic: its Grand Prix track
+call has progressed through private guest timing, OpenBIOS, interrupt/device
+service, mod hooks and scratchpad, but still refuses at a later device
+deadline. It has not completed an identity comparison and is not installed.
+The presenter offload branch has immutable frame attachments and separate GL
+resource pools; composition itself remains on the render thread. A generic
+HUD prepare/replay path is under development so the after-postfx race HUD can
+move without changing pixels. See `docs/HANDOFF.md` for the current branch and
+receipt references.
 
 | Stage | Thread today | State |
 |---|---|---|

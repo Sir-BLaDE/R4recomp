@@ -48,14 +48,32 @@ build ran it 181 times in three seconds (about 0.57 ms/pass) and retained
 misses. Windows and Mac hidden GL fixtures passed 151 checks each. The fix is
 pinned and installed as a development build.
 
-Next: move real-frame draw off main only after private execution preserves
-guest timing, IRQ/device service and call-point side effects. The gate's
-sound/RNG handoff is already synchronous on main; PRs #71/#72 made it refuse
-false passes. A local framework timed-prefix probe (`b5f2e71d`, `9aa2f34e`)
-faults before unsupported effects and is not yet a frame worker. Improve
-render throughput for 100/120/144 by moving ordered seam/packet preparation
-off the render owner or avoiding repeated geometry work. Keep performance samples to 15 seconds and automated checks
-to 30 seconds. No release, tag or publish without the owner's go and version.
+Next: complete real-frame draw offload only after private execution preserves
+guest timing, IRQ/device service, mod hooks and call-point effects. The gate's
+sound/RNG handoff is already synchronous on main; PRs #71/#72 reject false
+passes. The local generic timed-context topic (`C:/Users/Shokunin/dev/psx-real-timing`,
+`feat/timed-draw-checkpoint`) and R4 adapter (`C:/Users/Shokunin/dev/r4-timed-adapter`,
+`feat/timed-real-draw-adapter`) now run the Grand Prix track call through
+private timing, OpenBIOS, IRQ/device and mod-hook handoffs. The latest short
+diagnostic reached private scratchpad and then a device deadline; no complete
+real-frame call or equality proof exists, so this remains opt-in and unmerged.
+The build-compatible headless race state is `analysis/timed-real-fresh-v18`;
+short refusal receipts are `analysis/timed-real-trial-v19` onward. A separate
+GPU GP0 IRQ1 class fix and callback DMA hold fix are local framework topics,
+not installed. The installed development build remains the visually approved
+60 FPS extra-frame worker pin `990ffb00`.
+
+For higher rates, local `C:/Users/Shokunin/dev/psx-present-compositor`
+(`feat/async-present-composition`) has immutable presenter slots for color,
+mask, depth, OSD and source images, plus separate GL resource pools. A short
+loaded race had 150/150 worker admissions, zero dispatch misses and zero
+ordering mismatches; postfx composition still runs on the render thread.
+The companion generic HUD prepare/replay API and R4 packet adapter are in
+`C:/Users/Shokunin/dev/psx-hud-handoff` and
+`C:/Users/Shokunin/dev/r4-hud-handoff`, with pixel parity still unverified.
+These local branches are checkpoints, not installed or merged. Keep
+performance samples to 15 seconds and automated checks to 30 seconds. No
+release, tag or publish without the owner's go and version.
 References and sequence: `docs/CODEX_PLAN.md`.
 
 ## Owner decisions
