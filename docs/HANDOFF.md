@@ -87,10 +87,16 @@ ordering mismatches; postfx composition still runs on the render thread.
 The companion generic HUD prepare/replay API and R4 packet adapter are in
 `C:/Users/Shokunin/dev/psx-hud-handoff` and
 `C:/Users/Shokunin/dev/r4-hud-handoff`, with pixel parity still unverified.
-The presenter offload checkpoint `6916530a` passed 126 ordered-preparation
-checks, but generated pixel parity did not pass; it remains disabled. The HUD
-handoff builds, but exact HUD pixel parity is unverified. These local branches
-are checkpoints, not installed or merged. Keep
+Presenter assessment: local checkpoint `cfb53ddf` fixes borrowed mask/depth
+texture reinitialization. A 6-real/15-output bloom fixture passed ordering and
+effect-job checks; equal source pixels produced equal final pixels. Generated
+sources varied even between baseline runs, so whole-game parity is unproven.
+R4's host HUD currently disables this opt-in offload, and it moves only the
+roughly 0.57 ms bloom pass, so it cannot yet close the 144 Hz throughput gap.
+The HUD handoff builds, but renderer slots do not carry HUD packets and exact
+HUD pixel parity is unverified. These local branches remain disabled,
+uninstalled and unmerged; see the branch's
+`docs/ASYNC_PRESENT_COMPOSITION.md`. Keep
 performance samples to 15 seconds and automated checks to 30 seconds. No
 release, tag or publish without the owner's go and version.
 References and sequence: `docs/CODEX_PLAN.md`.
