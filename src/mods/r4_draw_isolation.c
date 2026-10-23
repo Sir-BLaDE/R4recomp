@@ -288,6 +288,19 @@ static void on_draw_fn(CPUState *cpu, uint32_t address) {
     run_isolated(cpu, fn, slot);
 }
 
+/* The object draw calls sound with scalar register arguments. Execute the
+ * original recompiled routine on main at that exact guest call point, so
+ * sound state and its IRQ consumers remain on the emulation context. */
+static void on_sound_fn(CPUState *cpu, uint32_t address) {
+    uint32_t ra = cpu->gpr[31];
+    if (!I.active || !I.depth || !psx_draw_iso_live() || psx_get_in_exception()) return;
+    if (!psx_draw_iso_suspend(cpu)) return;
+    psx_dispatch_call(cpu, address | 0x80000000u, ra);
+    psx_draw_iso_resume(cpu);
+    cpu->gpr[31] = ra;
+    (void)psx_mod_finish_function(cpu);
+}
+
 /* ---- tick boundaries -------------------------------------------------- */
 
 static void on_clear_otag(CPUState *cpu, uint32_t address) {
@@ -520,6 +533,9 @@ PSX_MOD_CONSTRUCTOR(r4_draw_isolation_register) {
         ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, k_draw_fns[i], on_draw_fn);
     ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, R4_CLEAR_OTAG_R, on_clear_otag_entry);
     ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, R4_VSYNC, on_vsync);
+    ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, 0x8004F520u, on_sound_fn);
+    ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, 0x80051840u, on_sound_fn);
+    ok &= psx_mod_register_function_entry_plugin(ISO_PLUGIN, 0x80051B00u, on_sound_fn);
     I.registered = ok;
     psx_mod_register_activation_plugin(ISO_PLUGIN, activate);
     atexit(at_exit);

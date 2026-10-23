@@ -61,9 +61,10 @@ def runtime_path(build):
     raise SystemExit(f"no r4-runtime in {build}")
 
 
-def set_mod_state(build):
+def set_mod_state(build, defaults=False):
     subprocess.check_call([sys.executable, os.path.join(HERE, "mod_state.py"), os.path.join(ROOT, build),
-                           "--stock", "--enable", "r4.debug.draw-isolation/draw-isolation"])
+                           "--defaults" if defaults else "--stock", "--enable",
+                           "r4.debug.draw-isolation/draw-isolation"])
 
 
 def launch(build, port, workdir, env_extra):
@@ -144,9 +145,10 @@ def state_files(workdir):
 
 def prepare(args):
     from smoke import START_FRAME, STEPS
-    set_mod_state(args.build)
+    set_mod_state(args.build, args.defaults)
     work = os.path.join(args.out, "prepare")
-    shutil.rmtree(work, ignore_errors=True)
+    if os.path.exists(work):
+        raise SystemExit(f"refusing to replace existing run: {work}")
     proc = launch(args.build, args.port, work, {"R4_DRAW_ISO_MODE": "base"})
     try:
         wait_frames(max(0, START_FRAME - frame(args.port)), args.port)
@@ -158,14 +160,22 @@ def prepare(args):
                 wait_frames(int(hold * 60), args.port)
                 cmd({"cmd": "clear_input"}, port=args.port)
             wait_frames(int(settle * 60), args.port)
-        # Wait for the race handler's countdown (phase 1), then save.
+            if label.startswith("pre-") and read_u32(args.port, PHASE) in (1, 2):
+                break
+        # Menu timing can finish during countdown or the active race.
         deadline = time.time() + 120
         while time.time() < deadline:
-            if read_u32(args.port, PHASE) == 1:
+            if read_u32(args.port, PHASE) in (1, 2):
                 break
             wait_frames(10, args.port)
         print("prepare: phase", read_u32(args.port, PHASE), "frame", frame(args.port))
+        if read_u32(args.port, PHASE) not in (1, 2):
+            raise SystemExit("prepare: failed to reach an active race")
         savestate(args.port, "save")
+        misses = cmd({"cmd": "dispatch_stats"}, port=args.port).get("miss_total")
+        print("prepare: dispatch misses", misses, flush=True)
+        if misses != 0:
+            raise SystemExit("prepare: dispatch misses must be resolved before testing")
         cmd({"cmd": "screenshot", "path": os.path.join(work, "race_start.png")}, port=args.port)
     finally:
         stop(proc, args.port)
@@ -196,7 +206,8 @@ def route_steps(drive_cycles=24):
 
 def run(args):
     out = os.path.join(args.out, args.label or args.mode)
-    shutil.rmtree(out, ignore_errors=True)
+    if os.path.exists(out):
+        raise SystemExit(f"refusing to replace existing run: {out}")
     os.makedirs(out)
     pst = os.path.join(args.out, "race.pst")
     if not os.path.exists(pst):
@@ -211,10 +222,10 @@ def run(args):
     for kv in args.env or []:
         k, v = kv.split("=", 1)
         env[k] = v
-    set_mod_state(args.build)
+    set_mod_state(args.build, args.defaults)
     t0 = time.time()
     proc = launch(args.build, args.port, out, env)
-    info = {"mode": args.mode, "env": env}
+    info = {"mode": args.mode, "env": env, "defaults": args.defaults}
     try:
         wait_frames(30, args.port)
         # The route and the fingerprint ring both restart at the load, so
@@ -254,8 +265,10 @@ def run(args):
         info["miss_total"] = d.get("miss_total")
         cmd({"cmd": "screenshot", "path": os.path.join(out, "end.png")}, port=args.port)
     finally:
-        cmd({"cmd": "input_route_stop"}, port=args.port)
-        stop(proc, args.port)
+        try:
+            cmd({"cmd": "input_route_stop"}, port=args.port)
+        finally:
+            stop(proc, args.port)
     info["wall_s"] = round(time.time() - t0, 1)
     with open(os.path.join(out, "run.json"), "w") as f:
         json.dump(info, f, indent=1)
@@ -273,10 +286,19 @@ def load_fp(d):
     counter itself is host state and differs between runs)."""
     with open(os.path.join(d, "fingerprint.json")) as f:
         fp = json.load(f)
-    return dict(enumerate(fp.get("entries", [])))
+    entries = fp.get("entries", [])
+    # The server returns the oldest retained entry first. Once the ring
+    # wraps, index zero is no longer the load frame.
+    offset = fp.get("total", len(entries)) - fp.get("available", len(entries))
+    return dict(enumerate(entries, start=offset))
 
 
 def compare(a, b, quiet=False):
+    with open(os.path.join(a, "run.json")) as source:
+        ra = json.load(source)
+    with open(os.path.join(b, "run.json")) as source:
+        rb = json.load(source)
+    ended = all(r.get("race_ended_frame") is not None for r in (ra, rb))
     ta, tb = load_ticks(a), load_ticks(b)
     verdict = 0
     n = min(len(ta), len(tb))
@@ -293,7 +315,7 @@ def compare(a, b, quiet=False):
         for c in diff:
             print(f"   {c}: {ta[i][c]} vs {tb[i][c]}")
         verdict = 1
-    elif len(ta) != len(tb):
+    elif len(ta) != len(tb) and not ended:
         print(f"INCOMPLETE ticks: {len(ta)} vs {len(tb)} lines (the first {n} agree)")
         verdict = verdict or 3
     else:
@@ -301,7 +323,8 @@ def compare(a, b, quiet=False):
     fa, fb = load_fp(a), load_fp(b)
     shared = sorted(set(fa) & set(fb))
     bad = None
-    for fr in shared:
+    judge_fp = all(r.get("mode") in ("base", "nest") for r in (ra, rb))
+    for fr in shared if judge_fp else []:
         diff = [c for c in FP_JUDGE if fa[fr].get(c) != fb[fr].get(c)]
         if diff:
             bad = (fr, diff)
@@ -309,16 +332,19 @@ def compare(a, b, quiet=False):
     if bad:
         print(f"MISMATCH fingerprints: first at frame {bad[0]} after the load: {', '.join(bad[1])}")
         verdict = 1
-    else:
+    elif judge_fp:
         print(f"fingerprints: {len(shared)} shared frames identical ({', '.join(FP_JUDGE)})"
               + ("" if set(fa) == set(fb) else f"; frame sets differ ({len(fa)} vs {len(fb)})"))
-        if set(fa) != set(fb):
+        if set(fa) != set(fb) and not ended:
             verdict = verdict or 3
-    ra = json.load(open(os.path.join(a, "run.json")))
-    rb = json.load(open(os.path.join(b, "run.json")))
+    else:
+        print("isolated fingerprints not judged: dead stack writes differ by design")
+    if not n or not ended:
+        print("INCOMPLETE: both runs must cover the race end")
+        verdict = verdict or 3
     for r, d in ((ra, a), (rb, b)):
-        if r.get("miss_total"):
-            print(f"dispatch misses in {d}: {r['miss_total']}")
+        if r.get("miss_total") != 0:
+            print(f"dispatch misses in {d}: {r.get('miss_total', 'unavailable')}")
             verdict = verdict or 4
     print({0: "IDENTICAL", 1: "MISMATCH", 3: "INCOMPLETE", 4: "MISSES"}[verdict])
     return verdict
@@ -348,6 +374,7 @@ def main():
         p.add_argument("--frames", type=int, default=40000, help="stop after this many frames")
         p.add_argument("--after", type=int, default=600, help="frames to keep running after the race ends")
         p.add_argument("--env", action="append", help="extra K=V for the runtime")
+        p.add_argument("--defaults", action="store_true", help="enable shipped default mods")
         if name == "run":
             p.add_argument("mode", choices=["base", "nest", "iso", "poison"])
             p.add_argument("--label")

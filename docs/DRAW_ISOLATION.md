@@ -117,6 +117,36 @@ know about logic reads:
 
 ## Remaining steps
 
+### Sound dependency follow-up (2026-10-23, in verification)
+
+The voice volume table starts at `0x8010FF68`, with 16 bytes per voice.
+`0x8010FFE8` and `0x8010FFF8` are voices 8 and 9. The writer is
+`0x80086D44` (recorded caller `0x800501CC`). The updater `0x80087240`
+sets the table base at `0x800874A8`, reads the volume halfword at
+`0x800874EC`, and advances to the next voice at `0x800875E4`. This is a
+sound-state dependency, not dead drawing storage.
+
+The gate now suspends the private context around original recompiled calls
+to `0x8004F520`, `0x80051840`, and `0x80051B00`. All take scalar register arguments;
+their only stack loads restore registers they saved themselves. Calls run
+synchronously on main at their original guest call point, then resume the
+draw context. The third call, `0x80051840`, writes pending volumes at
+`0x800F6924/28`. Leaving it isolated still diverged at tick 154 of the fresh
+countdown state: voice 8/9 volumes were `0x1B36` instead of stock `0x1AB5`.
+`0x8004F5E0` queues HUD voice cues from `0x8003C4B4`/`0x80039C04`; the
+static audit identifies it as another main-side call to cover before the
+broader mode gate. The three-hook GP run matches through tick 2798, then
+diverges in frame output, RAM and scratchpad at tick 2799. Diagnosis is
+in progress; no whole-race gate has passed.
+The framework suspend/resume test checks separate RAM/GTE,
+main writes visible on resume, and an IRQ inside the main call staying main.
+Race verification is pending; this does not yet authorize worker execution.
+
+The driver refuses existing run directories, supports `--defaults`, requires
+both runs to reach the race end, and compares isolated merged tick state
+without treating dead-stack write fingerprints as failures. Nested stock
+runs still require full fingerprint equality.
+
 1. Find the reader of `0x8010FFE8/F8` (wtrace on `0x10FFE0-0x110000` in base and
    iso, then `R4_DRAW_ISO_SKIP`/`PUBLIC` ablation) and confirm it is the
    objects draw's SE calls; classify, then make those calls a main-side replay

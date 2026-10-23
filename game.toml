@@ -51,6 +51,8 @@ strict = true
 # the plugin id that registered it). Changing this list
 # needs tools/regen.sh.
 mod_function_entry_funcs = [
+  # Draw-isolation gate: keep object sound side effects on the main context.
+  "0x8004F520", "0x80051840", "0x80051B00",
   # r4.enhancement.widescreen (src/mods/r4_widescreen_plugin.c):
   # the 18 HUD producers (src/mods/r4_widescreen_hud.h)
   "0x8003C4B4", "0x80021DDC", "0x8002BEA4", "0x800212E0", "0x80021134", "0x80021614",
