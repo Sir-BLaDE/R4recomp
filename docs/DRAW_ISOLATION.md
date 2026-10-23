@@ -229,6 +229,27 @@ as the existing render-pass transaction does by restoring RAM. It must not
 replay sound or advance main RNG. The synchronous gate hooks are not an API
 for a worker to mutate the main machine concurrently.
 
+For a future real-frame worker, the owner thread services each side-effect
+request at its original call point. The worker submits the function address,
+scalar registers, frame epoch and exact timing checkpoint, then waits with its
+native stack intact. The owner first publishes pending guest cycles and
+services due devices/IRQs; it then executes the original recompiled sound or
+RNG routine on main and returns its registers and main-memory writes to the
+worker before that call resumes. Pointer arguments require an explicit
+ownership rule; the five current hooks use scalar arguments. The owner polls
+the call gate without blocking on worker completion while a request could be
+pending. At a required frame boundary it may wait only in a loop that keeps
+servicing requests. An in-between frame must never submit a main-side call.
+
+An unsupported call, stale frame epoch, unclaimed-request timeout or missing
+timing checkpoint must refuse the worker result before frame publication. A
+main-thread retry is safe only when no guest cycles, device actions, sound/RNG
+effects or packet output from that attempt were committed. After a committed
+effect, stop with a diagnostic rather than execute it twice. The existing
+`draw_call_gate.h` transport preserves the worker stack and bounds claim
+time; it does not implement timing, memory ownership or rollback. Real-frame
+worker replacement remains disabled until those contracts are verified.
+
 ### Timed real-frame execution (design, not implemented)
 
 Keep the lean draw translation unit for in-between frames. A real-frame

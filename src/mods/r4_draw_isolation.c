@@ -328,9 +328,20 @@ static void on_draw_fn(CPUState *cpu, uint32_t address) {
 static void on_main_fn(CPUState *cpu, uint32_t address) {
     uint32_t ra = cpu->gpr[31];
     if (!I.active || !I.depth || !psx_draw_iso_live() || psx_get_in_exception()) return;
-    if (!psx_draw_iso_suspend(cpu)) return;
+    /* A failed handoff must stop this diagnostic. Falling through would run
+     * sound or rand against the private image and report a bogus gate pass. */
+    if (!psx_draw_iso_suspend(cpu)) {
+        fprintf(stderr, "draw isolation: main call %08X could not suspend at %08X\n",
+                address, cpu->pc);
+        abort();
+    }
     psx_dispatch_call(cpu, address | 0x80000000u, ra);
     psx_draw_iso_resume(cpu);
+    if (!psx_draw_iso_live()) {
+        fprintf(stderr, "draw isolation: main call %08X could not resume at %08X\n",
+                address, cpu->pc);
+        abort();
+    }
     cpu->gpr[31] = ra;
     (void)psx_mod_finish_function(cpu);
 }
