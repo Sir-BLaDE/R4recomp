@@ -4,9 +4,10 @@
 
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
-`990ffb00` (queued-frame postfx provenance; previous seam-preparation pin was R4 PR #75). The previous development build is installed at
-`C:\Users\Shokunin\Games\R4`; the previous executable is backed up at
-`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1422`. Settings, saves and
+`990ffb00` (queued-frame postfx provenance; R4 PR #77). The development build is installed at
+`C:\Users\Shokunin\Games\R4` (SHA-256 `FC9009D77707B6D1A4CD04DB7C2DB6BE31F0C6E5BAFB31C2C55B8AFD65F6E822`);
+the previous executable is backed up at
+`C:\Users\Shokunin\Games\R4-dev-backup-20261023-postfx`. Settings, saves and
 bindings were preserved. This is not a release or tag.
 
 The game still simulates at 30 Hz on main. Four private contexts prepare the
@@ -45,7 +46,7 @@ the configured effect ran zero times in a short 60 Hz race. The corrected
 build ran it 181 times in three seconds (about 0.57 ms/pass) and retained
 60 distinct frames/s in steady seconds, with zero worker failures or dispatch
 misses. Windows and Mac hidden GL fixtures passed 151 checks each. The fix is
-pinned but not yet installed.
+pinned and installed as a development build.
 
 Next: move real-frame draw off main only after private execution preserves
 guest timing, IRQ/device service and call-point side effects. The gate's
