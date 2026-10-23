@@ -152,10 +152,11 @@ static int r4_verify_draw(CPUState *cpu, const R4Blend *blend, const PSXModRende
     const char *opt = getenv("R4_VERIFY_DRAW");
     if (done || !opt || !*opt || !strcmp(opt, "0") ||
         psx_mod_render_pass_status() != PSX_MOD_RENDER_PASS_READY) return 0;
+    if (workers.pending) { r4_workers_poll(NULL); return 1; }
     uint32_t planned[R4_MAX_PASSES];
     /* The renderer must open a real generation, exactly as the serial path
      * does. Queued callback completion alone cannot attest GL admission. */
-    if (!psx_mod_render_pass_plan(2u, 1u, planned, R4_MAX_PASSES)) return 0;
+    if (!psx_mod_render_pass_plan(2u, 1u, planned, R4_MAX_PASSES)) return 1;
     done = 1;
     R4VerifyJob jobs[5] = {0};
     R4VerifyCapture reference = {0};
