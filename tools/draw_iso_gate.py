@@ -30,6 +30,7 @@ Each run has its own working directory and state directory. Needs a
 import argparse
 import csv
 import glob
+import hashlib
 import json
 import os
 import shutil
@@ -59,6 +60,11 @@ def runtime_path(build):
         if os.path.exists(p):
             return p
     raise SystemExit(f"no r4-runtime in {build}")
+
+
+def runtime_hash(build):
+    with open(runtime_path(build), "rb") as source:
+        return hashlib.file_digest(source, "sha256").hexdigest()
 
 
 def set_mod_state(build, defaults=False):
@@ -187,6 +193,8 @@ def prepare(args):
     shutil.copy(src, os.path.join(args.out, "race.pst"))
     with open(os.path.join(args.out, "race.pst.name"), "w") as f:
         f.write(os.path.relpath(src, work) if src.startswith(os.path.abspath(work)) else os.path.basename(src))
+    with open(os.path.join(args.out, "race.runtime.sha256"), "w") as f:
+        f.write(runtime_hash(args.build))
     print("prepare: saved", src)
 
 
@@ -212,6 +220,10 @@ def run(args):
     pst = os.path.join(args.out, "race.pst")
     if not os.path.exists(pst):
         raise SystemExit("no race.pst: run prepare first")
+    identity = runtime_hash(args.build)
+    with open(os.path.join(args.out, "race.runtime.sha256")) as source:
+        if source.read().strip() != identity:
+            raise SystemExit("race savestate belongs to another build: prepare a fresh state")
     name = open(os.path.join(args.out, "race.pst.name")).read().strip()
     dest = os.path.join(out, name)
     os.makedirs(os.path.dirname(dest), exist_ok=True)
@@ -225,7 +237,7 @@ def run(args):
     set_mod_state(args.build, args.defaults)
     t0 = time.time()
     proc = launch(args.build, args.port, out, env)
-    info = {"mode": args.mode, "env": env, "defaults": args.defaults}
+    info = {"mode": args.mode, "env": env, "defaults": args.defaults, "runtime_sha256": identity}
     try:
         wait_frames(30, args.port)
         # The route and the fingerprint ring both restart at the load, so

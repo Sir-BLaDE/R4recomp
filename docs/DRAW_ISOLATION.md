@@ -137,7 +137,10 @@ countdown state: voice 8/9 volumes were `0x1B36` instead of stock `0x1AB5`.
 static audit identifies it as another main-side call to cover before the
 broader mode gate. The three-hook GP run matches through tick 2798, then
 diverges in frame output, RAM and scratchpad at tick 2799. Diagnosis is
-in progress; no whole-race gate has passed.
+in progress; no whole-race gate has passed. The exact tick dump identifies
+the BIOS random seed at `0x80008548` (OpenBIOS `0xBFC060E4`, load at
+`0xBFC060E8`), particle counter `0x800F4E30`, and particle `0x8010B800`.
+The next test routes `rand()` stub `0x80096640` and the HUD cue through main.
 The framework suspend/resume test checks separate RAM/GTE,
 main writes visible on resume, and an IRQ inside the main call staying main.
 Race verification is pending; this does not yet authorize worker execution.
@@ -146,6 +149,19 @@ The driver refuses existing run directories, supports `--defaults`, requires
 both runs to reach the race end, and compares isolated merged tick state
 without treating dead-stack write fingerprints as failures. Nested stock
 runs still require full fingerprint equality.
+
+### Worker side-effect contract
+
+The gate models **real-frame** drawing: sound and RNG calls occur on main
+at their original guest call points, with the scalar arguments/results from
+that point. A worker must preserve that order and the shared RNG advancement;
+an end-of-tick snapshot alone cannot replace the HUD's earlier logic state.
+Dependency handling must be explicit before allowing main logic to read it.
+
+An **in-between** redraw must keep RNG private and discard its seed changes,
+as the existing render-pass transaction does by restoring RAM. It must not
+replay sound or advance main RNG. The synchronous gate hooks are not an API
+for a worker to mutate the main machine concurrently.
 
 1. Find the reader of `0x8010FFE8/F8` (wtrace on `0x10FFE0-0x110000` in base and
    iso, then `R4_DRAW_ISO_SKIP`/`PUBLIC` ablation) and confirm it is the
