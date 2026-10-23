@@ -101,11 +101,11 @@ static int r4_verify_replay(CPUState *cpu, void *user, uint32_t alpha) {
     if (r->complete && !r4_verify_image(&r->image)) r->complete = 0;
     return 0; /* restore the same initial VRAM after capturing the replay */
 }
-static int r4_verify_pixels(const R4VerifyImage *a, const R4VerifyImage *b) {
+static int r4_verify_pixels(const R4VerifyImage *a, const R4VerifyImage *b, const char *label) {
     if (!a->bytes || a->bytes != b->bytes || a->width != b->width ||
         a->height != b->height || a->wide != b->wide) {
-        fprintf(stderr, "R4 exact pixels: unavailable or unequal capture geometry %ux%u/%ux%u wide=%d/%d bytes=%zu/%zu\n",
-                a->width, a->height, b->width, b->height, a->wide, b->wide, a->bytes, b->bytes);
+        fprintf(stderr, "R4 exact pixels %s: unavailable or unequal capture geometry %ux%u/%ux%u wide=%d/%d bytes=%zu/%zu\n",
+                label, a->width, a->height, b->width, b->height, a->wide, b->wide, a->bytes, b->bytes);
         return 0;
     }
     uint64_t ah = 1469598103934665603ull, bh = ah;
@@ -119,8 +119,8 @@ static int r4_verify_pixels(const R4VerifyImage *a, const R4VerifyImage *b) {
         if (first == SIZE_MAX) first = i / 4;
         ++different;
     }
-    fprintf(stderr, "R4 exact pixels: %s %ux%u wide=%d different=%zu first=%zu hash=%016llX/%016llX\n",
-            different ? "FAIL" : "PASS", a->width, a->height, a->wide, different, first,
+    fprintf(stderr, "R4 exact pixels %s: %s %ux%u wide=%d different=%zu first=%zu hash=%016llX/%016llX\n",
+            label, different ? "FAIL" : "PASS", a->width, a->height, a->wide, different, first,
             (unsigned long long)ah, (unsigned long long)bh);
     return different == 0;
 }
@@ -160,10 +160,11 @@ static int r4_verify_draw(CPUState *cpu, const R4Blend *blend, const PSXModRende
     done = 1;
     R4VerifyJob jobs[5] = {0};
     R4VerifyCapture reference = {0};
+    R4VerifyCapture control = {0};
     PsxCtxSnapshot *snapshot = NULL;
     GpuReplayState *gpu = NULL;
     R4VerifyReplay replay = {0};
-    int ok = 0;
+    int ok = 0, control_ok = 0;
     if (!r4_workers_init() || workers.pending) goto cleanup;
     uint64_t start = pt_clock_ns();
     snapshot = psx_ctx_snapshot_capture(cpu, PSX_CTX_SNAP_PGXP);
@@ -182,6 +183,20 @@ static int r4_verify_draw(CPUState *cpu, const R4Blend *blend, const PSXModRende
     /* A checkpoint fault may longjmp past the callback cleanup. */
     gpu_set_command_tap(NULL, NULL); R.in_pass = 0;
     if (!reference.entered || !reference.complete || reference.failed || !reference.count) goto cleanup;
+    /* An identical second full draw distinguishes transaction/renderer state
+     * leakage from a private replay difference. It is discarded identically. */
+    control.blend = blend;
+    (void)psx_mod_render_pass(cpu, &pass, r4_verify_reference, &control);
+    gpu_set_command_tap(NULL, NULL); R.in_pass = 0;
+    control_ok = control.entered && control.complete && !control.failed &&
+        control.count == reference.count &&
+        !memcmp(control.words, reference.words, reference.count * sizeof *reference.words);
+    fprintf(stderr, "R4 exact full/full receipts: %s words=%zu/%zu complete=%d capture_failed=%d\n",
+            control_ok ? "PASS" : "FAIL", reference.count, control.count, control.complete, control.failed);
+    if (!r4_verify_pixels(&reference.image, &control.image, "full/full")) control_ok = 0;
+    free(control.words); control.words = NULL;
+    free(control.image.rgba); control.image.rgba = NULL;
+    fflush(stderr);
     r4_verify_private(&jobs[0]);
     if (jobs[0].complete) {
         replay.gpu = gpu; replay.job = &jobs[0];
@@ -194,10 +209,11 @@ static int r4_verify_draw(CPUState *cpu, const R4Blend *blend, const PSXModRende
     for (int i = 0; i < 4; ++i) if (threads[i]) SDL_WaitThread(threads[i], NULL);
     double parallel_ms = (pt_clock_ns() - start) / 1000000.0;
     ok = r4_verify_equal(reference.words, reference.count, &jobs[0], "full/private");
+    if (!control_ok) ok = 0;
     if (!replay.complete) {
         fprintf(stderr, "R4 exact pixels: replay/capture incomplete GPU error=%d\n", gpu_replay_last_error());
         ok = 0;
-    } else if (!r4_verify_pixels(&reference.image, &replay.image)) ok = 0;
+    } else if (!r4_verify_pixels(&reference.image, &replay.image, "full/private")) ok = 0;
     size_t serial_count = 0;
     const PsxCtxGpuWord *serial = psx_ctx_gpu_words(jobs[0].hook.context, &serial_count);
     for (int i = 1; i < 5; ++i) {
@@ -215,6 +231,7 @@ cleanup:
     }
     psx_ctx_snapshot_release(snapshot); gpu_replay_release(gpu); free(reference.words);
     free(reference.image.rgba); free(replay.image.rgba);
+    free(control.words); free(control.image.rgba);
     fflush(stderr);
     return 1;
 }
