@@ -18,4 +18,4 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
 | Host threading: cached GL blend/stencil state, batched render-thread ring, disc read-ahead worker (docs/HOST_THREADING.md) | `feat/host-threading` | none yet | in `r4/main` (`ba0a839e`) |
 | Threaded draw contexts + lean draw clones (WIP) | `feat/threaded-contexts` | none | not in `r4/main` |
-| Draw-isolation gate (WIP, debug only) | `feat/draw-isolation-gate` | none | not in `r4/main`; R4 PR #65 draft |
+| Draw-isolation gate (debug only) | `feat/draw-isolation-gate` | none yet | in `r4/main` via `6f8b4621`; R4 PR #65 draft |
