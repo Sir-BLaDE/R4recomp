@@ -30,9 +30,11 @@ without the disc. Fork `r4/main` is pushed at `688380ef`, game C regeneration
 is unchanged. The pinned build passed 900 distinct presents in 15 seconds;
 the installed binary passed a five-second check. The Windows render-thread
 priority change can be disabled with `PSX_RENDER_THREAD_PRIORITY=0`.
-Presenter-owned capture avoids desktop interference. Higher-rate measurements
-show 90 Hz near target but 100/120/144 Hz below target; render-thread PGXP seam
-snapping is the largest sampled cost at 144 Hz. Details: `docs/HANDOFF.md`.
+Presenter-owned capture avoids desktop interference. A visible 15-second race
+check achieved 901 distinct ordered frames with the debug display-history
+readback disabled. Corrected higher-rate checks show 90 Hz near target but
+100/120/144 Hz still below target; four workers beat both smaller and larger
+pools at 144 Hz on this eight-core PC. Details: `docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
 |---|---|---|

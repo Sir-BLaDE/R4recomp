@@ -38,14 +38,23 @@ owner's other apps and is no longer used. The optional capture code is on
 framework topic `feat/presenter-frame-capture`, outside the installed binary.
 An earlier loaded run fell to 43.7/s, so all-load stability is unproven.
 
-Higher-rate five-second checks: 90 Hz delivered 271 distinct frames in its
-last three seconds; 100 delivered 273, 120 delivered 291, and 144 delivered
-233. All kept deadline order and zero dispatch misses. At 144 Hz the render
-thread was busy for 5.25 s of a 5.09 s sample, with 190 late render jobs and
-95 optional worker drops. Its host profile attributes 25.6% of render-thread
-samples to `pgxp_snap_triangle`; these are measured bottlenecks, not a completed
-144 Hz target. Receipts: `analysis/worker-rate{90-v80,100-v81,120-v82,144-v83}`
-and `analysis/worker-rate144-profile-v84`.
+The visible installed build passed `analysis/worker-visible-noring-v87` with
+901 distinct, ordered frames in its last 15 seconds (60.1/s), no >25 ms gap
+or dispatch miss. Performance probes must set `PSX_DISPLAY_RING=0`: the debug
+server otherwise downloads all 1024x512 VRAM each game frame, depressing the
+visible result to 52/s (`worker-visible-installed-v86`). Normal non-debug
+builds have no such ring.
+
+Corrected higher-rate five-second checks with the ring off: 90 Hz delivered
+271 distinct frames in its last three seconds; 100 delivered 289, 120
+delivered 330, and 144 delivered 358. All retained deadline order and zero
+dispatch misses, but the upper rates had late or dropped optional frames.
+At 144 Hz, four workers are best among 2/3/4/6/8 on this eight-core PC;
+more workers reduce worker drops but saturate rendering and reduce presented
+frames. Receipts: `analysis/worker-noring{90-v88,100-v89,120-v90,144-v91}`
+and worker-count checks `worker-noring144-{2-v95,3-v94,6-v92,8-v93}`. The
+earlier rate/profile receipts include the debug readback and are not
+throughput results.
 
 Next: optimize the render-thread bottleneck, finish the real-frame isolation
 gate and cycle accounting, then remeasure the higher requested rates. Short checks
