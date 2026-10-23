@@ -18,7 +18,7 @@ work; they do not change that requested default.
 ## Where things stand (2026-10-23)
 
 The extra-frame worker milestone and developer-only isolation gate are
-merged to R4 master (PRs #69 and #65). The fork pin is `688380ef` and the
+merged to R4 master (PRs #69 and #65). The fork pin is `c8641551` and the
 master development build is installed. Four private contexts preserve the
 working 60 FPS mod's exact interpolation order while main logic stays at
 30 Hz. Eight bounded presenter slots and the 1200-line dynamic floor start
@@ -33,7 +33,10 @@ which otherwise reads full VRAM each game frame. Corrected short checks
 show 90 Hz near target and 100/120/144 Hz below target; four workers beat
 2/3/6/8 at 144 Hz on this eight-core PC. Real-frame draw remains on main
 until private contexts can preserve guest timing and call-point side effects.
-Details and receipt paths: `docs/HANDOFF.md`.
+The new pin passed a short exact-draw check and a ten-second visible run with
+60 distinct frames in each steady second. It reduces seam work about 6% per
+triangle, but does not close the 100/120/144 throughput gap. Details and
+receipt paths: `docs/HANDOFF.md`.
 
 | Stage | Thread today | State |
 |---|---|---|
@@ -109,8 +112,10 @@ milestones.
   and input/logic timing remain independently paced.
 - **Track draw decomposition and host throughput:** split independent course
   work while preserving packet/primitive ordering; measure granularity and
-  merge cost. The display-info cache is already in the fork; pursue ring-record
-  reductions only where profiles justify them.
+  merge cost. The display-info cache and triangle/setup record grouping are
+  already in the fork. The remaining upper-rate cost is ordered seam and
+  packet work on the render owner; prepare it from immutable geometry with
+  pixel-equality checks before moving it.
 
 ## Shared verification and delivery
 
