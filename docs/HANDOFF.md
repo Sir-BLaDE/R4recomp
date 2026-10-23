@@ -4,9 +4,9 @@
 
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
-`688380ef`. The development build from master is installed at
+`c8641551` (lazy seam normals, fork PR #1; R4 PR #73). The development build from master is installed at
 `C:\Users\Shokunin\Games\R4`; replaced program files are backed up at
-`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1255`. Settings, saves and
+`C:\Users\Shokunin\Games\R4-dev-backup-20261023-1345`. Settings, saves and
 bindings were preserved. This is not a release or tag.
 
 The game still simulates at 30 Hz on main. Four private contexts prepare the
@@ -18,6 +18,11 @@ misses). The installed master executable then ran visibly for 15 seconds:
 no gap over 25 ms, refusal, render lateness or dispatch miss. Windows project
 tests pass 32/32; Mac tests available without the disc pass 29/29. Full 8K
 private-draw pixel identity is in `analysis/worker-pixels-v13`.
+After the seam pin, `analysis/seam-master-visible-v6` ran visibly for ten
+seconds: each second after startup showed 60 distinct frames, with 302 worker
+jobs admitted, zero drops/failures and zero dispatch misses. Required
+regeneration added 14 private draw entry hooks; the short exact-draw receipt
+`analysis/seam-pin60-v5` passed. Mac built the pin and passed 29/29 tests.
 
 Performance checks must set `PSX_DISPLAY_RING=0`; the debug ring otherwise
 reads full VRAM every game frame and understates visible throughput. Corrected
@@ -26,10 +31,18 @@ three seconds), but 100/120/144 fell short (289/330/358). Four workers beat
 2/3/6/8 at 144 Hz on this eight-core PC; the render thread is the limit.
 The HD invalidation indexing experiment (`perf/hd-invalidation-index`) remains
 unmerged because it did not show a reliable end-to-end gain.
+The lazy-normal change cut seam time about 6% per triangle but only about
+1–2% of total render time. Render-side seam and packet processing remains the
+upper-rate bottleneck; post-effect capability and viewport caching also showed
+no measurable end-to-end gain and remain local only.
 
-Next: move real-frame draw off main only after the isolation gate preserves
-call-point state, sound/RNG and exact guest timing; improve renderer throughput
-for 100/120/144. Keep performance samples to 15 seconds and automated checks
+Next: move real-frame draw off main only after private execution preserves
+guest timing, IRQ/device service and call-point side effects. The gate's
+sound/RNG handoff is already synchronous on main; PRs #71/#72 made it refuse
+false passes. A local framework timed-prefix probe (`b5f2e71d`, `9aa2f34e`)
+faults before unsupported effects and is not yet a frame worker. Improve
+render throughput for 100/120/144 by moving ordered seam/packet preparation
+off the render owner or avoiding repeated geometry work. Keep performance samples to 15 seconds and automated checks
 to 30 seconds. No release, tag or publish without the owner's go and version.
 References and sequence: `docs/CODEX_PLAN.md`.
 
