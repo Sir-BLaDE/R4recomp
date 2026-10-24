@@ -253,8 +253,10 @@ for A in "${ARTS[@]}"; do
 done
 
 # --- verify each zip (psxrecomp's CI template checks, plus R4's) -----------------
+PACKAGE_VERSION="$V"
+if [[ $CHANNEL == playtest ]]; then PACKAGE_VERSION="$V-playtest"; fi
 for A in "${ARTS[@]}"; do
-  Z="dist/r4-$V-$A.zip"
+  Z="dist/r4-$PACKAGE_VERSION-$A.zip"
   L="$("$PYTHON" -c 'import sys,zipfile; print("\n".join(zipfile.ZipFile(sys.argv[1]).namelist()))' "$Z")"
   # 1. It is the game: executable, OpenBIOS, runtime data, both R4 mods, and
   #    the notices its components' licenses ask for (recomp-ui's and TinyCC's
@@ -358,7 +360,7 @@ print("\n".join(dev))
 sys.exit(0 if dev else 1)
 PY
   then echo "developer-channel mods above in $Z" >&2; exit 1; fi
-  (cd dist && shasum -a 256 "r4-$V-$A.zip" 2>/dev/null || sha256sum "r4-$V-$A.zip") > "dist/r4-$V-$A.zip.sha256"
+  (cd dist && shasum -a 256 "r4-$PACKAGE_VERSION-$A.zip" 2>/dev/null || sha256sum "r4-$PACKAGE_VERSION-$A.zip") > "dist/r4-$PACKAGE_VERSION-$A.zip.sha256"
   echo "OK $Z ($(du -h "$Z" | cut -f1))"
 done
 echo "zips in $REL/dist"

@@ -4,22 +4,22 @@
 
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
-`af6e327`; the packaged game source is `b176afa` (the only subsequent change
-was release-note text). The fork sync `75036461` is on `r4/main`; the current
-R4 pin is `c4eb8183`. Both Windows and Mac R4 builds passed 32/32 tests.
-Windows' five-second
-loaded 60 Hz race queued 302 frames with zero dispatch misses or gaps over
-25 ms; the framework GL render-thread fixture matched six pixel modes.
+`af6e327`; its packaged game source is `b176afa`. The fork sync `75036461`
+is on `r4/main`; R4 now pins `c4eb8183`. The published release passed 32/32
+Windows and Mac R4 tests and a five-second loaded 60 Hz race with zero dispatch
+misses or gaps over 25 ms.
 
-The Windows package is installed at `C:/Users/Shokunin/Games/R4`: all 502
-packaged files hash-match, and 55 existing settings/save files stayed
-unchanged. The previous installation is at
-`C:/Users/Shokunin/Games/R4-v020-before-final-20261024`. The installed
-release runtime started headless for five seconds. Package receipts and the
-published checksums are in `analysis/release-assets-v020-20261024/`; the
-Windows packaging log is `analysis/package-v020-final.log`. The Mac's existing
-dirty R4 checkout was untouched; verification and package builds ran in
-`~/dev/r4-verify-20261024/r4`.
+The current Windows install at `C:/Users/Shokunin/Games/R4` is a local
+**playtest** package from R4 `70fd703` with framework `c4eb8183`, not a new
+public release. All 502 packaged files hash-match the installed copies and 62
+existing non-package files, including settings and saves, were preserved
+(`analysis/install-playtest-seam-20261024.json`). The earlier published-release
+receipts are in `analysis/release-assets-v020-20261024/`. The Mac's existing
+dirty R4 checkout was untouched; isolated verification ran in
+`~/dev/r4-verify-20261024/r4` and other separate clones.
+
+The installed runtime stayed alive through a five-second headless smoke check;
+the desktop R4 shortcut still targets this installation.
 
 Follow-up performance work is sustained output above 60 Hz under shared load.
 The 60 FPS extra-frame worker path is the shipped baseline with 30 Hz game
@@ -30,26 +30,25 @@ Low retains PGXP geometry. No stereo/VR work is planned. Do not turn local
 real-frame offload experiments into release defaults until their state and
 timing are exact.
 
-The current post-release optimization is framework `8a3bf9f1` on fork
-`r4/main`, now pinned locally: postfx uses recorded texture allocation sizes
-instead of synchronizing GL size queries each output. The hidden GL bloom
+Post-release framework pin `8a3bf9f1` makes postfx use recorded texture
+allocation sizes instead of synchronizing GL size queries each output. The hidden GL bloom
 fixture passed 156 checks with identical pixels on Windows and Mac, and Mac
 built R4. Three five-second loaded 1440p/120 Windows probes had zero dispatch
 misses; render busy time was 4.33–4.36 s with the change versus 4.52 s with
 `PSX_GL_POSTFX_KNOWN_DIMS=0`. Windows R4 tests passed 32/32 after regeneration
-(game C unchanged). Physical 120 Hz stability still needs proof; the installed
-v0.2.0 release has not changed.
+(game C unchanged). Physical 120 Hz stability still needs proof; the public
+v0.2.0 release has not been republished.
 
-Framework `e1f2e457` is the next pinned composition improvement: it tracks
-the composing GL context's framebuffer bindings and avoids two driver queries
+Framework pin `e1f2e457` tracks the composing GL context's framebuffer
+bindings and avoids two driver queries
 per queued output. Windows and Mac A/B present-thread pixels matched; the
 eight-frame Mac GL frame-generation fixture passed. Short 1440p/120 A/B/A/B
 runs reduced measured composition from 2.35 to 2.12–2.20 ms/output, while
 overall present counts varied with host load. `PSX_GL_PRESENTER_FBO_CACHE=0`
 restores the query path.
 
-Framework `6eead0f2` is pinned next: fixed textured sampler uniforms are
-initialized once per shader program rather than per batch. Windows and Mac
+Framework pin `6eead0f2` initializes fixed textured sampler uniforms once per
+shader program rather than per batch. Windows and Mac
 80-frame direct/threaded GL fixtures matched all pixel hashes with the change
 on/off. A short loaded 1440p/120 A/B measured replay at 3.97 ms/output off
 versus 3.78 ms/output on, with zero dispatch misses; host load varied and
@@ -83,6 +82,14 @@ throughput; neither was promoted. A presenter-capacity preflight saved render
 work but reduced actual five-second output from 575 to 549 frames at 1440p/120;
 it was rejected. Slots frequently free during replay, so any admission change
 must reserve capacity without discarding an output that could display.
+
+The remaining high-rate bottleneck is the single OpenGL replay context: CPU
+workers generate optional-frame commands in parallel, but the render thread
+restores, replays, captures, and rolls back each frame serially. An isolated
+renderer-owner refactor (`e04472be`, `2bf7f142`, `5747e92e`) passed focused
+Windows/Mac GL fixtures; it has no second context or FPS gain and is not
+pinned. HD invalidation read-index commit `0a09d002` improved its microbench
+but not displayed frames, so it is not pinned either.
 
 ## Archived v0.2.0 preparation and investigation
 

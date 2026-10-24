@@ -17,7 +17,7 @@ work; they do not change that requested default.
 
 ## Where things stand (2026-10-24)
 
-v0.2.0 is published and installed with the 60 FPS extra-frame worker path and
+v0.2.0 is published with the 60 FPS extra-frame worker path and
 selectable 90/100/120/144 rates. The remaining work is sustained throughput
 above 60 under shared load, with 30 Hz game logic unchanged. A 15.031-second loaded race with
 Windows physically at 2560x1440/120 queued 1,803 presentations with zero
@@ -28,10 +28,11 @@ delivered 289/300 and 297/300 presents. Five-second 1440p probes gave 443
 at 90, 508 at 100, and 453 at 144; 144 saturated the render thread. The
 owner visually approved the earlier 60 FPS frame order. Real-frame draw
 offload and guaranteed higher-rate throughput remain follow-up work.
-The final v0.2.0 Windows zip passed package checks and all 502 packaged files
-hash-match the installation; 55 existing settings/save files were preserved.
-The framework upstream merge `75036461` is pinned and pushed to fork
-`r4/main`; game C regenerated unchanged, R4 32/32 tests passed on Windows and
+The final v0.2.0 Windows zip passed package checks. The current PC install is
+a local playtest package from R4 `70fd703`: all 502 packaged files hash-match,
+and 62 existing non-package files, including settings and saves, were preserved.
+The framework upstream merge `75036461` is included in current fork `r4/main`;
+game C regenerated unchanged, R4 32/32 tests passed on Windows and
 Mac, and a five-second loaded race queued 302 frames with zero dispatch misses.
 See
 `docs/HANDOFF.md` for receipts.
@@ -43,8 +44,8 @@ seconds; it does not establish sustained physical 120 Hz. The fork pin is
 integrated into R4. A subsequent framework pin `e1f2e457` avoids two GL
 framebuffer-binding queries per queued output; Windows/Mac pixel comparisons
 matched and short composition timing fell from 2.35 to 2.12–2.20 ms/output.
-Neither change yet proves steady physical 120 Hz. v0.2.0 remains the installed
-release.
+Neither change yet proves steady physical 120 Hz. The public v0.2.0 release
+has not been republished.
 
 Fork pin `6eead0f2` also removes repeated textured sampler-uniform
 calls. Windows/Mac pixel fixtures match, and a short loaded A/B cut replay
@@ -56,9 +57,11 @@ The default Ultra preset keeps PGXP and fine seam closing; Low retains PGXP
 geometry. When fine seam closing is selected, late preparation falls back to
 serial PGXP correction.
 
-The next pin `c4eb8183` publishes the immutable PGXP seam baseline earlier:
+The current pin `c4eb8183` publishes the immutable PGXP seam baseline earlier:
 five-second prepared use rose 205→241 and fallbacks fell 124→101, with zero
 PGXP verifier mismatches or dispatch misses. Sustained output gain is unproven.
+The playtest packager now verifies the `-playtest` archive name as well as the
+public name; the already-built Windows zip passed its full content audit.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
