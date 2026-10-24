@@ -108,6 +108,11 @@ The unpinned owner-state commits are `29ab8f6e`, `70c1b93c`, `e4e8e739`, and
 `99562055`; the two-context fixture is `1b5d9df9`. A product implementation
 would still need isolated pass/dirty/wide/HD state and immutable command input.
 Keep the proven single-context 60 Hz build as the playtest baseline.
+The dynamic-resolution controller is already at 5x/1200 internal lines in
+loaded runs; its next integer step is 4x/960, below the owner's 1080p floor.
+The current receipt reports GPU 15.75 ms versus CPU 5.96 ms and an over-budget
+load at that floor. A threshold tweak cannot supply sustained 120 Hz without
+breaking the resolution requirement.
 
 ## Archived v0.2.0 preparation and investigation
 
