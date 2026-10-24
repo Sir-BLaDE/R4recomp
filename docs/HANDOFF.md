@@ -2,23 +2,31 @@
 
 ## Current work (2026-10-24)
 
-The owner chose v0.2.1. The current public-channel RC2 source is `5e200c1`,
-pinning framework `d108e9a0` (synced with upstream `d19d8c7e`); game C
-regeneration was unchanged. Windows tests passed 32/32 and Mac 29/29. The
-three fresh archives are in `C:/Users/Shokunin/Desktop/R4 v0.2.1 Review RC2/`
-with verified `SHA256SUMS.txt`, release description, extracted Windows test
-copy, and desktop shortcut `R4 v0.2.1 RC2 Test.lnk`. ZIP integrity and package
-audits passed, including OpenBIOS-only and no disc data. The packaged Windows
-runtime advanced past frame 1100 during a six-second headless disc check with
-no heartbeat fatal. Mac binaries are ad-hoc signed. The prior `fb3cd90`
-candidate and its shortcut are preserved separately; it pins `c4eb8183`.
-Upstream #723, #736 and #737 were approved and merged;
-#727 remains a draft requiring narrower scope and title-level HD/local-view
-digest proof. #718 (HD FMV timeline) and #712 (Windows compositor evidence)
-remain held and are not release dependencies.
-No v0.2.1 tag, upload, publication or reinstall has been made; the owner
-explicitly held publication for review. If approved, tag RC2 source
-`5e200c1` and publish exactly the three RC2 archives and their checksums.
+The latest Windows playtest is installed at `C:/Users/Shokunin/Games/R4` from
+R4 `82f0c24`, framework pin `d108e9a0`. Its 505 packaged files hash-match
+the audited Windows ZIP in `C:/Users/Shokunin/dev/r4-latest-playtest-20261024/dist/`;
+69 existing non-package files, including settings and saves, were unchanged.
+The normal Desktop R4 shortcut targets this install. A six-second headless
+disc run reached frame 1235 with no heartbeat fatal. The R4 HD HUD is now
+classified as presentation-only local view in netplay; Windows and Mac runtime
+builds and focused link tests passed. The short Link-race proof and its limits
+are in `docs/verification/render-pass-local-view-20261024.md`.
+
+Upstream #727 was narrowed to five files at `45544217`; positive R4 HD
+local-view passes, shared digests, disabled peer, and GL discard restoration
+are verified. A 15-second loaded run completed 18 host temporal passes with
+zero misses, but DXGI desktop capture returned zero updates and cannot establish
+distinct on-screen FPS. The PR remains draft pending matched output/performance
+acceptance. Contributor #718 still needs movie identity and title A/V replay;
+our guest-timeline fix is on fork topic `fix/fmv-guest-timeline` (`dbbbc4d5`).
+Contributor #712 still needs an affected-driver compositor reproduction. Neither
+is pinned in R4. Approved upstream #723, #736 and #737 are merged.
+
+The earlier v0.2.1 RC2 archives remain separate at
+`C:/Users/Shokunin/Desktop/R4 v0.2.1 Review RC2/` (source `5e200c1`). They
+predate the installed HUD/netplay change and are **not** the current test build.
+No v0.2.1 tag, upload or publication has been made; the owner held publication
+for review. New release archives must be built from the final approved source.
 
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
