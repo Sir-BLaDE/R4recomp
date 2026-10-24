@@ -7,9 +7,10 @@ When this table is empty, re-pin to upstream master and archive the fork.
 The latest 2026-10-24 upstream-master sync is framework commit `d108e9a0` on
 fork `r4/main`. It includes upstream #723, #736, #737, #710, #716, #715,
 #717, #755, #758 and #174. The merge passed a Windows runtime build and five
-focused tests, plus a Mac runtime build and four focused tests. R4's v0.2.1
-candidate still pins `c4eb8183`; no candidate archive was rebuilt. The
-fork-only changes below remain after the merge.
+focused tests, plus a Mac runtime build and four focused tests. R4 now pins
+`d108e9a0`; regeneration changed no game C. Windows R4 32/32 and Mac R4
+29/29 tests passed. The earlier v0.2.1 candidate archives still pin
+`c4eb8183`. The fork-only changes below remain after the merge.
 
 | Change | Topic branch | Upstream PR | State |
 |---|---|---|---|
