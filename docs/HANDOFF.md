@@ -36,7 +36,10 @@ correctness stop, not a value to mask. Trace receipts are in
 `C:/Users/Shokunin/dev/r4-timed-audit/analysis/timed-audit-v4`. The isolated
 serial-cycle guard `13ece33` refuses promotion on the first -1 draw. A
 deadline-only IRQ prototype then failed owner DMA-state reconciliation at
-`0x80066654`; it remains uncommitted and uninstalled.
+`0x80066654`. A narrow isolated fix recognized device-raised `I_STAT` while
+still checking DMA registers; two course draws then committed, but the next
+draw reached the cycle guard 25 cycles early. The prototype is not pinned or
+installed.
 The combined presenter/resource and GL batching prototypes are isolated in
 `C:/Users/Shokunin/dev/r4-hud-handoff` (framework submodule `93218aed`), not
 pinned or installed. Five-second 144 Hz A/B/A results varied with shared GPU

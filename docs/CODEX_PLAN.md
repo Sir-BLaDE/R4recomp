@@ -40,7 +40,8 @@ replay, but has no reliable FPS claim yet. For real-frame offload, the timed
 probe now commits draws with diagnostic idle skipping disabled, but its first
 draw undercharges the guest clock and produces a live pad/SIO Timer1 mismatch.
 The cycle guard refuses promotion, and an early deadline/IRQ deferral also
-failed owner DMA-state reconciliation. Resolve that ownership edge and prove
+exposed a device-raised `I_STAT` difference. A narrow isolated reconciliation
+advanced the probe but still failed cycle equality. Resolve that edge and prove
 exact state equality before moving the main draw. Receipts and checkout
 references are in `docs/HANDOFF.md`.
 
