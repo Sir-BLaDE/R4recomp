@@ -2,14 +2,23 @@
 
 ## Current work (2026-10-23)
 
-A clean current-build five-second 120 Hz probe is
-`analysis/gpu-profile-120-20261023`: zero dispatch misses, 409 presents of
-600 requested, 61 timed refusals, 13 gaps over 25 ms. Render-thread busy
-time was 5.09 s of 5 s; measured GPU frame cost was about 16.1 ms at the
-dynamic 1080p floor. The frame workers and cadence planner are not the
-limiter. Active render samples concentrate in post-effects, pixel packing,
-texture invalidation and GL submission. This is the current performance
-target; 120 Hz is selectable but not sustained.
+A clean five-second 120 Hz probe at the large default window is
+`analysis/gpu-profile-120-20261023`: 409 of 600 requested presents, with
+render-thread busy time 5.09 s of 5 s. Window size was the main missing
+variable in that result. At a 2560x1440 game window, the *installed*
+executable gave 606 presents in five seconds, one timed refusal, zero drops
+and dispatch misses (`analysis/installed-1440p120-v2`). A current-build
+full-8K 60 Hz hidden-window probe gave 289 of 300 requested presents and zero
+dispatch misses (`analysis/current-8k60-v1`). Windows currently runs the
+desktop at 7680x4320/60; its listed 2560x1440/120 mode has not yet received
+an on-screen check. The short results support 1440p/120 and 8K/60 under the
+measured load, not native 8K/120.
+
+A local Windows candidate zip built from committed HEAD `28d4660` at
+`build-candidate-20261023/dist/r4-0.1.0-windows-x64.zip` (SHA-256
+`0b4b85af2556a0866a21c90d7537f64136b14a18a44567398f991f3ea4bb5709`).
+The packager's checks passed and the zip contains the display-refresh choice.
+It is local only; no new release, tag or publication is authorized.
 
 The frame-rate selector now offers Match display refresh while retaining 60
 FPS as the default and 30/90/100/120/144 fixed choices. The existing cadence
