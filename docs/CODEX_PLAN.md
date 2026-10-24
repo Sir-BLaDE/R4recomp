@@ -36,6 +36,12 @@ Mac, and a five-second loaded race queued 302 frames with zero dispatch misses.
 See
 `docs/HANDOFF.md` for receipts.
 
+Post-release framework commit `8a3bf9f1` removes redundant postfx GL size
+queries with identical fixture pixels on Windows and Mac. A short loaded
+1440p/120 A/B reduced render busy time by roughly 0.16–0.20 s per five
+seconds; it does not establish sustained physical 120 Hz. The fork pin is
+being integrated into R4; v0.2.0 remains the installed release.
+
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
 load, while the installed 60 Hz path remains the release-candidate baseline.

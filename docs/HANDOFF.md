@@ -28,6 +28,16 @@ not sustained. Keep OpenGL; no stereo/VR work is planned. Do not turn local
 real-frame offload experiments into release defaults until their state and
 timing are exact.
 
+The current post-release optimization is framework `8a3bf9f1` on fork
+`r4/main`, now pinned locally: postfx uses recorded texture allocation sizes
+instead of synchronizing GL size queries each output. The hidden GL bloom
+fixture passed 156 checks with identical pixels on Windows and Mac, and Mac
+built R4. Three five-second loaded 1440p/120 Windows probes had zero dispatch
+misses; render busy time was 4.33–4.36 s with the change versus 4.52 s with
+`PSX_GL_POSTFX_KNOWN_DIMS=0`. Windows R4 tests passed 32/32 after regeneration
+(game C unchanged). Physical 120 Hz stability still needs proof; the installed
+v0.2.0 release has not changed.
+
 ## Archived v0.2.0 preparation and investigation
 
 The following status was recorded before the published release and is retained
