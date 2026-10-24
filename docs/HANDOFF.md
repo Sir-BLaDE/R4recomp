@@ -10,21 +10,21 @@ executable gave 606 presents in five seconds, one timed refusal, zero drops
 and dispatch misses (`analysis/installed-1440p120-v2`). A current-build
 full-8K 60 Hz hidden-window probe gave 289 of 300 requested presents and zero
 dispatch misses (`analysis/current-8k60-v1`). A 3840x2160/60 five-second
-probe gave 297 presents,
-zero late worker frames and dispatch misses (`analysis/current-4k60-v1`).
-Windows currently runs the
-desktop at 7680x4320/60; its listed 2560x1440/120 mode has not yet received
+probe gave 297 presents, zero late worker frames and dispatch misses
+(`analysis/current-4k60-v1`). Windows currently runs the desktop at
+7680x4320/60; its listed 2560x1440/120 mode has not yet received
 an on-screen check. The short results support 1440p/120 and 8K/60 under the
 measured load, not native 8K/120.
 
-A local Windows candidate zip built from committed code HEAD `28d4660` at
-`build-candidate-20261023/dist/r4-0.1.0-windows-x64.zip` (SHA-256
-`0b4b85af2556a0866a21c90d7537f64136b14a18a44567398f991f3ea4bb5709`).
-The packager's checks passed and the zip contains the display-refresh choice.
+A local Windows candidate zip built from code commit `eb319a5` at
+`build-candidate-20261024-postfx/dist/r4-0.1.0-windows-x64.zip` (SHA-256
+`355dc7df329a33c7b7b6012ad5059518440af1e8090aa3545bb362f008b7f322`).
+The packager's checks passed; it contains the display-refresh choice and all
+13 files of the optional `postfx/r4_2026` lighting preset, previously omitted.
 It is installed locally at `C:/Users/Shokunin/Games/R4` (executable SHA-256
-`AF524FDD687338DCC5F46A4B37E8FED215877E00D0940326F8FB93492D9A890F`).
+`80FE3D390AB1A58DE732DDD03AAFCD5B02E050619F399AD408281C48489A4AF6`).
 The previous full installation is at
-`C:/Users/Shokunin/Games/R4-dev-backup-20261024-candidate`; hashes of
+`C:/Users/Shokunin/Games/R4-dev-backup-20261024-postfx`; hashes of
 settings, input, bindings and disc/BIOS choices match the backup, and all
 three save files remain. The installed release executable started headless
 for five seconds. No new release, tag or publication is authorized.
