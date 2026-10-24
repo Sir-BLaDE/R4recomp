@@ -60,12 +60,14 @@ supersampling) so it holds 60 Hz on an iGPU.
   everyone races on their own screen with their own full-screen view.
 - **Widescreen.** Races fill the window at whatever shape you give it (Fit
   to Window), with real extra scenery at the sides and the HUD at the edges.
-- **Sharper picture.** The game renders at your monitor's full resolution,
-  1.5× supersampled, and dynamic resolution keeps it at full speed (it never
-  drops below your display's own resolution).
-- **Smooth motion.** In-between frames up to your display's refresh rate,
-  variable-refresh displays included; the game itself still runs at 30 Hz.
-  It replaces the old R4 Frame Rate mod.
+- **Sharper picture.** The game matches your display up to 8K and uses 1.5×
+  supersampling below 4K. Dynamic resolution can reduce the internal picture
+  when needed, with a floor of 1080 lines.
+- **Race frame rate.** 60 FPS by default, with 30, 90, 100, 120, 144 and
+  Match display refresh choices. Workers draw the extra race frames while
+  game logic, input and audio keep their original 30 Hz cadence. The achieved
+  rate depends on resolution and GPU load; 144 FPS is not sustained on the
+  current 1440p test PC under the measured load.
 - **PGXP extras.** A depth buffer (no sorting glitches where polygons cross),
   smooth shading and closed seams between polygons.
 - **HD HUD.** The race HUD drawn from high-resolution artwork: **HD HUD by
