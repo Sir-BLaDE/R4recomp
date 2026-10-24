@@ -2,6 +2,15 @@
 
 ## Current work (2026-10-23)
 
+A clean current-build five-second 120 Hz probe is
+`analysis/gpu-profile-120-20261023`: zero dispatch misses, 409 presents of
+600 requested, 61 timed refusals, 13 gaps over 25 ms. Render-thread busy
+time was 5.09 s of 5 s; measured GPU frame cost was about 16.1 ms at the
+dynamic 1080p floor. The frame workers and cadence planner are not the
+limiter. Active render samples concentrate in post-effects, pixel packing,
+texture invalidation and GL submission. This is the current performance
+target; 120 Hz is selectable but not sustained.
+
 The frame-rate selector now offers Match display refresh while retaining 60
 FPS as the default and 30/90/100/120/144 fixed choices. The existing cadence
 planner accepts the measured display rate, so this uses the same extra-frame
