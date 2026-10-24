@@ -4,10 +4,9 @@ R4 pins `tetrisgm/psxrecomp` `r4/main` (CLAUDE.md, fork model). Every change
 that fork carries over upstream master is listed here with its upstream PR.
 When this table is empty, re-pin to upstream master and archive the fork.
 
-The 2026-10-24 upstream-master sync is prepared locally as framework commit
-`75036461`. R4 is pinned locally and passed its short Windows race check. The
-merge has not been pushed because required Mac verification is unavailable.
-The fork-only changes below remain in the local merged tree.
+The 2026-10-24 upstream-master sync is framework commit `75036461` on fork
+`r4/main`. R4 pins it and passed its short Windows race check plus 32/32 tests
+on Windows and Mac. The fork-only changes below remain after the merge.
 
 | Change | Topic branch | Upstream PR | State |
 |---|---|---|---|

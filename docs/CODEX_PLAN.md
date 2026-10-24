@@ -29,11 +29,10 @@ owner visually approved the earlier 60 FPS frame order. Real-frame draw
 offload and guaranteed higher-rate throughput remain follow-up work.
 The local v0.2.0 zip passed package checks and all 499 packaged files
 hash-match the installation; settings and saves were preserved. Before a
-release, the framework upstream merge `75036461` is pinned locally; game C
-regenerated unchanged, R4 32/32 tests passed, and a five-second loaded race
-queued 302 frames with zero dispatch misses. The framework merge has not been
-pushed. Required Mac verification is unavailable because the saved `ssh mac`
-profile timed out. See
+release, the framework upstream merge `75036461` is pinned and pushed to fork
+`r4/main`; game C regenerated unchanged, R4 32/32 tests passed on Windows and
+Mac, and a five-second loaded race queued 302 frames with zero dispatch misses.
+See
 `docs/HANDOFF.md` for receipts.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and

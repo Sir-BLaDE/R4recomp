@@ -34,16 +34,16 @@ hash-identical. The prior installation is backed up at
 started headless for five seconds. This is a local candidate, not a published
 release.
 
-Before release, the framework fork still needs its upstream-master sync
-pushed. The merge is prepared at `75036461` in the separate
-`psx-r4-sync-20261024` clone and R4 pins it locally. Generated game C stayed
-unchanged; the R4 build and 32/32 tests passed. The framework GL render-thread
+The framework upstream-master sync `75036461` is pushed to fork `r4/main`
+and R4 pins it. Generated game C stayed unchanged; the R4 build and 32/32
+tests passed on Windows and Mac. The framework GL render-thread
 fixture passed six pixel modes with zero failures using the local Clang toolchain.
 A fresh state was made with
 zero dispatch misses, and a five-second loaded 60 Hz race queued 302
 presentations with zero gaps over 25 ms or dispatch misses
-(`analysis/upstream-sync-60-race-20261024`). The saved `ssh mac` profile timed
-out on 2026-10-24, leaving required Mac verification unavailable.
+(`analysis/upstream-sync-60-race-20261024`). Mac verification used an isolated
+clone at `~/dev/r4-verify-20261024/r4` because the Mac's existing R4 checkout
+has unrelated changes; its build and 32/32 tests passed.
 
 A clean five-second 120 Hz probe at the large default window is
 `analysis/gpu-profile-120-20261023`: 409 of 600 requested presents, with
