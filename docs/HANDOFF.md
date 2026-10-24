@@ -37,7 +37,9 @@ release.
 Before release, the framework fork still needs its upstream-master sync
 pushed. The merge is prepared at `75036461` in the separate
 `psx-r4-sync-20261024` clone and R4 pins it locally. Generated game C stayed
-unchanged; the R4 build and 32/32 tests passed. A fresh state was made with
+unchanged; the R4 build and 32/32 tests passed. The framework GL render-thread
+fixture passed six pixel modes with zero failures using the local Clang toolchain.
+A fresh state was made with
 zero dispatch misses, and a five-second loaded 60 Hz race queued 302
 presentations with zero gaps over 25 ms or dispatch misses
 (`analysis/upstream-sync-60-race-20261024`). The saved `ssh mac` profile timed
