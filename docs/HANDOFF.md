@@ -100,6 +100,15 @@ targets also need roughly 1.8 GiB at 18x and exceed common texture limits.
 Do not pin or install it. The framework already groups ordinary triangle
 setup into one render-thread ring record; that item needs no new work.
 
+An isolated two-context fixture proved shared OpenGL textures, ordered owner
+readback, and context-private PGXP triangle snapping on Windows and Mac:
+12/12 synthetic frame hashes matched serial output. It did not run game replay
+or show a credible throughput gain (the RTX synthetic parallel run was slower).
+The unpinned owner-state commits are `29ab8f6e`, `70c1b93c`, `e4e8e739`, and
+`99562055`; the two-context fixture is `1b5d9df9`. A product implementation
+would still need isolated pass/dirty/wide/HD state and immutable command input.
+Keep the proven single-context 60 Hz build as the playtest baseline.
+
 ## Archived v0.2.0 preparation and investigation
 
 The following status was recorded before the published release and is retained

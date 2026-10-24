@@ -73,6 +73,10 @@ time and needs excessive memory at 18x; it is not a viable shortcut to higher
 refresh. Two independent GL replay contexts require per-context mutable GPU,
 PGXP, HD cache, and surface state; isolated owner extraction passed focused
 fixtures but has no runnable second context or demonstrated gain.
+A two-context synthetic fixture subsequently matched 12/12 ordered PGXP pixel
+hashes on Windows and Mac, but it did not replay R4 frames or establish a
+throughput gain. Further renderer-state surgery is not part of this playtest
+baseline; its isolated commits and missing pieces are in `docs/HANDOFF.md`.
 An opt-in presenter/HUD branch rebuilt from the current fork pin passes exact
 layered pixels and removes composition fallback, but its five-second 144 Hz
 race displayed 374 frames with six drops and a 174 ms gap. It is not enabled
