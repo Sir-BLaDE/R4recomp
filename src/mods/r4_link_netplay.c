@@ -15,6 +15,9 @@
 #include "cpu_state.h"
 #include "r4_link_analog_steering.h"
 #include "r4_interp.h"
+#if !defined(PSX_NO_DEBUG_TOOLS) && !defined(R4_LINK_TEST)
+#include "netplay_state_digest.h"
+#endif
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -1105,10 +1108,28 @@ static void r4_link_local_view(struct CPUState *cpu)
         r4_link_in_local_view = 1;
         r4_link_test_spend(r4_link_test_cost_ms("PSX_R4_LINK_TEST_VIEW_COST_MS",
                                                 &view_cost));
+#if !defined(PSX_NO_DEBUG_TOOLS) && !defined(R4_LINK_TEST)
+        /* Opt-in consuming-title proof: sample the shared netplay digest
+         * around the base view and all interpolation passes. Presentation
+         * transactions must never alter a peer's authoritative state. */
+        static unsigned digest_receipts;
+        const int verify_digest = getenv("R4_VERIFY_LOCAL_VIEW_DIGEST") != NULL &&
+                                  digest_receipts < 16u;
+        const uint32_t digest_before = verify_digest ? netplay_master_digest(cpu) : 0;
+#endif
         r4_interp_local_begin(cpu, view.seat);
         const int ok = psx_mod_render_local_view(cpu, &rect,
                                                  r4_link_draw_local_view, &view);
         r4_interp_local_end(cpu, &rect, r4_link_draw_local_view, &view, ok);
+#if !defined(PSX_NO_DEBUG_TOOLS) && !defined(R4_LINK_TEST)
+        if (verify_digest) {
+            const uint32_t digest_after = netplay_master_digest(cpu);
+            fprintf(stderr, "R4 local-view digest: %s tick=%u seat=%u ok=%d before=%08X after=%08X\n",
+                    digest_before == digest_after ? "PASS" : "FAIL", tick,
+                    view.seat, ok, digest_before, digest_after);
+            ++digest_receipts;
+        }
+#endif
         r4_link_in_local_view = 0;
         if (ok) {
             r4_link_mirror_slide = r4_link_mirror_next;

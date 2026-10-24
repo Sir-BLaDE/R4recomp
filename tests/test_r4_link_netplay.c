@@ -23,6 +23,7 @@ static uint8_t mod_ram[68];
 static uint8_t rollback_mod_ram[68];
 static uint8_t gpu_dma_ram[4u * 0xB00u + 8u];
 
+#define R4_LINK_TEST 1
 #include "../src/mods/r4_link_netplay.c"
 
 /* Temporal replay is covered by test_r4_interp_plugin; this fixture checks
