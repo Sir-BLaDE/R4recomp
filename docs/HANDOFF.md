@@ -2,15 +2,17 @@
 
 ## Current work (2026-10-24)
 
-Release preparation from `c3594a6` is complete on the playtest channel:
-fresh Windows x64 and macOS arm64/x64 archives passed the packager's content
-and platform audits; Windows tests passed 32/32, Mac tests 29/29, and the
-packaged Windows runtime survived a five-second headless disc smoke check.
-Archive hashes and draft notes are in local `analysis/release-prep-20261024/`.
-The pinned fork `c4eb8183` includes current upstream master `31df2e1e`.
-`VERSION` remains 0.2.0, which is already public. A new version choice,
-versioned release notes, and fresh public-channel packages are the remaining
-release steps; no tag or publication has been made for this candidate.
+The owner chose v0.2.1. Public-channel candidate source `fb3cd90` contains
+the version and release notes; fresh Windows x64 and macOS arm64/x64 archives
+are together at `C:/Users/Shokunin/dev/r4-public-candidate-021-20261024/dist/`
+with a verified `SHA256SUMS.txt`. All three passed content/platform and ZIP
+audits, including OpenBIOS-only and no disc data. Windows tests passed 32/32,
+Mac tests 29/29, and the packaged Windows runtime survived a five-second
+headless disc smoke check. The Mac binaries are universal and ad-hoc signed.
+The pinned fork `c4eb8183` contains current upstream master `31df2e1e`.
+No v0.2.1 tag, upload, publication or reinstall has been made; the owner's
+publication go-ahead is the remaining decision. Tag `fb3cd90` if approved so
+it names exactly the source used for the candidate archives.
 
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
