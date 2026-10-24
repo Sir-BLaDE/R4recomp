@@ -43,12 +43,16 @@ refusal, whose exact invariant needs one fresh diagnostic probe. See
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The source fork pin is
 `35b3849e` (expired async replay rollback); the development build installed at
-`C:\Users\Shokunin\Games\R4` (SHA-256 `FC9009D77707B6D1A4CD04DB7C2DB6BE31F0C6E5BAFB31C2C55B8AFD65F6E822`);
-the previous executable is backed up at
-`C:\Users\Shokunin\Games\R4-dev-backup-20261023-postfx`. Settings, saves and
-bindings were preserved. This is not a release or tag.
-The installed executable remains on `990ffb00` until the new pin receives a
-visible race check; no release has been authorized.
+`C:\Users\Shokunin\Games\R4` has SHA-256
+`173E18CC49D98DDBF34BD5C99858BE0FFFA70F20DB11F4581DAAE86D2B19D7A4`.
+The prior executable is backed up at
+`C:\Users\Shokunin\Games\R4-dev-backup-20261023-async-expiry`. Settings,
+saves and bindings were preserved. This is not a release or tag. The new pin's
+visible 10-second race check is `analysis/async-expiry-visible-v2`: 302 worker
+jobs admitted, 601 extra-frame presentations queued, zero late workers and
+dispatch misses; 599 present-thread displays with six timed drops under shared
+load. Windows R4 tests pass 32/32 and the Windows/Mac GL rollback fixture
+matched color and stencil pixels.
 
 The game still simulates at 30 Hz on main. Four private contexts prepare the
 working 60 FPS mod's exact in-between draw sequence; 60 is the default and
