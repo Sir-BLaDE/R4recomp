@@ -46,6 +46,19 @@ runs reduced measured composition from 2.35 to 2.12–2.20 ms/output, while
 overall present counts varied with host load. `PSX_GL_PRESENTER_FBO_CACHE=0`
 restores the query path.
 
+Framework `6eead0f2` is pinned next: fixed textured sampler uniforms are
+initialized once per shader program rather than per batch. Windows and Mac
+80-frame direct/threaded GL fixtures matched all pixel hashes with the change
+on/off. A short loaded 1440p/120 A/B measured replay at 3.97 ms/output off
+versus 3.78 ms/output on, with zero dispatch misses; host load varied and
+total presentation count did not establish a sustained-rate gain.
+
+Seam worker diagnostics (`analysis/seam-stats-1440p120-20261024` and an
+isolated fallback-reason probe) show every fallback was pending work: 171
+pending, zero preflight mismatches in five seconds. Two preparation workers
+did not improve the roughly 66% use rate. The next change should hand off the
+immutable seam stream earlier, without delaying ordered render replay.
+
 The separate timed real-frame prototype has an exact return-state fix
 (`cc59557`) and framework CD-DMA/IRQ edge fix (`d1c2b910`); a 15-second
 worker race matched 191/191 stock state-hash ticks with zero dispatch misses.

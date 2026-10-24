@@ -46,6 +46,12 @@ matched and short composition timing fell from 2.35 to 2.12–2.20 ms/output.
 Neither change yet proves steady physical 120 Hz. v0.2.0 remains the installed
 release.
 
+The next fork pin `6eead0f2` also removes repeated textured sampler-uniform
+calls. Windows/Mac pixel fixtures match, and a short loaded A/B cut replay
+from 3.97 to 3.78 ms/output; total throughput remains load-dependent. Seam
+fallback diagnostics found only late preparation (171 pending, zero mismatches
+in five seconds), so earlier immutable-stream handoff is the next worker fix.
+
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
 load, while the installed 60 Hz path remains the release-candidate baseline.
