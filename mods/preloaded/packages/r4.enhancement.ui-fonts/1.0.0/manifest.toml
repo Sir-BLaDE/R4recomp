@@ -37,3 +37,4 @@ default = "true"
 [[plugin]]
 feature = "ui-glyphs"
 id = "psx.hd-textures"
+netplay = "local_view"

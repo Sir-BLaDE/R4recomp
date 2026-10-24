@@ -186,16 +186,29 @@ class Peers:
             d.mkdir(parents=True)
             for name in ("game.toml", "game_options.toml"):
                 shutil.copy2(build / name, d / name)
+            if i == 0 and self.args.host_native:
+                game = d / "game.toml"
+                source = game.read_text()
+                original = 'internal_resolution = "display"'
+                if source.count(original) != 1:
+                    raise RuntimeError("expected one display-resolution default")
+                game.write_text(source.replace(original,
+                                               'internal_resolution = "native"'))
             for name in ("bios", "mods", "assets"):
                 if (build / name).exists():
                     shutil.copytree(build / name, d / name, symlinks=True)
             # A hard link under its own name: a concurrent `pkill r4-runtime`
             # elsewhere on a shared machine must not stop these peers.
+            suffix = ".exe" if os.name == "nt" else ""
             try:
-                os.link(build / "r4-runtime", d / self.args.peer_name)
+                os.link(build / ("r4-runtime" + suffix), d / (self.args.peer_name + suffix))
             except OSError:
-                shutil.copy2(build / "r4-runtime", d / self.args.peer_name)
-            (d / "memcards").mkdir()
+                shutil.copy2(build / ("r4-runtime" + suffix), d / (self.args.peer_name + suffix))
+            saved = self.args.resume_race_dir
+            if saved:
+                shutil.copytree(saved / f"peer{i}" / "memcards", d / "memcards")
+            else:
+                (d / "memcards").mkdir()
             # Widescreen is each player's own choice (own view only).
             view = self.view(i)
             state = ""
@@ -208,6 +221,14 @@ class Peers:
                 state += ("\n[[feature]]\npackage_id = \"r4.modern-controls\"\n"
                           "id = \"modern-controls\"\nenabled = true\n"
                           "[feature.values]\nscheme = \"modern\"\n")
+            rate = self.args.host_rate if i == 0 else self.args.guest_rate
+            if rate:
+                state += ("\n[[feature]]\npackage_id = \"r4.enhancement.frame-rate\"\n"
+                          "id = \"frame-rate\"\nenabled = true\n"
+                          f"[feature.values]\nrate = \"{rate}\"\n")
+            if self.args.host_hd:
+                state += ("\n[[feature]]\npackage_id = \"r4.enhancement.ui-fonts\"\n"
+                          f"id = \"ui-glyphs\"\nenabled = {str(i == 0).lower()}\n")
             if state:
                 (d / "mods").mkdir(exist_ok=True)
                 (d / "mods" / "state.toml").write_text("format_version = 2\n" + state)
@@ -225,6 +246,11 @@ class Peers:
                        PSX_NET_SESSION_ID=str(a.session_id),
                        PSX_NETPLAY_HEADLESS_INPUT_PROBE="1",
                        PSX_DEBUG_FMV_QUIET="0", SDL_AUDIODRIVER="dummy")
+            if a.resume_race_dir:
+                env["R4_VERIFY_LOCAL_VIEW_DIGEST"] = "1"
+                env["PSX_RENDER_PASS_VERIFY"] = "0" if a.no_pass_verify else "1"
+            if a.host_refresh_hz and i == 0:
+                env["PSX_HOST_REFRESH_HZ"] = str(a.host_refresh_hz)
             if a.experimental_env:
                 env["PSX_R4_LINK_EXPERIMENTAL"] = "1"
             else:
@@ -246,7 +272,7 @@ class Peers:
             d = a.work / f"peer{i}"
             self.handles.append(self.logs[i].open("w"))
             self.procs.append(subprocess.Popen(
-                ["./" + a.peer_name, "--game", "./game.toml", "--bios",
+                [str(d / (a.peer_name + (".exe" if os.name == "nt" else ""))), "--game", "./game.toml", "--bios",
                  "./bios/openbios.bin", "--disc", str(a.disc),
                  "--memcard-dir", "./memcards", "--debug-port",
                  str(self.port(i)), "--no-launcher",
@@ -260,7 +286,8 @@ class Peers:
         for p in self.procs:
             if p.poll() is None:
                 try:
-                    os.kill(p.pid, signal.SIGCONT)
+                    if hasattr(signal, "SIGCONT"):
+                        os.kill(p.pid, signal.SIGCONT)
                 except OSError:
                     pass
                 p.terminate()
@@ -758,6 +785,18 @@ def main():
                         "View (Fit, 16:9, 21:9, 32:9) for its own view")
     p.add_argument("--guest-widescreen", default="",
                    help="the other seats' own widescreen View (default off)")
+    p.add_argument("--host-rate", choices=("30", "60", "90", "100", "120", "144"), default="")
+    p.add_argument("--guest-rate", choices=("30", "60", "90", "100", "120", "144"), default="")
+    p.add_argument("--host-hd", action="store_true",
+                   help="keep the bundled R4 HD HUD on host; disable it on guest")
+    p.add_argument("--no-pass-verify", action="store_true",
+                   help="keep queued/high-resolution pass admission enabled")
+    p.add_argument("--host-refresh-hz", type=int, default=0,
+                   help="override the host peer's reported display refresh for a probe")
+    p.add_argument("--host-native", action="store_true",
+                   help="switch host peer to native internal resolution after load")
+    p.add_argument("--show-loaded-seat", type=int,
+                   help="show this peer via SDL only after the race checkpoint loads")
     p.add_argument("--modern", action="store_true",
                    help="every seat runs R4 Modern controls (an input "
                         "transform kept online): accelerate is the right "
@@ -796,6 +835,10 @@ def main():
                         "(older builds only; online battle no longer needs it)")
     p.add_argument("--stop-after", default="exit",
                    choices=("entry", "race", "explore", "finish", "restart", "exit"))
+    p.add_argument("--save-race-dir", type=Path,
+                   help="save a synchronized race checkpoint for a later short probe")
+    p.add_argument("--resume-race-dir", type=Path,
+                   help="load a synchronized race checkpoint after netplay arms")
     p.add_argument("--explore-seconds", type=float, default=20)
     p.add_argument("--dump-ram", action="store_true")
     p.add_argument("--steer-probe", action="store_true")
@@ -811,6 +854,12 @@ def main():
     p.add_argument("--retire-first-race", action="store_true",
                    help="debugging: Retire instead of finishing race 1")
     args = p.parse_args()
+    if args.show_loaded_seat is not None and not (args.resume_race_dir and
+                                                 args.frontend == "hidden" and
+                                                 0 <= args.show_loaded_seat < args.peers):
+        p.error("--show-loaded-seat requires hidden resume and an active seat")
+    if args.resume_race_dir and args.work.exists() and any(args.work.iterdir()):
+        p.error("--resume-race-dir requires a new, empty --work directory")
     args.work.mkdir(parents=True, exist_ok=True)
     peers = Peers(args)
     result = dict(peers=args.peers, mode=args.mode, steps={})
@@ -841,6 +890,36 @@ def main():
             for i in range(peers.n):
                 if peers.view(i):
                     peers.ask(i, "window_size", w=1280, h=720)
+        if args.resume_race_dir:
+            response = peers.ask(0, "savestate", op="load", slot=9)
+            if not response.get("ok"):
+                raise RuntimeError(f"race checkpoint load refused: {response}")
+            peers.wait(lambda: all(peers.ask(i, "savestate_status").get("last_ok")
+                                   for i in range(peers.n)), 15, "race checkpoint")
+            peers.wait(lambda: all(peers.u32(i, PHASE) == 2 for i in range(peers.n)),
+                       10, "loaded race")
+            if args.show_loaded_seat is not None:
+                response = peers.ask(args.show_loaded_seat, "window_visible", show=1)
+                if not response.get("ok"):
+                    raise RuntimeError(f"SDL window show failed: {response}")
+            peers.wait_frames(90, 10)
+            result["steps"]["race_pacing"] = [peers.u32(i, 0x800AC794)
+                                                for i in range(peers.n)]
+            result["steps"]["gl_interp"] = [peers.ask(i, "gl_interp")
+                                             for i in range(peers.n)]
+            result["steps"]["video_info"] = peers.ask(0, "video_info")
+            result["steps"]["hd_textures"] = [peers.ask(i, "hd_textures")
+                                               for i in range(peers.n)]
+            result["steps"]["local_views"] = [
+                {k: v for k, v in peers.ask(i, "render_pass_stats").items()
+                 if k in ("local_views", "passes", "plans", "planned", "wanted",
+                          "refused", "aborted", "verify_checks",
+                          "verify_mismatch", "status")}
+                for i in range(peers.n)]
+            result["steps"]["digest_receipts"] = [re.findall(
+                r"R4 local-view digest: (PASS|FAIL) tick=(\d+) seat=(\d+) ok=(\d+)",
+                peers.log_text(i)) for i in range(peers.n)]
+            return
         peers.wait(lambda: peers.frame() >= 1200, 120, "boot")
 
         def accepted():
@@ -885,6 +964,19 @@ def main():
                        peers.u16(i, CAR_COUNT) == peers.n and
                        peers.u32(i, PHASE) == 2 for i in range(peers.n))
         peers.wait(race_ready, 120, "race start")
+        if args.save_race_dir:
+            response = peers.ask(0, "savestate", op="save", slot=9)
+            if not response.get("ok"):
+                raise RuntimeError(f"race checkpoint save refused: {response}")
+            peers.wait(lambda: all(peers.ask(i, "savestate_status").get("last_ok")
+                                   for i in range(peers.n)), 15, "race checkpoint save")
+            for i in range(peers.n):
+                target = args.save_race_dir / f"peer{i}" / "memcards"
+                if target.exists():
+                    raise FileExistsError(target)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copytree(args.work / f"peer{i}" / "memcards", target)
+            result["race_checkpoint"] = str(args.save_race_dir)
         result["steps"]["race"] = dict(
             entrants=[peers.u16(i, ENTRANTS) for i in range(peers.n)],
             cars=[peers.u16(i, CAR_COUNT) for i in range(peers.n)])
@@ -892,6 +984,8 @@ def main():
         peers.modern_race = bool(args.modern)
         if args.stop_after == "race":
             peers.wait_frames(300, 60)
+            if args.save_race_dir:
+                return
             result["steps"]["local_views"] = local_views(peers, shots, "race")
             _, pts = find_course(peers)
             drive(peers, pts, args, shot, "race1", seconds=args.explore_seconds)
