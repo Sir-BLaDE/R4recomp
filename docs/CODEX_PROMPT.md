@@ -71,7 +71,6 @@ owner.
   docs/UPSTREAM.md. Stage paths explicitly: `git commit -a` picks up a moved
   psxrecomp gitlink by accident.
 - Merge upstream master into r4/main at least weekly and before releases.
-- No release, tag or publish without the owner's go and version number.
 - psxrecomp default behaviour stays faithful; elective unfaithful features
   are opt-in. Correctness and pure-performance fixes with identical output
   are default-on with an off switch.
@@ -221,8 +220,7 @@ tests/test_r4_defaults.py as part of integration. Report actual performance
 and unverified behavior; do not turn the historical >=58 FPS threshold into
 a condition on the owner's desired default. Potential 60 Hz simulation is
 separate and not a prerequisite. Keep fork delta/pin history current, land
-verified coherent work, and rebuild/reinstall at milestones. Release still
-requires the owner's go and version number.
+verified coherent work, and rebuild/reinstall at milestones.
 
 Keep docs/HANDOFF.md (current work, blockers, references) and
 docs/CODEX_PLAN.md current as you go. Report to the owner in plain

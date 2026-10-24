@@ -28,8 +28,8 @@ The visible 120-output run did not change the desktop refresh, so physical
 The owner visually approved the earlier 60 FPS frame order. The short checks and build
 results below are sufficient to close that milestone; real-frame draw offload
 and guaranteed throughput at 90/100/120/144 FPS are deferred follow-up work.
-Those rates remain selectable, without a sustained-rate claim. No new release
-or tag has been authorized.
+Those rates remain selectable, without a sustained-rate claim. The owner
+authorized the next release on 2026-10-24; v0.2.0 is prepared locally.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
@@ -192,8 +192,7 @@ Implement the requested 60 FPS default with the selectable rates in the
 frame-rate manifest and `tests/test_r4_defaults.py`; report any measured
 shortfall openly. There is no separate >=58 FPS gate redefining the owner's
 desired default. Keep fork deltas and pin history current, land coherent
-verified changes, and rebuild/reinstall at milestones. Release/tag/publish
-still needs the owner's go and version.
+verified changes, and rebuild/reinstall at milestones.
 
 ## Worker integration references
 
@@ -248,6 +247,5 @@ topic branches on the fork tetrisgm/psxrecomp, merged into r4/main only when
 verified (fetch first, fast-forward push); R4 changes via PRs you merge
 yourself. Record each fork delta in docs/UPSTREAM.md and each pin in
 docs/framework_pin_history.md. Measure on screen with screen_frames before
-claiming FPS. Follow "Rules that bit us". Do not release; the owner gives the
-go and the version.
+claiming FPS. Follow "Rules that bit us".
 ```

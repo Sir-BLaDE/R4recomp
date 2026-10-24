@@ -1,7 +1,6 @@
-# Ridge Racer Type 4 Recompiled — vNEXT (draft)
+# Ridge Racer Type 4 Recompiled — v0.2.0 (draft)
 
-> Draft for the next release. The version number is the owner's call; this
-> section is not published yet.
+> Draft for the next release; this section is not published yet.
 
 ## The download is now the compiled game
 

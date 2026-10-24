@@ -2,6 +2,15 @@
 
 ## Current work (2026-10-24)
 
+The owner authorized the brief display-mode check and the next release, and
+asked to remove the recurring approval rule. `VERSION` is prepared as 0.2.0
+because v0.1.0 is already public. A 15.031-second visible loaded race ran with
+Windows at 2560x1440/120, then the desktop was restored to 7680x4320/60.
+The runtime queued 1,803 presentations, with zero late worker frames and
+dispatch misses; DXGI capture counted 1,598 distinct screen frames (106.5/s)
+under the shared load, so physical 120 FPS is not proven steady
+(`analysis/visible-physical-1440p120-20261024`).
+
 One short visible loaded race at a 2560x1440 window with 120 selected ran
 10.031 s and queued 1,210 presentations, with zero render-late outputs and
 dispatch misses, five timed refusals and one gap over 25 ms
@@ -28,8 +37,8 @@ full-8K 60 Hz hidden-window probe gave 289 of 300 requested presents and zero
 dispatch misses (`analysis/current-8k60-v1`). A 3840x2160/60 five-second
 probe gave 297 presents, zero late worker frames and dispatch misses
 (`analysis/current-4k60-v1`). Windows currently runs the desktop at
-7680x4320/60; its listed 2560x1440/120 mode has not yet received
-an on-screen check. The short results support 1440p/120 and 8K/60 under the
+7680x4320/60 after the brief physical 120 check. The short results support
+1440p/120 output scheduling and 8K/60 under the
 measured load, not native 8K/120.
 
 A local Windows candidate zip built from code commit `eb319a5` at
@@ -43,7 +52,7 @@ The previous full installation is at
 `C:/Users/Shokunin/Games/R4-dev-backup-20261024-postfx`; hashes of
 settings, input, bindings and disc/BIOS choices match the backup, and all
 three save files remain. The installed release executable started headless
-for five seconds. No new release, tag or publication is authorized.
+for five seconds. This is the installed development candidate, not v0.2.0.
 The new manifest's Mac check remains pending: `ssh mac` to the saved
 192.168.1.216 profile timed out on 2026-10-24. Windows defaults and package
 checks passed; no network configuration was changed.
@@ -65,8 +74,7 @@ at 30 Hz; four private workers prepare additional frames in the working mod's
 order. The owner saw the race and reported no shaking or out-of-order frames.
 The 60 FPS short race, ordered-frame, bloom, seam-identity, project-test and
 zero-dispatch-miss checks below passed. This is a development installation,
-not a new release; release, tag and publication still require the owner's go
-and version number.
+not a new release.
 
 Real-frame draw offload and sustained 90/100/120/144 FPS are follow-up work,
 not blockers for this candidate. Those rates are selectable, but short probes
@@ -206,8 +214,7 @@ The HUD handoff builds, but renderer slots do not carry HUD packets and exact
 HUD pixel parity is unverified. These local branches remain disabled,
 uninstalled and unmerged; see the branch's
 `docs/ASYNC_PRESENT_COMPOSITION.md`. Keep
-performance samples to 15 seconds and automated checks to 30 seconds. No
-release, tag or publish without the owner's go and version.
+performance samples to 15 seconds and automated checks to 30 seconds.
 References and sequence: `docs/CODEX_PLAN.md`.
 
 ## Owner decisions
@@ -237,7 +244,8 @@ References and sequence: `docs/CODEX_PLAN.md`.
 - Throughput: 100/120/144 Hz have ordered outputs but miss target on this
   shared PC at the 1200-line dynamic-resolution floor. Profile render work
   before changing worker count or output timing.
-- Release: owner picks the version and gives the go.
+- Release: owner authorized the next release on 2026-10-24; v0.2.0 is the
+  prepared version after the existing public v0.1.0.
 - Online battle keeps its experimental switch until psxrecomp reserves link memory per netplay session.
 
 ## References
