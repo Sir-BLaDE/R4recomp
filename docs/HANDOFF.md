@@ -20,11 +20,14 @@ regression; #727 is ready for upstream review. A 15-second loaded run completed
 WGC dropped frames, and PresentMon ETW was denied, so distinct physical output
 FPS remains unmeasured; the PR makes no 120 FPS claim.
 
-Upstream draft #761 continues contributor #718 with guest CD-stream/frame
+Upstream #761 is ready for review and continues contributor #718 with guest CD-stream/frame
 identity and guest-cycle timing. Its Windows/Mac builds and focused tests pass;
 a local R4 synthetic-pack replay presented 85 HD frames, held on pause, resumed
-after state load, and had zero dispatch misses. Exact A/V lip-sync remains
-unmeasured. The elective FMV feature is not pinned in R4. Contributor #712
+after state load, and had zero dispatch misses. A short title run skipped the
+movie with Start and confirmed HD tracking reset (`cur_src=-1`), CD input
+stopped, queued host audio drained, and zero misses. A matched unpaused interval
+showed guest/SPU 366.67 ms, CD 373.33 ms and host output 360 ms; content-level
+lip-sync remains unmeasured. The elective FMV feature is not pinned in R4. Contributor #712
 still needs an affected-driver compositor reproduction; the current PC's
 RTX 4080 SUPER/610.88 cannot establish the reported RTX 3060/576.57 freeze.
 Approved upstream #723, #736 and #737 are merged.
