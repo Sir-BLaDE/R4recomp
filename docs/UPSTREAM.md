@@ -19,7 +19,7 @@ focused tests, plus a Mac runtime build and four focused tests. R4 now pins
 | Initialize fixed textured sampler uniforms once per shader program | `fix/gl-sampler-uniforms` | none yet | in `r4/main` (`6eead0f2`); exact direct/threaded GL pixels on Windows and Mac |
 | Publish the immutable PGXP seam baseline earlier during async reserve | `fix/seam-early-publish` | none yet | in `r4/main` (`c4eb8183`); more prepared seams consumed, exact PGXP verifier and Mac async timing passed |
 | Dynres: hold through savestate load | `r4/main` commit `ade1ecd3` | none yet | needs topic branch + PR |
-| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | narrowed to five-file PR head `45544217`; R4 HD/local-view digest and GL abort proof linked; draft pending distinct-output/performance acceptance |
+| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | five-file PR head `45544217` ready for review; R4 HD/local-view digest, GL abort and matched fixture timing linked; physical distinct FPS unmeasured |
 | Queued render passes, 60 FPS pacing (docs/RENDER_PASSES.md) | `feat/render-pass-queued` | none yet | in `r4/main` |
 | MinGW test link fixes | `fix/mingw-test-link` | none yet | in `r4/main` (+2 r4/main-only commits) |
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |

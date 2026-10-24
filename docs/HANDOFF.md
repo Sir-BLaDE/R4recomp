@@ -14,13 +14,20 @@ are in `docs/verification/render-pass-local-view-20261024.md`.
 
 Upstream #727 was narrowed to five files at `45544217`; positive R4 HD
 local-view passes, shared digests, disabled peer, and GL discard restoration
-are verified. A 15-second loaded run completed 18 host temporal passes with
-zero misses, but DXGI desktop capture returned zero updates and cannot establish
-distinct on-screen FPS. The PR remains draft pending matched output/performance
-acceptance. Contributor #718 still needs movie identity and title A/V replay;
-our guest-timeline fix is on fork topic `fix/fmv-guest-timeline` (`dbbbc4d5`).
-Contributor #712 still needs an affected-driver compositor reproduction. Neither
-is pinned in R4. Approved upstream #723, #736 and #737 are merged.
+are verified. Matched Windows/Mac GL fixture digests and timing showed no clear
+regression; #727 is ready for upstream review. A 15-second loaded run completed
+18 host temporal passes with zero misses. DXGI capture returned zero updates,
+WGC dropped frames, and PresentMon ETW was denied, so distinct physical output
+FPS remains unmeasured; the PR makes no 120 FPS claim.
+
+Upstream draft #761 continues contributor #718 with guest CD-stream/frame
+identity and guest-cycle timing. Its Windows/Mac builds and focused tests pass;
+a local R4 synthetic-pack replay presented 85 HD frames, held on pause, resumed
+after state load, and had zero dispatch misses. Exact A/V lip-sync remains
+unmeasured. The elective FMV feature is not pinned in R4. Contributor #712
+still needs an affected-driver compositor reproduction; the current PC's
+RTX 4080 SUPER/610.88 cannot establish the reported RTX 3060/576.57 freeze.
+Approved upstream #723, #736 and #737 are merged.
 
 The earlier v0.2.1 RC2 archives remain separate at
 `C:/Users/Shokunin/Desktop/R4 v0.2.1 Review RC2/` (source `5e200c1`). They
