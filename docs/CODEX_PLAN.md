@@ -40,7 +40,11 @@ Post-release framework commit `8a3bf9f1` removes redundant postfx GL size
 queries with identical fixture pixels on Windows and Mac. A short loaded
 1440p/120 A/B reduced render busy time by roughly 0.16–0.20 s per five
 seconds; it does not establish sustained physical 120 Hz. The fork pin is
-being integrated into R4; v0.2.0 remains the installed release.
+integrated into R4. A subsequent framework pin `e1f2e457` avoids two GL
+framebuffer-binding queries per queued output; Windows/Mac pixel comparisons
+matched and short composition timing fell from 2.35 to 2.12–2.20 ms/output.
+Neither change yet proves steady physical 120 Hz. v0.2.0 remains the installed
+release.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU

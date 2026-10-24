@@ -38,6 +38,21 @@ misses; render busy time was 4.33–4.36 s with the change versus 4.52 s with
 (game C unchanged). Physical 120 Hz stability still needs proof; the installed
 v0.2.0 release has not changed.
 
+Framework `e1f2e457` is the next pinned composition improvement: it tracks
+the composing GL context's framebuffer bindings and avoids two driver queries
+per queued output. Windows and Mac A/B present-thread pixels matched; the
+eight-frame Mac GL frame-generation fixture passed. Short 1440p/120 A/B/A/B
+runs reduced measured composition from 2.35 to 2.12–2.20 ms/output, while
+overall present counts varied with host load. `PSX_GL_PRESENTER_FBO_CACHE=0`
+restores the query path.
+
+The separate timed real-frame prototype has an exact return-state fix
+(`cc59557`) and framework CD-DMA/IRQ edge fix (`d1c2b910`); a 15-second
+worker race matched 191/191 stock state-hash ticks with zero dispatch misses.
+It still takes about 70 ms wall time per draw across roughly 138 owner
+handoffs, so it is not a default performance path. A bounded gate-handshake
+experiment is under way in the isolated checkout.
+
 ## Archived v0.2.0 preparation and investigation
 
 The following status was recorded before the published release and is retained
