@@ -18,6 +18,26 @@ for the installed extra-frame path; whole-race equality for every mode and
 default-mod combination remains unverified. The timed real-frame, presenter
 composition and HUD handoff branches below are local checkpoints only.
 
+Current local investigation (2026-10-23 evening): the same OpenGL backend stays.
+The combined presenter/resource and GL batching prototypes are isolated in
+`C:/Users/Shokunin/dev/r4-hud-handoff` (framework submodule `93218aed`), not
+pinned or installed. Five-second 144 Hz A/B/A results varied with shared GPU
+load (281/301/306 displayed), so they establish no throughput gain; a 60 Hz
+loaded race stayed near 60 with zero dispatch misses or late worker frames.
+Focused hidden GL fixtures found exact color/stencil parity for opaque bloom
+fusion, depth-state query removal, and skipped implicit source staging. The
+last also matched final pixels for normal, fallback and leased async presents.
+The full-width wide-batch shortcut failed raw-wide pixel equality and was
+abandoned. Existing reprojection stays off: it changes timing and previously
+showed visible race artifacts. An early-expiry replay rollback passed its GL
+fixture and skipped 13–25 expired replays per five-second run; fast/legacy/fast
+display counts (352/311/315) are too noisy for an FPS claim. A refreshed
+timed real-draw probe passed its old device deadline; generic scratchpad
+`LWC2` support (`493998b3`) then advanced it to an IRQ handoff refusal before
+any GPU packets. The next CPU check is a two-checkpoint event-ownership
+fixture. See `analysis/hud-ab-*` in the local integration checkout and
+`C:/Users/Shokunin/dev/r4-timed-audit/analysis/timed-audit-v3/probe/runtime.log`.
+
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
 (PR #65) and four extra-frame draw workers (PR #69). The fork pin is
 `990ffb00` (queued-frame postfx provenance; R4 PR #77). The development build is installed at

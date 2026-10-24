@@ -24,6 +24,18 @@ and guaranteed throughput at 90/100/120/144 FPS are deferred follow-up work.
 Those rates remain selectable, without a sustained-rate claim. No new release
 or tag has been authorized.
 
+The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
+GL-command experiments did not demonstrate a sustained gain under shared GPU
+load, while the installed 60 Hz path remains the release-candidate baseline.
+Do not substitute the older reprojection mode: its timing and race artifacts
+violate the approved redraw behavior. Focus on eliminating repeated GPU work
+with exact pixel checks. Early-expiry rollback safely skips some wasted GPU
+replay, but has no reliable FPS claim yet. For real-frame offload, the timed
+probe passed its prior deadline and scratchpad `LWC2`, then stopped at an IRQ
+handoff invariant before GPU output. Resolve that generic ownership edge and
+prove exact state equality before moving the main draw. Receipts and checkout
+references are in `docs/HANDOFF.md`.
+
 The extra-frame worker milestone and developer-only isolation gate are
 merged to R4 master (PRs #69 and #65). The fork pin in this branch is
 `990ffb00` (queued-frame bloom provenance; R4 PR #77), and its development build is installed. Four private contexts preserve the
