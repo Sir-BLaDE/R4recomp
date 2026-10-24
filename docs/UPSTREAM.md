@@ -4,9 +4,12 @@ R4 pins `tetrisgm/psxrecomp` `r4/main` (CLAUDE.md, fork model). Every change
 that fork carries over upstream master is listed here with its upstream PR.
 When this table is empty, re-pin to upstream master and archive the fork.
 
-The 2026-10-24 upstream-master sync is framework commit `75036461` on fork
-`r4/main`. R4 pins it and passed its short Windows race check plus 32/32 tests
-on Windows and Mac. The fork-only changes below remain after the merge.
+The latest 2026-10-24 upstream-master sync is framework commit `d108e9a0` on
+fork `r4/main`. It includes upstream #723, #736, #737, #710, #716, #715,
+#717, #755, #758 and #174. The merge passed a Windows runtime build and five
+focused tests, plus a Mac runtime build and four focused tests. R4's v0.2.1
+candidate still pins `c4eb8183`; no candidate archive was rebuilt. The
+fork-only changes below remain after the merge.
 
 | Change | Topic branch | Upstream PR | State |
 |---|---|---|---|
@@ -14,13 +17,8 @@ on Windows and Mac. The fork-only changes below remain after the merge.
 | Avoid composition-context GL framebuffer-binding queries per queued output | `fix/presenter-fbo-bindings` | none yet | in `r4/main` (`e1f2e457`); exact present-thread pixels on Windows and Mac |
 | Initialize fixed textured sampler uniforms once per shader program | `fix/gl-sampler-uniforms` | none yet | in `r4/main` (`6eead0f2`); exact direct/threaded GL pixels on Windows and Mac |
 | Publish the immutable PGXP seam baseline earlier during async reserve | `fix/seam-early-publish` | none yet | in `r4/main` (`c4eb8183`); more prepared seams consumed, exact PGXP verifier and Mac async timing passed |
-| Windows GL wall-clock pacing (NVIDIA + GL + render thread) | `fix/windows-gl-dwm-vsync` | #723 | review fixes pushed, in `r4/main` |
-| HD pack preload (bounded) | `feat/hd-preload` | #736 | review fixes pushed, in `r4/main` |
-| Live internal resolution / supersampling | `feat/live-resolution` | #737 | review fixes pushed, in `r4/main` |
 | Dynres: hold through savestate load | `r4/main` commit `ade1ecd3` | none yet | needs topic branch + PR |
-| Host HUD layer (yacineolivier-maker) | PR head | #710 | open |
-| Postfx depth / history / live uniforms (yacineolivier-maker) | PR head | #716 | open |
-| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | split per review; #727 still has the old scope |
+| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | draft; maintainer requests a narrower scope and positive HD/local-view digest qualification |
 | Queued render passes, 60 FPS pacing (docs/RENDER_PASSES.md) | `feat/render-pass-queued` | none yet | in `r4/main` |
 | MinGW test link fixes | `fix/mingw-test-link` | none yet | in `r4/main` (+2 r4/main-only commits) |
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |

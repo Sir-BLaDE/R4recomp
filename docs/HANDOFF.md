@@ -9,7 +9,13 @@ with a verified `SHA256SUMS.txt`. All three passed content/platform and ZIP
 audits, including OpenBIOS-only and no disc data. Windows tests passed 32/32,
 Mac tests 29/29, and the packaged Windows runtime survived a five-second
 headless disc smoke check. The Mac binaries are universal and ad-hoc signed.
-The pinned fork `c4eb8183` contains current upstream master `31df2e1e`.
+The candidate pins fork `c4eb8183`, which contains upstream master
+`31df2e1e` from build time. The fork has since synced upstream master
+`d19d8c7e` at `d108e9a0`; this is not pinned in R4 or included in the
+candidate archives. Upstream #723, #736 and #737 were approved and merged;
+#727 remains a draft requiring narrower scope and title-level HD/local-view
+digest proof. #718 (HD FMV timeline) and #712 (Windows compositor evidence)
+remain held and are not release dependencies.
 No v0.2.1 tag, upload, publication or reinstall has been made; the owner's
 publication go-ahead is the remaining decision. Tag `fb3cd90` if approved so
 it names exactly the source used for the candidate archives.
