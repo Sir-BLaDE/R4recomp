@@ -54,6 +54,9 @@ for _doc in DISC.md LICENSE; do
 done
 # Third-party notices (box art credit, MegaManX6Recomp), path kept.
 EXTRA+=(--runtime-file THIRD-PARTY-LICENSES/README.md)
+# R4's optional lighting preset is staged beside the runtime by CMake. Keep
+# its shader and chain files together so the car-effects mod can select it.
+EXTRA+=(--runtime-dir postfx)
 # recomp-ui's license and asset notices, and TinyCC's license in the Windows
 # overlay_toolchain/tcc/, are staged by the framework packager itself.
 if [[ -d "${ROOT}/${BUILD_DIR}" ]]; then EXE_DIR="${ROOT}/${BUILD_DIR}"; else EXE_DIR="${BUILD_DIR}"; fi

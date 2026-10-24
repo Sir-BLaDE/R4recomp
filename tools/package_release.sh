@@ -262,6 +262,7 @@ for A in "${ARTS[@]}"; do
   #    runtime's and winpthreads' come from scripts/package_release.sh).
   NEED=("$EXE" psx_game_version.txt bios/openbios.bin bios/OpenBIOS.LICENSE game.toml
         game_options.toml DISC.md LICENSE README.txt
+        postfx/r4_2026/lighting.pfx postfx/r4_2026/final.glsl
         THIRD-PARTY-LICENSES/README.md licenses/psxrecomp-LICENSE
         licenses/recomp-ui-LICENSE assets/fonts/NOTICE.md assets/img/NOTICE.md
         licenses/dear-imgui-LICENSE.txt licenses/recomp-net-LICENSE
