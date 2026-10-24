@@ -2,6 +2,22 @@
 
 ## Current work (2026-10-24)
 
+One short visible loaded race at a 2560x1440 window with 120 selected ran
+10.031 s and queued 1,210 presentations, with zero render-late outputs and
+dispatch misses, five timed refusals and one gap over 25 ms
+(`analysis/visible-1440p120-20261024`). The SDL game window was foreground
+and visible; the owner has not yet commented on its appearance. Windows stayed
+at 8K/60, so this checks the 120 output pipeline but not physical 120 Hz scanout.
+Short hidden 2560x1440 checks of the same build: 90 selected gave 443
+presentations in 5.031 s, 100 gave 508, and 144 gave 453 with 135 render-late
+outputs and 33 gaps over 25 ms (`analysis/cadence-1440p{90,100,144}-20261024`).
+All had zero dispatch misses. The 144 setting is selectable but overloaded on
+this PC under the measured load; do not claim sustained 144 FPS.
+
+The installed tree was compared byte-for-byte against every one of the 499
+files in the local candidate zip: no missing or differing files. Preserved
+settings and saves were checked separately during installation.
+
 A clean five-second 120 Hz probe at the large default window is
 `analysis/gpu-profile-120-20261023`: 409 of 600 requested presents, with
 render-thread busy time 5.09 s of 5 s. Window size was the main missing
