@@ -17,8 +17,9 @@ work; they do not change that requested default.
 
 ## Where things stand (2026-10-24)
 
-The installed local v0.2.0 candidate contains the 60 FPS extra-frame worker
-path and selectable 90/100/120/144 rates. A 15.031-second loaded race with
+v0.2.0 is published and installed with the 60 FPS extra-frame worker path and
+selectable 90/100/120/144 rates. The remaining work is sustained throughput
+above 60 under shared load, with 30 Hz game logic unchanged. A 15.031-second loaded race with
 Windows physically at 2560x1440/120 queued 1,803 presentations with zero
 late workers and dispatch misses. DXGI counted 1,598 distinct screen frames
 (106.5/s) under shared load; sustained physical 120 is not established.
@@ -27,9 +28,9 @@ delivered 289/300 and 297/300 presents. Five-second 1440p probes gave 443
 at 90, 508 at 100, and 453 at 144; 144 saturated the render thread. The
 owner visually approved the earlier 60 FPS frame order. Real-frame draw
 offload and guaranteed higher-rate throughput remain follow-up work.
-The local v0.2.0 zip passed package checks and all 499 packaged files
-hash-match the installation; settings and saves were preserved. Before a
-release, the framework upstream merge `75036461` is pinned and pushed to fork
+The final v0.2.0 Windows zip passed package checks and all 502 packaged files
+hash-match the installation; 55 existing settings/save files were preserved.
+The framework upstream merge `75036461` is pinned and pushed to fork
 `r4/main`; game C regenerated unchanged, R4 32/32 tests passed on Windows and
 Mac, and a five-second loaded race queued 302 frames with zero dispatch misses.
 See

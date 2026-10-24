@@ -2,6 +2,37 @@
 
 ## Current work (2026-10-24)
 
+[v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
+is published for Windows x64 and macOS arm64/x64. The annotated tag points to
+`af6e327`; the packaged game source is `b176afa` (the only subsequent change
+was release-note text). The fork sync `75036461` is on `r4/main` and pinned by
+R4. Both Windows and Mac R4 builds passed 32/32 tests. Windows' five-second
+loaded 60 Hz race queued 302 frames with zero dispatch misses or gaps over
+25 ms; the framework GL render-thread fixture matched six pixel modes.
+
+The Windows package is installed at `C:/Users/Shokunin/Games/R4`: all 502
+packaged files hash-match, and 55 existing settings/save files stayed
+unchanged. The previous installation is at
+`C:/Users/Shokunin/Games/R4-v020-before-final-20261024`. The installed
+release runtime started headless for five seconds. Package receipts and the
+published checksums are in `analysis/release-assets-v020-20261024/`; the
+Windows packaging log is `analysis/package-v020-final.log`. The Mac's existing
+dirty R4 checkout was untouched; verification and package builds ran in
+`~/dev/r4-verify-20261024/r4`.
+
+Follow-up performance work is sustained output above 60 Hz under shared load.
+The 60 FPS extra-frame worker path is the shipped baseline with 30 Hz game
+logic. The 90/100/120/144 and Match display choices are available, but a
+physical 1440p/120 loaded run averaged 106.5 distinct frames/s, and 144 is
+not sustained. Keep OpenGL; no stereo/VR work is planned. Do not turn local
+real-frame offload experiments into release defaults until their state and
+timing are exact.
+
+## Archived v0.2.0 preparation and investigation
+
+The following status was recorded before the published release and is retained
+as a receipt, not as current installation or release status.
+
 The owner authorized the brief display-mode check and the next release, and
 asked to remove the recurring approval rule. `VERSION` is prepared as 0.2.0
 because v0.1.0 is already public. A 15.031-second visible loaded race ran with
