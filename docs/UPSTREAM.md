@@ -28,3 +28,4 @@ When this table is empty, re-pin to upstream master and archive the fork.
 | Dynamic-resolution variable-work verification and optional floor start | `fix/dynres-variable-output-work`, `feat/dynres-start-floor` | none yet | in `r4/main`; R4 selects the 1080p floor start |
 | Presenter cadence diagnostics and OpenBIOS stamp refresh | `feat/present-cadence-stats`, `fix/openbios-stamp-current` | none yet | in `r4/main`; stamp checked on PC/Mac |
 | Windows render-thread scheduling under host load | `fix/render-thread-priority` | none yet | in `r4/main` (`688380ef`); `PSX_RENDER_THREAD_PRIORITY=0` disables it |
+| Abort already-expired async GPU replay and roll back its private transaction | `fix/async-expiry` | none yet | in `r4/main` (`35b3849e`); Windows/Mac GL pixel and stencil parity, short R4 race with zero dispatch misses |

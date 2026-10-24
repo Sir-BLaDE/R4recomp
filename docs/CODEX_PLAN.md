@@ -38,8 +38,9 @@ ownership edge and prove exact state equality before moving the main draw. Recei
 references are in `docs/HANDOFF.md`.
 
 The extra-frame worker milestone and developer-only isolation gate are
-merged to R4 master (PRs #69 and #65). The fork pin in this branch is
-`990ffb00` (queued-frame bloom provenance; R4 PR #77), and its development build is installed. Four private contexts preserve the
+merged to R4 master (PRs #69 and #65). The current source pin is
+`35b3849e` (expired async replay rollback); the installed development build
+still uses `990ffb00`. Four private contexts preserve the
 working 60 FPS mod's exact interpolation order while main logic stays at
 30 Hz. Eight bounded presenter slots and the 1200-line dynamic floor start
 are active. A fresh master-build race state is `analysis/merged-prep-v99`;
