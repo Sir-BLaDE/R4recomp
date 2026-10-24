@@ -19,6 +19,17 @@ default-mod combination remains unverified. The timed real-frame, presenter
 composition and HUD handoff branches below are local checkpoints only.
 
 Current local investigation (2026-10-23 evening): the same OpenGL backend stays.
+The opt-in presenter/HUD series was rebuilt from fork `35b3849e` in
+`C:/Users/Shokunin/dev/psx-presenter-min` (`c1df89e4`, 24 selected commits).
+Its layered OpenGL fixture passed 58/58 and two async final frames matched
+direct RGBA bytes exactly. A five-second 144 Hz loaded race admitted 371 full
+outputs with zero fallback or dispatch misses, but displayed 374 frames and
+had large shared-load gaps; sustained 144 Hz is unproven. It remains local,
+opt-in and uninstalled. Timed real-frame drawing now commits under a diagnostic
+with idle skipping disabled, but differs from stock by 1–7 guest cycles per
+draw; the first live pad/SIO Timer1 sample is ten counts early. This is a
+correctness stop, not a value to mask. Trace receipts are in
+`C:/Users/Shokunin/dev/r4-timed-audit/analysis/timed-audit-v4`.
 The combined presenter/resource and GL batching prototypes are isolated in
 `C:/Users/Shokunin/dev/r4-hud-handoff` (framework submodule `93218aed`), not
 pinned or installed. Five-second 144 Hz A/B/A results varied with shared GPU

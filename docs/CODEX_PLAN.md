@@ -27,14 +27,17 @@ or tag has been authorized.
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
 load, while the installed 60 Hz path remains the release-candidate baseline.
+An opt-in presenter/HUD branch rebuilt from the current fork pin passes exact
+layered pixels and removes composition fallback, but its five-second 144 Hz
+race displayed 374 frames with six drops and a 174 ms gap. It is not enabled
+or installed; see `docs/HANDOFF.md` for the isolated checkout and receipt.
 Do not substitute the older reprojection mode: its timing and race artifacts
 violate the approved redraw behavior. Focus on eliminating repeated GPU work
 with exact pixel checks. Early-expiry rollback safely skips some wasted GPU
 replay, but has no reliable FPS claim yet. For real-frame offload, the timed
-probe passed its prior deadline and scratchpad `LWC2`, then stopped at an IRQ
-handoff invariant before GPU output. A generic two-checkpoint fixture passed;
-the R4 refusal still needs its new rejection-bitmask diagnostic. Resolve that
-ownership edge and prove exact state equality before moving the main draw. Receipts and checkout
+probe now commits draws with diagnostic idle skipping disabled, but its first
+draw undercharges the guest clock and produces a live pad/SIO Timer1 mismatch.
+Resolve the cycle accounting and prove exact state equality before moving the main draw. Receipts and checkout
 references are in `docs/HANDOFF.md`.
 
 The extra-frame worker milestone and developer-only isolation gate are
