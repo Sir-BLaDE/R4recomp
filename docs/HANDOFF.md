@@ -23,9 +23,25 @@ outputs and 33 gaps over 25 ms (`analysis/cadence-1440p{90,100,144}-20261024`).
 All had zero dispatch misses. The 144 setting is selectable but overloaded on
 this PC under the measured load; do not claim sustained 144 FPS.
 
-The installed tree was compared byte-for-byte against every one of the 499
-files in the local candidate zip: no missing or differing files. Preserved
-settings and saves were checked separately during installation.
+The v0.2.0 Windows candidate was built from `eed746b` at
+`build-candidate-v020-20261024/dist/r4-0.2.0-windows-x64.zip` (SHA-256
+`86D9F0EF1DC522ADA70DDE0737620A5E5BE4D98C9C8B9C9F4BDDD0D8EE4EFCE4`).
+The packager's checks passed. It is installed locally at
+`C:/Users/Shokunin/Games/R4`; all 499 packaged files hash-match the install,
+and ten settings, input, disc-choice, mod-state and save files stayed
+hash-identical. The prior installation is backed up at
+`C:/Users/Shokunin/Games/R4-dev-backup-20261024-v020`. The installed runtime
+started headless for five seconds. This is a local candidate, not a published
+release.
+
+Before release, the framework fork still needs its upstream-master sync
+pushed. The merge is prepared at `75036461` in the separate
+`psx-r4-sync-20261024` clone and R4 pins it locally. Generated game C stayed
+unchanged; the R4 build and 32/32 tests passed. A fresh state was made with
+zero dispatch misses, and a five-second loaded 60 Hz race queued 302
+presentations with zero gaps over 25 ms or dispatch misses
+(`analysis/upstream-sync-60-race-20261024`). The saved `ssh mac` profile timed
+out on 2026-10-24, leaving required Mac verification unavailable.
 
 A clean five-second 120 Hz probe at the large default window is
 `analysis/gpu-profile-120-20261023`: 409 of 600 requested presents, with
@@ -40,22 +56,6 @@ probe gave 297 presents, zero late worker frames and dispatch misses
 7680x4320/60 after the brief physical 120 check. The short results support
 1440p/120 output scheduling and 8K/60 under the
 measured load, not native 8K/120.
-
-A local Windows candidate zip built from code commit `eb319a5` at
-`build-candidate-20261024-postfx/dist/r4-0.1.0-windows-x64.zip` (SHA-256
-`355dc7df329a33c7b7b6012ad5059518440af1e8090aa3545bb362f008b7f322`).
-The packager's checks passed; it contains the display-refresh choice and all
-13 files of the optional `postfx/r4_2026` lighting preset, previously omitted.
-It is installed locally at `C:/Users/Shokunin/Games/R4` (executable SHA-256
-`80FE3D390AB1A58DE732DDD03AAFCD5B02E050619F399AD408281C48489A4AF6`).
-The previous full installation is at
-`C:/Users/Shokunin/Games/R4-dev-backup-20261024-postfx`; hashes of
-settings, input, bindings and disc/BIOS choices match the backup, and all
-three save files remain. The installed release executable started headless
-for five seconds. This is the installed development candidate, not v0.2.0.
-The new manifest's Mac check remains pending: `ssh mac` to the saved
-192.168.1.216 profile timed out on 2026-10-24. Windows defaults and package
-checks passed; no network configuration was changed.
 
 The frame-rate selector now offers Match display refresh while retaining 60
 FPS as the default and 30/90/100/120/144 fixed choices. The existing cadence

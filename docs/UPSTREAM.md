@@ -4,6 +4,11 @@ R4 pins `tetrisgm/psxrecomp` `r4/main` (CLAUDE.md, fork model). Every change
 that fork carries over upstream master is listed here with its upstream PR.
 When this table is empty, re-pin to upstream master and archive the fork.
 
+The 2026-10-24 upstream-master sync is prepared locally as framework commit
+`75036461`. R4 is pinned locally and passed its short Windows race check. The
+merge has not been pushed because required Mac verification is unavailable.
+The fork-only changes below remain in the local merged tree.
+
 | Change | Topic branch | Upstream PR | State |
 |---|---|---|---|
 | Windows GL wall-clock pacing (NVIDIA + GL + render thread) | `fix/windows-gl-dwm-vsync` | #723 | review fixes pushed, in `r4/main` |

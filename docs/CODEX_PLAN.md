@@ -17,19 +17,24 @@ work; they do not change that requested default.
 
 ## Where things stand (2026-10-24)
 
-Release-candidate scope is now the installed 60 FPS extra-frame worker path.
-The same pipeline delivered 1,210 presentations in a visible ten-second
-2560x1440/120 loaded race, with zero render-late frames and dispatch misses;
-full 8K/60 delivered 289 of 300 requested presentations. Windows itself is
-currently at 8K/60, so a physical 1440p/120 scanout check remains pending.
-The visible 120-output run did not change the desktop refresh, so physical
-120 Hz scanout is still unverified. Five-second 1440p probes gave 443 at 90,
-508 at 100, and 453 at 144; the last setting saturated the render thread.
-The owner visually approved the earlier 60 FPS frame order. The short checks and build
-results below are sufficient to close that milestone; real-frame draw offload
-and guaranteed throughput at 90/100/120/144 FPS are deferred follow-up work.
-Those rates remain selectable, without a sustained-rate claim. The owner
-authorized the next release on 2026-10-24; v0.2.0 is prepared locally.
+The installed local v0.2.0 candidate contains the 60 FPS extra-frame worker
+path and selectable 90/100/120/144 rates. A 15.031-second loaded race with
+Windows physically at 2560x1440/120 queued 1,803 presentations with zero
+late workers and dispatch misses. DXGI counted 1,598 distinct screen frames
+(106.5/s) under shared load; sustained physical 120 is not established.
+The desktop was restored to 7680x4320/60. Short 8K/60 and 4K/60 probes
+delivered 289/300 and 297/300 presents. Five-second 1440p probes gave 443
+at 90, 508 at 100, and 453 at 144; 144 saturated the render thread. The
+owner visually approved the earlier 60 FPS frame order. Real-frame draw
+offload and guaranteed higher-rate throughput remain follow-up work.
+The local v0.2.0 zip passed package checks and all 499 packaged files
+hash-match the installation; settings and saves were preserved. Before a
+release, the framework upstream merge `75036461` is pinned locally; game C
+regenerated unchanged, R4 32/32 tests passed, and a five-second loaded race
+queued 302 frames with zero dispatch misses. The framework merge has not been
+pushed. Required Mac verification is unavailable because the saved `ssh mac`
+profile timed out. See
+`docs/HANDOFF.md` for receipts.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
