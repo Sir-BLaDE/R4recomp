@@ -46,7 +46,7 @@ matched and short composition timing fell from 2.35 to 2.12–2.20 ms/output.
 Neither change yet proves steady physical 120 Hz. v0.2.0 remains the installed
 release.
 
-The current fork pin `6eead0f2` also removes repeated textured sampler-uniform
+Fork pin `6eead0f2` also removes repeated textured sampler-uniform
 calls. Windows/Mac pixel fixtures match, and a short loaded A/B cut replay
 from 3.97 to 3.78 ms/output; total throughput remains load-dependent. Seam
 fallback diagnostics found only late preparation (171 pending, zero mismatches
@@ -55,6 +55,10 @@ binding did not raise throughput, so those isolated variants were not promoted.
 The default Ultra preset keeps PGXP and fine seam closing; Low retains PGXP
 geometry. When fine seam closing is selected, late preparation falls back to
 serial PGXP correction.
+
+The next pin `c4eb8183` publishes the immutable PGXP seam baseline earlier:
+five-second prepared use rose 205→241 and fallbacks fell 124→101, with zero
+PGXP verifier mismatches or dispatch misses. Sustained output gain is unproven.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU

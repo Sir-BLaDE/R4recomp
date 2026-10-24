@@ -6,7 +6,7 @@
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
 `af6e327`; the packaged game source is `b176afa` (the only subsequent change
 was release-note text). The fork sync `75036461` is on `r4/main`; the current
-R4 pin is `6eead0f2`. Both Windows and Mac R4 builds passed 32/32 tests.
+R4 pin is `c4eb8183`. Both Windows and Mac R4 builds passed 32/32 tests.
 Windows' five-second
 loaded 60 Hz race queued 302 frames with zero dispatch misses or gaps over
 25 ms; the framework GL render-thread fixture matched six pixel modes.
@@ -54,6 +54,15 @@ initialized once per shader program rather than per batch. Windows and Mac
 on/off. A short loaded 1440p/120 A/B measured replay at 3.97 ms/output off
 versus 3.78 ms/output on, with zero dispatch misses; host load varied and
 total presentation count did not establish a sustained-rate gain.
+
+Framework `c4eb8183` publishes the copied PGXP seam baseline before GPU
+backup and invalidates it on a failed reserve. A five-second same-state race
+used 241 prepared seams versus 205 before the change, with fallbacks down
+from 124 to 101. The verifier checked 537,523 triangles with zero mismatches;
+dispatch misses were zero. Mac async timing passed 53/53 and R4 29/29. This
+improves seam-worker readiness; it does not establish a higher sustained FPS.
+The pinned Windows build passed 32/32, and a five-second visible loaded 60 Hz
+race presented 298 frames with zero dispatch misses (`analysis/pgxp-final-visible-20261024`).
 
 Seam worker diagnostics (`analysis/seam-stats-1440p120-20261024` and an
 isolated fallback-reason probe) show every fallback was pending work: 171

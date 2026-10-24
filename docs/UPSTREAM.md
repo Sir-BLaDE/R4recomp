@@ -13,6 +13,7 @@ on Windows and Mac. The fork-only changes below remain after the merge.
 | Avoid postfx GL texture-size driver queries for known renderer surfaces | `fix/postfx-known-dims` | none yet | in `r4/main` (`8a3bf9f1`); exact GL pixels on Windows and Mac |
 | Avoid composition-context GL framebuffer-binding queries per queued output | `fix/presenter-fbo-bindings` | none yet | in `r4/main` (`e1f2e457`); exact present-thread pixels on Windows and Mac |
 | Initialize fixed textured sampler uniforms once per shader program | `fix/gl-sampler-uniforms` | none yet | in `r4/main` (`6eead0f2`); exact direct/threaded GL pixels on Windows and Mac |
+| Publish the immutable PGXP seam baseline earlier during async reserve | `fix/seam-early-publish` | none yet | in `r4/main` (`c4eb8183`); more prepared seams consumed, exact PGXP verifier and Mac async timing passed |
 | Windows GL wall-clock pacing (NVIDIA + GL + render thread) | `fix/windows-gl-dwm-vsync` | #723 | review fixes pushed, in `r4/main` |
 | HD pack preload (bounded) | `feat/hd-preload` | #736 | review fixes pushed, in `r4/main` |
 | Live internal resolution / supersampling | `feat/live-resolution` | #737 | review fixes pushed, in `r4/main` |
