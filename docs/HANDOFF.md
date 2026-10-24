@@ -14,11 +14,17 @@ desktop at 7680x4320/60; its listed 2560x1440/120 mode has not yet received
 an on-screen check. The short results support 1440p/120 and 8K/60 under the
 measured load, not native 8K/120.
 
-A local Windows candidate zip built from committed HEAD `28d4660` at
+A local Windows candidate zip built from committed code HEAD `28d4660` at
 `build-candidate-20261023/dist/r4-0.1.0-windows-x64.zip` (SHA-256
 `0b4b85af2556a0866a21c90d7537f64136b14a18a44567398f991f3ea4bb5709`).
 The packager's checks passed and the zip contains the display-refresh choice.
-It is local only; no new release, tag or publication is authorized.
+It is installed locally at `C:/Users/Shokunin/Games/R4` (executable SHA-256
+`AF524FDD687338DCC5F46A4B37E8FED215877E00D0940326F8FB93492D9A890F`).
+The previous full installation is at
+`C:/Users/Shokunin/Games/R4-dev-backup-20261024-candidate`; hashes of
+settings, input, bindings and disc/BIOS choices match the backup, and all
+three save files remain. The installed release executable started headless
+for five seconds. No new release, tag or publication is authorized.
 
 The frame-rate selector now offers Match display refresh while retaining 60
 FPS as the default and 30/90/100/120/144 fixed choices. The existing cadence

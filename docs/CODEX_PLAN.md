@@ -18,6 +18,10 @@ work; they do not change that requested default.
 ## Where things stand (2026-10-23)
 
 Release-candidate scope is now the installed 60 FPS extra-frame worker path.
+The same installed pipeline also delivered 606 presentations in five seconds
+in a hidden 2560x1440/120 race, with zero timed drops and dispatch misses;
+full 8K/60 delivered 289 of 300 requested presentations. Windows itself is
+currently at 8K/60, so an on-screen 1440p/120 check remains pending.
 The owner visually approved its frame order. The short checks and build
 results below are sufficient to close that milestone; real-frame draw offload
 and guaranteed throughput at 90/100/120/144 FPS are deferred follow-up work.
