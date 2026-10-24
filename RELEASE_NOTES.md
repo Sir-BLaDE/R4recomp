@@ -1,3 +1,29 @@
+# Ridge Racer Type 4 Recompiled — v0.2.1
+
+This update improves the OpenGL frame pipeline for the extra race frames:
+fewer driver-state queries and repeated sampler updates, plus earlier PGXP
+seam preparation. The established frame order, PGXP seam correction,
+widescreen and 60 FPS default remain in place. Game logic, input and audio
+still run at their original 30 Hz cadence.
+
+The 30, 90, 100, 120, 144 and Match display choices remain available.
+Achieved rates depend on resolution and GPU load; 120 and 144 FPS are
+best-effort, not guaranteed sustained rates. Dynamic resolution retains its
+1080p floor (the lowest integer step in R4 is 1200 internal lines).
+
+Download the Windows x64, macOS Apple Silicon or macOS Intel zip and extract
+it into a new folder or over v0.2.0. Extracting over the existing folder keeps
+its settings and memory cards. The archives contain the compiled game and
+OpenBIOS, but no game disc or retail BIOS; use your own verified US bin/cue
+image.
+
+Wheel force feedback remains experimental and off by default. A rare
+4-player online halt on the Results screen remains under investigation.
+macOS archives are ad-hoc signed but not notarized; use **Open Anyway** in
+System Settings or remove quarantine from the extracted folder once.
+
+---
+
 # Ridge Racer Type 4 Recompiled — v0.2.0
 
 ## The download is now the compiled game
