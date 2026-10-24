@@ -52,7 +52,9 @@ from 3.97 to 3.78 ms/output; total throughput remains load-dependent. Seam
 fallback diagnostics found only late preparation (171 pending, zero mismatches
 in five seconds). Two workers, incremental chunks, priority changes, and late
 binding did not raise throughput, so those isolated variants were not promoted.
-PGXP seam correction remains enabled for every output, with serial fallback.
+The default Ultra preset keeps PGXP and fine seam closing; Low retains PGXP
+geometry. When fine seam closing is selected, late preparation falls back to
+serial PGXP correction.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU

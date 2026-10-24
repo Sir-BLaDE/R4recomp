@@ -25,8 +25,8 @@ Follow-up performance work is sustained output above 60 Hz under shared load.
 The 60 FPS extra-frame worker path is the shipped baseline with 30 Hz game
 logic. The 90/100/120/144 and Match display choices are available, but a
 physical 1440p/120 loaded run averaged 106.5 distinct frames/s, and 144 is
-not sustained. Keep OpenGL and PGXP seam correction; no stereo/VR work is
-planned. Do not turn local
+not sustained. Keep OpenGL and PGXP geometry; Ultra enables fine seam closing.
+Low retains PGXP geometry. No stereo/VR work is planned. Do not turn local
 real-frame offload experiments into release defaults until their state and
 timing are exact.
 
@@ -59,8 +59,9 @@ Seam worker diagnostics (`analysis/seam-stats-1440p120-20261024` and an
 isolated fallback-reason probe) show every fallback was pending work: 171
 pending, zero preflight mismatches in five seconds. Two preparation workers,
 incremental chunks, elevated priority, and late binding did not improve
-throughput; none was promoted. The ordered PGXP correction remains enabled,
-including the serial fallback. Its preparation cannot start until the render
+throughput; none was promoted. The ordered PGXP correction remains enabled
+when fine seam closing is selected, including the serial fallback. Its
+preparation cannot start until the render
 thread publishes the baseline at async reserve.
 
 The separate timed real-frame prototype has an exact return-state fix
