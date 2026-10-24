@@ -105,7 +105,7 @@ The build-compatible headless race state is `analysis/timed-real-fresh-v18`;
 short refusal receipts are `analysis/timed-real-trial-v19` onward. A separate
 GPU GP0 IRQ1 class fix and callback DMA hold fix are local framework topics,
 not installed. The installed development build remains the visually approved
-60 FPS extra-frame worker pin `990ffb00`.
+60 FPS extra-frame worker path, now pinned to `35b3849e`.
 
 For higher rates, local `C:/Users/Shokunin/dev/psx-present-compositor`
 (`feat/async-present-composition`) has immutable presenter slots for color,
