@@ -29,6 +29,9 @@ opt-in and uninstalled. A follow-up FBO ownership commit `7fa65fbc` deferred
 slot reattachment; its fixture passed 60/60 and six display frames matched
 byte-for-byte. A five-second 144 Hz probe displayed 370 versus 341 earlier,
 with fewer refusals/gaps, but shared GPU load prevents a stable-rate claim.
+An isolated flush-order commit `f6375184` passes GL fixtures but its short R4
+race fell back on every full-offload attempt, so it has no integrated speed
+evidence and is not promoted.
 Timed real-frame drawing now commits under a diagnostic
 with idle skipping disabled, but differs from stock by 1–7 guest cycles per
 draw; the first live pad/SIO Timer1 sample is ten counts early. This is a
