@@ -91,6 +91,15 @@ Windows/Mac GL fixtures; it has no second context or FPS gain and is not
 pinned. HD invalidation read-index commit `0a09d002` improved its microbench
 but not displayed frames, so it is not pinned either.
 
+An isolated private-surface replay prototype matched normal, widescreen,
+PGXP, and combined PGXP/widescreen fixture pixels on Windows and Mac, but a
+five-second loaded 60 Hz comparison showed no output gain (298 versus 299
+presents). Its replay finish time rose from 178 to 655 ms total across about
+154 optional frames. Full-size scratch color/depth/stencil plus widescreen
+targets also need roughly 1.8 GiB at 18x and exceed common texture limits.
+Do not pin or install it. The framework already groups ordinary triangle
+setup into one render-thread ring record; that item needs no new work.
+
 ## Archived v0.2.0 preparation and investigation
 
 The following status was recorded before the published release and is retained

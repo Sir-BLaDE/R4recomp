@@ -66,6 +66,13 @@ public name; the already-built Windows zip passed its full content audit.
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
 load, while the installed 60 Hz path remains the release-candidate baseline.
+The framework already groups each ordinary triangle and its setup into one
+render-thread ring record. A private HR/widescreen scratch-replay prototype
+preserved exact PGXP and widescreen fixture pixels but increased loaded replay
+time and needs excessive memory at 18x; it is not a viable shortcut to higher
+refresh. Two independent GL replay contexts require per-context mutable GPU,
+PGXP, HD cache, and surface state; isolated owner extraction passed focused
+fixtures but has no runnable second context or demonstrated gain.
 An opt-in presenter/HUD branch rebuilt from the current fork pin passes exact
 layered pixels and removes composition fallback, but its five-second 144 Hz
 race displayed 374 frames with six drops and a 174 ms gap. It is not enabled
