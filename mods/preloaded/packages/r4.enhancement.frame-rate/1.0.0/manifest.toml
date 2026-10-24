@@ -14,7 +14,7 @@ game_id = "SLUS-00797"
 [[feature]]
 id = "frame-rate"
 name = "Race frame rate"
-description = "Choose 60, 90, 100, 120 or 144 FPS. Interpolate car and camera positions between game ticks. Extra frames redraw geometry; logic, input and audio keep their original 30 Hz cadence. 30 FPS shows the original frames only."
+description = "Choose a presentation rate or follow the display refresh. Extra frames redraw geometry; logic, input and audio keep their original 30 Hz cadence. 30 FPS shows the original frames only."
 group = "Display"
 default_enabled = true
 
@@ -29,6 +29,10 @@ default = "60"
 [[option.choice]]
 value = "60"
 label = "60 FPS"
+
+[[option.choice]]
+value = "display"
+label = "Match display refresh"
 
 [[option.choice]]
 value = "30"

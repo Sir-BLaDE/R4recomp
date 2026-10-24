@@ -2,6 +2,14 @@
 
 ## Current work (2026-10-23)
 
+The frame-rate selector now offers Match display refresh while retaining 60
+FPS as the default and 30/90/100/120/144 fixed choices. The existing cadence
+planner accepts the measured display rate, so this uses the same extra-frame
+worker pipeline for standard monitor rates. Defaults check passed, runtime
+built, and a five-second loaded race had zero dispatch misses. This selector
+change is not yet installed; the current installed 60 FPS build remains the
+baseline.
+
 Release-candidate boundary (owner, 2026-10-23): the installed 60 FPS
 extra-frame worker path is complete for this milestone. Main runs game logic
 at 30 Hz; four private workers prepare additional frames in the working mod's

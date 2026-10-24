@@ -86,8 +86,8 @@ def test_manifests():
           'frame rate: draw-only interpolation is on by default')
     check(option_default(fr, 'frame-rate', 'rate') == '60',
           'frame rate: 60 FPS presentation by default, independent of 30 Hz logic')
-    check(set(option_values(fr, 'frame-rate', 'rate')) == {'30', '60', '90', '100', '120', '144'},
-          'frame rate: requested presentation rates and original 30 FPS')
+    check(set(option_values(fr, 'frame-rate', 'rate')) == {'30', '60', '90', '100', '120', '144', 'display'},
+          'frame rate: fixed rates, display refresh and original 30 FPS')
     check(not any(o['id'] in ('method', 'blend') for o in fr.get('option', [])),
           'frame rate: no crossfade or image-warp option')
 
