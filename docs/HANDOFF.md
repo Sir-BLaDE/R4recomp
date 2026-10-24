@@ -2,25 +2,23 @@
 
 ## Current work (2026-10-24)
 
-The owner chose v0.2.1. Public-channel candidate source `fb3cd90` contains
-the version and release notes; fresh Windows x64 and macOS arm64/x64 archives
-are together at `C:/Users/Shokunin/dev/r4-public-candidate-021-20261024/dist/`
-with a verified `SHA256SUMS.txt`. All three passed content/platform and ZIP
-audits, including OpenBIOS-only and no disc data. Windows tests passed 32/32,
-Mac tests 29/29, and the packaged Windows runtime survived a five-second
-headless disc smoke check. The Mac binaries are universal and ad-hoc signed.
-The original review candidate pins fork `c4eb8183`, which contains upstream
-master `31df2e1e` from build time. R4 now pins the newer fork sync
-`d108e9a0` (upstream `d19d8c7e`); Windows 32/32 and Mac 29/29 tests pass,
-and game C regeneration is unchanged. A separate v0.2.1 candidate for this
-pin is being prepared; do not confuse it with the existing Desktop review
-archives. Upstream #723, #736 and #737 were approved and merged;
+The owner chose v0.2.1. The current public-channel RC2 source is `5e200c1`,
+pinning framework `d108e9a0` (synced with upstream `d19d8c7e`); game C
+regeneration was unchanged. Windows tests passed 32/32 and Mac 29/29. The
+three fresh archives are in `C:/Users/Shokunin/Desktop/R4 v0.2.1 Review RC2/`
+with verified `SHA256SUMS.txt`, release description, extracted Windows test
+copy, and desktop shortcut `R4 v0.2.1 RC2 Test.lnk`. ZIP integrity and package
+audits passed, including OpenBIOS-only and no disc data. The packaged Windows
+runtime advanced past frame 1100 during a six-second headless disc check with
+no heartbeat fatal. Mac binaries are ad-hoc signed. The prior `fb3cd90`
+candidate and its shortcut are preserved separately; it pins `c4eb8183`.
+Upstream #723, #736 and #737 were approved and merged;
 #727 remains a draft requiring narrower scope and title-level HD/local-view
 digest proof. #718 (HD FMV timeline) and #712 (Windows compositor evidence)
 remain held and are not release dependencies.
-No v0.2.1 tag, upload, publication or reinstall has been made; the owner's
-publication go-ahead is the remaining decision. Tag `fb3cd90` if approved so
-it names exactly the source used for the candidate archives.
+No v0.2.1 tag, upload, publication or reinstall has been made; the owner
+explicitly held publication for review. If approved, tag RC2 source
+`5e200c1` and publish exactly the three RC2 archives and their checksums.
 
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
