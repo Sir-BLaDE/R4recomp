@@ -5,8 +5,9 @@
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
 `af6e327`; the packaged game source is `b176afa` (the only subsequent change
-was release-note text). The fork sync `75036461` is on `r4/main` and pinned by
-R4. Both Windows and Mac R4 builds passed 32/32 tests. Windows' five-second
+was release-note text). The fork sync `75036461` is on `r4/main`; the current
+R4 pin is `6eead0f2`. Both Windows and Mac R4 builds passed 32/32 tests.
+Windows' five-second
 loaded 60 Hz race queued 302 frames with zero dispatch misses or gaps over
 25 ms; the framework GL render-thread fixture matched six pixel modes.
 
@@ -24,7 +25,8 @@ Follow-up performance work is sustained output above 60 Hz under shared load.
 The 60 FPS extra-frame worker path is the shipped baseline with 30 Hz game
 logic. The 90/100/120/144 and Match display choices are available, but a
 physical 1440p/120 loaded run averaged 106.5 distinct frames/s, and 144 is
-not sustained. Keep OpenGL; no stereo/VR work is planned. Do not turn local
+not sustained. Keep OpenGL and PGXP seam correction; no stereo/VR work is
+planned. Do not turn local
 real-frame offload experiments into release defaults until their state and
 timing are exact.
 
@@ -55,16 +57,22 @@ total presentation count did not establish a sustained-rate gain.
 
 Seam worker diagnostics (`analysis/seam-stats-1440p120-20261024` and an
 isolated fallback-reason probe) show every fallback was pending work: 171
-pending, zero preflight mismatches in five seconds. Two preparation workers
-did not improve the roughly 66% use rate. The next change should hand off the
-immutable seam stream earlier, without delaying ordered render replay.
+pending, zero preflight mismatches in five seconds. Two preparation workers,
+incremental chunks, elevated priority, and late binding did not improve
+throughput; none was promoted. The ordered PGXP correction remains enabled,
+including the serial fallback. Its preparation cannot start until the render
+thread publishes the baseline at async reserve.
 
 The separate timed real-frame prototype has an exact return-state fix
 (`cc59557`) and framework CD-DMA/IRQ edge fix (`d1c2b910`); a 15-second
 worker race matched 191/191 stock state-hash ticks with zero dispatch misses.
 It still takes about 70 ms wall time per draw across roughly 138 owner
-handoffs, so it is not a default performance path. A bounded gate-handshake
-experiment is under way in the isolated checkout.
+handoffs, so it is not a default performance path. Bounded spin and dirty-page
+transport experiments preserved short-run state equality but did not improve
+throughput; neither was promoted. A presenter-capacity preflight saved render
+work but reduced actual five-second output from 575 to 549 frames at 1440p/120;
+it was rejected. Slots frequently free during replay, so any admission change
+must reserve capacity without discarding an output that could display.
 
 ## Archived v0.2.0 preparation and investigation
 

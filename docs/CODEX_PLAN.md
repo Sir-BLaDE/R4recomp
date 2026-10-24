@@ -46,11 +46,13 @@ matched and short composition timing fell from 2.35 to 2.12–2.20 ms/output.
 Neither change yet proves steady physical 120 Hz. v0.2.0 remains the installed
 release.
 
-The next fork pin `6eead0f2` also removes repeated textured sampler-uniform
+The current fork pin `6eead0f2` also removes repeated textured sampler-uniform
 calls. Windows/Mac pixel fixtures match, and a short loaded A/B cut replay
 from 3.97 to 3.78 ms/output; total throughput remains load-dependent. Seam
 fallback diagnostics found only late preparation (171 pending, zero mismatches
-in five seconds), so earlier immutable-stream handoff is the next worker fix.
+in five seconds). Two workers, incremental chunks, priority changes, and late
+binding did not raise throughput, so those isolated variants were not promoted.
+PGXP seam correction remains enabled for every output, with serial fallback.
 
 The next high-rate work remains within OpenGL. Short local 144 Hz presenter and
 GL-command experiments did not demonstrate a sustained gain under shared GPU
@@ -65,13 +67,17 @@ Do not substitute the older reprojection mode: its timing and race artifacts
 violate the approved redraw behavior. Focus on eliminating repeated GPU work
 with exact pixel checks. Early-expiry rollback safely skips some wasted GPU
 replay, but has no reliable FPS claim yet. For real-frame offload, the timed
-probe now commits draws with diagnostic idle skipping disabled, but its first
-draw undercharges the guest clock and produces a live pad/SIO Timer1 mismatch.
-The cycle guard refuses promotion, and an early deadline/IRQ deferral also
-exposed a device-raised `I_STAT` difference. A narrow isolated reconciliation
-advanced the probe but still failed cycle equality. Resolve that edge and prove
-exact state equality before moving the main draw. Receipts and checkout
+probe's CD-DMA/IRQ reconciliation matches 191/191 stock state-hash
+ticks in a 15-second race, but mandatory device handoffs leave real-frame
+offload at about 70 ms per draw. Bounded spin and dirty-page transport made no
+reliable speed gain. Keep this path isolated until its architecture changes;
+focus current work on extra-frame presentation capacity. Receipts and checkout
 references are in `docs/HANDOFF.md`.
+
+An early presenter-slot preflight was rejected: at 1440p/120, it reduced
+five-second actual output from 575 to 549 frames despite saving render time.
+Slots often free during replay. Do not drop work solely on current slot
+occupancy; preserve the working output order and actual frame count.
 
 The extra-frame worker milestone and developer-only isolation gate are
 merged to R4 master (PRs #69 and #65). The current source pin is
