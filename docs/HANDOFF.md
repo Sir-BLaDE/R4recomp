@@ -28,6 +28,9 @@ The previous full installation is at
 settings, input, bindings and disc/BIOS choices match the backup, and all
 three save files remain. The installed release executable started headless
 for five seconds. No new release, tag or publication is authorized.
+The new manifest's Mac check remains pending: `ssh mac` to the saved
+192.168.1.216 profile timed out on 2026-10-24. Windows defaults and package
+checks passed; no network configuration was changed.
 
 The frame-rate selector now offers Match display refresh while retaining 60
 FPS as the default and 30/90/100/120/144 fixed choices. The existing cadence
