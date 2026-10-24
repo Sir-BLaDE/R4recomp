@@ -1,6 +1,4 @@
-# Ridge Racer Type 4 Recompiled — v0.2.0 (draft)
-
-> Draft for the next release; this section is not published yet.
+# Ridge Racer Type 4 Recompiled — v0.2.0
 
 ## The download is now the compiled game
 
@@ -14,8 +12,7 @@ you can play. The zip holds no disc data and no BIOS dump; the game runs on the
 bundled OpenBIOS (or on your own SCPH-1001 dump, if you pick one).
 
 Downloads: macOS Apple Silicon (`macos-arm64`), macOS Intel (`macos-x64`),
-Windows x64 and, new, **Linux x64** (`linux-x64`, also for the Steam Deck;
-any distribution with glibc 2.31 or later).
+and Windows x64.
 
 Updating from v0.1.0: extract into a new folder, or over the old one. Memory
 cards and settings carry over; savestates from v0.1.0 are refused.
@@ -29,11 +26,11 @@ marked "Applies after restart" relaunch the game when you close the menu.
 
 ## Graphics presets
 
-The first start picks a preset for your machine: **Low** on the Steam Deck,
-integrated GPUs and base Apple M1/M2, **Ultra** elsewhere. Graphics lists
+The first start picks a preset for your machine: **Low** on integrated GPUs
+and base Apple M1/M2, **Ultra** elsewhere. Graphics lists
 Low, Medium, High and Ultra; changing any setting a preset governs makes it
 **Custom**. Low keeps PGXP and turns the extras off (bloom, Smooth motion and
-supersampling) so it holds 60 Hz on an iGPU.
+supersampling) to reduce load on an iGPU.
 
 ## New, and on by default
 
@@ -104,9 +101,6 @@ R4 recompilation by Shokunin, built on psxrecomp, recomp-ui and recomp-launcher
   re-keyed for the US disc.
 - Menu font: Lato (SIL Open Font License 1.1).
 - Menus: Dear ImGui (MIT).
-- Windows and Linux overlay compiler: TinyCC (LGPL-2.1); its source,
-  `tcc-0.9.27.tar.bz2`, is attached to this release. The Linux zip also
-  carries musl's libc headers (MIT).
 
 R4: Ridge Racer Type 4 is © Bandai Namco Entertainment; the zips contain none
 of its disc data. Every third-party notice is in `THIRD-PARTY-LICENSES/` and
