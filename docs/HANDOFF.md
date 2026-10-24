@@ -2,6 +2,16 @@
 
 ## Current work (2026-10-24)
 
+Release preparation from `c3594a6` is complete on the playtest channel:
+fresh Windows x64 and macOS arm64/x64 archives passed the packager's content
+and platform audits; Windows tests passed 32/32, Mac tests 29/29, and the
+packaged Windows runtime survived a five-second headless disc smoke check.
+Archive hashes and draft notes are in local `analysis/release-prep-20261024/`.
+The pinned fork `c4eb8183` includes current upstream master `31df2e1e`.
+`VERSION` remains 0.2.0, which is already public. A new version choice,
+versioned release notes, and fresh public-channel packages are the remaining
+release steps; no tag or publication has been made for this candidate.
+
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to
 `af6e327`; its packaged game source is `b176afa`. The fork sync `75036461`
