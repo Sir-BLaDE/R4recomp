@@ -1,6 +1,6 @@
 # Handoff
 
-## Current work (2026-10-23)
+## Current work (2026-10-24)
 
 A clean five-second 120 Hz probe at the large default window is
 `analysis/gpu-profile-120-20261023`: 409 of 600 requested presents, with
@@ -9,7 +9,10 @@ variable in that result. At a 2560x1440 game window, the *installed*
 executable gave 606 presents in five seconds, one timed refusal, zero drops
 and dispatch misses (`analysis/installed-1440p120-v2`). A current-build
 full-8K 60 Hz hidden-window probe gave 289 of 300 requested presents and zero
-dispatch misses (`analysis/current-8k60-v1`). Windows currently runs the
+dispatch misses (`analysis/current-8k60-v1`). A 3840x2160/60 five-second
+probe gave 297 presents,
+zero late worker frames and dispatch misses (`analysis/current-4k60-v1`).
+Windows currently runs the
 desktop at 7680x4320/60; its listed 2560x1440/120 mode has not yet received
 an on-screen check. The short results support 1440p/120 and 8K/60 under the
 measured load, not native 8K/120.
