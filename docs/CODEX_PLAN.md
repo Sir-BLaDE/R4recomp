@@ -32,8 +32,9 @@ violate the approved redraw behavior. Focus on eliminating repeated GPU work
 with exact pixel checks. Early-expiry rollback safely skips some wasted GPU
 replay, but has no reliable FPS claim yet. For real-frame offload, the timed
 probe passed its prior deadline and scratchpad `LWC2`, then stopped at an IRQ
-handoff invariant before GPU output. Resolve that generic ownership edge and
-prove exact state equality before moving the main draw. Receipts and checkout
+handoff invariant before GPU output. A generic two-checkpoint fixture passed;
+the R4 refusal still needs its new rejection-bitmask diagnostic. Resolve that
+ownership edge and prove exact state equality before moving the main draw. Receipts and checkout
 references are in `docs/HANDOFF.md`.
 
 The extra-frame worker milestone and developer-only isolation gate are

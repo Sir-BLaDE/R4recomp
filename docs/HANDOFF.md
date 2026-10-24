@@ -34,8 +34,10 @@ fixture and skipped 13–25 expired replays per five-second run; fast/legacy/fas
 display counts (352/311/315) are too noisy for an FPS claim. A refreshed
 timed real-draw probe passed its old device deadline; generic scratchpad
 `LWC2` support (`493998b3`) then advanced it to an IRQ handoff refusal before
-any GPU packets. The next CPU check is a two-checkpoint event-ownership
-fixture. See `analysis/hud-ab-*` in the local integration checkout and
+any GPU packets. The generic two-checkpoint fixture and rejection diagnostics
+(`7580e02b`, R4 adapter `e45715d`) pass; they did not reproduce the R4 IRQ
+refusal, whose exact invariant needs one fresh diagnostic probe. See
+`analysis/hud-ab-*` in the local integration checkout and
 `C:/Users/Shokunin/dev/r4-timed-audit/analysis/timed-audit-v3/probe/runtime.log`.
 
 Released: v0.1.0 only. R4 master contains the developer-only isolation gate
