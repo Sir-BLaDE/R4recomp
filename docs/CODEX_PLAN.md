@@ -30,14 +30,18 @@ load, while the installed 60 Hz path remains the release-candidate baseline.
 An opt-in presenter/HUD branch rebuilt from the current fork pin passes exact
 layered pixels and removes composition fallback, but its five-second 144 Hz
 race displayed 374 frames with six drops and a 174 ms gap. It is not enabled
-or installed; see `docs/HANDOFF.md` for the isolated checkout and receipt.
+or installed; a follow-up immutable-slot FBO change improved a short sample
+without establishing a sustained target rate. See `docs/HANDOFF.md` for the
+isolated checkout and receipts.
 Do not substitute the older reprojection mode: its timing and race artifacts
 violate the approved redraw behavior. Focus on eliminating repeated GPU work
 with exact pixel checks. Early-expiry rollback safely skips some wasted GPU
 replay, but has no reliable FPS claim yet. For real-frame offload, the timed
 probe now commits draws with diagnostic idle skipping disabled, but its first
 draw undercharges the guest clock and produces a live pad/SIO Timer1 mismatch.
-Resolve the cycle accounting and prove exact state equality before moving the main draw. Receipts and checkout
+The cycle guard refuses promotion, and an early deadline/IRQ deferral also
+failed owner DMA-state reconciliation. Resolve that ownership edge and prove
+exact state equality before moving the main draw. Receipts and checkout
 references are in `docs/HANDOFF.md`.
 
 The extra-frame worker milestone and developer-only isolation gate are

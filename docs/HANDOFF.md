@@ -25,11 +25,18 @@ Its layered OpenGL fixture passed 58/58 and two async final frames matched
 direct RGBA bytes exactly. A five-second 144 Hz loaded race admitted 371 full
 outputs with zero fallback or dispatch misses, but displayed 374 frames and
 had large shared-load gaps; sustained 144 Hz is unproven. It remains local,
-opt-in and uninstalled. Timed real-frame drawing now commits under a diagnostic
+opt-in and uninstalled. A follow-up FBO ownership commit `7fa65fbc` deferred
+slot reattachment; its fixture passed 60/60 and six display frames matched
+byte-for-byte. A five-second 144 Hz probe displayed 370 versus 341 earlier,
+with fewer refusals/gaps, but shared GPU load prevents a stable-rate claim.
+Timed real-frame drawing now commits under a diagnostic
 with idle skipping disabled, but differs from stock by 1–7 guest cycles per
 draw; the first live pad/SIO Timer1 sample is ten counts early. This is a
 correctness stop, not a value to mask. Trace receipts are in
-`C:/Users/Shokunin/dev/r4-timed-audit/analysis/timed-audit-v4`.
+`C:/Users/Shokunin/dev/r4-timed-audit/analysis/timed-audit-v4`. The isolated
+serial-cycle guard `13ece33` refuses promotion on the first -1 draw. A
+deadline-only IRQ prototype then failed owner DMA-state reconciliation at
+`0x80066654`; it remains uncommitted and uninstalled.
 The combined presenter/resource and GL batching prototypes are isolated in
 `C:/Users/Shokunin/dev/r4-hud-handoff` (framework submodule `93218aed`), not
 pinned or installed. Five-second 144 Hz A/B/A results varied with shared GPU
