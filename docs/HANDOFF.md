@@ -12,6 +12,20 @@ classified as presentation-only local view in netplay; Windows and Mac runtime
 builds and focused link tests passed. The short Link-race proof and its limits
 are in `docs/verification/render-pass-local-view-20261024.md`.
 
+The owner-requested Desktop test shortcuts are named `ridge racer type 4 1.0 RC`
+on both machines. This is a shortcut label; the packaged version remains
+`0.2.1` and no release was published. On Windows the `.lnk` targets the above
+install, which hash-matches all 505 packaged files. On Mac the `.command`
+targets `~/Games/R4-1.0-RC`, installed from the playtest arm64 ZIP built from
+R4 `123dad6` (code unchanged since `82f0c24`) with framework pin `d108e9a0`.
+All 2,186 packaged Mac files hash-match after the six-second headless disc run;
+the run reached frame 788 with zero unknown-dispatch and segment misses. The
+existing Mac disc choice, input bindings and memory cards were copied; the old
+0.8 settings were left in the old installation so current defaults apply. The
+Mac ZIP is at `~/dev/r4-rc1-package-20261024/dist/`. Older Desktop test items
+remain alongside the new shortcuts because deletion was rejected by tool
+policy; the disc-media folders were left untouched.
+
 Upstream #727 was narrowed to five files at `45544217`; positive R4 HD
 local-view passes, shared digests, disabled peer, and GL discard restoration
 are verified. Matched Windows/Mac GL fixture digests and timing showed no clear
