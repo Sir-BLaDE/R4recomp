@@ -80,3 +80,18 @@ This project inherits, in order:
   MMX6/Tomba pattern: a mod package (R4's widescreen is on by default,
   owner 2026-10-01) plus a trusted plugin in `src/mods/` on psxrecomp's native-wide
   renderer (see `docs/WIDESCREEN.md`).
+
+## Verification scale (owner, 2026-10-27)
+
+Test in proportion to the change; a full gate only before a release.
+
+- Docs, pins or config only: build + ctest + one headless smoke (`tools/smoke.py`).
+- Game code: the above plus one on-screen check of the feature touched.
+- Release: the on-screen sweep only for features whose code moved since their
+  last verified entry in `docs/VERIFIED.md`; everything else is a ledger row.
+- One shared dev build (`build/`, debug tools on) in this checkout; agents reuse
+  it. A fresh clone only when an agent must edit code concurrently.
+- Package once, from the final commit, after docs and notes are in.
+- Mechanical steps (build, package, audit, smoke) go to cheaper agents; keep
+  the expensive model for review and on-screen judgment.
+- Smoke once per build, not once per agent.
