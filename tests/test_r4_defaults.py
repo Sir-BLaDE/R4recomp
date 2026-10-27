@@ -88,7 +88,11 @@ def test_manifests():
           'frame rate: 60 FPS presentation by default, independent of 30 Hz logic')
     check(set(option_values(fr, 'frame-rate', 'rate')) == {'30', '60', '90', '100', '120', '144', 'display'},
           'frame rate: fixed rates, display refresh and original 30 FPS')
-    check(not any(o['id'] in ('method', 'blend') for o in fr.get('option', [])),
+    check(option_default(fr, 'frame-rate', 'method') == 'fields',
+          'frame rate: field blend is the default redraw method')
+    check(set(option_values(fr, 'frame-rate', 'method')) == {'fields', 'projection'},
+          'frame rate: both redraw methods re-run the game draw code')
+    check(not any(o['id'] == 'blend' for o in fr.get('option', [])),
           'frame rate: no crossfade or image-warp option')
 
     # A release zip carries no loose boot EXE, so psxrecomp hashes nothing
