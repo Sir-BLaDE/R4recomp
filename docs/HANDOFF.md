@@ -2,6 +2,35 @@
 
 ## Current work (2026-10-26)
 
+Second GL replay context for the extra frames: measured, not built
+(2026-10-27, clone `C:/Users/Shokunin/dev/r4-glctx`, fork PR
+[psxrecomp #3](https://github.com/tetrisgm/psxrecomp/pull/3), branch
+`feat/gl-replay-context` on `ab9d181d`, unmerged, R4 pin unchanged). The
+panel lists 1440p at 120 Hz at most and no 144/165 mode. Three physical
+1440p/120 DXGI runs from a fresh race state gave 86.1, 90.6 and 67.3 distinct
+frames/s (worst gaps 76/30/58 ms); two lost outputs to one 134-139 ms
+present-thread swap stall that filled the eight presenter slots, so the
+shared host's noise exceeds any gain a context change could show. The new
+`PSX_GL_ASYNC_GPU_TIMER=1` diagnostic (per-stage `GL_TIME_ELAPSED`) shows the
+replay's GPU span at 5.1-6.0 ms per output against 3.4-4.3 ms render-thread
+wall, while `PSX_GL_ASYNC_GPU_OPS=1` (per-record queries) sums all replayed
+records to about 0.15 ms per output, unchanged at a forced 3x scale: the GPU
+idles waiting for the render thread (the dynres `gpu_ms` of 16-17 ms is the
+same span measure, not GPU busy). The render thread's own CPU work is the
+bound: per output about 5.4 ms (textured-triangle setup 2.5, compose 1.5,
+HD texture-pack notes 0.85; host samples: postfx 13 %, PGXP seam snap 5 %,
+HD pack tracking ~12 %, `operator new` 4.5 %, software raster ~3 %). A
+replay-shaped two-context microbench (`analysis/ctxload/ctxload.c`, RTX 4080
+SUPER, driver 610.88) is never faster than one context (1.56 vs 2.0 ms per
+output; 25-40 % slower across three workloads), and Codex's shared-context
+fixture, now registered on the branch, measures 42 vs 56 ms. Hidden-window
+120 Hz A/B on a quiet host: default 1786 presents/15 s at 74 % render busy;
+`PSX_PGXP_SEAM=0` cuts replay to 2.34 ms and busy to 48 % but then 207
+timed presenter refusals appear (`PSX_BLOOM=0`: 579), so once the render
+thread has slack the presenter's slot admission drops outputs instead. Next
+lever is the render thread's CPU per output (and that admission rule), not a
+second GL context.
+
 Compared AEONG_AEONG's Japanese V2 60 FPS/widescreen GameShark file with the
 US recomp ([notes](research/jp-60fps-patch-v2.md)). Its extra draw is a
 separate game-loop iteration that skips logic and uses the normal flip order;
