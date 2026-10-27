@@ -18,6 +18,7 @@ Evidence dirs are local (not tracked).
 | PGXP + seam snapping at 18x | 12ba3f4 / ab9d181d | vdisp `vis-219-force18/crop18_*.png` |
 | Dynres floor 1080p (1200 lines) | 12ba3f4 / ab9d181d | vdisp `result.json` dynres stats |
 | Hide rear-view mirror | 12ba3f4 / ab9d181d | vdisp `mirror_compare.png` |
+| Frame-rate redraw method: `fields` default unchanged, `projection` prototype (VERIFY 0 mismatch, fingerprints equal a no-pass run, 33.4/s vs 113.3/s on screen at 1440p/120) | feat/projection-replay / ab9d181d | `docs/PROJECTION_REPLAY.md`; `C:/Users/Shokunin/AppData/Local/Temp/claude/.../scratchpad/bench` |
 | Extra Trial widescreen | not verified (3f493ea reverted) | — |
 | Windows package | df285a0 | `analysis/release-assets-v021-20261027` |
 | macOS packages (arm64, x64) | df285a0 | same |
