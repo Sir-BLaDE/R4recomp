@@ -551,9 +551,8 @@ static inline int r4_md_course_hook_active(R4MdOptions o)
  *           the finish on (4+) show the game's own reflections, the menus set
  *           -1, and only race VRAM is known to hold the environment map at
  *           page 10, so outside a live race nothing is written. The predicate
- *           knows the Grand Prix, Time Attack and VS handlers; Extra Trial and
- *           link battle (overlays 666/667) keep stock reflections, as they
- *           keep 4:3 in the widescreen plugin.
+ *           also knows Extra Trial and Link Battle (overlays 666/667), so
+ *           their wide views use the same reflection guard.
  *   wide  - psxrecomp's native-wide renderer is drawing (widescreen margin >
  *           0). The reflective parts toggle the GPU's set-mask bit (GP0 E6h)
  *           around every part, about 400 times a frame on the Grand Prix

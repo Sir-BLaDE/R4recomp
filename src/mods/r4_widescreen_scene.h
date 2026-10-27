@@ -6,16 +6,17 @@
  *
  * The main loop (0x8001E784-0x8001E7B0) calls the frame handler
  *     T[*(u16 *)0x800F4E1A][*(u16 *)0x800F3BD6],   T = 0x8009EBCC
- * and a race runs one of five handlers: two in the EXE and three in code
+ * and a race runs one of seven handlers: two in the EXE and five in code
  * overlays linked at 0x801149A8. An overlay address can hold other code when
  * a different overlay is resident, so each overlay handler is also matched on
  * its first two instruction words. The race phase *(u32 *)0x800FF860 is 0
  * (fly-by), 1 (countdown) or 2..3 (racing); 4 and up are the finish, results
  * and replays, which stay 4:3.
  *
- * The phase gate and the five handlers follow the race predicate in
- * dogewow2048's R4 JP patch analysis (credit: dogewow2048); addresses and
- * guard words are the US ones.
+ * The original five handlers follow dogewow2048's R4 JP patch analysis
+ * (credit: dogewow2048). Extra Trial follows AEONG_AEONG's JP V2 patch,
+ * verified against the US R4.BIN entry 666. Addresses and guard words are
+ * the US ones.
  */
 #ifndef R4_WIDESCREEN_SCENE_H
 #define R4_WIDESCREEN_SCENE_H
@@ -34,13 +35,14 @@ typedef struct {
     uint32_t word0, word1;   /* first two instructions; 0,0 = EXE code */
 } R4RaceHandler;
 
-#define R4_RACE_HANDLER_COUNT 6
+#define R4_RACE_HANDLER_COUNT 7
 static const R4RaceHandler r4_race_handlers[R4_RACE_HANDLER_COUNT] = {
     { 0x8005E118u, 0u, 0u },                       /* attract demo (EXE) */
     { 0x8002A464u, 0u, 0u },                       /* after-goal run (EXE) */
     { 0x8011729Cu, 0x3C04800Fu, 0x3C038010u },     /* race, overlay 660 */
     { 0x80114A38u, 0x27BDFFC8u, 0x3C03800Fu },     /* race, overlay 659 */
     { 0x80114C30u, 0x3C04800Fu, 0x3C038010u },     /* 2P VS race, overlay 661 */
+    { 0x80116860u, 0x27BDFFD0u, 0x3C03800Fu },     /* Extra Trial, overlay 666; row 1[82] */
     /* Link Battle race (link overlay, id 9 at 0x801149A8). Online, widescreen
      * is an agreed netplay mod: the shared frame and each peer's own view
      * render at the match's one aspect (docs/ONLINE_BATTLE.md). */
