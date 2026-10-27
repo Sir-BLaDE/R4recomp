@@ -102,3 +102,25 @@ in release CI.
   <a href="https://discord.gg/Ad9BwSzctP"><img src=".github/raid-discord.png" alt="Join the Retro AI Development (R.A.I.D.) Discord" width="200"></a>
 </p>
 <!-- /retcomm-readme-raid -->
+
+## R4 GameShark 60 FPS / 16:9 patch V2 (this port)
+
+- Codes: `mods/source/R4_60FPS_Widescreen_Patch_V2.cht` (written for SCPS-45356;
+  all 2,478 `D001EB86 AE40` guards and every hook trampoline match the
+  SLPS-01798 executable byte for byte).
+- `tools/cht_to_c.py` turns the .cht into `src/r4_gameshark_codes.h`;
+  `src/r4_gameshark.c` applies each list at the EXE entry (0x8007D4B4) and
+  again every VBlank (the emulator's EndFrame pass), as four independent mod
+  features (`mods/preloaded/packages/r4.gameshark`).
+- 60 FPS opens the gated `[timing] guest_cycle_scale = 3` (the "CPU 300%").
+- 16:9 selects a fixed 16:9 aspect and keeps the framework's own GTE/GPU
+  widescreen squash at identity (plain stretched present, as the patch asks).
+
+Windows x64 build from Linux (MinGW-w64 cross):
+
+    cmake -S . -B build-win -G Ninja -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_TOOLCHAIN_FILE=psxrecomp/cmake/toolchain-mingw-w64.cmake \
+      -DPSX_DEBUG_TOOLS=OFF -DPSXRECOMP_BIOS_STEMS=OpenBIOS \
+      -DPSX_RELEASE_CHANNEL=public -DPSXRECOMP_REQUIRE_GAME_C=ON
+    cmake --build build-win --target psx-runtime
+    packaging/stage_windows.sh build-win "$(cat VERSION)"

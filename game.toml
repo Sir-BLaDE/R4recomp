@@ -33,6 +33,10 @@ known_crc32 = [
 seeds = "seeds/ghidra_funcs.txt"
 out_dir = "generated"
 strict = true
+# R4 GameShark mods (mods/preloaded/packages/r4.gameshark): the plugin installs
+# the code caves and hooks at the top of the PS-X EXE entry point, before any
+# game function runs (src/r4_gameshark.c).
+mod_function_entry_funcs = ["0x8007D4B4"]
 
 [runtime]
 window_title = "R4 Recompiled"
@@ -42,6 +46,19 @@ overlay_cache = true
 [video]
 renderer = "opengl"
 aspect_ratio = "4:3"
+
+# The 60 FPS GameShark patch needs the "CPU 300%" overclock: each MIPS
+# instruction is charged 1/3 of its guest cycles. Gated: it only applies while
+# the 60 FPS feature's plugin holds the gate open (mods are cleared online).
+[timing]
+guest_cycle_scale = 3
+guest_cycle_scale_gated = true
+
+# The 16:9 GameShark patch does its own FOV/HUD work and expects a plain
+# stretched 16:9 present. native_wide=false keeps the presenter on the
+# stretch path; the plugin then keeps the GTE/GPU squash at identity.
+[widescreen]
+native_wide = false
 
 [controller]
 default_mode = "digital"

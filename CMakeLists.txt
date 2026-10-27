@@ -65,3 +65,9 @@ foreach(_PSX_RUNTIME_CONFIG game.toml game_options.toml)
             VERBATIM)
     endif()
 endforeach()
+
+# R4 GameShark 60 FPS / 16:9 patch V2 as trusted mod plugins
+# (mods/preloaded/packages/r4.gameshark). Code tables are generated from
+# mods/source/*.cht by tools/cht_to_c.py.
+target_sources(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/r4_gameshark.c")
+target_include_directories(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")

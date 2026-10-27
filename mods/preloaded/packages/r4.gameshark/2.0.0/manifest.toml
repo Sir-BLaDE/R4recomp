@@ -1,0 +1,55 @@
+format_version = 5
+id = "r4.gameshark"
+version = "2.0.0"
+name = "R4 60 FPS + Widescreen Patch V2"
+author = "GameShark codes: original author (GBAtemp thread 684958); psxrecomp port: R4Recomp"
+description = "The 60 FPS / 16:9 GameShark patch V2 for R4 (written for SCPS-45356; the SLPS-01798 executable carries the same code at every patched address). Each feature works on its own."
+resolver = "declarative"
+save_compatibility = "isolated"
+
+[[target]]
+game_id = "SLPS-01798"
+
+[[feature]]
+id = "60fps"
+name = "60 FPS"
+description = "Runs races at 60 frames per second. Turns on the 300% CPU overclock the patch needs (guest cycle scale 3) only while this feature is enabled."
+group = "Gameplay"
+default_enabled = true
+
+[[feature]]
+id = "widescreen"
+name = "16:9 Widescreen"
+description = "Adjusts the game's own FOV and UI for 16:9 and presents a stretched 16:9 picture with the generic widescreen hack off. Use the PGXP mod to reduce background distortion."
+group = "Display"
+default_enabled = true
+
+[[feature]]
+id = "cpu-marker"
+name = "Opponents on minimap"
+description = "Shows opponent car positions on the minimap in Grand Prix and Extra Trial."
+group = "Gameplay"
+default_enabled = true
+
+[[feature]]
+id = "fmv"
+name = "16:9 opening FMV"
+description = "Resizes the opening movie to fit a 16:9 picture. Intended together with 16:9 Widescreen."
+group = "Display"
+default_enabled = true
+
+[[plugin]]
+feature = "60fps"
+id = "r4.gameshark.60fps"
+
+[[plugin]]
+feature = "widescreen"
+id = "r4.gameshark.widescreen"
+
+[[plugin]]
+feature = "cpu-marker"
+id = "r4.gameshark.cpu-marker"
+
+[[plugin]]
+feature = "fmv"
+id = "r4.gameshark.fmv"
