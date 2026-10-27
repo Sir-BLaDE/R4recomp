@@ -12,32 +12,20 @@ frame 1119 with zero dispatch and segment misses. The HD FMV feature remains
 elective; no new performance or retail A/V claim is made. Full upstream master
 sync is pending a settings migration: #766 removes the Graphics preset and
 launcher fields R4 currently uses; the attempted mechanical merge failed to
-build. `docs/UPSTREAM.md` records the exact backports. The installed Windows
-and Mac RCs below are still the earlier build until fresh packages are installed.
+build. `docs/UPSTREAM.md` records the exact backports.
 
-The latest Windows playtest is installed at `C:/Users/Shokunin/Games/R4` from
-R4 `82f0c24`, framework pin `d108e9a0`. Its 505 packaged files hash-match
-the audited Windows ZIP in `C:/Users/Shokunin/dev/r4-latest-playtest-20261024/dist/`;
-69 existing non-package files, including settings and saves, were unchanged.
-The normal Desktop R4 shortcut targets this install. A six-second headless
-disc run reached frame 1235 with no heartbeat fatal. The R4 HD HUD is now
-classified as presentation-only local view in netplay; Windows and Mac runtime
-builds and focused link tests passed. The short Link-race proof and its limits
-are in `docs/verification/render-pass-local-view-20261024.md`.
-
-The owner-requested Desktop test shortcuts are named `ridge racer type 4 1.0 RC`
-on both machines. This is a shortcut label; the packaged version remains
-`0.2.1` and no release was published. On Windows the `.lnk` targets the above
-install, which hash-matches all 505 packaged files. On Mac the `.command`
-targets `~/Games/R4-1.0-RC`, installed from the playtest arm64 ZIP built from
-R4 `123dad6` (code unchanged since `82f0c24`) with framework pin `d108e9a0`.
-All 2,186 packaged Mac files hash-match after the six-second headless disc run;
-the run reached frame 788 with zero unknown-dispatch and segment misses. The
-existing Mac disc choice, input bindings and memory cards were copied; the old
-0.8 settings were left in the old installation so current defaults apply. The
-Mac ZIP is at `~/dev/r4-rc1-package-20261024/dist/`. Older Desktop test items
-remain alongside the new shortcuts because deletion was rejected by tool
-policy; the disc-media folders were left untouched.
+The current 0.2.1 **playtest** packages are built from R4 `7063e32` and
+framework `ab9d181d`. The Windows ZIP is in
+`build-release-prsync-local-20261026/dist/`; all 509 packaged files hash-match
+`C:/Users/Shokunin/Games/R4`. The Mac arm64/x64 ZIPs are in
+`~/dev/r4-playtest-prsync-20261026/dist/`; all 2,190 arm64 packaged files
+hash-match `~/Games/R4-1.0-RC`. Existing settings, inputs and saves were
+preserved. The Desktop test shortcuts on both machines are named
+`ridge racer type 4 1.0 RC` and point to these installs. The Mac installed
+package ran headless for six seconds to frame 1016 with zero unknown dispatch
+and segment misses. The Windows installed package booted headless; its
+release build has no TCP debug server, so the zero-miss check used the matching
+development build above. No tag, upload or public release has been made.
 
 Pre-merge #727 R4 HD/local-view evidence is in
 `docs/verification/render-pass-local-view-20261024.md`; its physical output
@@ -45,11 +33,8 @@ FPS remains unmeasured. #761's synthetic FMV replay covered 85 HD frames and
 pause/load behavior, but retail-content lip sync remains unmeasured. Contributor
 #712 still needs an affected-driver compositor reproduction.
 
-The earlier v0.2.1 RC2 archives remain separate at
-`C:/Users/Shokunin/Desktop/R4 v0.2.1 Review RC2/` (source `5e200c1`). They
-predate the installed HUD/netplay change and are **not** the current test build.
-No v0.2.1 tag, upload or publication has been made; the owner held publication
-for review. New release archives must be built from the final approved source.
+Older Desktop review items remain because deletion was rejected by tool policy;
+they are not the current test build. Publication is still held for owner review.
 
 [v0.2.0](https://github.com/tetrisgm/RidgeRacerType4Recomp/releases/tag/v0.2.0)
 is published for Windows x64 and macOS arm64/x64. The annotated tag points to

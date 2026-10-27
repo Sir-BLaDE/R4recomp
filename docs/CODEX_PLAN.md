@@ -15,7 +15,19 @@ The development branch offers all requested rates, with 60 FPS by default.
 Performance measurements validate the implementation and expose unfinished
 work; they do not change that requested default.
 
-## Where things stand (2026-10-24)
+## Current release-candidate state (2026-10-26)
+
+The 30 Hz logic and ordered extra-frame workers are shipped; 60 output FPS is
+the default, with 90/100/120/144 and Match display selectable. R4 `7063e32`
+pins framework `ab9d181d`, with approved upstream PR backports and new
+Windows/Mac playtest installs (see `docs/HANDOFF.md`). The latest physical
+1440p/120 check remains 106.5 distinct frames/s under shared load. No new
+throughput claim follows from the PR sync. Full upstream master integration
+requires migrating R4's Graphics presets after upstream #766 removed their
+framework and launcher API. Keep the current candidate playable while that
+product change is designed and tested.
+
+## Historical measurements (2026-10-24)
 
 v0.2.0 is published with the 60 FPS extra-frame worker path and
 selectable 90/100/120/144 rates. The remaining work is sustained throughput
