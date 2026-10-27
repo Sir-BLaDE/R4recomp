@@ -5,15 +5,11 @@
 Compared AEONG_AEONG's Japanese V2 60 FPS/widescreen GameShark file with the
 US recomp ([notes](research/jp-60fps-patch-v2.md)). Its extra draw is a
 separate game-loop iteration that skips logic and uses the normal flip order;
-this is an ordering reference for our native render passes. Its sixth race
-handler maps to US Extra Trial overlay 666 at `0x80116860`, verified against
-the local R4.BIN and EXE handler table. Widescreen now recognizes that guarded
-handler. The injected MIPS and fixed 16:9 coordinate scale were not copied;
-extra-frame redraw remains unchanged. Windows runtime and widescreen helper
-built; the helper passed on Windows and Mac, and the cull-site scanner matched
-all configured sites. A headless Windows boot to the Time Attack menu had zero
-dispatch and segment misses. No live Extra Trial race was reached in this
-short check, so its picture and HUD remain visually unverified.
+this is a useful ordering reference for our native render passes. The
+single-threaded injected MIPS requires 300% emulator CPU and does not directly
+increase worker throughput. It contains a sixth race handler, possibly useful
+for Extra Trial, but the US handler is unverified.
+No runtime or release settings changed.
 
 Merged upstream #727 and #761 are now approved. Framework fork `r4/main` at
 `ab9d181d` backports the final #727 HD pixel fixture, #761's elective HD FMV

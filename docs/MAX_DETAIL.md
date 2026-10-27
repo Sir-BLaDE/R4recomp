@@ -118,8 +118,8 @@ make every guest poll loop (VSync, pad SIO) spin longer on the host.
   16:9). If psxrecomp makes those batches cheap, reflections could be allowed
   in wide views where the PS1 has room; the gate is
   `r4_md_reflections_action`.
-- Car reflections follow the race test of the widescreen plugin. Extra Trial
-  and Link Battle use the same wide-view reflection guard as other races.
+- Car reflections follow the race test of the widescreen plugin, so Extra
+  Trial and link-battle races (overlays 666/667) keep stock reflections.
 - From about 30:9 (Fit in a window that wide, or the 32:9 View) Maximum draws
   what Extended draws: the neighbouring sections' wide octants, with full car
   models and a full grid ahead, overran the PS1 frame budget.

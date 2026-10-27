@@ -235,15 +235,6 @@ static void test_scene(void)
     CHECK(r4_in_race(rd, rdh) == 1, "Link Battle race widens");
     wr(0x80115774u, 0x00000000u);
     CHECK(r4_in_race(rd, rdh) == 0, "Link handler rejected when its overlay is not resident");
-
-    /* Extra Trial: row 1[82] points to the handler in R4.BIN entry 666.
-     * The same RAM address holds different instructions in other overlays. */
-    setup_scene(2, 1, 82, 0);
-    wr(0x800A0000u + 4u * 82u, 0x80116860u);
-    wr(0x80116860u, 0x27BDFFD0u); wr(0x80116864u, 0x3C03800Fu);
-    CHECK(r4_in_race(rd, rdh) == 1, "Extra Trial race widens with overlay 666 resident");
-    wr(0x80116864u, 0x00000000u);
-    CHECK(r4_in_race(rd, rdh) == 0, "Extra Trial rejects a different resident overlay");
     setup_scene(2, 0, 0, 0);
     CHECK(r4_frame_handler(rd, rdh) == 0, "a null row is not followed");
 }
