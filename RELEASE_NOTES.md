@@ -1,26 +1,54 @@
 # Ridge Racer Type 4 Recompiled — v0.2.1
 
-This update improves the OpenGL frame pipeline for the extra race frames:
-fewer driver-state queries and repeated sampler updates, plus earlier PGXP
-seam preparation. The established frame order, PGXP seam correction,
-widescreen and 60 FPS default remain in place. Game logic, input and audio
-still run at their original 30 Hz cadence.
+A stability and smoothness update to v0.2.0. Same features, same defaults;
+the extra race frames now come out steadier.
 
-The 30, 90, 100, 120, 144 and Match display choices remain available.
-Achieved rates depend on resolution and GPU load; 120 and 144 FPS are
-best-effort, not guaranteed sustained rates. Dynamic resolution retains its
-1080p floor (the lowest integer step in R4 is 1200 internal lines).
+## What changed
+
+- **Smoother 60 FPS races.** The OpenGL pipeline that draws the extra race
+  frames does far less driver work per frame (cached GL state, batched
+  render-thread handoff, one-time sampler setup, earlier PGXP seam
+  preparation, disc read-ahead). On the test PC a race holds about 59
+  distinct frames per second with no gap over 35 ms, measured on screen
+  while the machine was busy with other work. The 30 FPS choice is steady
+  at 30.
+- **Closed PGXP seams.** The hairline cracks PGXP's sub-pixel positions open
+  at road crests, wall tops and distant road are filled at every internal
+  resolution up to 18x, with PGXP's precision untouched.
+- **Resolution never below 1080p.** Dynamic resolution keeps at least 1200
+  internal lines in every preset.
+- **HD HUD loads before the race starts** instead of during it.
+
+Game logic, input and audio keep their original 30 Hz cadence. Modern
+controls (analog gas, brake and steering), Rewind, camera look-around,
+widescreen Fit, Max Detail, PGXP and the HD HUD are unchanged from v0.2.0
+and were re-verified for this release on Windows and macOS.
+
+## Install
 
 Download the Windows x64, macOS Apple Silicon or macOS Intel zip and extract
-it into a new folder or over v0.2.0. Extracting over the existing folder keeps
-its settings and memory cards. The archives contain the compiled game and
-OpenBIOS, but no game disc or retail BIOS; use your own verified US bin/cue
-image.
+it into a new folder or over v0.2.0; extracting over keeps settings, controls
+and memory cards. Savestates from v0.2.0 are refused. The zips contain the
+compiled game and OpenBIOS but no disc or retail BIOS: use your own verified
+US bin/cue.
 
-Wheel force feedback remains experimental and off by default. A rare
-4-player online halt on the Results screen remains under investigation.
-macOS archives are ad-hoc signed but not notarized; use **Open Anyway** in
-System Settings or remove quarantine from the extracted folder once.
+macOS builds are ad-hoc signed, not notarized: right-click → Open the first
+time, use **Open Anyway** in System Settings → Privacy & Security, or run
+`xattr -dr com.apple.quarantine <folder>` once.
+
+## Known issues
+
+- The Display page shows the Graphics preset and screen mode only; the
+  internal resolution follows the preset. The race frame rate is under
+  Mods → Race frame rate.
+- On a machine detected as Ultra, the Graphics badge may read "Custom —
+  started from Ultra" before any setting is changed. Cosmetic.
+- 90, 100, 120 and 144 FPS and Match display are best-effort; 120 and 144
+  are not sustained on the test PC.
+- Wheel force feedback remains experimental and off by default.
+- Very rarely a 4-player online Link Battle halts on the Results screen
+  (RetroPortingToolKit/psxrecomp#636).
+- Extra Trial races render in 4:3 with stock controls, as in v0.2.0.
 
 ---
 
