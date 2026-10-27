@@ -1,0 +1,48 @@
+{
+  "format_version": 1,
+  "game": {
+    "name": "R4",
+    "id": "SLPS-01798",
+    "boot_exe": "SLPS_017.98"
+  },
+  "marketing": {
+    "description": "R4 - Ridge Racer Type 4 (SLPS-01798) static recompilation with 60 fps / 16:9 mods",
+    "publisher": "Namco",
+    "year": "1998",
+    "region": "NTSC-J",
+    "players": 2
+  },
+  "rom_identity": {
+    "cue_name": "R4.cue",
+    "bin_name": "R4.bin",
+    "track_counts": [
+      1
+    ],
+    "require_cue": true,
+    "data_track": {
+      "size": 622452096,
+      "md5": "7adde24b05ae254ef51ee2053f0b405a",
+      "sha1": "cb8770bcb9e5c9645165e26ebcea7735cc0b7afd",
+      "crc32": "e0b4611e"
+    },
+    "disc_fp": "5dda2f17751d5791af09e48cc1170d9ace018b2e5bd29b4f029f2bcab067c50c"
+  },
+  "exe": {
+    "load_address": "0x80010000",
+    "entry_pc": "0x8007D4B4",
+    "text_size": "0x0009C000",
+    "stack_base": "0x801FFFF0"
+  },
+  "seeds": {
+    "count": 1174,
+    "source": "boot_exe_jal"
+  },
+  "warnings": [
+    "cue has only 1 TRACK \u2014 Track-01-only dumps fail multi-track netplay/catalog gates; prefer a full Redump cue."
+  ],
+  "notes": [
+    "entry_pc/load_address/text_size/stack_base taken from PS-X EXE header.",
+    "seeds are first-pass boot-EXE JAL targets (+ entry); expect to grow as overlays / runtime paths are discovered.",
+    "required_disc_fp is psxrecomp-toc-v1 (matches runtime DiscIdentity)."
+  ]
+}

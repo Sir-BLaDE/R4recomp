@@ -1,0 +1,54 @@
+# Autofilled by tools/new_project_layout/probe_disc.py from your legal dump.
+# Review before shipping. Runtime quirks / overlay seeds still need hand work.
+
+[game]
+name = "R4"
+id = "SLPS-01798"
+players = 2
+exe = "disc/SLPS_017.98"
+disc = "/home/claude/disc/R4.cue"
+load_address = "0x80010000"
+entry_pc = "0x8007D4B4"
+text_size = "0x0009C000"
+stack_base = "0x801FFFF0"
+
+# Digests are for data Track 01 (first BINARY FILE / TRACK 01).
+[prepare_disc]
+out_dir = "disc"
+bin_name = "R4.bin"
+cue_name = "R4.cue"
+boot_exe = "SLPS_017.98"
+known_sizes = [622452096]
+known_md5 = [
+  "7adde24b05ae254ef51ee2053f0b405a",
+]
+known_sha1 = [
+  "cb8770bcb9e5c9645165e26ebcea7735cc0b7afd",
+]
+known_crc32 = [
+  "e0b4611e",
+]
+
+[recompiler]
+seeds = "seeds/ghidra_funcs.txt"
+out_dir = "generated"
+strict = true
+
+[runtime]
+window_title = "R4 Recompiled"
+memcard_dir = "saves"
+overlay_cache = true
+
+[video]
+renderer = "opengl"
+aspect_ratio = "4:3"
+
+[controller]
+default_mode = "digital"
+
+# Online mount gate: digests + track count + optional TOC fingerprint
+# (see docs/NETPLAY.md).
+[netplay]
+require_cue = true
+required_tracks = 1
+required_disc_fp = "5dda2f17751d5791af09e48cc1170d9ace018b2e5bd29b4f029f2bcab067c50c"
