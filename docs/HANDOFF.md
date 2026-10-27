@@ -1,6 +1,19 @@
 # Handoff
 
-## Current work (2026-10-24)
+## Current work (2026-10-26)
+
+Merged upstream #727 and #761 are now approved. Framework fork `r4/main` at
+`ab9d181d` backports the final #727 HD pixel fixture, #761's elective HD FMV
+timeline and its CD/path repairs, and upstream #769–#772; it also carries the
+restore-scope repair from #773. R4 pins this commit. Windows R4 build and 32/32
+tests, Mac R4 build and 29/29 tests, nine focused framework checks on Windows,
+and nine on Mac passed. A six-second Windows OpenBIOS headless disc run reached
+frame 1119 with zero dispatch and segment misses. The HD FMV feature remains
+elective; no new performance or retail A/V claim is made. Full upstream master
+sync is pending a settings migration: #766 removes the Graphics preset and
+launcher fields R4 currently uses; the attempted mechanical merge failed to
+build. `docs/UPSTREAM.md` records the exact backports. The installed Windows
+and Mac RCs below are still the earlier build until fresh packages are installed.
 
 The latest Windows playtest is installed at `C:/Users/Shokunin/Games/R4` from
 R4 `82f0c24`, framework pin `d108e9a0`. Its 505 packaged files hash-match
@@ -26,25 +39,11 @@ Mac ZIP is at `~/dev/r4-rc1-package-20261024/dist/`. Older Desktop test items
 remain alongside the new shortcuts because deletion was rejected by tool
 policy; the disc-media folders were left untouched.
 
-Upstream #727 was narrowed to five files at `45544217`; positive R4 HD
-local-view passes, shared digests, disabled peer, and GL discard restoration
-are verified. Matched Windows/Mac GL fixture digests and timing showed no clear
-regression; #727 is ready for upstream review. A 15-second loaded run completed
-18 host temporal passes with zero misses. DXGI capture returned zero updates,
-WGC dropped frames, and PresentMon ETW was denied, so distinct physical output
-FPS remains unmeasured; the PR makes no 120 FPS claim.
-
-Upstream #761 is ready for review and continues contributor #718 with guest CD-stream/frame
-identity and guest-cycle timing. Its Windows/Mac builds and focused tests pass;
-a local R4 synthetic-pack replay presented 85 HD frames, held on pause, resumed
-after state load, and had zero dispatch misses. A short title run skipped the
-movie with Start and confirmed HD tracking reset (`cur_src=-1`), CD input
-stopped, queued host audio drained, and zero misses. A matched unpaused interval
-showed guest/SPU 366.67 ms, CD 373.33 ms and host output 360 ms; content-level
-lip-sync remains unmeasured. The elective FMV feature is not pinned in R4. Contributor #712
-still needs an affected-driver compositor reproduction; the current PC's
-RTX 4080 SUPER/610.88 cannot establish the reported RTX 3060/576.57 freeze.
-Approved upstream #723, #736 and #737 are merged.
+Pre-merge #727 R4 HD/local-view evidence is in
+`docs/verification/render-pass-local-view-20261024.md`; its physical output
+FPS remains unmeasured. #761's synthetic FMV replay covered 85 HD frames and
+pause/load behavior, but retail-content lip sync remains unmeasured. Contributor
+#712 still needs an affected-driver compositor reproduction.
 
 The earlier v0.2.1 RC2 archives remain separate at
 `C:/Users/Shokunin/Desktop/R4 v0.2.1 Review RC2/` (source `5e200c1`). They

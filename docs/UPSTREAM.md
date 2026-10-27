@@ -4,13 +4,14 @@ R4 pins `tetrisgm/psxrecomp` `r4/main` (CLAUDE.md, fork model). Every change
 that fork carries over upstream master is listed here with its upstream PR.
 When this table is empty, re-pin to upstream master and archive the fork.
 
-The latest 2026-10-24 upstream-master sync is framework commit `d108e9a0` on
-fork `r4/main`. It includes upstream #723, #736, #737, #710, #716, #715,
-#717, #755, #758 and #174. The merge passed a Windows runtime build and five
-focused tests, plus a Mac runtime build and four focused tests. R4 now pins
-`d108e9a0`; regeneration changed no game C. Windows R4 32/32 and Mac R4
-29/29 tests passed. The earlier v0.2.1 candidate archives still pin
-`c4eb8183`. The fork-only changes below remain after the merge.
+The latest full upstream-master sync is `d108e9a0` (2026-10-24). The current
+fork pin `ab9d181d` additionally backports merged #761, #769–#772, #727's
+final pixel fixture, and #773's restore-scope repair. Full master sync was
+tested locally but cannot be promoted as a pin bump: upstream #766 removes
+Graphics presets and launcher settings still used by R4. A mechanical merge
+failed the R4 build. The fork retains those controls while their replacement
+is designed and verified. Windows R4 32/32 and Mac R4 29/29 tests pass on the
+targeted pin; generated game C is unchanged. The fork-only changes below remain.
 
 | Change | Topic branch | Upstream PR | State |
 |---|---|---|---|
@@ -19,7 +20,7 @@ focused tests, plus a Mac runtime build and four focused tests. R4 now pins
 | Initialize fixed textured sampler uniforms once per shader program | `fix/gl-sampler-uniforms` | none yet | in `r4/main` (`6eead0f2`); exact direct/threaded GL pixels on Windows and Mac |
 | Publish the immutable PGXP seam baseline earlier during async reserve | `fix/seam-early-publish` | none yet | in `r4/main` (`c4eb8183`); more prepared seams consumed, exact PGXP verifier and Mac async timing passed |
 | Dynres: hold through savestate load | `r4/main` commit `ade1ecd3` | none yet | needs topic branch + PR |
-| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | five-file PR head `45544217` ready for review; R4 HD/local-view digest, GL abort and matched fixture timing linked; physical distinct FPS unmeasured |
+| Transactional render passes (60 fps) | `feat/render-pass-hd` | #727 | merged upstream; final HD pixel fixture backported to `r4/main`, full master sync pending #766 migration |
 | Queued render passes, 60 FPS pacing (docs/RENDER_PASSES.md) | `feat/render-pass-queued` | none yet | in `r4/main` |
 | MinGW test link fixes | `fix/mingw-test-link` | none yet | in `r4/main` (+2 r4/main-only commits) |
 | PGXP seam snapping (gaps sub-pixel positions open at crests / T-junctions) | `fix/pgxp-tjunction-seams` | none yet | in `r4/main` (`3c2e76f5`) |
