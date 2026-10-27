@@ -2,6 +2,13 @@
 
 ## Current work (2026-10-26)
 
+Compared AEONG_AEONG's Japanese V2 60 FPS/widescreen GameShark file with the
+US recomp ([notes](research/jp-60fps-patch-v2.md)). Its extra draw follows the
+same broad redraw approach already used here and requires 300% emulator CPU;
+there is no direct worker throughput gain. It does contain a sixth race
+handler, possibly useful for Extra Trial, but the US handler is unverified.
+No runtime or release settings changed.
+
 Merged upstream #727 and #761 are now approved. Framework fork `r4/main` at
 `ab9d181d` backports the final #727 HD pixel fixture, #761's elective HD FMV
 timeline and its CD/path repairs, and upstream #769–#772; it also carries the

@@ -1,0 +1,21 @@
+# Japanese 60 FPS / widescreen cheat comparison
+
+Source: [AEONG_AEONG's GBAtemp post](https://gbatemp.net/threads/i-created-60-fps-widescreen-cheat-codes-for-ridge-racer-type-4.684958/) and its [linked V2 GameShark file](https://drive.google.com/file/d/1p3aJaVrNNJwRS2hOVIran1BSXO1lZxod/view). Read on 2026-10-26. The 99,085-byte file's SHA-256 is `687e619cfd619addcc26d4639ccc82e5905576f7a95c47156fe19d34c4c4340f`. It targets Japanese `SCPS-45356`; R4 recompiles US `SLUS-00797`. The cheat file is a reference, not a build input.
+
+## What the 60 FPS code does
+
+The first section contains 2,086 halfword writes. Most inject MIPS code at `0x8000C000..0x8000CE62`; five small hooks at `0x8001EB88..0x8001ECAA` enter that code. The entry checks the race pacing word against `0x180`, recognizes handlers, and uses a state flag for an extra draw. One helper changes `0x180` to `0x80` at the pacing call. Other hooks skip normal work during the extra draw. The injected mode paths repeat the game's draw-function calls. The author requires emulator CPU speed 300%.
+
+Our `src/mods/r4_interp.c` already redraws between stock 30 Hz ticks, interpolates car/camera state, and has native worker preparation and render-pass isolation. Its draw lists were separately derived from dogewow2048's earlier Japanese patch, then mapped to US code. The new cheat is another example of this approach. Its injected single-threaded MIPS and altered guest pacing do not provide a transferable throughput improvement for the native worker pipeline.
+
+## Coverage difference
+
+The V2 entry recognizes six handlers: three overlay race handlers, two EXE handlers, and `0x801165A8`, with a distinct sixth draw path at `0x8000CAB8`. The first three overlay handlers are consistently `0x2B8` below our mapped US Time Attack, Grand Prix, and VS addresses. That offset suggests the sixth JP handler might map near US `0x80116860`, but this is **not verified**: overlay load addresses and contents must be checked before use. Its draw path resembles the existing GP/VS paths. Our frame-rate classifier currently has five modes; `docs/WIDESCREEN.md` separately records Extra Trial as unsupported. This cheat may help add Extra Trial once its US overlay handler and state are identified. Do not add a guessed address or call list.
+
+## Other sections
+
+- The 16:9 section changes game UI/FOV. R4's native-wide renderer already exposes real side scenery and repositions HUD without patching guest instructions; it supports 16:9, 21:9, 32:9 and fit-to-window.
+- The `CPU Marker` section adds opponent minimap markers in Grand Prix/Extra Trial. This is an optional gameplay display feature, not a frame-rate fix. R4's stock map and car dots remain available.
+- The `16:9 FMV` section resizes the opening movie. R4 intentionally presents 4:3 movies with side bars, preserving their original composition. The cheat's movie resize should not become a default.
+
+Decision: keep the current frame pipeline and release behavior. Treat the sixth handler as a lead for future US Extra Trial coverage, with overlay identity and a short race check required before activation. No Japanese GameShark writes belong in the US build.
