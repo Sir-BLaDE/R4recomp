@@ -3,10 +3,12 @@
 ## Current work (2026-10-26)
 
 Compared AEONG_AEONG's Japanese V2 60 FPS/widescreen GameShark file with the
-US recomp ([notes](research/jp-60fps-patch-v2.md)). Its extra draw follows the
-same broad redraw approach already used here and requires 300% emulator CPU;
-there is no direct worker throughput gain. It does contain a sixth race
-handler, possibly useful for Extra Trial, but the US handler is unverified.
+US recomp ([notes](research/jp-60fps-patch-v2.md)). Its extra draw is a
+separate game-loop iteration that skips logic and uses the normal flip order;
+this is a useful ordering reference for our native render passes. The
+single-threaded injected MIPS requires 300% emulator CPU and does not directly
+increase worker throughput. It contains a sixth race handler, possibly useful
+for Extra Trial, but the US handler is unverified.
 No runtime or release settings changed.
 
 Merged upstream #727 and #761 are now approved. Framework fork `r4/main` at
