@@ -10,6 +10,7 @@ R4 turns its enhancements on by default (README "On by default"):
     systems are the safety net; "display" or another preset
     is accepted too) so the default holds full speed; the Display row turns
     it off;
+  - game.toml [video] fullscreen = borderless (desktop) by default;
   - game.toml [video] render_thread and present_thread on
     (PSX_RENDER_THREAD=0, PSX_PRESENT_THREAD=0 turn them off for a run);
     Smooth motion (frame_generation) off in [video] and every preset, and
@@ -137,8 +138,18 @@ def test_game_toml():
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
+    pg = manifest('psx.enhancement.pgxp')
+    check(option_default(pg, 'pgxp', 'cpu_mode') == 'true',
+          'PGXP: CPU-mode propagation on by default (owner 2026-10-27)')
+    ce = manifest('r4.enhancement.car-effects')
+    check(feature(ce, 'car-effects').get('default_enabled') is True,
+          'car effects: on by default (owner 2026-10-27)')
+    check(video.get('fmv_filter') == 'bicubic' and video.get('antialiasing', True) is True,
+          'game.toml: FMV upscaled bicubic (owner 2026-10-27: nearest looked blocky)')
     check('dynamic_resolution_priority' not in video,
           'game.toml: no dynamic_resolution_priority (not in the render-thread stack)')
+    check(video.get('fullscreen') == 'borderless',
+          'game.toml: borderless (desktop) fullscreen by default')
     for k in ('render_thread', 'present_thread'):
         check(video.get(k) is True, f'game.toml: {k} on by default')
     check(video.get('present_thread_slots') == 8,

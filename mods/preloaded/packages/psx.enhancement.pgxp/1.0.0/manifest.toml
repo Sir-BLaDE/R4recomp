@@ -28,10 +28,10 @@ default_enabled = true
 feature = "pgxp"
 id = "cpu_mode"
 label = "CPU-mode propagation"
-description = "Also track precision through CPU arithmetic. R4 does not need it: its 3D vertices are tracked without it. Safe either way."
+description = "Also track precision through CPU arithmetic (on by default for R4; owner, 2026-10-27). Validation rejects any corrected vertex that does not match what the game drew, so it is safe either way; it only raises coverage."
 group = "Visual"
 type = "boolean"
-default = "false"
+default = "true"
 
 [[option]]
 feature = "pgxp"

@@ -83,7 +83,7 @@ Switching a feature off gives you the stock game for that part.
 | **Camera look-around**: the right stick turns the view in single-player races | Yes | Mods → **Camera Look-Around** off |
 | **Hide rear-view mirror**: skips the mirror inset at the top of the race screen | Yes | Mods → **Hide Rear-view Mirror** off brings the mirror back |
 | **JogCon input**: recognized steering wheels drive as R4's JogCon; ordinary gamepads use native DualShock analog steering | Yes | Mods → **JogCon Input** off; the pad mode is under Settings → Controller |
-| **PGXP**: steady geometry and straight (perspective-correct) textures, with precise culling so the far road has no gaps | Yes | Mods → Visual → **PGXP Precision** off, or turn only its **Precise culling** option off |
+| **PGXP**: steady geometry and straight (perspective-correct) textures, with precise culling so the far road has no gaps and CPU-mode propagation (precision tracked through CPU arithmetic too) | Yes | Mods → Visual → **PGXP Precision** off, or turn only its **Precise culling** option off |
 | **Max Detail**: longer draw distance (far bridges, buildings and road no longer pop in), full course and car detail at every distance, 1P detail in split screen, car reflections in the race | Yes | Mods → Detail → **R4 Max Detail** off, or set any one option (Draw distance, Course detail, Car detail, Split screen, Car reflections) back to **Stock**. Mirror scenery stays Stock unless you choose Full |
 | **Race frame rate**: Auto by default — 60 FPS, or the original 30 FPS at an 8K (18x) internal resolution, where the GPU cannot hold 60; extra frames are drawn with the game's own code while logic keeps its original 30 Hz cadence. Choose 30, 60, 90, 100, 120, 144 FPS or Match display refresh; achieved rate depends on resolution and GPU load | Yes, Auto | Mods → Display → **Race frame rate** → Presentation rate **30 FPS (original)**, or turn the mod off |
 | **VS split screen**: the OpenGL renderer draws 2P split screen in about a tenth of the draws (same picture) | Yes | Set `PSX_GL_TEXWIN_BATCH=0` for one run |
@@ -93,6 +93,7 @@ Switching a feature off gives you the stock game for that part.
 | **Render thread + present thread**: OpenGL work and the window swap run off the game's thread | Yes | `PSX_RENDER_THREAD=0` / `PSX_PRESENT_THREAD=0` for one run |
 | **PGXP extras**: a depth buffer (no sorting errors where polygons cross), smooth shading across corrected vertices, and closed seams between polygons | Yes, with PGXP | They follow **PGXP Precision**; `PSX_PGXP_DEPTH=0` for one run |
 | **HD HUD**: the race HUD (rank, lap/time and speed digits, RPM gauge, course map) drawn from high-resolution artwork, **HD HUD by [Kuid0us](https://github.com/Kuid0us/T4HDHUD)** | Yes (OpenGL) | Mods → Visual → **HD HUD** off |
+| **Car Effects**: exhaust flames on upshifts and the rev limiter, tyre smoke when drifting, sparks on impacts, drawn as PC particles; also steadies the race camera's one-pixel jitter. Offline only | Yes (owner, 2026-10-27) | Mods → Display → **Car Effects** off |
 | **Online battle, 2-4 players**: R4's Link Battle over the internet or LAN, each player on their own machine with their own full-screen view | Available from the launcher's NETPLAY page | Just play offline; local split screen stays 2-player VS Battle |
 | **No Rewind in split screen or online**: Rewind is off in 2-player VS Battle and in every netplay session, so a rewind can't put one player out of step | Yes, always | Not a setting. Rewind still works in single-player races (enable it in Settings; Y in Modern, Select + Y in Classic) |
 
@@ -384,9 +385,15 @@ runs exactly as before. Netplay sessions run without mods. Details:
 
 ## In-game menu
 
-Press Esc (keyboard), Guide, or Start+Select (gamepad) during play to open
-the launcher's menus over the game: Graphics (with the Low / Medium / High /
-Ultra presets), Controls, Mods, Netplay and Disc setup. The
+The menu is the first screen: it is open when the game starts, and
+**Resume** starts it (`--no-launcher` or Settings → Skip this launcher boot
+straight in). During play, press Esc (keyboard), or **Select**, Guide or
+Start+Select (gamepad) to open the launcher's menus over the game: Display
+(with the Low / Medium / High / Ultra presets), Controls, Garage (mods),
+Netplay, Settings and Disc setup. Select opens the menu only when tapped on
+its own (R4 never sees that press); Select + a button stays a shortcut, such
+as Select + Y for Rewind. In the menu, Select or B goes back. Quit game asks
+first. The
 game pauses while it is open, except in netplay, where the race keeps running
 and only your own inputs are held. Settings marked "Applies after restart"
 take effect on the next start; everything else applies at once and is saved.
@@ -406,6 +413,8 @@ is **experimental and off by default**: Controls → **Wheel force feedback
 game's motor command (gamepads never); it is not yet verified on a physical
 wheel. In R4's
 menus **Circle is OK** and **Cross is cancel**; in races Cross accelerates by default.
+**Select** on its own opens the in-game menu (a tap; the game never sees that
+press); Select + a button stays a shortcut.
 
 Mods -> Controllers -> **Controls** (on by default) picks the race scheme:
 

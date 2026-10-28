@@ -66,7 +66,7 @@ const SurfaceRule kSurface[] = {
     {"graphics.frame_generation", Vis::Auto, "0"},
     {"graphics.fullscreen", Vis::Shown, nullptr},
     {"graphics.dynamic_resolution", Vis::Auto, nullptr}, // the preset decides
-    {"graphics.internal_resolution", Vis::Auto, nullptr},// the preset sets it
+    {"graphics.internal_resolution", Vis::Shown, nullptr}, // the preset seeds it; the row stays selectable
     {"graphics.title_features", Vis::Hidden, nullptr},    // widescreen Fit / max detail stay on
     // Controls: Modern / Classic and rebinding.
     {"controls.scheme", Vis::Shown, nullptr},
@@ -79,10 +79,16 @@ const SurfaceRule kSurface[] = {
     {"controls.force_feedback", Vis::Shown, nullptr},
     // Disc: found automatically; OpenBIOS is bundled, so no BIOS prompt.
     {"disc.autoscan", Vis::Auto, "auto"},
-    // The game boots straight in; disc setup, netplay and options live in the
-    // in-game menu (Esc / Guide / Start+Select). --launcher brings back the
-    // pre-game window.
+    // No pre-game window; disc setup, netplay and options live in the
+    // in-game menu (Esc / Guide / Select / Start+Select). --launcher brings
+    // back the pre-game window.
     {"launcher.in_game", Vis::Auto, "auto"},
+    // The menu is the first screen; Resume starts the race (owner,
+    // 2026-10-27). --no-launcher / skip_launcher boot straight in.
+    {"launcher.boot_menu", Vis::Auto, "auto"},
+    // Select alone opens the menu: R4 has no use for Select on its own
+    // (owner, 2026-10-28). Select + button shortcuts still work.
+    {"launcher.select_menu", Vis::Auto, "auto"},
     {"disc.toolchain", Vis::Hidden, nullptr},
     {"bios.select", Vis::Hidden, nullptr},
     // Settings page: volume only; memory cards use the default cards.
