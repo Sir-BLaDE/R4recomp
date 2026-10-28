@@ -2,6 +2,36 @@
 
 ## Current work (2026-10-26)
 
+Render-thread CPU per output (2026-10-27, clone `C:/Users/Shokunin/dev/r4-glctx`,
+fork `r4/main` now `0bcc5a49`, R4 pins it). First the GL fixture harness: nine
+fixtures no longer compiled on `r4/main` (duplicate telemetry/menu/sampler
+stubs after the merges; `gl_async_expire_test` registered with a
+`--compare-env` the runner never had); repaired on `fix/gl-fixture-harness`.
+The mask-mode scale check then failed for real: with accurate blending (the
+default) a modulated texel came out 1/255 brighter (white 248 -> 249) because
+the shader multiplied by colour/255*2; it now computes (texel8*colour8)>>7.
+Then two measured levers from the glctx findings: HD texture-pack tracking
+(every textured draw queried the pack with three vectors, a CLUT hash and a
+lease allocation; every primitive's invalidation note split its rect into a
+vector) is allocation-free on the miss path and index-driven, and the
+presenter waits up to `PSX_PRESENT_ADMIT_WAIT_MS` (25 ms, 0 = old refusal) for
+a slot instead of dropping a finished timed output. Hidden 1440p/120 probes:
+replay 2.7-3.5 -> 2.0 ms per output, HD_NOTE 944 -> 71 ms and TEX_TRI 1898 ->
+1334 ms per 15 s, refusals 62-200 -> 3, presents 1642-1741 -> 1799/1800. The
+physical 1440p/120 DXGI count did not move on this quieter host (base 111.9,
+115.2; new 111.1, 110.3 distinct/s, presenter at 120 presents/s in all four):
+the remaining loss is duplicate presents in one-second dips, not render-thread
+time. Still on the render thread per output: compose/postfx (postfx_present
+~10 % of samples, temporal mask/depth capture 2.5 %, window copy), PGXP seam
+snapping (~6 %, already a hashed index), per-record exec dispatch (~3 %),
+software raster of the live frame under HD authority (~3 %). Dynres: `gpu_ms`
+is one GL_TIME_ELAPSED query around the whole frame, so it is the GPU-side
+span including waits for the render thread, not busy time; at 8K/60 it reads
+15.4-15.8 ms and holds dynres at level 5 (1600x1200) while per-record GPU work
+is small (glctx: ~0.15 ms per output), so the 8K internal resolution is
+CPU-span-limited. A busy-time measure would need per-batch queries summed
+(as `PSX_GL_ASYNC_GPU_OPS=1` does); not built.
+
 Second GL replay context for the extra frames: measured, not built
 (2026-10-27, clone `C:/Users/Shokunin/dev/r4-glctx`, fork PR
 [psxrecomp #3](https://github.com/tetrisgm/psxrecomp/pull/3), branch

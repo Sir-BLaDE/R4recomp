@@ -5,7 +5,7 @@ that fork carries over upstream master is listed here with its upstream PR.
 When this table is empty, re-pin to upstream master and archive the fork.
 
 The latest full upstream-master sync is `d108e9a0` (2026-10-24). The current
-fork pin `ab9d181d` additionally backports merged #761, #769–#772, #727's
+fork pin `0bcc5a49` (on `ab9d181d`, below) additionally backports merged #761, #769–#772, #727's
 final pixel fixture, and #773's restore-scope repair. Full master sync was
 tested locally but cannot be promoted as a pin bump: upstream #766 removes
 Graphics presets and launcher settings still used by R4. A mechanical merge
@@ -37,3 +37,7 @@ targeted pin; generated game C is unchanged. The fork-only changes below remain.
 | Presenter cadence diagnostics and OpenBIOS stamp refresh | `feat/present-cadence-stats`, `fix/openbios-stamp-current` | none yet | in `r4/main`; stamp checked on PC/Mac |
 | Windows render-thread scheduling under host load | `fix/render-thread-priority` | none yet | in `r4/main` (`688380ef`); `PSX_RENDER_THREAD_PRIORITY=0` disables it |
 | Abort already-expired async GPU replay and roll back its private transaction | `fix/async-expiry` | none yet | in `r4/main` (`35b3849e`); Windows/Mac GL pixel and stencil parity, short R4 race with zero dispatch misses |
+| GL fixture harness repair: shared stubs, `run_gl_render_thread.py --compare-env` | `fix/gl-fixture-harness` | none yet | in `r4/main` (`c6c0c62b`); all 18 GL fixtures pass on the PC |
+| Exact texture modulation in the accurate blend basis ((texel8*colour8)>>7; was *2/255, +1/255 on modulated texels) | `fix/gl-fixture-harness` | none yet | in `r4/main` (`54369270`); mask-mode scale fixture, blend-accuracy oracle 0 mismatches |
+| HD texture-pack tracking: allocation-free miss path, index-driven invalidation test, CLUT hashed only for replaceable candidates | `perf/render-thread-cpu-hd-tracking` | none yet | in `r4/main` (`dfc39ed6`, `78ce6940`); identical render-thread digests, R4 HD_NOTE replay 944 -> 71 ms per 15 s |
+| Presenter: wait up to `PSX_PRESENT_ADMIT_WAIT_MS` (25) for a slot before refusing a timed output | `perf/render-thread-cpu-hd-tracking` | none yet | in `r4/main` (`0bcc5a49`); present_thread_test 123/123, R4 refusals 62-200 -> 3 per 15 s |

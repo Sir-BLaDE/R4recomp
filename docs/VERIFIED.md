@@ -19,6 +19,8 @@ Evidence dirs are local (not tracked).
 | Dynres floor 1080p (1200 lines) | 12ba3f4 / ab9d181d | vdisp `result.json` dynres stats |
 | Hide rear-view mirror | 12ba3f4 / ab9d181d | vdisp `mirror_compare.png` |
 | Projection replay (framework PSXDrawReplay) for R4 extra frames | tried on 243eca3, reverted: 33.4 vs 113.3 distinct/s at 1440p/120, +30% CPU per pass | HANDOFF 2026-10-27 |
+| Render-thread CPU per extra frame (HD tracking miss path) and presenter admission wait | pin PR / 0bcc5a49 | `C:/Users/Shokunin/dev/r4-glctx/analysis/rt-*`, `phys-*`; GL fixtures `scratchpad/glfix-final` |
+| GL fixtures (18) and present_thread_test on the fork | pin PR / 0bcc5a49 | same |
 | Extra Trial widescreen | not verified (3f493ea reverted) | — |
 | Windows package | df285a0 | `analysis/release-assets-v021-20261027` |
 | macOS packages (arm64, x64) | df285a0 | same |
