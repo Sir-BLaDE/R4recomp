@@ -95,3 +95,11 @@ Test in proportion to the change; a full gate only before a release.
 - Mechanical steps (build, package, audit, smoke) go to cheaper agents; keep
   the expensive model for review and on-screen judgment.
 - Smoke once per build, not once per agent.
+
+## Screen rules (owner, 2026-10-27)
+
+- Never open a visible game window or change the display mode while the
+  owner may be at the PC. Use `--hidden-window` and debug-server dumps.
+  Physical on-screen captures only when the owner says the PC is free.
+- Kill only processes you started; if the owner closes the game, it stays
+  closed.
