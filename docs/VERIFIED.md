@@ -15,7 +15,7 @@ Evidence dirs are local (not tracked).
 | 60 FPS races (59/s, max gap 35 ms, loaded PC); 30 steady | 12ba3f4 / ab9d181d | vdisp `vis-fps-clean2`, `vis-rate30` |
 | Max Detail, no pop-in | 12ba3f4 / ab9d181d | vdisp `vis-slot8-maxdetail/burst_*.png` |
 | HD HUD | 12ba3f4 / ab9d181d | vdisp `hud_*_1to1.png` |
-| PGXP + seam snapping at 18x | 12ba3f4 / ab9d181d | vdisp `vis-219-force18/crop18_*.png` |
+| PGXP + seam snapping at 18x (strips only where the neighbour is: no kerb / lane-mark bars) | pin PR / 9d93976c | `C:/Users/Shokunin/dev/r4-pgxp/analysis/pgxp/evidence` (tick-exact attract-demo captures, before / after / snapping off), `runs/async-verify2` (prepared seams mismatch 0, 394,170 triangles verified), `runs/smoke2` headless 0 misses |
 | Dynamic resolution | off by default since 249b5c3 (owner) | — |
 | Dynres climbs at 8K/60 (CPU cost, queued-output cost, cadence guard); worker output-grid lead bound | pin PR / e4efba40 | `C:/Users/Shokunin/dev/r4-glctx/analysis/k8d-*`, `k8g-new45w` (one on-screen run), fixtures `scratchpad/psx-build/fwctest.log`; settle level on a quiet panel unverified |
 | Hide rear-view mirror | 12ba3f4 / ab9d181d | vdisp `mirror_compare.png` |
