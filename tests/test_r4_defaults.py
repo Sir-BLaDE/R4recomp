@@ -84,10 +84,13 @@ def test_manifests():
     fr = manifest('r4.enhancement.frame-rate')
     check(feature(fr, 'frame-rate').get('default_enabled') is True,
           'frame rate: draw-only interpolation is on by default')
-    check(option_default(fr, 'frame-rate', 'rate') == '60',
-          'frame rate: 60 FPS presentation by default, independent of 30 Hz logic')
-    check(set(option_values(fr, 'frame-rate', 'rate')) == {'30', '60', '90', '100', '120', '144', 'display'},
-          'frame rate: fixed rates, display refresh and original 30 FPS')
+    check(option_default(fr, 'frame-rate', 'rate') == 'auto',
+          'frame rate: Auto by default (60 FPS; original 30 at 18x/8K; owner 2026-10-27)')
+    check(set(option_values(fr, 'frame-rate', 'rate')) == {'auto', '30', '60', '90', '100', '120', '144', 'display'},
+          'frame rate: auto, fixed rates, display refresh and original 30 FPS')
+    plugin = open(os.path.join(ROOT, 'src', 'mods', 'r4_frame_rate_plugin.c'), encoding='utf-8').read()
+    check('R4_FR_AUTO_ORIGINAL_SCALE 18u' in plugin and 'psx_mod_internal_scale()' in plugin,
+          'frame rate: Auto resolves from the internal scale, original frames from 18x')
     check(not any(o['id'] in ('method', 'blend') for o in fr.get('option', [])),
           'frame rate: no crossfade or image-warp option')
 

@@ -13,6 +13,7 @@ Evidence dirs are local (not tracked).
 | JogCon compat | 12ba3f4 / ab9d181d | `tools/test_jogcon_runtime.py` |
 | Widescreen Fit 16:9 / 21:9 (GP, TA, VS) | 12ba3f4 / ab9d181d | `C:/Users/Shokunin/dev/r4-vdisp/analysis/vdisp/vis-default-60b`, `vis-219-force18` |
 | 60 FPS races (59/s, max gap 35 ms, loaded PC); 30 steady | 12ba3f4 / ab9d181d | vdisp `vis-fps-clean2`, `vis-rate30` |
+| Race frame rate Auto: 60, original 30 from internal scale 18 (8K) | pin PR / e887344e | fork render_pass_motion_test; `tests/test_r4_defaults.py`; R4 32/32; headless smoke to race-12s (frame 9073) 0 dispatch / 0 segment misses with the log line `r4.framerate: auto -> 30 FPS (internal scale 18)` on the 8K PC; on-screen 18x not run (owner playtest) |
 | Max Detail, no pop-in | 12ba3f4 / ab9d181d | vdisp `vis-slot8-maxdetail/burst_*.png` |
 | HD HUD | 12ba3f4 / ab9d181d | vdisp `hud_*_1to1.png` |
 | PGXP + seam snapping at 18x (strips only where the neighbour is: no kerb / lane-mark bars) | pin PR / 9d93976c | `C:/Users/Shokunin/dev/r4-pgxp/analysis/pgxp/evidence` (tick-exact attract-demo captures, before / after / snapping off), `runs/async-verify2` (prepared seams mismatch 0, 394,170 triangles verified), `runs/smoke2` headless 0 misses |

@@ -85,7 +85,7 @@ Switching a feature off gives you the stock game for that part.
 | **JogCon input**: recognized steering wheels drive as R4's JogCon; ordinary gamepads use native DualShock analog steering | Yes | Mods → **JogCon Input** off; the pad mode is under Settings → Controller |
 | **PGXP**: steady geometry and straight (perspective-correct) textures, with precise culling so the far road has no gaps | Yes | Mods → Visual → **PGXP Precision** off, or turn only its **Precise culling** option off |
 | **Max Detail**: longer draw distance (far bridges, buildings and road no longer pop in), full course and car detail at every distance, 1P detail in split screen, car reflections in the race | Yes | Mods → Detail → **R4 Max Detail** off, or set any one option (Draw distance, Course detail, Car detail, Split screen, Car reflections) back to **Stock**. Mirror scenery stays Stock unless you choose Full |
-| **Race frame rate**: 60 FPS by default; extra frames are drawn with the game's own code while logic keeps its original 30 Hz cadence. Choose 30, 60, 90, 100, 120, 144 FPS or Match display refresh; achieved rate depends on resolution and GPU load | Yes, 60 FPS | Mods → Display → **Race frame rate** → Presentation rate **30 FPS (original)**, or turn the mod off |
+| **Race frame rate**: Auto by default — 60 FPS, or the original 30 FPS at an 8K (18x) internal resolution, where the GPU cannot hold 60; extra frames are drawn with the game's own code while logic keeps its original 30 Hz cadence. Choose 30, 60, 90, 100, 120, 144 FPS or Match display refresh; achieved rate depends on resolution and GPU load | Yes, Auto | Mods → Display → **Race frame rate** → Presentation rate **30 FPS (original)**, or turn the mod off |
 | **VS split screen**: the OpenGL renderer draws 2P split screen in about a tenth of the draws (same picture) | Yes | Set `PSX_GL_TEXWIN_BATCH=0` for one run |
 | **Widescreen**: races fill the window at whatever shape you give it (Fit to Window), with real extra scenery at the sides and the HUD at the edges | Yes, Fit to Window | Mods → Display → **R4 Custom Renderer** off (stock 4:3), or pick 16:9 / 21:9 / 32:9 |
 | **Match display + supersampling**: the game renders at your monitor's pixel height (up to 8K/18×), times 1.5 on displays under 4K, and is resolved down, for clean edges (no blur filter on top) | Yes | Settings → Display → **Graphics preset** (Low renders at native resolution without supersampling); the preset sets the internal resolution |
@@ -241,7 +241,10 @@ Not offered in R4 (owner, 2026-10-20): psxrecomp's frame generation is off in
 every graphics preset and its launcher row is hidden. Race logic keeps its
 original 30 Hz cadence.
 
-The **Race frame rate** mod (on by default) shows races at 60 FPS. Between
+The **Race frame rate** mod (on by default) shows races at 60 FPS, or at the
+original 30 FPS when the internal resolution resolves to 18x (8K Match
+display), where the GPU cannot hold 60 (**Auto**; pick **60 FPS** to force
+it). Between
 two game ticks it redraws the race with the game's own draw routines and the
 cars and camera placed halfway, then restores the machine exactly, so logic,
 input and audio keep the original 30 Hz cadence. Presentation rate **30 FPS
