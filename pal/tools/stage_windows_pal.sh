@@ -23,8 +23,6 @@ mkdir -p "$STAGE/bios" "$STAGE/licenses" "$STAGE/disc"
 cp "$BUILD/$NAME.exe" "$STAGE/"
 cp "$BUILD/psx_game_version.txt" "$STAGE/"
 cp -r "$BUILD/assets" "$STAGE/assets"
-# Stock launcher skin (default) instead of the R4 skin.
-rm -rf "$STAGE/assets/skins/r4"
 cp -r "$ROOT/postfx" "$STAGE/postfx"
 cp "$BUILD/bios/openbios.bin" "$BUILD/bios/OpenBIOS.LICENSE" "$STAGE/bios/"
 cp "$BUILD/game.toml" "$STAGE/game.toml"
