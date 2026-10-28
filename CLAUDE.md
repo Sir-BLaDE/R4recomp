@@ -102,6 +102,7 @@ Test in proportion to the change; a full gate only before a release.
   owner may be at the PC. Use `--hidden-window` and debug-server dumps.
   Physical on-screen captures only when the owner says the PC is free.
 - PGXP (geometry correction + perspective texturing) is never turned off or
-  made a fallback (owner, 2026-10-27). Fix or disable the faulty sub-feature.
+  made a fallback, and is never run off even as a test reference (owner,
+  2026-10-27). Bisect among its sub-features; fix or disable the faulty one.
 - Kill only processes you started; if the owner closes the game, it stays
   closed.
