@@ -2,6 +2,7 @@
 	path = psxrecomp
 	url = https://github.com/RetroPortingToolKit/psxrecomp.git
 	branch = master
+	ignore = dirty
 [submodule "recomp-ui"]
 	path = recomp-ui
 	url = https://github.com/RetroPortingToolKit/recomp-ui.git
