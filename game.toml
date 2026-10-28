@@ -39,6 +39,21 @@ strict = true
 mod_function_entry_funcs = ["0x8007D4B4"]
 
 [runtime]
+# Skip PsyQ libetc v_wait (the VSync spin R4 runs every frame) in whole loop
+# passes up to the next device event: guest cycles, device writes and
+# scratchpad are unchanged (frame_fingerprint judge columns identical over
+# 700+ race frames at the 300% overclock); -14% emulation-thread time.
+# Audit of the SLPS-01798 v_wait at 0x8008B068 (docs/config_schema.md
+# contract): it stores timeout << 15 at 0x10(sp) and returns if the VSync
+# count (0x800A6178) already reached a0; 0x8008B090 loads the counter,
+# subtracts 1, stores and reloads it, taking the timeout path (0x8008B0B0:
+# "VSync: timeout", ChangeClearPAD(0), ChangeClearRCnt(3,0)) only at -1;
+# 0x8008B0D8 reloads the VSync count and loops while it is below a0; exit
+# 0x8008B0F0. The -1 test is the only counter-dependent exit; the counter is
+# a private stack slot.
+idle_skip = true
+idle_skip_store_counters = true
+idle_skip_store_counter_sites = ["0x8008B090", "0x8008B0D8"]
 window_title = "R4 Recompiled"
 memcard_dir = "saves"
 overlay_cache = true
@@ -66,6 +81,10 @@ render_thread = true
 [timing]
 guest_cycle_scale = 3
 guest_cycle_scale_gated = true
+# Scaled CPU charges batched like the scale-1 path (same fractional carry and
+# flush points, guest timing unchanged; framework-verified on R4 races).
+# Measured -7% emulation-thread time in a race.
+guest_cycle_scale_batch = true
 
 # The 16:9 GameShark patch does its own FOV/HUD work and expects a plain
 # stretched 16:9 present. native_wide=false keeps the presenter on the

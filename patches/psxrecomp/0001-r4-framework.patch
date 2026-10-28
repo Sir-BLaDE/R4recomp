@@ -18,8 +18,40 @@ index a79acf7d..71ba733d 100644
          SDL_SyncWindow(window);
  #elif defined(PSX_SDL3)
          if (!SDL_SetWindowFullscreen(window, true)) return -1;
+diff --git a/runtime/src/debug_server.c b/runtime/src/debug_server.c
+index d601c9fd..5b18b12b 100644
+--- a/runtime/src/debug_server.c
++++ b/runtime/src/debug_server.c
+@@ -10609,6 +10609,7 @@ encode:;
+  * surface was actually allocated at (after the driver/memory clamp), the
+  * driver limit, the hr surface size, and the window's point and pixel sizes
+  * (the HiDPI drawable). Everything a preset needs to be verified against. */
++extern uint64_t g_dtp_calls, g_dtp_hits, g_dtp_misses, g_dtp_groups, g_dtp_hashes, g_dtp_clears;
+ static void handle_hd_textures(int id, const char *json)
+ {
+     GpuHdTextureDiag info;
+@@ -10655,6 +10656,7 @@ static void handle_hd_textures(int id, const char *json)
+              "\"composition_hits\":%llu,\"composition_builds\":%llu,\"composition_pixels\":%llu,"
+              "\"gl_uploads\":%llu,\"gl_evictions\":%llu,"
+              "\"decoded_images\":%llu,\"decode_evictions\":%llu,\"decoded_bytes\":%llu,"
++             "\"matcher\":{\"calls\":%llu,\"hits\":%llu,\"misses\":%llu,\"groups\":%llu,\"hashes\":%llu,\"clears\":%llu},"
+              "\"diagnostic\":\"%s\"}",
+              id, root_json, info.active ? "true" : "false",
+              info.replacements ? "true" : "false", info.dump ? "true" : "false", info.format,
+@@ -10670,7 +10672,10 @@ static void handle_hd_textures(int id, const char *json)
+              (unsigned long long)info.composition_pixels,
+              (unsigned long long)info.gl_uploads, (unsigned long long)info.gl_evictions,
+              (unsigned long long)info.decoded_images, (unsigned long long)info.decode_evictions,
+-             (unsigned long long)info.decoded_bytes, diagnostic_json);
++             (unsigned long long)info.decoded_bytes, (unsigned long long)g_dtp_calls, (unsigned long long)g_dtp_hits,
++             (unsigned long long)g_dtp_misses, (unsigned long long)g_dtp_groups,
++             (unsigned long long)g_dtp_hashes, (unsigned long long)g_dtp_clears,
++             diagnostic_json);
+ }
+ 
+ /* Dynamic internal resolution ([video] dynamic_resolution; docs/TCP_COMMANDS.md).
 diff --git a/runtime/src/duckstation_texture_pack.cpp b/runtime/src/duckstation_texture_pack.cpp
-index 3ca48b1b..65545cda 100644
+index 3ca48b1b..854751ca 100644
 --- a/runtime/src/duckstation_texture_pack.cpp
 +++ b/runtime/src/duckstation_texture_pack.cpp
 @@ -41,7 +41,8 @@ namespace {
@@ -32,7 +64,7 @@ index 3ca48b1b..65545cda 100644
  constexpr size_t kMaxDumps = 8192;
  constexpr size_t kMaxDumpQueue = 8;
  constexpr size_t kMaxDecodeQueue = 32;
-@@ -166,15 +167,57 @@ struct Source {
+@@ -166,15 +167,63 @@ struct Source {
  struct Upload { std::shared_ptr<Source> source; Rect active{}; unsigned splits = 0; };
  struct PageSource { std::shared_ptr<Source> source; uint8_t depth = 0; uint16_t clut_x = 0, clut_y = 0; };
  struct CopyUpdate { Rect original, active; unsigned splits; };
@@ -42,6 +74,12 @@ index 3ca48b1b..65545cda 100644
      Rect texels;
      std::unordered_map<uint64_t, std::vector<size_t>> hashes;
 +    uint64_t visit = 0;    /* query stamp: a group is checked once per lookup */
++    /* Last VRAM hash of this group's rectangle in each of the 32 texture
++     * pages, valid while the covered tiles' generation signature is
++     * unchanged (the same rule as the rect cache). A missed match probes
++     * ~100 groups; a direct array slot replaces a node-map probe each. */
++    struct Memo { const uint16_t* vram = nullptr; uint64_t revision = 0, sig = 0, hash = 0;
++                  const std::vector<size_t>* entries = nullptr; } memo[32];   /* hashes is immutable */
  };
 +/* Page-relative spatial index of the page groups: 16x16 cells of 16x16
 + * texels. A lookup used to walk every geometry of the pack (about 1400 with
@@ -91,7 +129,7 @@ index 3ca48b1b..65545cda 100644
  };
  struct Image { std::vector<uint8_t> rgba; uint32_t w = 0, h = 0; };
  struct Lease { std::shared_ptr<Image> image; };
-@@ -347,6 +390,8 @@ struct DuckTexturePack {
+@@ -347,6 +396,8 @@ struct DuckTexturePack {
      std::vector<Entry> entries;
      std::array<std::unordered_map<uint64_t, std::vector<size_t>>, 3> uploads_by_hash;
      std::array<std::unordered_map<uint64_t, PageGroup>, 3> page_groups;
@@ -100,7 +138,7 @@ index 3ca48b1b..65545cda 100644
      std::unordered_map<std::string, size_t> by_name;
      std::vector<Upload> uploads;
      std::vector<PageSource> pages;
-@@ -354,8 +399,13 @@ struct DuckTexturePack {
+@@ -354,8 +405,13 @@ struct DuckTexturePack {
      std::vector<CopyUpdate> copy_updates;
      Rect copy_destination{};
      bool copy_pending = false;
@@ -116,7 +154,7 @@ index 3ca48b1b..65545cda 100644
      std::shared_ptr<DumpHistory> dump_history = std::make_shared<DumpHistory>();
      DuckTextureConfig config{0,0,0,16,16,128,128,0,0,0,1,0,1,0,0};
      size_t snapshot_bytes = 0, palette_records = 0;
-@@ -390,19 +440,74 @@ void add_entry(DuckTexturePack& p, const DuckTextureKey& key, const fs::path& pa
+@@ -390,19 +446,71 @@ void add_entry(DuckTexturePack& p, const DuckTextureKey& key, const fs::path& pa
      else {
          const uint64_t geometry = (uint64_t(key.offset_x) << 48) | (uint64_t(key.offset_y) << 32) |
                                    (uint64_t(key.width) << 16) | key.height;
@@ -135,6 +173,9 @@ index 3ca48b1b..65545cda 100644
      }
      p.entries.push_back({key, path.u8string(), false});
  }
+-uint64_t cached_hash(DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r) {
+-    for (const auto& saved : p.rect_cache)
+-        if (saved.vram == q.vram && saved.rect.x == r.x && saved.rect.y == r.y && saved.rect.w == r.w && saved.rect.h == r.h) return saved.hash;
 +uint64_t tile_sig(const DuckTexturePack& p, Rect r) {
 +    if (!r.w || !r.h) return 0;
 +    uint64_t sum = 0;
@@ -174,16 +215,11 @@ index 3ca48b1b..65545cda 100644
 +    mark_tiles(p, Rect{q.page_x, q.page_y, 256 / ppw, 256});
 +    if (q.depth < 2) mark_tiles(p, Rect{q.clut_x, q.clut_y, std::min(q.depth == 0 ? 16u : 256u, 1024u - q.clut_x), 1});
 +}
-+bool rect_cached(const DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r) {
-+    const auto it = p.rect_cache.find(RectKey{q.vram, r.x, r.y, r.w, r.h});
-+    return it != p.rect_cache.end() && it->second.sig == tile_sig(p, r);
-+}
- uint64_t cached_hash(DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r) {
--    for (const auto& saved : p.rect_cache)
--        if (saved.vram == q.vram && saved.rect.x == r.x && saved.rect.y == r.y && saved.rect.w == r.w && saved.rect.h == r.h) return saved.hash;
++uint64_t cached_hash(DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r, bool* was_cached = nullptr) {
 +    const RectKey key{q.vram, r.x, r.y, r.w, r.h};
 +    const uint64_t sig = tile_sig(p, r);
 +    const auto saved = p.rect_cache.find(key);
++    if (was_cached) *was_cached = saved != p.rect_cache.end() && saved->second.sig == sig;
 +    if (saved != p.rect_cache.end() && saved->second.sig == sig) return saved->second.hash;
      const uint64_t value = duck_texture_hash_rect(q.vram, q.vram_word_count, r.x, r.y, r.w, r.h);
      if (p.rect_cache_limit) {
@@ -195,7 +231,7 @@ index 3ca48b1b..65545cda 100644
      }
      return value;
  }
-@@ -838,6 +943,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+@@ -838,6 +946,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
          return false;
      };
      bool hit = false;
@@ -203,7 +239,7 @@ index 3ca48b1b..65545cda 100644
      for (const auto& upload : p->uploads) if (touches(upload.active)) { hit = true; break; }
      if (!hit) for (const auto& page : p->pages) {
          if (touches(page.source->rect)) { hit = true; break; }
-@@ -845,13 +951,6 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+@@ -845,13 +954,6 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
              if (record.depth < 2 && touches({record.clut_x,record.clut_y,record.palette_size,1})) { hit = true; break; }
          if (hit) break;
      }
@@ -217,7 +253,7 @@ index 3ca48b1b..65545cda 100644
      if (!hit) return;
      ++p->revision;
      bool released = false;   /* a residency record dropped or split */
-@@ -889,13 +988,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+@@ -889,13 +991,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
              return false;
          }),p->pages.end());
          released = released || p->pages.size() != pages_before;
@@ -232,11 +268,11 @@ index 3ca48b1b..65545cda 100644
      }
      /* Only a dropped record can leave a source unreferenced. */
      if (released) retire_unused(*p);
-@@ -1023,21 +1116,24 @@ int duck_texture_pack_match_draw(DuckTexturePack* p, const HdTextureDrawQuery* q
+@@ -1023,21 +1119,24 @@ int duck_texture_pack_match_draw(DuckTexturePack* p, const HdTextureDrawQuery* q
      if (winner == size_t(-1)) return HD_TEXTURE_LOOKUP_NONE;
      *out = parts[winner]; return HD_TEXTURE_LOOKUP_FOUND;
  }
-+extern "C" { uint64_t g_dtp_calls, g_dtp_hits, g_dtp_misses, g_dtp_groups, g_dtp_hashes; }
++extern "C" { uint64_t g_dtp_calls, g_dtp_hits, g_dtp_misses, g_dtp_groups, g_dtp_hashes, g_dtp_clears; }
  int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery* q, int st,
                                     DuckTextureMatch* output, size_t capacity, size_t* out_count) {
 +    g_dtp_calls++;
@@ -262,7 +298,7 @@ index 3ca48b1b..65545cda 100644
          const unsigned ppw = expansion(q->depth);
          std::vector<DuckTextureMatch> candidates;
          bool over_budget = false; size_t checked = 0;
-@@ -1074,13 +1170,21 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
+@@ -1074,17 +1173,38 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
              if (over_budget) break;
          }
          size_t groups_checked = 0, hashed_bytes = 0;
@@ -284,18 +320,38 @@ index 3ca48b1b..65545cda 100644
 -            const bool cached = std::any_of(p->rect_cache.begin(),p->rect_cache.end(),[&](const RectHash& c) {
 -                return c.vram == q->vram && c.rect.x == rect.x && c.rect.y == rect.y && c.rect.w == rect.w && c.rect.h == rect.h;
 -            });
-+            const bool cached = rect_cached(*p, *q, rect);
-+            if (!cached) g_dtp_hashes++;
-             if (!cached) hashed_bytes += size_t(rect.w) * rect.h * 2;
+-            if (!cached) hashed_bytes += size_t(rect.w) * rect.h * 2;
++            /* One cache probe per group: the hash and whether it was cached
++             * (the budget counts only rectangles actually hashed). */
              if (++groups_checked > 4096 || hashed_bytes > 4u*1024u*1024u) { over_budget = true; break; }
-             const auto found = group.hashes.find(cached_hash(*p,*q,rect));
-@@ -1120,8 +1224,9 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
+-            const auto found = group.hashes.find(cached_hash(*p,*q,rect));
+-            if (found != group.hashes.end()) for (const size_t index : found->second) {
++            bool cached = false;
++            uint64_t rect_hash = 0;
++            PageGroup::Memo& memo = gp->memo[((q->page_x / 64u) & 15u) | ((q->page_y / 256u) & 1u) << 4];
++            const uint64_t sig = tile_sig(*p, rect);
++            /* revision: a tracking reset (save-state load, new VRAM) replaces
++             * VRAM without bumping tile generations. */
++            if (!(memo.vram == q->vram && memo.sig == sig && memo.revision == p->revision + 1)) {
++                rect_hash = cached_hash(*p,*q,rect,&cached);
++                const auto found = group.hashes.find(rect_hash);
++                memo.vram = q->vram; memo.sig = sig; memo.hash = rect_hash;
++                memo.entries = found != group.hashes.end() ? &found->second : nullptr;
++                memo.revision = p->revision + 1;   /* 0 = never filled */
++                if (!cached) { g_dtp_hashes++; hashed_bytes += size_t(rect.w) * rect.h * 2; }
++            }
++            (void)rect_hash;
++            if (memo.entries) for (const size_t index : *memo.entries) {
+                 if (++checked > 4096) { over_budget = true; break; }
+                 consider(index,r.x,r.y,rect);
+             }
+@@ -1120,8 +1240,9 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
              if (a.clip_v != b.clip_v) return a.clip_v < b.clip_v;
              return a.clip_u < b.clip_u;
          });
 -        if (p->match_cache.size() >= 256) p->match_cache.erase(p->match_cache.begin());
 -        p->match_cache.push_back({*q,st != 0,status,parts});
-+        if (p->match_cache.size() >= kMaxMatchCache) p->match_cache.clear();
++        if (p->match_cache.size() >= kMaxMatchCache) { p->match_cache.clear(); g_dtp_clears++; }
 +        p->match_cache[match_key(*q, st)] = MatchCache{*q,st != 0,status,parts,query_sig(*p, *q)};
 +        mark_query(*p, *q);
          if (parts.size() > capacity) return HD_TEXTURE_LOOKUP_ERROR;
@@ -353,3 +409,112 @@ index 6eb0abeb..2c254a75 100644
      if (enabled && !s_ram) {
          s_ram = (PGXPValue *)std::calloc(PGXP_SHADOW_WORDS, sizeof(PGXPValue));
          if (s_ram)
+diff --git a/runtime/src/psx_cycles.c b/runtime/src/psx_cycles.c
+index 7d8eb06a..f1447109 100644
+--- a/runtime/src/psx_cycles.c
++++ b/runtime/src/psx_cycles.c
+@@ -597,6 +597,14 @@ static int32_t  s_idle_progress_delta = 0;
+ static uint64_t s_idle_last_cycle = 0;
+ static uint64_t s_idle_last_stores = 0;
+ static uint64_t s_idle_last_mmio = 0;
++/* Guest cycle scale (overclock): a pass's CPU charges are scaled with a
++ * lossless fractional carry, so its published cycle delta alternates (x3:
++ * 10/11/10...) while its unscaled cost is constant. The pass is compared by
++ * W = delta * 65536 + frac_end - frac_start = recip_q16 * raw_cycles, and k
++ * skipped passes advance exactly floor((frac + k * W) / 65536) cycles and
++ * leave frac = (frac + k * W) mod 65536 -- what running them would publish. */
++static uint32_t s_idle_last_frac = 0;
++static uint64_t s_idle_w = 0;
+ 
+ static void idle_snapshot_regs(const CPUState *cpu) {
+     for (int i = 1; i < 32; i++) s_idle_gpr[i] = cpu->gpr[i];
+@@ -787,8 +795,21 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+             progress_reg = -2;              /* the store pattern changed */
+         }
+         uint32_t quantum = (uint32_t)(cyc - s_idle_last_cycle);
++        /* Under the scale the pass identity is its weighted raw cost W; a
++         * pass that also advanced unscaled device time (mul/div or GTE waits)
++         * is not a pure CPU pass and gives a W that is no multiple of the
++         * reciprocal, which is refused. */
++        uint64_t w = 0;
++        int same_cost = quantum == s_idle_quantum;
++        if (PSX_GCS_ACTIVE()) {
++            const int64_t wi = (int64_t)quantum * 65536 + (int64_t)g_psx_gcs_frac -
++                               (int64_t)s_idle_last_frac;
++            w = wi > 0 && (uint64_t)wi % g_psx_gcs_recip_q16 == 0u ? (uint64_t)wi : 0u;
++            same_cost = w != 0u && w == s_idle_w;
++            if (w == 0u) progress_reg = -2;
++        }
+         if (progress_reg != -2 && quantum > 0 && quantum <= IDLE_QUANTUM_MAX) {
+-            if (quantum == s_idle_quantum &&
++            if (same_cost &&
+                 progress_reg == s_idle_progress_reg &&
+                 progress_delta == s_idle_progress_delta &&
+                 mem_progress == s_idle_mem_progress &&
+@@ -796,6 +817,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+                 if (s_idle_streak < 1000000u) s_idle_streak++;
+             } else {
+                 s_idle_quantum = quantum;
++                s_idle_w = w;
+                 s_idle_progress_reg = progress_reg;
+                 s_idle_progress_delta = progress_delta;
+                 s_idle_mem_progress = mem_progress;
+@@ -828,6 +850,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+     }
+     s_idle_edges = 0;
+     s_idle_last_cycle  = cyc;
++    s_idle_last_frac   = g_psx_gcs_frac;
+     s_idle_last_stores = g_guest_store_count;
+     s_idle_last_mmio   = g_mmio_access_count;
+ 
+@@ -850,9 +873,20 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+         if ((uint64_t)dist <= lag) return;
+         dist -= (uint32_t)lag;
+     }
++    const int scaled = PSX_GCS_ACTIVE() && s_idle_w != 0u;
++    const uint64_t frac0 = g_psx_gcs_frac;
++    if (scaled) q = (uint32_t)((s_idle_w + 65535u) >> 16);   /* largest pass */
+     if (dist <= q) return;               /* one real iteration reaches it */
+     uint32_t k;
+-    if (s_idle_iter_edges == 0)
++    if (scaled) {
++        /* Same landing rules on the exact scaled clock: k passes publish
++         * S(k) = (frac0 + k * W) >> 16 cycles. */
++        const uint64_t target = (uint64_t)dist << 16;
++        if (s_idle_iter_edges == 0)      /* smallest k with S(k) >= dist */
++            k = (uint32_t)((target - frac0 + s_idle_w - 1u) / s_idle_w);
++        else                             /* largest k with S(k) <= dist - 1 */
++            k = (uint32_t)((target - frac0 - 1u) / s_idle_w);
++    } else if (s_idle_iter_edges == 0)
+         k = (dist + q - 1u) / q;         /* first check boundary >= event */
+     else
+         k = (dist - 1u) / q;             /* land on the anchor before it */
+@@ -867,6 +901,12 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+     }
+     if (k == 0) return;
+     uint64_t skip = (uint64_t)k * q;
++    uint32_t frac1 = 0;
++    if (scaled) {
++        const uint64_t t = frac0 + (uint64_t)k * s_idle_w;
++        skip = t >> 16;
++        frac1 = (uint32_t)(t & 0xFFFFu);
++    }
+     if (skip > IDLE_SKIP_MAX_CYCLES) return;
+ 
+     if (s_idle_progress_reg > 0)
+@@ -878,6 +918,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+     g_idle_skip_cycles += skip;
+     g_idle_skip_last_pc = check_pc;
+     g_idle_skip_last_quantum = q;
++    if (scaled) g_psx_gcs_frac = frac1;  /* the carry the skipped passes leave */
+     psx_advance_cycles((uint32_t)skip);  /* replays device events exactly */
+ 
+     /* Device servicing may have written RAM / raised I_STAT — the caller
+@@ -889,6 +930,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+     s_idle_store_addr = s_idle_mem_progress ? s_idle_store_addr : 0xFFFFFFFFu;
+     s_idle_store_val = s_idle_store_val - (s_idle_mem_progress ? k : 0u);
+     s_idle_last_cycle  = psx_cycle_count;
++    s_idle_last_frac   = g_psx_gcs_frac;
+     s_idle_last_stores = g_guest_store_count;
+     s_idle_last_mmio   = g_mmio_access_count;
+ #endif

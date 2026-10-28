@@ -6,6 +6,18 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release and
 an HD texture pack.
 
+ES - Novedades de la 0.6 (rendimiento)
+--------------------------------------
+- PGXP con modo CPU y culling preciso ACTIVADOS por defecto (geometria sin
+  huecos ni temblores) y sin caidas de frames: la rutina 16:9 del parche, que
+  gastaba un tercio de cada frame de la consola emulada, ahora se ejecuta sin
+  consumir tiempo emulado.
+- El emulador se salta el bucle en el que el juego espera al VSync (mismo
+  resultado frame a frame) y agrupa la contabilidad de ciclos: ~20% menos de
+  carga en el hilo de emulacion.
+- Busqueda de texturas HD mas ligera en el hilo de render.
+- El registro de rendimiento cuenta bien los frames del juego.
+
 ES - Novedades de la 0.5
 ------------------------
 - Coche negro / reflejos rotos: el mapa de reflejos del coche se pintaba
@@ -44,9 +56,8 @@ ES - Inicio rapido
      - "HD Texture Packs": fuente HD nueva para el texto en espanol, finales
        en HD; las hojas de texto de menus/HUD redibujadas como contornos
        vectoriales y el resto de graficos 2D reescalados 4x con Real-ESRGAN.
-     - "PGXP": geometria sin temblores. El "Precise culling" viene
-       DESACTIVADO: con el parche de 60 FPS hacia perder frames al juego
-       (p. ej. en la S antes del puente del primer circuito).
+     - "PGXP": geometria sin temblores, con modo CPU y "Precise culling"
+       activados.
      - "R4 analog steering (JogCon)": el mando se presenta como un JogCon.
      - "R4 performance log": escribe R4_perf_log.txt (ver punto 7).
 4. Mando (el juego solo admite volante analogico con JogCon/NeGcon, asi que
@@ -74,6 +85,13 @@ AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
 
+EN - New in 0.6
+---------------
+PGXP CPU mode + precise culling on by default with no frame drops (the 16:9
+patch routine no longer spends guest time); VSync wait loop skipped exactly
+and cycle accounting batched (~20% less emulation-thread load); lighter HD
+texture lookup; correct game-fps counting in the perf log.
+
 EN - New in 0.5
 ---------------
 HD replacements keep the PS1's per-texel semi-transparency (car reflection
@@ -90,8 +108,7 @@ EN - Quick start
 2. Everything is on by default: the 60 FPS + 16:9 patch (its routines are
    compiled into the executable), Spanish text from the PAL release (PAL
    line breaks), the HD texture pack (vector-redrawn text sheets, Real-ESRGAN
-   for the rest) and PGXP (precise culling off: it cost the 60 FPS patch
-   frames). Gamepad = JogCon: left stick steers, RT/R1/Cross accelerate,
+   for the rest) and PGXP (CPU mode and precise culling on). Gamepad = JogCon: left stick steers, RT/R1/Cross accelerate,
    LT/L1/Square brake. Slow spots are logged to R4_perf_log.txt.
 3. The r4.spanish and HD texture packages carry data derived from the
    owner's discs: personal use only, do not redistribute.

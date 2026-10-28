@@ -4,7 +4,10 @@
  * Measured over 1-second windows (60 guest VBlanks):
  *   late  host VBlanks that arrived > 20 ms after the previous one (the
  *         emulator could not keep up: host-side slowdown)
- *   fps   frames the game itself finished (display-buffer flips). With the
+ *   fps   frames the game itself finished: display-start changes (GP1 05h)
+ *         read from the GPU timeline, so two flips inside one VBlank both
+ *         count (sampling the display address at VBlank counted them as one
+ *         or none). With the
  *         60 FPS patch this is ~60 in a race; a drop with no late VBlanks means
  *         the GAME ran out of guest CPU time (guest-side slowdown, cured by a
  *         higher CPU overclock, not by a faster PC)
@@ -30,6 +33,7 @@
 #include "mod_plugins.h"
 #include "dirty_ram_interp.h"
 #include "gpu.h"
+#include "gpu_timeline.h"
 
 #define R4PL_ID          "r4.perflog"
 #define R4PL_LATE_NS     20000000ull      /* 20 ms */
@@ -42,6 +46,7 @@ static uint32_t s_late, s_window_frames, s_flips, s_lines;
 static uint64_t s_worst_ns, s_sum_ns, s_insns_at_window;
 static uint64_t s_cpu_at_window, s_wall_at_window;
 static uint32_t s_last_disp = 0xFFFFFFFFu;
+static uint64_t s_tl_seq;                 /* next GPU-timeline entry to read */
 static uint64_t *s_prev_insns;            /* per PC-table slot, last window */
 static FILE *s_log;
 static int s_all = -1;
@@ -148,10 +153,14 @@ static void end_window(uint64_t wall_now) {
 static void r4pl_vblank(void) {
     const uint64_t t = now_ns();
     s_frame++;
-    GpuDisplayInfo di;
-    gpu_get_display_info(&di);
-    const uint32_t disp = di.display_x | (di.display_y << 16);
-    if (disp != s_last_disp) { s_flips++; s_last_disp = disp; }
+    const uint64_t tot = gpu_timeline_total();
+    if (tot - s_tl_seq > GPU_TIMELINE_CAP) s_tl_seq = tot - GPU_TIMELINE_CAP;
+    for (; s_tl_seq < tot; s_tl_seq++) {
+        GpuTimelineEntry e;
+        if (!gpu_timeline_get(s_tl_seq, &e) || e.kind != GTL_DISP_START) continue;
+        const uint32_t disp = e.a | (e.b << 16);
+        if (disp != s_last_disp) { s_flips++; s_last_disp = disp; }
+    }
     if (s_last_ns) {
         const uint64_t dt = t - s_last_ns;
         if (dt < 5000000000ull) {          /* ignore pauses / long loads */
@@ -180,12 +189,13 @@ static void r4pl_activate(void) {
     s_last_ns = 0;
     s_late = s_window_frames = s_flips = 0;
     s_worst_ns = s_sum_ns = 0;
+    s_tl_seq = gpu_timeline_total();
     s_insns_at_window = g_dirty_ram_insns_run;
     s_cpu_at_window = thread_cpu_ns();
     s_wall_at_window = now_ns();
 }
 
-static void r4pl_restore(void) { s_last_ns = 0; }
+static void r4pl_restore(void) { s_last_ns = 0; s_tl_seq = gpu_timeline_total(); }
 
 PSX_MOD_CONSTRUCTOR(r4pl_register_plugin) {
     psx_mod_register_activation_plugin(R4PL_ID, r4pl_activate);

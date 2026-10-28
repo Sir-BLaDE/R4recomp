@@ -36,7 +36,11 @@
 #include <stdint.h>
 #include <stddef.h>
 
+#include <stdlib.h>
+
 #include "mod_plugins.h"
+#include "func_override.h"
+#include "psx_cycle_freeze.h"
 #include "r4_gameshark_codes.h"
 
 /* Framework presentation switch (runtime/src/gpu.c). With it set, the
@@ -125,6 +129,30 @@ static void r4gs_activate_60fps(void) {
     psx_mod_set_guest_cycle_scale_gate(1);
 }
 
+/* The 16:9 list installs a routine at 0x8000E898 that the hooked DrawOTag
+ * path calls for every ordering table: it walks every packet and rewrites
+ * its X coordinates for the wider view. In a race it executes ~190,000
+ * guest cycles per frame (a third of a 60 FPS frame at the patch's 300%
+ * CPU), and with PGXP precise culling more packets survive and the game no
+ * longer fits its frame. The routine is GameShark code, not game code: it is
+ * run here to completion with all its RAM effects, but in zero guest time
+ * (an uncharged span), as if the cheat device did the work. A routine that
+ * would run past one VBlank of guest time is charged in full from then on.
+ * R4_WS_CHARGED=1 keeps it on the guest clock (A/B). */
+#define R4GS_WS_OTWALK   0x8000E898u
+static const uint32_t k_ws_otwalk_words[2] = { 0x27BDFFC0u, 0xAFBF003Cu };
+
+static int r4gs_ws_otwalk(struct CPUState* cpu) {
+    static int charged = -1;
+    if (charged < 0) { const char* e = getenv("R4_WS_CHARGED"); charged = e && e[0] == '1'; }
+    PsxCycleFreeze save;
+    if (charged || !psx_cycle_uncharged_begin(&save, 564480u)) return 0;
+    func_override_call_original(cpu);
+    psx_cycle_uncharged_end(&save);
+    psx_mod_counter_add("r4.gameshark.widescreen.otwalk_uncharged", 1);
+    return 1;
+}
+
 static void r4gs_activate_wide(void) {
     /* "Set aspect ratio to 16:9" + "Disable Widescreen Hack". */
     psx_mod_set_fixed_display_aspect(16, 9);
@@ -146,6 +174,8 @@ PSX_MOD_CONSTRUCTOR(r4gs_register_plugins) {
                   r4gs_restore_60fps, r4gs_activate_60fps);
     r4gs_register(R4GS_ID_WIDE, r4gs_entry_wide, r4gs_vblank_wide,
                   r4gs_restore_wide, r4gs_activate_wide);
+    psx_mod_register_function_override(R4GS_ID_WIDE ":otwalk", R4GS_WS_OTWALK,
+                                       r4gs_ws_otwalk, k_ws_otwalk_words, 2, 0);
     r4gs_register(R4GS_ID_MARKER, r4gs_entry_marker, r4gs_vblank_marker,
                   r4gs_restore_marker, NULL);
     r4gs_register(R4GS_ID_FMV, r4gs_entry_fmv, r4gs_vblank_fmv,

@@ -86,8 +86,9 @@ Progressive map: `symbols.toml` → `python3 tools/sync_symbols.py` →
 ## Framework patches
 
 `psxrecomp` is pinned at upstream `a38bf783`; the R4 changes to it (HD
-texture matcher caches, per-texel STP for replacements, PGXP store-ring
-allocation in debug builds only, borderless window overhang) live in
+texture matcher caches, per-texel STP for replacements, idle skip under the
+guest cycle scale, PGXP store-ring allocation in debug builds only, borderless
+window overhang) live in
 `patches/psxrecomp/`. After `git submodule update --init --recursive` run
 `scripts/apply_framework_patches.sh` before configuring.
 
@@ -261,3 +262,42 @@ Built from the player's own discs (JP SLPS-01798 + PAL SCES-01706):
   `--cluts` takes the CLUT capture written by `tools/r4_hd/clutcol.py`
   (palette words read from VRAM in game; private input like the dumps).
   Extra build dependency: `xbrz.py` (GPL-3, build-time only, not shipped).
+
+## v0.6: performance with full PGXP (CPU mode + precise culling)
+
+Measured from a race savestate with the accelerator held (same frames every
+run), guest frame timeline from `gpu_timeline`, host profile with `perf`:
+
+- **Guest-side drops** (the game misses frames with PGXP precise culling):
+  the 16:9 patch installs a routine at 0x8000E898 that the hooked DrawOTag
+  path calls for every ordering table, rewriting every packet's X. It ran
+  ~190,000 guest cycles per frame, a third of a 60 FPS frame at the patch's
+  300% CPU; precise culling keeps more packets and the frame no longer fit.
+  `r4.gameshark.widescreen` now runs it through a function override inside an
+  uncharged span (`psx_cycle_uncharged_begin/end`): all its RAM effects, zero
+  guest time (charged in full past one VBlank). Result: one flip per VBlank,
+  all right after the VBlank, no drops (25 missed frames before in the
+  measured stretch). A higher overclock is **not** the fix: at x4 the flip
+  moves to a non-VBlank interrupt callback (0x800933A0) mid-frame and some
+  VBlanks get two flips; at x5 the game runs ~67 fps.
+- **Emulation thread** (perf, race): guest code itself is ~5% of the thread;
+  the rest is per-instruction cycle accounting (~30%), PGXP (~28%), GTE (~6%).
+  - `[timing] guest_cycle_scale_batch = true` (framework-verified on R4):
+    -7%.
+  - `idle_skip` with store counters at the audited JP `v_wait` sites
+    (0x8008B090 / 0x8008B0D8; audit in `game.toml`). The framework detector
+    required a constant cycle cost per loop pass, which the 300% scale's
+    fractional carry breaks (10/11/10...). `psx_cycles.c` now compares passes
+    by their unscaled cost W = delta * 65536 + frac_end - frac_start and
+    advances k passes by exactly floor((frac + k * W) / 65536), leaving the
+    carry the skipped passes would leave. `frame_fingerprint` judge columns
+    are identical with the skip on/off over 700+ race frames. -14%.
+  - Together: 41.0 -> 36.9 ms per VBlank in the test VM while now producing
+    every frame with full PGXP.
+- **Render thread**: one rect-cache probe per page group instead of two, and
+  a per-page memo of each group's hash and candidate list.
+- **PGXP defaults** (R4 override): CPU-mode propagation and precise culling
+  on.
+- **Perf log**: game fps counts display-start changes from the GPU timeline
+  (sampling the display address at VBlank missed two flips inside one VBlank;
+  that artefact made x4 look worse than x3 in v0.4).

@@ -20,7 +20,7 @@ default_enabled = true
 [[feature]]
 id = "widescreen"
 name = "16:9 Widescreen"
-description = "Adjusts the game's own FOV and UI for 16:9 and presents a stretched 16:9 picture with the generic widescreen hack off. Use the PGXP mod to reduce background distortion."
+description = "Adjusts the game's own FOV and UI for 16:9 and presents a stretched 16:9 picture with the generic widescreen hack off. The patch's per-packet 16:9 routine runs with all its effects but in zero guest time (it took a third of every 60 FPS frame), so races keep 60 FPS with PGXP precise culling. Use the PGXP mod to reduce background distortion."
 group = "Display"
 default_enabled = true
 
