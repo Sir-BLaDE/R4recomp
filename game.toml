@@ -173,6 +173,9 @@ guest_cycle_scale_batch = true
 # which selects the aspect itself; with it off, races are this 4:3.
 renderer = "opengl"
 aspect_ratio = "4:3"
+# Borderless (desktop) fullscreen until the player picks another Window mode
+# in Display (saved to settings.toml, which outranks this). Owner 2026-10-27.
+fullscreen = "borderless"
 # R4 ships Match display (up to 8K/18x) as its
 # default internal resolution; the framework default is Native. A player's
 # pick in Settings -> Display is saved to settings.toml and outranks this, as
