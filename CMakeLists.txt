@@ -35,8 +35,20 @@ if(NOT IS_DIRECTORY "${PSX_PRELOADED_MODS}")
     set(PSX_PRELOADED_MODS "NONE")
 endif()
 
+option(R4_PGXP_HOOKS "Build the PGXP hook flavor (precision dataflow hooks)" ON)
+if(R4_PGXP_HOOKS)
+    set(_R4_PGXP PGXP)
+else()
+    set(_R4_PGXP "")
+endif()
 psxrecomp_add_game_runtime(psx-runtime
+    # PGXP hook flavor: full dataflow coverage (R4 copies SXY with mfc2/sw/lw).
+    ${_R4_PGXP}
     PRELOADED_MODS_DIR "${PSX_PRELOADED_MODS}"
+    # GameShark 60 FPS / 16:9 routines (written into kernel RAM at run time)
+    # and the game functions they patch, compiled as static overlays so they
+    # never run on the dirty-RAM interpreter (tools/gs_static).
+    GAME_OVERLAY_STATIC_C "${CMAKE_CURRENT_SOURCE_DIR}/generated/gs_overlays/overlays_static.c"
     # ENABLE_NETPLAY_IF_PRESENT
     # NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
     # ENABLE_SETUP_WIZARD
@@ -69,5 +81,8 @@ endforeach()
 # R4 GameShark 60 FPS / 16:9 patch V2 as trusted mod plugins
 # (mods/preloaded/packages/r4.gameshark). Code tables are generated from
 # mods/source/*.cht by tools/cht_to_c.py.
-target_sources(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/r4_gameshark.c")
+target_sources(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/r4_gameshark.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/r4_spanish.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/r4_analog.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/r4_perflog.c")
 target_include_directories(psx-runtime PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")

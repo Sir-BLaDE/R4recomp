@@ -7,7 +7,8 @@
 # game.toml (no machine-specific disc path), game_options.toml, the build's
 # own mod catalog (developer-channel features pruned), licenses,
 # START_HERE.txt, and the execution contract bound to the staged exe.
-# No disc data, BIOS dumps, generated C or sources are staged.
+# No disc images, BIOS dumps, generated C or sources are staged; the only
+# disc-derived data is the r4.spanish overlay payload (private builds only).
 #
 # Usage: packaging/stage_windows.sh <build-win-dir> <version>
 set -euo pipefail
@@ -40,6 +41,7 @@ for f in "$FW"/runtime/licenses/*; do [ -f "$f" ] && cp "$f" "$STAGE/licenses/";
 cp "$FW/LICENSE" "$STAGE/licenses/psxrecomp-LICENSE"
 cp "$FW/THIRD_PARTY_ATTRIBUTION.md" "$STAGE/licenses/psxrecomp-THIRD_PARTY_ATTRIBUTION.md"
 cp "$ROOT/recomp-ui/LICENSE" "$STAGE/licenses/recomp-ui-LICENSE"
+cp "$ROOT/packaging/licenses/Real-ESRGAN-LICENSE" "$STAGE/licenses/Real-ESRGAN-LICENSE"
 for sub in fonts img; do
     n="$ROOT/recomp-ui/assets/common/$sub/NOTICE.md"
     [ -f "$n" ] && cp "$n" "$STAGE/assets/$sub/NOTICE.md"
@@ -49,9 +51,10 @@ sed "s/@VERSION@/${VERSION}/" "$ROOT/packaging/START_HERE.txt" | sed 's/$/\r/' >
 python3 "$FW/tools/release_stage.py" stage-execution --binary "$STAGE/$NAME.exe" \
     --manifest "$BUILD/$NAME.execution.json" --output "$STAGE/$NAME.execution.json"
 
-# Gates: nothing that looks like a disc/BIOS dump other than openbios.bin.
+# Gates: nothing that looks like a disc/BIOS dump other than openbios.bin and
+# the r4.spanish text overlays (derived from the owner's PAL disc, private build).
 bad=$(cd "$STAGE" && find . -type f \( -iname '*.bin' -o -iname '*.cue' -o -iname '*.chd' \
-      -o -iname '*.iso' -o -iname '*.mcd' -o -iname '*.mcr' \) ! -path './bios/openbios.bin')
+      -o -iname '*.iso' -o -iname '*.mcd' -o -iname '*.mcr' \) ! -path './bios/openbios.bin' ! -path './mods/bundled/r4.spanish/*/payload/*')
 if [ -n "$bad" ]; then echo "refusing: disc/save data staged: $bad" >&2; exit 1; fi
 
 (cd "$(dirname "$STAGE")" && zip -qr9 "$ZIP" "$(basename "$STAGE")")

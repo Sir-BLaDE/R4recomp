@@ -5,7 +5,7 @@ name = "R4 60 FPS + Widescreen Patch V2"
 author = "GameShark codes: original author (GBAtemp thread 684958); psxrecomp port: R4Recomp"
 description = "The 60 FPS / 16:9 GameShark patch V2 for R4 (written for SCPS-45356; the SLPS-01798 executable carries the same code at every patched address). Each feature works on its own."
 resolver = "declarative"
-save_compatibility = "isolated"
+save_compatibility = "shared"
 
 [[target]]
 game_id = "SLPS-01798"

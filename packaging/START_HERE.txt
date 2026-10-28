@@ -3,24 +3,73 @@ R4 Recompiled @VERSION@  (Windows x64)
 
 R4 - Ridge Racer Type 4, Japanese release (SLPS-01798, the R4 + JogCon
 edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
-Patch V2" GameShark codes built in as mods.
+Patch V2" GameShark codes built in, the Spanish text of the PAL release and
+an HD texture pack.
 
-1. Run R4_Recompiled.exe.
-2. On first launch pick YOUR OWN disc image of SLPS-01798 (disc 1, "R4").
-   .chd, .cue/.bin and .iso are accepted. No disc data ships in this folder.
-3. Mods page -> "R4 60 FPS + Widescreen Patch V2": all four features are on
-   by default and each can be switched off on its own:
-     - 60 FPS               (also enables the 300% CPU overclock it needs)
-     - 16:9 Widescreen      (game's own 16:9 FOV/UI, stretched 16:9 output,
-                             generic widescreen hack kept off)
-     - Opponents on minimap (Grand Prix / Extra Trial)
-     - 16:9 opening FMV
-   Recommended with 16:9: enable the built-in "PGXP" mod (less background
-   wobble/distortion).
+ES - Inicio rapido
+------------------
+1. Descomprime en una carpeta NUEVA (no encima de una version anterior: el
+   settings.toml viejo conservaria el mando digital y la configuracion de
+   video antigua).
+2. Ejecuta R4_Recompiled.exe y elige TU imagen del disco japones SLPS-01798
+   (disco 1, "R4"): .chd, .cue/.bin o .iso.
+3. Todo viene activado por defecto (pagina Mods):
+     - "R4 60 FPS + Widescreen Patch V2": 60 FPS (con el overclock de CPU al
+       300% que necesita), 16:9, rivales en el minimapa y FMV 16:9. Las
+       rutinas del parche van compiladas en el ejecutable (antes se
+       interpretaban y con PGXP daban tirones).
+     - "R4 en espanol": dialogos, reglas, seleccion de equipo, mensajes del
+       sistema y los cuatro finales, con la traduccion de la version PAL;
+       tarjeta de carrera en letras latinas y vallas de los circuitos de la
+       PAL.
+       Texto con los saltos de linea de la PAL (3 lineas por pagina).
+     - "HD Texture Packs": fuente HD nueva para el texto en espanol, finales
+       en HD; las hojas de texto de menus/HUD redibujadas como contornos
+       vectoriales y el resto de graficos 2D reescalados 4x con Real-ESRGAN.
+     - "PGXP": geometria sin temblores. El "Precise culling" viene
+       DESACTIVADO: con el parche de 60 FPS hacia perder frames al juego
+       (p. ej. en la S antes del puente del primer circuito).
+     - "R4 analog steering (JogCon)": el mando se presenta como un JogCon.
+     - "R4 performance log": escribe R4_perf_log.txt (ver punto 7).
+4. Mando (el juego solo admite volante analogico con JogCon/NeGcon, asi que
+   tu mando se presenta como un JogCon):
+     - Stick izquierdo: girar (analogico)
+     - Gatillo derecho, R1 o X: acelerar
+     - Gatillo izquierdo, L1 o Cuadrado: frenar
+     - Circulo: aceptar en los menus; el resto de botones igual que siempre.
+   Con teclado se usa el mando digital normal.
+5. Video: resolucion interna fija a la de tu monitor, sin escalado dinamico,
+   con el hilo de render activado. Para cambiarla: Mods -> Internal
+   Resolution.
+6. HDR de Windows: si al salir el escritorio HDR queda mal, en el Panel de
+   NVIDIA -> Configuracion de programa -> R4_Recompiled.exe, pon "Metodo de
+   presentacion de Vulkan/OpenGL" en "Preferir en capas en la cadena de
+   intercambio DXGI". (La ventana sin bordes ahora sobresale una fila del
+   monitor para que el driver no la trate como pantalla completa; si da
+   problemas, define PSX_BORDERLESS_EXACT=1.)
+7. Rendimiento: si notas tirones, se guarda R4_perf_log.txt junto al .exe
+   (solo se escriben los segundos con problemas). Mandamelo tal cual: cada
+   linea dice si el juego perdio frames (fps < 60) o si fue tu PC (late,
+   emu%).
 
-Save states made with the GameShark mods enabled are kept separate from
-stock save states. Memory cards are shared.
+AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
+fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
+solo para tu uso personal: no los redistribuyas.
+
+EN - Quick start
+----------------
+1. Unzip into a NEW folder and run R4_Recompiled.exe; pick your own
+   SLPS-01798 disc image.
+2. Everything is on by default: the 60 FPS + 16:9 patch (its routines are
+   compiled into the executable), Spanish text from the PAL release (PAL
+   line breaks), the HD texture pack (vector-redrawn text sheets, Real-ESRGAN
+   for the rest) and PGXP (precise culling off: it cost the 60 FPS patch
+   frames). Gamepad = JogCon: left stick steers, RT/R1/Cross accelerate,
+   LT/L1/Square brake. Slow spots are logged to R4_perf_log.txt.
+3. The r4.spanish and HD texture packages carry data derived from the
+   owner's discs: personal use only, do not redistribute.
 
 BIOS: the bundled open-source OpenBIOS is used by default; no BIOS dump needed.
 Licenses for psxrecomp, recomp-ui, OpenBIOS and third-party components are in
-licenses/ and bios/.
+licenses/ and bios/. HD font: TeX Gyre Heros (GUST Font License). Upscaler:
+Real-ESRGAN x4plus / x4plus_anime_6B (BSD-3-Clause).

@@ -1,0 +1,354 @@
+format_version = 5
+id = "r4.spanish"
+version = "1.0.0"
+name = "R4 en español (textos de la versión PAL)"
+author = "R4Recomp; Spanish text and font from the player's own PAL disc (SCES-01706)"
+description = "Grand Prix dialogues and system messages in Spanish, taken from the PAL release and drawn with its Latin-1 font by the Japanese engine."
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SLPS-01798"
+disc_sha256 = "9bd6a22ae035fdf65604ba462196bcd73514199f21aacfc018898453921baa56"
+
+[[feature]]
+id = "spanish"
+name = "Textos en español"
+description = "Diálogos del Gran Premio y mensajes del sistema en español (traducción oficial de la versión PAL)."
+group = "Localization"
+default_enabled = true
+
+[[plugin]]
+feature = "spanish"
+id = "r4.spanish"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCDC
+expected = "10 40 00 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCE0
+expected = "83 20 08 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCE4
+expected = "23 20 82 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCE8
+expected = "80 10 04 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCEC
+expected = "21 10 44 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCF0
+expected = "80 10 02 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCF4
+expected = "21 10 44 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCF8
+expected = "23 10 c2 00"
+replace = "00 00 00 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FCFC
+expected = "40 18 02 00"
+replace = "43 19 06 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD00
+expected = "21 18 62 00"
+replace = "1f 00 c2 30"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD04
+expected = "80 f0 03 00"
+replace = "c0 f0 02 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD08
+expected = "40 10 04 00"
+replace = "40 10 03 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD0C
+expected = "21 10 44 00"
+replace = "21 10 43 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD10
+expected = "c0 10 02 00"
+replace = "c0 10 02 00"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD14
+expected = "d2 00 c6 28"
+replace = "40 01 c6 28"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD1C
+expected = "21 b0 40 00"
+replace = "04 00 56 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FD20
+expected = "10 00 56 24"
+replace = "14 00 56 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FE48
+expected = "18 00 02 24"
+replace = "12 00 02 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FF90
+expected = "18 00 94 26"
+replace = "16 00 94 26"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80020080
+expected = "1a 00 94 26"
+replace = "16 00 94 26"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8001FE40
+expected = "0c 00 02 24"
+replace = "08 00 02 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80020034
+expected = "0b 00 52 26"
+replace = "05 00 52 26"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80020078
+expected = "0b 00 52 26"
+replace = "05 00 52 26"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80032ED0
+expected = "28 01 05 24"
+replace = "48 03 05 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80033084
+expected = "3f 00 05 24"
+replace = "c7 00 05 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x800330DC
+expected = "fc 00 04 26"
+replace = "1c 03 04 26"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80033270
+expected = "3f 00 05 24"
+replace = "c7 00 05 24"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x80033274
+expected = "fc 00 06 26"
+replace = "1c 03 06 26"
+
+[[patch]]
+feature = "spanish"
+target = "main_exe"
+address = 0x8003BBD0
+expected = "28 01 42 24"
+replace = "48 03 42 24"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 690176
+file = "payload/r4bin_table.bin"
+sha256 = "3b7a1d4ac144b710f18f03653fe8a524b23b50fa27a11c0295ad77906361ccd3"
+expected_sha256 = "ed2ff443108721cead7e82cc1211339ada3e04427d220caff889c3e722bec331"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 41322496
+file = "payload/r4bin_678_693.bin"
+sha256 = "9f91681e95e5c9f6701071b93a04e0ea83f14a20ed09c8af7400a3e3108e9a17"
+expected_sha256 = "8689d4eed9d6323a28ada8e8d20f3aa4b425551ce8e233f6399fc4a8f5f8f16b"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 42991616
+file = "payload/r4bin_695_710.bin"
+sha256 = "3e93393b7d6056a4609192f7ca99d161b7a853ff0f9a016a7aab70fab3959fb7"
+expected_sha256 = "8fa42a29e69d4d3c2528e3fc6139e52c98a0cfd781fad8fee421230ec0ba45b3"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 44713984
+file = "payload/r4bin_712_727.bin"
+sha256 = "5fda539137d3d506fa4240a487c532f5cd4dad488d28f63187ff7cf935347c0f"
+expected_sha256 = "a23ee00afb05eae4f7c1e94e039e0042df46a47416df0998696df5f4797342a2"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 46391296
+file = "payload/r4bin_729_744.bin"
+sha256 = "2c6990ebac03d818c8950bb3b27ce09d155376d8345b6e2bc73ecd5a7315aac5"
+expected_sha256 = "b58da76ffb782550a7012ff609179ca3b56ffc4429dfc2ab7769e6c0af98fafc"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 49199104
+file = "payload/r4bin_755_763.bin"
+sha256 = "b737bb3da7118e4ae1de491713b67e0313bab51781073e5b4bc8fd95688e8341"
+expected_sha256 = "1d7234119bd6fdb26f7b17b334792204f9f3359e004e574beba54e9e9b770d10"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 52633600
+file = "payload/r4bin_915_918.bin"
+sha256 = "8e4b00af81ff65b645e5b16ad3cca2f71f201be11760d88508e2a843be4ee1f1"
+expected_sha256 = "74d791f4bdde6546796f77129c3d023128f29f9f1463705dea86344eb9e137a5"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 1017856
+file = "payload/r4bin_0_art.bin"
+sha256 = "d77d2d3c5c18f04e92672ed766e1a33402b0a43ab7feabc4c5bbd755f678f7b9"
+expected_sha256 = "48aa689c947ba09080ef40646cd480a0de3a597f7ac8f1335afcecdb400d1263"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 2125824
+file = "payload/r4bin_2_art.bin"
+sha256 = "eb3f5f402a34743774d047bb4f592a2d158bcc2df15d11b58d338687f583b7aa"
+expected_sha256 = "d049c7a01864096b08b4de343042b0367ed1ffdb979d372decab510fef9fd744"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 3291136
+file = "payload/r4bin_4_art.bin"
+sha256 = "14c3a30b8929315d97077a9fe1c97c02ef60fb060f832b9fbacec41674676830"
+expected_sha256 = "f8d3a276ca78e332453a62e872a23015302feb51adab5359d03215ba8cf51a2a"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 4257792
+file = "payload/r4bin_6_art.bin"
+sha256 = "d6ec976cc8061cfe0665b51fe83037e56e2b7fe1efd12256cbcd6e37e45ac765"
+expected_sha256 = "f4eccf7c7c80f61bfb12de313fc4f82a8e3d2e6f4bb6f939d26dbfcf2f610d96"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 5617664
+file = "payload/r4bin_8_art.bin"
+sha256 = "b5050cc0f3e551eb4b22c2f36d57a92819581a5e348327cd12d22e6229322666"
+expected_sha256 = "3667785a19d66a894dcd3ca6fb7632b1555ae41dfbccbc98aa2b82f129faad09"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 6768640
+file = "payload/r4bin_10_art.bin"
+sha256 = "a658c62c832fd767841f04a58bc41c5994c14ec3fca6908208962c98d39c4055"
+expected_sha256 = "c1099ea63b635d7bcb013fe3adec3a278f39c50518cf611c74955afb39887256"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 7796736
+file = "payload/r4bin_12_art.bin"
+sha256 = "ff811707a2f9bd217441ba48bf3007a43d7c4f9344b144953bb8d10e6651b20a"
+expected_sha256 = "59a2dd9fb4621dd343eb3b60ac797e387d95cf4d4125745b7f5cc9d98d9c0bd4"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 8626176
+file = "payload/r4bin_14_art.bin"
+sha256 = "a216622f35f6e418fa88a6f8bd2ed0c9df7f542fcc164f74013cc50644e23fa1"
+expected_sha256 = "827d5094991442f4ad6c9c37b6df5a69761d40ab49ab40da419e3d2c75ea7699"
+
+[[overlay]]
+feature = "spanish"
+target = "disc_user"
+offset = 40585216
+file = "payload/r4bin_658_art.bin"
+sha256 = "55e049f931023f277241c92e0cc6eff8eb3d7c688d7043e18fa216fa9ed5fa06"
+expected_sha256 = "d83b361f114c6d59f7e46c32388984ead4572670a17f5dffff7f3f041e3761c5"

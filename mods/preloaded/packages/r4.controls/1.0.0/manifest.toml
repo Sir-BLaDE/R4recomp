@@ -1,0 +1,22 @@
+format_version = 5
+id = "r4.controls"
+version = "1.0.0"
+name = "R4 analog steering (JogCon)"
+author = "R4Recomp"
+description = "Analog steering for R4 through the controller this edition supports natively, the Namco JogCon, built from your gamepad."
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SLPS-01798"
+
+[[feature]]
+id = "negcon"
+name = "Analog steering (JogCon)"
+description = "Presents your gamepad as a JogCon: the left stick turns the wheel; R1, the right trigger or Cross accelerates; L1, the left trigger or Square brakes. Other buttons keep their place. Keyboard play is unchanged."
+group = "Controls"
+default_enabled = true
+
+[[plugin]]
+feature = "negcon"
+id = "r4.analog"

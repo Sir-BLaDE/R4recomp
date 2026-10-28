@@ -1,0 +1,22 @@
+format_version = 5
+id = "r4.diagnostics"
+version = "1.0.0"
+name = "R4 performance log"
+author = "R4Recomp"
+description = "Writes R4_perf_log.txt next to the executable whenever the game drops frames: per second, the game's own frame rate, late host frames, emulation-thread load and interpreted code, so a slowdown can be told apart as the game's (guest CPU) or the PC's. Send it to the developer."
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[target]]
+game_id = "SLPS-01798"
+
+[[feature]]
+id = "perflog"
+name = "Performance log"
+description = "One line per second with late frames or a partial frame-rate drop (nothing is written at full speed)."
+group = "Diagnostics"
+default_enabled = true
+
+[[plugin]]
+feature = "perflog"
+id = "r4.perflog"

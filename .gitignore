@@ -90,3 +90,10 @@ starvation_dump.jsonl
 !/disc_probe.*.json
 !/disc_set.json
 !/.recomp.json
+
+# Data derived from the owner's discs (private builds only, never commit)
+/mods/preloaded/packages/r4.spanish/*/payload/
+/mods/preloaded/packages/psx.enhancement.hd-textures/*/pack/replacements/
+/tools/gs_static/gs_captures.json
+/tools/r4_hd/__pycache__/
+/tools/r4_es/__pycache__/

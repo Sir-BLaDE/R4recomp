@@ -124,3 +124,100 @@ Windows x64 build from Linux (MinGW-w64 cross):
       -DPSX_RELEASE_CHANNEL=public -DPSXRECOMP_REQUIRE_GAME_C=ON
     cmake --build build-win --target psx-runtime
     packaging/stage_windows.sh build-win "$(cat VERSION)"
+
+## Spanish text from the PAL release (`r4.spanish`)
+
+Built from the player's own discs (JP SLPS-01798 + PAL SCES-01706):
+
+    python3 tools/r4_es/build_es.py --jp R4_JP.bin --eu R4_PAL.bin \
+        --out mods/preloaded/packages/r4.spanish/1.0.0
+    python3 tools/r4_es/make_manifest.py --exe disc/SLPS_017.98 \
+        --jp-disc R4_JP.bin --pack mods/preloaded/packages/r4.spanish/1.0.0
+    rm mods/preloaded/packages/r4.spanish/1.0.0/overlays.json
+
+- `build_es.py` rewrites the R4.BIN groups 678-744 (the four teams' Grand
+  Prix stories) and 755-763 (system messages, team select, GP rules screen)
+  with the Spanish sub-blocks of the PAL entries and the PAL Latin-1 font
+  (entry 724), repacked inside the original sector spans, plus the archive
+  table; the package overlays them on the disc (`disc_user`, sha-guarded).
+- The GP rules screen (JP 763: 17 messages in step with its animation) is
+  rebuilt from the PAL single-stream screen (728); every header's character
+  count is recomputed.
+- `make_manifest.py` adds guarded code patches: glyph cells 12x24/21 per row
+  -> 8x24/32 per row, sprite width 8, pen advance 7, and the message window's
+  glyph-state array 64 -> 200 entries as in the PAL build;
+  `src/r4_spanish.c` moves the static window #2 to enhancement memory.
+- The payload is derived from disc data: private builds only.
+
+## v0.3: performance, HD pack, reflowed text
+
+- **GameShark code compiled natively** (`tools/gs_static/make_captures.py`):
+  the patch's MIPS routines (kernel RAM 0x8000C000-0x8000FD00) and the game
+  functions it rewrites are emitted as overlay captures and compiled with
+  `psxrecomp/tools/compile_overlays.py --static --flavor 2` into
+  `generated/gs_overlays/` (linked via `GAME_OVERLAY_STATIC_C`). They used to
+  run on the dirty-RAM interpreter, where every instruction also went through
+  the PGXP hooks; in a race the interpreter ran ~150x fewer instructions
+  after the change. Regenerate after editing the codes:
+
+      python3 tools/gs_static/make_captures.py --exe disc/SLPS_017.98 \
+          --codes src/r4_gameshark_codes.h \
+          --ranges generated/SLPS_017.98_full.ranges \
+          --observed tools/gs_static/observed_pcs.json \
+          --out tools/gs_static/gs_captures.json
+      python3 psxrecomp/tools/compile_overlays.py --static \
+          --captures tools/gs_static/gs_captures.json --game-toml game.toml \
+          --recompiler build-recompiler/psxrecomp-game \
+          --runtime-include psxrecomp/runtime/include \
+          --out-dir generated/gs_overlays --flavor 2
+
+- **Video defaults**: fixed Match-display resolution, no supersampling, no
+  dynamic resolution, render thread on. Pad defaults to analog.
+- **Text**: Spanish messages rewrapped to the Japanese 2-row/39-column boxes
+  with extra pages; the GP rules screen laid out by hand (`INFO_ES`); the four
+  ending letters rebuilt from the PAL pages; race-card kanji cells redrawn in
+  Latin letters; PAL billboards in the courses.
+- **HD texture pack** (`tools/r4_hd/build_pack.py`): DuckStation `texupload`
+  names computed offline from the patched R4.BIN; HD Spanish font (TeX Gyre
+  Heros), HD endings, 2D sheets upscaled 4x with a numpy waifu2x upconv_7.
+  Shipped in an override of `psx.enhancement.hd-textures` (on by default,
+  `pack/`).
+
+## v0.4: frame drops, JogCon steering, PAL text layout, redrawn 2D
+
+- **Frame drops at busy spots** (e.g. the S before the bridge on Helter
+  Skelter): guest-side, not host. With PGXP *precise culling* the game keeps
+  sub-pixel polygons it would cull and runs out of guest CPU time per frame
+  (45-57 fps internally at the GP start, host idle); a higher overclock does
+  not help (x4/x6 measured worse). The R4 PGXP override now ships precise
+  culling **off** (steady 60). Measured with `R4_PERFLOG_ALL=1`.
+- **`r4.diagnostics` / `src/r4_perflog.c`**: `R4_perf_log.txt` next to the
+  executable, one line per second with late host VBlanks or a partial drop:
+  game fps (display flips), late/worst/avg host frame time, emulation-thread
+  busy share and CPU ms per VBlank, interpreted instructions and hottest
+  interpreted PCs.
+- **`r4.controls` / `src/r4_analog.c`**: R4 only steers analog with a JogCon
+  or NeGcon; the gamepad is presented as a JogCon (dial = left stick X with a
+  small deadzone; R1 = RT/R1/Cross accelerates, L1 = LT/L1/Square brakes).
+  `R4_ANALOG_MODE=negcon` selects the NeGcon (its I/A do not confirm at team
+  select).
+- **Text layout**: the PAL message boxes are the Japanese ones (the only
+  JP/PAL difference in the window code is the memory-card window height). The
+  Spanish text now keeps the PAL line breaks (3 rows per page; rare 4-row
+  pages split). Patches in `tools/r4_es/make_manifest.py`: glyph rows 4..21 of
+  the 8x24 cell (sprite height 18, v+4), row advance 22, pen advance 5. HD font
+  redrawn to those metrics (TeX Gyre Heros Bold, `tools/r4_hd/font_es.py`).
+- **HD pack** (`tools/r4_hd/build_pack.py`, `redraw.py`, `esrgan.py`):
+  grey anti-aliased text sheets redrawn as potrace outlines (filled with the
+  ESRGAN colour); colour art via Real-ESRGAN x4plus_anime_6B, pictures and
+  course textures via Real-ESRGAN x4plus (spandrel, CPU), all with traced
+  binary-alpha silhouettes. `--dumps <dir>` adds the dumped sub-rectangles of
+  pages the game partially overwrites (the race HUD sheet). Models are not
+  shipped; build with:
+
+      python3 tools/r4_hd/build_pack.py --jp R4_JP.bin --eu R4_PAL.bin \
+          --spanish mods/preloaded/packages/r4.spanish/1.0.0 \
+          --esrgan-art RealESRGAN_x4plus_anime_6B.pth \
+          --esrgan-photo RealESRGAN_x4plus.pth --courses \
+          --dumps <DumpTexturePages dump dir> \
+          --out mods/preloaded/packages/psx.enhancement.hd-textures/1.0.0/pack/replacements
