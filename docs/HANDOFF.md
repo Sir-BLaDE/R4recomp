@@ -1,6 +1,24 @@
 # Handoff
 
-## Current work (2026-10-27, 8K dynamic resolution)
+## Current work (2026-10-27, PGXP seam strips)
+
+The owner's "pgxp was buggy" on the 0.2.1 candidate (8K/18x) was seam
+snapping (`pgxp_seam = "fine"` strips), not geometry correction, depth or
+colour: a strip ran along a whole edge at its largest gap with the texture
+extrapolated past the polygon (black), only 3% behind its plane, against a
+depth buffer the frame's mid-frame clears had emptied -- black / grey bars
+along kerbs and lane marks, wedges on wall tops. Fixed in fork `r4/main`
+`9d93976c` (PR [psxrecomp #5](https://github.com/tetrisgm/psxrecomp/pull/5),
+ENHANCEMENTS.md G1.15 "Strip extent and depth"); R4 pins it. Evidence and
+the hidden-window capture harness (tick-exact A/B from the attract-demo
+save, `drive.py`, `imgtools.py`) are in
+`C:/Users/Shokunin/dev/r4-pgxp/analysis/pgxp`. Not verified: a real
+8K fullscreen playtest (hidden window only, owner rule), the player's chase
+camera over a full lap, and 30 FPS vs 60 FPS flicker of strips in
+in-between frames (the prepared batch now matches the live path: 0
+mismatches under `PSX_SEAM_PREP_VERIFY=1`).
+
+## Earlier work (2026-10-27, 8K dynamic resolution)
 
 Dynamic resolution at 8K/60 stayed at level 5 (1200 lines) because its
 cost was max(CPU, GPU) with GPU one `GL_TIME_ELAPSED` span per frame: that
