@@ -121,16 +121,16 @@ def test_game_toml():
           'game.toml: Match display capped at 8K (match_display_max_lines = 4320)')
     check(video.get('supersample_disable_at_lines') == 2160,
           'game.toml: no supersampling from 4K displays up (supersample_disable_at_lines = 2160)')
-    check(video.get('dynamic_resolution') is True,
-          'game.toml: dynamic resolution on by default')
+    check(video.get('dynamic_resolution') is False,
+          'game.toml: dynamic resolution off (owner, 2026-10-27)')
     floor = video.get('dynamic_resolution_min')
     check(floor in ('display', 'native') or (isinstance(floor, str) and floor.endswith('p'))
           or (isinstance(floor, int) and floor >= 240),
           'game.toml: dynamic resolution has a floor ("native", "display" or a preset)')
     check(floor == '1080p',
           'game.toml: dynamic resolution never drops below 1080p (owner, 2026-10-22)')
-    check(video.get('dynamic_resolution_start_min') is True,
-          'game.toml: begin at the 1080p floor, then raise quality when output has headroom')
+    check(video.get('dynamic_resolution_start_min') is False,
+          'game.toml: no floor start while dynamic resolution is off')
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
