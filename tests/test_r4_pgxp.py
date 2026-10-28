@@ -2,9 +2,10 @@
 """R4's PGXP defaults (psxrecomp docs/ENHANCEMENTS.md G1.11), no disc needed.
 
   1. mods/preloaded overrides the framework's builtin psx.enhancement.pgxp at
-     the same id and version, with the feature and its precise-culling option
-     on by default and the same plugin, feature id and options as the
-     builtin, so only those two defaults and the wording differ.
+     the same id and version, with the feature, its precise-culling option
+     and its CPU-mode option (owner, 2026-10-27) on by default and the same
+     plugin, feature id and options as the builtin, so only those defaults
+     and the wording differ.
   2. game.toml [video] sets the PGXP tuning keys R4 needs and pgxp_mod_only,
      and does NOT set geometry_correction / perspective_texturing (those are
      not cleared for netplay, so they must never be how R4 turns PGXP on).
@@ -75,12 +76,15 @@ def check_manifest():
     def opts(m, skip_culling_default):
         out = []
         for o in strip_text(m.get("option", [])):
-            if skip_culling_default and o.get("id") == "culling":
+            if skip_culling_default and o.get("id") in ("culling", "cpu_mode"):
                 o = {k: v for k, v in o.items() if k != "default"}
             out.append(o)
         return out
     check(opts(r4, True) == opts(fw, True),
-          "options match the builtin (ids, types; defaults except culling)")
+          "options match the builtin (ids, types; defaults except culling, cpu_mode)")
+    r4_cpu = [o for o in r4.get("option", []) if o.get("id") == "cpu_mode"]
+    check(len(r4_cpu) == 1 and r4_cpu[0].get("default") == "true",
+          "CPU-mode propagation is on by default for R4 (owner, 2026-10-27)")
     r4_cull = [o for o in r4.get("option", []) if o.get("id") == "culling"]
     fw_cull = [o for o in fw.get("option", []) if o.get("id") == "culling"]
     check(len(r4_cull) == 1 and r4_cull[0].get("default") == "true",
