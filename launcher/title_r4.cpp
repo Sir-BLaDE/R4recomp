@@ -73,6 +73,9 @@ const SurfaceRule kSurface[] = {
     {"controls.bindings", Vis::Shown, nullptr},
     {"controls.devices", Vis::Shown, nullptr},
     {"controls.assist", Vis::Hidden, nullptr},
+    // Add to Steam (owner, 2026-10-28): a Steam Controller is a gamepad only in
+    // a game Steam launched; the button registers R4 as a non-Steam game.
+    {"controls.steam", Vis::Shown, nullptr},
     // Owner 2026-10-12: experimental JogCon wheel force feedback is a player
     // toggle, off by default (settings.toml jogcon_force_feedback). Needs a
     // launcher pin with tetrisgm/recomp-launcher#1; older pins ignore the key.
@@ -205,6 +208,7 @@ const TitleLayer kR4 = {
     static_cast<int>(sizeof(kSurface) / sizeof(kSurface[0])),
     extract_r4_assets,
     draw_hero,
+    "Ridge Racer Type 4 Recompiled",  // Add to Steam: library name
 };
 
 }  // namespace
