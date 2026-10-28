@@ -82,20 +82,10 @@ const SurfaceRule kSurface[] = {
     {"controls.force_feedback", Vis::Shown, nullptr},
     // Disc: found automatically; OpenBIOS is bundled, so no BIOS prompt.
     {"disc.autoscan", Vis::Auto, "auto"},
-    // No pre-game window; disc setup, netplay and options live in the
-    // in-game menu (Esc / Guide / Select / Start+Select). --launcher brings
-    // back the pre-game window.
-    {"launcher.in_game", Vis::Auto, "auto"},
-    // The menu is the first screen; Resume starts the race (owner,
-    // 2026-10-27). --no-launcher / skip_launcher boot straight in.
-    {"launcher.boot_menu", Vis::Auto, "auto"},
-    // Select alone opens the menu: R4 has no use for Select on its own
-    // (owner, 2026-10-28). Select + button shortcuts still work.
-    {"launcher.select_menu", Vis::Auto, "auto"},
-    // The menu opens on a main screen: Start Game / Resume Game, Save State,
-    // Load State, Options (the other pages, with Back), Quit game; a first
-    // run with no disc offers Select Disc only (owner, 2026-10-28).
-    {"launcher.main_screen", Vis::Auto, "auto"},
+    // PAL test build: the standard recomp-launcher flow (pre-game window,
+    // Play starts the game, stock in-game menu). The in-game boot menu /
+    // main screen / Select-menu opt-ins (launcher.in_game, boot_menu,
+    // select_menu, main_screen) did not start the game on Windows.
     {"disc.toolchain", Vis::Hidden, nullptr},
     {"bios.select", Vis::Hidden, nullptr},
     // Settings page: volume only; memory cards use the default cards.
