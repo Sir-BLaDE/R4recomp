@@ -17,6 +17,7 @@ Evidence dirs are local (not tracked).
 | HD HUD | 12ba3f4 / ab9d181d | vdisp `hud_*_1to1.png` |
 | PGXP + seam snapping at 18x | 12ba3f4 / ab9d181d | vdisp `vis-219-force18/crop18_*.png` |
 | Dynres floor 1080p (1200 lines) | 12ba3f4 / ab9d181d | vdisp `result.json` dynres stats |
+| Dynres climbs at 8K/60 (CPU cost, queued-output cost, cadence guard); worker output-grid lead bound | pin PR / e4efba40 | `C:/Users/Shokunin/dev/r4-glctx/analysis/k8d-*`, `k8g-new45w` (one on-screen run), fixtures `scratchpad/psx-build/fwctest.log`; settle level on a quiet panel unverified |
 | Hide rear-view mirror | 12ba3f4 / ab9d181d | vdisp `mirror_compare.png` |
 | Projection replay (framework PSXDrawReplay) for R4 extra frames | tried on 243eca3, reverted: 33.4 vs 113.3 distinct/s at 1440p/120, +30% CPU per pass | HANDOFF 2026-10-27 |
 | Render-thread CPU per extra frame (HD tracking miss path) and presenter admission wait | pin PR / 0bcc5a49 | `C:/Users/Shokunin/dev/r4-glctx/analysis/rt-*`, `phys-*`; GL fixtures `scratchpad/glfix-final` |
