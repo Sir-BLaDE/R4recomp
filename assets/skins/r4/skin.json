@@ -251,6 +251,6 @@
     "brand.title": "R4", "brand.subtitle": "RIDGE RACER TYPE 4",
     "nav.Home": "Race", "nav.Graphics": "Display", "nav.Mods": "Garage", "nav.Controls": "Controls",
     "nav.Netplay": "Netplay", "nav.About": "Credits", "play": "*PRESS START BUTTON", "home.title": "Ridge Racer Type 4",
-    "home.tagline": "Recompiled natively · SLUS-00797"
+    "home.tagline": "Recompiled natively"
   }
 }
