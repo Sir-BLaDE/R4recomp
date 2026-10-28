@@ -137,6 +137,14 @@ def test_game_toml():
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
+    pg = manifest('psx.enhancement.pgxp')
+    check(option_default(pg, 'pgxp', 'cpu_mode') == 'true',
+          'PGXP: CPU-mode propagation on by default (owner 2026-10-27)')
+    ce = manifest('r4.enhancement.car-effects')
+    check(feature(ce, 'car-effects').get('default_enabled') is True,
+          'car effects: on by default (owner 2026-10-27)')
+    check(video.get('fmv_filter') == 'bicubic' and video.get('antialiasing', True) is True,
+          'game.toml: FMV upscaled bicubic (owner 2026-10-27: nearest looked blocky)')
     check('dynamic_resolution_priority' not in video,
           'game.toml: no dynamic_resolution_priority (not in the render-thread stack)')
     for k in ('render_thread', 'present_thread'):

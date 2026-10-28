@@ -244,6 +244,10 @@ pgxp_seam = "fine"
 texture_lod = "mipmap"
 anisotropic_filtering = 16
 fmv_chroma_smoothing = true
+# MDEC movies are 320x240-class images blown up to the window: bicubic
+# reconstruction (psxrecomp docs/config_schema.md "FMV") instead of the
+# framework's nearest default, which the owner saw as blocky FMV (2026-10-27).
+fmv_filter = "bicubic"
 bloom = 1.0
 dithering = "off"
 

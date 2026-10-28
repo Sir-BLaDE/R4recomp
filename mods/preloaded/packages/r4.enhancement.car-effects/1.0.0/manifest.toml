@@ -14,9 +14,9 @@ game_id = "SLUS-00797"
 [[feature]]
 id = "car-effects"
 name = "Car Effects"
-description = "Off by default: turn it on in the Mods page. Cars spit flames from the exhaust on upshifts, when lifting off at high revs and on the rev limiter, leave tyre smoke when drifting and throw sparks on impacts. It also smooths the race camera's one-step jitter (a still or crawling car no longer makes the whole picture shake by a pixel at high resolutions) and drives the sun, speed and car-body values of the postfx/r4_2026 lighting preset. Offline only."
+description = "On by default (owner, 2026-10-27); turn it off in the Mods page for the stock picture. Cars spit flames from the exhaust on upshifts, when lifting off at high revs and on the rev limiter, leave tyre smoke when drifting and throw sparks on impacts. It also smooths the race camera's one-step jitter (a still or crawling car no longer makes the whole picture shake by a pixel at high resolutions) and drives the sun, speed and car-body values of the postfx/r4_2026 lighting preset. Offline only."
 group = "Display"
-default_enabled = false
+default_enabled = true
 
 [[plugin]]
 feature = "car-effects"
