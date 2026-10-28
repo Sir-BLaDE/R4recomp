@@ -420,7 +420,7 @@ Mods -> Controllers -> **Controls** (on by default) picks the race scheme:
 
 - **Modern** (default): on a gamepad with analog triggers, RT is gas and LT
   is brake (analog), the left stick steers, Square / Circle shift down / up,
-  R1 changes the camera view and Y opens Rewind (enable Rewind in Settings).
+  R1 changes the camera view and Y opens Rewind (on by default).
   The stick steers in either pad mode. R4 sees its native NeGcon while you
   drive; menus, the pause menu, keyboards and pads without triggers keep the
   stock controls.

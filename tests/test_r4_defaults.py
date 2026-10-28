@@ -138,6 +138,7 @@ def test_game_toml():
     check(video.get('supersample') == 1.5, 'game.toml: supersample = 1.5')
     check(video.get('antialiasing_mode') == 'off',
           'game.toml: no post-process AA filter (antialiasing_mode = "off")')
+    check(video.get('rewind') is True, 'game.toml: Rewind on by default (owner 2026-10-28)')
     pg = manifest('psx.enhancement.pgxp')
     check(option_default(pg, 'pgxp', 'cpu_mode') == 'true',
           'PGXP: CPU-mode propagation on by default (owner 2026-10-27)')
