@@ -1,0 +1,355 @@
+diff --git a/runtime/include/window_fullscreen.h b/runtime/include/window_fullscreen.h
+index a79acf7d..71ba733d 100644
+--- a/runtime/include/window_fullscreen.h
++++ b/runtime/include/window_fullscreen.h
+@@ -81,7 +81,14 @@ static inline int psx_window_fullscreen_set(SDL_Window* window,
+         SDL_SetWindowBordered(window, SDL_FALSE);
+         SDL_SetWindowResizable(window, SDL_FALSE);
+         SDL_SetWindowPosition(window, desktop.x, desktop.y);
+-        SDL_SetWindowSize(window, desktop.w, desktop.h);
++        /* One row taller than the monitor: a GL window that exactly covers
++         * the display can be promoted by the driver to a fullscreen flip
++         * path, the suspected cause of Windows HDR being left broken after
++         * exit (R4Recomp report). The extra row is off-screen.
++         * PSX_BORDERLESS_EXACT=1 keeps the exact size. */
++        const char *exact = std::getenv("PSX_BORDERLESS_EXACT");
++        SDL_SetWindowSize(window, desktop.w,
++                          desktop.h + ((exact && exact[0] == '1') ? 0 : 1));
+         SDL_SyncWindow(window);
+ #elif defined(PSX_SDL3)
+         if (!SDL_SetWindowFullscreen(window, true)) return -1;
+diff --git a/runtime/src/duckstation_texture_pack.cpp b/runtime/src/duckstation_texture_pack.cpp
+index 3ca48b1b..65545cda 100644
+--- a/runtime/src/duckstation_texture_pack.cpp
++++ b/runtime/src/duckstation_texture_pack.cpp
+@@ -41,7 +41,8 @@ namespace {
+ constexpr size_t kWords = 1024u * 512u;
+ constexpr size_t kMaxEntries = 262144;
+ constexpr size_t kMaxUploads = 8192;
+-constexpr size_t kMaxRectCache = 256;
++constexpr size_t kMaxRectCache = 65536;
++constexpr size_t kMaxMatchCache = 16384;
+ constexpr size_t kMaxDumps = 8192;
+ constexpr size_t kMaxDumpQueue = 8;
+ constexpr size_t kMaxDecodeQueue = 32;
+@@ -166,15 +167,57 @@ struct Source {
+ struct Upload { std::shared_ptr<Source> source; Rect active{}; unsigned splits = 0; };
+ struct PageSource { std::shared_ptr<Source> source; uint8_t depth = 0; uint16_t clut_x = 0, clut_y = 0; };
+ struct CopyUpdate { Rect original, active; unsigned splits; };
+-struct RectHash { Rect rect; uint64_t hash; const uint16_t* vram; };
++struct RectHash { Rect rect; uint64_t hash; const uint16_t* vram; uint64_t sig = 0; };
+ struct PageGroup {
+     Rect texels;
+     std::unordered_map<uint64_t, std::vector<size_t>> hashes;
++    uint64_t visit = 0;    /* query stamp: a group is checked once per lookup */
+ };
++/* Page-relative spatial index of the page groups: 16x16 cells of 16x16
++ * texels. A lookup used to walk every geometry of the pack (about 1400 with
++ * the course textures, ~500M rectangle tests per minute of racing). */
++constexpr unsigned kGroupCell = 16, kGroupCells = 256 / kGroupCell;
++/* Hashed lookups: a race frame queries hundreds of distinct rectangles and
++ * draw windows, so the former 256-entry linear caches thrashed and every
++ * miss re-hashed VRAM for each page group (hot on the render thread). */
++struct RectKey {
++    const uint16_t* vram; unsigned x, y, w, h;
++    bool operator==(const RectKey& o) const { return vram == o.vram && x == o.x && y == o.y && w == o.w && h == o.h; }
++};
++struct RectKeyHash {
++    size_t operator()(const RectKey& k) const {
++        uint64_t v = (uint64_t(k.x) << 48) ^ (uint64_t(k.y) << 32) ^ (uint64_t(k.w) << 16) ^ k.h;
++        v ^= reinterpret_cast<uintptr_t>(k.vram) * 0x9E3779B97F4A7C15ull;
++        return size_t(v ^ (v >> 29));
++    }
++};
++struct MatchKey {
++    const uint16_t* vram; uint16_t page_x, page_y, clut_x, clut_y;
++    uint8_t depth, u_first, u_last, v_first, v_last, st;
++    bool operator==(const MatchKey& o) const {
++        return vram == o.vram && page_x == o.page_x && page_y == o.page_y && clut_x == o.clut_x &&
++            clut_y == o.clut_y && depth == o.depth && u_first == o.u_first && u_last == o.u_last &&
++            v_first == o.v_first && v_last == o.v_last && st == o.st;
++    }
++};
++struct MatchKeyHash {
++    size_t operator()(const MatchKey& k) const {
++        uint64_t v = (uint64_t(k.page_x) << 52) ^ (uint64_t(k.page_y) << 42) ^ (uint64_t(k.clut_x) << 32) ^
++            (uint64_t(k.clut_y) << 22) ^ (uint64_t(k.depth) << 40) ^ (uint64_t(k.u_first) << 24) ^
++            (uint64_t(k.u_last) << 16) ^ (uint64_t(k.v_first) << 8) ^ k.v_last ^ (uint64_t(k.st) << 63);
++        v ^= reinterpret_cast<uintptr_t>(k.vram) * 0x9E3779B97F4A7C15ull;
++        return size_t(v ^ (v >> 31));
++    }
++};
++inline MatchKey match_key(const HdTextureDrawQuery& q, int st) {
++    return {q.vram, q.page_x, q.page_y, q.clut_x, q.clut_y, q.depth, q.u_first, q.u_last, q.v_first, q.v_last,
++            uint8_t(st != 0)};
++}
+ struct MatchCache {
+     HdTextureDrawQuery query;
+     int st, status;
+     std::vector<DuckTextureMatch> results;
++    uint64_t sig = 0;
+ };
+ struct Image { std::vector<uint8_t> rgba; uint32_t w = 0, h = 0; };
+ struct Lease { std::shared_ptr<Image> image; };
+@@ -347,6 +390,8 @@ struct DuckTexturePack {
+     std::vector<Entry> entries;
+     std::array<std::unordered_map<uint64_t, std::vector<size_t>>, 3> uploads_by_hash;
+     std::array<std::unordered_map<uint64_t, PageGroup>, 3> page_groups;
++    std::array<std::array<std::vector<PageGroup*>, kGroupCells * kGroupCells>, 3> group_grid;
++    uint64_t group_visit = 0;
+     std::unordered_map<std::string, size_t> by_name;
+     std::vector<Upload> uploads;
+     std::vector<PageSource> pages;
+@@ -354,8 +399,13 @@ struct DuckTexturePack {
+     std::vector<CopyUpdate> copy_updates;
+     Rect copy_destination{};
+     bool copy_pending = false;
+-    std::vector<RectHash> rect_cache;
+-    std::vector<MatchCache> match_cache;
++    std::unordered_map<RectKey, RectHash, RectKeyHash> rect_cache;
++    std::unordered_map<MatchKey, MatchCache, MatchKeyHash> match_cache;
++    /* VRAM write generations per 64x64 tile (16 x 8). A cache entry keeps
++     * the sum of its tiles' generations; a write bumps the tiles it covers,
++     * so invalidation is O(tiles written) instead of a scan of the caches. */
++    std::array<uint32_t, 128> tile_gen{};
++    std::array<uint8_t, 128> tile_cached{};   /* tiles some cache entry depends on */
+     std::shared_ptr<DumpHistory> dump_history = std::make_shared<DumpHistory>();
+     DuckTextureConfig config{0,0,0,16,16,128,128,0,0,0,1,0,1,0,0};
+     size_t snapshot_bytes = 0, palette_records = 0;
+@@ -390,19 +440,74 @@ void add_entry(DuckTexturePack& p, const DuckTextureKey& key, const fs::path& pa
+     else {
+         const uint64_t geometry = (uint64_t(key.offset_x) << 48) | (uint64_t(key.offset_y) << 32) |
+                                   (uint64_t(key.width) << 16) | key.height;
++        const bool fresh = p.page_groups[key.depth].find(geometry) == p.page_groups[key.depth].end();
+         PageGroup& group = p.page_groups[key.depth][geometry];
+         group.texels = {key.offset_x, key.offset_y, key.width, key.height};
++        if (fresh && key.width && key.height) {   /* unordered_map nodes are stable */
++            const unsigned cx0 = std::min(255u, unsigned(key.offset_x)) / kGroupCell;
++            const unsigned cy0 = std::min(255u, unsigned(key.offset_y)) / kGroupCell;
++            const unsigned cx1 = std::min(255u, unsigned(key.offset_x) + key.width - 1) / kGroupCell;
++            const unsigned cy1 = std::min(255u, unsigned(key.offset_y) + key.height - 1) / kGroupCell;
++            for (unsigned cy = cy0; cy <= cy1; cy++) for (unsigned cx = cx0; cx <= cx1; cx++)
++                p.group_grid[key.depth][cy * kGroupCells + cx].push_back(&group);
++        }
+         group.hashes[key.source_hash].push_back(p.entries.size());
+     }
+     p.entries.push_back({key, path.u8string(), false});
+ }
++uint64_t tile_sig(const DuckTexturePack& p, Rect r) {
++    if (!r.w || !r.h) return 0;
++    uint64_t sum = 0;
++    const unsigned x0 = (r.x % 1024) / 64, y0 = (r.y % 512) / 64;
++    const unsigned x1 = std::min(1023u, r.x % 1024 + r.w - 1) / 64, y1 = std::min(511u, r.y % 512 + r.h - 1) / 64;
++    for (unsigned ty = y0; ty <= y1; ty++) for (unsigned tx = x0; tx <= x1; tx++)
++        sum += uint64_t(p.tile_gen[ty * 16 + tx]) * (1u + ty * 16 + tx);
++    return sum;
++}
++uint64_t query_sig(const DuckTexturePack& p, const HdTextureDrawQuery& q) {
++    const unsigned ppw = q.depth == 0 ? 4 : q.depth == 1 ? 2 : 1;
++    uint64_t s = tile_sig(p, Rect{q.page_x, q.page_y, 256 / ppw, 256});
++    if (q.depth < 2) s = s * 1000003u + tile_sig(p, Rect{q.clut_x, q.clut_y, std::min(q.depth == 0 ? 16u : 256u, 1024u - q.clut_x), 1});
++    return s;
++}
++/* returns whether a cache entry depended on any bumped tile (the former
++ * linear scans counted that as a hit, which bumps the pack revision) */
++bool bump_tiles(DuckTexturePack& p, Rect r) {
++    if (!r.w || !r.h) return false;
++    bool used = false;
++    const unsigned x0 = r.x / 64, y0 = r.y / 64;
++    const unsigned x1 = std::min(1023u, r.x + r.w - 1) / 64, y1 = std::min(511u, r.y + r.h - 1) / 64;
++    for (unsigned ty = y0; ty <= y1; ty++) for (unsigned tx = x0; tx <= x1; tx++) {
++        p.tile_gen[ty * 16 + tx]++;
++        used |= p.tile_cached[ty * 16 + tx] != 0;
++    }
++    return used;
++}
++void mark_tiles(DuckTexturePack& p, Rect r) {
++    if (!r.w || !r.h) return;
++    const unsigned x0 = (r.x % 1024) / 64, y0 = (r.y % 512) / 64;
++    const unsigned x1 = std::min(1023u, r.x % 1024 + r.w - 1) / 64, y1 = std::min(511u, r.y % 512 + r.h - 1) / 64;
++    for (unsigned ty = y0; ty <= y1; ty++) for (unsigned tx = x0; tx <= x1; tx++) p.tile_cached[ty * 16 + tx] = 1;
++}
++void mark_query(DuckTexturePack& p, const HdTextureDrawQuery& q) {
++    const unsigned ppw = q.depth == 0 ? 4 : q.depth == 1 ? 2 : 1;
++    mark_tiles(p, Rect{q.page_x, q.page_y, 256 / ppw, 256});
++    if (q.depth < 2) mark_tiles(p, Rect{q.clut_x, q.clut_y, std::min(q.depth == 0 ? 16u : 256u, 1024u - q.clut_x), 1});
++}
++bool rect_cached(const DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r) {
++    const auto it = p.rect_cache.find(RectKey{q.vram, r.x, r.y, r.w, r.h});
++    return it != p.rect_cache.end() && it->second.sig == tile_sig(p, r);
++}
+ uint64_t cached_hash(DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r) {
+-    for (const auto& saved : p.rect_cache)
+-        if (saved.vram == q.vram && saved.rect.x == r.x && saved.rect.y == r.y && saved.rect.w == r.w && saved.rect.h == r.h) return saved.hash;
++    const RectKey key{q.vram, r.x, r.y, r.w, r.h};
++    const uint64_t sig = tile_sig(p, r);
++    const auto saved = p.rect_cache.find(key);
++    if (saved != p.rect_cache.end() && saved->second.sig == sig) return saved->second.hash;
+     const uint64_t value = duck_texture_hash_rect(q.vram, q.vram_word_count, r.x, r.y, r.w, r.h);
+     if (p.rect_cache_limit) {
+-        if (p.rect_cache.size() >= p.rect_cache_limit) p.rect_cache.erase(p.rect_cache.begin());
+-        p.rect_cache.push_back({r, value, q.vram});
++        if (p.rect_cache.size() >= p.rect_cache_limit) p.rect_cache.clear();
++        p.rect_cache[key] = RectHash{r, value, q.vram, sig};
++        mark_tiles(p, r);
+     }
+     return value;
+ }
+@@ -838,6 +943,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+         return false;
+     };
+     bool hit = false;
++    for (const auto& r : regions) hit |= bump_tiles(*p, r);   /* hashed caches: O(tiles) */
+     for (const auto& upload : p->uploads) if (touches(upload.active)) { hit = true; break; }
+     if (!hit) for (const auto& page : p->pages) {
+         if (touches(page.source->rect)) { hit = true; break; }
+@@ -845,13 +951,6 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+             if (record.depth < 2 && touches({record.clut_x,record.clut_y,record.palette_size,1})) { hit = true; break; }
+         if (hit) break;
+     }
+-    if (!hit) for (const auto& v : p->rect_cache) if (touches(v.rect)) { hit = true; break; }
+-    if (!hit) for (const auto& c : p->match_cache) {
+-        const auto& q = c.query;
+-        const Rect page{q.page_x,q.page_y,256 / expansion(q.depth),256};
+-        const Rect clut{q.clut_x,q.clut_y,std::min(q.depth == 0 ? 16u : 256u,1024u-q.clut_x),1};
+-        if (touches(page) || (q.depth < 2 && touches(clut))) { hit = true; break; }
+-    }
+     if (!hit) return;
+     ++p->revision;
+     bool released = false;   /* a residency record dropped or split */
+@@ -889,13 +988,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+             return false;
+         }),p->pages.end());
+         released = released || p->pages.size() != pages_before;
+-        p->rect_cache.erase(std::remove_if(p->rect_cache.begin(), p->rect_cache.end(), [&](const RectHash& v){ return intersects(v.rect,r); }), p->rect_cache.end());
+-        p->match_cache.erase(std::remove_if(p->match_cache.begin(), p->match_cache.end(), [&](const MatchCache& c) {
+-            const auto& q = c.query;
+-            const Rect page{q.page_x,q.page_y,256 / expansion(q.depth),256};
+-            const Rect clut{q.clut_x,q.clut_y,std::min(q.depth == 0 ? 16u : 256u,1024u-q.clut_x),1};
+-            return intersects(page,r) || (q.depth < 2 && intersects(clut,r));
+-        }), p->match_cache.end());
++        /* rect_cache / match_cache entries go stale through tile_gen */
+     }
+     /* Only a dropped record can leave a source unreferenced. */
+     if (released) retire_unused(*p);
+@@ -1023,21 +1116,24 @@ int duck_texture_pack_match_draw(DuckTexturePack* p, const HdTextureDrawQuery* q
+     if (winner == size_t(-1)) return HD_TEXTURE_LOOKUP_NONE;
+     *out = parts[winner]; return HD_TEXTURE_LOOKUP_FOUND;
+ }
++extern "C" { uint64_t g_dtp_calls, g_dtp_hits, g_dtp_misses, g_dtp_groups, g_dtp_hashes; }
+ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery* q, int st,
+                                    DuckTextureMatch* output, size_t capacity, size_t* out_count) {
++    g_dtp_calls++;
+     if (out_count) *out_count = 0;
+     if (!p || !q || !out_count || (!output && capacity)) return HD_TEXTURE_LOOKUP_ERROR;
+     Rect wanted{}; if (!query_rect(q, wanted)) return HD_TEXTURE_LOOKUP_NONE;
+     try {
+-        for (const auto& c : p->match_cache) {
+-            const auto& a = c.query;
+-            if (c.st == (st != 0) && a.vram == q->vram && a.page_x == q->page_x && a.page_y == q->page_y &&
+-                a.depth == q->depth && a.clut_x == q->clut_x && a.clut_y == q->clut_y &&
+-                a.u_first == q->u_first && a.u_last == q->u_last && a.v_first == q->v_first && a.v_last == q->v_last) {
++        {
++            const auto hit = p->match_cache.find(match_key(*q, st));
++            if (hit != p->match_cache.end() && hit->second.sig == query_sig(*p, *q)) {
++                g_dtp_hits++;
++                const auto& c = hit->second;
+                 if (c.results.size() > capacity) return HD_TEXTURE_LOOKUP_ERROR;
+                 std::copy(c.results.begin(),c.results.end(),output); *out_count = c.results.size(); return c.status;
+             }
+         }
++        g_dtp_misses++;
+         const unsigned ppw = expansion(q->depth);
+         std::vector<DuckTextureMatch> candidates;
+         bool over_budget = false; size_t checked = 0;
+@@ -1074,13 +1170,21 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
+             if (over_budget) break;
+         }
+         size_t groups_checked = 0, hashed_bytes = 0;
+-        for (const auto& item : p->page_groups[q->depth]) {
+-            const auto& group = item.second; const auto& r = group.texels;
++        const uint64_t stamp = ++p->group_visit;
++        const auto& grid = p->group_grid[q->depth];
++        const unsigned gx0 = std::min(255u, unsigned(q->u_first)) / kGroupCell, gx1 = std::min(255u, unsigned(q->u_last)) / kGroupCell;
++        const unsigned gy0 = std::min(255u, unsigned(q->v_first)) / kGroupCell, gy1 = std::min(255u, unsigned(q->v_last)) / kGroupCell;
++        for (unsigned gcy = gy0; gcy <= gy1 && !over_budget; gcy++)
++        for (unsigned gcx = gx0; gcx <= gx1 && !over_budget; gcx++)
++        for (PageGroup* gp : grid[gcy * kGroupCells + gcx]) {
++            if (gp->visit == stamp) continue;
++            gp->visit = stamp;
++            const auto& group = *gp; const auto& r = group.texels;
+             Rect rect{q->page_x+r.x/ppw,q->page_y+r.y,r.w/ppw,r.h};
++            g_dtp_groups++;
+             if (!intersects(rect,wanted)) continue;
+-            const bool cached = std::any_of(p->rect_cache.begin(),p->rect_cache.end(),[&](const RectHash& c) {
+-                return c.vram == q->vram && c.rect.x == rect.x && c.rect.y == rect.y && c.rect.w == rect.w && c.rect.h == rect.h;
+-            });
++            const bool cached = rect_cached(*p, *q, rect);
++            if (!cached) g_dtp_hashes++;
+             if (!cached) hashed_bytes += size_t(rect.w) * rect.h * 2;
+             if (++groups_checked > 4096 || hashed_bytes > 4u*1024u*1024u) { over_budget = true; break; }
+             const auto found = group.hashes.find(cached_hash(*p,*q,rect));
+@@ -1120,8 +1224,9 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
+             if (a.clip_v != b.clip_v) return a.clip_v < b.clip_v;
+             return a.clip_u < b.clip_u;
+         });
+-        if (p->match_cache.size() >= 256) p->match_cache.erase(p->match_cache.begin());
+-        p->match_cache.push_back({*q,st != 0,status,parts});
++        if (p->match_cache.size() >= kMaxMatchCache) p->match_cache.clear();
++        p->match_cache[match_key(*q, st)] = MatchCache{*q,st != 0,status,parts,query_sig(*p, *q)};
++        mark_query(*p, *q);
+         if (parts.size() > capacity) return HD_TEXTURE_LOOKUP_ERROR;
+         std::copy(parts.begin(),parts.end(),output); *out_count = parts.size();
+         return status;
+diff --git a/runtime/src/gpu_gl_renderer.c b/runtime/src/gpu_gl_renderer.c
+index 9e7f32d2..33b307c2 100644
+--- a/runtime/src/gpu_gl_renderer.c
++++ b/runtime/src/gpu_gl_renderer.c
+@@ -2148,9 +2148,14 @@ static const char *TEX_FS =
+     "      int native=fetch_texel(int(floor(uv.x)),int(floor(uv.y)));\n"
+     "      if(native==0) discard; stp=(native>>15)&1;\n"
+     "    } else if(v_hd_mode==2){\n"
+-    "      if(hd.a<128.0/255.0) discard; stp=0;\n"
++    "      if(hd.a<128.0/255.0) discard;\n"
++    /* A replacement without an ST variant supplies colour only: the PS1
++     * blends per texel by the native texel's STP bit (car reflection maps,
++     * glows drawn semi-transparent stay additive instead of opaque). */
++    "      stp=(fetch_texel(int(floor(uv.x)),int(floor(uv.y)))>>15)&1;\n"
+     "    } else if(v_hd_mode==4){\n"
+-    "      if(hd.a==0.0) discard; stp=hd.a<1.0 ? 1 : 0;\n"
++    "      if(hd.a==0.0) discard;\n"
++    "      stp=hd.a<1.0 ? 1 : (fetch_texel(int(floor(uv.x)),int(floor(uv.y)))>>15)&1;\n"
+     "    } else {\n"
+     "      stp=hd.a<=242.0/255.0 ? 1 : 0;\n"
+     "      if(all(equal(hd,vec4(0.0))) || (stp==0 && all(equal(hd.rgb,vec3(0.0))))) discard;\n"
+diff --git a/runtime/src/gpu_hd_textures.cpp b/runtime/src/gpu_hd_textures.cpp
+index 5430dfb3..822a51f4 100644
+--- a/runtime/src/gpu_hd_textures.cpp
++++ b/runtime/src/gpu_hd_textures.cpp
+@@ -29,7 +29,7 @@ constexpr size_t kMaxParts = 64;
+ /* Elective full preload of an installed pack: at most this much decoded RGBA
+  * pinned across both formats, decoded by at most this many threads. Anything
+  * beyond decodes on demand under the normal budget. */
+-constexpr size_t kPreloadMaxBytes = size_t{512} * 1024u * 1024u;
++constexpr size_t kPreloadMaxBytes = size_t{768} * 1024u * 1024u;   /* R4 pack: ~550 MiB decoded */
+ constexpr unsigned kPreloadThreads = 4;
+ struct Composition {
+     std::vector<uint64_t> signature;
+diff --git a/runtime/src/pgxp.cpp b/runtime/src/pgxp.cpp
+index 6eb0abeb..2c254a75 100644
+--- a/runtime/src/pgxp.cpp
++++ b/runtime/src/pgxp.cpp
+@@ -161,9 +161,13 @@ extern "C" void pgxp_invalidate_all(void) {
+ 
+ extern "C" void pgxp_set_enabled(int enabled) {
+     int resized = 0;
++#ifndef PSX_NO_DEBUG_TOOLS
++    /* Store trace ring: read only by the debug server's pgxp_store_ring, so a
++     * release build (no debug server) skips the per-store record write. */
+     if (enabled && !s_store_ring)
+         s_store_ring = (PGXPStoreRecord *)std::calloc(PGXP_STORE_RING_CAP,
+                                                       sizeof(PGXPStoreRecord));
++#endif
+     if (enabled && !s_ram) {
+         s_ram = (PGXPValue *)std::calloc(PGXP_SHADOW_WORDS, sizeof(PGXPValue));
+         if (s_ram)

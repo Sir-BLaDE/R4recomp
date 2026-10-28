@@ -238,7 +238,7 @@ feature = "spanish"
 target = "disc_user"
 offset = 41322496
 file = "payload/r4bin_678_693.bin"
-sha256 = "9f91681e95e5c9f6701071b93a04e0ea83f14a20ed09c8af7400a3e3108e9a17"
+sha256 = "128bb69cbfcbc43883c1a647a70bf5ee5819dd808068b90715b743acddf456fe"
 expected_sha256 = "8689d4eed9d6323a28ada8e8d20f3aa4b425551ce8e233f6399fc4a8f5f8f16b"
 
 [[overlay]]
@@ -246,7 +246,7 @@ feature = "spanish"
 target = "disc_user"
 offset = 42991616
 file = "payload/r4bin_695_710.bin"
-sha256 = "3e93393b7d6056a4609192f7ca99d161b7a853ff0f9a016a7aab70fab3959fb7"
+sha256 = "79216c7403a5fcd31c31d96b42d1e2655169773fd0bcb77284539ebc81f682a1"
 expected_sha256 = "8fa42a29e69d4d3c2528e3fc6139e52c98a0cfd781fad8fee421230ec0ba45b3"
 
 [[overlay]]
@@ -254,7 +254,7 @@ feature = "spanish"
 target = "disc_user"
 offset = 44713984
 file = "payload/r4bin_712_727.bin"
-sha256 = "5fda539137d3d506fa4240a487c532f5cd4dad488d28f63187ff7cf935347c0f"
+sha256 = "cb4813dfde1db499a7a88647fc5c334e4f938c1fca6fb7bae8f47affb0b5b3d0"
 expected_sha256 = "a23ee00afb05eae4f7c1e94e039e0042df46a47416df0998696df5f4797342a2"
 
 [[overlay]]
@@ -262,7 +262,7 @@ feature = "spanish"
 target = "disc_user"
 offset = 46391296
 file = "payload/r4bin_729_744.bin"
-sha256 = "2c6990ebac03d818c8950bb3b27ce09d155376d8345b6e2bc73ecd5a7315aac5"
+sha256 = "b511a3d7c808b28dcba44ffcd8d138fc02e8c78cda68e2835727bc0f8bf3b687"
 expected_sha256 = "b58da76ffb782550a7012ff609179ca3b56ffc4429dfc2ab7769e6c0af98fafc"
 
 [[overlay]]
@@ -270,7 +270,7 @@ feature = "spanish"
 target = "disc_user"
 offset = 49199104
 file = "payload/r4bin_755_763.bin"
-sha256 = "b737bb3da7118e4ae1de491713b67e0313bab51781073e5b4bc8fd95688e8341"
+sha256 = "f3966b5f4fd11dff8733bb68a2fff2771b0f4fe08a3e0e45274fa16ca9963671"
 expected_sha256 = "1d7234119bd6fdb26f7b17b334792204f9f3359e004e574beba54e9e9b770d10"
 
 [[overlay]]

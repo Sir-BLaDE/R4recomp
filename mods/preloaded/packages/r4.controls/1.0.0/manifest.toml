@@ -20,3 +20,13 @@ default_enabled = true
 [[plugin]]
 feature = "negcon"
 id = "r4.analog"
+
+# The race HUD draws a JogCon dial indicator (nine marks and a pointer at the
+# bottom of the screen) whenever a JogCon is connected: 0x8002254C tests the
+# per-player JogCon flag (beqz v0 -> skip). Always skip it.
+[[patch]]
+feature = "negcon"
+target = "main_exe"
+address = 0x8002254C
+expected = "5b 00 40 10"
+replace = "5b 00 00 10"

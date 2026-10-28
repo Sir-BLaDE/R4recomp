@@ -6,6 +6,24 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release and
 an HD texture pack.
 
+ES - Novedades de la 0.5
+------------------------
+- Coche negro / reflejos rotos: el mapa de reflejos del coche se pintaba
+  opaco en HD. Ahora las imagenes HD respetan la semitransparencia de cada
+  texel como la PS1 (reflejos aditivos). Por eso las texturas de circuito
+  semitransparentes tambien van ya en HD.
+- Textos de los menus amarillos ("Team name", "Maker name", "Car data"...):
+  el juego dibuja esas hojas con paletas distintas de las suyas; el pack
+  incluye ahora cada hoja con las paletas que usa el juego.
+- Pantalla de fecha/tarjeta de carrera ("1999/05/01 (Sat)..."): fuente
+  grande redibujada por capas (tinta + sombra), fuente pequena escalada con
+  xBRZ (conserva la forma de cada letra) y hojas que el juego sobrescribe
+  en parte divididas en bloques para que coincidan.
+- Textos de los equipos/fabricantes completos (paginas largas reflujadas).
+- Quitada la barra/indicador del JogCon de la parte inferior.
+- Menos carga en el hilo de render (busqueda de texturas HD ~2,4x mas
+  rapida).
+
 ES - Inicio rapido
 ------------------
 1. Descomprime en una carpeta NUEVA (no encima de una version anterior: el
@@ -56,6 +74,15 @@ AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
 
+EN - New in 0.5
+---------------
+HD replacements keep the PS1's per-texel semi-transparency (car reflection
+maps were drawn opaque: black cars); semi-transparent course textures are now
+HD too; menu label sheets drawn with in-game palettes; date/race-card fonts
+redrawn (layered ink + shadow, xBRZ for the small font, tiled sheets the game
+partly overwrites); full team/maker texts; JogCon dial bar removed; faster HD
+texture lookup on the render thread.
+
 EN - Quick start
 ----------------
 1. Unzip into a NEW folder and run R4_Recompiled.exe; pick your own
@@ -72,4 +99,5 @@ EN - Quick start
 BIOS: the bundled open-source OpenBIOS is used by default; no BIOS dump needed.
 Licenses for psxrecomp, recomp-ui, OpenBIOS and third-party components are in
 licenses/ and bios/. HD font: TeX Gyre Heros (GUST Font License). Upscaler:
-Real-ESRGAN x4plus / x4plus_anime_6B (BSD-3-Clause).
+Real-ESRGAN x4plus / x4plus_anime_6B (BSD-3-Clause); small fonts scaled
+with xBRZ when the pack was built (the tool is not shipped).

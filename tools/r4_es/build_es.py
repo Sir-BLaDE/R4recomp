@@ -164,6 +164,7 @@ BOX_ROWS = 3                 # PAL page layout (three rows; the rare four-row
                              # rows 22 px apart (cell rows 4..21) so three fit
                              # the 88 px box
 BOX_CHARS = 48               # 48 x 5 px pen advance = 240 px (PAL rows <= 41)
+WIDE_CHARS = 54              # rewrap of over-long pages: 54 x 5 = 270 px of the 296 px box
 
 
 def _rows(body):
@@ -235,6 +236,20 @@ def reflow_messages(w, rows=BOX_ROWS, limit=BOX_CHARS):
         rr = []
         for r in _rows(body):
             rr += _wrap(r, limit) if _width(r) > limit else [r]
+        # A page longer than the box (PAL four-row pages): rewrap it into
+        # wider rows first; several screens (team / maker / car descriptions)
+        # show only the first header message, so splitting lost the end.
+        if len(rr) > rows:
+            joined = []
+            for r in rr:
+                if not _width(r):
+                    continue
+                if joined:
+                    joined.append(0)
+                joined += r
+            wide = _wrap(joined, WIDE_CHARS)
+            if len(wide) <= rows:
+                rr = wide
         # leading empty rows only space the first page; drop the rest
         pages = [rr[i:i + rows] for i in range(0, len(rr), rows)]
         if len(pages) == 1 and rr == _rows(body):
@@ -393,8 +408,9 @@ def info_from_table(conv):
         assert len(rows) <= BOX_ROWS and all(len(r) <= BOX_CHARS for r in rows), text
         t = s[conv[k]] if _is_header(s, conv[k]) else 0x4064
         m = [t, 0x2000, 0x2000] + encode_pal(text.rstrip("/"))
-        if text.endswith("/"):
-            m.append(PAGE_END)
+        # "/" only marks a slot that closes a sentence: the engine has no
+        # page-end code (0x0002 is the '.' glyph of the PAL sheet; appending
+        # it printed a second full stop)
         m.append(NEWLINE)
         out[k] = len(body)
         body += _hdr_fix(m)

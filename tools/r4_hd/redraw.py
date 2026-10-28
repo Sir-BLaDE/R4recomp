@@ -178,14 +178,18 @@ def coverage_mask(cov, thresh=0.5):
 
 
 def redraw_mono(idx, lut, esr=None):
-    """Anti-aliased grey text: coverage = brightness, traced at 4x. Filled
-    with the ESRGAN colour (keeps interior shading) or, without a model,
-    the sheet's brightest ink."""
+    """Anti-aliased grey text: coverage = brightness relative to the local
+    ink level (sheets mix white headings with dimmer help lines), traced at
+    4x. Filled with the ESRGAN colour (keeps interior shading) or, without a
+    model, the sheet's brightest ink."""
+    from scipy import ndimage
     h, w = idx.shape
     col = lut[:, :3].astype(float)
     lum = (col @ np.array([0.299, 0.587, 0.114])) * (lut[:, 3] > 0)
     top = lum.max() or 1.0
-    cov = lum[idx] / top
+    l = lum[idx]
+    ref = np.maximum(ndimage.maximum_filter(l, size=7), top * 0.3)
+    cov = l / ref
     mask = coverage_mask(cov, 0.62)
     ink = tuple(int(c) for c in lut[int(np.argmax(lum)), :3])
     out = render_svg(paths_svg(trace_mask(mask), w * SCALE, h * SCALE, ink),
@@ -197,15 +201,123 @@ def redraw_mono(idx, lut, esr=None):
     else:
         rgb = lut[idx][:, :, :3] * (lut[idx][:, :, 3:] > 0)
         up = np.asarray(esr.rgb(Image.fromarray(rgb.astype(np.uint8))), np.float32)
+        k = np.ones((SCALE, SCALE), np.float32)
+        ref_up = np.kron(ref.astype(np.float32), k)
         # the traced outline can close the narrow counters of tiny glyphs
-        # (h -> b, E -> 8): keep only what the network also sees as ink
+        # (h -> b, E -> 8): keep only what the network also sees as ink...
         ulum = up @ np.array([0.299, 0.587, 0.114], np.float32)
-        a[:, :, 3] = np.where((a[:, :, 3] > 0) & (ulum >= top * 0.45), 255, 0)
+        # ...but the network dims one-texel strokes: texels that are mostly
+        # ink stay ink, with at least their native colour (counters are
+        # background texels)
+        full = np.kron((cov >= 0.6).astype(np.float32), k) > 0
+        a[:, :, 3] = np.where(((a[:, :, 3] > 0) & (ulum >= ref_up * 0.45)) | full, 255, 0)
         # lift the edge darkening the network leaves inside the traced shape
-        l = up.max(2, keepdims=True)
-        up = np.where(l > 0, up * np.clip(top * 0.9 / np.maximum(l, 1), 1, 3), up)
+        mx = up.max(2)
+        gain = np.clip(ref_up * 0.9 / np.maximum(mx, 1), 1, 3)
+        up = np.where((mx > 0)[:, :, None], up * gain[:, :, None], up)
+        nat = np.kron(rgb.astype(np.float32), np.ones((SCALE, SCALE, 1), np.float32))
+        up = np.where(full[:, :, None], np.maximum(up, nat), up)
         a[:, :, :3] = np.clip(up, 0, 255).astype(np.uint8)
+        # dark opaque texels are part of the glyphs (drop shadows, outlines:
+        # under the game's colour modulation they print as the darker half
+        # of the letter): the traced silhouette of every opaque texel goes
+        # underneath, in the network's colour
+        opaque = lut[idx, 3] > 0
+        if (opaque & (cov < 0.45)).sum() > 0.05 * max(1, opaque.sum()):
+            sil = render_svg(paths_svg(trace_mask(coverage_mask(opaque.astype(np.float32))),
+                                       w * SCALE, h * SCALE, (255, 255, 255)), w * SCALE, h * SCALE)
+            under = (np.asarray(sil)[:, :, 3] >= 128) & (a[:, :, 3] == 0)
+            raw = np.asarray(esr.rgb(Image.fromarray(rgb.astype(np.uint8))), np.uint8)
+            a[under, :3] = raw[under]
+            a[under, 3] = 255
     return Image.fromarray(a, "RGBA")
+
+
+SHADOW_OFFSETS = [(1, 0), (0, 1), (1, 1), (2, 1), (1, 2), (2, 2)]
+
+
+def _shift(m, dx, dy):
+    out = np.zeros_like(m)
+    h, w = m.shape
+    out[dy:, dx:] = m[:h - dy, :w - dx]
+    return out
+
+
+def shadow_offset(idx, lut):
+    """Grey text drawn as light ink over a dark copy of itself moved by a
+    texel or two (R4's small race-card and date fonts). Returns (dx, dy, ink
+    mask, shadow colour) when the dark texels are that shifted copy, else
+    None. Such glyphs are 5-8 texels tall: tracing or a network merges ink
+    and shadow and closes the counters, so they are redrawn per layer."""
+    used = [int(i) for i in np.unique(idx) if lut[i, 3]]
+    if len(used) < 3:
+        return None
+    c = lut[used, :3].astype(int)
+    if int((c.max(1) - c.min(1)).max()) > 40:
+        return None
+    lum = lut[:, :3].astype(float) @ np.array([0.299, 0.587, 0.114])
+    opaque = lut[idx, 3] > 0
+    if opaque.mean() > 0.8:          # text sits on transparency; plates,
+        return None                  # grilles and concrete are pictures
+    top = lum[used].max()
+    if top < 200:                    # R4's lettering is light
+        return None
+    l = lum[idx]
+    ink = opaque & (l >= top * 0.4)
+    dark = opaque & ~ink
+    if ink.sum() < 20 or dark.sum() < 0.2 * ink.sum():
+        return None
+    best = None
+    for dx, dy in SHADOW_OFFSETS:
+        pred = _shift(ink, dx, dy) & ~ink
+        inter = (pred & dark).sum()
+        union = (pred | dark).sum()
+        iou = inter / max(1, union)
+        if best is None or iou > best[0]:
+            best = (iou, dx, dy)
+    if best[0] < 0.6:
+        return None
+    dcol = np.median(lut[idx[dark], :3], axis=0).astype(np.uint8)
+    return best[1], best[2], ink, dcol
+
+
+def thick_strokes(ink, share=0.38):
+    """Share of ink texels with ink on all four sides: ~0.45 for the date
+    font, ~0.27 for the 6-texel race-card font, whose shading inside the
+    strokes does not separate from the shadow (plain xBRZ is cleaner)."""
+    inner = ink.copy()
+    inner[1:] &= ink[:-1]
+    inner[:-1] &= ink[1:]
+    inner[:, 1:] &= ink[:, :-1]
+    inner[:, :-1] &= ink[:, 1:]
+    return inner.sum() >= share * max(1, ink.sum())
+
+
+def xbrz_art(idx, lut):
+    """Small anti-aliased pixel text: xBRZ 4x keeps every glyph's shape and
+    counters; binary alpha."""
+    import xbrz
+    up = np.array(xbrz.scale_pillow(Image.fromarray(lut[idx], "RGBA"), SCALE))
+    up[:, :, 3] = np.where(up[:, :, 3] >= 128, 255, 0)
+    return Image.fromarray(up, "RGBA")
+
+
+def redraw_shadowed(idx, lut, info):
+    """Ink layer upscaled with xBRZ (keeps glyph topology, smooth diagonals),
+    the shadow rebuilt as the HD ink moved by the native offset."""
+    import xbrz
+    dx, dy, ink, dcol = info
+    h, w = idx.shape
+    rgba = lut[idx].copy()
+    rgba[~ink] = 0
+    up = np.array(xbrz.scale_pillow(Image.fromarray(rgba, "RGBA"), SCALE))
+    a_ink = up[:, :, 3] >= 128
+    a_sh = _shift(a_ink, dx * SCALE, dy * SCALE) & ~a_ink
+    out = np.zeros((h * SCALE, w * SCALE, 4), np.uint8)
+    out[a_sh] = (*dcol, 255)
+    out[a_ink, :3] = up[a_ink, :3]
+    out[a_ink, 3] = 255
+    return Image.fromarray(out, "RGBA")
 
 
 def upscale_art(idx, lut, esr):

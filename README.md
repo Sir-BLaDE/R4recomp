@@ -83,6 +83,14 @@ committed `generated/` C on Linux, Windows and macOS and attaches
 Progressive map: `symbols.toml` → `python3 tools/sync_symbols.py` →
 `psx_symbols.h` (`PSX_FN_*`). See `psxrecomp/docs/SYMBOLS.md`.
 
+## Framework patches
+
+`psxrecomp` is pinned at upstream `a38bf783`; the R4 changes to it (HD
+texture matcher caches, per-texel STP for replacements, PGXP store-ring
+allocation in debug builds only, borderless window overhang) live in
+`patches/psxrecomp/`. After `git submodule update --init --recursive` run
+`scripts/apply_framework_patches.sh` before configuring.
+
 ## Framework pins
 
 Submodule gitlinks (`psxrecomp`, optional `recomp-ui`, nested `recomp-net`)
@@ -221,3 +229,35 @@ Built from the player's own discs (JP SLPS-01798 + PAL SCES-01706):
           --esrgan-photo RealESRGAN_x4plus.pth --courses \
           --dumps <DumpTexturePages dump dir> \
           --out mods/preloaded/packages/psx.enhancement.hd-textures/1.0.0/pack/replacements
+
+## v0.5: semi-transparent HD texels, palette variants, race-card fonts
+
+- **Black car / broken reflections** (framework, `gpu_gl_renderer.c`): a
+  DuckStation replacement without an `ST` variant was always drawn opaque
+  (`stp=0`), so the car reflection map (lights on black, drawn additive) hid
+  the body. Replacements now take the blend flag from the native texel's STP
+  bit, as the PS1 does (alpha modes 2 and 4). Found by bisecting the pack on
+  the Car Data screen (one 128x128 image). The semi-transparent course
+  textures excluded in v0.4 are HD again.
+- **HD texture lookup** (`duckstation_texture_pack.cpp`): rectangle hashes and
+  match results cached and invalidated per 64x64 VRAM tile; page groups in a
+  spatial grid (~2.4x less render-thread time in the matcher).
+- **Menu label sheets** (`build_pack.py --cluts`, `tools/r4_hd/clutcol.py`):
+  R4 draws several sheets with CLUTs other than the TIM's own; the pack
+  carries one image per sheet and palette observed in game.
+- **Race card / date screen**: grey text drawn as ink over a shifted copy of
+  itself is detected (`redraw.shadow_offset`); thick fonts are redrawn per
+  layer (xBRZ ink + rebuilt shadow), the 6-texel font with plain xBRZ (keeps
+  counters that tracing and ESRGAN closed). Sheets the game partly
+  overwrites (another TIM of the same file inside their rectangle) are also
+  emitted as 32x16-texel tiles (`build_pack.tiles`).
+- **Texts**: pages longer than three PAL rows are rewrapped to wider rows
+  (`build_es.py`); no double period at page ends.
+- **JogCon dial indicator** removed (`r4.controls`, patch at 0x8002254C).
+- HD pack preload cap 512 -> 768 MiB (`gpu_hd_textures.cpp`): the 3704-image
+  pack (~544 MiB decoded) now preloads completely instead of decoding the
+  last 168 images on first use.
+- Pack builder: `--cache <dir>` keeps finished sheets so rebuilds resume.
+  `--cluts` takes the CLUT capture written by `tools/r4_hd/clutcol.py`
+  (palette words read from VRAM in game; private input like the dumps).
+  Extra build dependency: `xbrz.py` (GPL-3, build-time only, not shipped).

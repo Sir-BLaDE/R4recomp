@@ -114,7 +114,6 @@ static void end_window(uint64_t wall_now) {
     if (s_all < 0) { const char *e = getenv("R4_PERFLOG_ALL"); s_all = e && e[0] == '1'; }
     uint32_t top_pc[R4PL_TOP] = {0};
     uint64_t top_n[R4PL_TOP] = {0};
-    sample_top(top_pc, top_n);                  /* always: keeps the baseline current */
     const uint64_t cpu = thread_cpu_ns();
     const uint64_t wall = wall_now - s_wall_at_window;
     const double emu = (wall && cpu) ? 100.0 * (double)(cpu - s_cpu_at_window) / (double)wall : 0.0;
@@ -123,6 +122,11 @@ static void end_window(uint64_t wall_now) {
     s_wall_at_window = wall_now;
     const int partial = s_flips >= 32u && s_flips <= 56u;   /* 30 fps menus/FMV excluded */
     if (!(s_late || partial || s_all) || s_lines >= R4PL_MAX_LINES) return;
+    /* The 4 MB PC-table scan runs only for a window that is logged (it used
+     * to run every second on the emulation thread); its counts are since the
+     * previous logged window. */
+    if (g_dirty_ram_insns_run - s_insns_at_window > 100000u)   /* only when it matters */
+        sample_top(top_pc, top_n);
     open_log();
     if (!s_log) return;
     time_t t = time(NULL);
