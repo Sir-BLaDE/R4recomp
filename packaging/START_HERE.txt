@@ -6,6 +6,14 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release and
 an HD texture pack.
 
+ES - Novedades de la 0.6.1
+--------------------------
+- Videos (intro y demo) fluidos: el decodificador de video del juego se
+  ejecutaba interpretado (hilo de emulacion al 100%); ahora va compilado.
+- Monitores de alta frecuencia: 60 fps no encaja en 280 Hz (4,67 refrescos
+  por frame) y eso produce microtirones. Activa G-Sync/FreeSync para
+  R4_Recompiled.exe o usa un modo de 240 Hz (4 x 60) o 120 Hz.
+
 ES - Novedades de la 0.6 (rendimiento)
 --------------------------------------
 - PGXP con modo CPU y culling preciso ACTIVADOS por defecto (geometria sin
@@ -84,6 +92,12 @@ ES - Inicio rapido
 AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
+
+EN - New in 0.6.1
+-----------------
+Smooth intro/attract movies (the game's movie decoder is now compiled instead
+of interpreted). On high-refresh displays enable G-Sync/FreeSync or use a
+mode that is a multiple of 60 Hz (240/120): 60 fps on 280 Hz judders.
 
 EN - New in 0.6
 ---------------

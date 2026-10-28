@@ -301,3 +301,25 @@ run), guest frame timeline from `gpu_timeline`, host profile with `perf`:
 - **Perf log**: game fps counts display-start changes from the GPU timeline
   (sampling the display address at VBlank missed two flips inside one VBlank;
   that artefact made x4 look worse than x3 in v0.4).
+
+## v0.6.1: intro / attract movie decoder compiled
+
+The player's perf log showed two long 30 fps stretches (the opening movie and
+the attract movie) with the emulation thread at ~100% and ~15M instructions
+per second on the dirty-RAM interpreter (hot loop 0x8011493C): R4 loads its
+movie decoder into RAM at 0x80114000. The runtime's own overlay capture of
+that region (3 pages, 544 executed PCs) is compiled with the GameShark code
+into `generated/gs_overlays` (`tools/gs_static/fmv_captures.json`, private:
+it carries disc code bytes):
+
+    python3 psxrecomp/tools/compile_overlays.py --static --force \
+        --captures <gs_captures.json + fmv_captures.json merged> \
+        --game-toml game.toml --recompiler build-recompiler/psxrecomp-game \
+        --runtime-include psxrecomp/runtime/include \
+        --out-dir generated/gs_overlays --flavor 2
+
+Interpreted instructions during the movie: ~14.5M/s -> ~3K/s.
+
+Race seconds in the same log mostly show exactly one late host frame: 60 fps
+on a 280 Hz display has no integer refresh cadence (4.67 refreshes per frame).
+START_HERE recommends G-Sync/FreeSync or a 240 Hz (4 x 60) mode.

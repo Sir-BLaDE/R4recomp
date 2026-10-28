@@ -98,3 +98,4 @@ starvation_dump.jsonl
 /tools/r4_hd/__pycache__/
 /tools/r4_es/__pycache__/
 generated/
+/tools/gs_static/fmv_captures.json
