@@ -385,9 +385,15 @@ runs exactly as before. Netplay sessions run without mods. Details:
 
 ## In-game menu
 
-Press Esc (keyboard), Guide, or Start+Select (gamepad) during play to open
-the launcher's menus over the game: Graphics (with the Low / Medium / High /
-Ultra presets), Controls, Mods, Netplay and Disc setup. The
+The menu is the first screen: it is open when the game starts, and
+**Resume** starts it (`--no-launcher` or Settings → Skip this launcher boot
+straight in). During play, press Esc (keyboard), or **Select**, Guide or
+Start+Select (gamepad) to open the launcher's menus over the game: Display
+(with the Low / Medium / High / Ultra presets), Controls, Garage (mods),
+Netplay, Settings and Disc setup. Select opens the menu only when tapped on
+its own (R4 never sees that press); Select + a button stays a shortcut, such
+as Select + Y for Rewind. In the menu, Select or B goes back. Quit game asks
+first. The
 game pauses while it is open, except in netplay, where the race keeps running
 and only your own inputs are held. Settings marked "Applies after restart"
 take effect on the next start; everything else applies at once and is saved.
@@ -407,6 +413,8 @@ is **experimental and off by default**: Controls → **Wheel force feedback
 game's motor command (gamepads never); it is not yet verified on a physical
 wheel. In R4's
 menus **Circle is OK** and **Cross is cancel**; in races Cross accelerates by default.
+**Select** on its own opens the in-game menu (a tap; the game never sees that
+press); Select + a button stays a shortcut.
 
 Mods -> Controllers -> **Controls** (on by default) picks the race scheme:
 
