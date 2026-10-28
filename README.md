@@ -55,7 +55,7 @@ netplay and online Link Battle for 2-4 players. Not yet verified end to end (see
 | Link Battle | Online for 2-4 players, each on their own screen (`docs/ONLINE_BATTLE.md`); no physical link cable |
 | Renderer | Stock psxrecomp OpenGL at 4:3; software selectable |
 | Internal resolution | Match display by default (up to 8K), 1.5× supersampled below 4K displays; Native to 8K presets (Settings → Display), OpenGL |
-| Dynamic resolution | On by default; never below 1080 lines |
+| Dynamic resolution | Off: the selected internal resolution is rendered as is |
 | Render pipeline | OpenGL render thread and present thread, on by default |
 | Camera look-around | Right stick turns the view in single-player races (Mods > Camera Look-Around), on by default |
 | PGXP (steady geometry, straight textures) | Mods > Visual > PGXP Precision, on by default |
@@ -89,7 +89,7 @@ Switching a feature off gives you the stock game for that part.
 | **VS split screen**: the OpenGL renderer draws 2P split screen in about a tenth of the draws (same picture) | Yes | Set `PSX_GL_TEXWIN_BATCH=0` for one run |
 | **Widescreen**: races fill the window at whatever shape you give it (Fit to Window), with real extra scenery at the sides and the HUD at the edges | Yes, Fit to Window | Mods → Display → **R4 Custom Renderer** off (stock 4:3), or pick 16:9 / 21:9 / 32:9 |
 | **Match display + supersampling**: the game renders at your monitor's pixel height (up to 8K/18×), times 1.5 on displays under 4K, and is resolved down, for clean edges (no blur filter on top) | Yes | Settings → Display → **Graphics preset** (Low renders at native resolution without supersampling); the preset sets the internal resolution |
-| **Dynamic resolution**: when a frame runs late, the supersampling gives way first; it never drops below 1080 lines, and climbs back when there is room | Yes | Follows the Graphics preset; `dynamic_resolution = false` in `settings.toml` for one install |
+| **Dynamic resolution**: off; the picture stays at the chosen internal resolution and the frame rate gives way instead | No | `dynamic_resolution = true` in `settings.toml` (floor 1080 lines) |
 | **Render thread + present thread**: OpenGL work and the window swap run off the game's thread | Yes | `PSX_RENDER_THREAD=0` / `PSX_PRESENT_THREAD=0` for one run |
 | **PGXP extras**: a depth buffer (no sorting errors where polygons cross), smooth shading across corrected vertices, and closed seams between polygons | Yes, with PGXP | They follow **PGXP Precision**; `PSX_PGXP_DEPTH=0` for one run |
 | **HD HUD**: the race HUD (rank, lap/time and speed digits, RPM gauge, course map) drawn from high-resolution artwork, **HD HUD by [Kuid0us](https://github.com/Kuid0us/T4HDHUD)** | Yes (OpenGL) | Mods → Visual → **HD HUD** off |

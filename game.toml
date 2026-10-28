@@ -190,18 +190,12 @@ resolution_reference_lines = 240
 # anti-aliasing filter on top (antialiasing_mode = "off").
 supersample = 1.5
 antialiasing_mode = "off"
-# Dynamic resolution (framework controller): keep the selected internal
-# resolution while the game has room; step down only after missed frame
-# budgets, never below the display's own lines ("display": the monitor's
-# height, i.e. the supersample factor is what gives way first), and back up
-# after sustained headroom. It does nothing at Native. Off: Settings ->
-# Display -> Dynamic resolution. Owner decision 2026-10-08: Ultra is the
-# default everywhere and the dynamic systems are its safety net. Owner
-# 2026-10-22: anything below 1080p looks broken, so the floor is 1080p in
-# every preset.
-dynamic_resolution = true
+# Dynamic resolution is off (owner, 2026-10-27: "kill dynamic res"). The
+# selected internal resolution is rendered as is; frame rate gives way, not
+# resolution. The 1080p floor stays as the limit if a player turns it on.
+dynamic_resolution = false
 dynamic_resolution_min = "1080p"
-dynamic_resolution_start_min = true
+dynamic_resolution_start_min = false
 # Render thread (psxrecomp docs/RENDER_THREAD.md): the OpenGL backend runs on
 # its own thread, so a frame costs max(game, GL) instead of game + GL. Nothing
 # the guest reads back changes. Off for one run: PSX_RENDER_THREAD=0. Smooth
