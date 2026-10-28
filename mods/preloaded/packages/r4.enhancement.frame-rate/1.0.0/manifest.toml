@@ -54,27 +54,7 @@ label = "120 FPS"
 value = "144"
 label = "144 FPS"
 
-[[option]]
-feature = "frame-rate"
-id = "method"
-label = "Redraw method"
-group = "Display"
-type = "choice"
-default = "fields"
-
-[[option.choice]]
-value = "fields"
-label = "Blend car and camera values"
-
-[[option.choice]]
-value = "projection"
-label = "Replay recorded projections"
-
 [[plugin]]
 feature = "frame-rate"
 id = "r4.framerate"
 netplay = "local_view"
-
-[[plugin]]
-feature = "frame-rate"
-id = "r4.framerate.projection"

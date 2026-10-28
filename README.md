@@ -247,10 +247,6 @@ cars and camera placed halfway, then restores the machine exactly, so logic,
 input and audio keep the original 30 Hz cadence. Presentation rate **30 FPS
 (original)** shows the game's own frames only. It never falls back to image
 warping or crossfading. Online frames are local to each player's view.
-**Redraw method** keeps the default field blend; the alternative,
-"Replay recorded projections", re-runs the race handler with the recorded
-GTE projections interpolated. It is a prototype that costs more per frame
-(`docs/PROJECTION_REPLAY.md`) and turns the online local view off.
 
 The in-between frame costs the emulation thread most of a game frame's work
 (the GL side runs on the render thread, psxrecomp `docs/RENDER_PASSES.md`
