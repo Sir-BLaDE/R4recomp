@@ -15,8 +15,13 @@ the extra race frames now come out steadier.
 - **Closed PGXP seams.** The hairline cracks PGXP's sub-pixel positions open
   at road crests, wall tops and distant road are filled at every internal
   resolution up to 18x, with PGXP's precision untouched.
-- **Resolution never below 1080p.** Dynamic resolution keeps at least 1200
-  internal lines in every preset.
+- **Fixed internal resolution.** Dynamic resolution is off by default; the
+  picture stays at the preset's resolution and the frame rate gives way
+  instead. If enabled, it never drops below 1080 lines.
+- **PGXP seam strips drawn only where surfaces actually meet.** The 0.2.1
+  candidate drew black and grey bars along kerbs, bloated lane marks and
+  wedges off wall tops; strips now follow the real gap and use the edge's
+  own texels.
 - **HD HUD loads before the race starts** instead of during it.
 
 Game logic, input and audio keep their original 30 Hz cadence. Modern
@@ -111,8 +116,8 @@ supersampling) to reduce load on an iGPU.
 - **Widescreen.** Races fill the window at whatever shape you give it (Fit
   to Window), with real extra scenery at the sides and the HUD at the edges.
 - **Sharper picture.** The game matches your display up to 8K and uses 1.5×
-  supersampling below 4K. Dynamic resolution can reduce the internal picture
-  when needed, with a floor of 1080 lines.
+  supersampling below 4K. Dynamic resolution is off by default; when enabled
+  it never goes below 1080 lines.
 - **Race frame rate.** 60 FPS by default, with 30, 90, 100, 120, 144 and
   Match display refresh choices. Workers draw the extra race frames while
   game logic, input and audio keep their original 30 Hz cadence. The achieved
