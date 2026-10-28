@@ -112,30 +112,34 @@ const SurfaceRule kSurface[] = {
 };
 
 // Disc-sourced skin art: the "R4 RIDGE RACER TYPE 4" logo and the menu
-// font, read from R4.BIN on the player's own disc (offsets for SLUS-00797).
+// font, read from R4.BIN on the player's own disc (SLUS-00797 or SCES-01706).
 // Written into the local cache; nothing from the disc is ever shipped.
 bool extract_r4_assets(const char* disc_path, const char* out_dir, char* err, size_t cap) {
     auto fail = [&](const std::string& m) {
         std::snprintf(err, cap, "%s", m.c_str());
         return false;
     };
-#if defined(R4_REGION_PAL)
-    // PAL: the logo and font locations in the SCES-01706 R4.BIN are not known
-    // yet; the launcher keeps its default skin.
-    (void)disc_path;
-    (void)out_dir;
-    return fail("R4 launcher art is not available for SCES-01706");
-#endif
     DiscImage disc;
     std::string e;
     if (!disc.open(disc_path, &e)) return fail(e);
     std::vector<uint8_t> bin;
     if (!disc.read_file("R4.BIN", &bin, &e)) return fail(e);
+#if defined(R4_REGION_PAL)
+    // SCES-01706: the same 256x256 logo sheet sits at 0x033aaa8c; the menu
+    // font is the 256x144 Latin-1 sheet at 0x0331b800 (8x24 cells; rows of
+    // symbols, 3-9 A-Y, Z a-z, then accented letters, which byte-wise skin
+    // text cannot address and are left unmapped).
+    const uint32_t kLogoOff = 0x033aaa8c, kFontOff = 0x0331b800;
+    const int kFontH = 144;
+#else
+    const uint32_t kLogoOff = 0x02dcd28c, kFontOff = 0x02d59000;
+    const int kFontH = 60;
+#endif
     Rgba logo_tim, font_tim;
-    if (!decode_tim(bin, 0x02dcd28c, &logo_tim) || logo_tim.w != 256 || logo_tim.h != 256)
-        return fail("logo image not found (not SLUS-00797?)");
-    if (!decode_tim(bin, 0x02d59000, &font_tim) || font_tim.w != 256 || font_tim.h != 60)
-        return fail("font image not found (not SLUS-00797?)");
+    if (!decode_tim(bin, kLogoOff, &logo_tim) || logo_tim.w != 256 || logo_tim.h != 256)
+        return fail("logo image not found (not " R4_DISC_SERIAL "?)");
+    if (!decode_tim(bin, kFontOff, &font_tim) || font_tim.w != 256 || font_tim.h != kFontH)
+        return fail("font image not found (not " R4_DISC_SERIAL "?)");
     Rgba logo = crop(logo_tim, 34, 151, 188, 82);
     tint(&logo, 0x77, 0x77, 0x77);  // the title menu shows the logo in grey
     logo = scale_nearest(logo, 2);
@@ -144,12 +148,27 @@ bool extract_r4_assets(const char* disc_path, const char* out_dir, char* err, si
         return fail("cannot write logo.png");
     Rgba font = font_tim;
     tint(&font, 0xff, 0xff, 0xff);  // white glyphs; skins tint them
+#if defined(R4_REGION_PAL)
+    // The ellipsis touches the slash in row 0; drop its three dots (x 72-79)
+    // so the slash segments as its own glyph.
+    for (int y = 4; y < 22; ++y)
+        for (int x = 72; x < 80; ++x) font.px[(static_cast<size_t>(y) * font.w + x) * 4 + 3] = 0;
+    // Row 0 glyph blobs: , . : ; ? ! plus-minus degree / left-quote ' " ( ) [ ]
+    // + - = < > yen $ % # & * @ 0 1 2 (plus-minus, degree, left quote and yen
+    // are not ASCII and stay unmapped).
+    const std::string row0 = std::string(",.:;?!  / ") + "'\"()[]+-=<>" + " $%#&*@012";
+    if (!write_bitmap_font(font, {{{4, 22}, row0}, {{28, 46}, "3456789ABCDEFGHIJKLMNOPQRSTUVWXY"},
+                                  {{52, 70}, "Zabcdefghijklmnopqrstuvwxyz"}},
+                           dir, "font", 18, &e))
+        return fail(e);
+#else
     // Rows: symbols (only . , : mapped) then 0123 / 4-9 A-Z / a-z.
     std::string row0 = ".,:" + std::string(25, ' ') + "0123";
     if (!write_bitmap_font(font, {{{2, 18}, row0}, {{22, 38}, "456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"},
                                   {{42, 59}, "abcdefghijklmnopqrstuvwxyz"}},
                            dir, "font", 16, &e))
         return fail(e);
+#endif
     return true;
 }
 

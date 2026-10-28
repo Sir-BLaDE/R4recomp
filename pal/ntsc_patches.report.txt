@@ -1,4 +1,4 @@
-{'lo-reloc': 7533, 'memory-access': 473, 'constant': 230, 'lo-address': 14, 'lui': 6}
+{'lo-reloc': 7534, 'memory-access': 473, 'constant': 230, 'lo-address': 14, 'lui': 6}
 230 patches; 34 differences not patched:
 0x80021134 ambiguous immediate USA 2442C0B8 PAL 2442BF88
 0x80021DF0 different registers USA 02602021 PAL 02802021

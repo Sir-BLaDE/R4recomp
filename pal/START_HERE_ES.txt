@@ -1,0 +1,53 @@
+R4: Ridge Racer Type 4 Recompiled - PAL (SCES-01706) - v@VERSION@
+=================================================================
+
+Recompilación nativa para PC de R4 (versión europea), basada en el proyecto
+RidgeRacerType4Recomp (tetrisgm) y en psxrecomp. No es un emulador: el código
+del juego está traducido a C y compilado para Windows.
+
+Build PRIVADA: el ejecutable lleva el código recompilado desde TU disco PAL.
+No la compartas.
+
+1. Disco
+--------
+Copia tu imagen del disco europeo (SCES-01706, .cue + .bin) en la carpeta
+"disc" que está junto a r4-runtime.exe. El juego la encuentra solo y la
+comprueba (aparece "Verified"). También puedes elegirla en el menú:
+Disc setup.
+
+2. Arranque
+-----------
+Ejecuta r4-runtime.exe. Se abre el menú (Start Game / Load State / Options /
+Quit). "Start Game" arranca el juego.
+
+En partida:
+  - Select (mando), Esc (teclado) o Guía: abre el menú (opciones, estados
+    guardados, mandos, gráficos, mods).
+  - F8 / View / L3: rebobinar.
+
+3. Qué incluye (todo activado por defecto)
+------------------------------------------
+  - Textos del juego en ESPAÑOL (Mods > Localization > Message language; el
+    selector de idioma del propio juego y la tarjeta de memoria mandan).
+  - HD HUD (arte de Kuid0us, T4HDHUD) adaptado al PAL: el PAL usa el atlas
+    "km/h" japonés, incluido aquí.
+  - Panorámico nativo 16:9, máximo detalle (sin popping de coches y
+    escenario), 60 fps interpolados, PGXP (geometría sin temblores),
+    efectos de coche, cámara libre, controles modernos (gatillos analógicos,
+    vibración), JogCon y NeGcon.
+  - Lógica a 30 Hz NTSC (el PAL original iba a 25 Hz, más lento).
+  - Menú con la estética de R4 (logo y fuente leídos de tu disco).
+
+4. Pantallas de alta frecuencia (280 Hz)
+-----------------------------------------
+60 fps no reparte de forma uniforme en 280 Hz (4,67 refrescos por frame),
+lo que se nota como microtirones. Mejor: G-Sync/FreeSync activado, o poner
+el monitor a 240 Hz (4 x 60) o 120 Hz para jugar.
+
+5. Créditos
+-----------
+  - RidgeRacerType4Recomp: tetrisgm y colaboradores (MIT).
+  - Conversión PAL / NTSC: yacineolivier-maker.
+  - HD HUD: Kuid0us (github.com/Kuid0us/T4HDHUD).
+  - psxrecomp, recomp-launcher, Dear ImGui, Lato (OFL): ver licenses/.
+  - R4: Ridge Racer Type 4 es marca de Bandai Namco Entertainment.

@@ -94,3 +94,4 @@ __pycache__/
 # the translation report written next to game_pal.toml.
 /generated_pal/
 /game_pal.toml.report.txt
+/pal/private/

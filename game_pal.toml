@@ -54,6 +54,11 @@ strict = true
 mod_function_entry_funcs = [
   # pal/mod_entries_pal.txt
   "0x8002B574", "0x8001E684", "0x80021350",
+  # Draw-isolation gate: keep object sound side effects on the main context.
+  "0x8004F218", "0x8004F2D8", "0x80051538", "0x800517F8",
+  # Draw-isolation gate: attract-demo and after-goal replay producers.
+  "0x800912D4", "0x80014A8C", "0x800555E0", "0x80020074", "0x80090424",
+  "0x8004C894", "0x80059B1C", "0x80096484", "0x8004C5A4", "0x8004C928",
   # r4.enhancement.widescreen (src/mods/r4_widescreen_plugin.c):
   # the 18 HUD producers (src/mods/r4_widescreen_hud.h)
   "0x8003BFC8", "0x80021E2C", "0x8002BA28", "0x80021350", "0x800211A4", "0x80021684",
@@ -172,31 +177,35 @@ guest_cycle_scale_batch = true
 # which selects the aspect itself; with it off, races are this 4:3.
 renderer = "opengl"
 aspect_ratio = "4:3"
-# R4 ships Match display (the monitor's full pixel height, no cap) as its
+# Borderless (desktop) fullscreen until the player picks another Window mode
+# in Display (saved to settings.toml, which outranks this). Owner 2026-10-27.
+fullscreen = "borderless"
+# R4 ships Match display (up to 8K/18x) as its
 # default internal resolution; the framework default is Native. A player's
 # pick in Settings -> Display is saved to settings.toml and outranks this, as
 # does a saved legacy supersampling factor (psxrecomp docs/config_schema.md).
 internal_resolution = "display"
+match_display_max_lines = 4320
+# Keep full-VRAM rendering on 4K/8K displays; smaller displays retain SSAA.
+supersample_disable_at_lines = 2160
 # Internal resolution presets divide their target height by this: R4's races
 # are 320x240 progressive, so 4K is 9x and 8K is 18x. Its 480i menus render at
 # twice the target and are resolved down.
 resolution_reference_lines = 240
 # Supersampling (Settings -> Display -> Supersampling): render 1.5x the
-# Match display target and resolve down to the window. No post-process
+# Match display target below 2160 display lines and resolve down to the window. No post-process
 # anti-aliasing filter on top (antialiasing_mode = "off").
 supersample = 1.5
 antialiasing_mode = "off"
-# Dynamic resolution (framework controller): keep the selected internal
-# resolution while the game has room; step down only after missed frame
-# budgets, never below the display's own lines ("display": the monitor's
-# height, i.e. the supersample factor is what gives way first), and back up
-# after sustained headroom. It does nothing at Native. Off: Settings ->
-# Display -> Dynamic resolution. Owner decision 2026-10-08: Ultra is the
-# default everywhere and the dynamic systems are its safety net, so the floor
-# is native x1 (it only goes below the display's own lines when a machine
-# cannot hold 60 Hz above them).
-dynamic_resolution = true
-dynamic_resolution_min = "native"
+# Dynamic resolution is off (owner, 2026-10-27: "kill dynamic res"). The
+# selected internal resolution is rendered as is; frame rate gives way, not
+# resolution. The 1080p floor stays as the limit if a player turns it on.
+dynamic_resolution = false
+# Rewind on by default (owner, 2026-10-28): Y in Modern controls, Select + Y in
+# Classic. Title default; a player's saved [video] rewind wins.
+rewind = true
+dynamic_resolution_min = "1080p"
+dynamic_resolution_start_min = false
 # Render thread (psxrecomp docs/RENDER_THREAD.md): the OpenGL backend runs on
 # its own thread, so a frame costs max(game, GL) instead of game + GL. Nothing
 # the guest reads back changes. Off for one run: PSX_RENDER_THREAD=0. Smooth
@@ -205,15 +214,12 @@ render_thread = true
 # Present thread (docs/RENDER_THREAD.md "Present thread"): the window swap
 # leaves the render thread. Off for one run: PSX_PRESENT_THREAD=0.
 present_thread = true
-# Smooth motion (psxrecomp docs/FRAME_GENERATION.md; Settings -> Display ->
-# Smooth motion): in-between frames up to the display's refresh (any rate,
-# VRR too), only when there is measured time to spare; real frames always
-# come first and no guest code runs again. R4 opts in to reprojection: each
-# in-between frame warps the newer real frame (its object rules were tuned on
-# R4); cars are redrawn at their own in-between position. PSX_FRAME_GEN=0 or
-# PSX_FRAME_GEN_METHOD=redraw for one run.
-frame_generation = true
-frame_generation_method = "reprojection"
+present_thread_slots = 8
+# Smooth motion (psxrecomp frame generation) is off in R4 and not offered
+# (owner, 2026-10-20): its generated frames showed artifacts in races. Every
+# graphics preset below keeps it off too, and the launcher hides the row
+# (launcher/title_r4.cpp).
+frame_generation = false
 # VS split screen draws its far road through per-primitive texture windows
 # (about 515 GP0(E2h) changes a game frame). Let the OpenGL renderer batch
 # across them: the same image in about a tenth of the draws, so 2P with
@@ -248,6 +254,10 @@ pgxp_seam = "fine"
 texture_lod = "mipmap"
 anisotropic_filtering = 16
 fmv_chroma_smoothing = true
+# MDEC movies are 320x240-class images blown up to the window: bicubic
+# reconstruction (psxrecomp docs/config_schema.md "FMV") instead of the
+# framework's nearest default, which the owner saw as blocky FMV (2026-10-27).
+fmv_filter = "bicubic"
 bloom = 1.0
 dithering = "off"
 
@@ -256,29 +266,33 @@ dithering = "off"
 # machine whose GPU class cannot hold 60 Hz even at the dynamic floor (Steam
 # Deck, small iGPUs, software GL); Settings -> Display -> Graphics preset shows it, offers
 # Re-detect, and becomes Custom once the player changes a setting a preset
-# sets (Custom is never overridden). Presets set detail, never the frame rate
-# (owner, 2026-10-20): Smooth motion stays on in every preset, Low included;
-# it only uses spare render time. Each table is [video] keys laid over the
+# sets (Custom is never overridden). Presets set detail, never the frame rate;
+# Smooth motion is off in every preset (owner, 2026-10-20: removed from R4).
+# Each table is [video] keys laid over the
 # [video] block above, which is Ultra. Dynamic resolution stays on in every
 # preset as the safety net. Measured on R4 races (analysis/lowend-perf):
 # Smooth motion is the largest render-thread cost (~60-70 % of it), the
 # supersample factor the largest GPU cost; PGXP's depth/colour/seam extras
 # cost ~0.7 ms of render-thread CPU and no measurable GPU time; Low drops them.
 [quality.ultra]
+frame_generation = false
 # The [video] block as shipped and the first-launch default: Match display
-# x1.5 floored at native, Smooth motion from surplus, PGXP extras, mipmaps +
+# x1.5 floored at 1080p, Smooth motion from surplus, PGXP extras, mipmaps +
 # 16x aniso, FMV chroma smoothing, bloom.
 
 [quality.high]
+frame_generation = false
 supersample = 1.25
 
 [quality.medium]
+frame_generation = false
 supersample = 1.0
 texture_lod = "off"
 anisotropic_filtering = 1
 # Bloom stays on: R4 opts in (owner, 2026-10-13); only Low drops it.
 
 [quality.low]
+frame_generation = false
 # Detected low-end machines: Steam Deck, integrated GPUs, Apple M1/M2 base. PGXP
 # itself stays on (it closes the seams), and so does its depth buffer: Max
 # Detail's far sections and Smooth motion's reprojection need real depth, or
@@ -287,7 +301,7 @@ anisotropic_filtering = 1
 # silhouette edges by one output pixel (0.02 % of a road frame, 0 pixels in
 # the tunnel at 10x; analysis/lowend-perf/seams), no cracks.
 supersample = 1.0
-dynamic_resolution_min = "native"
+dynamic_resolution_min = "1080p"
 pgxp_color_correction = false
 pgxp_seam = "off"
 texture_lod = "off"
@@ -664,6 +678,52 @@ vaddr_base  = "0x80010000"
 # Address normalization: KSEG masking only (game loads contiguously, no remaps).
 [audit.normalize]
 kseg_mask = "0x1FFFFFFF"
+
+# Lean draw-context clones (psxrecomp docs/THREADED_CONTEXTS.md): the race
+# draw path a draw pass replays on its own thread. The course renderer and its
+# callees, plus the libgpu entry points every pass calls (ClearOTagR,
+# DrawOTag, PutDrawEnv). Their static callee closure is cloned into
+# generated/SLUS_007.97_draw.c; the main-context code is unchanged.
+[threaded_draw]
+roots = [
+    "0x8006ECE8", # course renderer
+    "0x80060D54", # course indirect dispatch, observed from 0x80060F94
+    # Course draw programs at EXE 0x800A2370..0x800A2450, dispatched by
+    # 0x800614B8 through the pointer at a0+0x7C (USA DISC.md image).
+    "0x80061910", "0x800625A4", "0x80063020", "0x80063B40", "0x80064744",
+    "0x80065420", "0x80065ED8", "0x80066A34", "0x80066F18", "0x80067A94",
+    "0x80060D04", "0x8006BC30", "0x8006C880", "0x8006A604", "0x8006B0C8",
+    "0x800686E8", "0x80069630",
+    # Object primitive dispatch tables in EXE 0x800A2310..0x800A236C;
+    # 0x8005FFFC reached 0x80060958 through the second table.
+    "0x8005F82C", "0x8005F894", "0x8005F920", "0x8005FAA4",
+    "0x8005F3D0", "0x8005F434", "0x8005F4C4", "0x8005F640",
+    "0x8005FE54", "0x8005FED0", "0x8005FF78", "0x80060B10",
+    "0x80060598", "0x80060634", "0x8006088C", "0x80060BB8",
+    "0x800607D8", # constructed in t2 by 0x8006095C/0x80060960, moving object draw
+    "0x800752B0", # object draw dispatch table at 0x8001137C (also normal-code seed)
+    # Indirect seven-way draw dispatch table at EXE 0x800111A8.
+    "0x80055288", "0x80055298", "0x800552A8", "0x800552B8",
+    "0x800552C8", "0x800552D8", "0x800552E8",
+    # Remaining literal calls in r4_interp.c: Time Attack, split, demo/replay.
+    "0x80014A8C", "0x80020074", "0x800207D4", "0x800217D0", "0x80021C94",
+    "0x80022390", "0x8002BD18", "0x8002D784", "0x8003BFC8", "0x8004C5A4",
+    "0x8004C894", "0x8004C928", "0x800555E0", "0x80055660", "0x800556B4",
+    "0x80059B1C", "0x80090424", "0x800912D4", "0x80096484",
+    # Grand Prix draw sequence (src/mods/r4_interp.c seq_grand_prix).
+    "0x8006EF8C", "0x80033F3C", "0x800396E4", "0x8002BA28", "0x8002BC7C",
+    "0x80021350", "0x800211A4", "0x80021684", "0x800219BC", "0x80021A7C",
+    "0x80021E2C", "0x80022098", "0x80021C00", "0x80020B10", "0x8006E1AC",
+    "0x8002E0D8", "0x800225DC", "0x800747EC", "0x80036FD4", "0x80070734",
+    "0x8009323C", # ClearOTagR
+    "0x80093344", # DrawOTag
+    "0x800933B4", # PutDrawEnv
+    # libgpu device table (*0x800ABC70 = 0x800ABC30): the queue and transfer
+    # functions DrawOTag / ClearOTagR / PutDrawEnv reach through jalr.
+    "0x80094BA0", "0x80094BC4", "0x800943C4", "0x80094AB0", "0x80094AE8",
+    "0x80094B28", "0x80094830", "0x800945F4", "0x80094E74", "0x80094AD4",
+    "0x800942E4", "0x80094B70", "0x800950D4", "0x800942CC", "0x80095224",
+]
 
 # GENERATED by pal/tools/make_ntsc_patches.py: NTSC-isation of the PAL code (SCES-01706).
 # Each word restores the USA (SLUS-00797) instruction value at the same site:

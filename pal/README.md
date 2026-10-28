@@ -126,10 +126,13 @@ Known differences:
   0x800483D8) and a random modulo of the timer (0x8003C278). Cosmetic.
 - Link Battle (cable / online) overlay hooks are not translated yet (R4.BIN
   overlay addresses have no automatic USA -> PAL map).
-- The HD HUD package is off by default in the PAL build: its texture lookups
-  saturated the render thread in races (27 fps measured). It can be turned on
-  in the Mods page.
-- The launcher art (logo and font read from R4.BIN) is not located on the PAL
-  disc; the launcher keeps its default skin.
+- HD HUD: the PAL game uploads the Japanese km/h text atlas (c41643fd), not the
+  US mph one (32203df6) the bundled pack was built for; every other HUD upload
+  and CLUT is identical. The PAL build swaps in `pal/hd_hud/c41643fd-*.png`
+  (`pal/tools/hd_hud_pack_pal.py`: the US atlas with the upstream km/h art in
+  the mph box) and keeps the HD HUD on by default. Its lookups cost about 0.1 %
+  of the process in a race (perf, debug build).
+- Launcher art: the SCES-01706 R4.BIN holds the same 256x256 logo sheet at
+  0x033aaa8c and a 256x144 Latin-1 menu font at 0x0331b800 (launcher/title_r4.cpp).
 - The first-run setup wizard prepares the USA disc only, so it is off in the
   PAL build: put the PAL files in `disc/` yourself.

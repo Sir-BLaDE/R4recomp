@@ -37,7 +37,7 @@ label = "Language"
 description = "Language of the game's menus and race messages at boot."
 group = "Localization"
 type = "choice"
-default = "english"
+default = "spanish"
 
 [[option.choice]]
 value = "english"

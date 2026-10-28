@@ -119,12 +119,6 @@ if(R4_REGION STREQUAL "PAL")
     foreach(_m ${_r4_pal_manifests})
         file(READ "${_m}" _txt)
         string(REPLACE "game_id = \"SLUS-00797\"" "game_id = \"SCES-01706\"" _txt "${_txt}")
-        # HD HUD: PAL-only measured choice. Its texture lookups saturated the
-        # render thread in races on the PAL build (27 fps measured), so it is
-        # offered but off by default there. USA keeps the upstream default.
-        if(_m MATCHES "r4\.enhancement\.ui-fonts")
-            string(REPLACE "default_enabled = true" "default_enabled = false" _txt "${_txt}")
-        endif()
         # Max Detail: the car model distance table, USA 0x8009F228..0x8009F245 =
         # PAL 0x8009F04C (same bytes). Left untranslated, its byte guard
         # rejected the WHOLE mod plan at boot ("booting unmodified").
@@ -137,6 +131,16 @@ if(R4_REGION STREQUAL "PAL")
         endif()
         file(WRITE "${_m}" "${_txt}")
     endforeach()
+    # HD HUD: the PAL game uploads the Japanese km/h text atlas (c41643fd)
+    # instead of the US mph one (32203df6); every other HUD upload and CLUT is
+    # the same. pal/hd_hud holds the km/h atlas (pal/tools/hd_hud_pack_pal.py).
+    set(_r4_pal_hud "${R4_PRELOADED_PAL}/packages/r4.enhancement.ui-fonts/1.0.0/pack")
+    file(GLOB _r4_us_atlas "${_r4_pal_hud}/32203df6-*.png")
+    if(_r4_us_atlas)
+        file(REMOVE ${_r4_us_atlas})
+    endif()
+    file(GLOB _r4_pal_atlas "${CMAKE_CURRENT_SOURCE_DIR}/pal/hd_hud/c41643fd-*.png")
+    file(COPY ${_r4_pal_atlas} DESTINATION "${_r4_pal_hud}")
     file(GLOB_RECURSE _r4_pal_pkg_files CONFIGURE_DEPENDS
         "${CMAKE_CURRENT_SOURCE_DIR}/mods/preloaded/*.toml" "${CMAKE_CURRENT_SOURCE_DIR}/pal/mods/packages/*.toml")
     set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${_r4_pal_pkg_files})
@@ -148,8 +152,18 @@ if(PSX_SETUP_WIZARD)
     set(R4_WIZARD_ARGS ENABLE_SETUP_WIZARD
         CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c")
 endif()
+# PAL private builds: overlay code captured from the player's disc (the movie
+# decoder at 0x80114000 and friends), compiled in with compile_overlays.py
+# --static so it does not run on the interpreter when no overlay_toolchain/
+# ships (pal/tools/build_static_overlays.sh).
+set(R4_OVERLAY_STATIC_ARGS)
+if(R4_REGION STREQUAL "PAL" AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated_pal/overlays_static/overlays_static.c")
+    set(R4_OVERLAY_STATIC_ARGS GAME_OVERLAY_STATIC_C
+        "${CMAKE_CURRENT_SOURCE_DIR}/generated_pal/overlays_static/overlays_static.c")
+endif()
 psxrecomp_add_game_runtime(psx-runtime
     ${R4_RUNTIME_FLAVOR}
+    ${R4_OVERLAY_STATIC_ARGS}
     PRELOADED_MODS_DIR "${R4_PRELOADED_MODS}"
     ENABLE_NETPLAY_IF_PRESENT
     NETPLAY_LOBBY_URL "ws://netplay.retcomm.net:8765"
