@@ -1,5 +1,48 @@
 # Handoff
 
+## Current work (2026-10-27, 8K dynamic resolution)
+
+Dynamic resolution at 8K/60 stayed at level 5 (1200 lines) because its
+cost was max(CPU, GPU) with GPU one `GL_TIME_ELAPSED` span per frame: that
+span counts GPU idle while waiting for the render thread, so it read
+15.5-16 ms of the 16.7 ms interval (load 0.94-0.99, "over budget at the
+floor") while per-record GPU work was ~0.2 ms. Framework `e4efba40`
+(fork PR [psxrecomp #4](https://github.com/tetrisgm/psxrecomp/pull/4), `feat/dynres-gpu-busy`) makes the cost the CPU time
+(`PSX_DYNRES_GPU_COST=1` restores), adds the queued extra frames'
+render-thread time (enter/replay/finish/compose, which carries a
+GPU-bound level's fence waits; `PSX_DYNRES_ASYNC_COST=0`) and counts a
+window short of the presenter's target rate by more than 1.5 outputs as
+over budget. It also carries the per-stage/per-record GPU timer diagnostic
+(`PSX_GL_ASYNC_GPU_TIMER=1`, `PSX_GL_ASYNC_GPU_OPS=1`, stderr at exit).
+R4's frame-rate workers no longer let the output grid ratchet ahead of
+now: a tick arriving while the grid is more than `R4_OUTPUT_LEAD_MAX` (2)
+windows ahead reserves nothing (0 keeps the old behaviour); before, every
+catch-up tick after a stall added a window of presenter latency until all
+eight slots were full and the render thread waited ~12 ms per output
+(`timed_waited` 666-683 per 15 s, "compose" 8-10 ms).
+
+Bound at 8K/60 with the 60 FPS mod, forced levels, 7680x4320 drawable,
+race save, 15 s each (`analysis/k8-f*`, GPU timer diagnostic on, which may
+inflate GPU utilisation; `nvidia-smi` 200 ms samples): 18x: GPU 90 %,
+151 W, replay span 15.3 ms/output, render thread saturated (finish 23.5 +
+compose 22.1 ms per extra output), 21 presents/s. 13x: GPU 79 %, 138 W,
+replay 9.8 ms, render thread 56 % busy (12.7 ms per extra output), 58
+presents/s with 12 refusals. 9x: GPU 57 %, 106 W, 6.5 ms, 32 % busy, 60/s.
+5x: GPU 42 %, 80 W, 4.1 ms, 32 % busy, 60/s. The guest ran 60 Hz at every
+level. The GPU is the bound from about 13x up (fill at 8K plus the 8K
+compose); below that the render thread's CPU is, and at 5x-9x neither is
+near its limit. With the fix (one 45 s on-screen run taken before the
+owner's screen rule, `analysis/k8g-new45w`): 5 -> 13 in 23 s after a 20 s
+settle, 2657 distinct DXGI frames in 45 s (59.0/s, worst gap 188 ms at
+the window placement, otherwise 67 ms), presenter 888 distinct/15 s, load
+0.55-0.58 at 13x, GPU about 40 %, 106 W. Before (`k8d-old`): level 5 for
+the whole run. The climb is one level per 3.25 s (`up_after_s` 3 +
+cooldown); where it settles between 13 and 16 on a quiet 8K panel, and
+whether it oscillates there over minutes, needs an on-screen run when the
+owner is away from the PC. Also seen: the worker grid reserves two
+in-between outputs per tick in some runs and one in others (`extras=`
+in the shutdown line), which doubles replay work; not changed here.
+
 ## Current work (2026-10-26)
 
 Render-thread CPU per output (2026-10-27, clone `C:/Users/Shokunin/dev/r4-glctx`,

@@ -31,6 +31,10 @@ static struct {
     uint64_t submitted, admitted, dropped, failures, elapsed_ns, executed;
     uint64_t captures, capture_ns;
     int64_t lead_min_ns, lead_max_ns;
+    uint64_t lead_hist[8];     /* ticks by lead in whole windows (7 = 7+) */
+    uint64_t extras_hist[4];   /* ticks by worker outputs reserved (3 = 3+) */
+    uint64_t reanchors;        /* ticks skipped for lead (R4_OUTPUT_LEAD_MAX) */
+    int lead_max_windows;      /* -1 until read */
     int initialized;
 } workers;
 static _Thread_local R4DrawJob *worker_job;
@@ -186,8 +190,16 @@ static void r4_workers_shutdown(void) {
             (unsigned long long)workers.executed,
             workers.executed ? workers.elapsed_ns / (1000000.0 * workers.executed) : 0.0,
             workers.captures ? workers.capture_ns / (1000000.0 * workers.captures) : 0.0);
-    fprintf(stderr, "R4 worker lead_ms: min=%.3f max=%.3f\n",
-            workers.lead_min_ns / 1000000.0, workers.lead_max_ns / 1000000.0);
+    fprintf(stderr, "R4 worker lead_ms: min=%.3f max=%.3f skipped_for_lead=%llu "
+            "lead_windows=%llu,%llu,%llu,%llu,%llu,%llu,%llu,%llu+ extras=%llu,%llu,%llu,%llu+\n",
+            workers.lead_min_ns / 1000000.0, workers.lead_max_ns / 1000000.0,
+            (unsigned long long)workers.reanchors,
+            (unsigned long long)workers.lead_hist[0], (unsigned long long)workers.lead_hist[1],
+            (unsigned long long)workers.lead_hist[2], (unsigned long long)workers.lead_hist[3],
+            (unsigned long long)workers.lead_hist[4], (unsigned long long)workers.lead_hist[5],
+            (unsigned long long)workers.lead_hist[6], (unsigned long long)workers.lead_hist[7],
+            (unsigned long long)workers.extras_hist[0], (unsigned long long)workers.extras_hist[1],
+            (unsigned long long)workers.extras_hist[2], (unsigned long long)workers.extras_hist[3]);
 }
 static void r4_workers_reset(void) {
     workers.next_window = workers.window_remainder = 0;
@@ -202,6 +214,7 @@ static int r4_workers_init(void) {
     const char *opt = getenv("R4_DRAW_WORKERS");
     if ((opt && !strcmp(opt, "0")) || !psx_ctx_available()) return 0;
     workers.initialized = 1;
+    workers.lead_max_windows = -1;
     int count = opt && *opt ? atoi(opt) : 4;
     if (count <= 0) {
 #ifdef PSX_SDL3
@@ -245,16 +258,40 @@ static int r4_workers_submit(CPUState *cpu, const R4Blend *blend, const PSXModRe
         uint64_t skipped = (now - workers.next_window) / duration + 1u;
         workers.next_window += skipped * duration;
     }
+    if (workers.lead_max_windows < 0) {
+        const char *lm = getenv("R4_OUTPUT_LEAD_MAX");
+        workers.lead_max_windows = lm && *lm ? atoi(lm) : 2;
+    }
+    /* Ticks that arrive faster than a window (the pacer catching up after a
+     * stall, fast-forward) each push the grid one window ahead of now and
+     * nothing pulls it back: every later output is scheduled that far in
+     * the future, sits in a presenter slot until its deadline, and once the
+     * slots are full the render thread waits for one per output. When the
+     * grid is more than R4_OUTPUT_LEAD_MAX windows ahead (0 keeps the
+     * ratchet), this tick reserves nothing and leaves the grid where it is:
+     * the outputs already reserved cover the coming windows, the grid stays
+     * aligned with the output timeline, and the lead shrinks by one window
+     * per skipped tick. */
+    if (workers.lead_max_windows > 0 && workers.next_window > now &&
+        workers.next_window - now > duration * (uint64_t)workers.lead_max_windows) {
+        workers.reanchors++;
+        return 1;
+    }
     uint64_t begin = workers.next_window;
     int64_t lead = (int64_t)begin - (int64_t)now;
     if (!workers.submitted || lead < workers.lead_min_ns) workers.lead_min_ns = lead;
     if (!workers.submitted || lead > workers.lead_max_ns) workers.lead_max_ns = lead;
+    {
+        int64_t w = lead > 0 ? lead / (int64_t)duration : 0;
+        workers.lead_hist[w > 7 ? 7 : w]++;
+    }
     workers.next_window += duration;
     RenderPassAsyncToken tokens[R4_MAX_PASSES];
     unsigned n = render_pass_async_reserve(2, begin, workers.next_window,
         rect->x, rect->y, rect->w, rect->h, tokens, R4_MAX_PASSES);
     unsigned extras = 0;
     for (unsigned i = 0; i < n; i++) extras += tokens[i].output.alpha_q16 != 0;
+    workers.extras_hist[extras > 3 ? 3 : extras]++;
     if (!extras) return 1;
     if (workers.pending >= workers.count) { workers.dropped += extras; return 1; }
     uint64_t capture_start = pt_clock_ns();

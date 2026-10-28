@@ -5,7 +5,7 @@ that fork carries over upstream master is listed here with its upstream PR.
 When this table is empty, re-pin to upstream master and archive the fork.
 
 The latest full upstream-master sync is `d108e9a0` (2026-10-24). The current
-fork pin `0bcc5a49` (on `ab9d181d`, below) additionally backports merged #761, #769–#772, #727's
+fork pin `e4efba40` (on `0bcc5a49`, below) additionally backports merged #761, #769–#772, #727's
 final pixel fixture, and #773's restore-scope repair. Full master sync was
 tested locally but cannot be promoted as a pin bump: upstream #766 removes
 Graphics presets and launcher settings still used by R4. A mechanical merge
@@ -41,3 +41,4 @@ targeted pin; generated game C is unchanged. The fork-only changes below remain.
 | Exact texture modulation in the accurate blend basis ((texel8*colour8)>>7; was *2/255, +1/255 on modulated texels) | `fix/gl-fixture-harness` | none yet | in `r4/main` (`54369270`); mask-mode scale fixture, blend-accuracy oracle 0 mismatches |
 | HD texture-pack tracking: allocation-free miss path, index-driven invalidation test, CLUT hashed only for replaceable candidates | `perf/render-thread-cpu-hd-tracking` | none yet | in `r4/main` (`dfc39ed6`, `78ce6940`); identical render-thread digests, R4 HD_NOTE replay 944 -> 71 ms per 15 s |
 | Presenter: wait up to `PSX_PRESENT_ADMIT_WAIT_MS` (25) for a slot before refusing a timed output | `perf/render-thread-cpu-hd-tracking` | none yet | in `r4/main` (`0bcc5a49`); present_thread_test 123/123, R4 refusals 62-200 -> 3 per 15 s |
+| Dynamic resolution: CPU cost (GPU span excluded), queued-output cost, output-cadence guard; async GPU timer diagnostic | `feat/dynres-gpu-busy` | none yet | in `r4/main` (`e4efba40`); R4 8K/60 climbs 5 -> 13x, fixtures pass |
