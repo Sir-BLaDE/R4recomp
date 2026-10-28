@@ -430,6 +430,27 @@ Mods -> Controllers -> **Controls** (on by default) picks the race scheme:
 Rewind is off in split screen and online (2-player VS Battle, netplay), with
 any scheme.
 
+### Controllers when the game is not started from Steam
+
+Player 1 on **Keyboard** (the release default) also takes the first gamepad
+that is connected, so a pad works without visiting the launcher; the keyboard
+stays live, and the launcher still shows and saves Keyboard. A second
+player's pad is never taken.
+
+A Steam Controller (or Deck) is read directly as a gamepad. While the Steam
+client runs it also applies its **Desktop Configuration** to that controller
+for any program not started from Steam (B = Escape, Back = Tab, A = Enter,
+triggers = mouse clicks). The game drops those keyboard and mouse echoes
+while the Steam Controller has input held, so B, Back and the triggers act
+as pad buttons only. If a Steam Controller still misbehaves:
+
+- add `r4-runtime.exe` to Steam (Games → Add a Non-Steam Game) and start it
+  from Steam; Steam then presents a standard gamepad, or
+- quit Steam while playing, or set Steam → Settings → Controller →
+  **Desktop Layout** to a blank (no bindings) layout.
+
+Xbox, DualSense, DualShock 4 and Switch Pro pads need none of this.
+
 Netplay always runs with mods cleared. Details:
 `mods/preloaded/packages/r4.modern-controls/1.0.0/README.txt`; headless check:
 `tools/test_modern_controls_runtime.py`.
