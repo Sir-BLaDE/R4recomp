@@ -11,7 +11,9 @@ the extra race frames now come out steadier.
   preparation, disc read-ahead). On the test PC a race holds about 59
   distinct frames per second with no gap over 35 ms, measured on screen
   while the machine was busy with other work. The 30 FPS choice is steady
-  at 30.
+  at 30. The default rate is now **Auto**: 60 FPS, or the original 30 FPS
+  at an 8K (18x) internal resolution, where the GPU cannot hold 60; pick
+  **60 FPS** to force it.
 - **Closed PGXP seams.** The hairline cracks PGXP's sub-pixel positions open
   at road crests, wall tops and distant road are filled at every internal
   resolution up to 18x, with PGXP's precision untouched.
@@ -118,8 +120,8 @@ supersampling) to reduce load on an iGPU.
 - **Sharper picture.** The game matches your display up to 8K and uses 1.5×
   supersampling below 4K. Dynamic resolution is off by default; when enabled
   it never goes below 1080 lines.
-- **Race frame rate.** 60 FPS by default, with 30, 90, 100, 120, 144 and
-  Match display refresh choices. Workers draw the extra race frames while
+- **Race frame rate.** Auto by default (60 FPS; the original 30 at 8K/18x),
+  with 30, 60, 90, 100, 120, 144 and Match display refresh choices. Workers draw the extra race frames while
   game logic, input and audio keep their original 30 Hz cadence. The achieved
   rate depends on resolution and GPU load; 144 FPS is not sustained on the
   current 1440p test PC under the measured load.
