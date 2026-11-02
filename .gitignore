@@ -99,3 +99,5 @@ starvation_dump.jsonl
 /tools/r4_es/__pycache__/
 generated/
 /tools/gs_static/fmv_captures.json
+/backup_private/
+/mods/preloaded/packages/psx.enhancement.hd-textures/*/pack/*.png

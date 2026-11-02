@@ -1,9 +1,9 @@
 [submodule "psxrecomp"]
 	path = psxrecomp
-	url = https://github.com/RetroPortingToolKit/psxrecomp.git
-	branch = master
+	url = https://github.com/tetrisgm/psxrecomp.git
+	branch = r4/main
 	ignore = dirty
 [submodule "recomp-ui"]
 	path = recomp-ui
-	url = https://github.com/RetroPortingToolKit/recomp-ui.git
-	branch = master
+	url = https://github.com/Sir-BLaDE/R4recomp.git
+	branch = recomp-ui-pal

@@ -36,7 +36,17 @@ strict = true
 # R4 GameShark mods (mods/preloaded/packages/r4.gameshark): the plugin installs
 # the code caves and hooks at the top of the PS-X EXE entry point, before any
 # game function runs (src/r4_gameshark.c).
-mod_function_entry_funcs = ["0x8007D4B4"]
+mod_function_entry_funcs = [
+  "0x8007D4B4",
+  # r4.enhancement.max-detail (src/max_detail, ported from
+  # tetrisgm/RidgeRacerType4Recomp): course dispatcher, env-map car part,
+  # mirror block limit and list consumer, object transform, SetTransMatrix,
+  # car draw and its post-LOD call, frame start, BIOS rand stub, course list
+  # octant and merge, DrawOTag, ClearOTagR, VSync.
+  "0x80060B3C", "0x80014A90", "0x800712AC", "0x8006E994", "0x8006ED08",
+  "0x80090EE0", "0x8002DEB4", "0x80015F60", "0x8009331C", "0x80096200",
+  "0x8006F12C", "0x80071214", "0x800930E0", "0x80092FD8", "0x8008AEF0",
+]
 
 [runtime]
 # Skip PsyQ libetc v_wait (the VSync spin R4 runs every frame) in whole loop
@@ -101,3 +111,115 @@ default_mode = "analog"
 require_cue = true
 required_tracks = 1
 required_disc_fp = "5dda2f17751d5791af09e48cc1170d9ace018b2e5bd29b4f029f2bcab067c50c"
+
+# [[draw_distance.clamp]]: the course renderers' ordering-table depth guards,
+# from tetrisgm/RidgeRacerType4Recomp game.toml (USA), translated to SLPS_017.98
+# (tools/us_port/r4map.py) and checked against the JP words.
+
+[[draw_distance.clamp]]
+address = "0x80060DD8"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80061994"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80062628"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x800630A4"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80063BDC"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x800647E0"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x800654BC"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80065F74"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80066BA0"
+expected = "0x2441FFFF"  # addiu at, v0, -1 (then sltiu at, at, 0x1BF)
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80066FA8"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80067B24"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x80068774"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x800696BC"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x8006A698"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x8006B15C"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x8006BCC0"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x8006C910"
+expected = "0x2C4A01C0"  # sltiu t2, v0, 0x1C0
+reg = 2
+max = 0x1BF
+
+[[draw_distance.clamp]]
+address = "0x8006D794"
+expected = "0x2441FFFF"  # addiu at, v0, -1 (then sltiu at, at, 0x1BF)
+reg = 2
+max = 0x1BF
