@@ -323,3 +323,27 @@ Interpreted instructions during the movie: ~14.5M/s -> ~3K/s.
 Race seconds in the same log mostly show exactly one late host frame: 60 fps
 on a 280 Hz display has no integer refresh cadence (4.67 refreshes per frame).
 START_HERE recommends G-Sync/FreeSync or a 240 Hz (4 x 60) mode.
+
+## v0.7: HD HUD, Max Detail and the R4 launcher (from RidgeRacerType4Recomp)
+
+- **HD HUD** by Kuid0us (github.com/Kuid0us/T4HDHUD) replaces the 2D HD
+  pack, in `psx.enhancement.hd-textures` (pack images local only). JP keys
+  plus tetrisgm's palette variants and glyph repairs (the JP/PAL km/h atlas
+  c41643fd, built with their `pal/tools/hd_hud_pack_pal.py`).
+- **Max Detail** (`r4.enhancement.max-detail`, `src/max_detail/`): tetrisgm's
+  plugin with every USA address translated to SLPS_017.98 by
+  `tools/us_port/translate_mods.py` / `r4map.py` (function matching), each
+  hook call site and the car LOD table checked against the JP words; the 18
+  `[[draw_distance.clamp]]` guards and 15 entry hooks are in game.toml.
+  Adapted to the GameShark 60 FPS pacing (no race-tick hold, one-VBlank
+  budget, the patch's VSync call site), the patch's 16:9 view cone, and race
+  detection without the USA overlay handler table.
+- **Framework / launcher**: psxrecomp pinned to tetrisgm/psxrecomp `r4/main`
+  (2b5a3817) with `patches/psxrecomp/0001-r4-framework.patch` (idle-skip GCS,
+  cycle batching, HD preload cap); recomp-ui is tetrisgm's recomp-launcher
+  (R4 skin) and `launcher/title_r4.cpp` reads the logo (R4.BIN 0x02ECC28C)
+  and the bold menu font (0x026A4004, capitals reused for lowercase) from
+  the player's disc through the runtime ISO reader (CHD included).
+- Verified (Linux, debug build): race at 60 guest flips/s with Max Detail
+  Maximum and the HD HUD (127k HD draws in 20 s), Spanish dialogue, menu
+  Start Game.

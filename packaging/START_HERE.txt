@@ -3,8 +3,24 @@ R4 Recompiled @VERSION@  (Windows x64)
 
 R4 - Ridge Racer Type 4, Japanese release (SLPS-01798, the R4 + JogCon
 edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
-Patch V2" GameShark codes built in, the Spanish text of the PAL release and
-an HD texture pack.
+Patch V2" GameShark codes built in, the Spanish text of the PAL release, the
+HD HUD by Kuid0us and Max Detail from RidgeRacerType4Recomp (tetrisgm).
+
+ES - Novedades de la 0.7
+------------------------
+- HD HUD de Kuid0us (T4HDHUD) en lugar del pack HD anterior: RANK, RECORD,
+  tiempos, velocimetro, cuentavueltas y mapas en alta resolucion.
+- Maximo detalle (de RidgeRacerType4Recomp, portado a la version japonesa):
+  mas distancia de dibujado (sin popping de escenario), coches con el modelo
+  completo a cualquier distancia, reflejos en carrera. Mods > Detail.
+  Ajustado a los 60 fps reales y al 16:9 del parche.
+- Menu nuevo con la estetica de R4 (logo y fuente leidos de tu disco).
+  Select, Esc o Guia abren el menu durante el juego.
+- psxrecomp y launcher: version de RidgeRacerType4Recomp (tetrisgm), con los
+  arreglos de rendimiento de R4 Recompiled encima.
+- No actives la opcion generica "HD texture packs" con otra carpeta: el HD
+  HUD ya usa esa funcion.
+- Los estados guardados de versiones anteriores no cargan en esta.
 
 ES - Novedades de la 0.6.1
 --------------------------
@@ -92,6 +108,16 @@ ES - Inicio rapido
 AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
+
+EN - New in 0.7
+---------------
+- HD HUD by Kuid0us replaces the previous HD pack.
+- Max Detail (from RidgeRacerType4Recomp, ported to the JP release): longer
+  draw distance, full car models, race reflections; tuned for the real
+  60 FPS and the patch's 16:9.
+- R4-styled launcher (logo and font read from your disc).
+- Framework and launcher from RidgeRacerType4Recomp plus R4 Recompiled's
+  performance changes. Save states from older versions do not load.
 
 EN - New in 0.6.1
 -----------------
