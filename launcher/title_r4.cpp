@@ -7,6 +7,7 @@
 #include "imgui.h"
 #include "r4l/core/discfs.h"
 #include "r4l/core/session.h"
+#include "iso_reader.h"
 
 #include <cstdio>
 #include <cstdlib>
@@ -126,11 +127,15 @@ bool extract_r4_assets(const char* disc_path, const char* out_dir, char* err, si
         std::snprintf(err, cap, "%s", m.c_str());
         return false;
     };
-    DiscImage disc;
+    // The runtime's ISO reader: .cue/.bin, .iso and .chd (the launcher's own
+    // DiscImage does not read CHD).
     std::string e;
-    if (!disc.open(disc_path, &e)) return fail(e);
-    std::vector<uint8_t> bin;
-    if (!disc.read_file("R4.BIN", &bin, &e)) return fail(e);
+    PS1::ISOReader iso;
+    if (!iso.Open(disc_path)) return fail("cannot open the disc image");
+    const size_t bin_size = iso.GetFileSize("R4.BIN");
+    if (bin_size == 0) return fail("R4.BIN not found (not " R4_DISC_SERIAL "?)");
+    std::vector<uint8_t> bin(bin_size);
+    if (iso.ReadFile("R4.BIN", bin.data(), bin.size()) != bin_size) return fail("cannot read R4.BIN");
     // SLPS-01798: the logo sheet (same layout as the US and PAL ones) and the
     // game's bold Latin menu font (256x72: 0-9 A-K / L-Z ! ? & @ " " /
     // ' yen + - . / : ...). The JP disc has no lowercase Latin sheet, so a-z
@@ -140,7 +145,7 @@ bool extract_r4_assets(const char* disc_path, const char* out_dir, char* err, si
         return fail("logo image not found (not " R4_DISC_SERIAL "?)");
     if (!decode_tim(bin, 0x026a4004, &font_tim) || font_tim.w != 256 || font_tim.h != 72)
         return fail("font image not found (not " R4_DISC_SERIAL "?)");
-    Rgba logo = crop(logo_tim, 34, 151, 188, 82);
+    Rgba logo = crop(logo_tim, 34, 135, 188, 83);  // JP: the logo sits higher (text below it)
     tint(&logo, 0x77, 0x77, 0x77);  // the title menu shows the logo in grey
     logo = scale_nearest(logo, 2);
     const std::string dir = out_dir;
