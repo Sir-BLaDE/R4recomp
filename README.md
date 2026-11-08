@@ -366,3 +366,13 @@ START_HERE recommends G-Sync/FreeSync or a 240 Hz (4 x 60) mode.
   path and upstream now keeps borderless a desktop-sized window). The
   recomp-launcher R4 title layer (`launcher/title_r4.cpp`) is kept for a later
   port but not built.
+- `PSX_NATIVE_CPU_SPANS` is forced OFF (CMakeLists.txt): upstream's approximate
+  native-span CPU timing (ENHANCED default) made the race flip every 0.88
+  VBlank with the 60 FPS patch, i.e. the game ran ~1.2x fast. Faithful
+  per-instruction timing gives 60 flips per 60 VBlanks again.
+- The guest_cycle_scale gate now opens at the EXE entry (GameShark 60 FPS) and
+  at the first game frame (Max Detail) instead of at plan activation: with the
+  overclock on during the BIOS boot the current framework never loaded the
+  EXE.
+- Verified (Linux debug build, race from a fresh route): 60 guest flips per 60
+  VBlanks, HD HUD applied, Max Detail governor active, Spanish text.
