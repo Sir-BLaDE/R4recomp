@@ -137,10 +137,11 @@ static void end_window(uint64_t wall_now) {
     time_t t = time(NULL);
     char ts[16];
     strftime(ts, sizeof ts, "%H:%M:%S", localtime(&t));
-    fprintf(s_log, "%s frame=%llu late=%u/%u worst=%.1fms avg=%.1fms fps=%u emu=%.0f%% emu_ms=%.2f interp=%llu top=",
+    fprintf(s_log, "%s frame=%llu late=%u/%u worst=%.1fms avg=%.1fms fps=%u emu=%.0f%% emu_ms=%.2f cpu=x%u interp=%llu top=",
             ts, (unsigned long long)s_window_start_frame, s_late, s_window_frames,
             s_worst_ns / 1e6, s_window_frames ? s_sum_ns / 1e6 / s_window_frames : 0.0,
             s_flips, emu, s_window_frames ? (double)(cpu - s_cpu_prev) / 1e6 / s_window_frames : 0.0,
+            psx_mod_guest_cycle_scale(),
             (unsigned long long)(g_dirty_ram_insns_run - s_insns_at_window));
     for (int k = 0; k < R4PL_TOP && top_n[k]; k++)
         fprintf(s_log, "%s%08X:%llu", k ? "," : "", top_pc[k] | 0x80000000u,

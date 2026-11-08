@@ -6,6 +6,18 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release, the
 HD HUD by Kuid0us and Max Detail from RidgeRacerType4Recomp (tetrisgm).
 
+ES - Novedades de la 0.7.1
+--------------------------
+- Arreglados los tirones en carrera de la 0.7: el "Maximo detalle" llenaba
+  todo el margen de la CPU emulada al 300% y tu PC tenia que emular casi el
+  doble por frame. Ahora tambien mide el tiempo real de emulacion en tu PC y
+  baja el detalle lejano si un frame pasa de ~10,5 ms.
+- psxrecomp y launcher actualizados a las versiones oficiales mas recientes
+  (7 de noviembre de 2026), con los arreglos de rendimiento de R4 encima.
+- Vuelve el menu estandar del launcher (el menu con estetica R4 dependia de
+  otra version de psxrecomp).
+- Los estados guardados de la 0.7 no cargan en esta.
+
 ES - Novedades de la 0.7
 ------------------------
 - HD HUD de Kuid0us (T4HDHUD) en lugar del pack HD anterior: RANK, RECORD,
@@ -14,10 +26,6 @@ ES - Novedades de la 0.7
   mas distancia de dibujado (sin popping de escenario), coches con el modelo
   completo a cualquier distancia, reflejos en carrera. Mods > Detail.
   Ajustado a los 60 fps reales y al 16:9 del parche.
-- Menu nuevo con la estetica de R4 (logo y fuente leidos de tu disco).
-  Select, Esc o Guia abren el menu durante el juego.
-- psxrecomp y launcher: version de RidgeRacerType4Recomp (tetrisgm), con los
-  arreglos de rendimiento de R4 Recompiled encima.
 - No actives la opcion generica "HD texture packs" con otra carpeta: el HD
   HUD ya usa esa funcion.
 - Los estados guardados de versiones anteriores no cargan en esta.
@@ -109,15 +117,21 @@ AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
 
+EN - New in 0.7.1
+-----------------
+- Fixes the 0.7 race slowdowns: Max Detail filled the whole 3x overclock
+  budget; its governor now also measures the host emulation time per frame
+  (target ~10.5 ms) and drops far detail when needed.
+- Latest upstream psxrecomp and launcher (2026-11-07) with R4's performance
+  patch; the stock launcher menu is back. 0.7 save states do not load.
+
 EN - New in 0.7
 ---------------
 - HD HUD by Kuid0us replaces the previous HD pack.
 - Max Detail (from RidgeRacerType4Recomp, ported to the JP release): longer
   draw distance, full car models, race reflections; tuned for the real
   60 FPS and the patch's 16:9.
-- R4-styled launcher (logo and font read from your disc).
-- Framework and launcher from RidgeRacerType4Recomp plus R4 Recompiled's
-  performance changes. Save states from older versions do not load.
+- Save states from older versions do not load.
 
 EN - New in 0.6.1
 -----------------

@@ -347,3 +347,22 @@ START_HERE recommends G-Sync/FreeSync or a 240 Hz (4 x 60) mode.
 - Verified (Linux, debug build): race at 60 guest flips/s with Max Detail
   Maximum and the HD HUD (127k HD draws in 20 s), Spanish dialogue, menu
   Start Game.
+
+## v0.7.1: latest upstream framework; host-aware Max Detail governor
+
+- The 0.7 race slowdowns (user perf log: 17-28 ms of emulation per 16.7 ms
+  VBlank in races, ~9 ms in the attract race) came from Max Detail's governor:
+  it adds far sections until the frame uses 86-93 % of its *guest* budget, and
+  with `guest_cycle_scale = 3` that budget holds about three native VBlanks of
+  work per 60 FPS frame, so Maximum roughly doubled what the host had to
+  emulate. The governor now also takes the host time of the frame's busy part
+  (frame start to the VSync floor wait, `QueryPerformanceCounter` /
+  `CLOCK_MONOTONIC`) as load, with a 10.5 ms target read as its 930 permille
+  "drop one level" line (`R4_MD_HOST_MS=<ms>`, 0 = guest cycles only).
+- Framework back on upstream: psxrecomp 64dff482 and recomp-ui 29fa3d1
+  (RetroPortingToolKit, 2026-11-07, 247 commits past v0.6's base) with
+  `patches/psxrecomp/0001-r4-framework.patch` (the DuckStation matcher and
+  Windows borderless hunks are dropped: the HD HUD uses the upload-CRC pack
+  path and upstream now keeps borderless a desktop-sized window). The
+  recomp-launcher R4 title layer (`launcher/title_r4.cpp`) is kept for a later
+  port but not built.

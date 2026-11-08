@@ -107,13 +107,18 @@ static void r4gs_apply(const R4GsList* list) {
 }
 
 /* Entry hook: the BIOS has loaded the executable, no game code has run. */
-static void r4gs_entry_60fps(struct CPUState* cpu, uint32_t a)  { (void)cpu; (void)a; r4gs_apply(&k_60fps); }
+/* "Set CPU speed to 300%": the [timing] guest_cycle_scale gate opens at the
+ * game's EXE entry (and on any in-game VBlank, e.g. after a save state), not
+ * at plan activation: with the scale on during the BIOS boot, current
+ * psxrecomp never gets to load the EXE. */
+static void r4gs_open_gate(void) { psx_mod_set_guest_cycle_scale_gate(1); }
+static void r4gs_entry_60fps(struct CPUState* cpu, uint32_t a)  { (void)cpu; (void)a; r4gs_open_gate(); r4gs_apply(&k_60fps); }
 static void r4gs_entry_wide(struct CPUState* cpu, uint32_t a)   { (void)cpu; (void)a; r4gs_apply(&k_wide); }
 static void r4gs_entry_marker(struct CPUState* cpu, uint32_t a) { (void)cpu; (void)a; r4gs_apply(&k_marker); }
 static void r4gs_entry_fmv(struct CPUState* cpu, uint32_t a)    { (void)cpu; (void)a; r4gs_apply(&k_fmv); }
 
 /* End-of-frame cheat pass. */
-static void r4gs_vblank_60fps(void)  { if (psx_mod_game_started()) r4gs_apply(&k_60fps); }
+static void r4gs_vblank_60fps(void)  { if (psx_mod_game_started()) { r4gs_open_gate(); r4gs_apply(&k_60fps); } }
 static void r4gs_vblank_wide(void)   { if (psx_mod_game_started()) r4gs_apply(&k_wide); }
 static void r4gs_vblank_marker(void) { if (psx_mod_game_started()) r4gs_apply(&k_marker); }
 static void r4gs_vblank_fmv(void)    { if (psx_mod_game_started()) r4gs_apply(&k_fmv); }
@@ -125,8 +130,7 @@ static void r4gs_restore_marker(void) { r4gs_apply(&k_marker); }
 static void r4gs_restore_fmv(void)    { r4gs_apply(&k_fmv); }
 
 static void r4gs_activate_60fps(void) {
-    /* "Set CPU speed to 300%": opens the [timing] guest_cycle_scale gate. */
-    psx_mod_set_guest_cycle_scale_gate(1);
+    /* The gate opens at game entry (r4gs_open_gate). */
 }
 
 /* The 16:9 list installs a routine at 0x8000E898 that the hooked DrawOTag

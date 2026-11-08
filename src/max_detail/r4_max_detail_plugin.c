@@ -273,6 +273,7 @@ static int md_margin(void) {
     return psx_mod_widescreen_x_margin();
 }
 uint32_t r4_md_budget = R4_MD_FRAME_BUDGET_30;
+static int s_gate_pending = 0;
 static int md_gs60(void) { return rd32(R4_MD_GS60_ROUTINE) == R4_MD_GS60_WORD0; }
 /* View width for the course cone and the octant reach: the GameShark 16:9
  * patch widens the projection in the game itself (no renderer margin), so
@@ -626,6 +627,7 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
      * checked. */
     (void)R4_MD_FRAME_START_RA;
     if (!s_enabled) return;
+    if (s_gate_pending) { s_gate_pending = 0; psx_mod_set_guest_cycle_scale_gate(1); }
     r4_md_budget = md_gs60() ? R4_MD_FRAME_BUDGET_60 : R4_MD_FRAME_BUDGET_30;
     r4_md_rand_end();
     s_pace_active = 0;
@@ -1033,7 +1035,9 @@ static void r4_max_detail_activate(void)
      * this plugin, whose race-tick hold (r4_md_vsync) keeps a scaled race at
      * two VBlanks a tick. Without the plugin (or online, where mod plans are
      * cleared) the runtime keeps the gate shut and timing is faithful. */
-    psx_mod_set_guest_cycle_scale_gate(1);
+    /* R4Recomp: opened at the first game frame (r4_md_frame_start), not here:
+     * with the scale on during the BIOS boot the EXE is never loaded. */
+    s_gate_pending = 1;
     if (r4_md_clamp_on(s_opt) && !s_clamp_available)
         fprintf(stderr, "[r4-md] game.toml lists no [[draw_distance.clamp]] sites; "
                         "draw distance stays stock\n");

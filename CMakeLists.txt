@@ -11,6 +11,12 @@ endif()
 
 project(R4Recomp LANGUAGES C CXX)
 
+# Faithful per-instruction CPU timing. psxrecomp's approximate "native CPU
+# span" timing (ENHANCED default since 2026-10-27) makes R4's frames end early:
+# with the GameShark 60 FPS patch the race flipped every 0.88 VBlank (the game
+# ran ~1.2x fast). Measured off: 60 flips per 60 VBlanks.
+set(PSX_NATIVE_CPU_SPANS OFF CACHE BOOL "Use generated native CPU span timing in ENHANCED builds" FORCE)
+
 # --- Opt-in product surfaces (OFF by default in the framework) -------------
 # Scaffold prompts / flags fill these. Without recomp-ui, PSX_RECOMP_UI is OFF.
 # The wizard (WIZARD_CMAKE_BLOCK / ENABLE_SETUP_WIZARD) is the first-run disc
