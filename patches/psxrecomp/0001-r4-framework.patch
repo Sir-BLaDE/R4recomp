@@ -1,8 +1,8 @@
 diff --git a/runtime/src/gpu_gl_renderer.c b/runtime/src/gpu_gl_renderer.c
-index 4b664cb2..a06eb9eb 100644
+index aa6535bf..8de04841 100644
 --- a/runtime/src/gpu_gl_renderer.c
 +++ b/runtime/src/gpu_gl_renderer.c
-@@ -2279,9 +2279,14 @@ static const char *TEX_FS =
+@@ -2166,9 +2166,14 @@ static const char *TEX_FS =
      "      int native=fetch_texel(int(floor(uv.x)),int(floor(uv.y)));\n"
      "      if(native==0) discard; stp=(native>>15)&1;\n"
      "    } else if(v_hd_mode==2){\n"
@@ -20,10 +20,10 @@ index 4b664cb2..a06eb9eb 100644
      "      stp=hd.a<=242.0/255.0 ? 1 : 0;\n"
      "      if(all(equal(hd,vec4(0.0))) || (stp==0 && all(equal(hd.rgb,vec3(0.0))))) discard;\n"
 diff --git a/runtime/src/gpu_hd_textures.cpp b/runtime/src/gpu_hd_textures.cpp
-index a03f1599..34db3ee6 100644
+index 5099d01e..924c8234 100644
 --- a/runtime/src/gpu_hd_textures.cpp
 +++ b/runtime/src/gpu_hd_textures.cpp
-@@ -29,7 +29,7 @@ constexpr size_t kMaxParts = 64;
+@@ -30,7 +30,7 @@ constexpr size_t kMaxParts = 64;
  /* Elective full preload of an installed pack: at most this much decoded RGBA
   * pinned across both formats, decoded by at most this many threads. Anything
   * beyond decodes on demand under the normal budget. */
@@ -32,11 +32,29 @@ index a03f1599..34db3ee6 100644
  constexpr unsigned kPreloadThreads = 4;
  struct Composition {
      std::vector<uint64_t> signature;
+diff --git a/runtime/src/pgxp.cpp b/runtime/src/pgxp.cpp
+index 6eb0abeb..2c254a75 100644
+--- a/runtime/src/pgxp.cpp
++++ b/runtime/src/pgxp.cpp
+@@ -161,9 +161,13 @@ extern "C" void pgxp_invalidate_all(void) {
+ 
+ extern "C" void pgxp_set_enabled(int enabled) {
+     int resized = 0;
++#ifndef PSX_NO_DEBUG_TOOLS
++    /* Store trace ring: read only by the debug server's pgxp_store_ring, so a
++     * release build (no debug server) skips the per-store record write. */
+     if (enabled && !s_store_ring)
+         s_store_ring = (PGXPStoreRecord *)std::calloc(PGXP_STORE_RING_CAP,
+                                                       sizeof(PGXPStoreRecord));
++#endif
+     if (enabled && !s_ram) {
+         s_ram = (PGXPValue *)std::calloc(PGXP_SHADOW_WORDS, sizeof(PGXPValue));
+         if (s_ram)
 diff --git a/runtime/src/psx_cycles.c b/runtime/src/psx_cycles.c
-index 7d8eb06a..f1447109 100644
+index 86528dbe..c301caa8 100644
 --- a/runtime/src/psx_cycles.c
 +++ b/runtime/src/psx_cycles.c
-@@ -597,6 +597,14 @@ static int32_t  s_idle_progress_delta = 0;
+@@ -598,6 +598,14 @@ static int32_t  s_idle_progress_delta = 0;
  static uint64_t s_idle_last_cycle = 0;
  static uint64_t s_idle_last_stores = 0;
  static uint64_t s_idle_last_mmio = 0;
@@ -51,7 +69,7 @@ index 7d8eb06a..f1447109 100644
  
  static void idle_snapshot_regs(const CPUState *cpu) {
      for (int i = 1; i < 32; i++) s_idle_gpr[i] = cpu->gpr[i];
-@@ -787,8 +795,21 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -815,8 +823,21 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
              progress_reg = -2;              /* the store pattern changed */
          }
          uint32_t quantum = (uint32_t)(cyc - s_idle_last_cycle);
@@ -74,7 +92,7 @@ index 7d8eb06a..f1447109 100644
                  progress_reg == s_idle_progress_reg &&
                  progress_delta == s_idle_progress_delta &&
                  mem_progress == s_idle_mem_progress &&
-@@ -796,6 +817,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -824,6 +845,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
                  if (s_idle_streak < 1000000u) s_idle_streak++;
              } else {
                  s_idle_quantum = quantum;
@@ -82,7 +100,7 @@ index 7d8eb06a..f1447109 100644
                  s_idle_progress_reg = progress_reg;
                  s_idle_progress_delta = progress_delta;
                  s_idle_mem_progress = mem_progress;
-@@ -828,6 +850,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -856,6 +878,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
      }
      s_idle_edges = 0;
      s_idle_last_cycle  = cyc;
@@ -90,7 +108,7 @@ index 7d8eb06a..f1447109 100644
      s_idle_last_stores = g_guest_store_count;
      s_idle_last_mmio   = g_mmio_access_count;
  
-@@ -850,9 +873,20 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -878,9 +901,20 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
          if ((uint64_t)dist <= lag) return;
          dist -= (uint32_t)lag;
      }
@@ -112,7 +130,7 @@ index 7d8eb06a..f1447109 100644
          k = (dist + q - 1u) / q;         /* first check boundary >= event */
      else
          k = (dist - 1u) / q;             /* land on the anchor before it */
-@@ -867,6 +901,12 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -895,6 +929,12 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
      }
      if (k == 0) return;
      uint64_t skip = (uint64_t)k * q;
@@ -125,7 +143,7 @@ index 7d8eb06a..f1447109 100644
      if (skip > IDLE_SKIP_MAX_CYCLES) return;
  
      if (s_idle_progress_reg > 0)
-@@ -878,6 +918,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -906,6 +946,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
      g_idle_skip_cycles += skip;
      g_idle_skip_last_pc = check_pc;
      g_idle_skip_last_quantum = q;
@@ -133,7 +151,7 @@ index 7d8eb06a..f1447109 100644
      psx_advance_cycles((uint32_t)skip);  /* replays device events exactly */
  
      /* Device servicing may have written RAM / raised I_STAT — the caller
-@@ -889,6 +930,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
+@@ -917,6 +958,7 @@ void psx_idle_note_check(CPUState *cpu, uint32_t check_pc) {
      s_idle_store_addr = s_idle_mem_progress ? s_idle_store_addr : 0xFFFFFFFFu;
      s_idle_store_val = s_idle_store_val - (s_idle_mem_progress ? k : 0u);
      s_idle_last_cycle  = psx_cycle_count;

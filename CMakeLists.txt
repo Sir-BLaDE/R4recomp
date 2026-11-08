@@ -41,10 +41,6 @@ if(R4_PGXP_HOOKS)
 else()
     set(_R4_PGXP "")
 endif()
-# Launcher title layer (recomp-launcher, tetrisgm/recomp-launcher r4/main):
-# R4 skin with the logo and menu font read from the player's JP disc.
-set(R4L_TITLE_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/launcher/title_r4.cpp" CACHE FILEPATH
-    "recomp-launcher title layer for R4")
 psxrecomp_add_game_runtime(psx-runtime
     # PGXP hook flavor: full dataflow coverage (R4 copies SXY with mfc2/sw/lw).
     ${_R4_PGXP}

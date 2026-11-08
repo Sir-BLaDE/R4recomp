@@ -1,4 +1,4 @@
-psxrecomp=2b5a3817 (2b5a38175ea38b5d7b0d33a31222f5a846306568) tetrisgm/psxrecomp r4/main
-recomp-ui=2664d9f (2664d9f0e28c5c0d2646ba388588b481a4fa7320) recomp-launcher (tetrisgm r4/main + tagline), Sir-BLaDE/R4recomp branch recomp-ui-pal
-recomp-net=e530593 (e53059306824edf4f0aec4aae5ae65151b18535f)
-retcomm-rbengine=2a03e73 (2a03e73693acee0fb78076ea058642c931bef12e)
+psxrecomp=64dff482 (64dff4826cd4a3be343524c428e4b8b2941b4e10) RetroPortingToolKit master 2026-11-07
+recomp-ui=29fa3d1 (29fa3d14e5a10635d84f36e160f04dd57fd775d2) RetroPortingToolKit HEAD 2026-11-07
+recomp-net=7a4d330 (7a4d330ecf995b881d167234da3c0b01675fd512)
+retcomm-rbengine=28a2a47 (28a2a472986a7d692d0378a22e756b0936413507)

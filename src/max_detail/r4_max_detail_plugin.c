@@ -45,6 +45,45 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+#if defined(_WIN32)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#endif
+
+/* R4Recomp: the host time the emulation thread spends on a frame's busy part
+ * (frame start to the VSync floor wait) is the governor's second input. With
+ * the 3x CPU overclock the guest budget alone lets Maximum add roughly twice
+ * the stock work per 60 FPS frame, which the host then has to emulate in one
+ * 16.7 ms VBlank; the host limit keeps the frame under ~10.5 ms of emulation
+ * on any PC (R4_MD_HOST_MS=<ms> overrides; 0 turns the host input off). */
+static uint64_t md_host_ns(void) {
+#if defined(_WIN32)
+    static LARGE_INTEGER f;
+    LARGE_INTEGER c;
+    if (!f.QuadPart) QueryPerformanceFrequency(&f);
+    QueryPerformanceCounter(&c);
+    return (uint64_t)((double)c.QuadPart * 1e9 / (double)f.QuadPart);
+#else
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (uint64_t)ts.tv_sec * 1000000000ull + (uint64_t)ts.tv_nsec;
+#endif
+}
+static uint64_t md_host_target_ns(void) {
+    static int64_t t = -1;
+    if (t < 0) {
+        const char *e = getenv("R4_MD_HOST_MS");
+        t = e ? (int64_t)(atof(e) * 1e6) : 10500000;
+        if (t < 0) t = 0;
+    }
+    return (uint64_t)t;
+}
 
 #define PKG "r4.enhancement.max-detail"
 #define FEATURE "max-detail"
@@ -80,6 +119,7 @@ R4MdGovernor s_gov;
 struct {
     int started, measured, last_oct;
     uint64_t start;
+    uint64_t host_start_ns;  /* R4Recomp: host clock at the frame start */
     uint32_t heap_pm;   /* highest primitive-heap use this frame, permille */
 } s_frame;
 struct {
@@ -595,6 +635,7 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
         if (per > s_stat.per_max) s_stat.per_max = (uint32_t)per;
     }
     s_frame.start = psx_cycle_count;
+    s_frame.host_start_ns = md_host_ns();
     s_frame.started = 1;
     psx_cyc_batch_flush();
     s_pace_anchor = psx_cycle_count - interrupts_get_cycles_since_vblank();
@@ -657,6 +698,14 @@ static void r4_md_vsync(CPUState *cpu, uint32_t address)
     if (s_opt.draw != R4_MD_DRAW_MAXIMUM || !s_frame_has_course) return;
     s_frame_has_course = 0;
     uint64_t busy = psx_cycle_count - s_frame.start;
+    /* Host load as guest cycles: the target reads as the 930 permille
+     * "drop one level" line, like the heap. */
+    const uint64_t host_target = md_host_target_ns();
+    if (host_target) {
+        const uint64_t host_ns = md_host_ns() - s_frame.host_start_ns;
+        const uint64_t host_busy = host_ns * 930u / host_target * R4_MD_FRAME_BUDGET / 1000u;
+        if (host_busy > busy) busy = host_busy;
+    }
     (void)r4_md_gov_update_heap(&s_gov, busy, s_frame.heap_pm);
     s_frame.heap_pm = 0;
     if (s_trace) {
