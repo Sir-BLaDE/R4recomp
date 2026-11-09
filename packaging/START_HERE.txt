@@ -6,6 +6,16 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release, the
 HD HUD by Kuid0us and Max Detail from RidgeRacerType4Recomp (tetrisgm).
 
+ES - Novedades de la 0.7.2
+--------------------------
+- Vuelve el pack HD de menus y textos (fuente HD en espanol, finales, 2D
+  reescalado) junto al HD HUD de Kuid0us: el HUD usa el de Kuid0us y el resto
+  de graficos 2D el pack anterior.
+- Maximo detalle: el regulador mide ahora todo el tiempo de CPU del hilo de
+  emulacion por frame (objetivo 12 ms) y los reflejos de los coches en carrera
+  pasan a "Stock" por defecto (en la parrilla de salida, con todos los coches
+  a la vista, eran lo que hacia caer los fps). Se pueden activar en Mods.
+
 ES - Novedades de la 0.7.1
 --------------------------
 - Arreglados los tirones en carrera de la 0.7: el "Maximo detalle" llenaba
@@ -116,6 +126,14 @@ ES - Inicio rapido
 AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
+
+EN - New in 0.7.2
+-----------------
+- The 2D HD pack (menus, HD Spanish font, endings) is back next to the HD HUD:
+  draws the HD HUD does not cover fall through to it.
+- Max Detail: the governor's host input is the emulation thread's CPU time
+  per frame (12 ms target); race car reflections default to Stock (they caused
+  the drop on the starting grid).
 
 EN - New in 0.7.1
 -----------------

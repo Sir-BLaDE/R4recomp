@@ -100,15 +100,19 @@ label = "Car reflections"
 description = "On gives the cars their reflective bodies during the race too, as in the fly-by, replays and the attract demo. Stock turns them off from the start signal to the finish line, as R4 does on a PS1. For now On applies only to 4:3 views: widened views keep Stock, because the widescreen renderer draws the reflective parts many times slower."
 group = "Detail"
 type = "choice"
-default = "on"
-
-[[option.choice]]
-value = "on"
-label = "On (Recommended)"
+# R4Recomp: Stock by default. With real 60 FPS every reflective car body is
+# drawn and emulated twice as often as in a 30 FPS race; on the starting grid
+# (all cars in view) On pushed the emulation past one VBlank (user perf log,
+# 2026-11-09).
+default = "stock"
 
 [[option.choice]]
 value = "stock"
-label = "Stock"
+label = "Stock (Recommended)"
+
+[[option.choice]]
+value = "on"
+label = "On"
 
 # Off by default (owner decision, 2026-10-01): it costs the emulated PS1
 # the most time of anything in this package (docs/MAX_DETAIL.md).

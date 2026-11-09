@@ -376,3 +376,20 @@ START_HERE recommends G-Sync/FreeSync or a 240 Hz (4 x 60) mode.
   EXE.
 - Verified (Linux debug build, race from a fresh route): 60 guest flips per 60
   VBlanks, HD HUD applied, Max Detail governor active, Spanish text.
+
+## v0.7.2: both HD packs; governor on thread CPU time; reflections Stock
+
+- `psx.enhancement.hd-textures` pack/ holds the HD HUD (Beetle upload-CRC PNGs
+  at the root) and the v0.6 2D pack (`replacements/` + `config.yaml`,
+  DuckStation keys). The framework patch makes a draw the Beetle pack does not
+  cover fall through to the DuckStation entries (upstream uses one or the
+  other), and carries the DuckStation matcher memo/probe changes again (they
+  now apply with a 3-way merge). Race bench: 987k of 1.0M draws replaced.
+- Max Detail governor host input: the emulation thread's CPU time per game
+  frame (frame start to frame start: `QueryThreadCycleTime` with a QPC-calibrated
+  TSC rate on Windows, `CLOCK_THREAD_CPUTIME_ID` elsewhere), averaged over ~8
+  frames, 12 ms target (`R4_MD_HOST_MS`). The v0.7.1 wall-clock measure only
+  covered frame start to the VSync wait, so the user's race still ran at
+  14-17 ms per VBlank (19 ms on the grid).
+- Car reflections default to Stock: on the starting grid every car is in view
+  and at a real 60 FPS the reflective bodies are drawn twice as often.

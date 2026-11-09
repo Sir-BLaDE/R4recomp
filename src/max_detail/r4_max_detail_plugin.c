@@ -54,15 +54,17 @@
 #define NOMINMAX
 #endif
 #include <windows.h>
+#include <intrin.h>
 #endif
 
-/* R4Recomp: the host time the emulation thread spends on a frame's busy part
- * (frame start to the VSync floor wait) is the governor's second input. With
- * the 3x CPU overclock the guest budget alone lets Maximum add roughly twice
- * the stock work per 60 FPS frame, which the host then has to emulate in one
- * 16.7 ms VBlank; the host limit keeps the frame under ~10.5 ms of emulation
- * on any PC (R4_MD_HOST_MS=<ms> overrides; 0 turns the host input off). */
-static uint64_t md_host_ns(void) {
+/* R4Recomp: the emulation thread's CPU time per game frame (frame start to
+ * frame start, so it includes the GPU command walk and everything else the
+ * thread does, but not the pacer's sleeps) is the governor's second input.
+ * With the 3x CPU overclock the guest budget alone lets Maximum add roughly
+ * twice the stock work per 60 FPS frame, which the host then has to emulate
+ * within one 16.7 ms VBlank. The average over ~8 frames is held at or under
+ * 12 ms (R4_MD_HOST_MS=<ms> overrides; 0 turns the host input off). */
+static uint64_t md_wall_ns(void) {
 #if defined(_WIN32)
     static LARGE_INTEGER f;
     LARGE_INTEGER c;
@@ -75,15 +77,46 @@ static uint64_t md_host_ns(void) {
     return (uint64_t)ts.tv_sec * 1000000000ull + (uint64_t)ts.tv_nsec;
 #endif
 }
+#if defined(_WIN32)
+/* QueryThreadCycleTime counts TSC ticks while the thread runs (GetThreadTimes
+ * only moves in ~15.6 ms steps); the TSC rate is calibrated against QPC. */
+static double md_tsc_per_ns(void) {
+    static double rate = 0.0;
+    static uint64_t w0 = 0, t0 = 0;
+    if (rate > 0.0) return rate;
+    const uint64_t w = md_wall_ns(), t = __rdtsc();
+    if (!w0) { w0 = w; t0 = t; return 0.0; }
+    if (w - w0 < 500000000ull) return 0.0;
+    rate = (double)(t - t0) / (double)(w - w0);
+    return rate;
+}
+#endif
+/* 0 while not available yet (Windows calibration in its first half second). */
+static uint64_t md_thread_ns(void) {
+#if defined(_WIN32)
+    const double rate = md_tsc_per_ns();
+    ULONG64 cycles = 0;
+    if (rate <= 0.0 || !QueryThreadCycleTime(GetCurrentThread(), &cycles)) return 0;
+    return (uint64_t)((double)cycles / rate);
+#elif defined(CLOCK_THREAD_CPUTIME_ID)
+    struct timespec ts;
+    if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts)) return 0;
+    return (uint64_t)ts.tv_sec * 1000000000ull + (uint64_t)ts.tv_nsec;
+#else
+    return 0;
+#endif
+}
 static uint64_t md_host_target_ns(void) {
     static int64_t t = -1;
     if (t < 0) {
         const char *e = getenv("R4_MD_HOST_MS");
-        t = e ? (int64_t)(atof(e) * 1e6) : 10500000;
+        t = e ? (int64_t)(atof(e) * 1e6) : 12000000;
         if (t < 0) t = 0;
     }
     return (uint64_t)t;
 }
+static uint64_t s_host_prev_ns = 0;   /* thread time at the last frame start */
+static uint64_t s_host_avg_ns = 0;    /* ~8-frame average CPU time per frame */
 
 #define PKG "r4.enhancement.max-detail"
 #define FEATURE "max-detail"
@@ -119,7 +152,6 @@ R4MdGovernor s_gov;
 struct {
     int started, measured, last_oct;
     uint64_t start;
-    uint64_t host_start_ns;  /* R4Recomp: host clock at the frame start */
     uint32_t heap_pm;   /* highest primitive-heap use this frame, permille */
 } s_frame;
 struct {
@@ -637,7 +669,15 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
         if (per > s_stat.per_max) s_stat.per_max = (uint32_t)per;
     }
     s_frame.start = psx_cycle_count;
-    s_frame.host_start_ns = md_host_ns();
+    {
+        const uint64_t now = md_thread_ns();
+        if (now && s_host_prev_ns && now > s_host_prev_ns) {
+            uint64_t d = now - s_host_prev_ns;
+            if (d > 100000000ull) d = 100000000ull;  /* a load or a pause */
+            s_host_avg_ns = s_host_avg_ns ? (s_host_avg_ns * 7u + d) / 8u : d;
+        }
+        s_host_prev_ns = now;
+    }
     s_frame.started = 1;
     psx_cyc_batch_flush();
     s_pace_anchor = psx_cycle_count - interrupts_get_cycles_since_vblank();
@@ -703,9 +743,8 @@ static void r4_md_vsync(CPUState *cpu, uint32_t address)
     /* Host load as guest cycles: the target reads as the 930 permille
      * "drop one level" line, like the heap. */
     const uint64_t host_target = md_host_target_ns();
-    if (host_target) {
-        const uint64_t host_ns = md_host_ns() - s_frame.host_start_ns;
-        const uint64_t host_busy = host_ns * 930u / host_target * R4_MD_FRAME_BUDGET / 1000u;
+    if (host_target && s_host_avg_ns) {
+        const uint64_t host_busy = s_host_avg_ns * 930u / host_target * R4_MD_FRAME_BUDGET / 1000u;
         if (host_busy > busy) busy = host_busy;
     }
     (void)r4_md_gov_update_heap(&s_gov, busy, s_frame.heap_pm);
