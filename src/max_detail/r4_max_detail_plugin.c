@@ -92,13 +92,25 @@ static double md_tsc_per_ns(void) {
     return rate;
 }
 #endif
+/* Set when the thread cycle counter is not available (Wine returns 0): the
+ * thread times are used instead. They move in 15.6 ms steps, so the caller
+ * averages them over 32 frames (0.5 ms steps) and has no per-frame value. */
+static int s_host_coarse = 0;
 /* 0 while not available yet (Windows calibration in its first half second). */
 static uint64_t md_thread_ns(void) {
 #if defined(_WIN32)
     const double rate = md_tsc_per_ns();
     ULONG64 cycles = 0;
-    if (rate <= 0.0 || !QueryThreadCycleTime(GetCurrentThread(), &cycles)) return 0;
-    return (uint64_t)((double)cycles / rate);
+    if (rate <= 0.0) return 0;
+    if (!s_host_coarse && QueryThreadCycleTime(GetCurrentThread(), &cycles) && cycles)
+        return (uint64_t)((double)cycles / rate);
+    {
+        FILETIME c, e, k, u;
+        s_host_coarse = 1;
+        if (!GetThreadTimes(GetCurrentThread(), &c, &e, &k, &u)) return 0;
+        return ((((uint64_t)k.dwHighDateTime << 32) | k.dwLowDateTime) +
+                (((uint64_t)u.dwHighDateTime << 32) | u.dwLowDateTime)) * 100ull;
+    }
 #elif defined(CLOCK_THREAD_CPUTIME_ID)
     struct timespec ts;
     if (clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts)) return 0;
@@ -675,11 +687,17 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
     s_frame.start = psx_cycle_count;
     {
         const uint64_t now = md_thread_ns();
-        if (now && s_host_prev_ns && now > s_host_prev_ns) {
+        if (now && s_host_prev_ns && now >= s_host_prev_ns) {
             uint64_t d = now - s_host_prev_ns;
             if (d > 100000000ull) d = 100000000ull;  /* a load or a pause */
-            s_host_avg_ns = s_host_avg_ns ? (s_host_avg_ns * 7u + d) / 8u : d;
-            s_host_last_ns = d;
+            if (s_host_coarse) {
+                static uint64_t sum; static unsigned n;
+                sum += d;
+                if (++n >= 32u) { s_host_avg_ns = s_host_last_ns = sum / n; sum = 0; n = 0; }
+            } else if (d) {
+                s_host_avg_ns = s_host_avg_ns ? (s_host_avg_ns * 7u + d) / 8u : d;
+                s_host_last_ns = d;
+            }
         }
         s_host_prev_ns = now;
     }

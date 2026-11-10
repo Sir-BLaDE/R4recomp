@@ -456,6 +456,11 @@ VBlank (80-98 % of a core), 60 flips per 60 VBlanks, a few 33-88 ms frames.
   12.5 ms, No limit (guest budget only). On the spans build, same race start:
   36.7 ms at the floor, 40.5 ms with no limit while the level climbs from 0 to
   30 (28-41 ms once at 30), 60 flips per 60 VBlanks throughout.
+- **Windows builds under Wine, same script as above**: 0.6.1 44.0, 0.7.3 43.4,
+  0.7.4 35.9 ms of emulation per VBlank with Max Detail at level 30, 35.4 at
+  the floor; 60 flips per 60 VBlanks. Wine has no thread cycle counter
+  (`QueryThreadCycleTime` returns 0), so the governor had no host input there;
+  it now falls back to `GetThreadTimes` averaged over 32 frames.
 - **Perf log**: `md=<level>/<ms>` (governor level and its emulation ms per
   frame), `worst=..ms(busy ..)` (emulation CPU inside the window's worst
   interval, from thread cycle time), and the file is written every 20 lines
