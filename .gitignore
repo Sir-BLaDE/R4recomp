@@ -101,3 +101,4 @@ generated/
 /tools/gs_static/fmv_captures.json
 /backup_private/
 /mods/preloaded/packages/psx.enhancement.hd-textures/*/pack/*.png
+/mods/preloaded/packages/psx.enhancement.hd-textures/*/pack/config.yaml

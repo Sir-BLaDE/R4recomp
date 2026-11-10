@@ -6,6 +6,18 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release, the
 HD HUD by Kuid0us and Max Detail from RidgeRacerType4Recomp (tetrisgm).
 
+ES - Novedades de la 0.7.3
+--------------------------
+Revision y optimizacion general; el juego se ve exactamente igual.
+- Pack HD 2D en WebP sin perdida (mismos pixeles): la descarga baja de unos
+  180 MB a unos 120 MB y el pack carga antes al arrancar.
+- Texturas HD: el buscador de reemplazos repetia casi todo su trabajo en cada
+  frame de carrera; ahora lo reutiliza (98 % menos busquedas completas), lo
+  que descarga el hilo de dibujado.
+- Maximo detalle: el regulador reacciona al frame que se pasa del objetivo en
+  vez de a la media de 8 frames, asi que deja de bajar el detalle en cuanto el
+  frame cabe y no llega al minimo sin necesidad.
+
 ES - Novedades de la 0.7.2
 --------------------------
 - Vuelve el pack HD de menus y textos (fuente HD en espanol, finales, 2D
@@ -126,6 +138,17 @@ ES - Inicio rapido
 AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
+
+EN - New in 0.7.3
+-----------------
+Review and optimization pass; the picture is unchanged.
+- The 2D HD pack is lossless WebP (same pixels): the download drops from
+  about 180 MB to about 120 MB and the pack preloads faster.
+- HD textures: the replacement matcher redid nearly all its work every race
+  frame; it now reuses it (98 % fewer full lookups) on the render thread.
+- Max Detail: the governor reacts to the frame that goes over the target
+  instead of the 8-frame average, so it stops lowering detail as soon as the
+  frame fits.
 
 EN - New in 0.7.2
 -----------------

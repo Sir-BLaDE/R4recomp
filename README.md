@@ -393,3 +393,34 @@ START_HERE recommends G-Sync/FreeSync or a 240 Hz (4 x 60) mode.
   14-17 ms per VBlank (19 ms on the grid).
 - Car reflections default to Stock: on the starting grid every car is in view
   and at a real 60 FPS the reflective bodies are drawn twice as often.
+
+## v0.7.3: review and optimization pass
+
+Profiled with `perf` on the race bench (slot 8, 2400 frames; same 1.37M of
+1.38M draws replaced before and after every change below).
+
+- **DuckStation matcher (framework patch).** Its match cache was cleared on
+  every VRAM-to-VRAM copy and every upload, and R4 copies VRAM twice per race
+  frame, so each of the ~165 distinct lookups of a frame missed once per frame
+  and walked about a hundred geometry groups. Cached matches depend on VRAM
+  only under their page and CLUT, which the tile generations already cover, so
+  the clears are replaced by tile bumps of exactly the records that change, and
+  the tiles are 64x16 instead of 64x64 (a 240/480-line framebuffer shares its
+  last 64-line tile row with what lies below it). Misses per 2400 frames:
+  396,809 -> 281,586 (no clears) -> 5,936 (with 16-line tiles); geometry
+  groups visited 38.5M -> 0.57M; `duck_texture_pack_match_parts` 15 % -> 2 %
+  of the render thread, which samples 16 % less overall.
+- **2D pack as lossless WebP.** `tools/hd_pack_optimize.py` re-encodes
+  `replacements/*.png` (exact mode, every file decoded again and compared) and
+  turns the 606 images whose pixels equal another one into `Aliases:` of
+  `config.yaml`: 3704 PNG / 151 MiB -> 3098 WebP / 91 MiB. Preload on the dev
+  box 2.3-3.0 s -> 1.9 s. The PNG pack stays in `backup_private/`.
+- **Max Detail governor.** The host input is the 8-frame average, except that
+  a last frame over the target counts at once (the average alone lags, so the
+  level kept falling for several frames after the frame already fit). A
+  save-state load no longer counts as a frame.
+- **Native CPU spans, measured again** (`-DR4_NATIVE_CPU_SPANS=ON`): 30 flips
+  per 60 VBlanks in the race and more emulation CPU per VBlank, so it stays
+  OFF. Upstream's per-instruction timing (`psx_cyc_step`, ~16 % of the
+  emulation thread) and the PGXP hooks (~23 %) are where that thread's time
+  goes; both are framework design and left as they are.

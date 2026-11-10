@@ -15,7 +15,11 @@ project(R4Recomp LANGUAGES C CXX)
 # span" timing (ENHANCED default since 2026-10-27) makes R4's frames end early:
 # with the GameShark 60 FPS patch the race flipped every 0.88 VBlank (the game
 # ran ~1.2x fast). Measured off: 60 flips per 60 VBlanks.
-set(PSX_NATIVE_CPU_SPANS OFF CACHE BOOL "Use generated native CPU span timing in ENHANCED builds" FORCE)
+# Measured again on 64dff482 with the v0.7.2 gate (R4_NATIVE_CPU_SPANS=ON): the
+# race then runs at 30 flips per 60 VBlanks and the emulation thread uses more
+# CPU per VBlank, not less. The option only exists to repeat that test.
+option(R4_NATIVE_CPU_SPANS "Build R4 with the framework's native-span CPU timing" OFF)
+set(PSX_NATIVE_CPU_SPANS ${R4_NATIVE_CPU_SPANS} CACHE BOOL "Use generated native CPU span timing in ENHANCED builds" FORCE)
 
 # --- Opt-in product surfaces (OFF by default in the framework) -------------
 # Scaffold prompts / flags fill these. Without recomp-ui, PSX_RECOMP_UI is OFF.

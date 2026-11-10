@@ -31,7 +31,7 @@ index 367d100d..83928c04 100644
  
  /* Dynamic internal resolution ([video] dynamic_resolution; docs/TCP_COMMANDS.md).
 diff --git a/runtime/src/duckstation_texture_pack.cpp b/runtime/src/duckstation_texture_pack.cpp
-index 246f9ede..9f2f504a 100644
+index 246f9ede..7627312e 100644
 --- a/runtime/src/duckstation_texture_pack.cpp
 +++ b/runtime/src/duckstation_texture_pack.cpp
 @@ -42,7 +42,8 @@ namespace {
@@ -118,7 +118,7 @@ index 246f9ede..9f2f504a 100644
      std::unordered_map<std::string, size_t> by_name;
      std::vector<Upload> uploads;
      std::vector<PageSource> pages;
-@@ -355,8 +406,13 @@ struct DuckTexturePack {
+@@ -355,8 +406,19 @@ struct DuckTexturePack {
      std::vector<CopyUpdate> copy_updates;
      Rect copy_destination{};
      bool copy_pending = false;
@@ -129,12 +129,18 @@ index 246f9ede..9f2f504a 100644
 +    /* VRAM write generations per 64x64 tile (16 x 8). A cache entry keeps
 +     * the sum of its tiles' generations; a write bumps the tiles it covers,
 +     * so invalidation is O(tiles written) instead of a scan of the caches. */
-+    std::array<uint32_t, 128> tile_gen{};
-+    std::array<uint8_t, 128> tile_cached{};   /* tiles some cache entry depends on */
++    /* R4Recomp: 64x16 tiles (16 columns x 32 rows; upstream: 64x64). Every
++     * draw bumps the tiles under its bounding box, and with 64-line tiles a
++     * 240- or 480-line framebuffer shares its last tile row with what the
++     * game keeps right below it. R4 race, 2400 frames, match cache kept
++     * across VRAM copies: 281,586 lookups missed with 64-line tiles, 5,936
++     * with 16-line ones (same 1.37M draws replaced). */
++    std::array<uint32_t, 512> tile_gen{};
++    std::array<uint8_t, 512> tile_cached{};   /* tiles some cache entry depends on */
      std::shared_ptr<DumpHistory> dump_history = std::make_shared<DumpHistory>();
      DuckTextureConfig config{0,0,0,16,16,128,128,0,0,0,1,0,1,0,0};
      size_t snapshot_bytes = 0, palette_records = 0;
-@@ -391,19 +447,71 @@ void add_entry(DuckTexturePack& p, const DuckTextureKey& key, const fs::path& pa
+@@ -391,19 +453,72 @@ void add_entry(DuckTexturePack& p, const DuckTextureKey& key, const fs::path& pa
      else {
          const uint64_t geometry = (uint64_t(key.offset_x) << 48) | (uint64_t(key.offset_y) << 32) |
                                    (uint64_t(key.width) << 16) | key.height;
@@ -156,11 +162,12 @@ index 246f9ede..9f2f504a 100644
 -uint64_t cached_hash(DuckTexturePack& p, const HdTextureDrawQuery& q, Rect r) {
 -    for (const auto& saved : p.rect_cache)
 -        if (saved.vram == q.vram && saved.rect.x == r.x && saved.rect.y == r.y && saved.rect.w == r.w && saved.rect.h == r.h) return saved.hash;
++constexpr unsigned kTileH = 16;
 +uint64_t tile_sig(const DuckTexturePack& p, Rect r) {
 +    if (!r.w || !r.h) return 0;
 +    uint64_t sum = 0;
-+    const unsigned x0 = (r.x % 1024) / 64, y0 = (r.y % 512) / 64;
-+    const unsigned x1 = std::min(1023u, r.x % 1024 + r.w - 1) / 64, y1 = std::min(511u, r.y % 512 + r.h - 1) / 64;
++    const unsigned x0 = (r.x % 1024) / 64, y0 = (r.y % 512) / kTileH;
++    const unsigned x1 = std::min(1023u, r.x % 1024 + r.w - 1) / 64, y1 = std::min(511u, r.y % 512 + r.h - 1) / kTileH;
 +    for (unsigned ty = y0; ty <= y1; ty++) for (unsigned tx = x0; tx <= x1; tx++)
 +        sum += uint64_t(p.tile_gen[ty * 16 + tx]) * (1u + ty * 16 + tx);
 +    return sum;
@@ -176,8 +183,8 @@ index 246f9ede..9f2f504a 100644
 +bool bump_tiles(DuckTexturePack& p, Rect r) {
 +    if (!r.w || !r.h) return false;
 +    bool used = false;
-+    const unsigned x0 = r.x / 64, y0 = r.y / 64;
-+    const unsigned x1 = std::min(1023u, r.x + r.w - 1) / 64, y1 = std::min(511u, r.y + r.h - 1) / 64;
++    const unsigned x0 = r.x / 64, y0 = r.y / kTileH;
++    const unsigned x1 = std::min(1023u, r.x + r.w - 1) / 64, y1 = std::min(511u, r.y + r.h - 1) / kTileH;
 +    for (unsigned ty = y0; ty <= y1; ty++) for (unsigned tx = x0; tx <= x1; tx++) {
 +        p.tile_gen[ty * 16 + tx]++;
 +        used |= p.tile_cached[ty * 16 + tx] != 0;
@@ -186,8 +193,8 @@ index 246f9ede..9f2f504a 100644
 +}
 +void mark_tiles(DuckTexturePack& p, Rect r) {
 +    if (!r.w || !r.h) return;
-+    const unsigned x0 = (r.x % 1024) / 64, y0 = (r.y % 512) / 64;
-+    const unsigned x1 = std::min(1023u, r.x % 1024 + r.w - 1) / 64, y1 = std::min(511u, r.y % 512 + r.h - 1) / 64;
++    const unsigned x0 = (r.x % 1024) / 64, y0 = (r.y % 512) / kTileH;
++    const unsigned x1 = std::min(1023u, r.x % 1024 + r.w - 1) / 64, y1 = std::min(511u, r.y % 512 + r.h - 1) / kTileH;
 +    for (unsigned ty = y0; ty <= y1; ty++) for (unsigned tx = x0; tx <= x1; tx++) p.tile_cached[ty * 16 + tx] = 1;
 +}
 +void mark_query(DuckTexturePack& p, const HdTextureDrawQuery& q) {
@@ -211,7 +218,7 @@ index 246f9ede..9f2f504a 100644
      }
      return value;
  }
-@@ -839,6 +947,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+@@ -839,6 +954,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
          return false;
      };
      bool hit = false;
@@ -219,7 +226,7 @@ index 246f9ede..9f2f504a 100644
      for (const auto& upload : p->uploads) if (touches(upload.active)) { hit = true; break; }
      if (!hit) for (const auto& page : p->pages) {
          if (touches(page.source->rect)) { hit = true; break; }
-@@ -846,13 +955,6 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+@@ -846,13 +962,6 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
              if (record.depth < 2 && touches({record.clut_x,record.clut_y,record.palette_size,1})) { hit = true; break; }
          if (hit) break;
      }
@@ -233,7 +240,33 @@ index 246f9ede..9f2f504a 100644
      if (!hit) return;
      ++p->revision;
      bool released = false;   /* a residency record dropped or split */
-@@ -890,13 +992,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+@@ -866,17 +975,22 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
+         for (const auto& upload : p->uploads) {
+             const Rect cut = intersection(upload.active,r);
+             if (!cut.w || !cut.h) {
+-                if (survivors.size() < kMaxUploads) survivors.push_back(upload); else released = true;
++                if (survivors.size() < kMaxUploads) survivors.push_back(upload);
++                else { released = true; bump_tiles(*p,upload.active); }
+                 continue;
+             }
+             released = true;
+-            if (upload.splits >= p->config.max_vram_write_splits || contains(r,upload.active)) continue;
++            if (upload.splits >= p->config.max_vram_write_splits || contains(r,upload.active)) {
++                /* Dropped whole: matches over the part outside r go too. */
++                bump_tiles(*p,upload.active);
++                continue;
++            }
+             const Rect a = upload.active;
+             const Rect fragments[] = {
+                 {a.x,a.y,a.w,cut.y-a.y}, {a.x,cut.y+cut.h,a.w,a.y+a.h-cut.y-cut.h},
+                 {a.x,cut.y,cut.x-a.x,cut.h}, {cut.x+cut.w,cut.y,a.x+a.w-cut.x-cut.w,cut.h}
+             };
+-            if (survivors.size()+4 > kMaxUploads) continue;
++            if (survivors.size()+4 > kMaxUploads) { bump_tiles(*p,upload.active); continue; }
+             for (const Rect& fragment : fragments) if (fragment.w && fragment.h)
+                 survivors.push_back({upload.source,fragment,upload.splits+1});
+         }
+@@ -890,13 +1004,7 @@ void duck_texture_pack_invalidate(DuckTexturePack* p, uint16_t x, uint16_t y, ui
              return false;
          }),p->pages.end());
          released = released || p->pages.size() != pages_before;
@@ -248,7 +281,59 @@ index 246f9ede..9f2f504a 100644
      }
      /* Only a dropped record can leave a source unreferenced. */
      if (released) retire_unused(*p);
-@@ -1024,21 +1120,24 @@ int duck_texture_pack_match_draw(DuckTexturePack* p, const HdTextureDrawQuery* q
+@@ -961,13 +1069,20 @@ int duck_texture_pack_track_upload(DuckTexturePack* p, uint16_t x, uint16_t y, u
+                 p->uploads.pop_back(); retire_unused(*p);
+                 auto merged = capture_source(*p,combined,vram,DUCK_TEXTURE_UPLOAD);
+                 if (!merged) return 0;
+-                p->uploads.push_back({merged,combined,0}); p->match_cache.clear(); return 1;
++                /* R4Recomp: cached matches depend on an upload only through
++                 * the VRAM under their page and CLUT, which the tile
++                 * generations cover: the invalidate above bumped the written
++                 * rectangle, and the merged record replaces one no query has
++                 * used. Clearing the whole match cache here made every draw of
++                 * a game that uploads each frame (R4: 165 lookups a frame, a
++                 * hundred geometry groups each) miss once per frame. */
++                p->uploads.push_back({merged,combined,0}); bump_tiles(*p,combined); return 1;
+             }
+         }
+         auto captured = capture_source(*p,written,vram,DUCK_TEXTURE_UPLOAD);
+         if (!captured) return 0;
+         p->uploads.push_back({captured,written,0});
+-        p->match_cache.clear(); return 1;
++        return 1;
+     } catch (...) { return 0; }
+ }
+ int duck_texture_pack_begin_copy(DuckTexturePack* p, uint16_t sx, uint16_t sy, uint16_t dx, uint16_t dy,
+@@ -980,8 +1095,10 @@ int duck_texture_pack_begin_copy(DuckTexturePack* p, uint16_t sx, uint16_t sy, u
+         if (p->config.convert_copies_to_writes) {
+             for (const auto& upload : p->uploads) if (intersects(upload.active,destination)) {
+                 if (!finalize_source(*p,*upload.source)) return 0;
+-                if (contains(upload.active,destination))
++                if (contains(upload.active,destination)) {
+                     p->copy_updates.push_back({upload.source->rect,upload.active,upload.splits});
++                    bump_tiles(*p,upload.active);   /* its record goes below */
++                }
+             }
+             p->uploads.erase(std::remove_if(p->uploads.begin(),p->uploads.end(),[&](const Upload& upload) {
+                 return contains(upload.active,destination);
+@@ -1000,8 +1117,15 @@ int duck_texture_pack_end_copy(DuckTexturePack* p, const uint16_t* vram, size_t
+             auto replacement = capture_source(*p,update.original,vram,DUCK_TEXTURE_UPLOAD);
+             if (!replacement) { p->copy_updates.clear(); return 0; }
+             p->uploads.push_back({replacement,update.active,update.splits});
++            bump_tiles(*p,update.active);
+         }
+-        p->copy_updates.clear(); p->match_cache.clear(); ++p->revision;
++        /* R4Recomp: no whole-cache clear. begin_copy bumped the tiles of the
++         * destination and of every record it took out, and the records put
++         * back are bumped above, so exactly the matches that can see the copy
++         * go stale. R4 copies VRAM twice per race frame: with the clear every
++         * lookup (165 a frame, about a hundred geometry groups each) missed
++         * once per frame. */
++        p->copy_updates.clear(); ++p->revision;
+         return 1;
+     } catch (...) { p->copy_updates.clear(); return 0; }
+ }
+@@ -1024,21 +1148,24 @@ int duck_texture_pack_match_draw(DuckTexturePack* p, const HdTextureDrawQuery* q
      if (winner == size_t(-1)) return HD_TEXTURE_LOOKUP_NONE;
      *out = parts[winner]; return HD_TEXTURE_LOOKUP_FOUND;
  }
@@ -278,7 +363,7 @@ index 246f9ede..9f2f504a 100644
          const unsigned ppw = expansion(q->depth);
          std::vector<DuckTextureMatch> candidates;
          bool over_budget = false; size_t checked = 0;
-@@ -1075,17 +1174,38 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
+@@ -1075,17 +1202,38 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
              if (over_budget) break;
          }
          size_t groups_checked = 0, hashed_bytes = 0;
@@ -325,7 +410,7 @@ index 246f9ede..9f2f504a 100644
                  if (++checked > 4096) { over_budget = true; break; }
                  consider(index,r.x,r.y,rect);
              }
-@@ -1121,8 +1241,9 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
+@@ -1121,8 +1269,9 @@ int duck_texture_pack_match_parts(DuckTexturePack* p, const HdTextureDrawQuery*
              if (a.clip_v != b.clip_v) return a.clip_v < b.clip_v;
              return a.clip_u < b.clip_u;
          });

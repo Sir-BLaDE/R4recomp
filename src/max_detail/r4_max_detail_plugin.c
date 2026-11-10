@@ -117,6 +117,7 @@ static uint64_t md_host_target_ns(void) {
 }
 static uint64_t s_host_prev_ns = 0;   /* thread time at the last frame start */
 static uint64_t s_host_avg_ns = 0;    /* ~8-frame average CPU time per frame */
+static uint64_t s_host_last_ns = 0;   /* the last frame's own CPU time */
 
 #define PKG "r4.enhancement.max-detail"
 #define FEATURE "max-detail"
@@ -675,6 +676,7 @@ static void r4_md_frame_start(CPUState *cpu, uint32_t address)
             uint64_t d = now - s_host_prev_ns;
             if (d > 100000000ull) d = 100000000ull;  /* a load or a pause */
             s_host_avg_ns = s_host_avg_ns ? (s_host_avg_ns * 7u + d) / 8u : d;
+            s_host_last_ns = d;
         }
         s_host_prev_ns = now;
     }
@@ -744,7 +746,15 @@ static void r4_md_vsync(CPUState *cpu, uint32_t address)
      * "drop one level" line, like the heap. */
     const uint64_t host_target = md_host_target_ns();
     if (host_target && s_host_avg_ns) {
-        const uint64_t host_busy = s_host_avg_ns * 930u / host_target * R4_MD_FRAME_BUDGET / 1000u;
+        /* The average decides, except that a last frame over the target
+         * counts at once: a level dropped this frame shows in the next
+         * frame's own time, so the level stops falling as soon as the frame
+         * fits (the average alone lags ~8 frames and the level would fall to
+         * the floor first). A single frame under the target changes nothing,
+         * so one noisy frame does not hold the level down either. */
+        const uint64_t host_ns = (s_host_last_ns > host_target && s_host_last_ns > s_host_avg_ns)
+                               ? s_host_last_ns : s_host_avg_ns;
+        const uint64_t host_busy = host_ns * 930u / host_target * R4_MD_FRAME_BUDGET / 1000u;
         if (host_busy > busy) busy = host_busy;
     }
     (void)r4_md_gov_update_heap(&s_gov, busy, s_frame.heap_pm);
@@ -772,6 +782,8 @@ static void r4_md_savestate_loaded(void)
     s_car_past_stock = 0;
     s_pace_anchor = 0;
     s_pace_active = 0;
+    s_host_prev_ns = 0;   /* the load itself is not a frame */
+    s_host_last_ns = 0;
 }
 
 /* ---- car reflections --------------------------------------------------------- */
