@@ -6,6 +6,20 @@ edition), statically recompiled with psxrecomp, with the "60FPS + Widescreen
 Patch V2" GameShark codes built in, the Spanish text of the PAL release, the
 HD HUD by Kuid0us and Max Detail from RidgeRacerType4Recomp (tetrisgm).
 
+ES - Novedades de la 0.7.4
+--------------------------
+- Emulacion un 19 % mas ligera en carrera (medido: 45,9 -> 37,0 ms por frame
+  en el equipo de pruebas, mismas imagenes). Es el modo de CPU rapido del
+  motor, que hasta ahora aceleraba el juego: la causa era la espera de VSync
+  del juego, que con la CPU al 300 % se rendia antes de tiempo. Corregida esa
+  espera, cada frame acaba siempre en un refresco: 60 fps exactos.
+- Maximo detalle (anti-popping): nueva opcion "CPU budget" en Mods > R4 Max
+  Detail. Balanced (por defecto) quita todo el popping que quepa sin perder
+  los 60 fps; Safe deja mas margen; No limit dibuja siempre toda la distancia.
+- R4_perf_log.txt muestra ahora el nivel de detalle en uso (md=<nivel>, de -2
+  = distancia original a 30 = maxima) y, en el peor frame de cada segundo,
+  cuanto fue trabajo de emulacion (busy) y cuanto espera.
+
 ES - Novedades de la 0.7.3
 --------------------------
 Revision y optimizacion general; el juego se ve exactamente igual.
@@ -138,6 +152,19 @@ ES - Inicio rapido
 AVISO: los paquetes "r4.spanish" y "HD Texture Packs" contienen texto,
 fuentes y graficos derivados de TUS discos (japones y PAL SCES-01706). Son
 solo para tu uso personal: no los redistribuyas.
+
+EN - New in 0.7.4
+-----------------
+- Race emulation is 19 % lighter (measured: 45.9 -> 37.0 ms per frame on the
+  dev box): the engine's fast CPU timing, which used to make the game run
+  fast. The cause was the game's VSync wait giving up early at 300 % CPU;
+  with that wait fixed every frame ends on a refresh, exactly 60 fps.
+- Max Detail (anti pop-in): new "CPU budget" option (Mods > R4 Max Detail).
+  Balanced (default) removes as much pop-in as fits in 60 fps; Safe leaves
+  more margin; No limit always draws the full distance.
+- R4_perf_log.txt shows the detail level in use (md=<level>, -2 = stock
+  distance, 30 = maximum) and how much of each second's worst frame was
+  emulation work (busy) rather than waiting.
 
 EN - New in 0.7.3
 -----------------

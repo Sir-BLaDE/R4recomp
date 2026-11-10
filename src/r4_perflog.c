@@ -81,6 +81,26 @@ static uint64_t thread_cpu_ns(void) {
 #endif
 }
 
+/* Fine-grained emulation-thread CPU counter for one VBlank interval: thread
+ * cycles on Windows (GetThreadTimes moves in 15.6 ms steps), ns elsewhere.
+ * Only ratios are used: a window's worst interval against the whole window. */
+static uint64_t thread_ticks(void) {
+#if defined(_WIN32)
+    ULONG64 c = 0;
+    return QueryThreadCycleTime(GetCurrentThread(), &c) ? (uint64_t)c : 0;
+#else
+    return thread_cpu_ns();
+#endif
+}
+static uint64_t s_ticks_last, s_ticks_at_window, s_worst_ticks;
+static unsigned s_unflushed;
+
+/* r4.enhancement.max-detail (src/max_detail): governor level and the
+ * emulation CPU time per game frame it measured. */
+extern int r4_md_diag(int *level, double *host_ms);
+
+static void flush_log(void) { if (s_log) fflush(s_log); s_unflushed = 0; }
+
 static void open_log(void) {
     if (s_log) return;
     s_log = fopen("R4_perf_log.txt", "a");
@@ -89,9 +109,11 @@ static void open_log(void) {
     char buf[64];
     strftime(buf, sizeof buf, "%Y-%m-%d %H:%M:%S", localtime(&t));
     fprintf(s_log, "# R4Recomp perf log, session %s (cpu overclock x%u)\n"
-                   "# time frame late/vblanks worst avg fps emu%% emu_ms(per vblank) interp top\n",
+                   "# time frame late/vblanks worst(busy: emulation CPU inside the worst interval) avg fps emu%% "
+                   "emu_ms(per vblank) md=<Max Detail level -2..30>/<its ms per frame> interp top\n",
             buf, psx_mod_guest_cycle_scale());
     fflush(s_log);
+    atexit(flush_log);
 }
 
 static void sample_top(uint32_t top_pc[R4PL_TOP], uint64_t top_n[R4PL_TOP]) {
@@ -125,6 +147,14 @@ static void end_window(uint64_t wall_now) {
     const uint64_t s_cpu_prev = s_cpu_at_window;
     s_cpu_at_window = cpu;
     s_wall_at_window = wall_now;
+    /* CPU time of the emulation thread inside the worst interval: close to
+     * the interval = the emulation itself took that long; far below it = the
+     * thread was waiting (renderer, driver, the system). */
+    const uint64_t ticks_now = thread_ticks();
+    const uint64_t ticks_win = ticks_now - s_ticks_at_window;
+    s_ticks_at_window = ticks_now;
+    const double worst_busy_ms = (ticks_win && cpu > s_cpu_prev)
+        ? (double)s_worst_ticks * (double)(cpu - s_cpu_prev) / (double)ticks_win / 1e6 : 0.0;
     const int partial = s_flips >= 32u && s_flips <= 56u;   /* 30 fps menus/FMV excluded */
     if (!(s_late || partial || s_all) || s_lines >= R4PL_MAX_LINES) return;
     /* The 4 MB PC-table scan runs only for a window that is logged (it used
@@ -137,17 +167,21 @@ static void end_window(uint64_t wall_now) {
     time_t t = time(NULL);
     char ts[16];
     strftime(ts, sizeof ts, "%H:%M:%S", localtime(&t));
-    fprintf(s_log, "%s frame=%llu late=%u/%u worst=%.1fms avg=%.1fms fps=%u emu=%.0f%% emu_ms=%.2f cpu=x%u interp=%llu top=",
+    int md_level = 0; double md_ms = 0.0; char md[32] = "off";
+    if (r4_md_diag(&md_level, &md_ms)) snprintf(md, sizeof md, "%d/%.1f", md_level, md_ms);
+    fprintf(s_log, "%s frame=%llu late=%u/%u worst=%.1fms(busy %.1f) avg=%.1fms fps=%u emu=%.0f%% emu_ms=%.2f cpu=x%u md=%s interp=%llu top=",
             ts, (unsigned long long)s_window_start_frame, s_late, s_window_frames,
-            s_worst_ns / 1e6, s_window_frames ? s_sum_ns / 1e6 / s_window_frames : 0.0,
+            s_worst_ns / 1e6, worst_busy_ms, s_window_frames ? s_sum_ns / 1e6 / s_window_frames : 0.0,
             s_flips, emu, s_window_frames ? (double)(cpu - s_cpu_prev) / 1e6 / s_window_frames : 0.0,
-            psx_mod_guest_cycle_scale(),
+            psx_mod_guest_cycle_scale(), md,
             (unsigned long long)(g_dirty_ram_insns_run - s_insns_at_window));
     for (int k = 0; k < R4PL_TOP && top_n[k]; k++)
         fprintf(s_log, "%s%08X:%llu", k ? "," : "", top_pc[k] | 0x80000000u,
                 (unsigned long long)top_n[k]);
     fputc('\n', s_log);
-    fflush(s_log);
+    /* Written out every 20 lines (and at exit), not every second: the write
+     * runs on the emulation thread. */
+    if (++s_unflushed >= 20u) flush_log();
     s_lines++;
 }
 
@@ -167,15 +201,17 @@ static void r4pl_vblank(void) {
         if (dt < 5000000000ull) {          /* ignore pauses / long loads */
             s_sum_ns += dt;
             if (dt > R4PL_LATE_NS) s_late++;
-            if (dt > s_worst_ns) s_worst_ns = dt;
+            if (dt > s_worst_ns) { s_worst_ns = dt; s_worst_ticks = thread_ticks() - s_ticks_last; }
         }
     }
+    s_ticks_last = thread_ticks();
     s_window_frames++;
     s_last_ns = t;
     if (s_window_frames >= R4PL_WINDOW) {
         end_window(t);
         s_late = s_window_frames = s_flips = 0;
         s_worst_ns = s_sum_ns = 0;
+        s_worst_ticks = 0;
         s_insns_at_window = g_dirty_ram_insns_run;
         s_window_start_frame = s_frame;
     }
@@ -194,6 +230,8 @@ static void r4pl_activate(void) {
     s_insns_at_window = g_dirty_ram_insns_run;
     s_cpu_at_window = thread_cpu_ns();
     s_wall_at_window = now_ns();
+    s_ticks_at_window = s_ticks_last = thread_ticks();
+    s_worst_ticks = 0;
 }
 
 static void r4pl_restore(void) { s_last_ns = 0; s_tl_seq = gpu_timeline_total(); }

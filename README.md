@@ -424,3 +424,43 @@ Profiled with `perf` on the race bench (slot 8, 2400 frames; same 1.37M of
   OFF. Upstream's per-instruction timing (`psx_cyc_step`, ~16 % of the
   emulation thread) and the PGXP hooks (~23 %) are where that thread's time
   goes; both are framework design and left as they are.
+
+## v0.7.4: VSync timeout under the overclock; native CPU spans on
+
+Player report on 0.7.3: performance jumps, the anti pop-in not visible, older
+builds felt faster. Their log: the race at 13.5-17 ms of emulation per 16.7 ms
+VBlank (80-98 % of a core), 60 flips per 60 VBlanks, a few 33-88 ms frames.
+
+- **Same cost as 0.6.1.** Both Windows builds under Wine, native resolution,
+  walked from boot into Grand Prix race 1 by the same script
+  (`R4_PERFLOG_ALL=1`): 44.0 (0.6.1) vs 43.4 (0.7.3) ms of emulation per VBlank.
+  The emulation thread did not get slower; with the thread that close to
+  16.7 ms the 12 ms governor target simply kept Max Detail at its floor
+  (level -2 = stock draw distance), which is why the pop-in was unchanged.
+- **Why native spans made the game run fast** (v0.7.1 note). libetc
+  `v_wait(target, timeout)` (0x8008B068) gives up after `timeout << 15` loop
+  passes. That is a pass count, so its length in guest time shrinks with the
+  overclock: about 0.39 VBlank at x3. The 60 FPS routine calls `VSync(0)` once
+  128 hblanks (0.49 VBlank) have passed, so a frame whose work ends early
+  returns at 0.88 VBlank. With per-instruction timing at x3 race frames are
+  long enough; with a cheaper CPU model (or x4/x5) they are not. Measured on
+  the spans build from its own race state: 62-72 flips per 60 VBlanks with the
+  stock timeout, exactly 60 with it scaled. `r4.gameshark.60fps` now hooks
+  `v_wait` (new `mod_function_entry_funcs` entry, game C regenerated) and
+  multiplies the timeout by the live overclock x2 (`R4_VWAIT_STOCK=1` = A/B).
+- **`R4_NATIVE_CPU_SPANS` ON by default.** Same race from boot, dev box:
+  45.9 -> 37.0 ms of emulation per VBlank (-19 %), 60 flips per 60 VBlanks in
+  both. Existing build directories keep their cached OFF: reconfigure with
+  `-DR4_NATIVE_CPU_SPANS=ON`.
+- **Max Detail `cpu_budget` option**: Balanced 14.5 ms (default), Safe
+  12.5 ms, No limit (guest budget only). On the spans build, same race start:
+  36.7 ms at the floor, 40.5 ms with no limit while the level climbs from 0 to
+  30 (28-41 ms once at 30), 60 flips per 60 VBlanks throughout.
+- **Perf log**: `md=<level>/<ms>` (governor level and its emulation ms per
+  frame), `worst=..ms(busy ..)` (emulation CPU inside the window's worst
+  interval, from thread cycle time), and the file is written every 20 lines
+  and at exit instead of once a second from the emulation thread.
+- The uploaded `overlay_captures.json` (8 regions; summarized by script, not
+  read in full) holds menu and loader code that runs on the dirty-RAM
+  interpreter (0x8001F000, 0x80032000, 0x8003B000, 0x80115000, ...): up to
+  475k instructions a second in the menus, ~10k in races. Not compiled yet.

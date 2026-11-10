@@ -46,6 +46,8 @@ mod_function_entry_funcs = [
   "0x80060B3C", "0x80014A90", "0x800712AC", "0x8006E994", "0x8006ED08",
   "0x80090EE0", "0x8002DEB4", "0x80015F60", "0x8009331C", "0x80096200",
   "0x8006F12C", "0x80071214", "0x800930E0", "0x80092FD8", "0x8008AEF0",
+  # r4.gameshark.60fps: libetc v_wait(target, timeout) (src/r4_gameshark.c).
+  "0x8008B068",
 ]
 
 [runtime]

@@ -63,7 +63,8 @@
  * With the 3x CPU overclock the guest budget alone lets Maximum add roughly
  * twice the stock work per 60 FPS frame, which the host then has to emulate
  * within one 16.7 ms VBlank. The average over ~8 frames is held at or under
- * 12 ms (R4_MD_HOST_MS=<ms> overrides; 0 turns the host input off). */
+ * the package's CPU budget (14.5 ms by default; R4_MD_HOST_MS=<ms> overrides,
+ * 0 turns the host input off). */
 static uint64_t md_wall_ns(void) {
 #if defined(_WIN32)
     static LARGE_INTEGER f;
@@ -106,14 +107,16 @@ static uint64_t md_thread_ns(void) {
     return 0;
 #endif
 }
+/* The package's "cpu_budget" option (set at activation); R4_MD_HOST_MS wins. */
+static int64_t s_host_target_opt = 14500000;
 static uint64_t md_host_target_ns(void) {
-    static int64_t t = -1;
-    if (t < 0) {
+    static int64_t t = -2;
+    if (t == -2) {
         const char *e = getenv("R4_MD_HOST_MS");
-        t = e ? (int64_t)(atof(e) * 1e6) : 12000000;
-        if (t < 0) t = 0;
+        t = e ? (int64_t)(atof(e) * 1e6) : -1;
+        if (e && t < 0) t = 0;
     }
-    return (uint64_t)t;
+    return (uint64_t)(t >= 0 ? t : s_host_target_opt);
 }
 static uint64_t s_host_prev_ns = 0;   /* thread time at the last frame start */
 static uint64_t s_host_avg_ns = 0;    /* ~8-frame average CPU time per frame */
@@ -769,6 +772,17 @@ static void r4_md_vsync(CPUState *cpu, uint32_t address)
     }
 }
 
+/* Perf log: the governor's level (R4_MD_LEVEL_MIN = stock draw distance) and
+ * the emulation thread's average CPU time per game frame. 0 = package off or
+ * draw distance not Maximum. */
+int r4_md_diag(int *level, double *host_ms)
+{
+    if (!s_enabled || s_opt.draw != R4_MD_DRAW_MAXIMUM) return 0;
+    if (level) *level = s_gov.level;
+    if (host_ms) *host_ms = (double)s_host_avg_ns / 1e6;
+    return 1;
+}
+
 /* A save state's frames run from the starting level again. */
 static void r4_md_savestate_loaded(void)
 {
@@ -1078,6 +1092,12 @@ static void r4_max_detail_activate(void)
     r4_md_option("split_screen", split, sizeof split);
     r4_md_option("reflections", reflections, sizeof reflections);
     r4_md_option("mirror", mirror, sizeof mirror);
+    {
+        char budget[16];
+        r4_md_option("cpu_budget", budget, sizeof budget);
+        s_host_target_opt = !strcmp(budget, "off") ? 0
+                          : !strcmp(budget, "safe") ? 12500000 : 14500000;
+    }
     s_opt = r4_md_options(draw, course, cars, split, reflections, mirror);
     s_clamp_available = psx_mod_set_draw_distance_clamp(r4_md_clamp_on(s_opt));
     s_enabled = 1;

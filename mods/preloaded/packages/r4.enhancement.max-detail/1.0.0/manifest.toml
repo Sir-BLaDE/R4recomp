@@ -114,6 +114,31 @@ label = "Stock (Recommended)"
 value = "on"
 label = "On"
 
+# R4Recomp: how much of a 16.7 ms frame the emulation may use before Maximum
+# draw distance gives sections back. With the real 60 FPS patch every race
+# frame is emulated in one VBlank (a 30 FPS build has two), so this decides
+# how much of the pop-in is removed on a given CPU.
+[[option]]
+feature = "max-detail"
+id = "cpu_budget"
+label = "CPU budget (Maximum draw distance)"
+description = "Maximum draw distance adds far track sections only while the emulation of a frame fits this budget, so the game stays at 60 FPS. Balanced (14.5 ms of the 16.7 ms frame) suits most PCs. Safe (12.5 ms) leaves more margin and removes less pop-in. No limit always draws the full distance, as on a 30 FPS build: all pop-in gone, but a CPU that cannot emulate it in time drops frames. The perf log (R4_perf_log.txt) shows the level in use as md=<level>."
+group = "Detail"
+type = "choice"
+default = "balanced"
+
+[[option.choice]]
+value = "balanced"
+label = "Balanced (Recommended)"
+
+[[option.choice]]
+value = "safe"
+label = "Safe"
+
+[[option.choice]]
+value = "off"
+label = "No limit"
+
 # Off by default (owner decision, 2026-10-01): it costs the emulated PS1
 # the most time of anything in this package (docs/MAX_DETAIL.md).
 [[option]]

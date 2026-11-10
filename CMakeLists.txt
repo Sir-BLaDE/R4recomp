@@ -11,14 +11,16 @@ endif()
 
 project(R4Recomp LANGUAGES C CXX)
 
-# Faithful per-instruction CPU timing. psxrecomp's approximate "native CPU
-# span" timing (ENHANCED default since 2026-10-27) makes R4's frames end early:
-# with the GameShark 60 FPS patch the race flipped every 0.88 VBlank (the game
-# ran ~1.2x fast). Measured off: 60 flips per 60 VBlanks.
-# Measured again on 64dff482 with the v0.7.2 gate (R4_NATIVE_CPU_SPANS=ON): the
-# race then runs at 30 flips per 60 VBlanks and the emulation thread uses more
-# CPU per VBlank, not less. The option only exists to repeat that test.
-option(R4_NATIVE_CPU_SPANS "Build R4 with the framework's native-span CPU timing" OFF)
+# CPU timing model. Up to v0.7.3 psxrecomp's approximate "native CPU span"
+# timing (ENHANCED default since 2026-10-27) was forced OFF: with the GameShark
+# 60 FPS patch the race flipped every 0.88 VBlank (the game ran up to 1.2x
+# fast), against 60 flips per 60 VBlanks with per-instruction timing.
+# The cause (v0.7.4): libetc v_wait's timeout is a loop-pass count, so a cheaper
+# CPU model made VSync(0) give up before the VBlank. src/r4_gameshark.c now
+# scales that timeout with the overclock, every frame ends on a VBlank, and
+# native spans are ON: same race from boot, 45.9 -> 37.0 ms of emulation per
+# VBlank on the dev box (-19 %), 60 flips per 60 VBlanks in both.
+option(R4_NATIVE_CPU_SPANS "Build R4 with the framework's native-span CPU timing" ON)
 set(PSX_NATIVE_CPU_SPANS ${R4_NATIVE_CPU_SPANS} CACHE BOOL "Use generated native CPU span timing in ENHANCED builds" FORCE)
 
 # --- Opt-in product surfaces (OFF by default in the framework) -------------

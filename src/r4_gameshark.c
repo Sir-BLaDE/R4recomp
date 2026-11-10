@@ -39,6 +39,7 @@
 #include <stdlib.h>
 
 #include "mod_plugins.h"
+#include "cpu_state.h"
 #include "func_override.h"
 #include "psx_cycle_freeze.h"
 #include "r4_gameshark_codes.h"
@@ -129,6 +130,32 @@ static void r4gs_restore_wide(void)   { r4gs_apply(&k_wide); }
 static void r4gs_restore_marker(void) { r4gs_apply(&k_marker); }
 static void r4gs_restore_fmv(void)    { r4gs_apply(&k_fmv); }
 
+/* libetc v_wait(a0 = VBlank count to reach, a1 = timeout) spins until the
+ * count is reached or (a1 << 15) loop passes have gone by, then gives up
+ * ("VSync: timeout"). The timeout is a pass count, so it shrinks with the
+ * overclock: at the patch's 300 % CPU it is about 0.39 VBlank instead of
+ * about 1.2. The 60 FPS routine calls VSync(0) once 128 hblanks (0.49
+ * VBlank) have passed since the last one, so a frame whose work ends early
+ * times out at 0.88 VBlank instead of waiting for the VBlank: 68 frames a
+ * second, the game 13 % fast (measured with a cheaper CPU model and at
+ * x4/x5). Scaling a1 by the live overclock (times a margin of 2, since the
+ * CPU model can make a pass cheaper still) gives the wait at least its stock
+ * length in guest time again, so every frame ends on a VBlank at any CPU speed.
+ * R4_VWAIT_STOCK=1 leaves a1 alone (A/B). */
+#define R4GS_VWAIT 0x8008B068u
+#ifndef R4GS_VWAIT_MARGIN
+#define R4GS_VWAIT_MARGIN 2u
+#endif
+static void r4gs_entry_vwait(struct CPUState* cpu, uint32_t a) {
+    static int stock = -1;
+    (void)a;
+    if (stock < 0) { const char* e = getenv("R4_VWAIT_STOCK"); stock = e && e[0] == '1'; }
+    const uint32_t scale = psx_mod_guest_cycle_scale();
+    if (stock || scale <= 1u) return;
+    const uint32_t t = cpu->gpr[5];
+    if (t && t < 0x1000u) cpu->gpr[5] = t * scale * R4GS_VWAIT_MARGIN;
+}
+
 static void r4gs_activate_60fps(void) {
     /* The gate opens at game entry (r4gs_open_gate). */
 }
@@ -176,6 +203,7 @@ static void r4gs_register(const char* id, PSXModFunctionEntryCallback entry,
 PSX_MOD_CONSTRUCTOR(r4gs_register_plugins) {
     r4gs_register(R4GS_ID_60FPS, r4gs_entry_60fps, r4gs_vblank_60fps,
                   r4gs_restore_60fps, r4gs_activate_60fps);
+    psx_mod_register_function_entry_plugin(R4GS_ID_60FPS, R4GS_VWAIT, r4gs_entry_vwait);
     r4gs_register(R4GS_ID_WIDE, r4gs_entry_wide, r4gs_vblank_wide,
                   r4gs_restore_wide, r4gs_activate_wide);
     psx_mod_register_function_override(R4GS_ID_WIDE ":otwalk", R4GS_WS_OTWALK,
