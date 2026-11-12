@@ -83,6 +83,15 @@ pgxp_preserve_projection = true
 internal_resolution = "display"
 match_display_max_lines = 2160
 dynamic_resolution = false
+# The baseline look of this title. The PS1 point-samples every texture and
+# dithers every Gouraud-shaded polygon into 5 bits per channel; at an
+# internal resolution of 4x and above both read as "1998" more than the
+# resolution does. The title therefore ships bilinear filtering and no
+# dithering, and the built-in mods keep these as "Game default" so the
+# console look is one click away (Image Filtering -> Texture filtering;
+# the `dithering` TCP command switches it live).
+dithering = "off"
+texture_filtering = "bilinear"
 # GL work on its own thread so driver stalls never cost the guest a frame
 # (the framework's own R4 measurements, docs/RENDER_THREAD.md).
 render_thread = true

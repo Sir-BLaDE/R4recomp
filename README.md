@@ -529,3 +529,38 @@ interpreter).
   interpreter runs the menu and movie code that the overlay captures cover;
   a build with those captures compiled does not run that code interpreted,
   and that path could not be tested here.
+
+## v0.7.6: the streamed code is native now, and the default look is modern
+
+- **The menus, the loaders and the movies run as native code.** The game
+  streams its overlay code from the disc into RAM, and everything that is not
+  in the EXE used to run on the dirty-RAM interpreter: correct, but slow, and
+  the only place where this build's emulation halts appeared. The runtime
+  captures every executable image it runs (`overlay_captures.json` and its
+  per-content history); `tools/gs_static/merge_captures.py` merges those with
+  the GameShark patch's own captures and
+  `psxrecomp/tools/compile_overlays.py --static` compiles them into guarded
+  native shards. Measured on the intro movie, the heaviest interpreted code in
+  the game:
+
+  | | before | after |
+  |---|---|---|
+  | interpreted instructions per second | 17.7 M (`0x8011493C`) | **0** |
+  | emulation ms per VBlank in the movie | 13.3-18.2 | **9.1-10.7** |
+  | emulation CPU inside the worst interval | 22-30 ms | **13-17 ms** |
+
+  32 shards, 16 712 exact function identities in 51 translation units (the
+  GameShark patch alone was 10 shards / 12 171 identities / 18 units). The
+  captures hold bytes read from the player's own disc, so they stay local
+  (`tools/gs_static/all_captures.json` is gitignored); the recipe is in
+  `docs/R4_OPTIMIZATION_GUIDE.md`.
+- **The default look is no longer the console's.** The PS1 point-samples every
+  texture and dithers every Gouraud-shaded polygon into 5 bits per channel;
+  at 4x internal resolution and above both read as "1998" more than the
+  resolution does. `game.toml` therefore ships `dithering = "off"` and
+  `texture_filtering = "bilinear"` as the title's baseline, and the built-in
+  mods keep them as "Game default", so the console look is one click away.
+- **Optimization guide** (`docs/R4_OPTIMIZATION_GUIDE.md`): what causes each
+  PlayStation artifact and how to fix it on this title, how to compile the
+  streamed overlays, the Max Detail governor and the race spikes, how to
+  measure a change instead of guessing, and the HD texture-pack workflow.
