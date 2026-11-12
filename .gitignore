@@ -72,6 +72,7 @@ CMakeFiles/
 compile_commands.json
 
 # Runtime artifacts from psx-runtime launches
+R4_perf_log.txt
 psx_crash.txt
 psx_last_run_report.json
 psx_screenshot.bmp
