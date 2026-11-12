@@ -564,3 +564,18 @@ interpreter).
   PlayStation artifact and how to fix it on this title, how to compile the
   streamed overlays, the Max Detail governor and the race spikes, how to
   measure a change instead of guessing, and the HD texture-pack workflow.
+- **Known issue: an emulation halt in the attract loop.** In an unattended
+  session (no input) this build can stop the emulation after 5-13 minutes with
+  `DISPATCH FATAL: misaligned target ...` or `GPU GP0 unknown command 0xFD`.
+  The mechanism is the GameShark 60 FPS code cave at `0x8000C210`: it replaces
+  the game's handler dispatch (`jalr $ra,$v0` at `0x8001EC30`) and calls the
+  handler pointer the game loaded from its handler table, and at the halt that
+  pointer held a data value (`0x0EADF9A1`, `0x81CB002E`) because the game's
+  own index/table lookup was out of range at that moment. The cave is not at
+  fault for the pointer: it saves and restores `$ra`/`$s0`-`$s2` and never
+  writes `$s3`, the table base. It is reproducible with the streamed code
+  native and with the interpreter, so it is not an interpreter artifact; a
+  session with the 60 FPS feature off ran 8 minutes without a halt, which
+  points at the patch's timing rather than at the recompilation. The halt
+  stops the emulation (the debug server stays up for post-mortem queries);
+  the game is not playable afterwards.
