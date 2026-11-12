@@ -554,11 +554,17 @@ interpreter).
   |---|---|---|---|---|
   | 0.7.4 | 12.5 | 1.03 % | 29.6 ms | 3 |
   | 0.7.5 (view floor) | 12.0 | 0.40 % | 24.4 ms | 0 |
-  | 0.7.7 (LTO + settle) | **10.2** | 0.79 % | 24.8 ms | **0** |
+  | 0.7.7 (LTO + settle) | 10.2 | 0.79 % | 24.8 ms | **0** |
+  | 0.7.7 + PGO | **9.6** | 0.51 % | **22.0 ms** | **0** |
 
   The remaining late VBlanks are the one-off cost of the governor's climb
   (one per level step, about two frames each); after it reaches its maximum
   there are no more level changes and no more spikes.
+- **PGO on top of it** (`psxrecomp_cli.py rebuild --force-pgo --train-secs 150
+  --train-runs 2`, with `PSX_DEBUG_SERVER=1` in the environment so the training
+  exits cleanly and flushes the profile): 10.2 -> **9.6 ms** per VBlank. The
+  profile is a local build artifact (the shipped executable carries it; a
+  fresh build needs the training step again), so it is not in the repository.
 - The whole series was measured through the TCP debug server
   (`PSX_DEBUG_SERVER=1`) and `R4_PERFLOG_ALL=1`; `docs/R4_OPTIMIZATION_GUIDE.md`
   has the commands.
