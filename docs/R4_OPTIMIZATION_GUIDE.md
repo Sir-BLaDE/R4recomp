@@ -91,12 +91,19 @@ GPU GP0 unknown command 0xFD (word 0xFD09B1F8)
 The first is the GameShark 60 FPS code cave at `0x8000C210`: it replaces the
 game's `jalr $ra,$v0` at `0x8001EC30` (the handler dispatch) with a jump into
 the cave, which then calls the handler pointer the game loaded from its handler
-table. When that table holds a data value instead of an address, the jump goes
-to garbage. The second is a garbage GP0 word.
+table. When that table lookup is out of range at that moment, the pointer is a
+data value (`0x0EADF9A1`, `0x81CB002E`) and the jump goes to garbage. The
+second is a garbage GP0 word.
 
-Both appear while the menu/movie code runs interpreted. Compiling those images
-natively (§1.2) is the fix; the same images are the ones the perf log reports
-as `interp=`.
+Compiling the streamed images natively (§1.2) removes the interpreter from the
+menus and the movies, but it does **not** remove this halt: it reproduces the
+same way with the code native. The cave is not the origin of the bad pointer
+(it saves and restores `$ra`/`$s0`-`$s2` and never writes `$s3`, the table
+base), and the game's own index/table lookup is what went out of range. A
+session with the 60 FPS feature disabled ran 8 minutes without a halt, which
+points at the patch's timing rather than at the recompilation. The halt stops
+the emulation - the debug server stays up for post-mortem queries, but the game
+is not playable afterwards.
 
 ### 1.4 If the overlay compiler refuses to run
 
