@@ -469,3 +469,53 @@ VBlank (80-98 % of a core), 60 flips per 60 VBlanks, a few 33-88 ms frames.
   read in full) holds menu and loader code that runs on the dirty-RAM
   interpreter (0x8001F000, 0x80032000, 0x8003B000, 0x80115000, ...): up to
   475k instructions a second in the menus, ~10k in races. Not compiled yet.
+
+## v0.7.5: the race spikes are the governor's floor
+
+Measured on Windows (0.7.4 rebuilt with `-DR4_NATIVE_CPU_SPANS=ON`), the game
+driven over the TCP debug server and `R4_perf_log.txt` written with
+`R4_PERFLOG_ALL=1`. The race measured is the attract demo (the same engine
+and the same Max Detail governor); the Grand Prix route could not be walked
+here because the course intro movie stalls in this environment (the FMV and
+menu overlay captures are missing, so that code runs in the dirty-RAM
+interpreter).
+
+- **The race costs 12.0-13.5 ms of emulation per 16.7 ms VBlank** (72-81 % of
+  a core) with 60 flips per 60 VBlanks. The frames that overrun the budget
+  are exactly the ones where the Max Detail governor sat at its floor:
+
+  | governor level | race windows | worst interval (avg / max) | emulation CPU in it |
+  |---|---|---|---|
+  | -2 (stock draw distance) | 101 | 21.0 / 29.6 ms | 17.0 ms |
+  | -1 .. 30 | 108 | 18.3-19.7 / 21.5 ms | 12-15 ms |
+
+  The floor is the *expensive* state, not the cheap one: at level -2 the game
+  loads the course sections itself, and that reload is the most expensive
+  frame of the race. The governor got there because one frame over the budget
+  (often its own level change, 17-22 ms) drops the level by two, and the
+  drop's own frame is over the budget too: the reaction cascaded to the floor
+  and back every 10-20 s, and each pass through the floor cost a late VBlank.
+- **Fix (this version)**: the floor is now the floor of the *view*. A normal
+  view can hold the extra track sections, so it keeps two sections ahead
+  (level 0) as its floor, and a change of view width no longer slams the level
+  down from a high one. A very wide view (about 30:9 on) still falls back to
+  the stock draw distance - its extra octants overrun the grid - and the
+  governor still adapts to the frame cost as before. Same race, same build:
+  late VBlanks 1.03 % -> 0.38 %, frames over 20 ms 38 % -> 19 %, worst
+  interval 29.6 -> 25.2 ms and none over 25 ms. The level now stays where the
+  frame fits instead of oscillating between the floor and the top.
+- **Confirmed with the sections pinned** (`R4_MD_AHEAD=2 R4_MD_BEHIND=1`, the
+  developer A/B switch): late VBlanks 0.27 %, worst interval max 23.4 ms. The
+  same picture, which is what pins the cause down: it is the *change* of the
+  section count that costs, not the sections themselves - the steady cost is
+  the same at level 0 and at level 30 (12.0-12.5 ms of emulation per VBlank).
+- **Two emulation halts in the attract loop** (this machine, 0.7.4, without
+  the FMV and menu overlay captures): `DISPATCH FATAL: misaligned target
+  0x0EADF9A1` and `GPU GP0 unknown command 0xFD`, both 5-8 min into an
+  unattended session. The first one is the GameShark 60 FPS code cave at
+  0x8000C210, which calls the game's handler pointer through $v0; the pointer
+  came from the game's handler table and held a data value (0x0EADF9A1 is a
+  table entry, not an address). Both failures appear while the dirty-RAM
+  interpreter runs the menu and movie code that the overlay captures cover;
+  a build with those captures compiled does not run that code interpreted,
+  and that path could not be tested here.

@@ -428,7 +428,20 @@ static void r4_md_pvs_merge_body(void)
     int oct_reach = r4_pvs_octant_reach(md_view_margin());
     if (oct_reach != s_frame.last_oct) {   /* the view changed width */
         s_frame.last_oct = oct_reach;
-        r4_md_gov_reset(&s_gov, r4_md_gov_start_level(oct_reach));
+        /* The floor is the level the view can hold. A very wide view (about
+         * 30:9 on) cannot hold the extra sections - their octants overrun the
+         * grid - and keeps the stock draw distance. A normal view can hold
+         * them, and must: at the floor the game loads the course sections
+         * itself, and that reload is the most expensive frame of the race
+         * (measured 20-30 ms spikes, and the late VBlanks with it). So a
+         * normal view keeps two sections ahead (level 0) as its floor, and a
+         * view change no longer slams the level down from a high one. */
+        s_gov.level_min = (oct_reach >= 2) ? R4_MD_LEVEL_MIN : 0;
+        if (oct_reach >= 2) {
+            r4_md_gov_reset(&s_gov, R4_MD_LEVEL_MIN);
+        } else if (s_gov.level < s_gov.level_min) {
+            s_gov.level = s_gov.level_min;
+        }
     }
     int ahead = 0, behind = 0;
     if (s_opt.draw == R4_MD_DRAW_MAXIMUM) {

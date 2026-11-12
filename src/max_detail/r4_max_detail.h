@@ -470,11 +470,17 @@ typedef struct {
     int level;
     int calm;   /* frames in a row under the rise threshold */
     int hold;   /* frames before the level may rise again */
+    /* The view's floor. A normal view can hold the extra track sections, and
+     * must: at the floor the game loads the course sections itself and that
+     * reload is the most expensive frame of the race (the measured 20-30 ms
+     * spikes). A very wide view (about 30:9 on) cannot hold them - their
+     * octants overrun the grid - and keeps R4_MD_LEVEL_MIN. */
+    int level_min;
 } R4MdGovernor;
 
 static inline void r4_md_gov_reset(R4MdGovernor *g, int level)
 {
-    g->level = level < R4_MD_LEVEL_MIN ? R4_MD_LEVEL_MIN
+    g->level = level < g->level_min ? g->level_min
              : level > R4_MD_LEVEL_MAX ? R4_MD_LEVEL_MAX : level;
     g->calm = 0;
     g->hold = 0;
@@ -506,7 +512,7 @@ static inline int r4_md_gov_update(R4MdGovernor *g, uint64_t busy)
         if (g->hold > 0) g->hold--;
         g->calm = 0;
     }
-    if (g->level < R4_MD_LEVEL_MIN) g->level = R4_MD_LEVEL_MIN;
+    if (g->level < g->level_min) g->level = g->level_min;
     if (g->level > R4_MD_LEVEL_MAX) g->level = R4_MD_LEVEL_MAX;
     return g->level - before;
 }
