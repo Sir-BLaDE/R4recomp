@@ -140,7 +140,7 @@ cmake --build build-release -j 2
 |---|---|---|
 | `R4_NATIVE_CPU_SPANS=ON` | Per-instruction native span timing. Measured **-19 %** emulation per VBlank (45.9 -> 37.0 ms) | Low; the repo default |
 | `PSX_NATIVE_CPU_SPANS=OFF` | Cheaper CPU model, but the 60 FPS patch stops flipping 60 times per 60 VBlanks | Breaks 60 fps |
-| `PSX_RUNTIME_IPO=ON` | LTO across the runtime | Keep the same toolchain; check the exe still starts |
+| `PSX_RUNTIME_IPO=ON` | LTO across the runtime and the recompiled game. **On by default for this title** (`R4_RUNTIME_IPO`): 13.0 -> 10.2 ms of emulation per VBlank | Keep the same toolchain; check the exe still starts |
 | `PSX_PGO=<dir>` | Profile-guided optimization (see below) | Needs a reproducible training route |
 | `PSX_EXECUTION_PROFILE=ENHANCED` | `REFERENCE` is the LLE oracle (slower) | - |
 | `PSX_DEBUG_TOOLS=ON` | Adds `host_profile` (1 kHz IP sampling of the emulation thread) | ~4 % slower: diagnostics only |
@@ -148,10 +148,17 @@ cmake --build build-release -j 2
 PGO:
 
 ```bash
-python psxrecomp/psxrecomp_cli.py pgo-train \
+# PSX_DEBUG_SERVER=1 matters: the training asks the game to quit through the
+# debug server so it exits cleanly and flushes its profile. Without it the
+# training is force-stopped and the profile is lost ("no PGO profiles written").
+PSX_DEBUG_SERVER=1 python psxrecomp/psxrecomp_cli.py rebuild \
   --config game.toml --project-root . --build-dir build-release \
-  --disc disc/R4.cue --train-secs 120 --train-runs 3
+  --disc disc/R4.cue --force-pgo --train-secs 150 --train-runs 2 \
+  --pgo-hide-video --pgo-mute
 ```
+
+The profile is a local build artifact: the shipped executable carries it, but a
+fresh build needs the training step again, so it is not in the repository.
 
 ### 2.2 Runtime configuration
 
