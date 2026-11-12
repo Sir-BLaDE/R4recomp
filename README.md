@@ -83,6 +83,16 @@ committed `generated/` C on Linux, Windows and macOS and attaches
 Progressive map: `symbols.toml` → `python3 tools/sync_symbols.py` →
 `psx_symbols.h` (`PSX_FN_*`). See `psxrecomp/docs/SYMBOLS.md`.
 
+## Optimization guide
+
+`docs/R4_OPTIMIZATION_GUIDE.md`: what causes each "this looks like a PS1"
+artifact (internal resolution, filtering, draw distance, frame drops) and how
+to fix it on this title; how to compile the streamed overlays so the menus and
+movies run natively; the Max Detail governor and the race spikes; how to
+measure a change (the perf log, the debug server's wall-time rings and the
+emulation-thread profiler) instead of guessing; and the HD texture-pack
+workflow.
+
 ## Framework patches
 
 `psxrecomp` is pinned at upstream `a38bf783`; the R4 changes to it (HD
