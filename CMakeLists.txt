@@ -23,6 +23,13 @@ project(R4Recomp LANGUAGES C CXX)
 option(R4_NATIVE_CPU_SPANS "Build R4 with the framework's native-span CPU timing" ON)
 set(PSX_NATIVE_CPU_SPANS ${R4_NATIVE_CPU_SPANS} CACHE BOOL "Use generated native CPU span timing in ENHANCED builds" FORCE)
 
+# Link-time optimization for the runtime (and the recompiled game with it).
+# Measured on this title's race (v0.7.7): 13.0 -> 10.7 ms of emulation per
+# 16.7 ms VBlank (-18 %), which is the headroom the Max Detail governor needs
+# to keep the extra track sections without overrunning the frame.
+option(R4_RUNTIME_IPO "Build R4's runtime with IPO/LTO" ON)
+set(PSX_RUNTIME_IPO ${R4_RUNTIME_IPO} CACHE BOOL "Link-time optimization for the psx-runtime target" FORCE)
+
 # --- Opt-in product surfaces (OFF by default in the framework) -------------
 # Scaffold prompts / flags fill these. Without recomp-ui, PSX_RECOMP_UI is OFF.
 # The wizard (WIZARD_CMAKE_BLOCK / ENABLE_SETUP_WIZARD) is the first-run disc

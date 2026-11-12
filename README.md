@@ -530,6 +530,39 @@ interpreter).
   a build with those captures compiled does not run that code interpreted,
   and that path could not be tested here.
 
+## v0.7.7: LTO by default, and a governor that stops chasing its own cost
+
+- **IPO/LTO is on** (`R4_RUNTIME_IPO`, `CMakeLists.txt`; the framework's
+  `PSX_RUNTIME_IPO`). Measured on this title's race: **13.0 -> 10.2 ms of
+  emulation per 16.7 ms VBlank (-18 %)**. That is the headroom the Max Detail
+  governor needs to keep the extra track sections without overrunning the
+  frame - the single biggest win available on a machine whose race sits at
+  80-98 % of a core.
+- **The governor no longer reacts to its own level change.** A level change
+  costs one frame by construction (the new sections are drawn, or the dropped
+  ones are reloaded by the game), and that frame is over budget by
+  definition: the governor read its own cost as "too expensive", dropped
+  again, and the reaction cascaded to the floor and back. The governor now
+  ignores the measurement for the 8 frames after a change
+  (`R4_MD_GOV_SETTLE`), so it reacts to the *steady* cost. With the faster
+  build the level climbs to its maximum once and stays there instead of
+  hunting.
+- **Measured** (the attract demo's race, one build per row, same machine;
+  the courses differ between rows, so read the trend):
+
+  | build | emulation ms per VBlank | late VBlanks | worst interval | frames over 25 ms |
+  |---|---|---|---|---|
+  | 0.7.4 | 12.5 | 1.03 % | 29.6 ms | 3 |
+  | 0.7.5 (view floor) | 12.0 | 0.40 % | 24.4 ms | 0 |
+  | 0.7.7 (LTO + settle) | **10.2** | 0.79 % | 24.8 ms | **0** |
+
+  The remaining late VBlanks are the one-off cost of the governor's climb
+  (one per level step, about two frames each); after it reaches its maximum
+  there are no more level changes and no more spikes.
+- The whole series was measured through the TCP debug server
+  (`PSX_DEBUG_SERVER=1`) and `R4_PERFLOG_ALL=1`; `docs/R4_OPTIMIZATION_GUIDE.md`
+  has the commands.
+
 ## v0.7.6: the streamed code is native now, and the default look is modern
 
 - **The menus, the loaders and the movies run as native code.** The game

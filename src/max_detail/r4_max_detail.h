@@ -476,7 +476,18 @@ typedef struct {
      * spikes). A very wide view (about 30:9 on) cannot hold them - their
      * octants overrun the grid - and keeps R4_MD_LEVEL_MIN. */
     int level_min;
+    /* Frames whose measurement is ignored because they are the cost of the
+     * level change itself. */
+    int settle;
 } R4MdGovernor;
+
+/* How many frames after a level change the governor trusts the measurement
+ * again. A change costs one frame of its own (the new sections are drawn, or
+ * the dropped ones are reloaded by the game), and that frame is over budget
+ * by construction: without this window the governor reads its own cost as
+ * "too expensive", drops again, and the reaction cascades to the floor and
+ * back (the measured 20-30 ms spikes). */
+#define R4_MD_GOV_SETTLE 8u
 
 static inline void r4_md_gov_reset(R4MdGovernor *g, int level)
 {
@@ -484,6 +495,7 @@ static inline void r4_md_gov_reset(R4MdGovernor *g, int level)
              : level > R4_MD_LEVEL_MAX ? R4_MD_LEVEL_MAX : level;
     g->calm = 0;
     g->hold = 0;
+    g->settle = 0;
 }
 
 /* One measured frame: `busy` guest cycles against R4_MD_FRAME_BUDGET.
@@ -492,6 +504,10 @@ static inline int r4_md_gov_update(R4MdGovernor *g, uint64_t busy)
 {
     uint64_t permille = busy * 1000u / R4_MD_FRAME_BUDGET;
     int before = g->level;
+    if (g->settle > 0) {   /* the frames of the last change are not the level's cost */
+        g->settle--;
+        return 0;
+    }
     if (permille > 960u) {
         g->level -= 2;
         g->hold = 60;
@@ -514,6 +530,7 @@ static inline int r4_md_gov_update(R4MdGovernor *g, uint64_t busy)
     }
     if (g->level < g->level_min) g->level = g->level_min;
     if (g->level > R4_MD_LEVEL_MAX) g->level = R4_MD_LEVEL_MAX;
+    if (g->level != before) g->settle = (int)R4_MD_GOV_SETTLE;
     return g->level - before;
 }
 
