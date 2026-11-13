@@ -113,6 +113,13 @@ guest_cycle_scale_gated = true
 # Measured -7% emulation-thread time in a race.
 guest_cycle_scale_batch = true
 
+# 60 FPS stability: keep v_wait timeout unscaled (A/B mode).
+# Without this, the scaled timeout shrinks with the overclock and can cause
+# the GameShark dispatch table index to go out of range, triggering
+# "DISPATCH FATAL: misaligned target 0x81CB002E" after a few minutes
+# or when entering replay. Set to 1 to keep the original timeout length.
+R4_VWAIT_STOCK = 1
+
 # The 16:9 GameShark patch does its own FOV/HUD work and expects a plain
 # stretched 16:9 present. native_wide=false keeps the presenter on the
 # stretch path; the plugin then keeps the GTE/GPU squash at identity.
