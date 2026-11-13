@@ -581,6 +581,13 @@ interpreter).
   staged into the build like any other private payload. With them the pack
   preloads completely (3740/3740 images, 578.9 MiB, ~0.5 s) and the Spanish
   text applies.
+- **Intro FMV auto-skip** (`game.toml`: `auto_skip_fmv = true`, `fmv_skip_no_xa = 1`):
+  the intro opening movie is skipped automatically on startup, so the Grand
+  Prix route can now be walked from the very first frame. The FMV is detected
+  via MDEC activity (and silently XA-streams when present). Without this config
+  the intro hangs in interpreted code (the same mechanism that caused the
+  attract-loop halt). With it, the race starts immediately and all subsequent
+  performance numbers apply from frame 0.
 - The whole series was measured through the TCP debug server
   (`PSX_DEBUG_SERVER=1`) and `R4_PERFLOG_ALL=1`; `docs/R4_OPTIMIZATION_GUIDE.md`
   has the commands.

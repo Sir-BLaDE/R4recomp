@@ -92,6 +92,12 @@ dynamic_resolution = false
 # the `dithering` TCP command switches it live).
 dithering = "off"
 texture_filtering = "bilinear"
+# FMV auto-skip: skip intro and other FMVs automatically when detected.
+# auto_skip_fmv: 1 = enabled, 0 = disabled (default)
+auto_skip_fmv = true
+# Detect FMVs on MDEC activity alone (without XA audio stream).
+# Some FMVs are image-only (RAM-preloaded); set to 1 to detect those too.
+fmv_skip_no_xa = 1
 # GL work on its own thread so driver stalls never cost the guest a frame
 # (the framework's own R4 measurements, docs/RENDER_THREAD.md).
 render_thread = true
