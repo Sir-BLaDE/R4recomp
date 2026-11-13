@@ -134,6 +134,11 @@ in release CI.
 - 60 FPS opens the gated `[timing] guest_cycle_scale = 3` (the "CPU 300%").
 - 16:9 selects a fixed 16:9 aspect and keeps the framework's own GTE/GPU
   widescreen squash at identity (plain stretched present, as the patch asks).
+- **[Stability]**: `R4_VWAIT_STOCK = 1` in `game.toml` prevents the
+  "DISPATCH FATAL: misaligned target" halt that can occur after a few
+  minutes of play or when entering replay mode. The scaled v_wait timeout
+  can cause the GameShark dispatch table index to go out of range; setting
+  this to 1 keeps the original timeout length and avoids the crash.
 
 Windows x64 build from Linux (MinGW-w64 cross):
 
