@@ -555,7 +555,15 @@ interpreter).
   | 0.7.4 | 12.5 | 1.03 % | 29.6 ms | 3 |
   | 0.7.5 (view floor) | 12.0 | 0.40 % | 24.4 ms | 0 |
   | 0.7.7 (LTO + settle) | 10.2 | 0.79 % | 24.8 ms | **0** |
-  | 0.7.7 + PGO | **9.6** | 0.51 % | **22.0 ms** | **0** |
+  | 0.7.7 + PGO | 9.6 | 0.51 % | **22.0 ms** | **0** |
+  | 0.7.7 + PGO + framework patch, HD pack loaded | **8.6** | 0.90 % | 23.7 ms | **0** |
+
+  The last row is the shipped build: the framework patch (the HD matcher
+  caches, the per-texel STP for replacements and the 768 MiB preload cap)
+  applied with `scripts/apply_framework_patches.sh`, and the HD texture pack
+  loaded - the pack is GPU work, so it does not change the emulation cost.
+  Against 0.7.4 that is **12.5 -> 8.6 ms per VBlank (-31 %)**, with no frame
+  over 25 ms in the whole race.
 
   The remaining late VBlanks are the one-off cost of the governor's climb
   (one per level step, about two frames each); after it reaches its maximum
@@ -565,6 +573,14 @@ interpreter).
   exits cleanly and flushes the profile): 10.2 -> **9.6 ms** per VBlank. The
   profile is a local build artifact (the shipped executable carries it; a
   fresh build needs the training step again), so it is not in the repository.
+- **The HD pack and the Spanish payload are back in the build.** They are the
+  player's own data (derived from the PAL disc), so they stay out of the
+  repository: `mods/preloaded/packages/psx.enhancement.hd-textures/1.0.0/pack/`
+  (3098 WebP + 36 PNG + `config.yaml`) and
+  `mods/preloaded/packages/r4.spanish/1.0.0/payload/` are gitignored and
+  staged into the build like any other private payload. With them the pack
+  preloads completely (3740/3740 images, 578.9 MiB, ~0.5 s) and the Spanish
+  text applies.
 - The whole series was measured through the TCP debug server
   (`PSX_DEBUG_SERVER=1`) and `R4_PERFLOG_ALL=1`; `docs/R4_OPTIMIZATION_GUIDE.md`
   has the commands.
